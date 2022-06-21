@@ -9,7 +9,7 @@ late InAppWebViewController webViewController;
 Function jsAlertCallback = () {};
 
 late Setting setting;
-var setStateOfMainPage;
+late Function setStateOfMainPage;
 
 Future<void> init() async {
   await initFileSystem();

@@ -55,7 +55,10 @@ class USaintSession {
     var res = await Future.any(
       [
         Future(() async {
-          await globals.webViewController.loadData(data: "<html></html>");
+          var cookie = CookieManager.instance();
+          await cookie.deleteAllCookies();
+
+          await globals.webViewController.loadData(data: "");
           await globals.webViewController.loadUrl(
               urlRequest: URLRequest(
                   url: Uri.parse("https://smartid.ssu.ac.kr/Symtra_sso/smln.asp?apiReturnUrl=https%3A%2F%2Fsaint.ssu.ac.kr%2FwebSSO%2Fsso.jsp")));
