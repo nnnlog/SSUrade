@@ -1,0 +1,1 @@
+enum MainProgress { init, finish }

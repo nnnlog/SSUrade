@@ -1,0 +1,17 @@
+library ssurade.globals;
+
+import 'package:flutter_inappwebview/flutter_inappwebview.dart';
+import 'package:ssurade/filesystem/FileSystem.dart';
+import 'package:ssurade/types/Setting.dart';
+
+bool webViewInitialized = false;
+late InAppWebViewController webViewController;
+Function jsAlertCallback = () {};
+
+late Setting setting;
+var setStateOfMainPage;
+
+Future<void> init() async {
+  await initFileSystem();
+  setting = await Setting.loadFromFile();
+}
