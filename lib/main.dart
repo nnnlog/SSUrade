@@ -29,7 +29,7 @@ class MyApp extends StatelessWidget {
         }),
         scaffoldBackgroundColor: const Color.fromRGBO(241, 242, 245, 1),
       ),
-      darkTheme: ThemeData.dark(),
+      // darkTheme: ThemeData.dark(),
       initialRoute: '/',
       routes: {
         '/': (context) => const MainPage(),

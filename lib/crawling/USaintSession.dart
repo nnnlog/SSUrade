@@ -119,7 +119,6 @@ class USaintSession {
 
           // 페이지 로딩 직후 XHR 요청이 모두 완료될 때까지 대기
           globals.webViewXHRTotalCount = 0; // reset
-          log(globals.webViewXHRTotalCount.toString());
           bool existXHR = await Future.any([
             Future(() async {
               await Future.doWhile(() async {
@@ -128,7 +127,7 @@ class USaintSession {
               });
               return true;
             }),
-            Future.delayed(const Duration(seconds: 1), () => false)
+            Future.delayed(const Duration(seconds: 3), () => false)
           ]);
           if (existXHR) {
             await Future.any([
@@ -158,7 +157,6 @@ class USaintSession {
                     source: 'document.querySelector("#WDBD table table td:nth-child(5) span")?.querySelector("*[value]")?.value')) !=
                 "1 학기";
           });
-          log(globals.webViewXHRProgress.toString());
 
           // 현재 학기 정보가 모두 로딩될 때까지 대기
           await Future.any([

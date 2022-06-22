@@ -68,23 +68,26 @@ class _MainPageState extends State<MainPage> {
             onJsPrompt: (controller, action) async {
               return JsPromptResponse(); // cancel prompt event
             },
-            onAjaxReadyStateChange: (controller, ajax) async {
-              if (ajax.readyState == AjaxRequestReadyState.LOADING) {
+            onAjaxProgress: (controller, ajax) async {
+              if (ajax.readyState == AjaxRequestReadyState.HEADERS_RECEIVED) {
                 if (globals.webViewXHRProgress == XHRProgress.ready) {
                   globals.webViewXHRProgress = XHRProgress.running;
                 } else if (globals.webViewXHRProgress != XHRProgress.none) {
                   log("ajax error 1");
                 }
-                globals.webViewXHRRunningCount++;
-                globals.webViewXHRTotalCount++;
               }
+
               if (ajax.readyState == AjaxRequestReadyState.DONE) {
                 if (globals.webViewXHRProgress == XHRProgress.running) {
                   globals.webViewXHRProgress = XHRProgress.finish;
                 }
                 globals.webViewXHRRunningCount--;
               }
-              return null;
+
+              globals.webViewXHRRunningCount++;
+              globals.webViewXHRTotalCount++;
+
+              return AjaxRequestAction.PROCEED;
             },
             initialOptions: InAppWebViewGroupOptions(
               crossPlatform: InAppWebViewOptions(
@@ -170,7 +173,7 @@ class _MainPageState extends State<MainPage> {
                                       }
                                     },
                                   )
-                                : const Scaffold(),
+                                : Container(),
                           ]),
               ),
             ),

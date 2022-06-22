@@ -60,13 +60,13 @@ class _GradePageState extends State<GradePage> {
                 ),
               ),
             )
-          : Column(
+          : ListView(
               children: [
                 Container(
                   decoration: BoxDecoration(
                     borderRadius: const BorderRadius.only(
-                      bottomLeft: Radius.circular(40),
-                      bottomRight: Radius.circular(40),
+                      bottomLeft: Radius.circular(30),
+                      bottomRight: Radius.circular(30),
                     ),
                     color: Colors.white,
                     boxShadow: [
@@ -78,7 +78,7 @@ class _GradePageState extends State<GradePage> {
                       )
                     ],
                   ),
-                  height: 200,
+                  height: 150,
                   width: 1000,
                   child: Column(
                     children: [
@@ -88,6 +88,70 @@ class _GradePageState extends State<GradePage> {
                     ],
                   ),
                 ),
+                GridView(
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2,
+                    crossAxisSpacing: 25,
+                    mainAxisSpacing: 25,
+                  ),
+                  shrinkWrap: true,
+                  padding: const EdgeInsets.all(30),
+                  physics: const NeverScrollableScrollPhysics(),
+                  children: _subjects.subjectData
+                      .map(
+                        (e) => SizedBox(
+                          width: 100,
+                          height: 100,
+                          child: Container(
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              boxShadow: [
+                                BoxShadow(
+                                  blurRadius: 8,
+                                  spreadRadius: 2,
+                                  offset: const Offset(0, 2),
+                                  color: Colors.black.withOpacity(0.1),
+                                ),
+                              ],
+                              borderRadius: const BorderRadius.all(Radius.circular(10)),
+                            ),
+                            child: Padding(
+                              padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 20),
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  Align(
+                                    alignment: Alignment.center,
+                                    child: Text(
+                                      e.grade,
+                                      textAlign: TextAlign.center,
+                                    ),
+                                  ),
+                                  const Spacer(),
+                                  Align(
+                                    alignment: Alignment.center,
+                                    child: Text(
+                                      e.name,
+                                      textAlign: TextAlign.center,
+                                    ),
+                                  ),
+                                  const Spacer(),
+                                  Align(
+                                    alignment: Alignment.center,
+                                    child: Text(
+                                      "${e.professor} · ${e.credit}학점",
+                                      textAlign: TextAlign.center,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
+                      )
+                      .toList(),
+                )
               ],
             ),
     );
