@@ -1,10 +1,11 @@
 import 'dart:async';
+import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:ssurade/crawling/USaintSession.dart';
 import 'package:ssurade/globals.dart' as globals;
-import 'package:ssurade/types/MainProgress.dart';
+import 'package:ssurade/types/Progress.dart';
 import 'package:ssurade/utils/toast.dart';
 
 class MainPage extends StatefulWidget {
@@ -15,7 +16,7 @@ class MainPage extends StatefulWidget {
 }
 
 class _MainPageState extends State<MainPage> {
-  MainProgress progress = MainProgress.init;
+  MainProgress _progress = MainProgress.init;
 
   @override
   void initState() {
@@ -41,7 +42,7 @@ class _MainPageState extends State<MainPage> {
       }
 
       globals.setStateOfMainPage(() {
-        progress = MainProgress.finish;
+        _progress = MainProgress.finish;
       });
     })();
   }
@@ -67,11 +68,37 @@ class _MainPageState extends State<MainPage> {
             onJsPrompt: (controller, action) async {
               return JsPromptResponse(); // cancel prompt event
             },
+            onAjaxReadyStateChange: (controller, ajax) async {
+              if (ajax.readyState == AjaxRequestReadyState.LOADING) {
+                if (globals.webViewXHRProgress == XHRProgress.ready) {
+                  globals.webViewXHRProgress = XHRProgress.running;
+                } else if (globals.webViewXHRProgress != XHRProgress.none) {
+                  log("ajax error 1");
+                }
+                globals.webViewXHRRunningCount++;
+                globals.webViewXHRTotalCount++;
+              }
+              if (ajax.readyState == AjaxRequestReadyState.DONE) {
+                if (globals.webViewXHRProgress == XHRProgress.running) {
+                  globals.webViewXHRProgress = XHRProgress.finish;
+                }
+                globals.webViewXHRRunningCount--;
+              }
+              return null;
+            },
+            initialOptions: InAppWebViewGroupOptions(
+              crossPlatform: InAppWebViewOptions(
+                useShouldInterceptAjaxRequest: true,
+              ),
+            ),
           ),
         ),
         Scaffold(
           appBar: AppBar(
-            title: const Text("숭실대학교 학점 조회"),
+            title: const Text("숭실대학교 학점 조회", style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize: 17)),
+            backgroundColor: Colors.white,
+            shadowColor: const Color.fromRGBO(0, 0, 0, 0),
+            iconTheme: const IconThemeData(color: Colors.black),
           ),
           body: Padding(
             padding: const EdgeInsets.all(30),
@@ -79,13 +106,26 @@ class _MainPageState extends State<MainPage> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
-                children: progress == MainProgress.init
+                children: _progress == MainProgress.init
                     ? [
                         const LinearProgressIndicator(),
+                        const SizedBox(
+                          width: 1,
+                          height: 15,
+                        ),
                         const Text("정보를 불러오고 있습니다..."),
                       ]
                     : (globals.setting.saintSession.isLogin
                         ? [
+                            OutlinedButton(
+                              onPressed: () async {
+                                Navigator.pushNamed(context, "/view");
+                              },
+                              style: OutlinedButton.styleFrom(
+                                minimumSize: const Size.fromHeight(40),
+                              ),
+                              child: const Text("학점 조회"),
+                            ),
                             OutlinedButton(
                               onPressed: () async {
                                 showToast((await globals.setting.saintSession.fetchGrade()).toString());
@@ -119,6 +159,18 @@ class _MainPageState extends State<MainPage> {
                               ),
                               child: const Text("로그인"),
                             ),
+                            globals.setting.saintSession.isNotEmpty
+                                ? OutlinedButton(
+                                    child: const Text("다시 로그인"),
+                                    onPressed: () async {
+                                      if (!await globals.setting.saintSession.tryLogin()) {
+                                        showToast("자동로그인을 실패했습니다.");
+                                      } else {
+                                        showToast("자동로그인했습니다.");
+                                      }
+                                    },
+                                  )
+                                : const Scaffold(),
                           ]),
               ),
             ),

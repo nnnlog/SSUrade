@@ -23,7 +23,10 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("로그인"),
+        title: const Text("로그인", style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize: 17)),
+        backgroundColor: Colors.white,
+        shadowColor: const Color.fromRGBO(0, 0, 0, 0),
+        iconTheme: const IconThemeData(color: Colors.black),
       ),
       body: Padding(
         padding: const EdgeInsets.all(30),
