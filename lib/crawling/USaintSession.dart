@@ -198,6 +198,7 @@ class USaintSession {
           for (var obj in temp) {
             result.subjectData.add(SubjectData(obj[0], double.parse(obj[1]), obj[2], obj[3]));
           }
+          result.subjectData.sort((a, b) => a.grade.length < b.grade.length ? 1 : -1); // 학점 나온거부터 위로 오게
 
           return result;
         }),

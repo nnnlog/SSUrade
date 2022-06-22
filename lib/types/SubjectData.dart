@@ -24,9 +24,9 @@ class SubjectDataList {
       'A+': 4.5,
       'A0': 4.3,
       'A-': 4.0,
-      'B+': 3.3,
-      'B0': 4.0,
-      'B-': 4.5,
+      'B+': 3.5,
+      'B0': 3.3,
+      'B-': 3.0,
       'C+': 2.5,
       'C0': 2.3,
       'C-': 2.0,
@@ -36,6 +36,7 @@ class SubjectDataList {
       'P': -1,
       'F': -1,
     };
+
     for (var data in subjectData) {
       if (gradeTable[data.grade] == null) continue;
       double real = gradeTable[data.grade]!;

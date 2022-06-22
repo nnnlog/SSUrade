@@ -28,8 +28,9 @@ class MyApp extends StatelessWidget {
           900: Color.fromRGBO(0, 164, 202, 1),
         }),
         scaffoldBackgroundColor: const Color.fromRGBO(241, 242, 245, 1),
+        fontFamily: "Pretendard",
       ),
-      // darkTheme: ThemeData.dark(),
+      // darkTheme: ThemeData.dark(), // TODO
       initialRoute: '/',
       routes: {
         '/': (context) => const MainPage(),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ssurade/components/SubjectWidget.dart';
 import 'package:ssurade/globals.dart' as globals;
 import 'package:ssurade/types/Progress.dart';
 import 'package:ssurade/types/SubjectData.dart';
@@ -72,7 +73,7 @@ class _GradePageState extends State<GradePage> {
                     boxShadow: [
                       BoxShadow(
                         color: Colors.black.withOpacity(0.15),
-                        spreadRadius: 5,
+                        spreadRadius: 3,
                         blurRadius: 10,
                         offset: const Offset(0, 3),
                       )
@@ -80,6 +81,7 @@ class _GradePageState extends State<GradePage> {
                   ),
                   height: 150,
                   width: 1000,
+                  margin: const EdgeInsets.only(bottom: 10),
                   child: Column(
                     children: [
                       const Text("2022학년도 1학기"),
@@ -87,73 +89,9 @@ class _GradePageState extends State<GradePage> {
                       Text("${_subjects.averageGrade} / 4.5"),
                     ],
                   ),
-                  margin: const EdgeInsets.only(bottom: 10),
                 ),
                 Column(
-                  children: _subjects.subjectData
-                      .map((e) => Container(
-                            margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
-                            child: SizedBox(
-                              width: 1000,
-                              height: 85,
-                              child: Container(
-                                decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  boxShadow: [
-                                    BoxShadow(
-                                      blurRadius: 8,
-                                      spreadRadius: 2,
-                                      offset: const Offset(0, 2),
-                                      color: Colors.black.withOpacity(0.1),
-                                    ),
-                                  ],
-                                  borderRadius: const BorderRadius.all(Radius.circular(10)),
-                                ),
-                                child: Padding(
-                                  padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 20),
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    crossAxisAlignment: CrossAxisAlignment.center,
-                                    children: [
-                                      Align(
-                                        alignment: Alignment.center,
-                                        child: Text(
-                                          e.grade,
-                                          textAlign: TextAlign.center,
-                                        ),
-                                      ),
-                                      Container(
-                                        width: 20,
-                                      ),
-                                      Column(
-                                        mainAxisAlignment: MainAxisAlignment.center,
-                                        crossAxisAlignment: CrossAxisAlignment.center,
-                                        children: [
-                                          Align(
-                                            alignment: Alignment.center,
-                                            child: Text(
-                                              e.name,
-                                              textAlign: TextAlign.center,
-                                            ),
-                                          ),
-                                          Align(
-                                            alignment: Alignment.center,
-                                            child: Text(
-                                              "${e.professor} · ${e.credit}학점",
-                                              textAlign: TextAlign.center,
-                                              // style: TextStyle(fontSize: 10),
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                      const Spacer(),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ))
-                      .toList(),
+                  children: _subjects.subjectData.map((e) => SubjectWidget(e)).toList(),
                 ),
               ],
             ),
