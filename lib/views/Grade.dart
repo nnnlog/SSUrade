@@ -122,7 +122,9 @@ class _GradePageState extends State<GradePage> {
                                           textAlign: TextAlign.center,
                                         ),
                                       ),
-                                      Container(width: 20,),
+                                      Container(
+                                        width: 20,
+                                      ),
                                       Column(
                                         mainAxisAlignment: MainAxisAlignment.center,
                                         crossAxisAlignment: CrossAxisAlignment.center,
