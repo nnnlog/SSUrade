@@ -35,7 +35,7 @@ class GradeLogo extends StatefulWidget {
   static var C = (String detail) => GradeLogo(
         backgroundColor: const Color.fromRGBO(255, 192, 192, 1),
         textColor: const Color.fromRGBO(195, 76, 76, 1),
-        bigText: "B",
+        bigText: "C",
         smallText: detail,
       );
   static var D = (String detail) => GradeLogo(

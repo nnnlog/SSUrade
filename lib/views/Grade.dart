@@ -79,15 +79,66 @@ class _GradePageState extends State<GradePage> {
                       )
                     ],
                   ),
-                  height: 150,
                   width: 1000,
                   margin: const EdgeInsets.only(bottom: 10),
-                  child: Column(
-                    children: [
-                      const Text("2022학년도 1학기"),
-                      const Text("나의 평균 학점"),
-                      Text("${_subjects.averageGrade} / 4.5"),
-                    ],
+                  child: Padding(
+                    padding: const EdgeInsets.all(20),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          "2022학년도 1학기",
+                          style: TextStyle(
+                            fontSize: 17,
+                            color: Colors.black.withOpacity(0.6),
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 15,
+                        ),
+                        Text(
+                          "나의 평균 학점",
+                          style: TextStyle(
+                            fontSize: 16,
+                            color: Colors.black.withOpacity(0.6),
+                            fontWeight: FontWeight.w700,
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 5,
+                        ),
+                        Row(
+                          mainAxisSize: MainAxisSize.min,
+                          crossAxisAlignment: CrossAxisAlignment.baseline,
+                          textBaseline: TextBaseline.alphabetic,
+                          children: [
+                            Text(
+                              _subjects.averageGrade.toStringAsFixed(2),
+                              style: const TextStyle(
+                                fontSize: 50,
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
+                            const SizedBox(
+                              width: 3,
+                            ),
+                            Text(
+                              "/ 4.50",
+                              style: TextStyle(
+                                fontSize: 20,
+                                color: Colors.black.withOpacity(0.5),
+                                fontWeight: FontWeight.w700,
+                              ),
+                            ),
+                          ],
+                        ),
+                        const SizedBox(
+                          height: 5,
+                        ),
+                      ],
+                    ),
                   ),
                 ),
                 Column(
