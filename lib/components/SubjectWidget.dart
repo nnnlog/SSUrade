@@ -42,7 +42,7 @@ class _SubjectWidgetState extends State<SubjectWidget> {
               children: [
                 GradeLogo.parse(_subjectData.grade),
                 Container(
-                  width: 10,
+                  width: 13,
                 ),
                 Flexible(
                   child: Column(
