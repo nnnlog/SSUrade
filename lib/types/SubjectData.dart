@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 class SubjectData {
   String name; // 과목명
   double credit; // 학점 (이수 단위)
@@ -16,6 +14,7 @@ class SubjectData {
 
 class SubjectDataList {
   List<SubjectData> subjectData;
+
   SubjectDataList(this.subjectData);
 
   double get averageGrade {
