@@ -87,71 +87,72 @@ class _GradePageState extends State<GradePage> {
                       Text("${_subjects.averageGrade} / 4.5"),
                     ],
                   ),
+                  margin: const EdgeInsets.only(bottom: 10),
                 ),
-                GridView(
-                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2,
-                    crossAxisSpacing: 25,
-                    mainAxisSpacing: 25,
-                  ),
-                  shrinkWrap: true,
-                  padding: const EdgeInsets.all(30),
-                  physics: const NeverScrollableScrollPhysics(),
+                Column(
                   children: _subjects.subjectData
-                      .map(
-                        (e) => SizedBox(
-                          width: 100,
-                          height: 100,
-                          child: Container(
-                            decoration: BoxDecoration(
-                              color: Colors.white,
-                              boxShadow: [
-                                BoxShadow(
-                                  blurRadius: 8,
-                                  spreadRadius: 2,
-                                  offset: const Offset(0, 2),
-                                  color: Colors.black.withOpacity(0.1),
+                      .map((e) => Container(
+                            margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+                            child: SizedBox(
+                              width: 1000,
+                              height: 85,
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  boxShadow: [
+                                    BoxShadow(
+                                      blurRadius: 8,
+                                      spreadRadius: 2,
+                                      offset: const Offset(0, 2),
+                                      color: Colors.black.withOpacity(0.1),
+                                    ),
+                                  ],
+                                  borderRadius: const BorderRadius.all(Radius.circular(10)),
                                 ),
-                              ],
-                              borderRadius: const BorderRadius.all(Radius.circular(10)),
-                            ),
-                            child: Padding(
-                              padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 20),
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: [
-                                  Align(
-                                    alignment: Alignment.center,
-                                    child: Text(
-                                      e.grade,
-                                      textAlign: TextAlign.center,
-                                    ),
+                                child: Padding(
+                                  padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 20),
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    crossAxisAlignment: CrossAxisAlignment.center,
+                                    children: [
+                                      Align(
+                                        alignment: Alignment.center,
+                                        child: Text(
+                                          e.grade,
+                                          textAlign: TextAlign.center,
+                                        ),
+                                      ),
+                                      Container(width: 20,),
+                                      Column(
+                                        mainAxisAlignment: MainAxisAlignment.center,
+                                        crossAxisAlignment: CrossAxisAlignment.center,
+                                        children: [
+                                          Align(
+                                            alignment: Alignment.center,
+                                            child: Text(
+                                              e.name,
+                                              textAlign: TextAlign.center,
+                                            ),
+                                          ),
+                                          Align(
+                                            alignment: Alignment.center,
+                                            child: Text(
+                                              "${e.professor} · ${e.credit}학점",
+                                              textAlign: TextAlign.center,
+                                              // style: TextStyle(fontSize: 10),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                      const Spacer(),
+                                    ],
                                   ),
-                                  const Spacer(),
-                                  Align(
-                                    alignment: Alignment.center,
-                                    child: Text(
-                                      e.name,
-                                      textAlign: TextAlign.center,
-                                    ),
-                                  ),
-                                  const Spacer(),
-                                  Align(
-                                    alignment: Alignment.center,
-                                    child: Text(
-                                      "${e.professor} · ${e.credit}학점",
-                                      textAlign: TextAlign.center,
-                                    ),
-                                  ),
-                                ],
+                                ),
                               ),
                             ),
-                          ),
-                        ),
-                      )
+                          ))
                       .toList(),
-                )
+                ),
               ],
             ),
     );
