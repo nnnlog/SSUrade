@@ -24,29 +24,34 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-
   flutter_lints: ^2.0.0
+  flutter_launcher_icons: ^0.9.3
+
+flutter_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/icon/icon.jpg"
 
 flutter:
   uses-material-design: true
   fonts:
     - family: Pretendard
       fonts:
-        - asset: fonts/Pretendard/Pretendard-Thin.otf
+        - asset: assets/fonts/Pretendard/Pretendard-Thin.otf
           weight: 100
-        - asset: fonts/Pretendard/Pretendard-ExtraLight.otf
+        - asset: assets/fonts/Pretendard/Pretendard-ExtraLight.otf
           weight: 200
-        - asset: fonts/Pretendard/Pretendard-Light.otf
+        - asset: assets/fonts/Pretendard/Pretendard-Light.otf
           weight: 300
-        - asset: fonts/Pretendard/Pretendard-Regular.otf
+        - asset: assets/fonts/Pretendard/Pretendard-Regular.otf
           weight: 400
-        - asset: fonts/Pretendard/Pretendard-Medium.otf
+        - asset: assets/fonts/Pretendard/Pretendard-Medium.otf
           weight: 500
-        - asset: fonts/Pretendard/Pretendard-SemiBold.otf
+        - asset: assets/fonts/Pretendard/Pretendard-SemiBold.otf
           weight: 600
-        - asset: fonts/Pretendard/Pretendard-Bold.otf
+        - asset: assets/fonts/Pretendard/Pretendard-Bold.otf
           weight: 700
-        - asset: fonts/Pretendard/Pretendard-ExtraBold.otf
+        - asset: assets/fonts/Pretendard/Pretendard-ExtraBold.otf
           weight: 800
-        - asset: fonts/Pretendard/Pretendard-Black.otf
+        - asset: assets/fonts/Pretendard/Pretendard-Black.otf
           weight: 900
