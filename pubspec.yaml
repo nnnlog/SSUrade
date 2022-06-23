@@ -3,7 +3,7 @@ description: 숭실대학교 학점 조회
 
 publish_to: 'none'
 
-version: 0.0.4
+version: 0.0.5
 
 environment:
   sdk: ">=2.17.3 <3.0.0"

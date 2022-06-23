@@ -74,6 +74,9 @@ class _MainPageState extends State<MainPage> {
                 } else if (globals.webViewXHRProgress != XHRProgress.none) {
                   log("ajax error 1");
                 }
+
+                globals.webViewXHRRunningCount++;
+                globals.webViewXHRTotalCount++;
               }
 
               if (ajax.readyState == AjaxRequestReadyState.DONE) {
@@ -82,9 +85,6 @@ class _MainPageState extends State<MainPage> {
                 }
                 globals.webViewXHRRunningCount--;
               }
-
-              globals.webViewXHRRunningCount++;
-              globals.webViewXHRTotalCount++;
 
               return AjaxRequestAction.PROCEED;
             },

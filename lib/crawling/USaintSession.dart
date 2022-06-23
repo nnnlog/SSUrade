@@ -140,7 +140,7 @@ class USaintSession {
                 await Future.delayed(const Duration(milliseconds: 10));
                 return globals.webViewXHRRunningCount > 0;
               }),
-              Future.delayed(const Duration(seconds: 10))
+              Future.delayed(const Duration(seconds: 5))
             ]);
           } else {
             log("XHR 로딩 없음");
@@ -169,7 +169,7 @@ class USaintSession {
               await Future.delayed(const Duration(milliseconds: 100));
               return globals.webViewXHRProgress != XHRProgress.finish;
             }),
-            Future.delayed(const Duration(seconds: 10))
+            Future.delayed(const Duration(seconds: 5))
           ]);
           globals.webViewXHRProgress = XHRProgress.none;
 
