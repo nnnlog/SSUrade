@@ -118,20 +118,27 @@ class _InformationPageState extends State<InformationPage> {
                                   decoration: TextDecoration.underline,
                                 ),
                               ),
-                              onTap: () => launchUrl(Uri.parse("https://github.com/nnnlog/ssurade/releases/tag/v$newVer")),
+                              onTap: () => launchUrl(
+                                Uri.parse("https://github.com/nnnlog/ssurade/releases/tag/v$newVer"),
+                                mode: LaunchMode.externalApplication,
+                              ),
                             )),
+                      const Text(" "),
                       (devVer == ""
                           ? const Text("")
                           : InkWell(
                               child: Text(
-                                " (베타 버전 : $devVer)",
+                                "(베타 버전 : $devVer)",
                                 style: const TextStyle(
                                   fontSize: 15,
                                   fontWeight: FontWeight.w400,
                                   decoration: TextDecoration.underline,
                                 ),
                               ),
-                              onTap: () => launchUrl(Uri.parse("https://github.com/nnnlog/ssurade/releases/tag/v$devVer")),
+                              onTap: () => launchUrl(
+                                Uri.parse("https://github.com/nnnlog/ssurade/releases/tag/v$devVer"),
+                                mode: LaunchMode.externalApplication,
+                              ),
                             )),
                     ],
                   )),
@@ -153,7 +160,10 @@ class _InformationPageState extends State<InformationPage> {
                       decoration: TextDecoration.underline,
                     ),
                   ),
-                  onTap: () => launchUrl(Uri.parse("https://nlog.dev/")),
+                  onTap: () => launchUrl(
+                    Uri.parse("https://nlog.dev/"),
+                    mode: LaunchMode.externalApplication,
+                  ),
                 )
               ],
             ),
