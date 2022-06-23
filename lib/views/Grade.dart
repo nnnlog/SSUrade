@@ -23,7 +23,10 @@ class _GradePageState extends State<GradePage> {
     (() async {
       var res = await globals.setting.saintSession.fetchGrade();
       if (res == null) {
-        showToast("성적 정보를 가져오지 못했습니다.");
+        if (mounted) {
+          Navigator.pop(context);
+        }
+        showToast("성적 정보를 가져오지 못했습니다.\n다시 시도해주세요.");
         return;
       }
 

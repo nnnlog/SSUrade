@@ -130,15 +130,6 @@ class _MainPageState extends State<MainPage> {
                               child: const Text("학점 조회"),
                             ),
                             OutlinedButton(
-                              onPressed: () async {
-                                showToast((await globals.setting.saintSession.fetchGrade()).toString());
-                              },
-                              style: OutlinedButton.styleFrom(
-                                minimumSize: const Size.fromHeight(40),
-                              ),
-                              child: const Text("테스트"),
-                            ),
-                            OutlinedButton(
                               onPressed: () {
                                 setState(() {
                                   globals.setting.saintSession = USaintSession("", "");
