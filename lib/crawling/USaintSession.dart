@@ -132,7 +132,7 @@ class USaintSession {
               });
               return true;
             }),
-            Future.delayed(const Duration(seconds: 3), () => false)
+            Future.delayed(const Duration(seconds: 5), () => false)
           ]);
           if (existXHR) {
             await Future.any([
@@ -140,7 +140,7 @@ class USaintSession {
                 await Future.delayed(const Duration(milliseconds: 10));
                 return globals.webViewXHRRunningCount > 0;
               }),
-              Future.delayed(const Duration(seconds: 5))
+              Future.delayed(const Duration(seconds: 10))
             ]);
           } else {
             log("XHR 로딩 없음");
@@ -169,7 +169,7 @@ class USaintSession {
               await Future.delayed(const Duration(milliseconds: 100));
               return globals.webViewXHRProgress != XHRProgress.finish;
             }),
-            Future.delayed(const Duration(seconds: 3))
+            Future.delayed(const Duration(seconds: 10))
           ]);
           globals.webViewXHRProgress = XHRProgress.none;
 
@@ -207,7 +207,7 @@ class USaintSession {
 
           return result;
         }),
-        Future.delayed(const Duration(seconds: 10), () => null),
+        Future.delayed(const Duration(seconds: 20), () => null),
       ]);
     } catch (e) {
       log(e.toString());
