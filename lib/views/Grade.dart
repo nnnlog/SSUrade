@@ -26,6 +26,7 @@ class _GradePageState extends State<GradePage> {
         if (mounted) {
           Navigator.pop(context);
         }
+        setState(() {}); // 로그인 풀리면 메인 페이지에 반영
         showToast("성적 정보를 가져오지 못했습니다.\n다시 시도해주세요.");
         return;
       }
@@ -60,7 +61,7 @@ class _GradePageState extends State<GradePage> {
                       width: 1,
                       height: 15,
                     ),
-                    Text("정보를 불러오고 있습니다..."),
+                    Text("정보를 불러오고 있습니다...")
                   ],
                 ),
               ),

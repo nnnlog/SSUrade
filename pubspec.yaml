@@ -1,9 +1,9 @@
 name: ssurade
-description: 숭실대학교 학점 조회
+description: 숭실대학교 성적/학점 조회
 
 publish_to: 'none'
 
-version: 0.0.7
+version: 0.0.8
 
 environment:
   sdk: ">=2.17.3 <3.0.0"

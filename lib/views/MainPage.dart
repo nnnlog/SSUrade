@@ -90,6 +90,7 @@ class _MainPageState extends State<MainPage> {
             initialOptions: InAppWebViewGroupOptions(
               crossPlatform: InAppWebViewOptions(
                 useShouldInterceptAjaxRequest: true,
+                // cacheEnabled: false, // TODO: 캐시 비활성화에 대해서 생각
               ),
             ),
           ),
@@ -145,6 +146,7 @@ class _MainPageState extends State<MainPage> {
                                             showToast("자동로그인을 실패했습니다.");
                                           } else {
                                             showToast("자동로그인했습니다.");
+                                            setState(() {});
                                           }
                                         },
                                         style: OutlinedButton.styleFrom(

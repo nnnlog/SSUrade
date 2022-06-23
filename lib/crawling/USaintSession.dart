@@ -4,6 +4,7 @@ import 'dart:developer';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:ssurade/types/Progress.dart';
 import 'package:ssurade/types/SubjectData.dart';
+import 'package:ssurade/utils/toast.dart';
 
 import '../globals.dart' as globals;
 
@@ -119,12 +120,19 @@ class USaintSession {
             return null;
           }
 
+          // DateTime time = DateTime.now();
           await globals.webViewController.loadData(data: "");
           globals.webViewXHRTotalCount = 0; // reset
           globals.webViewXHRRunningCount = 0; // reset
 
+          // showToast("load (init) : ${DateTime.now().difference(time).inMilliseconds}ms");
+          // time = DateTime.now();
+
           await globals.webViewController
               .loadUrl(urlRequest: URLRequest(url: Uri.parse("https://ecc.ssu.ac.kr/sap/bc/webdynpro/SAP/ZCMB3W0017?sap-language=KO")));
+
+          // showToast("load (page) : ${DateTime.now().difference(time).inMilliseconds}ms");
+          // time = DateTime.now();
 
           // 페이지 로딩 직후 XHR 요청이 모두 완료될 때까지 대기
           bool existXHR = await Future.any([
@@ -135,8 +143,10 @@ class USaintSession {
               });
               return true;
             }),
-            Future.delayed(const Duration(seconds: 7), () => false)
+            Future.delayed(const Duration(seconds: 3), () => false)
           ]);
+          // showToast("existXHR : ${DateTime.now().difference(time).inMilliseconds}ms");
+          // time = DateTime.now();
           if (existXHR) {
             await Future.any([
               Future.doWhile(() async {
@@ -149,23 +159,35 @@ class USaintSession {
             log("XHR 로딩 없음");
           }
 
+          // showToast("finishXHR : ${DateTime.now().difference(time).inMilliseconds}ms");
+          // time = DateTime.now();
+
           // 학기 드롭다운(dropdown)에서 1학기 선택
           globals.webViewXHRProgress = XHRProgress.ready;
           await Future.doWhile(() async {
-            await Future.delayed(const Duration(milliseconds: 100));
-
             try {
-              await globals.webViewController.evaluateJavascript(source: 'document.querySelector("#WDBD table table td:nth-child(5) span").click()');
-              await globals.webViewController.evaluateJavascript(source: 'document.querySelector("#WD011E-first div:nth-child(1)").click();');
-            } catch (e) {
+              await globals.webViewController.evaluateJavascript(
+                  source: 'document.querySelectorAll("table table table table")[12].querySelector("td:nth-child(5) span").click();');
+              await Future.delayed(const Duration(milliseconds: 100));
+              await globals.webViewController.evaluateJavascript(
+                  source:
+                      'document.querySelector("div div div div:nth-child(3) div div:nth-child(2) div:nth-child(2) div div div:nth-child(1)").click();');
+              await Future.delayed(const Duration(milliseconds: 100));
+
+              var selected = (await globals.webViewController.evaluateJavascript(
+                  source:
+                      'document.querySelectorAll("table table table table")[12].querySelector("td:nth-child(5) span")?.querySelector("*[value]").value;'));
+              if (selected == null) return true;
+              selected = selected.replaceAll(" ", "");
+
+              return selected != "1학기";
+            } catch (e, s) {
+              // showToast("error : ${e.toString()} (${s.toString()}");
               return true;
             }
-
-            await Future.delayed(const Duration(milliseconds: 10));
-            return (await globals.webViewController.evaluateJavascript(
-                    source: 'document.querySelector("#WDBD table table td:nth-child(5) span")?.querySelector("*[value]")?.value')) !=
-                "1 학기";
           });
+          // showToast("select 1st : ${DateTime.now().difference(time).inMilliseconds}ms");
+          // time = DateTime.now();
 
           // 현재 학기 정보가 모두 로딩될 때까지 대기
           await Future.any([
@@ -177,18 +199,22 @@ class USaintSession {
           ]);
           globals.webViewXHRProgress = XHRProgress.none;
 
+          // showToast("load 1st : ${DateTime.now().difference(time).inMilliseconds}ms");
+          // time = DateTime.now();
+
           dynamic temp = "";
           while (temp.length == 0) {
             try {
               temp = await globals.webViewController.evaluateJavascript(source: '''
-              if (document.querySelectorAll(`#WD0133-contentTBody tr`).length >= 1) { // XHR 상태보고 하는거라 필요없긴 함
+              let elements = document.querySelectorAll(`table tr table tr table tr:nth-child(11) td table table table table tbody:nth-child(2) tr`);
+              if (elements.length >= 1) { // XHR 상태보고 하는거라 필요없긴 함
                 let ret = [];
-                for (let i = 2; i <= document.querySelectorAll(`#WD0133-contentTBody tr`).length; i++) {
+                for (let i = 1; i < elements.length; i++) {
                   ret.push([
-                    document.querySelector(`#WD0133-contentTBody tr:nth-child(\${i}) td:nth-child(5) span span`).textContent, // 과목명
-                    document.querySelector(`#WD0133-contentTBody tr:nth-child(\${i}) td:nth-child(6) span span`).textContent, // 학점 (이수 단위)
-                    document.querySelector(`#WD0133-contentTBody tr:nth-child(\${i}) td:nth-child(8) span span`).textContent, // 학점 (등급)
-                    document.querySelector(`#WD0133-contentTBody tr:nth-child(\${i}) td:nth-child(9) span span`).textContent, // 교수명
+                    elements[i].querySelector(`td:nth-child(5) span span`).textContent, // 과목명
+                    elements[i].querySelector(`td:nth-child(6) span span`).textContent, // 학점 (이수 단위)
+                    elements[i].querySelector(`td:nth-child(8) span span`).textContent, // 학점 (등급)
+                    elements[i].querySelector(`td:nth-child(9) span span`).textContent, // 교수명
                   ]);
                 }
                 JSON.stringify(ret.map(a => a.map(b => b.trim())));
@@ -196,11 +222,15 @@ class USaintSession {
               ''');
               temp ??= "";
               temp = temp.trim();
-            } catch (e) {
+            } catch (e, stacktrace) {
+              log(e.toString());
+              log(stacktrace.toString());
               await Future.delayed(const Duration(milliseconds: 100));
               continue;
             }
           }
+          // showToast("finish : ${DateTime.now().difference(time).inMilliseconds}ms");
+          // time = DateTime.now();
           temp = jsonDecode(temp);
 
           SubjectDataList result = SubjectDataList([]);
@@ -215,7 +245,10 @@ class USaintSession {
       ]);
     } catch (e) {
       log(e.toString());
-      _isLogin = false;
+      globals.setStateOfMainPage(() {
+        _isLogin = false;
+      });
+
       return null;
     } finally {
       _lockedForGrade = false;
