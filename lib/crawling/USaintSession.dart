@@ -39,6 +39,11 @@ class USaintSession {
     return _isLogin;
   }
 
+  logout() {
+    number = "";
+    password = "";
+  }
+
   bool _lockedForLogin = false;
 
   Future<bool> tryLogin({bool refresh = false}) async {

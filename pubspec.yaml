@@ -3,7 +3,7 @@ description: 숭실대학교 학점 조회
 
 publish_to: 'none'
 
-version: 0.0.1
+version: 0.0.2
 
 environment:
   sdk: ">=2.17.3 <3.0.0"
@@ -16,6 +16,10 @@ dependencies:
   flutter_inappwebview: ^5.4.3+7
   path_provider: ^2.0.11
   fluttertoast: ^8.0.9
+  package_info_plus: ^1.4.2
+  http: ^0.13.4
+  version: ^3.0.2
+  url_launcher: ^6.1.4
 
 dev_dependencies:
   flutter_test:

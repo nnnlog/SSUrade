@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:ssurade/views/Grade.dart';
+import 'package:ssurade/views/Information.dart';
 import 'package:ssurade/views/Login.dart';
 import 'package:ssurade/views/MainPage.dart';
+import 'package:ssurade/views/SettingPage.dart';
 
 void main() {
   runApp(const MyApp());
@@ -27,7 +29,7 @@ class MyApp extends StatelessWidget {
           800: Color.fromRGBO(0, 164, 202, .9),
           900: Color.fromRGBO(0, 164, 202, 1),
         }),
-        scaffoldBackgroundColor: const Color.fromRGBO(241, 242, 245, 1),
+        scaffoldBackgroundColor: Colors.white,
         fontFamily: "Pretendard",
       ),
       // darkTheme: ThemeData.dark(), // TODO
@@ -36,6 +38,8 @@ class MyApp extends StatelessWidget {
         '/': (context) => const MainPage(),
         '/login': (context) => const LoginPage(),
         '/view': (context) => const GradePage(),
+        '/setting': (context) => const SettingPage(),
+        '/information': (context) => const InformationPage(),
       },
     );
   }

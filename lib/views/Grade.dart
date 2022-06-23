@@ -46,6 +46,7 @@ class _GradePageState extends State<GradePage> {
         shadowColor: const Color.fromRGBO(0, 0, 0, 0),
         iconTheme: const IconThemeData(color: Colors.black),
       ),
+      backgroundColor: _progress == GradeProgress.init ? null : const Color.fromRGBO(241, 242, 245, 1),
       body: _progress == GradeProgress.init
           ? Padding(
               padding: const EdgeInsets.all(30),
