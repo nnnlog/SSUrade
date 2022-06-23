@@ -67,7 +67,7 @@ class _MainPageState extends State<MainPage> {
             onJsPrompt: (controller, action) async {
               return JsPromptResponse(); // cancel prompt event
             },
-            onAjaxProgress: (controller, ajax) async {
+            onAjaxReadyStateChange: (controller, ajax) async {
               if (ajax.readyState == AjaxRequestReadyState.HEADERS_RECEIVED) {
                 if (globals.webViewXHRProgress == XHRProgress.ready) {
                   globals.webViewXHRProgress = XHRProgress.running;
@@ -83,10 +83,9 @@ class _MainPageState extends State<MainPage> {
                 if (globals.webViewXHRProgress == XHRProgress.running) {
                   globals.webViewXHRProgress = XHRProgress.finish;
                 }
+
                 globals.webViewXHRRunningCount--;
               }
-
-              return AjaxRequestAction.PROCEED;
             },
             initialOptions: InAppWebViewGroupOptions(
               crossPlatform: InAppWebViewOptions(
@@ -97,7 +96,7 @@ class _MainPageState extends State<MainPage> {
         ),
         Scaffold(
           appBar: AppBar(
-            title: const Text("숭실대학교 학점 조회", style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize: 17)),
+            title: const Text("숭실대학교 성적/학점 조회", style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize: 17)),
             backgroundColor: Colors.white,
             shadowColor: const Color.fromRGBO(0, 0, 0, 0),
             iconTheme: const IconThemeData(color: Colors.black),
@@ -126,7 +125,7 @@ class _MainPageState extends State<MainPage> {
                                   style: OutlinedButton.styleFrom(
                                     minimumSize: const Size.fromHeight(40),
                                   ),
-                                  child: const Text("학점 조회"),
+                                  child: const Text("성적/학점 조회"),
                                 ),
                               ]
                             : <Widget>[
@@ -141,7 +140,6 @@ class _MainPageState extends State<MainPage> {
                                 ),
                                 globals.setting.saintSession.isNotEmpty
                                     ? OutlinedButton(
-                                        child: const Text("다시 로그인"),
                                         onPressed: () async {
                                           if (!await globals.setting.saintSession.tryLogin()) {
                                             showToast("자동로그인을 실패했습니다.");
@@ -149,6 +147,10 @@ class _MainPageState extends State<MainPage> {
                                             showToast("자동로그인했습니다.");
                                           }
                                         },
+                                        style: OutlinedButton.styleFrom(
+                                          minimumSize: const Size.fromHeight(40),
+                                        ),
+                                        child: const Text("자동로그인 재시도"),
                                       )
                                     : Container(),
                               ]) +

@@ -119,11 +119,14 @@ class USaintSession {
             return null;
           }
 
+          await globals.webViewController.loadData(data: "");
+          globals.webViewXHRTotalCount = 0; // reset
+          globals.webViewXHRRunningCount = 0; // reset
+
           await globals.webViewController
               .loadUrl(urlRequest: URLRequest(url: Uri.parse("https://ecc.ssu.ac.kr/sap/bc/webdynpro/SAP/ZCMB3W0017?sap-language=KO")));
 
           // 페이지 로딩 직후 XHR 요청이 모두 완료될 때까지 대기
-          globals.webViewXHRTotalCount = 0; // reset
           bool existXHR = await Future.any([
             Future(() async {
               await Future.doWhile(() async {
@@ -132,7 +135,7 @@ class USaintSession {
               });
               return true;
             }),
-            Future.delayed(const Duration(seconds: 5), () => false)
+            Future.delayed(const Duration(seconds: 7), () => false)
           ]);
           if (existXHR) {
             await Future.any([
@@ -158,6 +161,7 @@ class USaintSession {
               return true;
             }
 
+            await Future.delayed(const Duration(milliseconds: 10));
             return (await globals.webViewController.evaluateJavascript(
                     source: 'document.querySelector("#WDBD table table td:nth-child(5) span")?.querySelector("*[value]")?.value')) !=
                 "1 학기";
@@ -166,7 +170,7 @@ class USaintSession {
           // 현재 학기 정보가 모두 로딩될 때까지 대기
           await Future.any([
             Future.doWhile(() async {
-              await Future.delayed(const Duration(milliseconds: 100));
+              await Future.delayed(const Duration(milliseconds: 10));
               return globals.webViewXHRProgress != XHRProgress.finish;
             }),
             Future.delayed(const Duration(seconds: 5))
