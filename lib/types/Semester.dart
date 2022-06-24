@@ -62,4 +62,15 @@ class YearSemester {
   bool operator ==(Object other) {
     return hashCode == other.hashCode;
   }
+
+  static YearSemester current() {
+    var time = DateTime.now();
+    if (time.month <= 2) {
+      return YearSemester((time.year - 1).toString(), Semester.second);
+    } else if (time.month <= 8) {
+      return YearSemester(time.year.toString(), Semester.first);
+    } else {
+      return YearSemester(time.year.toString(), Semester.second);
+    }
+  }
 }

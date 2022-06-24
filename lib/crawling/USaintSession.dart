@@ -5,6 +5,8 @@ import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:ssurade/types/Progress.dart';
 import 'package:ssurade/types/Semester.dart';
 import 'package:ssurade/types/SubjectData.dart';
+import 'package:ssurade/utils/toast.dart';
+import 'package:tuple/tuple.dart';
 
 import '../globals.dart' as globals;
 
@@ -106,8 +108,25 @@ class USaintSession {
     return _isLogin = res;
   }
 
-  _initForXHR() async {
-    await globals.webViewController.loadData(data: "");
+  _initForXHR({bool clearCache = true}) async {
+    if (clearCache) {
+      var cookie = await CookieManager.instance().getCookies(url: Uri.parse("https://ssu.ac.kr"));
+
+      await globals.webViewController.clearCache();
+
+      for (var obj in cookie) {
+        await CookieManager.instance().setCookie(
+            url: Uri.parse("https://ssu.ac.kr"),
+            name: obj.name,
+            value: obj.value,
+            domain: obj.domain,
+            expiresDate: obj.expiresDate,
+            isHttpOnly: obj.isHttpOnly,
+            isSecure: obj.isSecure,
+            sameSite: obj.sameSite);
+      }
+    }
+
     globals.webViewXHRTotalCount = 0; // reset
     globals.webViewXHRRunningCount = 0; // reset
   }
@@ -121,7 +140,7 @@ class USaintSession {
         });
         return true;
       }),
-      Future.delayed(const Duration(seconds: 3), () => false)
+      Future.delayed(const Duration(seconds: 5), () => false)
     ]);
 
     if (existXHR) {
@@ -137,75 +156,13 @@ class USaintSession {
     }
   }
 
-  Future<String?> getEntranceYear() async {
+  Future<Tuple2<String, String>?> getEntranceGraduateYear() async {
     if (_lockedForWebView) return null;
     _lockedForWebView = true;
 
     bool isFinished = false;
 
-    late String? result;
-    try {
-      result = await Future.any([
-        Future(() async {
-          if (isFinished) return null;
-          if (!await tryLogin()) {
-            return null;
-          }
-
-          await _initForXHR();
-
-          await globals.webViewController
-              .loadUrl(urlRequest: URLRequest(url: Uri.parse("https://ecc.ssu.ac.kr/sap/bc/webdynpro/SAP/ZCMW1001n?sap-language=KO")));
-
-          await _waitForXHR();
-
-          dynamic temp = "";
-          await Future.any([
-            Future.doWhile(() async {
-              if (isFinished) return false;
-              try {
-                temp = await globals.webViewController.evaluateJavascript(
-                    source:
-                        'document.querySelectorAll("table tr div div:nth-child(1) span span:nth-child(2) tbody:nth-child(2) tr td span span table tbody tr:nth-child(1) td:nth-child(1) table tr table tr:nth-child(1) td:nth-child(2) span input")[0].value;');
-                temp ??= "";
-                temp = temp.trim();
-                return false;
-              } catch (e, stacktrace) {
-                log(e.toString());
-                log(stacktrace.toString());
-                await Future.delayed(const Duration(milliseconds: 100));
-                return true;
-              }
-            }),
-            Future.delayed(const Duration(seconds: 5))
-          ]);
-
-          return temp;
-        }),
-        Future.delayed(const Duration(seconds: 10), () => null),
-      ]);
-    } catch (e) {
-      log(e.toString());
-      globals.setStateOfMainPage(() {
-        _isLogin = false;
-      });
-
-      return null;
-    } finally {
-      _lockedForWebView = false;
-      isFinished = true;
-    }
-
-    return result;
-  }
-
-  Future<String?> getGraduateYear() async {
-    if (_lockedForWebView) return null;
-    _lockedForWebView = true;
-
-    bool isFinished = false;
-
-    late String? result;
+    late Tuple2<String, String>? result;
     try {
       result = await Future.any([
         Future(() async {
@@ -225,13 +182,21 @@ class USaintSession {
             Future.doWhile(() async {
               if (isFinished) return false;
               try {
-                result = await globals.webViewController.evaluateJavascript(
+                String? entrance = await globals.webViewController.evaluateJavascript(
                     source:
                         'document.querySelectorAll("table tr div div:nth-child(1) span span:nth-child(2) tbody:nth-child(2) tr td span span table tbody tr:nth-child(1) td:nth-child(1) table tr table tr:nth-child(1) td:nth-child(2) span input")[0].value;');
-                if (result == null) {
-                  throw Exception();
-                }
-                result = result?.trim();
+                if (entrance == null) return true;
+                entrance = entrance.trim();
+                if (entrance.isEmpty) return true;
+
+                String? graduate = await globals.webViewController.evaluateJavascript(
+                    source:
+                        'document.querySelectorAll("table tr div div:nth-child(1) span span:nth-child(2) tbody:nth-child(2) tr td span span table tbody tr:nth-child(1) td:nth-child(1) table tr table tr:nth-child(1) td:nth-child(2) span input")[0].value;');
+                if (graduate == null) return true;
+                graduate = graduate.trim();
+                if (graduate.isEmpty) return true;
+
+                result = Tuple2(entrance, graduate);
                 return false;
               } catch (e, stacktrace) {
                 log(e.toString());
@@ -262,7 +227,15 @@ class USaintSession {
     return result;
   }
 
-  Future<SubjectDataList?> getGrade(YearSemester search) async {
+  Future<String?> getEntranceYear() async {
+    return (await getEntranceGraduateYear())?.item1;
+  }
+
+  Future<String?> getGraduateYear() async {
+    return (await getEntranceGraduateYear())?.item2;
+  }
+
+  Future<SubjectDataList?> getGrade(YearSemester search, {bool reloadPage = true}) async {
     if (_lockedForWebView) return null;
     _lockedForWebView = true;
 
@@ -276,50 +249,83 @@ class USaintSession {
             return null;
           }
 
-          await _initForXHR();
+          // DateTime time = DateTime.now();
 
-          await globals.webViewController
-              .loadUrl(urlRequest: URLRequest(url: Uri.parse("https://ecc.ssu.ac.kr/sap/bc/webdynpro/SAP/ZCMB3W0017?sap-language=KO")));
+          var url = (await globals.webViewController.getUrl()).toString();
+          if (url.contains("#")) {
+            url = url.substring(0, url.indexOf("#"));
+          }
 
-          await _waitForXHR();
+          if (reloadPage || url != "https://ecc.ssu.ac.kr/sap/bc/webdynpro/SAP/ZCMB3W0017?sap-language=KO") {
+            await _initForXHR();
+            // showToast("init (xhr) : ${DateTime.now().difference(time).inMilliseconds}ms");
+            // log("init (xhr) : ${DateTime.now().difference(time).inMilliseconds}ms");
+            // time = DateTime.now();
+
+            await globals.webViewController
+                .loadUrl(urlRequest: URLRequest(url: Uri.parse("https://ecc.ssu.ac.kr/sap/bc/webdynpro/SAP/ZCMB3W0017?sap-language=KO")));
+            // showToast("load (page) : ${DateTime.now().difference(time).inMilliseconds}ms");
+            // log("load (page) : ${DateTime.now().difference(time).inMilliseconds}ms");
+            // time = DateTime.now();
+
+            await _waitForXHR();
+            // showToast("finishXHR : ${DateTime.now().difference(time).inMilliseconds}ms");
+            // log("finishXHR : ${DateTime.now().difference(time).inMilliseconds}ms");
+            // time = DateTime.now();
+          }
 
           // 학년도 드롭다운(dropdown)에서 학년도 선택
           globals.webViewXHRProgress = XHRProgress.ready;
+          bool existXHR = false;
           await Future.doWhile(() async {
             if (isFinished) return false;
             try {
+              var selected = (await globals.webViewController.evaluateJavascript(
+                  source:
+                      'document.querySelectorAll("table table table table")[12].querySelector("td:nth-child(2) span")?.querySelector("*[value]").value;'));
+              if (selected?.replaceAll(" ", "") == "${search.year}학년도") return false;
+              existXHR = true;
+
               await globals.webViewController.evaluateJavascript(
                   source: 'document.querySelectorAll("table table table table")[12].querySelector("td:nth-child(2) span").click();');
               await Future.delayed(const Duration(milliseconds: 100));
               await globals.webViewController
                   .evaluateJavascript(source: 'document.querySelector("div[data-itemvalue1=\'${search.year}학년도\']").click();');
               await Future.delayed(const Duration(milliseconds: 100));
-
-              var selected = (await globals.webViewController.evaluateJavascript(
-                  source:
-                      'document.querySelectorAll("table table table table")[12].querySelector("td:nth-child(2) span")?.querySelector("*[value]").value;'));
-              if (selected == null) return true;
-              selected = selected.replaceAll(" ", "");
-
-              return selected != "${search.year}학년도";
             } catch (e, s) {
               // showToast("error : ${e.toString()} (${s.toString()}");
-              return true;
             }
+            return true;
           });
-          await Future.any([
-            Future.doWhile(() async {
-              await Future.delayed(const Duration(milliseconds: 10));
-              return globals.webViewXHRProgress != XHRProgress.finish;
-            }),
-            Future.delayed(const Duration(seconds: 3))
-          ]);
+          // showToast("select year : ${DateTime.now().difference(time).inMilliseconds}ms");
+          // log("select year : ${DateTime.now().difference(time).inMilliseconds}ms");
+          // time = DateTime.now();
+
+          if (existXHR) {
+            await Future.any([
+              Future.doWhile(() async {
+                await Future.delayed(const Duration(milliseconds: 10));
+                return globals.webViewXHRProgress != XHRProgress.finish;
+              }),
+              Future.delayed(const Duration(seconds: 3))
+            ]);
+            // showToast("load year : ${DateTime.now().difference(time).inMilliseconds}ms");
+            // log("load year : ${DateTime.now().difference(time).inMilliseconds}ms");
+            // time = DateTime.now();
+          }
 
           // 학기 드롭다운(dropdown)에서 학기 선택
           globals.webViewXHRProgress = XHRProgress.ready;
+          existXHR = false;
           await Future.doWhile(() async {
             if (isFinished) return false;
             try {
+              var selected = (await globals.webViewController.evaluateJavascript(
+                  source:
+                      'document.querySelectorAll("table table table table")[12].querySelector("td:nth-child(5) span")?.querySelector("*[value]").value;'));
+              if (selected?.replaceAll(" ", "") == search.semester.name) return false;
+              existXHR = true;
+
               await globals.webViewController.evaluateJavascript(
                   source: 'document.querySelectorAll("table table table table")[12].querySelector("td:nth-child(5) span").click();');
               await Future.delayed(const Duration(milliseconds: 100));
@@ -327,30 +333,29 @@ class USaintSession {
                   source:
                       'document.querySelector("div div div div:nth-child(3) div div:nth-child(2) div:nth-child(2) div div div:nth-child(${search.semester.webIndex})").click();');
               await Future.delayed(const Duration(milliseconds: 100));
-
-              var selected = (await globals.webViewController.evaluateJavascript(
-                  source:
-                      'document.querySelectorAll("table table table table")[12].querySelector("td:nth-child(5) span")?.querySelector("*[value]").value;'));
-              if (selected == null) return true;
-              selected = selected.replaceAll(" ", "");
-
-              return selected != search.semester.name;
             } catch (e, s) {
               // showToast("error : ${e.toString()} (${s.toString()}");
-              return true;
             }
+            return true;
           });
+          // showToast("select sem : ${DateTime.now().difference(time).inMilliseconds}ms");
+          // log("select sem : ${DateTime.now().difference(time).inMilliseconds}ms");
+          // time = DateTime.now();
 
           // 현재 학기 정보가 모두 로딩될 때까지 대기
-          await Future.any([
-            Future.doWhile(() async {
-              if (isFinished) return false;
-              await Future.delayed(const Duration(milliseconds: 10));
-              return globals.webViewXHRProgress != XHRProgress.finish;
-            }),
-            Future.delayed(const Duration(seconds: 5))
-          ]);
-          globals.webViewXHRProgress = XHRProgress.none;
+          if (existXHR) {
+            await Future.any([
+              Future.doWhile(() async {
+                if (isFinished) return false;
+                await Future.delayed(const Duration(milliseconds: 10));
+                return globals.webViewXHRProgress != XHRProgress.finish;
+              }),
+              Future.delayed(const Duration(seconds: 5))
+            ]);
+          }
+          // showToast("load sem : ${DateTime.now().difference(time).inMilliseconds}ms");
+          // log("load sem : ${DateTime.now().difference(time).inMilliseconds}ms");
+          // time = DateTime.now();
 
           dynamic temp = "";
           await Future.any([
@@ -358,21 +363,21 @@ class USaintSession {
               if (isFinished) return false;
               try {
                 temp = await globals.webViewController.evaluateJavascript(source: '''
-              let elements = document.querySelectorAll(`table tr table tr table tr:nth-child(11) td table table table table tbody:nth-child(2) tr`);
-              let ret = [];
-              for (let i = 1; i < elements.length; i++) {
-                ret.push([
-                  elements[i].querySelector(`td:nth-child(5) span span`).textContent, // 과목명
-                  elements[i].querySelector(`td:nth-child(6) span span`).textContent, // 학점 (이수 단위)
-                  elements[i].querySelector(`td:nth-child(8) span span`).textContent, // 학점 (등급)
-                  elements[i].querySelector(`td:nth-child(9) span span`).textContent, // 교수명
-                ]);
-              }
-              JSON.stringify(ret.map(a => a.map(b => b.trim())));
+                JSON.stringify(
+                  Array(...document.querySelectorAll(`table tr table tr table tr:nth-child(11) td table table table table tbody:nth-child(2) tr`))
+                    .slice(1).map(element => [
+                      element.querySelector(`td:nth-child(5) span span`).textContent.trim(), // 과목명
+                      element.querySelector(`td:nth-child(6) span span`).textContent.trim(), // 학점 (이수 단위)
+                      element.querySelector(`td:nth-child(8) span span`).textContent.trim(), // 학점 (등급)
+                      element.querySelector(`td:nth-child(9) span span`).textContent.trim(), // 교수명
+                    ]
+                  )
+                );
               ''');
+
                 temp ??= "";
                 temp = temp.trim();
-                return false;
+                return temp.isEmpty;
               } catch (e, stacktrace) {
                 log(e.toString());
                 log(stacktrace.toString());
@@ -382,6 +387,9 @@ class USaintSession {
             }),
             Future.delayed(const Duration(seconds: 5))
           ]);
+          // showToast("finish : ${DateTime.now().difference(time).inMilliseconds}ms");
+          // log("finish : ${DateTime.now().difference(time).inMilliseconds}ms");
+          // time = DateTime.now();
 
           temp = jsonDecode(temp);
 
@@ -395,8 +403,9 @@ class USaintSession {
         }),
         Future.delayed(const Duration(seconds: 20), () => null),
       ]);
-    } catch (e) {
+    } catch (e, stacktrace) {
       log(e.toString());
+      log(stacktrace.toString());
       globals.setStateOfMainPage(() {
         _isLogin = false;
       });
@@ -410,77 +419,53 @@ class USaintSession {
     return result;
   }
 
-  Future<Set<YearSemester>?> getCourseSemesters() async {
-    if (_lockedForWebView) return null;
-    _lockedForWebView = true;
-
+  Future<Map<YearSemester, SubjectDataList>?> getAllGrade() async {
     bool isFinished = false;
 
-    late Set<YearSemester>? result;
+    late Map<YearSemester, SubjectDataList>? result;
     try {
       result = await Future.any([
         Future(() async {
-          if (isFinished) return null;
           if (!await tryLogin()) {
             return null;
           }
 
-          await _initForXHR();
-
-          await globals.webViewController
-              .loadUrl(urlRequest: URLRequest(url: Uri.parse("https://ecc.ssu.ac.kr/sap/bc/webdynpro/SAP/ZCMW2140?sap-language=KO")));
-
-          await _waitForXHR();
-
-          dynamic temp = "";
-          await Future.any([
-            Future.doWhile(() async {
-              if (isFinished) return false;
-              try {
-                temp = await globals.webViewController.evaluateJavascript(source: '''
-              let elements = document.querySelectorAll("table tr table tr table tr:nth-child(3) table tbody:nth-child(2) tr table tr table tr tbody tr");
-              let ret = [];
-              for (let i = 1; i < elements.length; i++) {
-                ret.push([
-                  elements[i].querySelector("td:nth-child(3)").innerText, // 이수년도
-                  elements[i].querySelector("td:nth-child(4)").innerText, // 이수학기
-                ]);
-              }
-              JSON.stringify(ret.map(a => a.map(b => b.trim())));
-              ''');
-                temp ??= "";
-                temp = temp.trim();
-                return false;
-              } catch (e, stacktrace) {
-                log(e.toString());
-                log(stacktrace.toString());
-                await Future.delayed(const Duration(milliseconds: 100));
-                return true;
-              }
-            }),
-            Future.delayed(const Duration(seconds: 5))
-          ]);
-
-          temp = jsonDecode(temp);
-
           result = {};
-          for (var obj in temp) {
-            result?.add(YearSemester(obj[0], Semester.parse(obj[1].replaceAll(" ", ""))));
+
+          int entranceYear = int.parse((await getEntranceYear())!);
+          String rawGraduateYear = (await getGraduateYear())!;
+          int graduateYear;
+          if (rawGraduateYear == "0000") { // 재학 중?
+            graduateYear = int.parse(YearSemester.current().year);
+          } else {
+            graduateYear = int.parse(rawGraduateYear);
+          }
+
+          for (var i = entranceYear; i <= graduateYear; i++) {
+            for (var semester in Semester.values) {
+              YearSemester key = YearSemester(i.toString(), semester);
+              result![key] = (await getGrade(key, reloadPage: false))!;
+
+              if (result![key]?.subjectData.isEmpty == true) {
+                result!.remove(key);
+              }
+            }
           }
 
           return result;
         }),
-        Future.delayed(const Duration(seconds: 10), () => null),
+        Future.delayed(const Duration(seconds: 30), () => null),
       ]);
-    } catch (e) {
+    } catch (e, stacktrace) {
       log(e.toString());
+      log(stacktrace.toString());
+
       globals.setStateOfMainPage(() {
         _isLogin = false;
       });
 
       return null;
     } finally {
-      _lockedForWebView = false;
       isFinished = true;
     }
 

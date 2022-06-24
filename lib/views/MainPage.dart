@@ -68,6 +68,8 @@ class _MainPageState extends State<MainPage> {
               return JsPromptResponse(); // cancel prompt event
             },
             onAjaxReadyStateChange: (controller, ajax) async {
+              globals.webViewXHRTotalCount++;
+
               if (ajax.readyState == AjaxRequestReadyState.HEADERS_RECEIVED) {
                 if (globals.webViewXHRProgress == XHRProgress.ready) {
                   globals.webViewXHRProgress = XHRProgress.running;
@@ -76,7 +78,6 @@ class _MainPageState extends State<MainPage> {
                 }
 
                 globals.webViewXHRRunningCount++;
-                globals.webViewXHRTotalCount++;
               }
 
               if (ajax.readyState == AjaxRequestReadyState.DONE) {
@@ -90,7 +91,6 @@ class _MainPageState extends State<MainPage> {
             initialOptions: InAppWebViewGroupOptions(
               crossPlatform: InAppWebViewOptions(
                 useShouldInterceptAjaxRequest: true,
-                // cacheEnabled: false, // TODO: 캐시 비활성화에 대해서 생각
               ),
             ),
           ),

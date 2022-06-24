@@ -22,16 +22,9 @@ class _GradePageState extends State<GradePage> {
   void initState() {
     super.initState();
 
-    var time = DateTime.now();
-    if (time.month <= 2) {
-      search = YearSemester((time.year - 1).toString(), Semester.second);
-    } else if (time.month <= 8) {
-      search = YearSemester(time.year.toString(), Semester.first);
-    } else {
-      search = YearSemester(time.year.toString(), Semester.second);
-    }
-
     (() async {
+      search = YearSemester.current();
+
       var res = await globals.setting.saintSession.getGrade(search);
       if (res == null) {
         if (mounted) {
