@@ -3,8 +3,8 @@ import 'dart:developer';
 
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:ssurade/types/Progress.dart';
+import 'package:ssurade/types/Semester.dart';
 import 'package:ssurade/types/SubjectData.dart';
-import 'package:ssurade/utils/toast.dart';
 
 import '../globals.dart' as globals;
 
@@ -106,6 +106,44 @@ class USaintSession {
     return _isLogin = res;
   }
 
+  _initForXHR() async {
+    await globals.webViewController.loadData(data: "");
+    globals.webViewXHRTotalCount = 0; // reset
+    globals.webViewXHRRunningCount = 0; // reset
+  }
+
+  bool _lockedForXHR = false;
+
+  _waitForXHR() async {
+    if (_lockedForXHR) return;
+    _lockedForXHR = true;
+
+    bool existXHR = await Future.any([
+      Future(() async {
+        await Future.doWhile(() async {
+          await Future.delayed(const Duration(milliseconds: 10));
+          return globals.webViewXHRTotalCount == 0;
+        });
+        return true;
+      }),
+      Future.delayed(const Duration(seconds: 3), () => false)
+    ]);
+
+    if (existXHR) {
+      await Future.any([
+        Future.doWhile(() async {
+          await Future.delayed(const Duration(milliseconds: 10));
+          return globals.webViewXHRRunningCount > 0;
+        }),
+        Future.delayed(const Duration(seconds: 5))
+      ]);
+    } else {
+      log("XHR 로딩 없음");
+    }
+
+    _lockedForXHR = false;
+  }
+
   bool _lockedForGrade = false;
 
   Future<SubjectDataList?> fetchGrade() async {
@@ -121,44 +159,17 @@ class USaintSession {
           }
 
           // DateTime time = DateTime.now();
-          await globals.webViewController.loadData(data: "");
-          globals.webViewXHRTotalCount = 0; // reset
-          globals.webViewXHRRunningCount = 0; // reset
 
-          // showToast("load (init) : ${DateTime.now().difference(time).inMilliseconds}ms");
+          await _initForXHR();
+          // showToast("load (xhr) : ${DateTime.now().difference(time).inMilliseconds}ms");
           // time = DateTime.now();
 
           await globals.webViewController
               .loadUrl(urlRequest: URLRequest(url: Uri.parse("https://ecc.ssu.ac.kr/sap/bc/webdynpro/SAP/ZCMB3W0017?sap-language=KO")));
-
           // showToast("load (page) : ${DateTime.now().difference(time).inMilliseconds}ms");
           // time = DateTime.now();
 
-          // 페이지 로딩 직후 XHR 요청이 모두 완료될 때까지 대기
-          bool existXHR = await Future.any([
-            Future(() async {
-              await Future.doWhile(() async {
-                await Future.delayed(const Duration(milliseconds: 10));
-                return globals.webViewXHRTotalCount == 0;
-              });
-              return true;
-            }),
-            Future.delayed(const Duration(seconds: 3), () => false)
-          ]);
-          // showToast("existXHR : ${DateTime.now().difference(time).inMilliseconds}ms");
-          // time = DateTime.now();
-          if (existXHR) {
-            await Future.any([
-              Future.doWhile(() async {
-                await Future.delayed(const Duration(milliseconds: 10));
-                return globals.webViewXHRRunningCount > 0;
-              }),
-              Future.delayed(const Duration(seconds: 5))
-            ]);
-          } else {
-            log("XHR 로딩 없음");
-          }
-
+          await _waitForXHR();
           // showToast("finishXHR : ${DateTime.now().difference(time).inMilliseconds}ms");
           // time = DateTime.now();
 
@@ -198,7 +209,6 @@ class USaintSession {
             Future.delayed(const Duration(seconds: 5))
           ]);
           globals.webViewXHRProgress = XHRProgress.none;
-
           // showToast("load 1st : ${DateTime.now().difference(time).inMilliseconds}ms");
           // time = DateTime.now();
 
@@ -207,18 +217,16 @@ class USaintSession {
             try {
               temp = await globals.webViewController.evaluateJavascript(source: '''
               let elements = document.querySelectorAll(`table tr table tr table tr:nth-child(11) td table table table table tbody:nth-child(2) tr`);
-              if (elements.length >= 1) { // XHR 상태보고 하는거라 필요없긴 함
-                let ret = [];
-                for (let i = 1; i < elements.length; i++) {
-                  ret.push([
-                    elements[i].querySelector(`td:nth-child(5) span span`).textContent, // 과목명
-                    elements[i].querySelector(`td:nth-child(6) span span`).textContent, // 학점 (이수 단위)
-                    elements[i].querySelector(`td:nth-child(8) span span`).textContent, // 학점 (등급)
-                    elements[i].querySelector(`td:nth-child(9) span span`).textContent, // 교수명
-                  ]);
-                }
-                JSON.stringify(ret.map(a => a.map(b => b.trim())));
+              let ret = [];
+              for (let i = 1; i < elements.length; i++) {
+                ret.push([
+                  elements[i].querySelector(`td:nth-child(5) span span`).textContent, // 과목명
+                  elements[i].querySelector(`td:nth-child(6) span span`).textContent, // 학점 (이수 단위)
+                  elements[i].querySelector(`td:nth-child(8) span span`).textContent, // 학점 (등급)
+                  elements[i].querySelector(`td:nth-child(9) span span`).textContent, // 교수명
+                ]);
               }
+              JSON.stringify(ret.map(a => a.map(b => b.trim())));
               ''');
               temp ??= "";
               temp = temp.trim();
@@ -231,6 +239,7 @@ class USaintSession {
           }
           // showToast("finish : ${DateTime.now().difference(time).inMilliseconds}ms");
           // time = DateTime.now();
+
           temp = jsonDecode(temp);
 
           SubjectDataList result = SubjectDataList([]);
@@ -252,6 +261,76 @@ class USaintSession {
       return null;
     } finally {
       _lockedForGrade = false;
+    }
+
+    return result;
+  }
+
+  bool _lockedForCourseSemester = false;
+
+  Future<Set<CourseSemesterData>?> getCourseSemesters() async {
+    if (_lockedForCourseSemester) return null;
+    _lockedForCourseSemester = true;
+
+    late Set<CourseSemesterData>? result;
+    try {
+      result = await Future.any([
+        Future(() async {
+          if (!await tryLogin()) {
+            return null;
+          }
+
+          await _initForXHR();
+
+          await globals.webViewController
+              .loadUrl(urlRequest: URLRequest(url: Uri.parse("https://ecc.ssu.ac.kr/sap/bc/webdynpro/SAP/ZCMW2140?sap-language=KO")));
+
+          await _waitForXHR();
+
+          dynamic temp = "";
+          while (temp.length == 0) {
+            try {
+              temp = await globals.webViewController.evaluateJavascript(source: '''
+              let elements = document.querySelectorAll("table tr table tr table tr:nth-child(3) table tbody:nth-child(2) tr table tr table tr tbody tr");
+              let ret = [];
+              for (let i = 1; i < elements.length; i++) {
+                ret.push([
+                  elements[i].querySelector("td:nth-child(3)").innerText, // 이수년도
+                  elements[i].querySelector("td:nth-child(4)").innerText, // 이수학기
+                ]);
+              }
+                JSON.stringify(ret.map(a => a.map(b => b.trim())));
+              ''');
+              temp ??= "";
+              temp = temp.trim();
+            } catch (e, stacktrace) {
+              log(e.toString());
+              log(stacktrace.toString());
+              await Future.delayed(const Duration(milliseconds: 100));
+              continue;
+            }
+          }
+
+          temp = jsonDecode(temp);
+
+          result = {};
+          for (var obj in temp) {
+            result?.add(CourseSemesterData(obj[0], Semester.parse(obj[1].replaceAll(" ", ""))));
+          }
+
+          return result;
+        }),
+        Future.delayed(const Duration(seconds: 10), () => null),
+      ]);
+    } catch (e) {
+      log(e.toString());
+      globals.setStateOfMainPage(() {
+        _isLogin = false;
+      });
+
+      return null;
+    } finally {
+      _lockedForCourseSemester = false;
     }
 
     return result;
