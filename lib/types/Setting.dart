@@ -23,11 +23,11 @@ class Setting {
   }
 
   saveFile() => writeFile(
-        _filename,
-        jsonEncode({
-          __number: saintSession.number,
-          _password: saintSession.password,
-        }));
+      _filename,
+      jsonEncode({
+        __number: saintSession.number,
+        _password: saintSession.password,
+      }));
 
   @override
   String toString() {

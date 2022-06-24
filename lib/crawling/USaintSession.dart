@@ -5,7 +5,6 @@ import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:ssurade/types/Progress.dart';
 import 'package:ssurade/types/Semester.dart';
 import 'package:ssurade/types/SubjectData.dart';
-import 'package:ssurade/utils/toast.dart';
 
 import '../globals.dart' as globals;
 
@@ -165,7 +164,9 @@ class USaintSession {
             Future.doWhile(() async {
               if (isFinished) return false;
               try {
-                temp = await globals.webViewController.evaluateJavascript(source: 'document.querySelectorAll("table tr div div:nth-child(1) span span:nth-child(2) tbody:nth-child(2) tr td span span table tbody tr:nth-child(1) td:nth-child(1) table tr table tr:nth-child(1) td:nth-child(2) span input")[0].value;');
+                temp = await globals.webViewController.evaluateJavascript(
+                    source:
+                        'document.querySelectorAll("table tr div div:nth-child(1) span span:nth-child(2) tbody:nth-child(2) tr td span span table tbody tr:nth-child(1) td:nth-child(1) table tr table tr:nth-child(1) td:nth-child(2) span input")[0].value;');
                 temp ??= "";
                 temp = temp.trim();
                 return false;
@@ -224,7 +225,9 @@ class USaintSession {
             Future.doWhile(() async {
               if (isFinished) return false;
               try {
-                result = await globals.webViewController.evaluateJavascript(source: 'document.querySelectorAll("table tr div div:nth-child(1) span span:nth-child(2) tbody:nth-child(2) tr td span span table tbody tr:nth-child(1) td:nth-child(1) table tr table tr:nth-child(1) td:nth-child(2) span input")[0].value;');
+                result = await globals.webViewController.evaluateJavascript(
+                    source:
+                        'document.querySelectorAll("table tr div div:nth-child(1) span span:nth-child(2) tbody:nth-child(2) tr td span span table tbody tr:nth-child(1) td:nth-child(1) table tr table tr:nth-child(1) td:nth-child(2) span input")[0].value;');
                 if (result == null) {
                   throw Exception();
                 }
