@@ -10,26 +10,24 @@ class Setting {
     saintSession = USaintSession(number, password);
   }
 
-  static const String _FILENAME = "settings.json"; // internal file name
-  static const String _NUMBER = "number", _PASSWORD = "password"; // field schema
+  static const String _filename = "settings.json"; // internal file name
+  static const String __number = "number", _password = "password"; // field schema
 
   static Future<Setting> loadFromFile() async {
-    if (!await existFile(_FILENAME)) {
+    if (!await existFile(_filename)) {
       return Setting("", "");
     }
 
-    var data = jsonDecode((await getFileContent(_FILENAME))!);
-    return Setting(data[_NUMBER] ?? "", data[_PASSWORD] ?? "");
+    var data = jsonDecode((await getFileContent(_filename))!);
+    return Setting(data[__number] ?? "", data[_password] ?? "");
   }
 
-  saveFile() {
-    writeFile(
-        _FILENAME,
+  saveFile() => writeFile(
+        _filename,
         jsonEncode({
-          _NUMBER: saintSession.number,
-          _PASSWORD: saintSession.password,
+          __number: saintSession.number,
+          _password: saintSession.password,
         }));
-  }
 
   @override
   String toString() {

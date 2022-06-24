@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:ssurade/components/SubjectWidget.dart';
 import 'package:ssurade/globals.dart' as globals;
 import 'package:ssurade/types/Progress.dart';
+import 'package:ssurade/types/Semester.dart';
 import 'package:ssurade/types/SubjectData.dart';
 import 'package:ssurade/utils/toast.dart';
 
@@ -13,6 +14,7 @@ class GradePage extends StatefulWidget {
 }
 
 class _GradePageState extends State<GradePage> {
+  late YearSemester search;
   GradeProgress _progress = GradeProgress.init;
   late SubjectDataList _subjects;
 
@@ -20,8 +22,17 @@ class _GradePageState extends State<GradePage> {
   void initState() {
     super.initState();
 
+    var time = DateTime.now();
+    if (time.month <= 2) {
+      search = YearSemester((time.year - 1).toString(), Semester.second);
+    } else if (time.month <= 8) {
+      search = YearSemester(time.year.toString(), Semester.first);
+    } else {
+      search = YearSemester(time.year.toString(), Semester.second);
+    }
+
     (() async {
-      var res = await globals.setting.saintSession.fetchGrade();
+      var res = await globals.setting.saintSession.getGrade(search);
       if (res == null) {
         if (mounted) {
           Navigator.pop(context);
@@ -92,7 +103,7 @@ class _GradePageState extends State<GradePage> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          "2022학년도 1학기",
+                          "${search.year}학년도 ${search.semester.name}",
                           style: TextStyle(
                             fontSize: 17,
                             color: Colors.black.withOpacity(0.6),

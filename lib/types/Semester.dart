@@ -31,16 +31,29 @@ extension SemesterExtension on Semester {
         return "겨울학기";
     }
   }
+
+  int get webIndex {
+    switch (this) {
+      case Semester.first:
+        return 1;
+      case Semester.summer:
+        return 2;
+      case Semester.second:
+        return 3;
+      case Semester.winter:
+        return 4;
+    }
+  }
 }
 
-class CourseSemesterData {
+class YearSemester {
   String year;
   Semester semester;
 
-  CourseSemesterData(this.year, this.semester);
+  YearSemester(this.year, this.semester);
 
   @override
-  String toString() => "CourseSemesterData(year=$year, semester=$semester)";
+  String toString() => "YearSemester(year=$year, semester=$semester)";
 
   @override
   int get hashCode => hash2(year.hashCode, semester.hashCode);

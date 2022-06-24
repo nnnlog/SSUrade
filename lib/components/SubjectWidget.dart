@@ -62,7 +62,7 @@ class _SubjectWidgetState extends State<SubjectWidget> {
                         height: 4,
                       ),
                       Text(
-                        "${_subjectData.professor} · ${_subjectData.credit.toStringAsPrecision(1)}학점",
+                        "${_subjectData.professor.isNotEmpty ? "${_subjectData.professor} · " : ""}${_subjectData.credit.toStringAsPrecision(1)}학점",
                         textAlign: TextAlign.center,
                         style: TextStyle(color: Colors.black.withOpacity(0.4), fontWeight: FontWeight.w600, fontSize: 14),
                       ),
