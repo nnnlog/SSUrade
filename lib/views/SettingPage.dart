@@ -25,27 +25,57 @@ class _SettingPageState extends State<SettingPage> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
-            children: globals.setting.saintSession.isLogin
-                ? [
-                    OutlinedButton(
-                      onPressed: () {
-                        setState(() {
-                          globals.setting.saintSession.logout();
-                          globals.setting.saveFile();
-                          globals.setStateOfMainPage(() {});
+            children: <Widget>[
+                  SwitchListTile(
+                    value: globals.setting.refreshGradeAutomatically,
+                    onChanged: (value) {
+                      setState(() {
+                        globals.setting.refreshGradeAutomatically = value;
+                      });
 
-                          showToast("로그아웃했습니다.");
-                        });
-                      },
-                      style: OutlinedButton.styleFrom(
-                        minimumSize: const Size.fromHeight(40),
-                      ),
-                      child: const Text("로그아웃"),
-                    ),
-                  ]
-                : const [
-                    Text("기능 추가 예정입니다."),
-                  ],
+                      globals.setting.saveFile();
+                    },
+                    title: const Text("마지막 학기 성적 자동 동기화"),
+                  ),
+                ] +
+                (globals.setting.saintSession.isLogin
+                    ? <Widget>[
+                        OutlinedButton(
+                          onPressed: () async {
+                            var res = await globals.setting.saintSession.getAllGrade();
+                            if (res == null) {
+                              showToast("성적 정보를 가져오지 못했습니다.\n다시 시도해주세요.");
+                              return;
+                            }
+
+                            globals.subjectDataCache.data = res;
+                            globals.subjectDataCache.saveFile();
+                            showToast("성적 정보를 동기화했습니다.");
+                          },
+                          style: OutlinedButton.styleFrom(
+                            minimumSize: const Size.fromHeight(40),
+                          ),
+                          child: const Text("전체 학기 성적 동기화"),
+                        ),
+                        OutlinedButton(
+                          onPressed: () {
+                            setState(() {
+                              globals.setting.saintSession.logout();
+                              globals.setting.saveFile();
+                              globals.setStateOfMainPage(() {});
+
+                              showToast("로그아웃했습니다.");
+                            });
+                          },
+                          style: OutlinedButton.styleFrom(
+                            minimumSize: const Size.fromHeight(40),
+                          ),
+                          child: const Text("로그아웃"),
+                        ),
+                      ]
+                    : const <Widget>[
+                        Text("기능 추가 예정입니다."),
+                      ]),
           ),
         ),
       ),

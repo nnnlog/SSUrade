@@ -17,13 +17,34 @@ class _GradePageState extends State<GradePage> {
   late YearSemester search;
   GradeProgress _progress = GradeProgress.init;
   late SubjectDataList _subjects;
+  bool _lockedForRefresh = false;
+
+  Future<void> refreshCurrentGrade() async {
+    if (_lockedForRefresh) return;
+    _lockedForRefresh = true;
+
+    showToast("${search.year}학년도 ${search.semester.name} 성적 동기화를 시작합니다.");
+
+    SubjectDataList data = (await globals.setting.saintSession.getGrade(search))!;
+    setState(() {
+      _subjects = data;
+    });
+    globals.subjectDataCache.data[search] = data;
+    globals.subjectDataCache.saveFile();
+
+    showToast("${search.year}학년도 ${search.semester.name} 성적을 불러왔습니다.");
+    _lockedForRefresh = false;
+  }
 
   @override
   void initState() {
     super.initState();
 
     (() async {
+      bool needRefresh = true;
       if (globals.subjectDataCache.isEmpty) {
+        needRefresh = false;
+
         var res = await globals.setting.saintSession.getAllGrade();
         if (res == null) {
           if (mounted) {
@@ -56,6 +77,10 @@ class _GradePageState extends State<GradePage> {
         _subjects = globals.subjectDataCache.data[search]!;
         _progress = GradeProgress.finish;
       });
+
+      if (needRefresh) {
+        refreshCurrentGrade();
+      }
     })();
   }
 
@@ -82,7 +107,7 @@ class _GradePageState extends State<GradePage> {
                       width: 1,
                       height: 15,
                     ),
-                    Text("정보를 불러오고 있습니다...")
+                    Text("정보를 불러오고 있습니다..."),
                   ],
                 ),
               ),
@@ -109,59 +134,84 @@ class _GradePageState extends State<GradePage> {
                   margin: const EdgeInsets.only(bottom: 10),
                   child: Padding(
                     padding: const EdgeInsets.all(20),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(
-                          "${search.year}학년도 ${search.semester.name}",
-                          style: TextStyle(
-                            fontSize: 17,
-                            color: Colors.black.withOpacity(0.6),
-                            fontWeight: FontWeight.w500,
-                          ),
-                        ),
-                        const SizedBox(
-                          height: 15,
-                        ),
-                        Text(
-                          "나의 평균 학점",
-                          style: TextStyle(
-                            fontSize: 16,
-                            color: Colors.black.withOpacity(0.6),
-                            fontWeight: FontWeight.w700,
-                          ),
-                        ),
-                        const SizedBox(
-                          height: 5,
-                        ),
-                        Row(
-                          mainAxisSize: MainAxisSize.min,
-                          crossAxisAlignment: CrossAxisAlignment.baseline,
-                          textBaseline: TextBaseline.alphabetic,
+                        Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              _subjects.averageGrade.toStringAsFixed(2),
-                              style: const TextStyle(
-                                fontSize: 50,
-                                fontWeight: FontWeight.w600,
+                              "${search.year}학년도 ${search.semester.name}",
+                              style: TextStyle(
+                                fontSize: 17,
+                                color: Colors.black.withOpacity(0.6),
+                                fontWeight: FontWeight.w500,
                               ),
                             ),
                             const SizedBox(
-                              width: 3,
+                              height: 15,
                             ),
                             Text(
-                              "/ 4.50",
+                              "나의 평균 학점",
                               style: TextStyle(
-                                fontSize: 20,
-                                color: Colors.black.withOpacity(0.5),
+                                fontSize: 16,
+                                color: Colors.black.withOpacity(0.6),
                                 fontWeight: FontWeight.w700,
                               ),
                             ),
+                            const SizedBox(
+                              height: 5,
+                            ),
+                            Row(
+                              mainAxisSize: MainAxisSize.min,
+                              crossAxisAlignment: CrossAxisAlignment.baseline,
+                              textBaseline: TextBaseline.alphabetic,
+                              children: [
+                                Text(
+                                  _subjects.averageGrade.toStringAsFixed(2),
+                                  style: const TextStyle(
+                                    fontSize: 50,
+                                    fontWeight: FontWeight.w600,
+                                  ),
+                                ),
+                                const SizedBox(
+                                  width: 3,
+                                ),
+                                Text(
+                                  "/ 4.50",
+                                  style: TextStyle(
+                                    fontSize: 20,
+                                    color: Colors.black.withOpacity(0.5),
+                                    fontWeight: FontWeight.w700,
+                                  ),
+                                ),
+                              ],
+                            ),
+                            const SizedBox(
+                              height: 5,
+                            ),
                           ],
                         ),
-                        const SizedBox(
-                          height: 5,
+                        const Spacer(),
+                        Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            TextButton(
+                              onPressed: refreshCurrentGrade,
+                              style: TextButton.styleFrom(
+                                padding: EdgeInsets.zero,
+                                minimumSize: const Size(30, 30),
+                                tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                                primary: Colors.black.withOpacity(0.7),
+                              ),
+                              child: const Icon(
+                                Icons.refresh,
+                              ),
+                            ),
+                          ],
                         ),
                       ],
                     ),
