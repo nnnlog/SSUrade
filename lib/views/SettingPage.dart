@@ -40,7 +40,7 @@ class _SettingPageState extends State<SettingPage> {
                     title: const Text("마지막 학기 성적 자동 동기화"),
                   ),
                 ] +
-                (globals.setting.saintSession.isLogin
+                (globals.setting.uSaintSession.isLogin
                     ? <Widget>[
                         OutlinedButton(
                           onPressed: () async {
@@ -49,7 +49,7 @@ class _SettingPageState extends State<SettingPage> {
 
                             showToast("성적 정보 동기화를 시작합니다.");
 
-                            var res = await globals.setting.saintSession.getAllGrade();
+                            var res = await globals.setting.uSaintSession.getAllGrade();
                             if (res == null) {
                               showToast("성적 정보를 가져오지 못했습니다.\n다시 시도해주세요.");
                               return;
@@ -79,7 +79,7 @@ class _SettingPageState extends State<SettingPage> {
                         OutlinedButton(
                           onPressed: () {
                             setState(() {
-                              globals.setting.saintSession.logout();
+                              globals.setting.uSaintSession.logout();
                               globals.setting.saveFile();
                               globals.subjectDataCache.data = {};
                               globals.subjectDataCache.saveFile();

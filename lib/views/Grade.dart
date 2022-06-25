@@ -24,13 +24,18 @@ class _GradePageState extends State<GradePage> {
     _lockedForRefresh = true;
 
     showToast("${search.year}학년도 ${search.semester.name} 성적 동기화를 시작합니다.");
+    var tmp = search;
 
-    SubjectDataList data = (await globals.setting.saintSession.getGrade(search))!;
+    SubjectDataList data = (await globals.setting.uSaintSession.getGrade(search))!;
+    globals.subjectDataCache.data[search] = data;
+    globals.subjectDataCache.saveFile();
+
+    if (tmp != search) {
+      return;
+    }
     setState(() {
       _subjects = data;
     });
-    globals.subjectDataCache.data[search] = data;
-    globals.subjectDataCache.saveFile();
 
     showToast("${search.year}학년도 ${search.semester.name} 성적을 불러왔습니다.");
     _lockedForRefresh = false;
@@ -45,7 +50,7 @@ class _GradePageState extends State<GradePage> {
       if (globals.subjectDataCache.isEmpty) {
         needRefresh = false;
 
-        var res = await globals.setting.saintSession.getAllGrade();
+        var res = await globals.setting.uSaintSession.getAllGrade();
         if (res == null) {
           if (mounted) {
             Navigator.pop(context);

@@ -3,19 +3,15 @@ import 'package:ssurade/components/GradeLogo.dart';
 import 'package:ssurade/types/SubjectData.dart';
 
 class SubjectWidget extends StatefulWidget {
-  SubjectData _subjectData;
+  final SubjectData _subjectData;
 
-  SubjectWidget(this._subjectData, {super.key});
+  const SubjectWidget(this._subjectData, {Key? key}) : super(key: key);
 
   @override
-  State<StatefulWidget> createState() => _SubjectWidgetState(_subjectData);
+  State<StatefulWidget> createState() => _SubjectWidgetState();
 }
 
 class _SubjectWidgetState extends State<SubjectWidget> {
-  final SubjectData _subjectData;
-
-  _SubjectWidgetState(this._subjectData);
-
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -40,7 +36,7 @@ class _SubjectWidgetState extends State<SubjectWidget> {
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                GradeLogo.parse(_subjectData.grade),
+                GradeLogo.parse(widget._subjectData.grade),
                 Container(
                   width: 13,
                 ),
@@ -50,7 +46,7 @@ class _SubjectWidgetState extends State<SubjectWidget> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        _subjectData.name,
+                        widget._subjectData.name,
                         textAlign: TextAlign.left,
                         style: const TextStyle(
                           fontWeight: FontWeight.w800,
@@ -62,7 +58,7 @@ class _SubjectWidgetState extends State<SubjectWidget> {
                         height: 4,
                       ),
                       Text(
-                        "${_subjectData.professor.isNotEmpty ? "${_subjectData.professor} · " : ""}${_subjectData.credit.toStringAsPrecision(1)}학점",
+                        "${widget._subjectData.professor.isNotEmpty ? "${widget._subjectData.professor} · " : ""}${widget._subjectData.credit.toStringAsPrecision(1)}학점",
                         textAlign: TextAlign.center,
                         style: TextStyle(color: Colors.black.withOpacity(0.4), fontWeight: FontWeight.w600, fontSize: 14),
                       ),

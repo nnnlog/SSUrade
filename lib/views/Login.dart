@@ -55,7 +55,7 @@ class _LoginPageState extends State<LoginPage> {
 
                   var temp = USaintSession(numberController.text, pwController.text);
                   if (await temp.tryLogin(refresh: true)) {
-                    globals.setting.saintSession = temp;
+                    globals.setting.uSaintSession = temp;
                     globals.setting.saveFile();
 
                     Navigator.pop(context);

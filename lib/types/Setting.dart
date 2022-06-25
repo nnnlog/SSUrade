@@ -4,11 +4,11 @@ import 'package:ssurade/crawling/USaintSession.dart';
 import 'package:ssurade/filesystem/FileSystem.dart';
 
 class Setting {
-  late USaintSession saintSession;
+  late USaintSession uSaintSession;
   bool refreshGradeAutomatically;
 
   Setting(String number, String password, this.refreshGradeAutomatically) {
-    saintSession = USaintSession(number, password);
+    uSaintSession = USaintSession(number, password);
   }
 
   static const String _filename = "settings.json"; // internal file name
@@ -26,13 +26,13 @@ class Setting {
   saveFile() => writeFile(
       _filename,
       jsonEncode({
-        _number: saintSession.number,
-        _password: saintSession.password,
+        _number: uSaintSession.number,
+        _password: uSaintSession.password,
         _refreshGradeAutomatically: refreshGradeAutomatically,
       }));
 
   @override
   String toString() {
-    return "Setting(saint_session=$saintSession, refreshGradeAutomatically=$refreshGradeAutomatically)";
+    return "Setting(saint_session=$uSaintSession, refreshGradeAutomatically=$refreshGradeAutomatically)";
   }
 }

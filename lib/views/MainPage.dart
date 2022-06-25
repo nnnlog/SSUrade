@@ -32,8 +32,8 @@ class _MainPageState extends State<MainPage> {
       await globals.init();
 
       var setting = globals.setting;
-      if (setting.saintSession.isNotEmpty) {
-        if (!await setting.saintSession.tryLogin()) {
+      if (setting.uSaintSession.isNotEmpty) {
+        if (!await setting.uSaintSession.tryLogin()) {
           showToast("자동로그인을 실패했습니다.");
         } else {
           showToast("자동로그인했습니다.");
@@ -119,7 +119,7 @@ class _MainPageState extends State<MainPage> {
                         ),
                         const Text("정보를 불러오고 있습니다..."),
                       ]
-                    : ((globals.setting.saintSession.isLogin
+                    : ((globals.setting.uSaintSession.isLogin
                             ? <Widget>[
                                 OutlinedButton(
                                   onPressed: () async {
@@ -141,10 +141,10 @@ class _MainPageState extends State<MainPage> {
                                   ),
                                   child: const Text("로그인"),
                                 ),
-                                globals.setting.saintSession.isNotEmpty
+                                globals.setting.uSaintSession.isNotEmpty
                                     ? OutlinedButton(
                                         onPressed: () async {
-                                          if (!await globals.setting.saintSession.tryLogin()) {
+                                          if (!await globals.setting.uSaintSession.tryLogin()) {
                                             showToast("자동로그인을 실패했습니다.");
                                           } else {
                                             showToast("자동로그인했습니다.");

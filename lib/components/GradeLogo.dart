@@ -7,7 +7,7 @@ class GradeLogo extends StatefulWidget {
   const GradeLogo({Key? key, this.bigText = "", this.smallText = "", required this.backgroundColor, required this.textColor}) : super(key: key);
 
   @override
-  State<StatefulWidget> createState() => _GradeLogoState(bigText, smallText, backgroundColor, textColor);
+  State<StatefulWidget> createState() => _GradeLogoState();
 
   static const GradeLogo pass = GradeLogo(
     backgroundColor: Color.fromRGBO(209, 255, 187, 1),
@@ -64,10 +64,6 @@ class GradeLogo extends StatefulWidget {
 }
 
 class _GradeLogoState extends State<GradeLogo> {
-  final String bigText, smallText;
-  final Color backgroundColor, textColor;
-
-  _GradeLogoState(this.bigText, this.smallText, this.backgroundColor, this.textColor);
 
   @override
   Widget build(BuildContext context) {
@@ -76,24 +72,24 @@ class _GradeLogoState extends State<GradeLogo> {
       height: 50,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(14),
-        color: backgroundColor,
+        color: widget.backgroundColor,
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Text(
-            bigText,
+            widget.bigText,
             style: TextStyle(
-              color: textColor,
+              color: widget.textColor,
               fontWeight: FontWeight.w900,
               fontSize: 25,
             ),
           ),
           Text(
-            smallText,
+            widget.smallText,
             style: TextStyle(
-              color: textColor,
+              color: widget.textColor,
               fontWeight: FontWeight.w900,
               fontSize: 13,
             ),
