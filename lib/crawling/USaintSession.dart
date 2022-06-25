@@ -432,13 +432,14 @@ class USaintSession {
 
           result = {};
 
-          int entranceYear = int.parse((await getEntranceYear())!);
-          String rawGraduateYear = (await getGraduateYear())!;
+          var year = (await getEntranceGraduateYear())!;
+
+          int entranceYear = int.parse(year.item1);
           int graduateYear;
-          if (rawGraduateYear == "0000") { // 재학 중?
+          if (year.item2 == "0000") { // 재학 중?
             graduateYear = int.parse(YearSemester.current().year);
           } else {
-            graduateYear = int.parse(rawGraduateYear);
+            graduateYear = int.parse(year.item2);
           }
 
           for (var i = entranceYear; i <= graduateYear; i++) {
