@@ -23,7 +23,7 @@ class _GradePageState extends State<GradePage> {
     super.initState();
 
     (() async {
-      search = YearSemester.current();
+      search = YearSemester.now();
 
       var res = await globals.setting.saintSession.getGrade(search);
       if (res == null) {

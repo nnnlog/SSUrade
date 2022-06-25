@@ -5,7 +5,6 @@ import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:ssurade/types/Progress.dart';
 import 'package:ssurade/types/Semester.dart';
 import 'package:ssurade/types/SubjectData.dart';
-import 'package:ssurade/utils/toast.dart';
 import 'package:tuple/tuple.dart';
 
 import '../globals.dart' as globals;
@@ -436,8 +435,8 @@ class USaintSession {
 
           int entranceYear = int.parse(year.item1);
           int graduateYear;
-          if (year.item2 == "0000") { // 재학 중?
-            graduateYear = int.parse(YearSemester.current().year);
+          if (year.item2 == "0000") {
+            graduateYear = int.parse(YearSemester.now().year); // 재학 중?
           } else {
             graduateYear = int.parse(year.item2);
           }

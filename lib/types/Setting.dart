@@ -11,7 +11,7 @@ class Setting {
   }
 
   static const String _filename = "settings.json"; // internal file name
-  static const String __number = "number", _password = "password"; // field schema
+  static const String _number = "number", _password = "password"; // field schema
 
   static Future<Setting> loadFromFile() async {
     if (!await existFile(_filename)) {
@@ -19,13 +19,13 @@ class Setting {
     }
 
     var data = jsonDecode((await getFileContent(_filename))!);
-    return Setting(data[__number] ?? "", data[_password] ?? "");
+    return Setting(data[_number] ?? "", data[_password] ?? "");
   }
 
   saveFile() => writeFile(
       _filename,
       jsonEncode({
-        __number: saintSession.number,
+        _number: saintSession.number,
         _password: saintSession.password,
       }));
 

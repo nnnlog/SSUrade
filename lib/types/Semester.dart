@@ -63,7 +63,16 @@ class YearSemester {
     return hashCode == other.hashCode;
   }
 
-  static YearSemester current() {
+  String toKey() => "$year:${semester.name}";
+
+  static YearSemester fromKey(String key) {
+    int index = key.indexOf(":");
+    String year = key.substring(0, index);
+    String semester = key.substring(index + 1);
+    return YearSemester(year, Semester.parse(semester));
+  }
+
+  static YearSemester now() {
     var time = DateTime.now();
     if (time.month <= 2) {
       return YearSemester((time.year - 1).toString(), Semester.second);

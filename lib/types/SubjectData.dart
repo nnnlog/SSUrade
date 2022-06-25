@@ -1,3 +1,8 @@
+import 'dart:convert';
+
+import 'package:ssurade/filesystem/FileSystem.dart';
+import 'package:ssurade/types/Semester.dart';
+
 class SubjectData {
   String name; // 과목명
   double credit; // 학점 (이수 단위)
@@ -5,6 +10,15 @@ class SubjectData {
   String professor; // 교수명
 
   SubjectData(this.name, this.credit, this.grade, this.professor);
+
+  Map<String, dynamic> toJSON() => {
+        'name': name,
+        'credit': credit,
+        'grade': grade,
+        'professor': professor,
+      };
+
+  static SubjectData fromJSON(Map<String, dynamic> json) => SubjectData(json['name'], json['credit'], json['grade'], json['professor']);
 
   @override
   String toString() {
@@ -48,8 +62,39 @@ class SubjectDataList {
     return totalGrade / totalCredit;
   }
 
+  List<Map<String, dynamic>> toJSON() => subjectData.map((e) => e.toJSON()).toList();
+
+  static SubjectDataList fromJSON(List<Map<String, dynamic>> json) => SubjectDataList(json.map((e) => SubjectData.fromJSON(e)).toList());
+
   @override
-  String toString() {
-    return subjectData.toString();
+  String toString() => subjectData.toString();
+}
+
+class SubjectDataCache {
+  Map<YearSemester, SubjectDataList> data;
+
+  SubjectDataCache(this.data);
+
+  bool get isEmpty => data.isEmpty;
+
+  static const String _filename = "cache.json"; // internal file name
+
+  static Future<SubjectDataCache> loadFromFile() async {
+    if (!await existFile(_filename)) {
+      return SubjectDataCache({});
+    }
+
+    var data = jsonDecode((await getFileContent(_filename))!);
+    return fromJSON(data);
   }
+
+  Map<String, List<Map<String, dynamic>>> toJSON() => data.map((key, value) => MapEntry(key.toKey(), value.toJSON()));
+
+  static SubjectDataCache fromJSON(Map<String, List<Map<String, dynamic>>> json) =>
+      SubjectDataCache(json.map((key, value) => MapEntry(YearSemester.fromKey(key), SubjectDataList.fromJSON(value))));
+
+  saveFile() => writeFile(_filename, jsonEncode(toJSON()));
+
+  @override
+  String toString() => data.toString();
 }
