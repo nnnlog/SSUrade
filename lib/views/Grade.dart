@@ -78,7 +78,7 @@ class _GradePageState extends State<GradePage> {
         _progress = GradeProgress.finish;
       });
 
-      if (needRefresh) {
+      if (needRefresh && globals.setting.refreshGradeAutomatically) {
         refreshCurrentGrade();
       }
     })();

@@ -10,6 +10,8 @@ class SettingPage extends StatefulWidget {
 }
 
 class _SettingPageState extends State<SettingPage> {
+  bool _refreshGrade = false;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -42,6 +44,11 @@ class _SettingPageState extends State<SettingPage> {
                     ? <Widget>[
                         OutlinedButton(
                           onPressed: () async {
+                            if (_refreshGrade) return;
+                            _refreshGrade = true;
+
+                            showToast("성적 정보 동기화를 시작합니다.");
+
                             var res = await globals.setting.saintSession.getAllGrade();
                             if (res == null) {
                               showToast("성적 정보를 가져오지 못했습니다.\n다시 시도해주세요.");
@@ -50,6 +57,7 @@ class _SettingPageState extends State<SettingPage> {
 
                             globals.subjectDataCache.data = res;
                             globals.subjectDataCache.saveFile();
+                            _refreshGrade = false;
                             showToast("성적 정보를 동기화했습니다.");
                           },
                           style: OutlinedButton.styleFrom(
@@ -58,10 +66,23 @@ class _SettingPageState extends State<SettingPage> {
                           child: const Text("전체 학기 성적 동기화"),
                         ),
                         OutlinedButton(
+                          onPressed: () async {
+                            globals.subjectDataCache.data = {};
+                            globals.subjectDataCache.saveFile();
+                            showToast("저장된 성적 정보를 삭제했습니다.");
+                          },
+                          style: OutlinedButton.styleFrom(
+                            minimumSize: const Size.fromHeight(40),
+                          ),
+                          child: const Text("성적 정보 삭제"),
+                        ),
+                        OutlinedButton(
                           onPressed: () {
                             setState(() {
                               globals.setting.saintSession.logout();
                               globals.setting.saveFile();
+                              globals.subjectDataCache.data = {};
+                              globals.subjectDataCache.saveFile();
                               globals.setStateOfMainPage(() {});
 
                               showToast("로그아웃했습니다.");
@@ -73,9 +94,7 @@ class _SettingPageState extends State<SettingPage> {
                           child: const Text("로그아웃"),
                         ),
                       ]
-                    : const <Widget>[
-                        Text("기능 추가 예정입니다."),
-                      ]),
+                    : <Widget>[]),
           ),
         ),
       ),

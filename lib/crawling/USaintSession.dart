@@ -418,7 +418,12 @@ class USaintSession {
     return result;
   }
 
+  bool _lockedForAllGrade = true;
+
   Future<Map<YearSemester, SubjectDataList>?> getAllGrade() async {
+    if (_lockedForAllGrade || _lockedForWebView) return null;
+    _lockedForAllGrade = true;
+
     bool isFinished = false;
 
     late Map<YearSemester, SubjectDataList>? result;
@@ -468,6 +473,7 @@ class USaintSession {
       return null;
     } finally {
       isFinished = true;
+      _lockedForAllGrade = false;
     }
 
     return result;
