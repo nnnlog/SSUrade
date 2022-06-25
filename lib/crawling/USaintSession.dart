@@ -418,7 +418,7 @@ class USaintSession {
     return result;
   }
 
-  bool _lockedForAllGrade = true;
+  bool _lockedForAllGrade = false;
 
   Future<Map<YearSemester, SubjectDataList>?> getAllGrade() async {
     if (_lockedForAllGrade || _lockedForWebView) return null;
