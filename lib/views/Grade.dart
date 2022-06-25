@@ -142,13 +142,26 @@ class _GradePageState extends State<GradePage> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text(
-                              "${search.year}학년도 ${search.semester.name}",
+                            DropdownButton(
+                              items: globals.subjectDataCache.data.entries
+                                  .map((e) => DropdownMenuItem<YearSemester>(value: e.key, child: Text("${e.key.year}학년도 ${e.key.semester.name}")))
+                                  .toList(),
+                              onChanged: (value) {
+                                if (value is YearSemester) {
+                                  setState(() {
+                                    search = value;
+                                    _subjects = globals.subjectDataCache.data[search]!;
+                                  });
+                                }
+                              },
                               style: TextStyle(
                                 fontSize: 17,
                                 color: Colors.black.withOpacity(0.6),
                                 fontWeight: FontWeight.w500,
                               ),
+                              underline: Container(),
+                              value: search,
+                              isDense: true,
                             ),
                             const SizedBox(
                               height: 15,

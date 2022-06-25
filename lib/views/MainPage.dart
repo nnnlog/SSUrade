@@ -91,6 +91,8 @@ class _MainPageState extends State<MainPage> {
             initialOptions: InAppWebViewGroupOptions(
               crossPlatform: InAppWebViewOptions(
                 useShouldInterceptAjaxRequest: true,
+                cacheEnabled: false,
+                clearCache: true,
               ),
             ),
           ),
