@@ -436,14 +436,15 @@ class USaintSession {
           int entranceYear = int.parse(year.item1);
           int graduateYear;
           if (year.item2 == "0000") {
-            graduateYear = int.parse(YearSemester.now().year); // 재학 중?
+            graduateYear = YearSemester.now().year; // 재학 중?
           } else {
             graduateYear = int.parse(year.item2);
           }
 
           for (var i = entranceYear; i <= graduateYear; i++) {
             for (var semester in Semester.values) {
-              YearSemester key = YearSemester(i.toString(), semester);
+              if (isFinished) return null;
+              YearSemester key = YearSemester(i, semester);
               result![key] = (await getGrade(key, reloadPage: false))!;
 
               if (result![key]?.subjectData.isEmpty == true) {

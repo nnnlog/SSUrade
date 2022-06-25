@@ -47,7 +47,7 @@ extension SemesterExtension on Semester {
 }
 
 class YearSemester {
-  String year;
+  int year;
   Semester semester;
 
   YearSemester(this.year, this.semester);
@@ -63,11 +63,18 @@ class YearSemester {
     return hashCode == other.hashCode;
   }
 
+  bool operator <(Object other) {
+    if (other is YearSemester) {
+      return year == other.year ? semester.webIndex < other.semester.webIndex : year < other.year;
+    }
+    throw Exception("Only support for YearSemester");
+  }
+
   String toKey() => "$year:${semester.name}";
 
   static YearSemester fromKey(String key) {
     int index = key.indexOf(":");
-    String year = key.substring(0, index);
+    int year = int.parse(key.substring(0, index));
     String semester = key.substring(index + 1);
     return YearSemester(year, Semester.parse(semester));
   }
@@ -75,11 +82,11 @@ class YearSemester {
   static YearSemester now() {
     var time = DateTime.now();
     if (time.month <= 2) {
-      return YearSemester((time.year - 1).toString(), Semester.second);
+      return YearSemester(time.year - 1, Semester.second);
     } else if (time.month <= 8) {
-      return YearSemester(time.year.toString(), Semester.first);
+      return YearSemester(time.year, Semester.first);
     } else {
-      return YearSemester(time.year.toString(), Semester.second);
+      return YearSemester(time.year, Semester.second);
     }
   }
 }

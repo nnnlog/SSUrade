@@ -23,19 +23,37 @@ class _GradePageState extends State<GradePage> {
     super.initState();
 
     (() async {
-      search = YearSemester.now();
+      if (globals.subjectDataCache.isEmpty) {
+        var res = await globals.setting.saintSession.getAllGrade();
+        if (res == null) {
+          if (mounted) {
+            Navigator.pop(context);
+          }
+          showToast("성적 정보를 가져오지 못했습니다.\n다시 시도해주세요.");
+          return;
+        }
 
-      var res = await globals.setting.saintSession.getGrade(search);
-      if (res == null) {
+        globals.subjectDataCache.data = res;
+        globals.subjectDataCache.saveFile();
+      }
+
+      search = YearSemester(-1, Semester.first);
+      globals.subjectDataCache.data.forEach((key, value) {
+        if (search < key) {
+          search = key;
+        }
+      });
+
+      if (search.year == -1) {
         if (mounted) {
           Navigator.pop(context);
         }
-        showToast("성적 정보를 가져오지 못했습니다.\n다시 시도해주세요.");
+        showToast("성적 정보가 없습니다.");
         return;
       }
 
       setState(() {
-        _subjects = res;
+        _subjects = globals.subjectDataCache.data[search]!;
         _progress = GradeProgress.finish;
       });
     })();

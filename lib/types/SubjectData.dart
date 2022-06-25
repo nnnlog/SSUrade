@@ -64,7 +64,7 @@ class SubjectDataList {
 
   List<Map<String, dynamic>> toJSON() => subjectData.map((e) => e.toJSON()).toList();
 
-  static SubjectDataList fromJSON(List<Map<String, dynamic>> json) => SubjectDataList(json.map((e) => SubjectData.fromJSON(e)).toList());
+  static SubjectDataList fromJSON(List<dynamic> json) => SubjectDataList(json.map((e) => SubjectData.fromJSON(e)).toList());
 
   @override
   String toString() => subjectData.toString();
@@ -84,13 +84,13 @@ class SubjectDataCache {
       return SubjectDataCache({});
     }
 
-    var data = jsonDecode((await getFileContent(_filename))!);
+    Map<String, dynamic> data = jsonDecode((await getFileContent(_filename))!);
     return fromJSON(data);
   }
 
   Map<String, List<Map<String, dynamic>>> toJSON() => data.map((key, value) => MapEntry(key.toKey(), value.toJSON()));
 
-  static SubjectDataCache fromJSON(Map<String, List<Map<String, dynamic>>> json) =>
+  static SubjectDataCache fromJSON(Map<String, dynamic> json) =>
       SubjectDataCache(json.map((key, value) => MapEntry(YearSemester.fromKey(key), SubjectDataList.fromJSON(value))));
 
   saveFile() => writeFile(_filename, jsonEncode(toJSON()));
