@@ -62,6 +62,15 @@ class SubjectDataList {
     return totalGrade / totalCredit;
   }
 
+  double get totalCredit {
+    double ret = 0;
+    for (var data in subjectData) {
+      ret += data.credit;
+    }
+
+    return ret;
+  }
+
   List<Map<String, dynamic>> toJSON() => subjectData.map((e) => e.toJSON()).toList();
 
   static SubjectDataList fromJSON(List<dynamic> json) => SubjectDataList(json.map((e) => SubjectData.fromJSON(e)).toList());

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:ssurade/components/SubjectWidget.dart';
 import 'package:ssurade/globals.dart' as globals;
 import 'package:ssurade/types/Progress.dart';
@@ -15,8 +16,10 @@ class GradePage extends StatefulWidget {
 
 class _GradePageState extends State<GradePage> {
   late YearSemester search;
-  GradeProgress _progress = GradeProgress.init;
   late SubjectDataList _subjects;
+  final RefreshController _refreshController = RefreshController();
+
+  GradeProgress _progress = GradeProgress.init;
   bool _lockedForRefresh = false;
 
   Future<void> refreshCurrentGrade() async {
@@ -30,7 +33,7 @@ class _GradePageState extends State<GradePage> {
     globals.subjectDataCache.data[search] = data;
     globals.subjectDataCache.saveFile();
 
-    if (tmp != search) {
+    if (tmp != search || !mounted) {
       return;
     }
     setState(() {
@@ -39,6 +42,13 @@ class _GradePageState extends State<GradePage> {
 
     showToast("${search.year}학년도 ${search.semester.name} 성적을 불러왔습니다.");
     _lockedForRefresh = false;
+  }
+
+  refreshCurrentGradeWithPull() async {
+    await refreshCurrentGrade();
+
+    _refreshController.loadComplete();
+    _refreshController.refreshCompleted();
   }
 
   @override
@@ -117,128 +127,134 @@ class _GradePageState extends State<GradePage> {
                 ),
               ),
             )
-          : ListView(
-              children: [
-                Container(
-                  decoration: BoxDecoration(
-                    borderRadius: const BorderRadius.only(
-                      bottomLeft: Radius.circular(30),
-                      bottomRight: Radius.circular(30),
-                    ),
-                    color: Colors.white,
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.black.withOpacity(0.15),
-                        spreadRadius: 3,
-                        blurRadius: 10,
-                        offset: const Offset(0, 3),
-                      )
-                    ],
-                  ),
-                  width: 1000,
-                  margin: const EdgeInsets.only(bottom: 10),
-                  child: Padding(
-                    padding: const EdgeInsets.all(20),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            DropdownButton(
-                              items: globals.subjectDataCache.data.entries
-                                  .map((e) => DropdownMenuItem<YearSemester>(value: e.key, child: Text("${e.key.year}학년도 ${e.key.semester.name}")))
-                                  .toList(),
-                              onChanged: (value) {
-                                if (value is YearSemester) {
-                                  setState(() {
-                                    search = value;
-                                    _subjects = globals.subjectDataCache.data[search]!;
-                                  });
-                                }
-                              },
-                              style: TextStyle(
-                                fontSize: 17,
-                                color: Colors.black.withOpacity(0.6),
-                                fontWeight: FontWeight.w500,
-                              ),
-                              underline: Container(),
-                              value: search,
-                              isDense: true,
-                            ),
-                            const SizedBox(
-                              height: 15,
-                            ),
-                            Text(
-                              "나의 평균 학점",
-                              style: TextStyle(
-                                fontSize: 16,
-                                color: Colors.black.withOpacity(0.6),
-                                fontWeight: FontWeight.w700,
-                              ),
-                            ),
-                            const SizedBox(
-                              height: 5,
-                            ),
-                            Row(
-                              mainAxisSize: MainAxisSize.min,
-                              crossAxisAlignment: CrossAxisAlignment.baseline,
-                              textBaseline: TextBaseline.alphabetic,
-                              children: [
-                                Text(
-                                  _subjects.averageGrade.toStringAsFixed(2),
-                                  style: const TextStyle(
-                                    fontSize: 50,
-                                    fontWeight: FontWeight.w600,
-                                  ),
-                                ),
-                                const SizedBox(
-                                  width: 3,
-                                ),
-                                Text(
-                                  "/ 4.50",
-                                  style: TextStyle(
-                                    fontSize: 20,
-                                    color: Colors.black.withOpacity(0.5),
-                                    fontWeight: FontWeight.w700,
-                                  ),
-                                ),
-                              ],
-                            ),
-                            const SizedBox(
-                              height: 5,
-                            ),
-                          ],
-                        ),
-                        const Spacer(),
-                        Column(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            TextButton(
-                              onPressed: refreshCurrentGrade,
-                              style: TextButton.styleFrom(
-                                padding: EdgeInsets.zero,
-                                minimumSize: const Size(30, 30),
-                                tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                                primary: Colors.black.withOpacity(0.7),
-                              ),
-                              child: const Icon(
-                                Icons.refresh,
-                              ),
-                            ),
-                          ],
-                        ),
+          : SmartRefresher(
+              controller: _refreshController,
+              onRefresh: refreshCurrentGradeWithPull,
+              // onLoading: refreshCurrentGradeWithPull,
+              child: ListView(
+                children: [
+                  Container(
+                    decoration: BoxDecoration(
+                      borderRadius: const BorderRadius.only(
+                        bottomLeft: Radius.circular(30),
+                        bottomRight: Radius.circular(30),
+                      ),
+                      color: Colors.white,
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black.withOpacity(0.15),
+                          spreadRadius: 3,
+                          blurRadius: 10,
+                          offset: const Offset(0, 3),
+                        )
                       ],
                     ),
+                    width: 1000,
+                    margin: const EdgeInsets.only(bottom: 10),
+                    child: Padding(
+                      padding: const EdgeInsets.all(20),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              DropdownButton(
+                                items: globals.subjectDataCache.data.entries
+                                    .map((e) => DropdownMenuItem<YearSemester>(
+                                        value: e.key, child: Text("${e.key.year}학년도 ${e.key.semester.name} (${_subjects.totalCredit}학점)")))
+                                    .toList(),
+                                onChanged: (value) {
+                                  if (value is YearSemester) {
+                                    setState(() {
+                                      search = value;
+                                      _subjects = globals.subjectDataCache.data[search]!;
+                                    });
+                                  }
+                                },
+                                style: TextStyle(
+                                  fontSize: 17,
+                                  color: Colors.black.withOpacity(0.6),
+                                  fontWeight: FontWeight.w500,
+                                ),
+                                underline: Container(),
+                                value: search,
+                                isDense: true,
+                              ),
+                              const SizedBox(
+                                height: 15,
+                              ),
+                              Text(
+                                "나의 평균 학점",
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  color: Colors.black.withOpacity(0.6),
+                                  fontWeight: FontWeight.w700,
+                                ),
+                              ),
+                              const SizedBox(
+                                height: 5,
+                              ),
+                              Row(
+                                mainAxisSize: MainAxisSize.min,
+                                crossAxisAlignment: CrossAxisAlignment.baseline,
+                                textBaseline: TextBaseline.alphabetic,
+                                children: [
+                                  Text(
+                                    _subjects.averageGrade.toStringAsFixed(2),
+                                    style: const TextStyle(
+                                      fontSize: 50,
+                                      fontWeight: FontWeight.w600,
+                                    ),
+                                  ),
+                                  const SizedBox(
+                                    width: 3,
+                                  ),
+                                  Text(
+                                    "/ 4.50",
+                                    style: TextStyle(
+                                      fontSize: 20,
+                                      color: Colors.black.withOpacity(0.5),
+                                      fontWeight: FontWeight.w700,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              const SizedBox(
+                                height: 5,
+                              ),
+                            ],
+                          ),
+                          const Spacer(),
+                          Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              TextButton(
+                                onPressed: refreshCurrentGrade,
+                                style: TextButton.styleFrom(
+                                  padding: EdgeInsets.zero,
+                                  minimumSize: const Size(30, 30),
+                                  tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                                  primary: Colors.black.withOpacity(0.7),
+                                ),
+                                child: const Icon(
+                                  Icons.refresh,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
                   ),
-                ),
-                Column(
-                  children: _subjects.subjectData.map((e) => SubjectWidget(e)).toList(),
-                ),
-              ],
+                  Column(
+                    children: _subjects.subjectData.map((e) => SubjectWidget(e)).toList(),
+                  ),
+                ],
+              ),
             ),
     );
   }
