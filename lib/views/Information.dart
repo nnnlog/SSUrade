@@ -48,6 +48,7 @@ class _InformationPageState extends State<InformationPage> {
       var appVerInstance = Version.parse(appVer);
       if (newVer != "" && appVerInstance >= Version.parse(newVer)) newVer = "";
       if (devVer != "" && appVerInstance >= Version.parse(devVer)) devVer = "";
+      if (newVer != "" && devVer != "" && Version.parse(newVer) >= Version.parse(devVer)) devVer = "";
 
       setState(() {}); // update for newVer, devVer
     })();
