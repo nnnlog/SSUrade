@@ -164,7 +164,7 @@ class _GradePageState extends State<GradePage> {
                               DropdownButton(
                                 items: globals.subjectDataCache.data.entries
                                     .map((e) => DropdownMenuItem<YearSemester>(
-                                        value: e.key, child: Text("${e.key.year}학년도 ${e.key.semester.name} (${_subjects.totalCredit}학점)")))
+                                        value: e.key, child: Text("${e.key.year}학년도 ${e.key.semester.name} (${e.value.totalCredit}학점)")))
                                     .toList(),
                                 onChanged: (value) {
                                   if (value is YearSemester) {
