@@ -128,6 +128,7 @@ class USaintSession {
 
     globals.webViewXHRTotalCount = 0; // reset
     globals.webViewXHRRunningCount = 0; // reset
+    globals.webViewXHRProgress = XHRProgress.none;
   }
 
   _waitForXHR() async {
@@ -190,7 +191,7 @@ class USaintSession {
 
                 String? graduate = await globals.webViewController.evaluateJavascript(
                     source:
-                        'document.querySelectorAll("table tr div div:nth-child(1) span span:nth-child(2) tbody:nth-child(2) tr td span span table tbody tr:nth-child(1) td:nth-child(1) table tr table tr:nth-child(1) td:nth-child(2) span input")[0].value;');
+                        'document.querySelectorAll("table tbody tr div div:nth-child(1) span span:nth-child(2) table tbody:nth-child(2) tr span span table tr:nth-child(1) td:nth-child(1) table tr table tr:nth-child(18) td:nth-child(2) span input")[0].value;');
                 if (graduate == null) return true;
                 graduate = graduate.trim();
                 if (graduate.isEmpty) return true;
@@ -271,6 +272,8 @@ class USaintSession {
             // showToast("finishXHR : ${DateTime.now().difference(time).inMilliseconds}ms");
             // log("finishXHR : ${DateTime.now().difference(time).inMilliseconds}ms");
             // time = DateTime.now();
+          } else {
+            await _initForXHR(clearCache: false);
           }
 
           // 학년도 드롭다운(dropdown)에서 학년도 선택
@@ -437,11 +440,10 @@ class USaintSession {
           result = {};
 
           var year = (await getEntranceGraduateYear())!;
-
           int entranceYear = int.parse(year.item1);
           int graduateYear;
           if (year.item2 == "0000") {
-            graduateYear = YearSemester.now().year; // 재학 중?
+            graduateYear = DateTime.now().year; // 재학 중?
           } else {
             graduateYear = int.parse(year.item2);
           }

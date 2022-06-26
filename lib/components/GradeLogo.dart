@@ -64,7 +64,6 @@ class GradeLogo extends StatefulWidget {
 }
 
 class _GradeLogoState extends State<GradeLogo> {
-
   @override
   Widget build(BuildContext context) {
     return Container(
