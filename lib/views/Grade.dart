@@ -29,11 +29,17 @@ class _GradePageState extends State<GradePage> {
     showToast("${search.year}학년도 ${search.semester.name} 성적 동기화를 시작합니다.");
     var tmp = search;
 
-    SubjectDataList data = (await globals.setting.uSaintSession.getGrade(search))!;
+    SubjectDataList? data = (await globals.setting.uSaintSession.getGrade(search));
+    if (!mounted) return;
+    if (data == null) {
+      showToast("${search.year}학년도 ${search.semester.name} 성적을 불러오지 못했습니다.");
+      return;
+    }
+
     globals.subjectDataCache.data[search] = data;
     globals.subjectDataCache.saveFile();
 
-    if (tmp != search || !mounted) {
+    if (tmp != search) {
       return;
     }
     setState(() {

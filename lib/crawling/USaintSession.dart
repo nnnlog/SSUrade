@@ -403,7 +403,7 @@ class USaintSession {
 
           return result;
         }),
-        Future.delayed(const Duration(seconds: 20), () => null),
+        Future.delayed(Duration(seconds: globals.setting.timeoutGrade), () => null),
       ]);
     } catch (e, stacktrace) {
       log(e.toString());
@@ -462,7 +462,7 @@ class USaintSession {
 
           return result;
         }),
-        Future.delayed(const Duration(seconds: 30), () => null),
+        Future.delayed(Duration(seconds: globals.setting.timeoutAllGrade), () => null),
       ]);
     } catch (e, stacktrace) {
       log(e.toString());

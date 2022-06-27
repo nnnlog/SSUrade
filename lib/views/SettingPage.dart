@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:ssurade/globals.dart' as globals;
 import 'package:ssurade/utils/toast.dart';
 
@@ -11,6 +12,15 @@ class SettingPage extends StatefulWidget {
 
 class _SettingPageState extends State<SettingPage> {
   bool _refreshGrade = false;
+  final TextEditingController _timeoutGradeController = TextEditingController(), _timeoutAllGradeController = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+
+    _timeoutGradeController.text = globals.setting.timeoutGrade.toString();
+    _timeoutAllGradeController.text = globals.setting.timeoutAllGrade.toString();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -38,6 +48,48 @@ class _SettingPageState extends State<SettingPage> {
                       globals.setting.saveFile();
                     },
                     title: const Text("마지막 학기 성적 자동 동기화"),
+                  ),
+                  TextField(
+                    controller: _timeoutGradeController,
+                    decoration: const InputDecoration(labelText: "단일 성적 동기화 시간 제한 (기본값 : 10초)"),
+                    keyboardType: TextInputType.number,
+                    inputFormatters: [
+                      FilteringTextInputFormatter.digitsOnly,
+                    ],
+                    onEditingComplete: () {
+                      var temp = int.parse(_timeoutGradeController.text);
+                      if (temp < 1) {
+                        showToast("올바른 값을 입력하세요.");
+                        _timeoutGradeController.text = "10";
+                        return;
+                      }
+                      globals.setting.timeoutGrade = temp;
+                      globals.setting.saveFile();
+                      showToast("설정을 변경했습니다.");
+                    },
+                  ),
+                  TextField(
+                    controller: _timeoutAllGradeController,
+                    decoration: const InputDecoration(labelText: "전체 성적 동기화 시간 제한 (기본값 : 30초)"),
+                    keyboardType: TextInputType.number,
+                    inputFormatters: [
+                      FilteringTextInputFormatter.digitsOnly,
+                    ],
+                    onEditingComplete: () {
+                      var temp = int.parse(_timeoutAllGradeController.text);
+                      if (temp < 1) {
+                        showToast("올바른 값을 입력하세요.");
+                        _timeoutAllGradeController.text = "30";
+                        return;
+                      }
+                      globals.setting.timeoutAllGrade = temp;
+                      globals.setting.saveFile();
+                      showToast("설정을 변경했습니다.");
+                    },
+                  ),
+                  const SizedBox(
+                    height: 10,
+                    width: 1,
                   ),
                 ] +
                 (globals.setting.uSaintSession.isLogin
@@ -81,6 +133,7 @@ class _SettingPageState extends State<SettingPage> {
                             setState(() {
                               globals.setting.uSaintSession.logout();
                               globals.setting.saveFile();
+
                               globals.subjectDataCache.data = {};
                               globals.subjectDataCache.saveFile();
                               globals.setStateOfMainPage(() {});
