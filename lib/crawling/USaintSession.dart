@@ -445,7 +445,7 @@ class USaintSession {
           if (year.item2 == "0000") {
             graduateYear = DateTime.now().year; // 재학 중?
           } else {
-            graduateYear = int.parse(year.item2);
+            graduateYear = int.parse(year.item2) + 1; // 유세인트 오류?
           }
 
           for (var i = entranceYear; i <= graduateYear; i++) {

@@ -11,14 +11,16 @@ class SubjectData {
 
   SubjectData(this.name, this.credit, this.grade, this.professor);
 
+  static const String _name = 'name', _credit = 'credit', _grade = 'grade', _professor = 'professor';
+
   Map<String, dynamic> toJSON() => {
-        'name': name,
-        'credit': credit,
-        'grade': grade,
-        'professor': professor,
+        _name: name,
+        _credit: credit,
+        _grade: grade,
+        _professor: professor,
       };
 
-  static SubjectData fromJSON(Map<String, dynamic> json) => SubjectData(json['name'], json['credit'], json['grade'], json['professor']);
+  static SubjectData fromJSON(Map<String, dynamic> json) => SubjectData(json[_name], json[_credit], json[_grade], json[_professor]);
 
   @override
   String toString() {
