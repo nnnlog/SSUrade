@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:package_info_plus/package_info_plus.dart';
+import 'package:ssurade/components/CustomAppBar.dart';
 import 'package:ssurade/utils/toast.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:version/version.dart';
@@ -58,7 +59,7 @@ class _InformationPageState extends State<InformationPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("앱 정보", style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize: 17)),
+        title: customAppBar("앱 정보"),
         backgroundColor: Colors.white,
         shadowColor: const Color.fromRGBO(0, 0, 0, 0),
         iconTheme: const IconThemeData(color: Colors.black),

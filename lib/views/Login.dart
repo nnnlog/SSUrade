@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ssurade/components/CustomAppBar.dart';
 import 'package:ssurade/crawling/USaintSession.dart';
 import 'package:ssurade/globals.dart' as globals;
 import 'package:ssurade/utils/toast.dart';
@@ -23,7 +24,7 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("로그인", style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize: 17)),
+        title: customAppBar("로그인"),
         backgroundColor: Colors.white,
         shadowColor: const Color.fromRGBO(0, 0, 0, 0),
         iconTheme: const IconThemeData(color: Colors.black),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
+import 'package:ssurade/components/CustomAppBar.dart';
 import 'package:ssurade/components/SubjectWidget.dart';
 import 'package:ssurade/globals.dart' as globals;
 import 'package:ssurade/types/Progress.dart';
@@ -26,7 +27,7 @@ class _GradePageState extends State<GradePage> {
     if (_lockedForRefresh) return;
     _lockedForRefresh = true;
 
-    showToast("${search.year}학년도 ${search.semester.name} 성적 동기화를 시작합니다.");
+    showToast("${search.year}학년도 ${search.semester.name} 성적을 불러옵니다.");
     var tmp = search;
 
     SubjectDataList? data = (await globals.setting.uSaintSession.getGrade(search));
@@ -108,12 +109,7 @@ class _GradePageState extends State<GradePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("성적/학점 조회", style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize: 17)),
-        backgroundColor: Colors.white,
-        shadowColor: const Color.fromRGBO(0, 0, 0, 0),
-        iconTheme: const IconThemeData(color: Colors.black),
-      ),
+      appBar: customAppBar("성적/학점 조회"),
       backgroundColor: _progress == GradeProgress.init ? null : const Color.fromRGBO(241, 242, 245, 1),
       body: _progress == GradeProgress.init
           ? Padding(
@@ -128,7 +124,7 @@ class _GradePageState extends State<GradePage> {
                       width: 1,
                       height: 15,
                     ),
-                    Text("정보를 불러오고 있습니다..."),
+                    Text("전체 학기 성적을 불러오고 있습니다..."),
                   ],
                 ),
               ),

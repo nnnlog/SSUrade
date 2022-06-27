@@ -3,6 +3,7 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
+import 'package:ssurade/components/CustomAppBar.dart';
 import 'package:ssurade/globals.dart' as globals;
 import 'package:ssurade/types/Progress.dart';
 import 'package:ssurade/utils/toast.dart';
@@ -98,12 +99,7 @@ class _MainPageState extends State<MainPage> {
           ),
         ),
         Scaffold(
-          appBar: AppBar(
-            title: const Text("숭실대학교 성적/학점 조회", style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize: 17)),
-            backgroundColor: Colors.white,
-            shadowColor: const Color.fromRGBO(0, 0, 0, 0),
-            iconTheme: const IconThemeData(color: Colors.black),
-          ),
+          appBar: customAppBar("숭실대학교 성적/학점 조회"),
           body: Padding(
             padding: const EdgeInsets.all(30),
             child: Center(
@@ -117,7 +113,7 @@ class _MainPageState extends State<MainPage> {
                           width: 1,
                           height: 15,
                         ),
-                        const Text("정보를 불러오고 있습니다..."),
+                        const Text("자동로그인 중 입니다..."),
                       ]
                     : ((globals.setting.uSaintSession.isLogin
                             ? <Widget>[

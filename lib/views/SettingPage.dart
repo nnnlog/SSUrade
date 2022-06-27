@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:ssurade/components/CustomAppBar.dart';
 import 'package:ssurade/globals.dart' as globals;
 import 'package:ssurade/utils/toast.dart';
 
@@ -25,12 +26,7 @@ class _SettingPageState extends State<SettingPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("설정", style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize: 17)),
-        backgroundColor: Colors.white,
-        shadowColor: const Color.fromRGBO(0, 0, 0, 0),
-        iconTheme: const IconThemeData(color: Colors.black),
-      ),
+      appBar: customAppBar("설정"),
       body: Padding(
         padding: const EdgeInsets.all(30),
         child: Center(
@@ -47,11 +43,11 @@ class _SettingPageState extends State<SettingPage> {
 
                       globals.setting.saveFile();
                     },
-                    title: const Text("마지막 학기 성적 자동 동기화"),
+                    title: const Text("마지막 학기 성적 자동으로 불러오기"),
                   ),
                   TextField(
                     controller: _timeoutGradeController,
-                    decoration: const InputDecoration(labelText: "단일 성적 동기화 시간 제한 (기본값 : 10초)"),
+                    decoration: const InputDecoration(labelText: "단일 성적 로딩 시간 제한 (기본값 : 10초)"),
                     keyboardType: TextInputType.number,
                     inputFormatters: [
                       FilteringTextInputFormatter.digitsOnly,
@@ -70,7 +66,7 @@ class _SettingPageState extends State<SettingPage> {
                   ),
                   TextField(
                     controller: _timeoutAllGradeController,
-                    decoration: const InputDecoration(labelText: "전체 성적 동기화 시간 제한 (기본값 : 30초)"),
+                    decoration: const InputDecoration(labelText: "전체 성적 로딩 시간 제한 (기본값 : 30초)"),
                     keyboardType: TextInputType.number,
                     inputFormatters: [
                       FilteringTextInputFormatter.digitsOnly,
