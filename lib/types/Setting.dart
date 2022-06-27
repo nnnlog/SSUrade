@@ -16,7 +16,7 @@ class Setting {
 
   // field schema
   static const String _number = "number", _password = "password";
-  static const String _refreshGradeAutomatically = "refreshGradeAutomatically";
+  static const String _refreshGradeAutomatically = "refresh_grade_automatically";
   static const String _timeoutGrade = "timeout_grade", _timeoutAllGrade = "timeout_all_grade";
 
   static Future<Setting> loadFromFile() async {
@@ -41,6 +41,6 @@ class Setting {
 
   @override
   String toString() {
-    return "Setting(saint_session=$uSaintSession, refreshGradeAutomatically=$refreshGradeAutomatically)";
+    return "Setting(saint_session=$uSaintSession, refreshGradeAutomatically=$refreshGradeAutomatically, timeoutGrade=$timeoutGrade, timeoutAllGrade=$timeoutAllGrade)";
   }
 }
