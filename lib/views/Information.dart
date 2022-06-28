@@ -58,12 +58,7 @@ class _InformationPageState extends State<InformationPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: customAppBar("앱 정보"),
-        backgroundColor: Colors.white,
-        shadowColor: const Color.fromRGBO(0, 0, 0, 0),
-        iconTheme: const IconThemeData(color: Colors.black),
-      ),
+      appBar: customAppBar("앱 정보"),
       body: Padding(
         padding: const EdgeInsets.all(30),
         child: Column(
