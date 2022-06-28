@@ -3,6 +3,23 @@ import 'dart:convert';
 import 'package:ssurade/filesystem/FileSystem.dart';
 import 'package:ssurade/types/Semester.dart';
 
+const Map<String, double> gradeTable = {
+  'A+': 4.5,
+  'A0': 4.3,
+  'A-': 4.0,
+  'B+': 3.5,
+  'B0': 3.3,
+  'B-': 3.0,
+  'C+': 2.5,
+  'C0': 2.3,
+  'C-': 2.0,
+  'D+': 1.5,
+  'D0': 1.3,
+  'D-': 1.0,
+  'P': -1,
+  'F': -2,
+};
+
 class SubjectData {
   String name; // 과목명
   double credit; // 학점 (이수 단위)
@@ -36,28 +53,11 @@ class SubjectDataList {
   double get averageGrade {
     double totalGrade = 0, totalCredit = 0;
 
-    Map<String, double> gradeTable = {
-      'A+': 4.5,
-      'A0': 4.3,
-      'A-': 4.0,
-      'B+': 3.5,
-      'B0': 3.3,
-      'B-': 3.0,
-      'C+': 2.5,
-      'C0': 2.3,
-      'C-': 2.0,
-      'D+': 1.5,
-      'D0': 1.3,
-      'D-': 1.0,
-      'P': -1,
-      'F': -1,
-    };
-
     for (var data in subjectData) {
-      if (gradeTable[data.grade] == null) continue;
-      double real = gradeTable[data.grade]!;
-      if (real == -1) continue;
-      totalGrade += real * data.credit;
+      double? score = gradeTable[data.grade];
+      if (score == null) continue;
+      if (score < 0) continue;
+      totalGrade += score * data.credit;
       totalCredit += data.credit;
     }
     if (totalCredit == 0) return 0;
