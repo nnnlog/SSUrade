@@ -288,6 +288,10 @@ class USaintSession {
               if (selected?.replaceAll(" ", "") == "${search.year}학년도") return false;
               existXHR = true;
 
+              await globals.webViewController.evaluateJavascript(source: '''
+              document.evaluate("//span[normalize-space()='닫기']", document, null, XPathResult.ANY_TYPE, null ).iterateNext()?.click();
+              ''');
+
               await globals.webViewController.evaluateJavascript(
                   source: 'document.querySelectorAll("table table table table")[12].querySelector("td:nth-child(2) span").click();');
               await Future.delayed(const Duration(milliseconds: 100));
@@ -296,6 +300,8 @@ class USaintSession {
               await Future.delayed(const Duration(milliseconds: 100));
             } catch (e, s) {
               // showToast("error : ${e.toString()} (${s.toString()}");
+              log(e.toString());
+              log(s.toString());
             }
             return true;
           });
@@ -322,11 +328,15 @@ class USaintSession {
           await Future.doWhile(() async {
             if (isFinished) return false;
             try {
-              var selected = (await globals.webViewController.evaluateJavascript(
+              var selected = await globals.webViewController.evaluateJavascript(
                   source:
-                      'document.querySelectorAll("table table table table")[12].querySelector("td:nth-child(5) span")?.querySelector("*[value]").value;'));
+                      'document.querySelectorAll("table table table table")[12].querySelector("td:nth-child(5) span")?.querySelector("*[value]").value;');
               if (selected?.replaceAll(" ", "") == search.semester.name) return false;
               existXHR = true;
+
+              await globals.webViewController.evaluateJavascript(source: '''
+              document.evaluate("//span[normalize-space()='닫기']", document, null, XPathResult.ANY_TYPE, null ).iterateNext()?.click();
+              ''');
 
               await globals.webViewController.evaluateJavascript(
                   source: 'document.querySelectorAll("table table table table")[12].querySelector("td:nth-child(5) span").click();');
@@ -337,6 +347,8 @@ class USaintSession {
               await Future.delayed(const Duration(milliseconds: 100));
             } catch (e, s) {
               // showToast("error : ${e.toString()} (${s.toString()}");
+              log(e.toString());
+              log(s.toString());
             }
             return true;
           });
@@ -390,7 +402,6 @@ class USaintSession {
             Future.delayed(const Duration(seconds: 5))
           ]);
           // showToast("finish : ${DateTime.now().difference(time).inMilliseconds}ms");
-          // log("finish : ${DateTime.now().difference(time).inMilliseconds}ms");
           // time = DateTime.now();
 
           temp = jsonDecode(temp);
