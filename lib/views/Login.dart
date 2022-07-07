@@ -23,12 +23,7 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: customAppBar("로그인"),
-        backgroundColor: Colors.white,
-        shadowColor: const Color.fromRGBO(0, 0, 0, 0),
-        iconTheme: const IconThemeData(color: Colors.black),
-      ),
+      appBar: customAppBar("로그인"),
       body: Padding(
         padding: const EdgeInsets.all(30),
         child: Center(
