@@ -5,6 +5,7 @@ import 'package:http/http.dart' as http;
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:ssurade/components/CustomAppBar.dart';
 import 'package:ssurade/utils/toast.dart';
+import 'package:ssurade/utils/update.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:version/version.dart';
 
@@ -21,37 +22,13 @@ class _InformationPageState extends State<InformationPage> {
   @override
   void initState() {
     (() async {
-      appVer = (await PackageInfo.fromPlatform()).version;
+      var temp = await fetchAppVersion();
 
-      try {
-        var response = jsonDecode((await http.get(Uri.parse("https://api.github.com/repos/nnnlog/ssurade/releases"))).body);
-        bool newVerFound = false, devVerFound = false;
-        for (var obj in response) {
-          if (obj["prerelease"] == false && !newVerFound) {
-            newVerFound = true;
-            devVerFound = true;
-
-            newVer = obj["tag_name"].toString().substring(1); // cast to string and substring
-          }
-          if (obj["prerelease"] == true && !devVerFound) {
-            devVerFound = true;
-            devVer = obj["tag_name"].toString().substring(1); // cast to string and substring
-          }
-        }
-        if (!newVerFound) newVer = "";
-      } catch (e) {
-        newVer = "";
-        devVer = "";
-
-        showToast("앱 최신 정보를 가져오지 못했습니다.");
-      }
-
-      var appVerInstance = Version.parse(appVer);
-      if (newVer != "" && appVerInstance >= Version.parse(newVer)) newVer = "";
-      if (devVer != "" && appVerInstance >= Version.parse(devVer)) devVer = "";
-      if (newVer != "" && devVer != "" && Version.parse(newVer) >= Version.parse(devVer)) devVer = "";
-
-      setState(() {}); // update for newVer, devVer
+      setState(() {
+        appVer = temp.item1;
+        newVer = temp.item2;
+        devVer = temp.item3;
+      });
     })();
   }
 

@@ -6,6 +6,7 @@ import 'package:ssurade/components/CustomAppBar.dart';
 import 'package:ssurade/globals.dart' as globals;
 import 'package:ssurade/types/Progress.dart';
 import 'package:ssurade/utils/toast.dart';
+import 'package:ssurade/utils/update.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({super.key});
@@ -43,6 +44,11 @@ class _MainPageState extends State<MainPage> {
       globals.setStateOfMainPage(() {
         _progress = MainProgress.finish;
       });
+
+      var temp = await fetchAppVersion();
+      if (temp.item2 != "") {
+        showToast("새로운 버전 v${temp.item2}(으)로 업데이트할 수 있습니다.");
+      }
     })();
   }
 

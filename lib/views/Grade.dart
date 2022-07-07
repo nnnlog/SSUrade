@@ -147,7 +147,7 @@ class _GradePageState extends State<GradePage> {
                 children: [
                   GradeSemesterHeader(_search, _subjects, callbackSelectSubject, refreshCurrentGrade),
                   Column(
-                    children: _subjects.subjectData.map((e) => SubjectWidget(e)).toList(),
+                    children: _subjects.subjectDataList.map((e) => SubjectWidget(e)).toList(),
                   ),
                 ],
               ),

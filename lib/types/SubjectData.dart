@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:developer';
 
 import 'package:ssurade/filesystem/FileSystem.dart';
 import 'package:ssurade/types/Semester.dart';
@@ -19,6 +20,26 @@ const Map<String, double> gradeTable = {
   'P': -1,
   'F': -2,
 };
+
+class Ranking {
+  int my, total;
+
+  Ranking(this.my, this.total);
+
+  double get percentage {
+    return my / total;
+  }
+
+  String toKey() => "$my/$total";
+
+  static Ranking fromKey(String str) {
+    var a = str.split("/").map((e) => int.parse(e)).toList();
+    return Ranking(a[0], a[1]);
+  }
+
+  @override
+  String toString() => toKey();
+}
 
 class SubjectData {
   String name; // 과목명
@@ -46,14 +67,14 @@ class SubjectData {
 }
 
 class SubjectDataList {
-  List<SubjectData> subjectData;
-
-  SubjectDataList(this.subjectData);
+  List<SubjectData> subjectDataList;
+  Ranking semesterRanking, totalRanking;
+  SubjectDataList(this.subjectDataList, this.semesterRanking, this.totalRanking);
 
   double get averageGrade {
     double totalGrade = 0, totalCredit = 0;
 
-    for (var data in subjectData) {
+    for (var data in subjectDataList) {
       double? score = gradeTable[data.grade];
       if (score == null) continue;
       if (score < 0) continue;
@@ -66,19 +87,22 @@ class SubjectDataList {
 
   double get totalCredit {
     double ret = 0;
-    for (var data in subjectData) {
+    for (var data in subjectDataList) {
       ret += data.credit;
     }
 
     return ret;
   }
 
-  List<Map<String, dynamic>> toJSON() => subjectData.map((e) => e.toJSON()).toList();
+  Map<String, dynamic> toJSON() =>
+      {'subjects': subjectDataList.map((e) => e.toJSON()).toList(), 'semester_rank': semesterRanking.toKey(), 'total_rank': totalRanking.toKey()};
 
-  static SubjectDataList fromJSON(List<dynamic> json) => SubjectDataList(json.map((e) => SubjectData.fromJSON(e)).toList());
+  static SubjectDataList fromJSON(Map<String, dynamic> json) => SubjectDataList(
+      json['subjects'].map<SubjectData>((e) => SubjectData.fromJSON(e)).toList(), Ranking.fromKey(json['semester_rank']), Ranking.fromKey(json['total_rank']));
 
   @override
-  String toString() => subjectData.toString();
+  String toString() =>
+      "SubjectDataList(subjectDataList=${subjectDataList.toString()}, semesterRanking=${semesterRanking.toString()}, totalRanking=${totalRanking.toString()})";
 }
 
 class SubjectDataCache {
@@ -91,15 +115,16 @@ class SubjectDataCache {
   static const String _filename = "cache.json"; // internal file name
 
   static Future<SubjectDataCache> loadFromFile() async {
-    if (!await existFile(_filename)) {
-      return SubjectDataCache({});
-    }
-
-    Map<String, dynamic> data = jsonDecode((await getFileContent(_filename))!);
-    return fromJSON(data);
+    try {
+      if (await existFile(_filename)) {
+        Map<String, dynamic> data = jsonDecode((await getFileContent(_filename))!);
+        return fromJSON(data);
+      }
+    } catch (e, stacktrace) {}
+    return SubjectDataCache({});
   }
 
-  Map<String, List<Map<String, dynamic>>> toJSON() => data.map((key, value) => MapEntry(key.toKey(), value.toJSON()));
+  Map<String, Map<String, dynamic>> toJSON() => data.map((key, value) => MapEntry(key.toKey(), value.toJSON()));
 
   static SubjectDataCache fromJSON(Map<String, dynamic> json) =>
       SubjectDataCache(json.map((key, value) => MapEntry(YearSemester.fromKey(key), SubjectDataList.fromJSON(value))));
