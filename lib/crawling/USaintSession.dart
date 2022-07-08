@@ -404,13 +404,34 @@ class USaintSession {
           // showToast("finish : ${DateTime.now().difference(time).inMilliseconds}ms");
           // time = DateTime.now();
 
+          Ranking semesterRanking = Ranking(0, 0), totalRanking = Ranking(0, 0);
+          try {
+            String temp = await globals.webViewController.evaluateJavascript(source: '''
+            JSON.stringify(
+              Array(
+                ...document.querySelectorAll("table tbody tr td table tbody tr td table tbody tr:nth-child(4) table tr table tbody tr table tbody td:nth-child(1) table tbody tr")
+              ).slice(1).filter(e => 
+                  e.querySelector("td:nth-child(2)").innerText === "${search.year}" && 
+                  e.querySelector("td:nth-child(3)").innerText.replace(/\\ /g, "") === "${search.semester.name}"
+              ).map(e => [
+                  e.querySelector("td:nth-child(10)").innerText,
+                  e.querySelector("td:nth-child(11)").innerText
+              ])[0]
+            );
+            ''');
+
+            var json = jsonDecode(temp);
+            semesterRanking = Ranking.fromKey(json[0]);
+            totalRanking = Ranking.fromKey(json[1]);
+          } catch (e) {}
+
           temp = jsonDecode(temp);
 
-          SubjectDataList result = SubjectDataList([]);
+          SubjectDataList result = SubjectDataList([], semesterRanking, totalRanking);
           for (var obj in temp) {
-            result.subjectData.add(SubjectData(obj[0], double.parse(obj[1]), obj[2], obj[3]));
+            result.subjectDataList.add(SubjectData(obj[0], double.parse(obj[1]), obj[2], obj[3]));
           }
-          result.subjectData.sort(
+          result.subjectDataList.sort(
               (a, b) => a.grade.isNotEmpty ? ((gradeTable[a.grade] ?? -5) > (gradeTable[b.grade] ?? -5) ? -1 : 1) : 1); // 학점 나온거 + 높은 학점부터 위로 오게
 
           return result;
@@ -466,7 +487,7 @@ class USaintSession {
               YearSemester key = YearSemester(i, semester);
               result![key] = (await getGrade(key, reloadPage: false))!;
 
-              if (result![key]?.subjectData.isEmpty == true) {
+              if (result![key]?.subjectDataList.isEmpty == true) {
                 result!.remove(key);
               }
             }

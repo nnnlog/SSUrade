@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:ssurade/components/CustomAppBar.dart';
+import 'package:ssurade/components/GradeHeader.dart';
 import 'package:ssurade/components/SubjectWidget.dart';
 import 'package:ssurade/globals.dart' as globals;
 import 'package:ssurade/types/Progress.dart';
@@ -16,38 +17,45 @@ class GradePage extends StatefulWidget {
 }
 
 class _GradePageState extends State<GradePage> {
-  late YearSemester search;
+  late YearSemester _search;
   late SubjectDataList _subjects;
   final RefreshController _refreshController = RefreshController();
 
   GradeProgress _progress = GradeProgress.init;
   bool _lockedForRefresh = false;
 
+  void callbackSelectSubject(YearSemester value) {
+    setState(() {
+      _search = value;
+      _subjects = globals.subjectDataCache.data[_search]!;
+    });
+  }
+
   Future<void> refreshCurrentGrade() async {
     if (_lockedForRefresh) return;
     _lockedForRefresh = true;
 
-    showToast("${search.year}학년도 ${search.semester.name} 성적을 불러옵니다.");
-    var tmp = search;
+    showToast("${_search.year}학년도 ${_search.semester.name} 성적을 불러옵니다.");
+    var tmp = _search;
 
-    SubjectDataList? data = (await globals.setting.uSaintSession.getGrade(search));
+    SubjectDataList? data = (await globals.setting.uSaintSession.getGrade(_search));
     if (!mounted) return;
     if (data == null) {
-      showToast("${search.year}학년도 ${search.semester.name} 성적을 불러오지 못했습니다.");
+      showToast("${_search.year}학년도 ${_search.semester.name} 성적을 불러오지 못했습니다.");
       return;
     }
 
-    globals.subjectDataCache.data[search] = data;
+    globals.subjectDataCache.data[_search] = data;
     globals.subjectDataCache.saveFile();
 
-    if (tmp != search) {
+    if (tmp != _search) {
       return;
     }
     setState(() {
       _subjects = data;
     });
 
-    showToast("${search.year}학년도 ${search.semester.name} 성적을 불러왔습니다.");
+    showToast("${_search.year}학년도 ${_search.semester.name} 성적을 불러왔습니다.");
     _lockedForRefresh = false;
   }
 
@@ -80,14 +88,14 @@ class _GradePageState extends State<GradePage> {
         globals.subjectDataCache.saveFile();
       }
 
-      search = YearSemester(-1, Semester.first);
+      _search = YearSemester(-1, Semester.first);
       globals.subjectDataCache.data.forEach((key, value) {
-        if (search < key) {
-          search = key;
+        if (_search < key) {
+          _search = key;
         }
       });
 
-      if (search.year == -1) {
+      if (_search.year == -1) {
         if (mounted) {
           Navigator.pop(context);
         }
@@ -96,7 +104,7 @@ class _GradePageState extends State<GradePage> {
       }
 
       setState(() {
-        _subjects = globals.subjectDataCache.data[search]!;
+        _subjects = globals.subjectDataCache.data[_search]!;
         _progress = GradeProgress.finish;
       });
 
@@ -110,7 +118,9 @@ class _GradePageState extends State<GradePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: customAppBar("성적/학점 조회"),
-      backgroundColor: _progress == GradeProgress.init ? null : const Color.fromRGBO(241, 242, 245, 1),
+      backgroundColor: globals.isLightMode
+          ? (_progress == GradeProgress.init ? null : const Color.fromRGBO(241, 242, 245, 1))
+          : null,
       body: _progress == GradeProgress.init
           ? Padding(
               padding: const EdgeInsets.all(30),
@@ -135,125 +145,9 @@ class _GradePageState extends State<GradePage> {
               // onLoading: refreshCurrentGradeWithPull,
               child: ListView(
                 children: [
-                  Container(
-                    decoration: BoxDecoration(
-                      borderRadius: const BorderRadius.only(
-                        bottomLeft: Radius.circular(30),
-                        bottomRight: Radius.circular(30),
-                      ),
-                      color: Colors.white,
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.black.withOpacity(0.15),
-                          spreadRadius: 3,
-                          blurRadius: 10,
-                          offset: const Offset(0, 3),
-                        )
-                      ],
-                    ),
-                    width: 1000,
-                    margin: const EdgeInsets.only(bottom: 10),
-                    child: Padding(
-                      padding: const EdgeInsets.all(20),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              DropdownButton(
-                                items: globals.subjectDataCache.data.entries
-                                    .map((e) => DropdownMenuItem<YearSemester>(
-                                        value: e.key, child: Text("${e.key.year}학년도 ${e.key.semester.name} (${e.value.totalCredit}학점)")))
-                                    .toList(),
-                                onChanged: (value) {
-                                  if (value is YearSemester) {
-                                    setState(() {
-                                      search = value;
-                                      _subjects = globals.subjectDataCache.data[search]!;
-                                    });
-                                  }
-                                },
-                                style: TextStyle(
-                                  fontSize: 17,
-                                  color: Colors.black.withOpacity(0.6),
-                                  fontWeight: FontWeight.w500,
-                                ),
-                                underline: Container(),
-                                value: search,
-                                isDense: true,
-                              ),
-                              const SizedBox(
-                                height: 15,
-                              ),
-                              Text(
-                                "나의 평균 학점",
-                                style: TextStyle(
-                                  fontSize: 16,
-                                  color: Colors.black.withOpacity(0.6),
-                                  fontWeight: FontWeight.w700,
-                                ),
-                              ),
-                              const SizedBox(
-                                height: 5,
-                              ),
-                              Row(
-                                mainAxisSize: MainAxisSize.min,
-                                crossAxisAlignment: CrossAxisAlignment.baseline,
-                                textBaseline: TextBaseline.alphabetic,
-                                children: [
-                                  Text(
-                                    _subjects.averageGrade.toStringAsFixed(2),
-                                    style: const TextStyle(
-                                      fontSize: 50,
-                                      fontWeight: FontWeight.w600,
-                                    ),
-                                  ),
-                                  const SizedBox(
-                                    width: 3,
-                                  ),
-                                  Text(
-                                    "/ 4.50",
-                                    style: TextStyle(
-                                      fontSize: 20,
-                                      color: Colors.black.withOpacity(0.5),
-                                      fontWeight: FontWeight.w700,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              const SizedBox(
-                                height: 5,
-                              ),
-                            ],
-                          ),
-                          const Spacer(),
-                          Column(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              TextButton(
-                                onPressed: refreshCurrentGrade,
-                                style: TextButton.styleFrom(
-                                  padding: EdgeInsets.zero,
-                                  minimumSize: const Size(30, 30),
-                                  tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                                  primary: Colors.black.withOpacity(0.7),
-                                ),
-                                child: const Icon(
-                                  Icons.refresh,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
+                  GradeSemesterHeader(_search, _subjects, callbackSelectSubject, refreshCurrentGrade),
                   Column(
-                    children: _subjects.subjectData.map((e) => SubjectWidget(e)).toList(),
+                    children: _subjects.subjectDataList.map((e) => SubjectWidget(e)).toList(),
                   ),
                 ],
               ),
