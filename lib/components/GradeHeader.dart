@@ -149,7 +149,7 @@ class _GradeSemesterHeaderState extends State<GradeSemesterHeader> {
                       "${widget.currentSubjects.semesterRanking.toString()} ${widget.currentSubjects.semesterRanking.isEmpty ? '' : '(상위 ${toStringWithPrecision(widget.currentSubjects.semesterRanking.percentage, 1)}%)'}",
                       style: const TextStyle(
                         fontSize: 12,
-                        fontWeight: FontWeight.w600,
+                        fontWeight: FontWeight.w500,
                       ),
                     ),
                     const SizedBox(
@@ -170,7 +170,7 @@ class _GradeSemesterHeaderState extends State<GradeSemesterHeader> {
                       "${widget.currentSubjects.totalRanking.toString()} ${widget.currentSubjects.totalRanking.isEmpty ? '' : '(상위 ${toStringWithPrecision(widget.currentSubjects.totalRanking.percentage, 1)}%)'}",
                       style: const TextStyle(
                         fontSize: 12,
-                        fontWeight: FontWeight.w600,
+                        fontWeight: FontWeight.w500,
                       ),
                     ),
                   ],
