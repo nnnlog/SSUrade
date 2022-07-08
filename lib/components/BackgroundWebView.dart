@@ -6,8 +6,8 @@ import 'package:ssurade/globals.dart' as globals;
 import 'package:ssurade/types/Progress.dart';
 
 backgroundWebView() => SizedBox(
-      width: 1,
-      height: 1,
+      width: 1000,
+      height: 300,
       child: InAppWebView(
         onWebViewCreated: (controller) {
           globals.webViewController = controller;
@@ -28,19 +28,43 @@ backgroundWebView() => SizedBox(
           if (ajax.readyState == AjaxRequestReadyState.HEADERS_RECEIVED) {
             if (globals.webViewXHRProgress == XHRProgress.ready) {
               globals.webViewXHRProgress = XHRProgress.running;
-            } else if (globals.webViewXHRProgress != XHRProgress.none) {
-              log("ajax error 1");
+              globals.currentXHR = ajax.url.toString();
+
+              log("xhr register");
             }
+
+            var curr = globals.detectedXHR[ajax.url.toString()] ?? 0;
+            globals.detectedXHR[ajax.url.toString()] = ++curr;
+
+            log("xhr capture");
+            log(ajax.method.toString());
+            log(ajax.url.toString());
 
             globals.webViewXHRRunningCount++;
           }
 
           if (ajax.readyState == AjaxRequestReadyState.DONE) {
-            if (globals.webViewXHRProgress == XHRProgress.running) {
+            if (globals.webViewXHRProgress == XHRProgress.running && ajax.url.toString() == globals.currentXHR) {
               globals.webViewXHRProgress = XHRProgress.finish;
+
+              log("xhr unregister");
             }
 
-            globals.webViewXHRRunningCount--;
+            var curr = globals.detectedXHR[ajax.url.toString()] ?? 0;
+            if (curr > 0) {
+              log("xhr finish");
+              log(ajax.method.toString());
+              log(ajax.url.toString());
+
+              globals.webViewXHRRunningCount--;
+              curr--;
+
+              if (curr > 0) {
+                globals.detectedXHR[ajax.url.toString()] = curr;
+              } else {
+                globals.detectedXHR.remove(ajax.url.toString());
+              }
+            }
           }
           return null;
         },
