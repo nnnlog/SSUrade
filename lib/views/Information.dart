@@ -1,13 +1,7 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
-import 'package:package_info_plus/package_info_plus.dart';
 import 'package:ssurade/components/CustomAppBar.dart';
-import 'package:ssurade/utils/toast.dart';
 import 'package:ssurade/utils/update.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:version/version.dart';
 
 class InformationPage extends StatefulWidget {
   const InformationPage({Key? key}) : super(key: key);
@@ -21,6 +15,7 @@ class _InformationPageState extends State<InformationPage> {
 
   @override
   void initState() {
+    super.initState();
     (() async {
       var temp = await fetchAppVersion();
 

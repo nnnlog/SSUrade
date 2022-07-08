@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'dart:developer';
 
 import 'package:ssurade/filesystem/FileSystem.dart';
 import 'package:ssurade/types/Semester.dart';
@@ -31,6 +30,7 @@ class Ranking {
   }
 
   bool get isEmpty => my == 0 || total == 0;
+
   bool get isNotEmpty => !isEmpty;
 
   String toKey() => isEmpty ? "-" : "$my/$total";
@@ -72,6 +72,7 @@ class SubjectData {
 class SubjectDataList {
   List<SubjectData> subjectDataList;
   Ranking semesterRanking, totalRanking;
+
   SubjectDataList(this.subjectDataList, this.semesterRanking, this.totalRanking);
 
   double get averageGrade {
@@ -101,7 +102,9 @@ class SubjectDataList {
       {'subjects': subjectDataList.map((e) => e.toJSON()).toList(), 'semester_rank': semesterRanking.toKey(), 'total_rank': totalRanking.toKey()};
 
   static SubjectDataList fromJSON(Map<String, dynamic> json) => SubjectDataList(
-      json['subjects'].map<SubjectData>((e) => SubjectData.fromJSON(e)).toList(), Ranking.fromKey(json['semester_rank']), Ranking.fromKey(json['total_rank']));
+      json['subjects'].map<SubjectData>((e) => SubjectData.fromJSON(e)).toList(),
+      Ranking.fromKey(json['semester_rank']),
+      Ranking.fromKey(json['total_rank']));
 
   @override
   String toString() =>

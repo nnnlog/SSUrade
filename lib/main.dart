@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:ssurade/globals.dart' as globals;
 import 'package:ssurade/views/Grade.dart';
 import 'package:ssurade/views/Information.dart';
 import 'package:ssurade/views/Login.dart';
 import 'package:ssurade/views/MainPage.dart';
 import 'package:ssurade/views/SettingPage.dart';
-import 'package:ssurade/globals.dart' as globals;
 
 void main() {
   runApp(const MyApp());

@@ -1,4 +1,3 @@
-
 /// https://stackoverflow.com/questions/62989638/convert-long-double-to-string-without-scientific-notation-dart
 String _toExact(double value) {
   var sign = "";

@@ -118,9 +118,7 @@ class _GradePageState extends State<GradePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: customAppBar("성적/학점 조회"),
-      backgroundColor: globals.isLightMode
-          ? (_progress == GradeProgress.init ? null : const Color.fromRGBO(241, 242, 245, 1))
-          : null,
+      backgroundColor: globals.isLightMode ? (_progress == GradeProgress.init ? null : const Color.fromRGBO(241, 242, 245, 1)) : null,
       body: _progress == GradeProgress.init
           ? Padding(
               padding: const EdgeInsets.all(30),
