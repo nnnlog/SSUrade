@@ -27,10 +27,13 @@ class Ranking {
   Ranking(this.my, this.total);
 
   double get percentage {
-    return my / total;
+    return my / total * 100;
   }
 
-  String toKey() => "$my/$total";
+  bool get isEmpty => my == 0 || total == 0;
+  bool get isNotEmpty => !isEmpty;
+
+  String toKey() => isEmpty ? "-" : "$my/$total";
 
   static Ranking fromKey(String str) {
     var a = str.split("/").map((e) => int.parse(e)).toList();

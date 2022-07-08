@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:ssurade/globals.dart' as globals;
 import 'package:ssurade/types/Semester.dart';
 import 'package:ssurade/types/SubjectData.dart';
+import 'package:ssurade/utils/DoubleToString.dart';
 
 class GradeSemesterHeader extends StatefulWidget {
   final YearSemester currentSemester;
@@ -34,16 +35,15 @@ class _GradeSemesterHeaderState extends State<GradeSemesterHeader> {
           )
         ],
       ),
-      width: 1000,
       margin: const EdgeInsets.only(bottom: 10),
       child: Padding(
         padding: const EdgeInsets.all(20),
-        child: Row(
+        child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Column(
-              mainAxisAlignment: MainAxisAlignment.center,
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 DropdownButton(
@@ -72,55 +72,6 @@ class _GradeSemesterHeaderState extends State<GradeSemesterHeader> {
                   value: widget.currentSemester,
                   isDense: true,
                 ),
-                const SizedBox(
-                  height: 15,
-                ),
-                Text(
-                  "나의 평균 학점",
-                  style: TextStyle(
-                    fontSize: 16,
-                    color: globals.isLightMode ? Colors.black.withOpacity(0.6) : Colors.white,
-                    fontWeight: FontWeight.w700,
-                  ),
-                ),
-                const SizedBox(
-                  height: 5,
-                ),
-                Row(
-                  mainAxisSize: MainAxisSize.min,
-                  crossAxisAlignment: CrossAxisAlignment.baseline,
-                  textBaseline: TextBaseline.alphabetic,
-                  children: [
-                    Text(
-                      widget.currentSubjects.averageGrade.toStringAsPrecision(3),
-                      style: const TextStyle(
-                        fontSize: 50,
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
-                    const SizedBox(
-                      width: 3,
-                    ),
-                    Text(
-                      "/ 4.50",
-                      style: TextStyle(
-                        fontSize: 20,
-                        color: globals.isLightMode ? Colors.black.withOpacity(0.5) : Colors.white,
-                        fontWeight: FontWeight.w700,
-                      ),
-                    ),
-                  ],
-                ),
-                const SizedBox(
-                  height: 5,
-                ),
-              ],
-            ),
-            const Spacer(),
-            Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
                 TextButton(
                   onPressed: widget.refreshCurrentGrade,
                   style: TextButton.styleFrom(
@@ -135,6 +86,99 @@ class _GradeSemesterHeaderState extends State<GradeSemesterHeader> {
                   ),
                 ),
               ],
+            ),
+            const SizedBox(
+              height: 15,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      "나의 평균 학점",
+                      style: TextStyle(
+                        fontSize: 16,
+                        color: globals.isLightMode ? Colors.black.withOpacity(0.6) : Colors.white,
+                        fontWeight: FontWeight.w700,
+                      ),
+                    ),
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.baseline,
+                      textBaseline: TextBaseline.alphabetic,
+                      children: [
+                        Text(
+                          widget.currentSubjects.averageGrade.toStringAsPrecision(3),
+                          style: const TextStyle(
+                            fontSize: 50,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                        const SizedBox(
+                          width: 3,
+                        ),
+                        Text(
+                          "/ 4.50",
+                          style: TextStyle(
+                            fontSize: 20,
+                            color: globals.isLightMode ? Colors.black.withOpacity(0.5) : Colors.white,
+                            fontWeight: FontWeight.w700,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    Text(
+                      "학기 석차",
+                      style: TextStyle(
+                        fontSize: 14,
+                        color: globals.isLightMode ? Colors.black.withOpacity(0.6) : Colors.white,
+                        fontWeight: FontWeight.w700,
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 2,
+                    ),
+                    Text(
+                      "${widget.currentSubjects.semesterRanking.toString()} ${widget.currentSubjects.semesterRanking.isEmpty ? '' : '(상위 ${toStringWithPrecision(widget.currentSubjects.semesterRanking.percentage, 1)}%)'}",
+                      style: const TextStyle(
+                        fontSize: 12,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 8,
+                    ),
+                    Text(
+                      "전체 석차",
+                      style: TextStyle(
+                        fontSize: 14,
+                        color: globals.isLightMode ? Colors.black.withOpacity(0.6) : Colors.white,
+                        fontWeight: FontWeight.w700,
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 2,
+                    ),
+                    Text(
+                      "${widget.currentSubjects.totalRanking.toString()} ${widget.currentSubjects.totalRanking.isEmpty ? '' : '(상위 ${toStringWithPrecision(widget.currentSubjects.totalRanking.percentage, 1)}%)'}",
+                      style: const TextStyle(
+                        fontSize: 12,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+            const SizedBox(
+              height: 5,
             ),
           ],
         ),
