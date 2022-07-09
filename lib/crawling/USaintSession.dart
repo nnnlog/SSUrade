@@ -5,6 +5,7 @@ import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:ssurade/types/Progress.dart';
 import 'package:ssurade/types/Semester.dart';
 import 'package:ssurade/types/SubjectData.dart';
+import 'package:ssurade/utils/toast.dart';
 import 'package:tuple/tuple.dart';
 
 import '../globals.dart' as globals;
@@ -132,10 +133,16 @@ class USaintSession {
   }
 
   _waitForXHR() async {
+    bool first = true;
     bool existXHR = await Future.any([
       Future(() async {
         await Future.doWhile(() async {
-          await Future.delayed(const Duration(milliseconds: 10));
+          if (first) {
+            await Future.delayed(const Duration(milliseconds: 100));
+            first = false;
+          } else {
+            await Future.delayed(const Duration(milliseconds: 100));
+          }
           return globals.webViewXHRTotalCount == 0;
         });
         return true;
@@ -249,7 +256,9 @@ class USaintSession {
             return null;
           }
 
-          // DateTime time = DateTime.now();
+          DateTime time = DateTime.now();
+          // showToast("start : ${search.toString()}");
+          // log("start : ${search.toString()}");
 
           var url = (await globals.webViewController.getUrl()).toString();
           if (url.contains("#")) {
@@ -272,12 +281,33 @@ class USaintSession {
             // showToast("finishXHR : ${DateTime.now().difference(time).inMilliseconds}ms");
             // log("finishXHR : ${DateTime.now().difference(time).inMilliseconds}ms");
             // time = DateTime.now();
+
+            // 도큐먼트가 완전히 로딩될 때까지 대기
+            await Future.doWhile(() async {
+              if (isFinished) return false;
+              try {
+                var selected = (await globals.webViewController.evaluateJavascript(
+                    source:
+                        'document.querySelectorAll("table table table table")[12].querySelector("td:nth-child(2) span")?.querySelector("*[value]").value;'));
+                if (selected == null) {
+                  await Future.delayed(const Duration(milliseconds: 100));
+                  return true;
+                }
+                return false;
+              } catch (e) {
+                return true;
+              }
+            });
           } else {
             await _initForXHR(clearCache: false);
           }
 
+          // log("xhr count : ${globals.webViewXHRTotalCount}");
+          // log("xhr running count : ${globals.webViewXHRRunningCount}");
+
           // 학년도 드롭다운(dropdown)에서 학년도 선택
           globals.webViewXHRProgress = XHRProgress.ready;
+          // log("start capture : year");
           bool existXHR = false;
           await Future.doWhile(() async {
             if (isFinished) return false;
@@ -285,6 +315,10 @@ class USaintSession {
               var selected = (await globals.webViewController.evaluateJavascript(
                   source:
                       'document.querySelectorAll("table table table table")[12].querySelector("td:nth-child(2) span")?.querySelector("*[value]").value;'));
+              if (selected == null) {
+                await Future.delayed(const Duration(milliseconds: 100));
+                return true;
+              }
               if (selected?.replaceAll(" ", "") == "${search.year}학년도") return false;
               existXHR = true;
 
@@ -324,6 +358,7 @@ class USaintSession {
 
           // 학기 드롭다운(dropdown)에서 학기 선택
           globals.webViewXHRProgress = XHRProgress.ready;
+          // log("start capture : semester");
           existXHR = false;
           await Future.doWhile(() async {
             if (isFinished) return false;
@@ -331,6 +366,10 @@ class USaintSession {
               var selected = await globals.webViewController.evaluateJavascript(
                   source:
                       'document.querySelectorAll("table table table table")[12].querySelector("td:nth-child(5) span")?.querySelector("*[value]").value;');
+              if (selected == null) {
+                await Future.delayed(const Duration(milliseconds: 100));
+                return true;
+              }
               if (selected?.replaceAll(" ", "") == search.semester.name) return false;
               existXHR = true;
 
@@ -366,10 +405,10 @@ class USaintSession {
               }),
               Future.delayed(const Duration(seconds: 5))
             ]);
+            // showToast("load sem : ${DateTime.now().difference(time).inMilliseconds}ms");
+            // log("load sem : ${DateTime.now().difference(time).inMilliseconds}ms");
+            // time = DateTime.now();
           }
-          // showToast("load sem : ${DateTime.now().difference(time).inMilliseconds}ms");
-          // log("load sem : ${DateTime.now().difference(time).inMilliseconds}ms");
-          // time = DateTime.now();
 
           dynamic temp = "";
           await Future.any([
@@ -402,6 +441,7 @@ class USaintSession {
             Future.delayed(const Duration(seconds: 5))
           ]);
           // showToast("finish : ${DateTime.now().difference(time).inMilliseconds}ms");
+          // log("finish : ${DateTime.now().difference(time).inMilliseconds}ms");
           // time = DateTime.now();
 
           Ranking semesterRanking = Ranking(0, 0), totalRanking = Ranking(0, 0);

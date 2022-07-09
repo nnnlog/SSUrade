@@ -132,11 +132,21 @@ class _MainPageState extends State<MainPage> {
                             ),
                             child: const Text("정보"),
                           ),
+                          // OutlinedButton(
+                          //   onPressed: () {
+                          //     globals.setting.uSaintSession.getAllGrade();
+                          //   },
+                          //   style: OutlinedButton.styleFrom(
+                          //     minimumSize: const Size.fromHeight(40),
+                          //   ),
+                          //   child: const Text("asdf"),
+                          // ),
                         ]),
               ),
             ),
           ),
         ),
+        
       ],
     );
   }
