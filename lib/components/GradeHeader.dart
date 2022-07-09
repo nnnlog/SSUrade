@@ -109,7 +109,7 @@ class _GradeSemesterHeaderState extends State<GradeSemesterHeader> {
                       textBaseline: TextBaseline.alphabetic,
                       children: [
                         Text(
-                          widget.currentSubjects.averageGrade.toStringAsPrecision(3),
+                          toStringWithPrecision(widget.currentSubjects.averageGrade, 2),
                           style: const TextStyle(
                             fontSize: 50,
                             fontWeight: FontWeight.w600,
