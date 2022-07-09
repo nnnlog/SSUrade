@@ -56,6 +56,7 @@ class _MainPageState extends State<MainPage> {
   Widget build(BuildContext context) {
     return Stack(
       children: [
+        backgroundWebView(),
         Scaffold(
           appBar: customAppBar("숭실대학교 성적/학점 조회"),
           body: Padding(
@@ -131,21 +132,11 @@ class _MainPageState extends State<MainPage> {
                             ),
                             child: const Text("정보"),
                           ),
-                          OutlinedButton(
-                            onPressed: () {
-                              globals.setting.uSaintSession.getAllGrade();
-                            },
-                            style: OutlinedButton.styleFrom(
-                              minimumSize: const Size.fromHeight(40),
-                            ),
-                            child: const Text("asdf"),
-                          ),
                         ]),
               ),
             ),
           ),
         ),
-        backgroundWebView(),
       ],
     );
   }

@@ -137,12 +137,7 @@ class USaintSession {
     bool existXHR = await Future.any([
       Future(() async {
         await Future.doWhile(() async {
-          if (first) {
-            await Future.delayed(const Duration(milliseconds: 100));
-            first = false;
-          } else {
-            await Future.delayed(const Duration(milliseconds: 100));
-          }
+          await Future.delayed(const Duration(milliseconds: 100));
           return globals.webViewXHRTotalCount == 0;
         });
         return true;
@@ -256,9 +251,9 @@ class USaintSession {
             return null;
           }
 
-          DateTime time = DateTime.now();
-          showToast("start : ${search.toString()}");
-          log("start : ${search.toString()}");
+          // DateTime time = DateTime.now();
+          // showToast("start : ${search.toString()}");
+          // log("start : ${search.toString()}");
 
           var url = (await globals.webViewController.getUrl()).toString();
           if (url.contains("#")) {
@@ -267,20 +262,20 @@ class USaintSession {
 
           if (reloadPage || url != "https://ecc.ssu.ac.kr/sap/bc/webdynpro/SAP/ZCMB3W0017?sap-language=KO") {
             await _initForXHR();
-            showToast("init (xhr) : ${DateTime.now().difference(time).inMilliseconds}ms");
-            log("init (xhr) : ${DateTime.now().difference(time).inMilliseconds}ms");
-            time = DateTime.now();
+            // showToast("init (xhr) : ${DateTime.now().difference(time).inMilliseconds}ms");
+            // log("init (xhr) : ${DateTime.now().difference(time).inMilliseconds}ms");
+            // time = DateTime.now();
 
             await globals.webViewController
                 .loadUrl(urlRequest: URLRequest(url: Uri.parse("https://ecc.ssu.ac.kr/sap/bc/webdynpro/SAP/ZCMB3W0017?sap-language=KO")));
-            showToast("load (page) : ${DateTime.now().difference(time).inMilliseconds}ms");
-            log("load (page) : ${DateTime.now().difference(time).inMilliseconds}ms");
-            time = DateTime.now();
+            // showToast("load (page) : ${DateTime.now().difference(time).inMilliseconds}ms");
+            // log("load (page) : ${DateTime.now().difference(time).inMilliseconds}ms");
+            // time = DateTime.now();
 
             await _waitForXHR();
-            showToast("finishXHR : ${DateTime.now().difference(time).inMilliseconds}ms");
-            log("finishXHR : ${DateTime.now().difference(time).inMilliseconds}ms");
-            time = DateTime.now();
+            // showToast("finishXHR : ${DateTime.now().difference(time).inMilliseconds}ms");
+            // log("finishXHR : ${DateTime.now().difference(time).inMilliseconds}ms");
+            // time = DateTime.now();
 
             // 도큐먼트가 완전히 로딩될 때까지 대기
             await Future.doWhile(() async {
@@ -302,12 +297,12 @@ class USaintSession {
             await _initForXHR(clearCache: false);
           }
 
-          log("xhr count : ${globals.webViewXHRTotalCount}");
-          log("xhr running count : ${globals.webViewXHRRunningCount}");
+          // log("xhr count : ${globals.webViewXHRTotalCount}");
+          // log("xhr running count : ${globals.webViewXHRRunningCount}");
 
           // 학년도 드롭다운(dropdown)에서 학년도 선택
           globals.webViewXHRProgress = XHRProgress.ready;
-          log("start capture : year");
+          // log("start capture : year");
           bool existXHR = false;
           await Future.doWhile(() async {
             if (isFinished) return false;
@@ -339,9 +334,9 @@ class USaintSession {
             }
             return true;
           });
-          showToast("select year : ${DateTime.now().difference(time).inMilliseconds}ms");
-          log("select year : ${DateTime.now().difference(time).inMilliseconds}ms");
-          time = DateTime.now();
+          // showToast("select year : ${DateTime.now().difference(time).inMilliseconds}ms");
+          // log("select year : ${DateTime.now().difference(time).inMilliseconds}ms");
+          // time = DateTime.now();
 
           if (existXHR) {
             await Future.any([
@@ -351,14 +346,14 @@ class USaintSession {
               }),
               Future.delayed(const Duration(seconds: 3))
             ]);
-            showToast("load year : ${DateTime.now().difference(time).inMilliseconds}ms");
-            log("load year : ${DateTime.now().difference(time).inMilliseconds}ms");
-            time = DateTime.now();
+            // showToast("load year : ${DateTime.now().difference(time).inMilliseconds}ms");
+            // log("load year : ${DateTime.now().difference(time).inMilliseconds}ms");
+            // time = DateTime.now();
           }
 
           // 학기 드롭다운(dropdown)에서 학기 선택
           globals.webViewXHRProgress = XHRProgress.ready;
-          log("start capture : semester");
+          // log("start capture : semester");
           existXHR = false;
           await Future.doWhile(() async {
             if (isFinished) return false;
@@ -391,9 +386,9 @@ class USaintSession {
             }
             return true;
           });
-          showToast("select sem : ${DateTime.now().difference(time).inMilliseconds}ms");
-          log("select sem : ${DateTime.now().difference(time).inMilliseconds}ms");
-          time = DateTime.now();
+          // showToast("select sem : ${DateTime.now().difference(time).inMilliseconds}ms");
+          // log("select sem : ${DateTime.now().difference(time).inMilliseconds}ms");
+          // time = DateTime.now();
 
           // 현재 학기 정보가 모두 로딩될 때까지 대기
           if (existXHR) {
@@ -405,9 +400,9 @@ class USaintSession {
               }),
               Future.delayed(const Duration(seconds: 5))
             ]);
-            showToast("load sem : ${DateTime.now().difference(time).inMilliseconds}ms");
-            log("load sem : ${DateTime.now().difference(time).inMilliseconds}ms");
-            time = DateTime.now();
+            // showToast("load sem : ${DateTime.now().difference(time).inMilliseconds}ms");
+            // log("load sem : ${DateTime.now().difference(time).inMilliseconds}ms");
+            // time = DateTime.now();
           }
 
           dynamic temp = "";
@@ -440,9 +435,9 @@ class USaintSession {
             }),
             Future.delayed(const Duration(seconds: 5))
           ]);
-          showToast("finish : ${DateTime.now().difference(time).inMilliseconds}ms");
-          log("finish : ${DateTime.now().difference(time).inMilliseconds}ms");
-          time = DateTime.now();
+          // showToast("finish : ${DateTime.now().difference(time).inMilliseconds}ms");
+          // log("finish : ${DateTime.now().difference(time).inMilliseconds}ms");
+          // time = DateTime.now();
 
           Ranking semesterRanking = Ranking(0, 0), totalRanking = Ranking(0, 0);
           try {
