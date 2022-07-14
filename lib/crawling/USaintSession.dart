@@ -127,9 +127,11 @@ class USaintSession {
       }
     }
 
-    globals.webViewXHRTotalCount = 0; // reset
-    globals.webViewXHRRunningCount = 0; // reset
+    globals.webViewXHRTotalCount = 0;
+    globals.webViewXHRRunningCount = 0;
     globals.webViewXHRProgress = XHRProgress.none;
+    globals.currentXHR = "";
+    globals.detectedXHR = {};
   }
 
   _waitForXHR() async {

@@ -11,7 +11,7 @@ import 'package:ssurade/types/SubjectData.dart';
 bool webViewInitialized = false;
 int webViewXHRRunningCount = 0, webViewXHRTotalCount = 0;
 XHRProgress webViewXHRProgress = XHRProgress.none;
-late String currentXHR;
+String currentXHR = "";
 Map<String, int> detectedXHR = {};
 late InAppWebViewController webViewController;
 Function jsAlertCallback = () {};
