@@ -160,6 +160,17 @@ class USaintSession {
     }
   }
 
+  _waitForXHRRequest() async {
+    await Future.any([
+      Future.doWhile(() async {
+        // if (isFinished) return false;
+        await Future.delayed(const Duration(milliseconds: 10));
+        return globals.webViewXHRProgress != XHRProgress.finish;
+      }),
+      Future.delayed(const Duration(seconds: 5))
+    ]);
+  }
+
   Future<Tuple2<String, String>?> getEntranceGraduateYear() async {
     if (_lockedForWebView) return null;
     _lockedForWebView = true;
@@ -319,9 +330,15 @@ class USaintSession {
               if (selected?.replaceAll(" ", "") == "${search.year}학년도") return false;
               existXHR = true;
 
-              await globals.webViewController.evaluateJavascript(source: '''
+              if (await globals.webViewController.evaluateJavascript(source: '''
+              document.evaluate("//span[normalize-space()='닫기']", document, null, XPathResult.ANY_TYPE, null ).iterateNext()
+              ''') != null) {
+                await globals.webViewController.evaluateJavascript(source: '''
               document.evaluate("//span[normalize-space()='닫기']", document, null, XPathResult.ANY_TYPE, null ).iterateNext()?.click();
               ''');
+                await _waitForXHR();
+                globals.webViewXHRProgress = XHRProgress.ready;
+              }
 
               await globals.webViewController.evaluateJavascript(
                   source: 'document.querySelectorAll("table table table table")[12].querySelector("td:nth-child(2) span").click();');
@@ -341,13 +358,7 @@ class USaintSession {
           // time = DateTime.now();
 
           if (existXHR) {
-            await Future.any([
-              Future.doWhile(() async {
-                await Future.delayed(const Duration(milliseconds: 10));
-                return globals.webViewXHRProgress != XHRProgress.finish;
-              }),
-              Future.delayed(const Duration(seconds: 3))
-            ]);
+            await _waitForXHRRequest();
             // showToast("load year : ${DateTime.now().difference(time).inMilliseconds}ms");
             // log("load year : ${DateTime.now().difference(time).inMilliseconds}ms");
             // time = DateTime.now();
@@ -368,11 +379,18 @@ class USaintSession {
                 return true;
               }
               if (selected?.replaceAll(" ", "") == search.semester.name) return false;
-              existXHR = true;
 
-              await globals.webViewController.evaluateJavascript(source: '''
+              if (await globals.webViewController.evaluateJavascript(source: '''
+              document.evaluate("//span[normalize-space()='닫기']", document, null, XPathResult.ANY_TYPE, null ).iterateNext()
+              ''') != null) {
+                await globals.webViewController.evaluateJavascript(source: '''
               document.evaluate("//span[normalize-space()='닫기']", document, null, XPathResult.ANY_TYPE, null ).iterateNext()?.click();
               ''');
+                await _waitForXHR();
+                globals.webViewXHRProgress = XHRProgress.ready;
+              }
+
+              existXHR = true;
 
               await globals.webViewController.evaluateJavascript(
                   source: 'document.querySelectorAll("table table table table")[12].querySelector("td:nth-child(5) span").click();');
@@ -394,14 +412,7 @@ class USaintSession {
 
           // 현재 학기 정보가 모두 로딩될 때까지 대기
           if (existXHR) {
-            await Future.any([
-              Future.doWhile(() async {
-                if (isFinished) return false;
-                await Future.delayed(const Duration(milliseconds: 10));
-                return globals.webViewXHRProgress != XHRProgress.finish;
-              }),
-              Future.delayed(const Duration(seconds: 5))
-            ]);
+            await _waitForXHRRequest();
             // showToast("load sem : ${DateTime.now().difference(time).inMilliseconds}ms");
             // log("load sem : ${DateTime.now().difference(time).inMilliseconds}ms");
             // time = DateTime.now();
@@ -524,6 +535,7 @@ class USaintSession {
               YearSemester key = YearSemester(i, semester);
               result![key] = (await getGrade(key, reloadPage: false))!;
 
+              log(result![key].toString());
               if (result![key]?.subjectDataList.isEmpty == true) {
                 result!.remove(key);
               }
