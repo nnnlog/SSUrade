@@ -328,6 +328,7 @@ class USaintSession {
                 return true;
               }
               if (selected?.replaceAll(" ", "") == "${search.year}학년도") return false;
+              if (existXHR) return false;
               existXHR = true;
 
               if (await globals.webViewController.evaluateJavascript(source: '''
@@ -379,6 +380,8 @@ class USaintSession {
                 return true;
               }
               if (selected?.replaceAll(" ", "") == search.semester.name) return false;
+              if (existXHR) return false;
+              existXHR = true;
 
               if (await globals.webViewController.evaluateJavascript(source: '''
               document.evaluate("//span[normalize-space()='닫기']", document, null, XPathResult.ANY_TYPE, null ).iterateNext()
@@ -389,8 +392,6 @@ class USaintSession {
                 await _waitForXHR();
                 globals.webViewXHRProgress = XHRProgress.ready;
               }
-
-              existXHR = true;
 
               await globals.webViewController.evaluateJavascript(
                   source: 'document.querySelectorAll("table table table table")[12].querySelector("td:nth-child(5) span").click();');
