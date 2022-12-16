@@ -110,28 +110,27 @@ class USaintSession {
 
   _initForXHR({bool clearCache = true}) async {
     if (clearCache) {
-      var cookie = await CookieManager.instance().getCookies(url: Uri.parse("https://ssu.ac.kr"));
-
-      await globals.webViewController.clearCache();
-
-      for (var obj in cookie) {
-        await CookieManager.instance().setCookie(
-            url: Uri.parse("https://ssu.ac.kr"),
-            name: obj.name,
-            value: obj.value,
-            domain: obj.domain,
-            expiresDate: obj.expiresDate,
-            isHttpOnly: obj.isHttpOnly,
-            isSecure: obj.isSecure,
-            sameSite: obj.sameSite);
-      }
+      // var cookie = await CookieManager.instance().getCookies(url: Uri.parse("https://ssu.ac.kr"));
+      // print(cookie);
+      //
+      // await globals.webViewController.clearCache();
+      //
+      // for (var obj in cookie) {
+      //   await CookieManager.instance().setCookie(
+      //       url: Uri.parse("https://.ssu.ac.kr"),
+      //       name: obj.name,
+      //       value: obj.value,
+      //       domain: obj.domain,
+      //       expiresDate: obj.expiresDate,
+      //       isHttpOnly: obj.isHttpOnly,
+      //       isSecure: obj.isSecure,
+      //       sameSite: obj.sameSite);
+      // }
     }
 
     globals.webViewXHRTotalCount = 0;
     globals.webViewXHRRunningCount = 0;
     globals.webViewXHRProgress = XHRProgress.none;
-    globals.currentXHR = "";
-    globals.detectedXHR = {};
   }
 
   _waitForXHR() async {
@@ -160,7 +159,7 @@ class USaintSession {
     }
   }
 
-  _waitForXHRRequest() async {
+  _waitForSingleXHRRequest() async {
     await Future.any([
       Future.doWhile(() async {
         // if (isFinished) return false;
@@ -337,7 +336,7 @@ class USaintSession {
                 await globals.webViewController.evaluateJavascript(source: '''
               document.evaluate("//span[normalize-space()='닫기']", document, null, XPathResult.ANY_TYPE, null ).iterateNext()?.click();
               ''');
-                await _waitForXHR();
+                await _waitForSingleXHRRequest();
                 globals.webViewXHRProgress = XHRProgress.ready;
               }
 
@@ -359,7 +358,7 @@ class USaintSession {
           // time = DateTime.now();
 
           if (existXHR) {
-            await _waitForXHRRequest();
+            await _waitForSingleXHRRequest();
             // showToast("load year : ${DateTime.now().difference(time).inMilliseconds}ms");
             // log("load year : ${DateTime.now().difference(time).inMilliseconds}ms");
             // time = DateTime.now();
@@ -389,7 +388,7 @@ class USaintSession {
                 await globals.webViewController.evaluateJavascript(source: '''
               document.evaluate("//span[normalize-space()='닫기']", document, null, XPathResult.ANY_TYPE, null ).iterateNext()?.click();
               ''');
-                await _waitForXHR();
+                await _waitForSingleXHRRequest();
                 globals.webViewXHRProgress = XHRProgress.ready;
               }
 
@@ -413,7 +412,7 @@ class USaintSession {
 
           // 현재 학기 정보가 모두 로딩될 때까지 대기
           if (existXHR) {
-            await _waitForXHRRequest();
+            await _waitForSingleXHRRequest();
             // showToast("load sem : ${DateTime.now().difference(time).inMilliseconds}ms");
             // log("load sem : ${DateTime.now().difference(time).inMilliseconds}ms");
             // time = DateTime.now();

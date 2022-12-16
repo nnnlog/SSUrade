@@ -12,6 +12,22 @@ backgroundWebView() => SizedBox(
         onWebViewCreated: (controller) {
           globals.webViewController = controller;
           globals.webViewInitialized = true;
+
+          controller.addJavaScriptHandler(handlerName: "start", callback: (data) {
+            globals.webViewXHRTotalCount++;
+            globals.webViewXHRRunningCount++;
+            if (globals.webViewXHRProgress == XHRProgress.ready) {
+              globals.webViewXHRProgress = XHRProgress.running;
+            }
+            // log("XHR_START" + data.toString());
+          });
+          controller.addJavaScriptHandler(handlerName: "end", callback: (data) {
+            globals.webViewXHRRunningCount--;
+            if (globals.webViewXHRProgress == XHRProgress.running) {
+              globals.webViewXHRProgress = XHRProgress.finish;
+            }
+            // log("XHR_END" + data.toString());
+          });
         },
         onJsAlert: (controller, action) async {
           globals.jsAlertCallback();
@@ -22,55 +38,47 @@ backgroundWebView() => SizedBox(
         onJsPrompt: (controller, action) async {
           return JsPromptResponse(); // cancel prompt event
         },
-        onAjaxReadyStateChange: (controller, ajax) async {
-          if (ajax.readyState == AjaxRequestReadyState.HEADERS_RECEIVED) {
-            if (globals.webViewXHRProgress == XHRProgress.ready) {
-              globals.webViewXHRProgress = XHRProgress.running;
-              globals.currentXHR = ajax.url.toString();
-
-              // log("xhr register");
-            }
-
-            var curr = globals.detectedXHR[ajax.url.toString()] ?? 0;
-            globals.detectedXHR[ajax.url.toString()] = ++curr;
-
-            globals.webViewXHRRunningCount++;
-            globals.webViewXHRTotalCount++;
-
-            // log("xhr capture");
-            // log(ajax.method.toString());
-            // log(ajax.url.toString());
-          }
-
-          if (ajax.readyState == AjaxRequestReadyState.DONE) {
-            if (globals.webViewXHRProgress == XHRProgress.running && ajax.url.toString() == globals.currentXHR) {
-              globals.webViewXHRProgress = XHRProgress.finish;
-              // log("xhr unregister");
-            }
-
-            var curr = globals.detectedXHR[ajax.url.toString()] ?? 0;
-            if (curr > 0) {
-              // log("xhr finish");
-              // log(ajax.method.toString());
-              // log(ajax.url.toString());
-
-              globals.webViewXHRRunningCount--;
-              curr--;
-
-              if (curr > 0) {
-                globals.detectedXHR[ajax.url.toString()] = curr;
-              } else {
-                globals.detectedXHR.remove(ajax.url.toString());
+        onLoadStart: (InAppWebViewController controller, Uri? uri) async {
+          globals.webViewXHRTotalCount = 0;
+          globals.webViewXHRRunningCount = 0;
+          controller.evaluateJavascript(source: """
+          let XHR = XMLHttpRequest;
+      
+          var open = XHR.prototype.open;
+          var send = XHR.prototype.send;
+      
+          XHR.prototype.open = function (method, url, async, user, pass) {
+              this._url = url;
+              open.call(this, method, url, async, user, pass);
+          };
+      
+          XHR.prototype.send = function (data) {
+              var self = this;
+              var existReady = false;
+      
+              function onReadyStateChange() {
+                  if(self.readyState === 2) {
+                      existReady = true;
+                      window.flutter_inappwebview.callHandler('start', self._url);
+                  }
+                  if(self.readyState === 4 && existReady) {
+                      window.flutter_inappwebview.callHandler('end', self._url);
+                  }
+      
+                  if(self._oldOnReadyStateChange) {
+                      self._oldOnReadyStateChange();
+                  }
               }
-            }
+      
+              if (!self._oldOnReadyStateChange) self._oldOnReadyStateChange = this.onreadystatechange;
+              this.onreadystatechange = onReadyStateChange;
+      
+              send.call(this, data);
           }
-          return null;
+          """);
         },
         initialOptions: InAppWebViewGroupOptions(
           crossPlatform: InAppWebViewOptions(
-            useShouldInterceptAjaxRequest: true,
-            cacheEnabled: false,
-            clearCache: true,
           ),
         ),
       ),
