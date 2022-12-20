@@ -36,6 +36,9 @@ class Ranking {
   String toKey() => isEmpty ? "-" : "$my/$total";
 
   static Ranking fromKey(String str) {
+    if (str == "-") {
+      return Ranking(0, 0);
+    }
     var a = str.split("/").map((e) => int.parse(e)).toList();
     return Ranking(a[0], a[1]);
   }
