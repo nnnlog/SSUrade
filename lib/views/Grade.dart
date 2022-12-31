@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:image_gallery_saver/image_gallery_saver.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
+import 'package:screenshot/screenshot.dart';
 import 'package:ssurade/components/CustomAppBar.dart';
-import 'package:ssurade/components/GradeHeader.dart';
+import 'package:ssurade/components/GradeSemesterHeader.dart';
 import 'package:ssurade/components/SubjectWidget.dart';
 import 'package:ssurade/globals.dart' as globals;
 import 'package:ssurade/types/Progress.dart';
@@ -21,8 +23,14 @@ class _GradePageState extends State<GradePage> {
   late SubjectDataList _subjects;
   final RefreshController _refreshController = RefreshController();
 
+  final ScreenshotController _imageController = ScreenshotController();
+
   GradeProgress _progress = GradeProgress.init;
   bool _lockedForRefresh = false;
+
+  bool _exportImage = false;
+  bool _showRanking = true;
+  bool _showSubjectInfo = true;
 
   void callbackSelectSubject(YearSemester value) {
     setState(() {
@@ -118,7 +126,6 @@ class _GradePageState extends State<GradePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: customAppBar("성적/학점 조회"),
-      backgroundColor: globals.isLightMode ? (_progress == GradeProgress.init ? null : const Color.fromRGBO(241, 242, 245, 1)) : null,
       body: _progress == GradeProgress.init
           ? Padding(
               padding: const EdgeInsets.all(30),
@@ -142,14 +149,105 @@ class _GradePageState extends State<GradePage> {
               onRefresh: refreshCurrentGradeWithPull,
               // onLoading: refreshCurrentGradeWithPull,
               child: ListView(
+                controller: ScrollController(),
                 children: [
-                  GradeSemesterHeader(_search, _subjects, callbackSelectSubject, refreshCurrentGrade),
-                  Column(
-                    children: _subjects.subjectDataList.map((e) => SubjectWidget(e)).toList(),
+                  SingleChildScrollView(
+                    child: Screenshot(
+                      controller: _imageController,
+                      child: Container(
+                        color: globals.isLightMode ? (_progress == GradeProgress.init ? null : const Color.fromRGBO(241, 242, 245, 1)) : null,
+                        child: ListView(
+                          shrinkWrap: true,
+                          physics: const NeverScrollableScrollPhysics(),
+                          children: <Widget>[
+                                GradeSemesterHeader(_search, _subjects, callbackSelectSubject, refreshCurrentGrade, _exportImage, _showRanking),
+                              ] +
+                              _subjects.subjectDataList.map((e) => SubjectWidget(e, _exportImage, _showSubjectInfo)).toList(),
+                        ),
+                      ),
+                    ),
                   ),
                 ],
               ),
             ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () async {
+          _showRanking = true;
+          _showSubjectInfo = true;
+
+          showDialog(
+              context: context,
+              builder: (context) {
+                return StatefulBuilder(builder: (BuildContext context, StateSetter setStateDialog) {
+                  return Dialog(
+                    child: Padding(
+                      padding: const EdgeInsets.fromLTRB(20, 25, 20, 15),
+                      child: IntrinsicHeight(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            const Text(
+                              "이미지로 내보내기",
+                              style: TextStyle(
+                                fontWeight: FontWeight.w600,
+                                fontSize: 17,
+                              ),
+                            ),
+                            const SizedBox(
+                              height: 10,
+                            ),
+                            SwitchListTile(
+                              value: _showRanking,
+                              onChanged: (value) {
+                                setStateDialog(() {
+                                  _showRanking = value;
+                                });
+                              },
+                              dense: true,
+                              title: const Text("석차"),
+                            ),
+                            SwitchListTile(
+                              value: _showSubjectInfo,
+                              onChanged: (value) {
+                                setStateDialog(() {
+                                  _showSubjectInfo = value;
+                                });
+                              },
+                              dense: true,
+                              title: const Text("과목 정보"),
+                            ),
+                            Row(
+                              children: [
+                                const Spacer(),
+                                TextButton(
+                                    onPressed: () async {
+                                      setState(() {
+                                        _exportImage = true;
+                                      });
+                                      final bytes = await _imageController.capture();
+                                      await ImageGallerySaver.saveImage(bytes!,
+                                          name: "${_search.toKey()}-${DateTime.now().toLocal().millisecondsSinceEpoch}");
+
+                                      setState(() {
+                                        _exportImage = false;
+                                      });
+
+                                      showToast("이미지를 저장했습니다.");
+                                    },
+                                    child: const Text("내보내기"))
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  );
+                });
+              });
+        },
+        child: const Icon(Icons.image),
+      ),
     );
   }
 }

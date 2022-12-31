@@ -5,7 +5,6 @@ import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:ssurade/types/Progress.dart';
 import 'package:ssurade/types/Semester.dart';
 import 'package:ssurade/types/SubjectData.dart';
-import 'package:ssurade/utils/toast.dart';
 import 'package:tuple/tuple.dart';
 
 import '../globals.dart' as globals;
@@ -479,8 +478,13 @@ class USaintSession {
           for (var obj in temp) {
             result.subjectDataList.add(SubjectData(obj[0], double.parse(obj[1]), obj[2], obj[3]));
           }
-          result.subjectDataList.sort(
-              (a, b) => a.grade.isNotEmpty ? ((gradeTable[a.grade] ?? -5) > (gradeTable[b.grade] ?? -5) ? -1 : 1) : 1); // 학점 나온거 + 높은 학점부터 위로 오게
+          result.subjectDataList.sort((a, b) {
+            double x = gradeTable[a.grade] ?? -5;
+            double y = gradeTable[b.grade] ?? -5;
+            if (x != y) return x > y ? -1 : 1; // 등급(grade) 높은 것부터
+            if (a.credit != b.credit) return a.credit > b.credit ? -1 : 1; // 학점(credit) 높은 것부터
+            return a.name.compareTo(b.name);
+          });
 
           return result;
         }),
