@@ -8,6 +8,7 @@
         android:name="${applicationName}"
         android:icon="@mipmap/launcher_icon"
         android:label="SSUrade"
+        android:requestLegacyExternalStorage="true"
         android:usesCleartextTraffic="true">
         <activity
             android:name=".MainActivity"

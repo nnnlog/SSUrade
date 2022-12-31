@@ -9,8 +9,11 @@ class GradeSemesterHeader extends StatefulWidget {
   final SubjectDataList currentSubjects;
   final Function(YearSemester) callbackSelectSubject;
   final void Function() refreshCurrentGrade;
+  final bool _exportImage, _showRanking;
 
-  const GradeSemesterHeader(this.currentSemester, this.currentSubjects, this.callbackSelectSubject, this.refreshCurrentGrade, {super.key});
+  const GradeSemesterHeader(
+      this.currentSemester, this.currentSubjects, this.callbackSelectSubject, this.refreshCurrentGrade, this._exportImage, this._showRanking,
+      {super.key});
 
   @override
   State<StatefulWidget> createState() => _GradeSemesterHeaderState();
@@ -47,6 +50,10 @@ class _GradeSemesterHeaderState extends State<GradeSemesterHeader> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 DropdownButton(
+                  icon: Visibility(
+                    visible: !widget._exportImage,
+                    child: const Icon(Icons.arrow_drop_down),
+                  ),
                   items: globals.subjectDataCache.data.entries
                       .map((e) => DropdownMenuItem<YearSemester>(
                             value: e.key,
@@ -80,9 +87,12 @@ class _GradeSemesterHeaderState extends State<GradeSemesterHeader> {
                     tapTargetSize: MaterialTapTargetSize.shrinkWrap,
                     primary: Colors.black.withOpacity(0.7),
                   ),
-                  child: Icon(
-                    Icons.refresh,
-                    color: globals.isLightMode ? Colors.black : Colors.white,
+                  child: Visibility(
+                    visible: !widget._exportImage,
+                    child: Icon(
+                      Icons.refresh,
+                      color: globals.isLightMode ? Colors.black : Colors.white,
+                    ),
                   ),
                 ),
               ],
@@ -130,50 +140,53 @@ class _GradeSemesterHeaderState extends State<GradeSemesterHeader> {
                     ),
                   ],
                 ),
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.end,
-                  children: [
-                    Text(
-                      "학기 석차",
-                      style: TextStyle(
-                        fontSize: 14,
-                        color: globals.isLightMode ? Colors.black.withOpacity(0.6) : Colors.white,
-                        fontWeight: FontWeight.w700,
+                Visibility(
+                  visible: !widget._exportImage || widget._showRanking,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    children: [
+                      Text(
+                        "학기 석차",
+                        style: TextStyle(
+                          fontSize: 14,
+                          color: globals.isLightMode ? Colors.black.withOpacity(0.6) : Colors.white,
+                          fontWeight: FontWeight.w700,
+                        ),
                       ),
-                    ),
-                    const SizedBox(
-                      height: 2,
-                    ),
-                    Text(
-                      "${widget.currentSubjects.semesterRanking.toString()} ${widget.currentSubjects.semesterRanking.isEmpty ? '' : '(상위 ${toStringWithPrecision(widget.currentSubjects.semesterRanking.percentage, 1)}%)'}",
-                      style: const TextStyle(
-                        fontSize: 12,
-                        fontWeight: FontWeight.w500,
+                      const SizedBox(
+                        height: 2,
                       ),
-                    ),
-                    const SizedBox(
-                      height: 8,
-                    ),
-                    Text(
-                      "전체 석차",
-                      style: TextStyle(
-                        fontSize: 14,
-                        color: globals.isLightMode ? Colors.black.withOpacity(0.6) : Colors.white,
-                        fontWeight: FontWeight.w700,
+                      Text(
+                        "${widget.currentSubjects.semesterRanking.toString()} ${widget.currentSubjects.semesterRanking.isEmpty ? '' : '(상위 ${toStringWithPrecision(widget.currentSubjects.semesterRanking.percentage, 1)}%)'}",
+                        style: const TextStyle(
+                          fontSize: 12,
+                          fontWeight: FontWeight.w500,
+                        ),
                       ),
-                    ),
-                    const SizedBox(
-                      height: 2,
-                    ),
-                    Text(
-                      "${widget.currentSubjects.totalRanking.toString()} ${widget.currentSubjects.totalRanking.isEmpty ? '' : '(상위 ${toStringWithPrecision(widget.currentSubjects.totalRanking.percentage, 1)}%)'}",
-                      style: const TextStyle(
-                        fontSize: 12,
-                        fontWeight: FontWeight.w500,
+                      const SizedBox(
+                        height: 8,
                       ),
-                    ),
-                  ],
+                      Text(
+                        "전체 석차",
+                        style: TextStyle(
+                          fontSize: 14,
+                          color: globals.isLightMode ? Colors.black.withOpacity(0.6) : Colors.white,
+                          fontWeight: FontWeight.w700,
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 2,
+                      ),
+                      Text(
+                        "${widget.currentSubjects.totalRanking.toString()} ${widget.currentSubjects.totalRanking.isEmpty ? '' : '(상위 ${toStringWithPrecision(widget.currentSubjects.totalRanking.percentage, 1)}%)'}",
+                        style: const TextStyle(
+                          fontSize: 12,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ],
             ),

@@ -5,8 +5,9 @@ import 'package:ssurade/types/SubjectData.dart';
 
 class SubjectWidget extends StatefulWidget {
   final SubjectData _subjectData;
+  final bool _exportImage, _showSubject;
 
-  const SubjectWidget(this._subjectData, {Key? key}) : super(key: key);
+  const SubjectWidget(this._subjectData, this._exportImage, this._showSubject, {Key? key}) : super(key: key);
 
   @override
   State<StatefulWidget> createState() => _SubjectWidgetState();
@@ -47,7 +48,7 @@ class _SubjectWidgetState extends State<SubjectWidget> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        widget._subjectData.name,
+                        (!widget._exportImage || widget._showSubject) ? widget._subjectData.name : "",
                         textAlign: TextAlign.left,
                         style: const TextStyle(
                           fontWeight: FontWeight.w800,
@@ -59,7 +60,7 @@ class _SubjectWidgetState extends State<SubjectWidget> {
                         height: 4,
                       ),
                       Text(
-                        "${widget._subjectData.professor.isNotEmpty ? "${widget._subjectData.professor} · " : ""}${widget._subjectData.credit.toStringAsPrecision(1)}학점",
+                        "${widget._subjectData.professor.isNotEmpty && (!widget._exportImage || widget._showSubject) ? "${widget._subjectData.professor} · " : ""}${widget._subjectData.credit.toStringAsPrecision(1)}학점",
                         textAlign: TextAlign.center,
                         style: TextStyle(
                           color: globals.isLightMode ? Colors.black.withOpacity(0.4) : Colors.white.withOpacity(0.8),
