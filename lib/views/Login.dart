@@ -18,6 +18,8 @@ class _LoginPageState extends State<LoginPage> {
   @override
   void initState() {
     super.initState();
+    numberController.text = globals.setting.uSaintSession.number;
+    pwController.text = globals.setting.uSaintSession.password;
   }
 
   @override
@@ -33,7 +35,7 @@ class _LoginPageState extends State<LoginPage> {
             children: [
               Flexible(
                 child: TextFormField(
-                  decoration: const InputDecoration(hintText: "유세인트 아이디(학번)을 입력하세요."),
+                  decoration: const InputDecoration(hintText: "유세인트 아이디(학번)를 입력하세요."),
                   controller: numberController,
                 ),
               ),
