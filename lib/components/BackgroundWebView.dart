@@ -13,21 +13,25 @@ backgroundWebView() => SizedBox(
           globals.webViewController = controller;
           globals.webViewInitialized = true;
 
-          controller.addJavaScriptHandler(handlerName: "start", callback: (data) {
-            globals.webViewXHRTotalCount++;
-            globals.webViewXHRRunningCount++;
-            if (globals.webViewXHRProgress == XHRProgress.ready) {
-              globals.webViewXHRProgress = XHRProgress.running;
-            }
-            // log("XHR_START" + data.toString());
-          });
-          controller.addJavaScriptHandler(handlerName: "end", callback: (data) {
-            globals.webViewXHRRunningCount--;
-            if (globals.webViewXHRProgress == XHRProgress.running) {
-              globals.webViewXHRProgress = XHRProgress.finish;
-            }
-            // log("XHR_END" + data.toString());
-          });
+          controller.addJavaScriptHandler(
+              handlerName: "start",
+              callback: (data) {
+                globals.webViewXHRTotalCount++;
+                globals.webViewXHRRunningCount++;
+                if (globals.webViewXHRProgress == XHRProgress.ready) {
+                  globals.webViewXHRProgress = XHRProgress.running;
+                }
+                // log("XHR_START" + data.toString());
+              });
+          controller.addJavaScriptHandler(
+              handlerName: "end",
+              callback: (data) {
+                globals.webViewXHRRunningCount--;
+                if (globals.webViewXHRProgress == XHRProgress.running) {
+                  globals.webViewXHRProgress = XHRProgress.finish;
+                }
+                // log("XHR_END" + data.toString());
+              });
         },
         onJsAlert: (controller, action) async {
           globals.jsAlertCallback();
@@ -78,8 +82,7 @@ backgroundWebView() => SizedBox(
           """);
         },
         initialOptions: InAppWebViewGroupOptions(
-          crossPlatform: InAppWebViewOptions(
-          ),
+          crossPlatform: InAppWebViewOptions(),
         ),
       ),
     );
