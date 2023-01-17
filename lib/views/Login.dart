@@ -28,49 +28,53 @@ class _LoginPageState extends State<LoginPage> {
       appBar: customAppBar("로그인"),
       body: Padding(
         padding: const EdgeInsets.all(30),
-        child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Flexible(
-                child: TextFormField(
-                  decoration: const InputDecoration(hintText: "유세인트 아이디(학번)를 입력하세요."),
-                  controller: numberController,
+        child: AutofillGroup(
+          child: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Flexible(
+                  child: TextFormField(
+                    decoration: const InputDecoration(hintText: "유세인트 아이디(학번)를 입력하세요."),
+                    controller: numberController,
+                    autofillHints: const [AutofillHints.username],
+                  ),
                 ),
-              ),
-              Flexible(
-                child: TextFormField(
-                  decoration: const InputDecoration(hintText: "유세인트 비밀번호를 입력하세요."),
-                  controller: pwController,
-                  obscureText: true,
+                Flexible(
+                  child: TextFormField(
+                    decoration: const InputDecoration(hintText: "유세인트 비밀번호를 입력하세요."),
+                    controller: pwController,
+                    obscureText: true,
+                    autofillHints: const [AutofillHints.password],
+                  ),
                 ),
-              ),
-              TextButton(
-                onPressed: () async {
-                  if (lockLoginButton) return;
-                  lockLoginButton = true;
+                TextButton(
+                  onPressed: () async {
+                    if (lockLoginButton) return;
+                    lockLoginButton = true;
 
-                  var temp = USaintSession(numberController.text, pwController.text);
-                  if (await temp.tryLogin(refresh: true)) {
-                    globals.setting.uSaintSession = temp;
-                    globals.setting.saveFile();
+                    var temp = USaintSession(numberController.text, pwController.text);
+                    if (await temp.tryLogin(refresh: true)) {
+                      globals.setting.uSaintSession = temp;
+                      globals.setting.saveFile();
 
-                    Navigator.pop(context);
-                    globals.setStateOfMainPage(() {});
-                    showToast("로그인했습니다.");
-                  } else {
-                    showToast("로그인을 실패했습니다.\n정보를 확인하고 다시 시도해주세요.");
-                  }
+                      Navigator.pop(context);
+                      globals.setStateOfMainPage(() {});
+                      showToast("로그인했습니다.");
+                    } else {
+                      showToast("로그인을 실패했습니다.\n정보를 확인하고 다시 시도해주세요.");
+                    }
 
-                  lockLoginButton = false;
-                },
-                style: TextButton.styleFrom(
-                  minimumSize: const Size.fromHeight(40),
+                    lockLoginButton = false;
+                  },
+                  style: TextButton.styleFrom(
+                    minimumSize: const Size.fromHeight(40),
+                  ),
+                  child: const Text("로그인"),
                 ),
-                child: const Text("로그인"),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),
