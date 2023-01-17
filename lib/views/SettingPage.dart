@@ -103,8 +103,8 @@ class _SettingPageState extends State<SettingPage> {
                               return;
                             }
 
-                            globals.subjectDataCache.data = res;
-                            globals.subjectDataCache.saveFile();
+                            globals.semesterSubjectsManager = res;
+                            globals.semesterSubjectsManager.saveFile(); // saving file does not need await
                             _refreshGrade = false;
                             showToast("성적 정보를 동기화했습니다.");
                           },
@@ -115,8 +115,8 @@ class _SettingPageState extends State<SettingPage> {
                         ),
                         OutlinedButton(
                           onPressed: () async {
-                            globals.subjectDataCache.data = {};
-                            globals.subjectDataCache.saveFile();
+                            globals.semesterSubjectsManager.data.clear();
+                            globals.semesterSubjectsManager.saveFile();
                             showToast("저장된 성적 정보를 삭제했습니다.");
                           },
                           style: OutlinedButton.styleFrom(
@@ -130,8 +130,8 @@ class _SettingPageState extends State<SettingPage> {
                               globals.setting.uSaintSession.logout();
                               globals.setting.saveFile();
 
-                              globals.subjectDataCache.data = {};
-                              globals.subjectDataCache.saveFile();
+                              globals.semesterSubjectsManager.data.clear();
+                              globals.semesterSubjectsManager.saveFile();
                               globals.setStateOfMainPage(() {});
 
                               showToast("로그아웃했습니다.");

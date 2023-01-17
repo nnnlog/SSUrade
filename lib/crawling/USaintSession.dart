@@ -1,13 +1,18 @@
+import 'dart:collection';
 import 'dart:convert';
 import 'dart:developer';
 
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:ssurade/types/Progress.dart';
 import 'package:ssurade/types/Semester.dart';
-import 'package:ssurade/types/SubjectData.dart';
+import 'package:ssurade/types/YearSemester.dart';
+import 'package:ssurade/types/subject/Ranking.dart';
+import 'package:ssurade/types/subject/SemesterSubjects.dart';
+import 'package:ssurade/types/subject/SemesterSubjectsManager.dart';
+import 'package:ssurade/types/subject/Subject.dart';
+import 'package:ssurade/types/subject/gradeTable.dart';
+import 'package:ssurade/globals.dart' as globals;
 import 'package:tuple/tuple.dart';
-
-import '../globals.dart' as globals;
 
 class USaintSession {
   String _number, _password;
@@ -248,13 +253,13 @@ class USaintSession {
     return (await getEntranceGraduateYear())?.item2;
   }
 
-  Future<SubjectDataList?> getGrade(YearSemester search, {bool reloadPage = true}) async {
+  Future<SemesterSubjects?> getGrade(YearSemester search, {bool reloadPage = true}) async {
     if (_lockedForWebView) return null;
     _lockedForWebView = true;
 
     bool isFinished = false;
 
-    late SubjectDataList? result;
+    SemesterSubjects? result;
     try {
       result = await Future.any([
         Future(() async {
@@ -426,6 +431,7 @@ class USaintSession {
                 JSON.stringify(
                   Array(...document.querySelectorAll(`table tr table tr table tr:nth-child(11) td table table table table tbody:nth-child(2) tr`))
                     .slice(1).map(element => [
+                      element.querySelector(`td:nth-child(4) span span`).textContent.trim(), // 과목 번호
                       element.querySelector(`td:nth-child(5) span span`).textContent.trim(), // 과목명
                       element.querySelector(`td:nth-child(6) span span`).textContent.trim(), // 학점 (이수 단위)
                       element.querySelector(`td:nth-child(8) span span`).textContent.trim(), // 학점 (등급)
@@ -474,11 +480,11 @@ class USaintSession {
 
           temp = jsonDecode(temp);
 
-          SubjectDataList result = SubjectDataList([], semesterRanking, totalRanking);
+          SemesterSubjects result = SemesterSubjects([], semesterRanking, totalRanking, search);
           for (var obj in temp) {
-            result.subjectDataList.add(SubjectData(obj[0], double.parse(obj[1]), obj[2], obj[3]));
+            result.subjects.add(Subject(obj[0], obj[1], double.parse(obj[2]), obj[3], obj[4]));
           }
-          result.subjectDataList.sort((a, b) {
+          result.subjects.sort((a, b) {
             double x = gradeTable[a.grade] ?? -5;
             double y = gradeTable[b.grade] ?? -5;
             if (x != y) return x > y ? -1 : 1; // 등급(grade) 높은 것부터
@@ -503,18 +509,19 @@ class USaintSession {
       isFinished = true;
     }
 
+    await result!.loadPassFailSubjects();
     return result;
   }
 
   bool _lockedForAllGrade = false;
 
-  Future<Map<YearSemester, SubjectDataList>?> getAllGrade() async {
+  Future<SemesterSubjectsManager?> getAllGrade() async {
     if (_lockedForAllGrade || _lockedForWebView) return null;
     _lockedForAllGrade = true;
 
     bool isFinished = false;
 
-    late Map<YearSemester, SubjectDataList>? result;
+    SemesterSubjectsManager? result;
     try {
       result = await Future.any([
         Future(() async {
@@ -522,13 +529,13 @@ class USaintSession {
             return null;
           }
 
-          result = {};
+          result = SemesterSubjectsManager(SplayTreeMap.from({}));
 
           var year = (await getEntranceGraduateYear())!;
           int entranceYear = int.parse(year.item1);
           int graduateYear;
           if (year.item2 == "0000") {
-            graduateYear = DateTime.now().year; // 재학 중?
+            graduateYear = DateTime.now().year; // 재학 중
           } else {
             graduateYear = int.parse(year.item2) + 1; // 유세인트 오류?
           }
@@ -537,11 +544,11 @@ class USaintSession {
             for (var semester in Semester.values) {
               if (isFinished) return null;
               YearSemester key = YearSemester(i, semester);
-              result![key] = (await getGrade(key, reloadPage: false))!;
+              result!.data[key] = (await getGrade(key, reloadPage: false))!;
 
-              log(result![key].toString());
-              if (result![key]?.subjectDataList.isEmpty == true) {
-                result!.remove(key);
+              log(result!.data[key].toString());
+              if (result!.data[key]?.subjects.isEmpty == true) {
+                result!.data.remove(key);
               }
             }
           }

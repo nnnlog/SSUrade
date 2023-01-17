@@ -5,6 +5,9 @@ import 'package:ssurade/components/BackgroundWebView.dart';
 import 'package:ssurade/components/CustomAppBar.dart';
 import 'package:ssurade/globals.dart' as globals;
 import 'package:ssurade/types/Progress.dart';
+import 'package:ssurade/types/Semester.dart';
+import 'package:ssurade/types/YearSemester.dart';
+import 'package:ssurade/utils/PassFailSubjects.dart';
 import 'package:ssurade/utils/toast.dart';
 import 'package:ssurade/utils/update.dart';
 

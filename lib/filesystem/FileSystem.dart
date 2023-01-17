@@ -9,14 +9,22 @@ initFileSystem() async {
   internalDir = await getApplicationDocumentsDirectory();
 }
 
-String getPath(String filename) => "${internalDir.path}/$filename";
+String getPath(String name) => "${internalDir.path}/$name";
 
-Future<bool> existFile(String filename) async {
-  return FileSystemEntity.isFile(getPath(filename));
+Future<Directory> mkdir(String dirname) async {
+  return Directory(getPath("$dirname/")).create(recursive: true);
 }
 
-Future<String?> getFileContent(String filename) async {
-  if (await existFile(filename)) return File(getPath(filename)).readAsString();
+Future<FileSystemEntity> rmdir(String dirname) async {
+  return Directory(getPath("$dirname/")).delete(recursive: true);
+}
+
+Future<bool> existFile(String path) async {
+  return FileSystemEntity.isFile(getPath(path));
+}
+
+Future<String?> readFile(String path) async {
+  if (await existFile(path)) return File(getPath(path)).readAsString();
   return null;
 }
 

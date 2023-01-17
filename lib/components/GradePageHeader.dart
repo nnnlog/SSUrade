@@ -1,25 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:ssurade/globals.dart' as globals;
 import 'package:ssurade/types/Semester.dart';
-import 'package:ssurade/types/SubjectData.dart';
+import 'package:ssurade/types/YearSemester.dart';
+import 'package:ssurade/types/subject/SemesterSubjects.dart';
 import 'package:ssurade/utils/DoubleToString.dart';
 
-class GradeSemesterHeader extends StatefulWidget {
-  final YearSemester currentSemester;
-  final SubjectDataList currentSubjects;
+class GradePageHeader extends StatefulWidget {
+  final SemesterSubjects data;
   final Function(YearSemester) callbackSelectSubject;
   final void Function() refreshCurrentGrade;
   final bool _exportImage, _showRanking;
 
-  const GradeSemesterHeader(
-      this.currentSemester, this.currentSubjects, this.callbackSelectSubject, this.refreshCurrentGrade, this._exportImage, this._showRanking,
-      {super.key});
+  const GradePageHeader(this.data, this.callbackSelectSubject, this.refreshCurrentGrade, this._exportImage, this._showRanking, {super.key});
 
   @override
-  State<StatefulWidget> createState() => _GradeSemesterHeaderState();
+  State<StatefulWidget> createState() => _GradePageHeaderState();
 }
 
-class _GradeSemesterHeaderState extends State<GradeSemesterHeader> {
+class _GradePageHeaderState extends State<GradePageHeader> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -54,7 +52,7 @@ class _GradeSemesterHeaderState extends State<GradeSemesterHeader> {
                     visible: !widget._exportImage,
                     child: const Icon(Icons.arrow_drop_down),
                   ),
-                  items: globals.subjectDataCache.data.entries
+                  items: globals.semesterSubjectsManager.data.entries
                       .map((e) => DropdownMenuItem<YearSemester>(
                             value: e.key,
                             child: Text(
@@ -76,7 +74,7 @@ class _GradeSemesterHeaderState extends State<GradeSemesterHeader> {
                     fontWeight: FontWeight.w500,
                   ),
                   underline: Container(),
-                  value: widget.currentSemester,
+                  value: widget.data.currentSemester,
                   isDense: true,
                 ),
                 TextButton(
@@ -119,7 +117,7 @@ class _GradeSemesterHeaderState extends State<GradeSemesterHeader> {
                       textBaseline: TextBaseline.alphabetic,
                       children: [
                         Text(
-                          toStringWithPrecision(widget.currentSubjects.averageGrade, 2),
+                          toStringWithPrecision(widget.data.averageGrade, 2),
                           style: const TextStyle(
                             fontSize: 50,
                             fontWeight: FontWeight.w600,
@@ -158,7 +156,7 @@ class _GradeSemesterHeaderState extends State<GradeSemesterHeader> {
                         height: 2,
                       ),
                       Text(
-                        "${widget.currentSubjects.semesterRanking.toString()} ${widget.currentSubjects.semesterRanking.isEmpty ? '' : '(상위 ${toStringWithPrecision(widget.currentSubjects.semesterRanking.percentage, 1)}%)'}",
+                        "${widget.data.semesterRanking.toString()} ${widget.data.semesterRanking.isEmpty ? '' : '(상위 ${toStringWithPrecision(widget.data.semesterRanking.percentage, 1)}%)'}",
                         style: const TextStyle(
                           fontSize: 12,
                           fontWeight: FontWeight.w500,
@@ -179,7 +177,7 @@ class _GradeSemesterHeaderState extends State<GradeSemesterHeader> {
                         height: 2,
                       ),
                       Text(
-                        "${widget.currentSubjects.totalRanking.toString()} ${widget.currentSubjects.totalRanking.isEmpty ? '' : '(상위 ${toStringWithPrecision(widget.currentSubjects.totalRanking.percentage, 1)}%)'}",
+                        "${widget.data.totalRanking.toString()} ${widget.data.totalRanking.isEmpty ? '' : '(상위 ${toStringWithPrecision(widget.data.totalRanking.percentage, 1)}%)'}",
                         style: const TextStyle(
                           fontSize: 12,
                           fontWeight: FontWeight.w500,

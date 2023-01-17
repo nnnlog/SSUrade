@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:ssurade/components/GradeLogo.dart';
 import 'package:ssurade/globals.dart' as globals;
-import 'package:ssurade/types/SubjectData.dart';
+import 'package:ssurade/types/subject/Subject.dart';
 
 class SubjectWidget extends StatefulWidget {
-  final SubjectData _subjectData;
+  final Subject _subjectData;
   final bool _exportImage, _showSubject;
 
   const SubjectWidget(this._subjectData, this._exportImage, this._showSubject, {Key? key}) : super(key: key);

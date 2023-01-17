@@ -22,7 +22,7 @@ class Setting {
   static Future<Setting> loadFromFile() async {
     dynamic data = {};
     if (await existFile(_filename)) {
-      data = jsonDecode((await getFileContent(_filename))!);
+      data = jsonDecode((await readFile(_filename))!);
     }
 
     return Setting(data[_number] ?? "", data[_password] ?? "", data[_refreshGradeAutomatically] ?? false, data[_timeoutGrade] ?? 10,
