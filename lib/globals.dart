@@ -9,8 +9,6 @@ import 'package:ssurade/types/subject/SemesterSubjectsManager.dart';
 bool webViewInitialized = false;
 int webViewXHRRunningCount = 0, webViewXHRTotalCount = 0;
 XHRProgress webViewXHRProgress = XHRProgress.none;
-String currentXHR = "";
-Map<String, int> detectedXHR = {};
 late InAppWebViewController webViewController;
 Function jsAlertCallback = () {};
 

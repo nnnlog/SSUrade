@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:ssurade/components/CustomAppBar.dart';
+import 'package:ssurade/utils/toast.dart';
 import 'package:ssurade/utils/update.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -50,12 +52,12 @@ class _InformationPageState extends State<InformationPage> {
             const Text(
               "숭실대학교 성적/학점 조회 앱",
               style: TextStyle(
-                fontSize: 15,
-                fontWeight: FontWeight.w500,
+                fontSize: 16,
+                fontWeight: FontWeight.w600,
               ),
             ),
             const SizedBox(
-              height: 10,
+              height: 15,
             ),
             Text(
               "앱 버전 : $appVer",
@@ -111,6 +113,92 @@ class _InformationPageState extends State<InformationPage> {
                             )),
                     ],
                   )),
+            const SizedBox(
+              height: 10,
+            ),
+            Row(
+              children: [
+                InkWell(
+                  child: const Text(
+                    "Github",
+                    style: TextStyle(
+                      fontSize: 15,
+                      fontWeight: FontWeight.w400,
+                      color: Colors.blueAccent,
+                      decoration: TextDecoration.underline,
+                    ),
+                  ),
+                  onTap: () => launchUrl(
+                    Uri.parse("https://github.com/nnnlog/ssurade"),
+                    mode: LaunchMode.externalApplication,
+                  ),
+                ),
+                const Text(
+                  "에서 오픈소스로 개발하고 있습니다.",
+                  style: TextStyle(
+                    fontSize: 15,
+                    fontWeight: FontWeight.w400,
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(
+              height: 5,
+            ),
+            Wrap(
+              children: [
+                const Text(
+                  "오류 보고나 기능 추가 등의 문의는 ",
+                  style: TextStyle(
+                    fontSize: 15,
+                    fontWeight: FontWeight.w400,
+                  ),
+                ),
+                InkWell(
+                  child: const Text(
+                    "Github Issue",
+                    style: TextStyle(
+                      fontSize: 15,
+                      fontWeight: FontWeight.w400,
+                      color: Colors.blueAccent,
+                      decoration: TextDecoration.underline,
+                    ),
+                  ),
+                  onTap: () => launchUrl(
+                    Uri.parse("https://github.com/nnnlog/ssurade/issues"),
+                    mode: LaunchMode.externalApplication,
+                  ),
+                ),
+                const Text(
+                  "나",
+                  style: TextStyle(
+                    fontSize: 15,
+                    fontWeight: FontWeight.w400,
+                  ),
+                ),
+                InkWell(
+                  child: const Text(
+                    "me@nlog.dev",
+                    style: TextStyle(
+                      fontSize: 15,
+                      fontWeight: FontWeight.w400,
+                      color: Colors.blueAccent,
+                      decoration: TextDecoration.underline,
+                    ),
+                  ),
+                  onTap: () {
+                    Clipboard.setData(const ClipboardData(text: "me@nlog.dev"));
+                  },
+                ),
+                const Text(
+                  "에 남겨주세요.",
+                  style: TextStyle(
+                    fontSize: 15,
+                    fontWeight: FontWeight.w400,
+                  ),
+                ),
+              ],
+            ),
             const Spacer(),
             const Divider(),
             const SizedBox(
