@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:convert';
+
 import 'package:http/http.dart' as http;
 import 'package:ssurade/filesystem/FileSystem.dart';
 import 'package:ssurade/types/Semester.dart';

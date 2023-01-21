@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:ssurade/components/CustomAppBar.dart';
-import 'package:ssurade/utils/toast.dart';
 import 'package:ssurade/utils/update.dart';
 import 'package:url_launcher/url_launcher.dart';
 

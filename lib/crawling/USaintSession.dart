@@ -4,6 +4,7 @@ import 'dart:developer';
 
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:json_annotation/json_annotation.dart';
+import 'package:ssurade/globals.dart' as globals;
 import 'package:ssurade/types/Progress.dart';
 import 'package:ssurade/types/Semester.dart';
 import 'package:ssurade/types/YearSemester.dart';
@@ -12,7 +13,6 @@ import 'package:ssurade/types/subject/SemesterSubjects.dart';
 import 'package:ssurade/types/subject/SemesterSubjectsManager.dart';
 import 'package:ssurade/types/subject/Subject.dart';
 import 'package:ssurade/types/subject/gradeTable.dart';
-import 'package:ssurade/globals.dart' as globals;
 import 'package:tuple/tuple.dart';
 
 part 'USaintSession.g.dart';

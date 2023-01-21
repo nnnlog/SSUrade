@@ -1,6 +1,6 @@
-import 'package:ssurade/types/Semester.dart';
-import 'package:quiver/core.dart';
 import 'package:json_annotation/json_annotation.dart';
+import 'package:quiver/core.dart';
+import 'package:ssurade/types/Semester.dart';
 
 part 'YearSemester.g.dart';
 
