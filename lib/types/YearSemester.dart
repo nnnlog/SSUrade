@@ -1,11 +1,21 @@
 import 'package:ssurade/types/Semester.dart';
 import 'package:quiver/core.dart';
+import 'package:json_annotation/json_annotation.dart';
 
+part 'YearSemester.g.dart';
+
+@JsonSerializable()
 class YearSemester extends Comparable<YearSemester> {
+  @JsonKey()
   int year;
+  @JsonKey()
   Semester semester;
 
   YearSemester(this.year, this.semester);
+
+  factory YearSemester.fromJson(Map<String, dynamic> json) => _$YearSemesterFromJson(json);
+
+  Map<String, dynamic> toJson() => _$YearSemesterToJson(this);
 
   @override
   String toString() => "$runtimeType(year=$year, semester=$semester)";
@@ -19,30 +29,7 @@ class YearSemester extends Comparable<YearSemester> {
   }
 
   bool operator <(YearSemester other) {
-    // if (other is YearSemester) {
     return year == other.year ? semester.webIndex < other.semester.webIndex : year < other.year;
-    // }
-    // throw Exception("Only support for YearSemester");
-  }
-
-  String toKey() => "$year:${semester.name}";
-
-  static YearSemester fromKey(String key) {
-    int index = key.indexOf(":");
-    int year = int.parse(key.substring(0, index));
-    String semester = key.substring(index + 1);
-    return YearSemester(year, Semester.parse(semester));
-  }
-
-  static YearSemester now() {
-    var time = DateTime.now();
-    if (time.month <= 2) {
-      return YearSemester(time.year - 1, Semester.second);
-    } else if (time.month <= 8) {
-      return YearSemester(time.year, Semester.first);
-    } else {
-      return YearSemester(time.year, Semester.second);
-    }
   }
 
   @override

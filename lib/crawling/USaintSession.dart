@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'dart:developer';
 
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
+import 'package:json_annotation/json_annotation.dart';
 import 'package:ssurade/types/Progress.dart';
 import 'package:ssurade/types/Semester.dart';
 import 'package:ssurade/types/YearSemester.dart';
@@ -14,9 +15,27 @@ import 'package:ssurade/types/subject/gradeTable.dart';
 import 'package:ssurade/globals.dart' as globals;
 import 'package:tuple/tuple.dart';
 
+part 'USaintSession.g.dart';
+
+@JsonSerializable()
 class USaintSession {
-  String _number, _password;
+  @JsonKey(
+    includeFromJson: true,
+    includeToJson: true,
+  )
+  String _number;
+
+  @JsonKey(
+    includeFromJson: true,
+    includeToJson: true,
+  )
+  String _password;
+
   bool _isLogin = false;
+
+  factory USaintSession.fromJson(Map<String, dynamic> json) => _$USaintSessionFromJson(json);
+
+  Map<String, dynamic> toJson() => _$USaintSessionToJson(this);
 
   USaintSession(this._number, this._password);
 
@@ -24,6 +43,7 @@ class USaintSession {
     return number.isNotEmpty && password.isNotEmpty;
   }
 
+  @JsonKey(includeFromJson: false, includeToJson: false)
   String get number {
     return _number;
   }
@@ -33,6 +53,7 @@ class USaintSession {
     _number = number;
   }
 
+  @JsonKey(includeFromJson: false, includeToJson: false)
   String get password {
     return _password;
   }
@@ -474,8 +495,8 @@ class USaintSession {
             ''');
 
             var json = jsonDecode(temp);
-            semesterRanking = Ranking.fromKey(json[0]);
-            totalRanking = Ranking.fromKey(json[1]);
+            semesterRanking = Ranking.parse(json[0]);
+            totalRanking = Ranking.parse(json[1]);
           } catch (e) {}
 
           temp = jsonDecode(temp);

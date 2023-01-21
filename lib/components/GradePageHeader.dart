@@ -156,7 +156,7 @@ class _GradePageHeaderState extends State<GradePageHeader> {
                         height: 2,
                       ),
                       Text(
-                        "${widget.data.semesterRanking.toString()} ${widget.data.semesterRanking.isEmpty ? '' : '(상위 ${toStringWithPrecision(widget.data.semesterRanking.percentage, 1)}%)'}",
+                        "${widget.data.semesterRanking.display} ${widget.data.semesterRanking.isEmpty ? '' : '(상위 ${toStringWithPrecision(widget.data.semesterRanking.percentage, 1)}%)'}",
                         style: const TextStyle(
                           fontSize: 12,
                           fontWeight: FontWeight.w500,
@@ -177,7 +177,7 @@ class _GradePageHeaderState extends State<GradePageHeader> {
                         height: 2,
                       ),
                       Text(
-                        "${widget.data.totalRanking.toString()} ${widget.data.totalRanking.isEmpty ? '' : '(상위 ${toStringWithPrecision(widget.data.totalRanking.percentage, 1)}%)'}",
+                        "${widget.data.totalRanking.display} ${widget.data.totalRanking.isEmpty ? '' : '(상위 ${toStringWithPrecision(widget.data.totalRanking.percentage, 1)}%)'}",
                         style: const TextStyle(
                           fontSize: 12,
                           fontWeight: FontWeight.w500,

@@ -1,17 +1,34 @@
+import 'package:json_annotation/json_annotation.dart';
 import 'package:ssurade/types/YearSemester.dart';
 import 'package:ssurade/types/subject/Ranking.dart';
 import 'package:ssurade/types/subject/Subject.dart';
 import 'package:ssurade/types/subject/gradeTable.dart';
 import 'package:ssurade/utils/PassFailSubjects.dart';
-import 'dart:developer';
 
+part 'SemesterSubjects.g.dart';
+
+@JsonSerializable()
 class SemesterSubjects {
+  @JsonKey()
   List<Subject> subjects;
-  Ranking semesterRanking, totalRanking;
+  @JsonKey()
+  Ranking semesterRanking;
+  @JsonKey()
+  Ranking totalRanking;
+  @JsonKey()
   final YearSemester currentSemester; // cannot change after construction, use for key of Map
+
+  @JsonKey(
+    includeFromJson: false,
+    includeToJson: false,
+  )
   Map<String, bool>? list;
 
   SemesterSubjects(this.subjects, this.semesterRanking, this.totalRanking, this.currentSemester);
+
+  factory SemesterSubjects.fromJson(Map<String, dynamic> json) => _$SemesterSubjectsFromJson(json);
+
+  Map<String, dynamic> toJson() => _$SemesterSubjectsToJson(this);
 
   Future<void> loadPassFailSubjects() async {
     list ??= await getPassFailSubjects(currentSemester);
@@ -44,21 +61,4 @@ class SemesterSubjects {
   @override
   String toString() =>
       "$runtimeType(subjects=${subjects.toString()}, semesterRanking=${semesterRanking.toString()}, totalRanking=${totalRanking.toString()}, currentSemester=${currentSemester.toString()})";
-
-  // FILE I/O
-  static const String _subjects = 'subjects', _semester_rank = 'semester_rank', _total_rank = 'total_rank', _semester = '_semester';
-
-  Map<String, dynamic> toJSON() => {
-        _subjects: subjects.map((e) => e.toJSON()).toList(),
-        _semester_rank: semesterRanking.toKey(),
-        _total_rank: totalRanking.toKey(),
-        _semester: currentSemester.toKey(),
-      };
-
-  static SemesterSubjects fromJSON(Map<String, dynamic> json) => SemesterSubjects(
-        json[_subjects].map<Subject>((e) => Subject.fromJSON(e)).toList(),
-        Ranking.fromKey(json[_semester_rank]),
-        Ranking.fromKey(json[_total_rank]),
-        YearSemester.fromKey(json[_semester]),
-      );
 }

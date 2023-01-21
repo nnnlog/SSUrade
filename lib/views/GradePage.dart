@@ -220,7 +220,7 @@ class _GradePageState extends State<GradePage> {
                                             final bytes = await _imageController.capture();
                                             await ImageGallerySaver.saveImage(bytes!,
                                                 name:
-                                                    "${_semesterSubjects.currentSemester.toKey()}-${DateTime.now().toLocal().millisecondsSinceEpoch}");
+                                                    "${_semesterSubjects.currentSemester.year}-${_semesterSubjects.currentSemester.semester.name}-${DateTime.now().toLocal().millisecondsSinceEpoch}");
 
                                             setState(() {
                                               _exportImage = false;

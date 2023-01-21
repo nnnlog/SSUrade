@@ -1,7 +1,27 @@
+import 'package:json_annotation/json_annotation.dart';
+
+part 'Ranking.g.dart';
+
+@JsonSerializable()
 class Ranking {
-  int my, total;
+  @JsonKey()
+  int my;
+  @JsonKey()
+  int total;
 
   Ranking(this.my, this.total);
+
+  factory Ranking.fromJson(Map<String, dynamic> json) => _$RankingFromJson(json);
+
+  Map<String, dynamic> toJson() => _$RankingToJson(this);
+
+  factory Ranking.parse(String str) {
+    if (str == "-") {
+      return Ranking(0, 0);
+    }
+    var a = str.split("/").map((e) => int.parse(e)).toList();
+    return Ranking(a[0], a[1]);
+  }
 
   double get percentage {
     return my / total * 100;
@@ -11,16 +31,8 @@ class Ranking {
 
   bool get isNotEmpty => !isEmpty;
 
-  String toKey() => isEmpty ? "-" : "$my/$total";
-
-  static Ranking fromKey(String str) {
-    if (str == "-") {
-      return Ranking(0, 0);
-    }
-    var a = str.split("/").map((e) => int.parse(e)).toList();
-    return Ranking(a[0], a[1]);
-  }
+  String get display => isEmpty ? "-" : "$my/$total";
 
   @override
-  String toString() => toKey();
+  String toString() => "$runtimeType(my=$my, total=$total)";
 }

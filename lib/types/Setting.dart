@@ -1,46 +1,46 @@
 import 'dart:convert';
 
+import 'package:json_annotation/json_annotation.dart';
 import 'package:ssurade/crawling/USaintSession.dart';
 import 'package:ssurade/filesystem/FileSystem.dart';
 
-class Setting {
-  late USaintSession uSaintSession;
-  bool refreshGradeAutomatically;
-  int timeoutGrade, timeoutAllGrade;
+part 'Setting.g.dart';
 
-  Setting(String number, String password, this.refreshGradeAutomatically, this.timeoutGrade, this.timeoutAllGrade) {
-    uSaintSession = USaintSession(number, password);
-  }
+@JsonSerializable()
+class Setting {
+  @JsonKey()
+  USaintSession uSaintSession;
+  @JsonKey()
+  bool refreshGradeAutomatically;
+  @JsonKey()
+  int timeoutGrade;
+  @JsonKey()
+  int timeoutAllGrade;
+
+  Setting(this.uSaintSession, this.refreshGradeAutomatically, this.timeoutGrade, this.timeoutAllGrade);
+
+  factory Setting.fromJson(Map<String, dynamic> json) => _$SettingFromJson(json);
+
+  Map<String, dynamic> toJson() => _$SettingToJson(this);
 
   static const String _filename = "settings.json"; // internal file name
 
-  // field schema
-  static const String _number = "number", _password = "password";
-  static const String _refreshGradeAutomatically = "refresh_grade_automatically";
-  static const String _timeoutGrade = "timeout_grade", _timeoutAllGrade = "timeout_all_grade";
-
   static Future<Setting> loadFromFile() async {
-    dynamic data = {};
-    if (await existFile(_filename)) {
-      data = jsonDecode((await readFile(_filename))!);
+    try {
+      dynamic json = {};
+      if (await existFile(_filename)) {
+        json = jsonDecode((await readFile(_filename))!);
+      }
+      return Setting.fromJson(json);
+    } catch (e) {
+      return Setting(USaintSession("", ""), false, 10, 30);
     }
-
-    return Setting(data[_number] ?? "", data[_password] ?? "", data[_refreshGradeAutomatically] ?? false, data[_timeoutGrade] ?? 10,
-        data[_timeoutAllGrade] ?? 30);
   }
 
-  saveFile() => writeFile(
-      _filename,
-      jsonEncode({
-        _number: uSaintSession.number,
-        _password: uSaintSession.password,
-        _refreshGradeAutomatically: refreshGradeAutomatically,
-        _timeoutGrade: timeoutGrade,
-        _timeoutAllGrade: timeoutAllGrade,
-      }));
+  saveFile() => writeFile(_filename, jsonEncode(toJson()));
 
   @override
   String toString() {
-    return "Setting(saint_session=$uSaintSession, refreshGradeAutomatically=$refreshGradeAutomatically, timeoutGrade=$timeoutGrade, timeoutAllGrade=$timeoutAllGrade)";
+    return "$runtimeType(saint_session=$uSaintSession, refreshGradeAutomatically=$refreshGradeAutomatically, timeoutGrade=$timeoutGrade, timeoutAllGrade=$timeoutAllGrade)";
   }
 }

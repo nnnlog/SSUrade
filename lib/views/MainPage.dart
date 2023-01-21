@@ -5,9 +5,6 @@ import 'package:ssurade/components/BackgroundWebView.dart';
 import 'package:ssurade/components/CustomAppBar.dart';
 import 'package:ssurade/globals.dart' as globals;
 import 'package:ssurade/types/Progress.dart';
-import 'package:ssurade/types/Semester.dart';
-import 'package:ssurade/types/YearSemester.dart';
-import 'package:ssurade/utils/PassFailSubjects.dart';
 import 'package:ssurade/utils/toast.dart';
 import 'package:ssurade/utils/update.dart';
 
@@ -24,34 +21,35 @@ class _MainPageState extends State<MainPage> {
   @override
   void initState() {
     super.initState();
+    globals.setStateOfMainPage = setState;
 
     (() async {
-      globals.setStateOfMainPage = setState;
-
       await Future.doWhile(() async {
         await Future.delayed(const Duration(milliseconds: 100));
         return !globals.webViewInitialized;
       });
 
       await globals.init();
-
-      var setting = globals.setting;
-      if (setting.uSaintSession.isNotEmpty) {
-        if (!await setting.uSaintSession.tryLogin()) {
-          showToast("자동로그인을 실패했습니다.");
-        } else {
-          showToast("자동로그인했습니다.");
+      Future(() async {
+        var setting = globals.setting;
+        if (setting.uSaintSession.isNotEmpty) {
+          if (!await setting.uSaintSession.tryLogin()) {
+            showToast("자동로그인을 실패했습니다.");
+          } else {
+            showToast("자동로그인했습니다.");
+          }
         }
-      }
 
-      globals.setStateOfMainPage(() {
-        _progress = MainProgress.finish;
+        globals.setStateOfMainPage(() {
+          _progress = MainProgress.finish;
+        });
       });
 
-      var temp = await fetchAppVersion();
-      if (temp.item2 != "") {
-        showToast("새로운 버전 v${temp.item2}(으)로 업데이트할 수 있습니다.");
-      }
+      await fetchAppVersion().then((value) {
+        if (value.item2 != "") {
+          showToast("새로운 버전 v${value.item2}(으)로 업데이트할 수 있습니다.");
+        }
+      });
     })();
   }
 
