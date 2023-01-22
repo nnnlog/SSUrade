@@ -7,10 +7,10 @@ flutter pub run build_runner build
 flutter build apk
 ```
 
-### Analytics
+### Analytics (Firebase)
 #### Init
 ```shell
-flutterfire configure --project=<Firbase project name>
+flutterfire configure --project=<Firbase project id>
 ```
 
 #### Debug (Start)
