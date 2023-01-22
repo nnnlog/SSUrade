@@ -10,7 +10,12 @@ int lastUpdated = -1;
 
 Future<int> _getLastUpdatedTime() async {
   if (lastUpdated != -1) return lastUpdated;
-  lastUpdated = int.parse((await http.get(Uri.parse("https://raw.githubusercontent.com/nnnlog/ssurade-subject-pf/master/info.txt"))).body);
+  try {
+    var res = await http.get(Uri.parse("https://raw.githubusercontent.com/nnnlog/ssurade-subject-pf/master/info.txt")).timeout(const Duration(seconds: 3));
+    lastUpdated = int.parse(res.body);
+  } catch (e) {
+    lastUpdated = -1;
+  }
   return lastUpdated;
 }
 
@@ -21,7 +26,7 @@ Future<void> _checkUpdate() async {
   if (_called) return _waitForCheck;
   _called = true;
   return _waitForCheck = Future(() async {
-    await _getLastUpdatedTime();
+    if (await _getLastUpdatedTime() == -1) return;
 
     await mkdir("pf_subjects");
 
@@ -49,7 +54,8 @@ Future<Map<String, bool>> getPassFailSubjects(
 }) async {
   if (_cache.containsKey(info)) return _cache[info]!;
 
-  await _checkUpdate(); // TODO: check internet connection
+  await _checkUpdate();
+  if (lastUpdated == -1) return {};
 
   List<dynamic> tmp;
   if (useCache && await existFile("pf_subjects/pf_${info.year}-${info.semester.name}.json")) {
