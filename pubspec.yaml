@@ -27,6 +27,8 @@ dependencies:
   image_gallery_saver: ^1.7.1
   json_annotation: ^4.8.0
   event: ^2.1.2
+  firebase_analytics: ^10.1.0
+  firebase_core: ^2.4.1
 
 dev_dependencies:
   flutter_test:

@@ -1,3 +1,5 @@
+import 'package:firebase_analytics/firebase_analytics.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:ssurade/globals.dart' as globals;
 import 'package:ssurade/views/GradePage.dart';
@@ -6,7 +8,15 @@ import 'package:ssurade/views/Login.dart';
 import 'package:ssurade/views/MainPage.dart';
 import 'package:ssurade/views/SettingPage.dart';
 
-void main() {
+import 'firebase_options.dart';
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+  globals.analytics = FirebaseAnalytics.instance;
+
   runApp(const MyApp());
 }
 
@@ -42,6 +52,9 @@ class MyApp extends StatelessWidget {
         '/setting': (context) => const SettingPage(),
         '/information': (context) => const InformationPage(),
       },
+      navigatorObservers: [
+        FirebaseAnalyticsObserver(analytics: globals.analytics),
+      ],
     );
   }
 }

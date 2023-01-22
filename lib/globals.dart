@@ -1,5 +1,6 @@
 library ssurade.globals;
 
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:ssurade/crawling/Crawler.dart';
 import 'package:ssurade/filesystem/FileSystem.dart';
 import 'package:ssurade/types/Setting.dart';
@@ -9,6 +10,8 @@ late Setting setting;
 late SemesterSubjectsManager semesterSubjectsManager;
 
 bool isLightMode = true; // SchedulerBinding.instance.window.platformBrightness == Brightness.light;
+
+late FirebaseAnalytics analytics;
 
 Future<void> init() async {
   await initFileSystem();

@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "270810457384",
+    "project_id": "nlog-ssurade",
+    "storage_bucket": "nlog-ssurade.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:270810457384:android:5f53c172cf84546d66dc1d",
+        "android_client_info": {
+          "package_name": "com.nnnlog.ssurade"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "270810457384-6jlp8p3ddf1ff8qh7r1n6sl32lmj0lu8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDncyoYuqVGrZm2BXv-oorGE4uQQ7Mxxkw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "270810457384-6jlp8p3ddf1ff8qh7r1n6sl32lmj0lu8.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "270810457384-5pu2kc95cg91s53gv6g89hi12vbh4fqm.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.nnnlog.ssurade.ssurade"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
