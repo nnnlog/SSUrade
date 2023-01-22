@@ -3,17 +3,14 @@ import 'dart:developer';
 
 import 'package:event/event.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:ssurade/crawling/CrawlingTask.dart';
 import 'package:ssurade/crawling/WebViewControllerExtension.dart';
-import 'package:ssurade/filesystem/FileSystem.dart';
-
-part 'LoginSession.g.dart';
 
 /// U-Saint Session Manager
 /// All WebView Controller share same CookieManager, so need only one instance for managing login session.
 /// Provide Event
-@JsonSerializable(constructor: "_")
 class LoginSession extends CrawlingTask<bool> {
   static final LoginSession _instance = LoginSession._("", "");
 
@@ -21,43 +18,26 @@ class LoginSession extends CrawlingTask<bool> {
     return _instance;
   }
 
-  @JsonKey(
-    includeFromJson: true,
-    includeToJson: true,
-  )
   String _id;
 
-  @JsonKey(
-    includeFromJson: true,
-    includeToJson: true,
-  )
   String _password;
 
   LoginSession._(this._id, this._password);
 
-  factory LoginSession.fromJson(Map<String, dynamic> json) => _$LoginSessionFromJson(json);
-
-  Map<String, dynamic> toJson() => _$LoginSessionToJson(this);
-
-  static const String _filename = "credential.json"; // internal file name
-
   /// Singleton
   Future loadFromFile() async {
-    late LoginSession tmp;
-    try {
-      dynamic json = {};
-      if (await existFile(_filename)) {
-        json = jsonDecode((await readFile(_filename))!);
-      }
-      tmp = LoginSession.fromJson(json);
-    } catch (e) {
-      tmp = LoginSession._("", "");
-    }
-    id = tmp.id;
-    password = tmp.password;
+    const storage = FlutterSecureStorage();
+
+    id = (await storage.read(key: "id")) ?? "";
+    password = (await storage.read(key: "password")) ?? "";
   }
 
-  saveFile() => writeFile(_filename, jsonEncode(toJson()));
+  saveFile() async {
+    const storage = FlutterSecureStorage();
+
+    await storage.write(key: "id", value: id);
+    await storage.write(key: "password", value: password);
+  }
 
   bool _isLogin = false;
   bool _isFail = false;
