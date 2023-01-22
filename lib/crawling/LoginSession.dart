@@ -4,7 +4,6 @@ import 'dart:developer';
 import 'package:event/event.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-import 'package:json_annotation/json_annotation.dart';
 import 'package:ssurade/crawling/CrawlingTask.dart';
 import 'package:ssurade/crawling/WebViewControllerExtension.dart';
 
@@ -58,10 +57,6 @@ class LoginSession extends CrawlingTask<bool> {
     return _isFail;
   }
 
-  @JsonKey(
-    includeToJson: false,
-    includeFromJson: false,
-  )
   get id {
     return _id;
   }
@@ -72,10 +67,6 @@ class LoginSession extends CrawlingTask<bool> {
     _isFail = false;
   }
 
-  @JsonKey(
-    includeToJson: false,
-    includeFromJson: false,
-  )
   get password {
     return _password;
   }
@@ -86,22 +77,10 @@ class LoginSession extends CrawlingTask<bool> {
     _isFail = false;
   }
 
-  @JsonKey(
-    includeFromJson: false,
-    includeToJson: false,
-  )
   Event<Value<bool>> loginStatusChangeEvent = Event(); // broadcast event when login status change
 
-  @JsonKey(
-    includeFromJson: false,
-    includeToJson: false,
-  )
   Event<Value<String>> loginFailEvent = Event(); // broadcast event when login fail reason is provided
 
-  @JsonKey(
-    includeFromJson: false,
-    includeToJson: false,
-  )
   Future<bool>? _future;
 
   logout() {
