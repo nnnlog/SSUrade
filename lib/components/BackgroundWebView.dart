@@ -50,7 +50,10 @@ class _BackgroundWebViewState extends State<BackgroundWebView> {
               });
         },
         onJsAlert: (controller, action) async {
-          controller.jsAlertCallback();
+          controller.jsAlertCallback(action.message);
+          return JsAlertResponse(
+            handledByClient: true,
+          ); // cancel alert event
         },
         onJsConfirm: (controller, action) async {
           return JsConfirmResponse(); // cancel confirm event

@@ -28,29 +28,37 @@ class _MainPageState extends State<MainPage> {
     (() async {
       await Future.wait(_webViewInitialized);
 
-      Crawler.loginSession().event.subscribe((args) {
+      Crawler.loginSession().loginStatusChangeEvent.subscribe((args) {
         setState(() {});
       });
 
-      await globals.init();
-      Future(() async {
-        if (Crawler.loginSession().isNotEmpty) {
-          if (!await Crawler.loginSession().execute()) {
-            showToast("자동로그인을 실패했습니다.");
-          } else {
-            showToast("자동로그인했습니다.");
-          }
-        }
+      Crawler.loginSession().loginFailEvent.subscribe((msg) {
+        showToast("자동 로그인을 실패했습니다.");
+        // showToast("메인 화면에서 자동 로그인을 다시 시도하거나 새로운 계정으로 로그인하세요.");
 
-        setState(() {
-          _progress = MainProgress.finish;
-        });
+        if (msg != null) {
+          showToast(msg.value);
+        }
       });
 
-      await fetchAppVersion().then((value) {
+      await globals.init();
+
+      if (Crawler.loginSession().isNotEmpty) {
+        Crawler.loginSession().execute().then((value) {
+          if (value) {
+            showToast("자동 로그인했습니다.");
+          }
+        });
+      }
+
+      fetchAppVersion().then((value) {
         if (value.item2 != "") {
           showToast("새로운 버전 v${value.item2}(으)로 업데이트할 수 있습니다.");
         }
+      });
+
+      setState(() {
+        _progress = MainProgress.finish;
       });
     })();
   }
@@ -58,8 +66,7 @@ class _MainPageState extends State<MainPage> {
   @override
   Widget build(BuildContext context) {
     return Stack(
-      children: List.filled(webViewCount, null).map<Widget>((e) => BackgroundWebView(_webViewInitialized)).toList() +
-          [
+      children: <Widget>[
             Scaffold(
               appBar: customAppBar("숭실대학교 성적/학점 조회"),
               body: Padding(
@@ -68,54 +75,55 @@ class _MainPageState extends State<MainPage> {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.center,
-                    children: _progress == MainProgress.init
+                    children: (_progress == MainProgress.init
                         ? <Widget>[
                             const LinearProgressIndicator(),
                             const SizedBox(
                               width: 1,
                               height: 15,
                             ),
-                            const Text("자동로그인 중 입니다..."),
+                            const Text("정보를 불러오고 있어요..."),
                           ]
-                        : ((Crawler.loginSession().isLogin
-                                ? <Widget>[
-                                    OutlinedButton(
-                                      onPressed: () async {
-                                        Navigator.pushNamed(context, "/view");
-                                      },
-                                      style: OutlinedButton.styleFrom(
-                                        minimumSize: const Size.fromHeight(40),
-                                      ),
-                                      child: const Text("성적/학점 조회"),
-                                    ),
-                                  ]
-                                : <Widget>[
-                                    OutlinedButton(
-                                      onPressed: () {
-                                        Navigator.pushNamed(context, "/login");
-                                      },
-                                      style: OutlinedButton.styleFrom(
-                                        minimumSize: const Size.fromHeight(40),
-                                      ),
-                                      child: const Text("로그인"),
-                                    ),
-                                    Crawler.loginSession().isNotEmpty
-                                        ? OutlinedButton(
-                                            onPressed: () async {
-                                              if (!await Crawler.loginSession().execute()) {
-                                                showToast("자동로그인을 실패했습니다.");
-                                              } else {
-                                                showToast("자동로그인했습니다.");
-                                                setState(() {});
-                                              }
-                                            },
-                                            style: OutlinedButton.styleFrom(
-                                              minimumSize: const Size.fromHeight(40),
-                                            ),
-                                            child: const Text("자동로그인 재시도"),
-                                          )
-                                        : Container(),
-                                  ]) +
+                        : <Widget>[
+                              Visibility(
+                                visible: Crawler.loginSession().isNotEmpty,
+                                child: OutlinedButton(
+                                  onPressed: () async {
+                                    Navigator.pushNamed(context, "/grade_view");
+                                  },
+                                  style: OutlinedButton.styleFrom(
+                                    minimumSize: const Size.fromHeight(40),
+                                  ),
+                                  child: const Text("학기별 성적 조회"),
+                                ),
+                              ),
+                              Visibility(
+                                visible: Crawler.loginSession().isEmpty || Crawler.loginSession().isFail, // 자동 로그인 실패했거나 로그인이 필요하면
+                                child: OutlinedButton(
+                                  onPressed: () {
+                                    Navigator.pushNamed(context, "/login");
+                                  },
+                                  style: OutlinedButton.styleFrom(
+                                    minimumSize: const Size.fromHeight(40),
+                                  ),
+                                  child: const Text("로그인"),
+                                ),
+                              ),
+                              Visibility(
+                                visible: Crawler.loginSession().isNotEmpty && Crawler.loginSession().isFail, // 자동 로그인 실패했을 때
+                                child: OutlinedButton(
+                                  onPressed: () async {
+                                    if (await Crawler.loginSession().execute()) {
+                                      showToast("자동 로그인했습니다.");
+                                    }
+                                  },
+                                  style: OutlinedButton.styleFrom(
+                                    minimumSize: const Size.fromHeight(40),
+                                  ),
+                                  child: const Text("자동 로그인 재시도"),
+                                ),
+                              ),
+                            ] +
                             <Widget>[
                               OutlinedButton(
                                 onPressed: () {
@@ -140,7 +148,8 @@ class _MainPageState extends State<MainPage> {
                 ),
               ),
             ),
-          ],
+          ] +
+          List.filled(webViewCount, null).map<Widget>((e) => BackgroundWebView(_webViewInitialized)).toList(),
     );
   }
 }

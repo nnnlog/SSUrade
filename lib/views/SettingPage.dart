@@ -27,14 +27,14 @@ class _SettingPageState extends State<SettingPage> {
     _timeoutGradeController.text = globals.setting.timeoutGrade.toString();
     _timeoutAllGradeController.text = globals.setting.timeoutAllGrade.toString();
 
-    Crawler.loginSession().event.subscribe(_proxySetState);
+    Crawler.loginSession().loginStatusChangeEvent.subscribe(_proxySetState);
   }
 
   @override
   void dispose() {
     super.dispose();
 
-    Crawler.loginSession().event.unsubscribe(_proxySetState);
+    Crawler.loginSession().loginStatusChangeEvent.unsubscribe(_proxySetState);
   }
 
   @override

@@ -15,12 +15,6 @@ part 'LoginSession.g.dart';
 /// Provide Event
 @JsonSerializable(constructor: "_")
 class LoginSession extends CrawlingTask<bool> {
-  @JsonKey(
-    includeFromJson: false,
-    includeToJson: false,
-  )
-  Event<Value<bool>> event = Event(); // broadcast event when login status change
-
   static final LoginSession _instance = LoginSession._("", "");
 
   static LoginSession get() {
@@ -66,6 +60,7 @@ class LoginSession extends CrawlingTask<bool> {
   saveFile() => writeFile(_filename, jsonEncode(toJson()));
 
   bool _isLogin = false;
+  bool _isFail = false;
 
   bool get isEmpty {
     return _id.isEmpty || _password.isEmpty;
@@ -79,6 +74,10 @@ class LoginSession extends CrawlingTask<bool> {
     return _isLogin;
   }
 
+  bool get isFail {
+    return _isFail;
+  }
+
   @JsonKey(
     includeToJson: false,
     includeFromJson: false,
@@ -90,6 +89,7 @@ class LoginSession extends CrawlingTask<bool> {
   set id(value) {
     _id = value;
     _isLogin = false;
+    _isFail = false;
   }
 
   @JsonKey(
@@ -103,12 +103,20 @@ class LoginSession extends CrawlingTask<bool> {
   set password(value) {
     _password = value;
     _isLogin = false;
+    _isFail = false;
   }
 
-  logout() {
-    id = password = "";
-    event.broadcast(Value(_isLogin)); // false
-  }
+  @JsonKey(
+    includeFromJson: false,
+    includeToJson: false,
+  )
+  Event<Value<bool>> loginStatusChangeEvent = Event(); // broadcast event when login status change
+
+  @JsonKey(
+    includeFromJson: false,
+    includeToJson: false,
+  )
+  Event<Value<String>> loginFailEvent = Event(); // broadcast event when login fail reason is provided
 
   @JsonKey(
     includeFromJson: false,
@@ -116,15 +124,26 @@ class LoginSession extends CrawlingTask<bool> {
   )
   Future<bool>? _future;
 
+  logout() {
+    id = password = "";
+    loginStatusChangeEvent.broadcast(Value(_isLogin)); // false
+  }
+
   @override
   Future<bool> directExecute(InAppWebViewController controller) async {
     if (isLogin) return true;
     if (_future != null) return _future!;
+    _isLogin = false;
+    _isFail = false;
 
     return _future = Future(() async {
       var fail = false;
-      controller.jsAlertCallback = () {
+      controller.jsAlertCallback = (String? reason) {
         fail = true;
+
+        if (reason != null) {
+          loginFailEvent.broadcast(Value(reason));
+        }
       };
 
       bool res;
@@ -135,21 +154,22 @@ class LoginSession extends CrawlingTask<bool> {
               var cookie = CookieManager.instance();
               await cookie.deleteAllCookies();
 
+              await controller.loadData(data: "");
               await controller.loadUrl(
                   urlRequest: URLRequest(
                       url: Uri.parse("https://smartid.ssu.ac.kr/Symtra_sso/smln.asp?apiReturnUrl=https%3A%2F%2Fsaint.ssu.ac.kr%2FwebSSO%2Fsso.jsp")));
 
               await Future.doWhile(controller.isLoading);
 
-              while ((await controller.evaluateJavascript(source: 'document.getElementById("userid")?.value')) != _id) {
-                await controller.evaluateJavascript(source: 'document.getElementById("userid").value = atob("${base64Encode(utf8.encode(_id))}");');
+              do {
+                await controller.evaluateJavascript(source: 'document.LoginInfo.userid.value = atob("${base64Encode(utf8.encode(_id))}");');
                 await Future.delayed(const Duration(milliseconds: 10));
-              }
-              while ((await controller.evaluateJavascript(source: 'document.getElementById("pwd")?.value')) != _password) {
-                await controller.evaluateJavascript(
-                    source: 'document.getElementById("pwd").value = atob("${base64Encode(utf8.encode(_password))}");');
+              } while ((await controller.evaluateJavascript(source: 'document.LoginInfo.userid.value')) != _id);
+              // log((await controller.evaluateJavascript(source: 'document.LoginInfo.innerHTML')));
+              do {
+                await controller.evaluateJavascript(source: 'document.LoginInfo.pwd.value = atob("${base64Encode(utf8.encode(_password))}");');
                 await Future.delayed(const Duration(milliseconds: 10));
-              }
+              } while ((await controller.evaluateJavascript(source: 'document.LoginInfo.pwd.value')) != _password);
 
               await controller.evaluateJavascript(source: 'document.querySelector("*[class=btn_login]").click();');
 
@@ -167,11 +187,11 @@ class LoginSession extends CrawlingTask<bool> {
         res = false;
       }
 
-      controller.jsAlertCallback = () {};
+      controller.jsAlertCallback = (_) {};
 
       _future = null;
-
-      event.broadcast(Value(res));
+      if (!res) _isFail = true;
+      loginStatusChangeEvent.broadcast(Value(res));
       return _isLogin = res;
     });
   }

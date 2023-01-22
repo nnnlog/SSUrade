@@ -5,7 +5,7 @@ import 'package:ssurade/types/Progress.dart';
 
 Expando<int> _webViewXHRTotalCount = Expando(), _webViewXHRRunningCount = Expando();
 Expando<XHRProgress> _webViewXHRProgress = Expando();
-Expando<Function> _jsAlertCallback = Expando();
+Expando<Function(String?)> _jsAlertCallback = Expando();
 
 extension WebViewControllerExtension on InAppWebViewController {
   int get webViewXHRTotalCount {
@@ -32,11 +32,11 @@ extension WebViewControllerExtension on InAppWebViewController {
     _webViewXHRProgress[this] = value;
   }
 
-  Function get jsAlertCallback {
-    return _jsAlertCallback[this] ??= () {};
+  Function(String?) get jsAlertCallback {
+    return _jsAlertCallback[this] ??= (_) {};
   }
 
-  set jsAlertCallback(Function value) {
+  set jsAlertCallback(Function(String?) value) {
     _jsAlertCallback[this] = value;
   }
 

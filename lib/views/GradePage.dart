@@ -55,6 +55,7 @@ class _GradePageState extends State<GradePage> {
       globals.semesterSubjectsManager.saveFile();
     }
 
+    _lockedForRefresh.remove(search);
     if (!mounted) return;
 
     if (search != _semesterSubjects.currentSemester) return;
@@ -69,7 +70,6 @@ class _GradePageState extends State<GradePage> {
     });
 
     showToast("${search.year}학년도 ${search.semester.name} 성적을 불러왔습니다.");
-    _lockedForRefresh.remove(search);
   }
 
   refreshCurrentGradeWithPull() async {
@@ -123,7 +123,7 @@ class _GradePageState extends State<GradePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: customAppBar("성적/학점 조회"),
+      appBar: customAppBar("학기별 성적 조회"),
       body: _progress == GradeProgress.init
           ? Padding(
               padding: const EdgeInsets.all(30),

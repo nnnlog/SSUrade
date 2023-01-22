@@ -27,7 +27,7 @@ class AllGrade extends CrawlingTask<SemesterSubjectsManager?> {
     try {
       result = await Future.any([
         Future(() async {
-          if (!await Crawler.loginSession().directExecute(controller)) {
+          if (!(await Crawler.loginSession().directExecute(controller))) {
             return null;
           }
 

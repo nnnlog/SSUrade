@@ -36,7 +36,7 @@ class SingleGrade extends CrawlingTask<SemesterSubjects?> {
     try {
       result = await Future.any([
         Future(() async {
-          if (!await Crawler.loginSession().directExecute(controller)) {
+          if (!(await Crawler.loginSession().directExecute(controller))) {
             return null;
           }
 
@@ -263,12 +263,11 @@ class SingleGrade extends CrawlingTask<SemesterSubjects?> {
             return a.name.compareTo(b.name);
           });
 
+          await result.loadPassFailSubjects();
           return result;
         }),
         Future.delayed(Duration(seconds: globals.setting.timeoutGrade), () => null),
       ]);
-
-      await result!.loadPassFailSubjects();
     } catch (e, stacktrace) {
       log(e.toString());
       log(stacktrace.toString());

@@ -24,7 +24,7 @@ class EntranceGraduateYear extends CrawlingTask<Tuple2<String, String>?> {
       result = await Future.any([
         Future(() async {
           if (isFinished) return null;
-          if (!await Crawler.loginSession().directExecute(controller)) {
+          if (!(await Crawler.loginSession().directExecute(controller))) {
             return null;
           }
 
