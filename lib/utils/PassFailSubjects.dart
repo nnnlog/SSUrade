@@ -11,7 +11,8 @@ int lastUpdated = -1;
 Future<int> _getLastUpdatedTime() async {
   if (lastUpdated != -1) return lastUpdated;
   try {
-    var res = await http.get(Uri.parse("https://raw.githubusercontent.com/nnnlog/ssurade-subject-pf/master/info.txt")).timeout(const Duration(seconds: 3));
+    var res =
+        await http.get(Uri.parse("https://raw.githubusercontent.com/nnnlog/ssurade-subject-pf/master/info.txt")).timeout(const Duration(seconds: 3));
     lastUpdated = int.parse(res.body);
   } catch (e) {
     lastUpdated = -1;
