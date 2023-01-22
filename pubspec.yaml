@@ -26,6 +26,7 @@ dependencies:
   screenshot: ^1.3.0
   image_gallery_saver: ^1.7.1
   json_annotation: ^4.8.0
+  event: ^2.1.2
 
 dev_dependencies:
   flutter_test:

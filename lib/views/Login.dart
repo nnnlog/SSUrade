@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ssurade/components/CustomAppBar.dart';
-import 'package:ssurade/crawling/USaintSession.dart';
-import 'package:ssurade/globals.dart' as globals;
+import 'package:ssurade/crawling/Crawler.dart';
 import 'package:ssurade/utils/toast.dart';
 
 class LoginPage extends StatefulWidget {
@@ -12,14 +11,15 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  late TextEditingController numberController = TextEditingController(), pwController = TextEditingController();
+  late TextEditingController idController = TextEditingController(), pwController = TextEditingController();
   bool lockLoginButton = false;
 
   @override
   void initState() {
     super.initState();
-    numberController.text = globals.setting.uSaintSession.number;
-    pwController.text = globals.setting.uSaintSession.password;
+
+    idController.text = Crawler.loginSession().id;
+    pwController.text = Crawler.loginSession().password;
   }
 
   @override
@@ -37,7 +37,7 @@ class _LoginPageState extends State<LoginPage> {
                 Flexible(
                   child: TextFormField(
                     decoration: const InputDecoration(hintText: "유세인트 아이디(학번)를 입력하세요."),
-                    controller: numberController,
+                    controller: idController,
                     autofillHints: const [AutofillHints.username],
                   ),
                 ),
@@ -54,15 +54,19 @@ class _LoginPageState extends State<LoginPage> {
                     if (lockLoginButton) return;
                     lockLoginButton = true;
 
-                    var temp = USaintSession(numberController.text, pwController.text);
-                    if (await temp.tryLogin(refresh: true)) {
-                      globals.setting.uSaintSession = temp;
-                      globals.setting.saveFile();
+                    var session = Crawler.loginSession();
+                    session.id = idController.text;
+                    session.password = pwController.text;
+
+                    if (await session.execute()) {
+                      session.saveFile();
 
                       Navigator.pop(context);
-                      globals.setStateOfMainPage(() {});
                       showToast("로그인했습니다.");
                     } else {
+                      session.id = "";
+                      session.password = "";
+
                       showToast("로그인을 실패했습니다.\n정보를 확인하고 다시 시도해주세요.");
                     }
 

@@ -1,7 +1,6 @@
 import 'dart:convert';
 
 import 'package:json_annotation/json_annotation.dart';
-import 'package:ssurade/crawling/USaintSession.dart';
 import 'package:ssurade/filesystem/FileSystem.dart';
 
 part 'Setting.g.dart';
@@ -9,15 +8,13 @@ part 'Setting.g.dart';
 @JsonSerializable()
 class Setting {
   @JsonKey()
-  USaintSession uSaintSession;
-  @JsonKey()
   bool refreshGradeAutomatically;
   @JsonKey()
   int timeoutGrade;
   @JsonKey()
   int timeoutAllGrade;
 
-  Setting(this.uSaintSession, this.refreshGradeAutomatically, this.timeoutGrade, this.timeoutAllGrade);
+  Setting(this.refreshGradeAutomatically, this.timeoutGrade, this.timeoutAllGrade);
 
   factory Setting.fromJson(Map<String, dynamic> json) => _$SettingFromJson(json);
 
@@ -33,7 +30,7 @@ class Setting {
       }
       return Setting.fromJson(json);
     } catch (e) {
-      return Setting(USaintSession("", ""), false, 10, 30);
+      return Setting(true, 10, 30);
     }
   }
 
@@ -41,6 +38,6 @@ class Setting {
 
   @override
   String toString() {
-    return "$runtimeType(saint_session=$uSaintSession, refreshGradeAutomatically=$refreshGradeAutomatically, timeoutGrade=$timeoutGrade, timeoutAllGrade=$timeoutAllGrade)";
+    return "$runtimeType(refreshGradeAutomatically=$refreshGradeAutomatically, timeoutGrade=$timeoutGrade, timeoutAllGrade=$timeoutAllGrade)";
   }
 }

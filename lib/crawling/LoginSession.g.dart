@@ -1,17 +1,19 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'USaintSession.dart';
+part of 'LoginSession.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-USaintSession _$USaintSessionFromJson(Map<String, dynamic> json) => USaintSession(
-      json['_number'] as String,
+LoginSession _$LoginSessionFromJson(Map<String, dynamic> json) =>
+    LoginSession._(
+      json['_id'] as String,
       json['_password'] as String,
     );
 
-Map<String, dynamic> _$USaintSessionToJson(USaintSession instance) => <String, dynamic>{
-      '_number': instance._number,
+Map<String, dynamic> _$LoginSessionToJson(LoginSession instance) =>
+    <String, dynamic>{
+      '_id': instance._id,
       '_password': instance._password,
     };

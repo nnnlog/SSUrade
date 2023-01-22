@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:ssurade/components/CustomAppBar.dart';
+import 'package:ssurade/crawling/Crawler.dart';
 import 'package:ssurade/globals.dart' as globals;
 import 'package:ssurade/utils/toast.dart';
 
@@ -15,12 +16,25 @@ class _SettingPageState extends State<SettingPage> {
   bool _refreshGrade = false;
   final TextEditingController _timeoutGradeController = TextEditingController(), _timeoutAllGradeController = TextEditingController();
 
+  void _proxySetState(_) {
+    setState(() {});
+  }
+
   @override
   void initState() {
     super.initState();
 
     _timeoutGradeController.text = globals.setting.timeoutGrade.toString();
     _timeoutAllGradeController.text = globals.setting.timeoutAllGrade.toString();
+
+    Crawler.loginSession().event.subscribe(_proxySetState);
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+
+    Crawler.loginSession().event.unsubscribe(_proxySetState);
   }
 
   @override
@@ -88,7 +102,7 @@ class _SettingPageState extends State<SettingPage> {
                     width: 1,
                   ),
                 ] +
-                (globals.setting.uSaintSession.isLogin
+                (Crawler.loginSession().isLogin
                     ? <Widget>[
                         OutlinedButton(
                           onPressed: () async {
@@ -97,7 +111,7 @@ class _SettingPageState extends State<SettingPage> {
 
                             showToast("성적 정보 동기화를 시작합니다.");
 
-                            var res = await globals.setting.uSaintSession.getAllGrade();
+                            var res = await Crawler.allGrade().execute();
                             if (res == null) {
                               showToast("성적 정보를 가져오지 못했습니다.\n다시 시도해주세요.");
                               return;
@@ -126,16 +140,13 @@ class _SettingPageState extends State<SettingPage> {
                         ),
                         OutlinedButton(
                           onPressed: () {
-                            setState(() {
-                              globals.setting.uSaintSession.logout();
-                              globals.setting.saveFile();
+                            Crawler.loginSession().logout();
+                            Crawler.loginSession().saveFile();
 
-                              globals.semesterSubjectsManager.data.clear();
-                              globals.semesterSubjectsManager.saveFile();
-                              globals.setStateOfMainPage(() {});
+                            globals.semesterSubjectsManager.data.clear();
+                            globals.semesterSubjectsManager.saveFile();
 
-                              showToast("로그아웃했습니다.");
-                            });
+                            showToast("로그아웃했습니다.");
                           },
                           style: OutlinedButton.styleFrom(
                             minimumSize: const Size.fromHeight(40),

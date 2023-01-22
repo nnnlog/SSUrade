@@ -5,6 +5,7 @@ import 'package:screenshot/screenshot.dart';
 import 'package:ssurade/components/CustomAppBar.dart';
 import 'package:ssurade/components/GradePageHeader.dart';
 import 'package:ssurade/components/SubjectWidget.dart';
+import 'package:ssurade/crawling/Crawler.dart';
 import 'package:ssurade/globals.dart' as globals;
 import 'package:ssurade/types/Progress.dart';
 import 'package:ssurade/types/Semester.dart';
@@ -26,7 +27,7 @@ class _GradePageState extends State<GradePage> {
   final ScreenshotController _imageController = ScreenshotController();
 
   GradeProgress _progress = GradeProgress.init;
-  bool _lockedForRefresh = false;
+  Set<YearSemester> _lockedForRefresh = {};
 
   bool _exportImage = false;
   bool _showRanking = true;
@@ -41,28 +42,34 @@ class _GradePageState extends State<GradePage> {
   }
 
   Future<void> refreshCurrentGrade() async {
-    if (_lockedForRefresh) return;
-    _lockedForRefresh = true;
-
     var search = _semesterSubjects.currentSemester;
+    if (_lockedForRefresh.contains(search)) return;
+    _lockedForRefresh.add(search);
+
     showToast("${search.year}학년도 ${search.semester.name} 성적을 불러옵니다.");
 
-    SemesterSubjects? data = (await globals.setting.uSaintSession.getGrade(search));
+    SemesterSubjects? data = (await Crawler.singleGrade(search).execute());
+
+    if (data != null) {
+      globals.semesterSubjectsManager.data[search] = data;
+      globals.semesterSubjectsManager.saveFile();
+    }
+
     if (!mounted) return;
+
+    if (search != _semesterSubjects.currentSemester) return;
+
     if (data == null) {
       showToast("${search.year}학년도 ${search.semester.name} 성적을 불러오지 못했습니다.");
       return;
     }
-
-    globals.semesterSubjectsManager.data[search] = data;
-    globals.semesterSubjectsManager.saveFile();
 
     setState(() {
       _semesterSubjects = data;
     });
 
     showToast("${search.year}학년도 ${search.semester.name} 성적을 불러왔습니다.");
-    _lockedForRefresh = false;
+    _lockedForRefresh.remove(search);
   }
 
   refreshCurrentGradeWithPull() async {
@@ -81,7 +88,7 @@ class _GradePageState extends State<GradePage> {
       if (globals.semesterSubjectsManager.isEmpty) {
         needRefresh = false;
 
-        var res = await globals.setting.uSaintSession.getAllGrade();
+        var res = await Crawler.allGrade().execute();
         if (res == null) {
           if (mounted) {
             Navigator.pop(context);
