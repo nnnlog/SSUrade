@@ -25,7 +25,6 @@ Future<void> init() async {
     Crawler.loginSession().loadFromFile(),
     Future(() async {
       semesterSubjectsManager = await SemesterSubjectsManager.loadFromFile();
-      semesterSubjectsManager.data.remove(YearSemester(2022, Semester.second));
       await semesterSubjectsManager.initAllPassFailSubject();
     }),
   ]);
