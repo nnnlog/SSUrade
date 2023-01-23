@@ -79,6 +79,22 @@ class _MainPageState extends State<MainPage> {
           showToast("새로운 버전 v${value.item2}(으)로 업데이트할 수 있습니다.");
         }
       });
+
+      Crawler.allGrade(startYear: globals.semesterSubjectsManager.data.lastKey()?.year ?? 0).execute().then((value) {
+        if (value == null) return;
+        bool update = false;
+        for (var key in value.data.keys) {
+          if (!globals.semesterSubjectsManager.data.containsKey(key)) {
+            update = true;
+            globals.semesterSubjectsManager.data[key] = value.data[key]!;
+          }
+        }
+
+        if (update) {
+          showToast("새로운 학기 성적을 찾았습니다.");
+          globals.newGradeFoundEvent.broadcast();
+        }
+      });
     })();
   }
 

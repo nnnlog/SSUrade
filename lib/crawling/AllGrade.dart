@@ -11,13 +11,15 @@ import 'package:ssurade/types/YearSemester.dart';
 import 'package:ssurade/types/subject/SemesterSubjectsManager.dart';
 
 class AllGrade extends CrawlingTask<SemesterSubjectsManager?> {
-  static final AllGrade _instance = AllGrade._();
+  int _startYear;
 
-  static AllGrade get() {
-    return _instance;
+  factory AllGrade.get({
+    int startYear = 0,
+  }) {
+    return AllGrade._(startYear);
   }
 
-  AllGrade._();
+  AllGrade._(this._startYear);
 
   @override
   String task_id = "all_grade";
@@ -37,7 +39,7 @@ class AllGrade extends CrawlingTask<SemesterSubjectsManager?> {
           result = SemesterSubjectsManager(SplayTreeMap.from({}));
 
           var year = (await Crawler.entranceGraduateYear().directExecute(controller))!;
-          int entranceYear = int.parse(year.item1);
+          int entranceYear = _startYear == 0 ? int.parse(year.item1) : _startYear;
           int graduateYear;
           if (year.item2 == "0000") {
             graduateYear = DateTime.now().year; // 재학 중

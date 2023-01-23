@@ -10,7 +10,7 @@ import 'package:tuple/tuple.dart';
 class EntranceGraduateYear extends CrawlingTask<Tuple2<String, String>?> {
   static final EntranceGraduateYear _instance = EntranceGraduateYear._();
 
-  static EntranceGraduateYear get() {
+  factory EntranceGraduateYear.get() {
     return _instance;
   }
 
@@ -74,6 +74,7 @@ class EntranceGraduateYear extends CrawlingTask<Tuple2<String, String>?> {
       ]);
     } catch (e, stacktrace) {
       log(e.toString());
+      log(stacktrace.toString());
 
       Sentry.captureException(
         e,

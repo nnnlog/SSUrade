@@ -79,9 +79,17 @@ class _GradePageState extends State<GradePage> {
     _refreshController.refreshCompleted();
   }
 
+  void newGradeFoundEventHandler(_) {
+    setState(() {
+      _semesterSubjects = globals.semesterSubjectsManager.data.values.last;
+    });
+  }
+
   @override
   void initState() {
     super.initState();
+
+    globals.newGradeFoundEvent.subscribe(newGradeFoundEventHandler);
 
     (() async {
       bool needRefresh = true;
@@ -118,6 +126,13 @@ class _GradePageState extends State<GradePage> {
         refreshCurrentGrade();
       }
     })();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+
+    globals.newGradeFoundEvent.unsubscribe(newGradeFoundEventHandler);
   }
 
   @override

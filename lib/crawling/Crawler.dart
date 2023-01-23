@@ -13,5 +13,5 @@ class Crawler {
   static const LoginSession Function() loginSession = LoginSession.get;
   static const EntranceGraduateYear Function() entranceGraduateYear = EntranceGraduateYear.get;
   static const SingleGrade Function(YearSemester, {bool reloadPage}) singleGrade = SingleGrade.get;
-  static const AllGrade Function() allGrade = AllGrade.get;
+  static const AllGrade Function({int startYear}) allGrade = AllGrade.get;
 }

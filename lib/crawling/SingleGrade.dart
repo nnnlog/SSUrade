@@ -20,7 +20,7 @@ class SingleGrade extends CrawlingTask<SemesterSubjects?> {
   YearSemester search;
   bool reloadPage;
 
-  static SingleGrade get(
+  factory SingleGrade.get(
     YearSemester search, {
     bool reloadPage = true,
   }) {

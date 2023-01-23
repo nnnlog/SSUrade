@@ -14,7 +14,7 @@ import 'package:ssurade/crawling/WebViewControllerExtension.dart';
 class LoginSession extends CrawlingTask<bool> {
   static final LoginSession _instance = LoginSession._("", "");
 
-  static LoginSession get() {
+  factory LoginSession.get() {
     return _instance;
   }
 
