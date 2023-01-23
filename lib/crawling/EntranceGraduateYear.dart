@@ -16,7 +16,10 @@ class EntranceGraduateYear extends CrawlingTask<Tuple2<String, String>?> {
   EntranceGraduateYear._();
 
   @override
-  Future<Tuple2<String, String>?> directExecute(InAppWebViewController controller) async {
+  String task_id = "entrance_graduate_year";
+
+  @override
+  Future<Tuple2<String, String>?> internalExecute(InAppWebViewController controller) async {
     bool isFinished = false;
 
     late Tuple2<String, String>? result;

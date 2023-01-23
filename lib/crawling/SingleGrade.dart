@@ -29,7 +29,10 @@ class SingleGrade extends CrawlingTask<SemesterSubjects?> {
   SingleGrade._(this.search, this.reloadPage);
 
   @override
-  Future<SemesterSubjects?> directExecute(InAppWebViewController controller) async {
+  String task_id = "single_grade";
+
+  @override
+  Future<SemesterSubjects?> internalExecute(InAppWebViewController controller) async {
     bool isFinished = false;
 
     SemesterSubjects? result;

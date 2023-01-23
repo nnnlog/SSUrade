@@ -18,9 +18,11 @@ class AllGrade extends CrawlingTask<SemesterSubjectsManager?> {
 
   AllGrade._();
 
-  static AllGrade instance = AllGrade._();
+  @override
+  String task_id = "all_grade";
 
-  Future<SemesterSubjectsManager?> directExecute(InAppWebViewController controller) async {
+  @override
+  Future<SemesterSubjectsManager?> internalExecute(InAppWebViewController controller) async {
     bool isFinished = false;
 
     SemesterSubjectsManager? result;

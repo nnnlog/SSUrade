@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ssurade/components/CustomAppBar.dart';
 import 'package:ssurade/crawling/Crawler.dart';
+import 'package:ssurade/globals.dart' as globals;
 import 'package:ssurade/utils/toast.dart';
 
 class LoginPage extends StatefulWidget {
@@ -59,16 +60,17 @@ class _LoginPageState extends State<LoginPage> {
                     session.password = pwController.text;
 
                     if (await session.execute()) {
-                      session.saveFile();
-
                       Navigator.pop(context);
                       showToast("로그인했습니다.");
+
+                      globals.analytics.logEvent(name: "login", parameters: {"auto_login": "false"});
                     } else {
                       session.id = "";
                       session.password = "";
 
                       showToast("로그인을 실패했습니다.\n정보를 확인하고 다시 시도해주세요.");
                     }
+                    session.saveFile();
 
                     lockLoginButton = false;
                   },

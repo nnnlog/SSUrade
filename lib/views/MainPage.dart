@@ -30,15 +30,19 @@ class _MainPageState extends State<MainPage> {
 
       Crawler.loginSession().loginStatusChangeEvent.subscribe((args) {
         setState(() {});
+
+        // add analytics?
       });
 
       Crawler.loginSession().loginFailEvent.subscribe((msg) {
-        showToast("자동 로그인을 실패했습니다.");
+        showToast("로그인을 실패했습니다.");
         // showToast("메인 화면에서 자동 로그인을 다시 시도하거나 새로운 계정으로 로그인하세요.");
 
         if (msg != null) {
           showToast(msg.value);
         }
+
+        globals.analytics.logEvent(name: "login_fail");
       });
 
       await globals.init();
@@ -47,6 +51,8 @@ class _MainPageState extends State<MainPage> {
         Crawler.loginSession().execute().then((value) {
           if (value) {
             showToast("자동 로그인했습니다.");
+
+            globals.analytics.logEvent(name: "login", parameters: {"auto_login": "true"});
           }
         });
       }

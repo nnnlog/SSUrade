@@ -17,6 +17,9 @@ class LoginSession extends CrawlingTask<bool> {
     return _instance;
   }
 
+  @override
+  String task_id = "login";
+
   String _id;
 
   String _password;
@@ -79,7 +82,7 @@ class LoginSession extends CrawlingTask<bool> {
 
   Event<Value<bool>> loginStatusChangeEvent = Event(); // broadcast event when login status change
 
-  Event<Value<String>> loginFailEvent = Event(); // broadcast event when login fail reason is provided
+  Event<Value<String>> loginFailEvent = Event(); // broadcast event when login fail
 
   Future<bool>? _future;
 
@@ -89,19 +92,20 @@ class LoginSession extends CrawlingTask<bool> {
   }
 
   @override
-  Future<bool> directExecute(InAppWebViewController controller) async {
+  Future<bool> internalExecute(InAppWebViewController controller) async {
     if (isLogin) return true;
     if (_future != null) return _future!;
     _isLogin = false;
     _isFail = false;
-
+    Value<String>? cause;
     return _future = Future(() async {
       var fail = false;
+
       controller.jsAlertCallback = (String? reason) {
         fail = true;
 
         if (reason != null) {
-          loginFailEvent.broadcast(Value(reason));
+          cause = Value(reason);
         }
       };
 
@@ -149,7 +153,10 @@ class LoginSession extends CrawlingTask<bool> {
       controller.jsAlertCallback = (_) {};
 
       _future = null;
-      if (!res) _isFail = true;
+      if (!res) {
+        _isFail = true;
+        loginFailEvent.broadcast(cause);
+      }
       loginStatusChangeEvent.broadcast(Value(res));
       return _isLogin = res;
     });

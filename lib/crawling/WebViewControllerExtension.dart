@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
+import 'package:ssurade/globals.dart' as globals;
 import 'package:ssurade/types/Progress.dart';
 
 Expando<int> _webViewXHRTotalCount = Expando(), _webViewXHRRunningCount = Expando();
@@ -69,6 +70,8 @@ extension WebViewControllerExtension on InAppWebViewController {
       ]);
     } else {
       log("XHR 로딩 없음");
+
+      globals.analytics.logEvent(name: "xhr_loading_no");
     }
   }
 
