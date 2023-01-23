@@ -31,6 +31,7 @@ dependencies:
   firebase_core: ^2.4.1
   flutter_secure_storage: ^7.0.1
   sentry_flutter: ^6.18.2
+  flutter_exit_app: ^1.1.2
 
 dev_dependencies:
   flutter_test:
@@ -46,6 +47,9 @@ flutter_icons:
   image_path: "assets/icon/icon.jpg"
 
 flutter:
+  assets:
+    - assets/agreement.txt
+    - assets/agreement_short.txt
   uses-material-design: true
   fonts:
     - family: Pretendard

@@ -1,4 +1,4 @@
-enum MainProgress { init, finish }
+enum MainProgress { init, agree, finish }
 
 enum GradeProgress { init, finish }
 

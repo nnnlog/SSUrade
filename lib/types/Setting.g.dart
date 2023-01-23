@@ -10,10 +10,12 @@ Setting _$SettingFromJson(Map<String, dynamic> json) => Setting(
       json['refreshGradeAutomatically'] as bool,
       json['timeoutGrade'] as int,
       json['timeoutAllGrade'] as int,
+      json['agree'] as bool,
     );
 
 Map<String, dynamic> _$SettingToJson(Setting instance) => <String, dynamic>{
       'refreshGradeAutomatically': instance.refreshGradeAutomatically,
       'timeoutGrade': instance.timeoutGrade,
       'timeoutAllGrade': instance.timeoutAllGrade,
+      'agree': instance.agree,
     };

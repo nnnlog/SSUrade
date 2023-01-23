@@ -180,7 +180,7 @@ class _GradePageState extends State<GradePage> {
                       return StatefulBuilder(builder: (BuildContext context, StateSetter setStateDialog) {
                         return Dialog(
                           child: Padding(
-                            padding: const EdgeInsets.fromLTRB(20, 25, 20, 15),
+                            padding: const EdgeInsets.fromLTRB(25, 25, 20, 15),
                             child: IntrinsicHeight(
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.start,

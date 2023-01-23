@@ -13,8 +13,10 @@ class Setting {
   int timeoutGrade;
   @JsonKey()
   int timeoutAllGrade;
+  @JsonKey()
+  bool agree;
 
-  Setting(this.refreshGradeAutomatically, this.timeoutGrade, this.timeoutAllGrade);
+  Setting(this.refreshGradeAutomatically, this.timeoutGrade, this.timeoutAllGrade, this.agree);
 
   factory Setting.fromJson(Map<String, dynamic> json) => _$SettingFromJson(json);
 
@@ -30,7 +32,7 @@ class Setting {
       }
       return Setting.fromJson(json);
     } catch (e) {
-      return Setting(true, 10, 30);
+      return Setting(true, 10, 30, false);
     }
   }
 
@@ -38,6 +40,6 @@ class Setting {
 
   @override
   String toString() {
-    return "$runtimeType(refreshGradeAutomatically=$refreshGradeAutomatically, timeoutGrade=$timeoutGrade, timeoutAllGrade=$timeoutAllGrade)";
+    return "$runtimeType(refreshGradeAutomatically=$refreshGradeAutomatically, timeoutGrade=$timeoutGrade, timeoutAllGrade=$timeoutAllGrade, agree=$agree)";
   }
 }
