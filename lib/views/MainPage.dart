@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:sentry_flutter/sentry_flutter.dart';
 import 'package:ssurade/components/BackgroundWebView.dart';
 import 'package:ssurade/components/CustomAppBar.dart';
 import 'package:ssurade/crawling/Crawler.dart';
@@ -73,7 +72,8 @@ class _MainPageState extends State<MainPage> {
   @override
   Widget build(BuildContext context) {
     return Stack(
-      children: <Widget>[
+      children: List.filled(webViewCount, null).map<Widget>((e) => BackgroundWebView(_webViewInitialized)).toList() +
+          <Widget>[
             Scaffold(
               appBar: customAppBar("숭실대학교 성적/학점 조회"),
               body: Padding(
@@ -150,29 +150,12 @@ class _MainPageState extends State<MainPage> {
                                 ),
                                 child: const Text("정보"),
                               ),
-                              OutlinedButton(
-                                onPressed: () {
-                                  try {
-                                    throw Error();
-                                  } catch (exception, stackTrace) {
-                                    Sentry.captureException(
-                                      exception,
-                                      stackTrace: stackTrace,
-                                    );
-                                  }
-                                },
-                                style: OutlinedButton.styleFrom(
-                                  minimumSize: const Size.fromHeight(40),
-                                ),
-                                child: const Text("test"),
-                              ),
                             ]),
                   ),
                 ),
               ),
             ),
-          ] +
-          List.filled(webViewCount, null).map<Widget>((e) => BackgroundWebView(_webViewInitialized)).toList(),
+          ],
     );
   }
 }
