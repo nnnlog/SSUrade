@@ -80,7 +80,7 @@ class _MainPageState extends State<MainPage> {
         }
       });
 
-      Crawler.allGrade(startYear: globals.semesterSubjectsManager.data.lastKey()?.year ?? 0).execute().then((value) {
+      Crawler.legacyAllGrade(startYear: globals.semesterSubjectsManager.data.lastKey()?.year ?? 0).execute().then((value) {
         if (value == null) return;
         bool update = false;
         for (var key in value.data.keys) {

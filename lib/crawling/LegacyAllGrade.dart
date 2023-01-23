@@ -10,16 +10,16 @@ import 'package:ssurade/types/Semester.dart';
 import 'package:ssurade/types/YearSemester.dart';
 import 'package:ssurade/types/subject/SemesterSubjectsManager.dart';
 
-class AllGrade extends CrawlingTask<SemesterSubjectsManager?> {
+class LegacyAllGrade extends CrawlingTask<SemesterSubjectsManager?> {
   int _startYear;
 
-  factory AllGrade.get({
+  factory LegacyAllGrade.get({
     int startYear = 0,
   }) {
-    return AllGrade._(startYear);
+    return LegacyAllGrade._(startYear);
   }
 
-  AllGrade._(this._startYear);
+  LegacyAllGrade._(this._startYear);
 
   @override
   String task_id = "all_grade";

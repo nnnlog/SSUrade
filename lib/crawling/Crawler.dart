@@ -1,4 +1,4 @@
-import 'package:ssurade/crawling/AllGrade.dart';
+import 'package:ssurade/crawling/LegacyAllGrade.dart';
 import 'package:ssurade/crawling/EntranceGraduateYear.dart';
 import 'package:ssurade/crawling/LoginSession.dart';
 import 'package:ssurade/crawling/SingleGrade.dart';
@@ -13,5 +13,5 @@ class Crawler {
   static const LoginSession Function() loginSession = LoginSession.get;
   static const EntranceGraduateYear Function() entranceGraduateYear = EntranceGraduateYear.get;
   static const SingleGrade Function(YearSemester, {bool reloadPage}) singleGrade = SingleGrade.get;
-  static const AllGrade Function({int startYear}) allGrade = AllGrade.get;
+  static const LegacyAllGrade Function({int startYear}) legacyAllGrade = LegacyAllGrade.get;
 }

@@ -96,7 +96,7 @@ class _GradePageState extends State<GradePage> {
       if (globals.semesterSubjectsManager.isEmpty) {
         needRefresh = false;
 
-        var res = await Crawler.allGrade().execute();
+        var res = await Crawler.legacyAllGrade().execute();
         if (res == null) {
           if (mounted) {
             Navigator.pop(context);

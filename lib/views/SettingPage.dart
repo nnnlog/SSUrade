@@ -111,7 +111,7 @@ class _SettingPageState extends State<SettingPage> {
 
                             showToast("성적 정보 동기화를 시작합니다.");
 
-                            var res = await Crawler.allGrade().execute();
+                            var res = await Crawler.legacyAllGrade().execute();
                             if (res == null) {
                               showToast("성적 정보를 가져오지 못했습니다.\n다시 시도해주세요.");
                               return;
