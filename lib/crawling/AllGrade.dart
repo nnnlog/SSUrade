@@ -2,6 +2,7 @@ import 'dart:collection';
 import 'dart:developer';
 
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
+import 'package:sentry_flutter/sentry_flutter.dart';
 import 'package:ssurade/crawling/Crawler.dart';
 import 'package:ssurade/crawling/CrawlingTask.dart';
 import 'package:ssurade/globals.dart' as globals;
@@ -66,6 +67,11 @@ class AllGrade extends CrawlingTask<SemesterSubjectsManager?> {
     } catch (e, stacktrace) {
       log(e.toString());
       log(stacktrace.toString());
+
+      Sentry.captureException(
+        e,
+        stackTrace: stacktrace,
+      );
 
       return null;
     } finally {

@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:sentry_flutter/sentry_flutter.dart';
 import 'package:ssurade/components/BackgroundWebView.dart';
 import 'package:ssurade/components/CustomAppBar.dart';
 import 'package:ssurade/crawling/Crawler.dart';
@@ -148,6 +149,22 @@ class _MainPageState extends State<MainPage> {
                                   minimumSize: const Size.fromHeight(40),
                                 ),
                                 child: const Text("정보"),
+                              ),
+                              OutlinedButton(
+                                onPressed: () {
+                                  try {
+                                    throw Error();
+                                  } catch (exception, stackTrace) {
+                                    Sentry.captureException(
+                                      exception,
+                                      stackTrace: stackTrace,
+                                    );
+                                  }
+                                },
+                                style: OutlinedButton.styleFrom(
+                                  minimumSize: const Size.fromHeight(40),
+                                ),
+                                child: const Text("test"),
                               ),
                             ]),
                   ),

@@ -4,6 +4,7 @@ import 'dart:developer';
 import 'package:event/event.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:sentry_flutter/sentry_flutter.dart';
 import 'package:ssurade/crawling/CrawlingTask.dart';
 import 'package:ssurade/crawling/WebViewControllerExtension.dart';
 
@@ -145,8 +146,14 @@ class LoginSession extends CrawlingTask<bool> {
             Future.delayed(const Duration(seconds: 5), () => false),
           ],
         );
-      } catch (e) {
+      } catch (e, stacktrace) {
         log(e.toString());
+
+        Sentry.captureException(
+          e,
+          stackTrace: stacktrace,
+        );
+
         res = false;
       }
 
