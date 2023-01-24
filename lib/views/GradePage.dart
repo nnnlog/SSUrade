@@ -8,7 +8,6 @@ import 'package:ssurade/components/SubjectWidget.dart';
 import 'package:ssurade/crawling/Crawler.dart';
 import 'package:ssurade/globals.dart' as globals;
 import 'package:ssurade/types/Progress.dart';
-import 'package:ssurade/types/Semester.dart';
 import 'package:ssurade/types/YearSemester.dart';
 import 'package:ssurade/types/subject/SemesterSubjects.dart';
 import 'package:ssurade/utils/toast.dart';

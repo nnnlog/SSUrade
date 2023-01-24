@@ -1,3 +1,5 @@
+import 'dart:collection';
+
 import 'package:json_annotation/json_annotation.dart';
 import 'package:ssurade/types/YearSemester.dart';
 import 'package:ssurade/types/subject/Ranking.dart';
@@ -7,16 +9,16 @@ import 'package:ssurade/utils/PassFailSubjects.dart';
 
 part 'SemesterSubjects.g.dart';
 
-@JsonSerializable()
+@JsonSerializable(converters: [_DataConverter()])
 class SemesterSubjects {
   @JsonKey()
-  List<Subject> subjects;
+  SplayTreeSet<Subject> subjects;
   @JsonKey()
   Ranking semesterRanking;
   @JsonKey()
   Ranking totalRanking;
   @JsonKey()
-  final YearSemester currentSemester; // cannot change after construction, use for key of Map
+  final YearSemester currentSemester; // cannot change after construction, use for key of Set
 
   @JsonKey(
     includeFromJson: false,
@@ -61,4 +63,18 @@ class SemesterSubjects {
   @override
   String toString() =>
       "$runtimeType(subjects=${subjects.toString()}, semesterRanking=${semesterRanking.toString()}, totalRanking=${totalRanking.toString()}, currentSemester=${currentSemester.toString()})";
+}
+
+class _DataConverter extends JsonConverter<SplayTreeSet<Subject>, List<dynamic>> {
+  const _DataConverter();
+
+  @override
+  SplayTreeSet<Subject> fromJson(List<dynamic> json) {
+    return SplayTreeSet.of(json.map((e) => Subject.fromJson(e)));
+  }
+
+  @override
+  List<Subject> toJson(SplayTreeSet<Subject> object) {
+    return object.toList();
+  }
 }

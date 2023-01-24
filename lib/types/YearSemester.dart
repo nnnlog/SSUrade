@@ -6,16 +6,26 @@ part 'YearSemester.g.dart';
 
 @JsonSerializable()
 class YearSemester extends Comparable<YearSemester> {
-  @JsonKey()
-  int year;
-  @JsonKey()
-  Semester semester;
+  @JsonKey(
+    includeToJson: true,
+    includeFromJson: true,
+  )
+  int _year;
+  @JsonKey(
+    includeToJson: true,
+    includeFromJson: true,
+  )
+  Semester _semester;
 
-  YearSemester(this.year, this.semester);
+  YearSemester(this._year, this._semester);
 
   factory YearSemester.fromJson(Map<String, dynamic> json) => _$YearSemesterFromJson(json);
 
   Map<String, dynamic> toJson() => _$YearSemesterToJson(this);
+
+  get year => _year;
+
+  get semester => _semester;
 
   @override
   String toString() => "$runtimeType(year=$year, semester=$semester)";

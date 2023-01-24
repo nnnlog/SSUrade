@@ -1,3 +1,4 @@
+import 'dart:collection';
 import 'dart:convert';
 import 'dart:developer';
 
@@ -8,11 +9,9 @@ import 'package:ssurade/crawling/CrawlingTask.dart';
 import 'package:ssurade/crawling/WebViewControllerExtension.dart';
 import 'package:ssurade/globals.dart' as globals;
 import 'package:ssurade/types/Progress.dart';
-import 'package:ssurade/types/Semester.dart';
 import 'package:ssurade/types/subject/Ranking.dart';
 import 'package:ssurade/types/subject/SemesterSubjects.dart';
 import 'package:ssurade/types/subject/Subject.dart';
-import 'package:ssurade/types/subject/gradeTable.dart';
 
 import '../types/YearSemester.dart';
 
@@ -55,9 +54,6 @@ class SingleGrade extends CrawlingTask<SemesterSubjects?> {
 
           if (reloadPage || url != "https://ecc.ssu.ac.kr/sap/bc/webdynpro/SAP/ZCMB3W0017?sap-language=KO") {
             await controller.initForXHR();
-            // showToast("init (xhr) : ${DateTime.now().difference(time).inMilliseconds}ms");
-            // log("init (xhr) : ${DateTime.now().difference(time).inMilliseconds}ms");
-            // time = DateTime.now();
 
             await controller.loadUrl(urlRequest: URLRequest(url: Uri.parse("https://ecc.ssu.ac.kr/sap/bc/webdynpro/SAP/ZCMB3W0017?sap-language=KO")));
             // showToast("load (page) : ${DateTime.now().difference(time).inMilliseconds}ms");
@@ -85,8 +81,6 @@ class SingleGrade extends CrawlingTask<SemesterSubjects?> {
                 return true;
               }
             });
-          } else {
-            await controller.initForXHR();
           }
 
           // log("xhr count : ${globals.webViewXHRTotalCount}");
@@ -255,17 +249,10 @@ class SingleGrade extends CrawlingTask<SemesterSubjects?> {
 
           temp = jsonDecode(temp);
 
-          SemesterSubjects result = SemesterSubjects([], semesterRanking, totalRanking, search);
+          SemesterSubjects result = SemesterSubjects(SplayTreeSet(), semesterRanking, totalRanking, search);
           for (var obj in temp) {
             result.subjects.add(Subject(obj[0], obj[1], double.parse(obj[2]), obj[3], obj[4]));
           }
-          result.subjects.sort((a, b) {
-            double x = gradeTable[a.grade] ?? -5;
-            double y = gradeTable[b.grade] ?? -5;
-            if (x != y) return x > y ? -1 : 1; // 등급(grade) 높은 것부터
-            if (a.credit != b.credit) return a.credit > b.credit ? -1 : 1; // 학점(credit) 높은 것부터
-            return a.name.compareTo(b.name);
-          });
 
           await result.loadPassFailSubjects();
           return result;

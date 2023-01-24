@@ -9,9 +9,9 @@ import 'package:ssurade/types/subject/SemesterSubjects.dart';
 
 part 'SemesterSubjectsManager.g.dart';
 
-@JsonSerializable()
+@JsonSerializable(converters: [_DataConverter()])
 class SemesterSubjectsManager {
-  @_DataConverter()
+  @JsonKey()
   SplayTreeMap<YearSemester, SemesterSubjects> data;
 
   SemesterSubjectsManager(this.data);
@@ -42,7 +42,7 @@ class SemesterSubjectsManager {
       log(e.toString());
       log(stacktrace.toString());
     }
-    return SemesterSubjectsManager(SplayTreeMap.from({}));
+    return SemesterSubjectsManager(SplayTreeMap());
   }
 
   saveFile() => writeFile(_filename, jsonEncode(toJson()));
@@ -53,11 +53,12 @@ class _DataConverter extends JsonConverter<SplayTreeMap<YearSemester, SemesterSu
 
   @override
   SplayTreeMap<YearSemester, SemesterSubjects> fromJson(List<dynamic> json) {
-    return SplayTreeMap.fromIterables(json.map((kv) => YearSemester.fromJson(kv[0])), json.map((kv) => SemesterSubjects.fromJson(kv[1])));
+    var list = json.map((e) => SemesterSubjects.fromJson(e));
+    return SplayTreeMap.fromIterables(list.map((e) => e.currentSemester), list);
   }
 
   @override
-  List<List<dynamic>> toJson(SplayTreeMap<YearSemester, SemesterSubjects> object) {
-    return object.entries.map((entry) => [entry.key, entry.value]).toList();
+  List<dynamic> toJson(SplayTreeMap<YearSemester, SemesterSubjects> object) {
+    return object.entries.map((entry) => entry.value).toList();
   }
 }

@@ -7,13 +7,13 @@ part of 'YearSemester.dart';
 // **************************************************************************
 
 YearSemester _$YearSemesterFromJson(Map<String, dynamic> json) => YearSemester(
-      json['year'] as int,
-      $enumDecode(_$SemesterEnumMap, json['semester']),
+      json['_year'] as int,
+      $enumDecode(_$SemesterEnumMap, json['_semester']),
     );
 
 Map<String, dynamic> _$YearSemesterToJson(YearSemester instance) => <String, dynamic>{
-      'year': instance.year,
-      'semester': _$SemesterEnumMap[instance.semester]!,
+      '_year': instance._year,
+      '_semester': _$SemesterEnumMap[instance._semester]!,
     };
 
 const _$SemesterEnumMap = {
