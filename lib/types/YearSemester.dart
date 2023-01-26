@@ -25,7 +25,7 @@ class YearSemester extends Comparable<YearSemester> {
 
   get year => _year;
 
-  get semester => _semester;
+  Semester get semester => _semester;
 
   @override
   String toString() => "$runtimeType(year=$year, semester=$semester)";

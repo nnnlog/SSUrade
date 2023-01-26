@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
@@ -7,6 +8,7 @@ import 'package:ssurade/crawling/WebViewControllerExtension.dart';
 import 'package:ssurade/types/Progress.dart';
 
 class BackgroundWebView extends StatefulWidget {
+  static List<String> webViewScript = [];
   final Completer<void> webViewInit = Completer();
 
   BackgroundWebView(List<Future<void>> webViewInitialized, {super.key}) {
@@ -48,6 +50,18 @@ class _BackgroundWebViewState extends State<BackgroundWebView> {
                 }
                 // log("XHR_END" + data.toString());
               });
+          controller.addJavaScriptHandler(
+              handlerName: "redirect",
+              callback: (data) {
+                controller.jsRedirectCallback(data[0]);
+              });
+          controller.addJavaScriptHandler(
+              handlerName: "debug",
+              callback: (data) {
+                log("XHR_DEBUG" + data.toString());
+              });
+          controller.jsRedirectCallback = (_) {};
+          controller.jsAlertCallback = (_) {};
         },
         onJsAlert: (controller, action) async {
           controller.jsAlertCallback(action.message);
@@ -62,47 +76,15 @@ class _BackgroundWebViewState extends State<BackgroundWebView> {
           return JsPromptResponse(); // cancel prompt event
         },
         onLoadStart: (InAppWebViewController controller, Uri? uri) async {
-          controller.webViewXHRTotalCount = 0;
-          controller.webViewXHRRunningCount = 0;
-
-          controller.evaluateJavascript(source: """
-          let XHR = XMLHttpRequest;
-
-          var open = XHR.prototype.open;
-          var send = XHR.prototype.send;
-
-          XHR.prototype.open = function (method, url, async, user, pass) {
-              this._url = url;
-              open.call(this, method, url, async, user, pass);
-          };
-
-          XHR.prototype.send = function (data) {
-              var self = this;
-              var existReady = false;
-
-              function onReadyStateChange() {
-                  if(self.readyState === 2) {
-                      existReady = true;
-                      window.flutter_inappwebview.callHandler('start', self._url);
-                  }
-                  if(self.readyState === 4 && existReady) {
-                      window.flutter_inappwebview.callHandler('end', self._url);
-                  }
-
-                  if(self._oldOnReadyStateChange) {
-                      self._oldOnReadyStateChange();
-                  }
-              }
-
-              if (!self._oldOnReadyStateChange) self._oldOnReadyStateChange = this.onreadystatechange;
-              this.onreadystatechange = onReadyStateChange;
-
-              send.call(this, data);
+          for (var element in BackgroundWebView.webViewScript) {
+            controller.evaluateJavascript(source: element);
           }
-          """);
         },
         initialOptions: InAppWebViewGroupOptions(
-          crossPlatform: InAppWebViewOptions(),
+          crossPlatform: InAppWebViewOptions(
+            /// [[extractDataFromViewer]]를 위한 UA 변경, OZ Viewer에서 Android 특정 버전 외에는 이상한 방법을 통한 다운로드를 택하고 있음
+            userAgent: "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36",
+          ),
         ),
       ),
     );

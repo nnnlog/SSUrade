@@ -7,17 +7,23 @@ part of 'Subject.dart';
 // **************************************************************************
 
 Subject _$SubjectFromJson(Map<String, dynamic> json) => Subject(
-      json['code'] as String,
+      json['_code'] as String,
       json['name'] as String,
       (json['credit'] as num).toDouble(),
       json['grade'] as String,
       json['professor'] as String,
+      json['category'] as String,
+      json['isPassFail'] as bool,
+      json['_state'] as int,
     );
 
 Map<String, dynamic> _$SubjectToJson(Subject instance) => <String, dynamic>{
-      'code': instance.code,
+      '_code': instance._code,
       'name': instance.name,
       'credit': instance.credit,
       'grade': instance.grade,
       'professor': instance.professor,
+      'category': instance.category,
+      'isPassFail': instance.isPassFail,
+      '_state': instance._state,
     };

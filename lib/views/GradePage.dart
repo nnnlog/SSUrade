@@ -8,6 +8,7 @@ import 'package:ssurade/components/SubjectWidget.dart';
 import 'package:ssurade/crawling/Crawler.dart';
 import 'package:ssurade/globals.dart' as globals;
 import 'package:ssurade/types/Progress.dart';
+import 'package:ssurade/types/Semester.dart';
 import 'package:ssurade/types/YearSemester.dart';
 import 'package:ssurade/types/subject/SemesterSubjects.dart';
 import 'package:ssurade/utils/toast.dart';
@@ -26,7 +27,7 @@ class _GradePageState extends State<GradePage> {
   final ScreenshotController _imageController = ScreenshotController();
 
   GradeProgress _progress = GradeProgress.init;
-  Set<YearSemester> _lockedForRefresh = {};
+  final Set<YearSemester> _lockedForRefresh = {};
 
   bool _exportImage = false;
   bool _showRanking = true;
@@ -50,7 +51,7 @@ class _GradePageState extends State<GradePage> {
     SemesterSubjects? data = (await Crawler.singleGrade(search).execute());
 
     if (data != null) {
-      globals.semesterSubjectsManager.data[search] = data;
+      globals.semesterSubjectsManager.data[search]!.merge(data);
       globals.semesterSubjectsManager.saveFile();
     }
 
@@ -65,7 +66,7 @@ class _GradePageState extends State<GradePage> {
     }
 
     setState(() {
-      _semesterSubjects = data;
+      _semesterSubjects = globals.semesterSubjectsManager.data[search]!;
     });
 
     showToast("${search.year}학년도 ${search.semester.name} 성적을 불러왔습니다.");
@@ -95,7 +96,7 @@ class _GradePageState extends State<GradePage> {
       if (globals.semesterSubjectsManager.isEmpty) {
         needRefresh = false;
 
-        var res = await Crawler.legacyAllGrade().execute();
+        var res = await Crawler.allGrade().execute();
         if (res == null) {
           if (mounted) {
             Navigator.pop(context);
@@ -174,7 +175,9 @@ class _GradePageState extends State<GradePage> {
                           children: <Widget>[
                                 GradePageHeader(_semesterSubjects, callbackSelectSubject, refreshCurrentGrade, _exportImage, _showRanking),
                               ] +
-                              _semesterSubjects.subjects.map((e) => SubjectWidget(e, _exportImage, _showSubjectInfo)).toList(),
+                              (_semesterSubjects.subjects.values.toList()..sort((a, b) => a.compareTo(b)))
+                                  .map((e) => SubjectWidget(e, _exportImage, _showSubjectInfo))
+                                  .toList(),
                         ),
                       ),
                     ),

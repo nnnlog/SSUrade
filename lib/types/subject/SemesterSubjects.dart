@@ -5,14 +5,13 @@ import 'package:ssurade/types/YearSemester.dart';
 import 'package:ssurade/types/subject/Ranking.dart';
 import 'package:ssurade/types/subject/Subject.dart';
 import 'package:ssurade/types/subject/gradeTable.dart';
-import 'package:ssurade/utils/PassFailSubjects.dart';
 
 part 'SemesterSubjects.g.dart';
 
 @JsonSerializable(converters: [_DataConverter()])
 class SemesterSubjects {
   @JsonKey()
-  SplayTreeSet<Subject> subjects;
+  SplayTreeMap<String, Subject> subjects;
   @JsonKey()
   Ranking semesterRanking;
   @JsonKey()
@@ -32,13 +31,42 @@ class SemesterSubjects {
 
   Map<String, dynamic> toJson() => _$SemesterSubjectsToJson(this);
 
-  Future<void> loadPassFailSubjects() async {
-    list ??= await getPassFailSubjects(currentSemester);
+  bool get isEmpty => subjects.isEmpty;
+
+  bool get isNotEmpty => !isEmpty;
+
+  SemesterSubjects merge(SemesterSubjects other) {
+    for (var subject in other.subjects.values) {
+      if (subjects.containsKey(subject.code)) {
+        subjects[subject.code]!.merge(subject);
+      } else {
+        subjects[subject.code] = subject;
+      }
+    }
+    if (other.semesterRanking.isNotEmpty) semesterRanking = other.semesterRanking;
+    if (other.totalRanking.isNotEmpty) totalRanking = other.totalRanking;
+    return this;
+  }
+
+  List<Subject> getIncompleteSubjects() {
+    List<Subject> ret = [];
+    for (var subject in subjects.values) {
+      if (subject.isEmpty) {
+        ret.add(subject);
+      }
+    }
+    return ret;
+  }
+
+  void cleanup() {
+    for (var subject in getIncompleteSubjects()) {
+      subjects.remove(subject.code);
+    }
   }
 
   double get totalCredit {
     double ret = 0;
-    for (var data in subjects) {
+    for (var data in subjects.values) {
       ret += data.credit;
     }
 
@@ -48,11 +76,10 @@ class SemesterSubjects {
   double get averageGrade {
     double totalGrade = 0, totalCredit = 0;
 
-    for (var data in subjects) {
+    for (var data in subjects.values) {
       double? score = gradeTable[data.grade];
       if (score == null) continue; // not available
-      if (list!.containsKey(data.code)) continue; // not calculate for P/F subject
-      if (data.grade == "P") continue; // not calculate for P subject (explicitly)
+      if (data.isPassFail) continue; // Pass/Fail subject
       totalGrade += score * data.credit; // Fail subject's weight(score) is zero
       totalCredit += data.credit;
     }
@@ -65,16 +92,17 @@ class SemesterSubjects {
       "$runtimeType(subjects=${subjects.toString()}, semesterRanking=${semesterRanking.toString()}, totalRanking=${totalRanking.toString()}, currentSemester=${currentSemester.toString()})";
 }
 
-class _DataConverter extends JsonConverter<SplayTreeSet<Subject>, List<dynamic>> {
+class _DataConverter extends JsonConverter<SplayTreeMap<String, Subject>, List<dynamic>> {
   const _DataConverter();
 
   @override
-  SplayTreeSet<Subject> fromJson(List<dynamic> json) {
-    return SplayTreeSet.of(json.map((e) => Subject.fromJson(e)));
+  SplayTreeMap<String, Subject> fromJson(List<dynamic> json) {
+    var list = json.map((e) => Subject.fromJson(e));
+    return SplayTreeMap.fromIterables(list.map((e) => e.code), list);
   }
 
   @override
-  List<Subject> toJson(SplayTreeSet<Subject> object) {
-    return object.toList();
+  List<Subject> toJson(SplayTreeMap<String, Subject> object) {
+    return object.values.toList();
   }
 }

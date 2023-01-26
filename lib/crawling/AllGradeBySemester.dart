@@ -10,19 +10,19 @@ import 'package:ssurade/types/Semester.dart';
 import 'package:ssurade/types/YearSemester.dart';
 import 'package:ssurade/types/subject/SemesterSubjectsManager.dart';
 
-class LegacyAllGrade extends CrawlingTask<SemesterSubjectsManager?> {
+class AllGradeBySemester extends CrawlingTask<SemesterSubjectsManager?> {
   int _startYear;
 
-  factory LegacyAllGrade.get({
+  factory AllGradeBySemester.get({
     int startYear = 0,
   }) {
-    return LegacyAllGrade._(startYear);
+    return AllGradeBySemester._(startYear);
   }
 
-  LegacyAllGrade._(this._startYear);
+  AllGradeBySemester._(this._startYear);
 
   @override
-  String task_id = "all_grade";
+  String task_id = "all_grade_by_semester";
 
   @override
   Future<SemesterSubjectsManager?> internalExecute(InAppWebViewController controller) async {

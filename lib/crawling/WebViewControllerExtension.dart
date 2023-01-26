@@ -7,6 +7,7 @@ import 'package:ssurade/types/Progress.dart';
 Expando<int> _webViewXHRTotalCount = Expando(), _webViewXHRRunningCount = Expando();
 Expando<XHRProgress> _webViewXHRProgress = Expando();
 Expando<Function(String?)> _jsAlertCallback = Expando();
+Expando<Function(String)> _jsRedirectCallback = Expando();
 
 extension WebViewControllerExtension on InAppWebViewController {
   int get webViewXHRTotalCount {
@@ -41,13 +42,21 @@ extension WebViewControllerExtension on InAppWebViewController {
     _jsAlertCallback[this] = value;
   }
 
-  initForXHR() async {
+  Function(String) get jsRedirectCallback {
+    return _jsRedirectCallback[this] ??= (_) {};
+  }
+
+  set jsRedirectCallback(Function(String) value) {
+    _jsRedirectCallback[this] = value;
+  }
+
+  void initForXHR() {
     webViewXHRTotalCount = 0;
     webViewXHRRunningCount = 0;
     webViewXHRProgress = XHRProgress.none;
   }
 
-  waitForXHR() async {
+  Future<void> waitForXHR() async {
     bool first = true;
     bool existXHR = await Future.any([
       Future(() async {

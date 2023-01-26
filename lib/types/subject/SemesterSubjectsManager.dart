@@ -22,8 +22,36 @@ class SemesterSubjectsManager {
 
   bool get isEmpty => data.isEmpty;
 
-  Future<void> initAllPassFailSubject() async {
-    await Future.wait(data.values.map((data) => data.loadPassFailSubjects()));
+  bool get isNotEmpty => !isEmpty;
+
+  SemesterSubjectsManager merge(SemesterSubjectsManager other) {
+    for (var subjects in other.data.values) {
+      if (data.containsKey(subjects.currentSemester)) {
+        data[subjects.currentSemester]!.merge(subjects);
+      } else {
+        data[subjects.currentSemester] = subjects;
+      }
+    }
+    return this;
+  }
+
+  List<SemesterSubjects> getIncompleteSemester() {
+    List<SemesterSubjects> ret = [];
+    for (var subjects in data.values) {
+      if (subjects.getIncompleteSubjects().isNotEmpty || subjects.semesterRanking.isEmpty || subjects.totalRanking.isEmpty) {
+        ret.add(subjects);
+      }
+    }
+    return ret;
+  }
+
+  void cleanup() {
+    for (var subjects in getIncompleteSemester()) {
+      subjects.cleanup();
+      if (subjects.isEmpty) {
+        data.remove(subjects.currentSemester);
+      }
+    }
   }
 
   @override

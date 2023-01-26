@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ssurade/globals.dart' as globals;
+import 'package:ssurade/types/Semester.dart';
 import 'package:ssurade/types/YearSemester.dart';
 import 'package:ssurade/types/subject/SemesterSubjects.dart';
 import 'package:ssurade/utils/DoubleToString.dart';

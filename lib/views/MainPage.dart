@@ -19,7 +19,7 @@ class MainPage extends StatefulWidget {
 }
 
 class _MainPageState extends State<MainPage> {
-  static const int webViewCount = 3;
+  static const int webViewCount = 5;
   final List<Future<void>> _webViewInitialized = [];
   final Completer<void> _agreeFuture = Completer();
   late String _agreement, _agreement_short;
@@ -80,7 +80,8 @@ class _MainPageState extends State<MainPage> {
         }
       });
 
-      Crawler.legacyAllGrade(startYear: globals.semesterSubjectsManager.data.lastKey()?.year ?? 0).execute().then((value) {
+      Crawler.allGrade(base: globals.semesterSubjectsManager).execute().then((value) {
+        // base가 주어져도 grade by category가 overwrite하도록 바꿔야 함
         if (value == null) return;
         bool update = false;
         for (var key in value.data.keys) {

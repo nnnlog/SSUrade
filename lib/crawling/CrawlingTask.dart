@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:ssurade/crawling/Crawler.dart';
 import 'package:ssurade/globals.dart' as globals;
@@ -17,6 +19,7 @@ abstract class CrawlingTask<T> {
       "success": (T is bool ? res : res != null).toString(),
       "duration": end.millisecondsSinceEpoch - start.millisecondsSinceEpoch,
     });
+    log("${task_id} : ${end.millisecondsSinceEpoch - start.millisecondsSinceEpoch}");
     return res;
   }
 

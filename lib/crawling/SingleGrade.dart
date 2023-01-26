@@ -9,6 +9,7 @@ import 'package:ssurade/crawling/CrawlingTask.dart';
 import 'package:ssurade/crawling/WebViewControllerExtension.dart';
 import 'package:ssurade/globals.dart' as globals;
 import 'package:ssurade/types/Progress.dart';
+import 'package:ssurade/types/Semester.dart';
 import 'package:ssurade/types/subject/Ranking.dart';
 import 'package:ssurade/types/subject/SemesterSubjects.dart';
 import 'package:ssurade/types/subject/Subject.dart';
@@ -53,7 +54,7 @@ class SingleGrade extends CrawlingTask<SemesterSubjects?> {
           }
 
           if (reloadPage || url != "https://ecc.ssu.ac.kr/sap/bc/webdynpro/SAP/ZCMB3W0017?sap-language=KO") {
-            await controller.initForXHR();
+            controller.initForXHR();
 
             await controller.loadUrl(urlRequest: URLRequest(url: Uri.parse("https://ecc.ssu.ac.kr/sap/bc/webdynpro/SAP/ZCMB3W0017?sap-language=KO")));
             // showToast("load (page) : ${DateTime.now().difference(time).inMilliseconds}ms");
@@ -249,12 +250,12 @@ class SingleGrade extends CrawlingTask<SemesterSubjects?> {
 
           temp = jsonDecode(temp);
 
-          SemesterSubjects result = SemesterSubjects(SplayTreeSet(), semesterRanking, totalRanking, search);
+          SemesterSubjects result = SemesterSubjects(SplayTreeMap(), semesterRanking, totalRanking, search);
           for (var obj in temp) {
-            result.subjects.add(Subject(obj[0], obj[1], double.parse(obj[2]), obj[3], obj[4]));
+            var data = Subject(obj[0], obj[1], double.parse(obj[2]), obj[3], obj[4], "", false, Subject.STATE_SEMESTER);
+            result.subjects[data.code] = data;
           }
 
-          await result.loadPassFailSubjects();
           return result;
         }),
         Future.delayed(Duration(seconds: globals.setting.timeoutGrade), () => null),

@@ -32,7 +32,7 @@ class EntranceGraduateYear extends CrawlingTask<Tuple2<String, String>?> {
             return null;
           }
 
-          await controller.initForXHR();
+          controller.initForXHR();
 
           await controller.loadUrl(urlRequest: URLRequest(url: Uri.parse("https://ecc.ssu.ac.kr/sap/bc/webdynpro/SAP/ZCMW1001n?sap-language=KO")));
 
