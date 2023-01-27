@@ -72,6 +72,7 @@ class _GradePageHeaderState extends State<GradePageHeader> {
                     fontSize: 17,
                     color: Colors.black.withOpacity(0.6),
                     fontWeight: FontWeight.w500,
+                    fontFamily: "Pretendard",
                   ),
                   underline: Container(),
                   value: widget.data.currentSemester,
