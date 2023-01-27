@@ -45,6 +45,8 @@ class Subject extends Comparable<Subject> {
 
   Map<String, dynamic> toJson() => _$SubjectToJson(this);
 
+  bool get isMajor => category.startsWith("전공");
+
   Subject merge(Subject other) {
     if (other.name.isNotEmpty) name = other.name;
     if (other.professor.isNotEmpty) professor = other.professor;

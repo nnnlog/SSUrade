@@ -63,6 +63,7 @@ class MyApp extends StatelessWidget {
       },
       navigatorObservers: [
         FirebaseAnalyticsObserver(analytics: globals.analytics),
+        SentryNavigatorObserver(),
       ],
     );
   }

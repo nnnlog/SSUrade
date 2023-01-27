@@ -50,7 +50,6 @@ class AllGradeByCategory extends CrawlingTask<SemesterSubjectsManager?> {
 
           await controller.waitForXHR();
 
-          controller.webViewXHRProgress = XHRProgress.ready;
           Completer<void> com1 = Completer(), com2 = Completer();
           controller.jsRedirectCallback = (url) {
             (() async {
@@ -64,6 +63,7 @@ class AllGradeByCategory extends CrawlingTask<SemesterSubjectsManager?> {
             })();
           };
 
+          controller.webViewXHRProgress = XHRProgress.ready;
           await controller.evaluateJavascript(source: """
               document.evaluate("//span[normalize-space()='이수구분별 성적현황 출력 인쇄']", document, null, XPathResult.ANY_TYPE, null ).iterateNext().click();
             """);

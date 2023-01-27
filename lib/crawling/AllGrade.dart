@@ -39,9 +39,11 @@ class AllGrade {
       wait2.add(Crawler.singleGrade(subjects.currentSemester, reloadPage: false).execute());
     }
 
-    for (var element in (await Future.wait(wait2))) {
-      if (element == null) continue;
-      result.data[element.currentSemester]!.merge(element);
+    if (base != null) {
+      for (var element in (await Future.wait(wait2))) {
+        if (element == null) continue;
+        result.data[element.currentSemester]!.merge(element);
+      }
     }
 
     result.cleanup();

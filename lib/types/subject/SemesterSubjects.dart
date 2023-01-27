@@ -73,10 +73,38 @@ class SemesterSubjects {
     return ret;
   }
 
+  double get majorCredit {
+    double ret = 0;
+    for (var data in subjects.values) {
+      if (data.isMajor) {
+        // 전공 선택 / 전공 필수 / 전공 기초
+        ret += data.credit;
+      }
+    }
+
+    return ret;
+  }
+
   double get averageGrade {
     double totalGrade = 0, totalCredit = 0;
 
     for (var data in subjects.values) {
+      double? score = gradeTable[data.grade];
+      if (score == null) continue; // not available
+      if (data.isPassFail) continue; // Pass/Fail subject
+      totalGrade += score * data.credit; // Fail subject's weight(score) is zero
+      totalCredit += data.credit;
+    }
+    if (totalCredit == 0) return 0;
+    return totalGrade / totalCredit;
+  }
+
+  double get averageMajorGrade {
+    double totalGrade = 0, totalCredit = 0;
+
+    for (var data in subjects.values) {
+      if (!data.isMajor) continue;
+
       double? score = gradeTable[data.grade];
       if (score == null) continue; // not available
       if (data.isPassFail) continue; // Pass/Fail subject
