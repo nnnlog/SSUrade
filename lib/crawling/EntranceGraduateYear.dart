@@ -8,13 +8,12 @@ import 'package:ssurade/crawling/WebViewControllerExtension.dart';
 import 'package:tuple/tuple.dart';
 
 class EntranceGraduateYear extends CrawlingTask<Tuple2<String, String>?> {
-  static final EntranceGraduateYear _instance = EntranceGraduateYear._();
+  factory EntranceGraduateYear.get({
+    ISentrySpan? parentTransaction,
+  }) =>
+      EntranceGraduateYear._(parentTransaction);
 
-  factory EntranceGraduateYear.get() {
-    return _instance;
-  }
-
-  EntranceGraduateYear._();
+  EntranceGraduateYear._(ISentrySpan? parentTransaction) : super(parentTransaction);
 
   @override
   String task_id = "entrance_graduate_year";
@@ -23,50 +22,53 @@ class EntranceGraduateYear extends CrawlingTask<Tuple2<String, String>?> {
   Future<Tuple2<String, String>?> internalExecute(InAppWebViewController controller) async {
     bool isFinished = false;
 
+    final transaction = parentTransaction == null ? Sentry.startTransaction('EntranceGraduateYear', task_id) : parentTransaction!.startChild(task_id);
+    late ISentrySpan span;
+
     late Tuple2<String, String>? result;
     try {
       result = await Future.any([
         Future(() async {
           if (isFinished) return null;
-          if (!(await Crawler.loginSession().directExecute(controller))) {
+          if (!(await Crawler.loginSession(parentTransaction: transaction).directExecute(controller))) {
             return null;
           }
 
-          controller.initForXHR();
+          await controller.customLoadPage("https://ecc.ssu.ac.kr/sap/bc/webdynpro/SAP/ZCMW1001n?sap-language=KO", parentTransaction: transaction);
 
-          await controller.loadUrl(urlRequest: URLRequest(url: Uri.parse("https://ecc.ssu.ac.kr/sap/bc/webdynpro/SAP/ZCMW1001n?sap-language=KO")));
+          span = transaction.startChild("get_data");
+          try {
+            String? entrance = await controller.evaluateJavascript(
+                source:
+                    'document.querySelectorAll("table tr div div:nth-child(1) span span:nth-child(2) tbody:nth-child(2) tr td span span table tbody tr:nth-child(1) td:nth-child(1) table tr table tr:nth-child(1) td:nth-child(2) span input")[0].value;');
+            if (entrance == null) throw Exception("Entrance year is null");
 
-          await controller.waitForXHR();
+            String? graduate = await controller.evaluateJavascript(
+                source:
+                    'document.querySelectorAll("table tbody tr div div:nth-child(1) span span:nth-child(2) table tbody:nth-child(2) tr span span table tr:nth-child(1) td:nth-child(1) table tr table tr:nth-child(18) td:nth-child(2) span input")[0].value;');
+            if (graduate == null) throw Exception("Graduate year is null");
 
-          await Future.any([
-            Future.doWhile(() async {
-              if (isFinished) return false;
-              try {
-                String? entrance = await controller.evaluateJavascript(
-                    source:
-                        'document.querySelectorAll("table tr div div:nth-child(1) span span:nth-child(2) tbody:nth-child(2) tr td span span table tbody tr:nth-child(1) td:nth-child(1) table tr table tr:nth-child(1) td:nth-child(2) span input")[0].value;');
-                if (entrance == null) return true;
-                entrance = entrance.trim();
-                if (entrance.isEmpty) return true;
+            result = Tuple2(entrance, graduate);
+          } catch (e, stacktrace) {
+            span.throwable = e;
+            Sentry.captureException(
+              e,
+              stackTrace: stacktrace,
+              withScope: (scope) {
+                scope.span = span;
+                scope.level = SentryLevel.error;
+              },
+            );
+            span.finish(status: const SpanStatus.internalError());
 
-                String? graduate = await controller.evaluateJavascript(
-                    source:
-                        'document.querySelectorAll("table tbody tr div div:nth-child(1) span span:nth-child(2) table tbody:nth-child(2) tr span span table tr:nth-child(1) td:nth-child(1) table tr table tr:nth-child(18) td:nth-child(2) span input")[0].value;');
-                if (graduate == null) return true;
-                graduate = graduate.trim();
-                if (graduate.isEmpty) return true;
+            log(e.toString());
+            log(stacktrace.toString());
 
-                result = Tuple2(entrance, graduate);
-                return false;
-              } catch (e, stacktrace) {
-                log(e.toString());
-                log(stacktrace.toString());
-                await Future.delayed(const Duration(milliseconds: 100));
-                return true;
-              }
-            }),
-            Future.delayed(const Duration(seconds: 5))
-          ]);
+            return result = null;
+          }
+          if (!span.finished) {
+            span.finish(status: const SpanStatus.ok());
+          }
 
           return result;
         }),
@@ -76,14 +78,21 @@ class EntranceGraduateYear extends CrawlingTask<Tuple2<String, String>?> {
       log(e.toString());
       log(stacktrace.toString());
 
+      transaction.throwable = e;
       Sentry.captureException(
         e,
         stackTrace: stacktrace,
+        withScope: (scope) {
+          scope.span = transaction;
+          scope.level = SentryLevel.error;
+        },
       );
 
       return null;
     } finally {
       isFinished = true;
+      transaction.status = result != null ? const SpanStatus.ok() : const SpanStatus.internalError();
+      transaction.finish();
     }
 
     return result;

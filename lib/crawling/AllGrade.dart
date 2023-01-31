@@ -1,26 +1,32 @@
 import 'dart:developer';
 
+import 'package:sentry_flutter/sentry_flutter.dart';
 import 'package:ssurade/crawling/Crawler.dart';
 import 'package:ssurade/types/subject/SemesterSubjects.dart';
 import 'package:ssurade/types/subject/SemesterSubjectsManager.dart';
 
 // 가변적인 controller?가 필요..
 class AllGrade {
+  ISentrySpan? parentTransaction;
   SemesterSubjectsManager? base;
 
-  factory AllGrade.get({SemesterSubjectsManager? base}) {
-    return AllGrade._(base);
-  }
+  String task_id = "all_grade";
 
-  AllGrade._(this.base);
+  factory AllGrade.get({SemesterSubjectsManager? base, ISentrySpan? parentTransaction}) => AllGrade._(base, parentTransaction);
+
+  AllGrade._(this.base, this.parentTransaction);
 
   Future<SemesterSubjectsManager?> execute() async {
+    final transaction = parentTransaction == null ? Sentry.startTransaction('AllGrade', task_id) : parentTransaction!.startChild(task_id);
+    late ISentrySpan span;
+
     var start = DateTime.now();
 
+    span = transaction.startChild("get_grade_info");
     List<Future<SemesterSubjectsManager?>> wait = [];
-    wait.add(Crawler.allGradeByCategory().execute());
+    wait.add(Crawler.allGradeByCategory(parentTransaction: span).execute());
     if (base == null) {
-      wait.add(Crawler.allGradeBySemester().execute());
+      wait.add(Crawler.allGradeBySemester(parentTransaction: span).execute());
     } else {
       wait.add(Future(() {
         return base;
@@ -28,25 +34,36 @@ class AllGrade {
     }
 
     var ret = (await Future.wait(wait)).whereType<SemesterSubjectsManager>().toList(); // remove null
-    if (ret.isEmpty) return null;
+    span.finish(status: const SpanStatus.ok());
+
+    if (ret.isEmpty) {
+      transaction.finish(status: const SpanStatus.cancelled());
+      return null;
+    }
+
+    span = transaction.startChild("merge_grade_info");
     var result = ret.removeLast();
     while (ret.isNotEmpty) {
       result.merge(ret.removeLast());
     }
-
-    List<Future<SemesterSubjects?>> wait2 = [];
-    for (var subjects in result.getIncompleteSemester()) {
-      wait2.add(Crawler.singleGrade(subjects.currentSemester, reloadPage: false).execute());
-    }
+    span.finish(status: const SpanStatus.ok());
 
     if (base != null) {
+      span = transaction.startChild("get_more_grade_info");
+      List<Future<SemesterSubjects?>> wait2 = [];
+      for (var subjects in result.getIncompleteSemester()) {
+        wait2.add(Crawler.singleGrade(subjects.currentSemester, reloadPage: false, parentTransaction: transaction).execute());
+      }
+
       for (var element in (await Future.wait(wait2))) {
         if (element == null) continue;
         result.data[element.currentSemester]!.merge(element);
       }
+      span.finish(status: const SpanStatus.ok());
     }
 
     result.cleanup();
+    transaction.finish(status: const SpanStatus.ok());
 
     var end = DateTime.now();
     log("all_grade : ${end.millisecondsSinceEpoch - start.millisecondsSinceEpoch}");

@@ -17,7 +17,7 @@ late SemesterSubjectsManager semesterSubjectsManager;
 late FirebaseAnalytics analytics;
 
 Event newGradeFoundEvent = Event();
-List<String> assets = ["webview_init.js", "webview_download_viewer.js", "webview_redirect.js"];
+List<String> assets = ["webview_init.js", "webview_download_viewer.js", "webview_redirect.js", "webview_xhr.js"];
 
 Future<void> init() async {
   await initFileSystem();

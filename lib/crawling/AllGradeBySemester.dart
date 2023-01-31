@@ -15,11 +15,11 @@ class AllGradeBySemester extends CrawlingTask<SemesterSubjectsManager?> {
 
   factory AllGradeBySemester.get({
     int startYear = 0,
-  }) {
-    return AllGradeBySemester._(startYear);
-  }
+    ISentrySpan? parentTransaction,
+  }) =>
+      AllGradeBySemester._(startYear, parentTransaction);
 
-  AllGradeBySemester._(this._startYear);
+  AllGradeBySemester._(this._startYear, ISentrySpan? parentTransaction) : super(parentTransaction);
 
   @override
   String task_id = "all_grade_by_semester";
@@ -28,17 +28,19 @@ class AllGradeBySemester extends CrawlingTask<SemesterSubjectsManager?> {
   Future<SemesterSubjectsManager?> internalExecute(InAppWebViewController controller) async {
     bool isFinished = false;
 
+    final transaction = parentTransaction == null ? Sentry.startTransaction('AllGradeBySemester', task_id) : parentTransaction!.startChild(task_id);
+
     SemesterSubjectsManager? result;
     try {
       result = await Future.any([
         Future(() async {
-          if (!(await Crawler.loginSession().directExecute(controller))) {
+          if (!(await Crawler.loginSession(parentTransaction: transaction).directExecute(controller))) {
             return null;
           }
 
           result = SemesterSubjectsManager(SplayTreeMap.from({}));
 
-          var year = (await Crawler.entranceGraduateYear().directExecute(controller))!;
+          var year = (await Crawler.entranceGraduateYear(parentTransaction: transaction).directExecute(controller))!;
           int entranceYear = _startYear == 0 ? int.parse(year.item1) : _startYear;
           int graduateYear;
           if (year.item2 == "0000") {
@@ -54,6 +56,7 @@ class AllGradeBySemester extends CrawlingTask<SemesterSubjectsManager?> {
               result!.data[key] = (await Crawler.singleGrade(
                 key,
                 reloadPage: false,
+                parentTransaction: transaction,
               ).directExecute(controller))!;
 
               if (result!.data[key]?.subjects.isEmpty == true) {
@@ -70,14 +73,21 @@ class AllGradeBySemester extends CrawlingTask<SemesterSubjectsManager?> {
       log(e.toString());
       log(stacktrace.toString());
 
+      transaction.throwable = e;
       Sentry.captureException(
         e,
         stackTrace: stacktrace,
+        withScope: (scope) {
+          scope.span = transaction;
+          scope.level = SentryLevel.error;
+        },
       );
 
       return null;
     } finally {
       isFinished = true;
+      transaction.status = result != null ? const SpanStatus.ok() : const SpanStatus.internalError();
+      transaction.finish();
     }
 
     return result;

@@ -9,9 +9,9 @@ import 'package:ssurade/types/Progress.dart';
 
 class BackgroundWebView extends StatefulWidget {
   static List<String> webViewScript = [];
-  final Completer<void> webViewInit = Completer();
+  final Completer<InAppWebViewController> webViewInit = Completer();
 
-  BackgroundWebView(List<Future<void>> webViewInitialized, {super.key}) {
+  BackgroundWebView(List<Future<InAppWebViewController>> webViewInitialized, {super.key}) {
     webViewInitialized.add(webViewInit.future);
   }
 
@@ -27,10 +27,6 @@ class _BackgroundWebViewState extends State<BackgroundWebView> {
       height: 1,
       child: InAppWebView(
         onWebViewCreated: (controller) {
-          widget.webViewInit.complete();
-
-          Crawler.worker.addWebViewController(controller);
-
           controller.addJavaScriptHandler(
               handlerName: "start",
               callback: (data) {
@@ -60,8 +56,16 @@ class _BackgroundWebViewState extends State<BackgroundWebView> {
               callback: (data) {
                 log("XHR_DEBUG" + data.toString());
               });
+          controller.addJavaScriptHandler(
+              handlerName: "load",
+              callback: (_) {
+                controller.waitForLoadingPage.complete();
+              });
           controller.jsRedirectCallback = (_) {};
           controller.jsAlertCallback = (_) {};
+
+          widget.webViewInit.complete(controller);
+          Crawler.worker.addWebViewController(controller);
         },
         onJsAlert: (controller, action) async {
           controller.jsAlertCallback(action.message);
@@ -75,10 +79,8 @@ class _BackgroundWebViewState extends State<BackgroundWebView> {
         onJsPrompt: (controller, action) async {
           return JsPromptResponse(); // cancel prompt event
         },
-        onLoadStart: (InAppWebViewController controller, Uri? uri) async {
-          for (var element in BackgroundWebView.webViewScript) {
-            controller.evaluateJavascript(source: element);
-          }
+        onLoadStart: (InAppWebViewController controller, Uri? url) async {
+          await Future.wait(BackgroundWebView.webViewScript.map((e) => controller.evaluateJavascript(source: e)));
         },
         initialOptions: InAppWebViewGroupOptions(
           crossPlatform: InAppWebViewOptions(

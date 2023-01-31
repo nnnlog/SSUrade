@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:convert';
 import 'dart:developer';
 
@@ -14,9 +15,10 @@ import 'package:ssurade/crawling/WebViewControllerExtension.dart';
 class LoginSession extends CrawlingTask<bool> {
   static final LoginSession _instance = LoginSession._("", "");
 
-  factory LoginSession.get() {
-    return _instance;
-  }
+  factory LoginSession.get({
+    ISentrySpan? parentTransaction,
+  }) =>
+      _instance..parentTransaction = parentTransaction;
 
   @override
   String task_id = "login";
@@ -25,7 +27,7 @@ class LoginSession extends CrawlingTask<bool> {
 
   String _password;
 
-  LoginSession._(this._id, this._password);
+  LoginSession._(this._id, this._password) : super(null);
 
   /// Singleton
   Future loadFromFile() async {
@@ -95,12 +97,22 @@ class LoginSession extends CrawlingTask<bool> {
   @override
   Future<bool> internalExecute(InAppWebViewController controller) async {
     if (isLogin) return true;
-    if (_future != null) return _future!;
+    if (_future != null) {
+      return Future(() async {
+        final transaction = parentTransaction == null ? null : parentTransaction!.startChild("${task_id}_share");
+        var res = await _future!;
+        transaction?.finish(status: res ? const SpanStatus.ok() : const SpanStatus.unauthenticated());
+        return res;
+      });
+    }
     _isLogin = false;
     _isFail = false;
     Value<String>? cause;
     return _future = Future(() async {
       var fail = false;
+
+      final transaction = parentTransaction == null ? Sentry.startTransaction('Login', task_id) : parentTransaction!.startChild(task_id);
+      late ISentrySpan span;
 
       controller.jsAlertCallback = (String? reason) {
         fail = true;
@@ -110,48 +122,55 @@ class LoginSession extends CrawlingTask<bool> {
         }
       };
 
-      bool res;
+      bool res = false;
       try {
         res = await Future.any(
           [
             Future(() async {
+              span = transaction.startChild("clear_cookie");
               var cookie = CookieManager.instance();
               await cookie.deleteAllCookies();
+              span.finish(status: const SpanStatus.ok());
 
-              await controller.loadData(data: "");
-              await controller.loadUrl(
-                  urlRequest: URLRequest(
-                      url: Uri.parse("https://smartid.ssu.ac.kr/Symtra_sso/smln.asp?apiReturnUrl=https%3A%2F%2Fsaint.ssu.ac.kr%2FwebSSO%2Fsso.jsp")));
+              await controller.customLoadPage(
+                "https://smartid.ssu.ac.kr/Symtra_sso/smln.asp?apiReturnUrl=https%3A%2F%2Fsaint.ssu.ac.kr%2FwebSSO%2Fsso.jsp",
+                xhr: false,
+                clear: true,
+                parentTransaction: transaction,
+              );
 
-              await Future.doWhile(controller.isLoading);
+              span = transaction.startChild("fill_form");
+              await controller.evaluateJavascript(source: 'document.LoginInfo.userid.value = atob("${base64Encode(utf8.encode(_id))}");');
+              await controller.evaluateJavascript(source: 'document.LoginInfo.pwd.value = atob("${base64Encode(utf8.encode(_password))}");');
 
-              do {
-                await controller.evaluateJavascript(source: 'document.LoginInfo.userid.value = atob("${base64Encode(utf8.encode(_id))}");');
-                await Future.delayed(const Duration(milliseconds: 10));
-              } while ((await controller.evaluateJavascript(source: 'document.LoginInfo.userid.value')) != _id);
-              // log((await controller.evaluateJavascript(source: 'document.LoginInfo.innerHTML')));
-              do {
-                await controller.evaluateJavascript(source: 'document.LoginInfo.pwd.value = atob("${base64Encode(utf8.encode(_password))}");');
-                await Future.delayed(const Duration(milliseconds: 10));
-              } while ((await controller.evaluateJavascript(source: 'document.LoginInfo.pwd.value')) != _password);
+              await controller.evaluateJavascript(source: 'document.LoginInfo.submit();');
+              span.finish(status: const SpanStatus.ok());
 
-              await controller.evaluateJavascript(source: 'document.querySelector("*[class=btn_login]").click();');
-
+              span = transaction.startChild("wait_redirection");
               while (!fail && (await controller.getUrl()).toString().startsWith("https://smartid.ssu.ac.kr/")) {
                 await Future.delayed(const Duration(milliseconds: 10));
               }
+              span.finish(status: fail ? const SpanStatus.cancelled() : const SpanStatus.ok());
 
               return !fail;
             }),
-            Future.delayed(const Duration(seconds: 5), () => false),
+            Future.delayed(const Duration(seconds: 10), () {
+              fail = true;
+              return false;
+            }),
           ],
         );
       } catch (e, stacktrace) {
         log(e.toString());
 
+        transaction.throwable = e;
         Sentry.captureException(
           e,
           stackTrace: stacktrace,
+          withScope: (scope) {
+            scope.span = transaction;
+            scope.level = SentryLevel.error;
+          },
         );
 
         res = false;
@@ -159,12 +178,17 @@ class LoginSession extends CrawlingTask<bool> {
 
       controller.jsAlertCallback = (_) {};
 
+      span = transaction.startChild("broadcast_event");
       _future = null;
       if (!res) {
         _isFail = true;
         loginFailEvent.broadcast(cause);
       }
       loginStatusChangeEvent.broadcast(Value(res));
+      span.finish(status: const SpanStatus.ok());
+
+      transaction.finish(status: res ? const SpanStatus.ok() : const SpanStatus.unauthenticated());
+
       return _isLogin = res;
     });
   }

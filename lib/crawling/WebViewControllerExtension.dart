@@ -1,6 +1,8 @@
+import 'dart:async';
 import 'dart:developer';
 
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
+import 'package:sentry_flutter/sentry_flutter.dart';
 import 'package:ssurade/globals.dart' as globals;
 import 'package:ssurade/types/Progress.dart';
 
@@ -8,6 +10,7 @@ Expando<int> _webViewXHRTotalCount = Expando(), _webViewXHRRunningCount = Expand
 Expando<XHRProgress> _webViewXHRProgress = Expando();
 Expando<Function(String?)> _jsAlertCallback = Expando();
 Expando<Function(String)> _jsRedirectCallback = Expando();
+Expando<Completer<void>> _pageLoaded = Expando();
 
 extension WebViewControllerExtension on InAppWebViewController {
   int get webViewXHRTotalCount {
@@ -50,35 +53,72 @@ extension WebViewControllerExtension on InAppWebViewController {
     _jsRedirectCallback[this] = value;
   }
 
+  set waitForLoadingPage(Completer<void> value) => _pageLoaded[this] = value;
+
+  Completer<void> get waitForLoadingPage => _pageLoaded[this] ??= Completer();
+
+  Future<void> customLoadPage(String url, {bool xhr = true, bool clear = false, ISentrySpan? parentTransaction}) async {
+    var transaction = parentTransaction?.startChild("load_page");
+    if (clear) {
+      var span = transaction?.startChild("clear_page");
+      waitForLoadingPage = Completer();
+      await loadData(data: "");
+      await waitForLoadingPage.future;
+      span?.finish(status: const SpanStatus.ok());
+    }
+
+    var span = transaction?.startChild("load_url");
+    waitForLoadingPage = Completer();
+    initForXHR();
+    await loadUrl(urlRequest: URLRequest(url: Uri.parse(url)));
+    span?.finish(status: const SpanStatus.ok());
+
+    span = transaction?.startChild("wait_xhr_and_page");
+    await Future.wait([
+      xhr ? waitForXHR(parentTransaction: span) : Future(() => null),
+      waitForLoadingPage.future,
+    ]);
+    span?.finish(); // set status in waitForXHR()
+
+    transaction?.finish(status: const SpanStatus.ok());
+  }
+
   void initForXHR() {
     webViewXHRTotalCount = 0;
     webViewXHRRunningCount = 0;
     webViewXHRProgress = XHRProgress.none;
   }
 
-  Future<void> waitForXHR() async {
-    bool first = true;
+  Future<void> waitForXHR({ISentrySpan? parentTransaction}) async {
+    var span = parentTransaction?.startChild("exist_xhr");
     bool existXHR = await Future.any([
       Future(() async {
         await Future.doWhile(() async {
-          await Future.delayed(const Duration(milliseconds: 100));
+          await Future.delayed(const Duration(milliseconds: 1));
           return webViewXHRTotalCount == 0;
         });
         return true;
       }),
       Future.delayed(const Duration(seconds: 5), () => false)
     ]);
+    span?.finish(status: existXHR ? const SpanStatus.ok() : const SpanStatus.cancelled());
 
     if (existXHR) {
+      var span = parentTransaction?.startChild("wait_xhr");
       await Future.any([
         Future.doWhile(() async {
-          await Future.delayed(const Duration(milliseconds: 10));
+          await Future.delayed(const Duration(milliseconds: 1));
           return webViewXHRRunningCount > 0;
         }),
         Future.delayed(const Duration(seconds: 5))
       ]);
+      span?.finish(status: const SpanStatus.ok());
+
+      parentTransaction?.status = const SpanStatus.ok();
     } else {
       log("XHR 로딩 없음");
+      parentTransaction?.throwable = Exception("No XHR Loading");
+      parentTransaction?.status = const SpanStatus.cancelled();
 
       globals.analytics.logEvent(name: "xhr_loading_no");
     }

@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' show rootBundle;
 import 'package:flutter_exit_app/flutter_exit_app.dart';
+import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:ssurade/components/BackgroundWebView.dart';
 import 'package:ssurade/components/CustomAppBar.dart';
 import 'package:ssurade/crawling/Crawler.dart';
@@ -20,7 +21,7 @@ class MainPage extends StatefulWidget {
 
 class _MainPageState extends State<MainPage> {
   static const int webViewCount = 5;
-  final List<Future<void>> _webViewInitialized = [];
+  final List<Future<InAppWebViewController>> _webViewInitialized = [];
   final Completer<void> _agreeFuture = Completer();
   late String _agreement, _agreement_short;
   MainProgress _progress = MainProgress.init;
@@ -29,25 +30,25 @@ class _MainPageState extends State<MainPage> {
   void initState() {
     super.initState();
 
+    Crawler.loginSession().loginStatusChangeEvent.subscribe((args) {
+      setState(() {});
+
+      // add analytics?
+    });
+
+    Crawler.loginSession().loginFailEvent.subscribe((msg) {
+      showToast("로그인을 실패했습니다.");
+      // showToast("메인 화면에서 자동 로그인을 다시 시도하거나 새로운 계정으로 로그인하세요.");
+
+      if (msg != null) {
+        showToast(msg.value);
+      }
+
+      globals.analytics.logEvent(name: "login_fail");
+    });
+
     (() async {
       await Future.wait(_webViewInitialized);
-
-      Crawler.loginSession().loginStatusChangeEvent.subscribe((args) {
-        setState(() {});
-
-        // add analytics?
-      });
-
-      Crawler.loginSession().loginFailEvent.subscribe((msg) {
-        showToast("로그인을 실패했습니다.");
-        // showToast("메인 화면에서 자동 로그인을 다시 시도하거나 새로운 계정으로 로그인하세요.");
-
-        if (msg != null) {
-          showToast(msg.value);
-        }
-
-        globals.analytics.logEvent(name: "login_fail");
-      });
 
       await globals.init();
 

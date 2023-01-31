@@ -12,20 +12,20 @@ import 'package:ssurade/views/SettingPage.dart';
 import 'firebase_options.dart';
 
 void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
-  globals.analytics = FirebaseAnalytics.instance;
-
   await SentryFlutter.init(
     (options) {
       options.dsn = 'https://71fdb674566745408a9611f2e72b2599@o4504542772789248.ingest.sentry.io/4504551497596928';
-      // Set tracesSampleRate to 1.0 to capture 100% of transactions for performance monitoring.
-      // We recommend adjusting this value in production.
-      options.tracesSampleRate = 1.0;
+      options.tracesSampleRate = 0.2;
     },
-    appRunner: () => runApp(const MyApp()),
+    appRunner: () async {
+      WidgetsFlutterBinding.ensureInitialized();
+      await Firebase.initializeApp(
+        options: DefaultFirebaseOptions.currentPlatform,
+      );
+      globals.analytics = FirebaseAnalytics.instance;
+
+      runApp(const MyApp());
+    },
   );
 }
 

@@ -1,3 +1,4 @@
+import 'package:sentry_flutter/sentry_flutter.dart';
 import 'package:ssurade/crawling/AllGrade.dart';
 import 'package:ssurade/crawling/AllGradeByCategory.dart';
 import 'package:ssurade/crawling/AllGradeBySemester.dart';
@@ -13,10 +14,10 @@ class Crawler {
 
   static final WebViewWorker worker = WebViewWorker();
 
-  static const LoginSession Function() loginSession = LoginSession.get;
-  static const EntranceGraduateYear Function() entranceGraduateYear = EntranceGraduateYear.get;
-  static const SingleGrade Function(YearSemester, {bool reloadPage}) singleGrade = SingleGrade.get;
-  static const AllGrade Function({SemesterSubjectsManager? base}) allGrade = AllGrade.get;
-  static const AllGradeByCategory Function() allGradeByCategory = AllGradeByCategory.get;
-  static const AllGradeBySemester Function({int startYear}) allGradeBySemester = AllGradeBySemester.get;
+  static const LoginSession Function({ISentrySpan? parentTransaction}) loginSession = LoginSession.get;
+  static const EntranceGraduateYear Function({ISentrySpan? parentTransaction}) entranceGraduateYear = EntranceGraduateYear.get;
+  static const SingleGrade Function(YearSemester, {bool reloadPage, ISentrySpan? parentTransaction}) singleGrade = SingleGrade.get;
+  static const AllGrade Function({SemesterSubjectsManager? base, ISentrySpan? parentTransaction}) allGrade = AllGrade.get;
+  static const AllGradeByCategory Function({ISentrySpan? parentTransaction}) allGradeByCategory = AllGradeByCategory.get;
+  static const AllGradeBySemester Function({int startYear, ISentrySpan? parentTransaction}) allGradeBySemester = AllGradeBySemester.get;
 }

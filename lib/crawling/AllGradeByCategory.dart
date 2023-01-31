@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'dart:collection';
-import 'dart:convert';
 import 'dart:developer';
 
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
@@ -19,13 +18,12 @@ import 'package:ssurade/types/subject/SemesterSubjectsManager.dart';
 import 'package:ssurade/types/subject/Subject.dart';
 
 class AllGradeByCategory extends CrawlingTask<SemesterSubjectsManager?> {
-  static final AllGradeByCategory _instance = AllGradeByCategory._();
+  factory AllGradeByCategory.get({
+    ISentrySpan? parentTransaction,
+  }) =>
+      AllGradeByCategory._(parentTransaction);
 
-  factory AllGradeByCategory.get() {
-    return _instance;
-  }
-
-  AllGradeByCategory._();
+  AllGradeByCategory._(ISentrySpan? parentTransaction) : super(parentTransaction);
 
   @override
   String task_id = "all_grade_by_category";
@@ -34,46 +32,48 @@ class AllGradeByCategory extends CrawlingTask<SemesterSubjectsManager?> {
   Future<SemesterSubjectsManager?> internalExecute(InAppWebViewController controller) async {
     bool isFinished = false;
 
+    final transaction = parentTransaction == null ? Sentry.startTransaction('AllGradeByCategory', task_id) : parentTransaction!.startChild(task_id);
+    late ISentrySpan span;
+
     SemesterSubjectsManager? result;
     try {
       result = await Future.any([
         Future(() async {
-          if (!(await Crawler.loginSession().directExecute(controller))) {
+          if (!(await Crawler.loginSession(parentTransaction: transaction).directExecute(controller))) {
             return null;
           }
 
           result = SemesterSubjectsManager(SplayTreeMap.from({}));
 
-          controller.initForXHR();
-
-          await controller.loadUrl(urlRequest: URLRequest(url: Uri.parse("https://ecc.ssu.ac.kr/sap/bc/webdynpro/SAP/ZCMW8030n?sap-language=KO")));
-
-          await controller.waitForXHR();
+          await controller.customLoadPage("https://ecc.ssu.ac.kr/sap/bc/webdynpro/SAP/ZCMW8030n?sap-language=KO", parentTransaction: transaction);
 
           Completer<void> com1 = Completer(), com2 = Completer();
           controller.jsRedirectCallback = (url) {
             (() async {
               await com1.future; // xhr 요청이 끝날 때까지 먼저 기다린다.
 
-              controller.initForXHR();
-              await controller.evaluateJavascript(source: "location.replace(atob('${base64Encode(utf8.encode(url))}'));");
-              await Future.doWhile(controller.isLoading);
-              await controller.waitForXHR();
+              await controller.customLoadPage(url, parentTransaction: transaction);
               com2.complete();
             })();
           };
 
+          span = transaction.startChild("click_print_btn");
           controller.webViewXHRProgress = XHRProgress.ready;
           await controller.evaluateJavascript(source: """
               document.evaluate("//span[normalize-space()='이수구분별 성적현황 출력 인쇄']", document, null, XPathResult.ANY_TYPE, null ).iterateNext().click();
             """);
           await controller.waitForSingleXHRRequest();
           com1.complete();
+          span.finish(status: const SpanStatus.ok());
+
           await com2.future; // 페이지 리다이렉션 후 xhr 요청이 완료될 때까지 기다린다.
 
-          var gradeData = await extractDataFromViewer(controller);
-          if (gradeData == null) throw Exception("[AllGrade.dart] extractDataFromViewer returns null");
+          var gradeData = await extractDataFromViewer(controller, parentTransaction: transaction);
+          if (gradeData == null) {
+            throw Exception("extractDataFromViewer returns null");
+          }
 
+          span = transaction.startChild("finalizing_data");
           var tmp = SemesterSubjectsManager(SplayTreeMap());
           for (var _data in gradeData.rows) {
             Map<String, String> data = {};
@@ -98,6 +98,7 @@ class AllGradeByCategory extends CrawlingTask<SemesterSubjectsManager?> {
             var subject = Subject(code, "", credit, grade, "", category, isPassFail, Subject.STATE_CATEGORY);
             tmp.data[key]!.subjects[subject.code] = subject;
           }
+          span.finish(status: const SpanStatus.ok());
 
           // log(tmp.toString());
           // showToast(tmp.toString());
@@ -110,14 +111,21 @@ class AllGradeByCategory extends CrawlingTask<SemesterSubjectsManager?> {
       log(e.toString());
       log(stacktrace.toString());
 
+      transaction.throwable = e;
       Sentry.captureException(
         e,
         stackTrace: stacktrace,
+        withScope: (scope) {
+          scope.span = transaction;
+          scope.level = SentryLevel.error;
+        },
       );
 
       return null;
     } finally {
       isFinished = true;
+      transaction.status = result != null ? const SpanStatus.ok() : const SpanStatus.internalError();
+      await transaction.finish();
     }
 
     return result;

@@ -22,12 +22,12 @@ class SingleGrade extends CrawlingTask<SemesterSubjects?> {
 
   factory SingleGrade.get(
     YearSemester search, {
-    bool reloadPage = true,
-  }) {
-    return SingleGrade._(search, reloadPage);
-  }
+    bool reloadPage = false,
+    ISentrySpan? parentTransaction,
+  }) =>
+      SingleGrade._(search, reloadPage, parentTransaction);
 
-  SingleGrade._(this.search, this.reloadPage);
+  SingleGrade._(this.search, this.reloadPage, ISentrySpan? parentTransaction) : super(parentTransaction);
 
   @override
   String task_id = "single_grade";
@@ -36,168 +36,136 @@ class SingleGrade extends CrawlingTask<SemesterSubjects?> {
   Future<SemesterSubjects?> internalExecute(InAppWebViewController controller) async {
     bool isFinished = false;
 
+    final transaction = parentTransaction == null ? Sentry.startTransaction('SingleGrade', task_id) : parentTransaction!.startChild(task_id);
+    late ISentrySpan span;
+
     SemesterSubjects? result;
     try {
       result = await Future.any([
         Future(() async {
-          if (!(await Crawler.loginSession().directExecute(controller))) {
+          if (!(await Crawler.loginSession(parentTransaction: transaction).directExecute(controller))) {
             return null;
           }
 
-          // DateTime time = DateTime.now();
-          // showToast("start : ${search.toString()}");
-          // log("start : ${search.toString()}");
-
+          span = transaction.startChild("check_url");
           var url = (await controller.getUrl()).toString();
           if (url.contains("#")) {
             url = url.substring(0, url.indexOf("#"));
           }
+          span.finish(status: const SpanStatus.ok());
 
           if (reloadPage || url != "https://ecc.ssu.ac.kr/sap/bc/webdynpro/SAP/ZCMB3W0017?sap-language=KO") {
-            controller.initForXHR();
-
-            await controller.loadUrl(urlRequest: URLRequest(url: Uri.parse("https://ecc.ssu.ac.kr/sap/bc/webdynpro/SAP/ZCMB3W0017?sap-language=KO")));
-            // showToast("load (page) : ${DateTime.now().difference(time).inMilliseconds}ms");
-            // log("load (page) : ${DateTime.now().difference(time).inMilliseconds}ms");
-            // time = DateTime.now();
-
-            await controller.waitForXHR();
-            // showToast("finishXHR : ${DateTime.now().difference(time).inMilliseconds}ms");
-            // log("finishXHR : ${DateTime.now().difference(time).inMilliseconds}ms");
-            // time = DateTime.now();
-
-            // 도큐먼트가 완전히 로딩될 때까지 대기
-            await Future.doWhile(() async {
-              if (isFinished) return false;
-              try {
-                var selected = (await controller.evaluateJavascript(
-                    source:
-                        'document.querySelectorAll("table table table table")[12].querySelector("td:nth-child(2) span")?.querySelector("*[value]").value;'));
-                if (selected == null) {
-                  await Future.delayed(const Duration(milliseconds: 100));
-                  return true;
-                }
-                return false;
-              } catch (e) {
-                return true;
-              }
-            });
+            await controller.customLoadPage("https://ecc.ssu.ac.kr/sap/bc/webdynpro/SAP/ZCMB3W0017?sap-language=KO", parentTransaction: transaction);
           }
 
-          // log("xhr count : ${globals.webViewXHRTotalCount}");
-          // log("xhr running count : ${globals.webViewXHRRunningCount}");
-
-          // 학년도 드롭다운(dropdown)에서 학년도 선택
+          // 연도 선택
+          span = transaction.startChild("select_year");
           controller.webViewXHRProgress = XHRProgress.ready;
-          // log("start capture : year");
           bool existXHR = false;
-          await Future.doWhile(() async {
-            if (isFinished) return false;
-            try {
-              var selected = (await controller.evaluateJavascript(
-                  source:
-                      'document.querySelectorAll("table table table table")[12].querySelector("td:nth-child(2) span")?.querySelector("*[value]").value;'));
-              if (selected == null) {
-                await Future.delayed(const Duration(milliseconds: 100));
-                return true;
-              }
-              if (selected?.replaceAll(" ", "") == "${search.year}학년도") return false;
-              if (existXHR) return false;
-              existXHR = true;
+          l1:
+          try {
+            var selected = (await controller.evaluateJavascript(
+                source:
+                    'document.querySelectorAll("table table table table")[12].querySelector("td:nth-child(2) span")?.querySelector("*[value]").value;'));
+            if (selected!.replaceAll(" ", "") == "${search.year}학년도") break l1;
+            existXHR = true;
 
-              if (await controller.evaluateJavascript(source: '''
+            if (await controller.evaluateJavascript(source: '''
               document.evaluate("//span[normalize-space()='닫기']", document, null, XPathResult.ANY_TYPE, null ).iterateNext()
               ''') != null) {
-                await controller.evaluateJavascript(source: '''
+              await controller.evaluateJavascript(source: '''
               document.evaluate("//span[normalize-space()='닫기']", document, null, XPathResult.ANY_TYPE, null ).iterateNext()?.click();
               ''');
-                await controller.waitForSingleXHRRequest();
-                controller.webViewXHRProgress = XHRProgress.ready;
-              }
-
-              await controller.evaluateJavascript(
-                  source: 'document.querySelectorAll("table table table table")[12].querySelector("td:nth-child(2) span").click();');
-              await Future.delayed(const Duration(milliseconds: 100));
-              await controller.evaluateJavascript(source: 'document.querySelector("div[data-itemvalue1=\'${search.year}학년도\']").click();');
-              await Future.delayed(const Duration(milliseconds: 100));
-            } catch (e, s) {
-              // showToast("error : ${e.toString()} (${s.toString()}");
-              log(e.toString());
-              log(s.toString());
+              await controller.waitForSingleXHRRequest();
+              controller.webViewXHRProgress = XHRProgress.ready;
             }
-            return true;
-          });
-          // showToast("select year : ${DateTime.now().difference(time).inMilliseconds}ms");
-          // log("select year : ${DateTime.now().difference(time).inMilliseconds}ms");
-          // time = DateTime.now();
+
+            await controller.evaluateJavascript(
+                source: 'document.querySelectorAll("table table table table")[12].querySelector("td:nth-child(2) span").click();');
+            await Future.delayed(const Duration(milliseconds: 10));
+            await controller.evaluateJavascript(source: 'document.querySelector("div[data-itemvalue1=\'${search.year}학년도\']").click();');
+            await Future.delayed(const Duration(milliseconds: 10));
+          } catch (e, s) {
+            log(e.toString());
+            log(s.toString());
+
+            span.throwable = e;
+            Sentry.captureException(
+              e,
+              stackTrace: s,
+              withScope: (scope) {
+                scope.span = span;
+                scope.level = SentryLevel.error;
+              },
+            );
+            span.finish(status: const SpanStatus.internalError());
+
+            return null;
+          }
+          span.finish(status: const SpanStatus.ok());
 
           if (existXHR) {
+            span = transaction.startChild("select_year_xhr");
             await controller.waitForSingleXHRRequest();
-            // showToast("load year : ${DateTime.now().difference(time).inMilliseconds}ms");
-            // log("load year : ${DateTime.now().difference(time).inMilliseconds}ms");
-            // time = DateTime.now();
+            span.finish(status: const SpanStatus.ok());
           }
 
-          // 학기 드롭다운(dropdown)에서 학기 선택
+          // 학기 선택
+          span = transaction.startChild("select_semester");
           controller.webViewXHRProgress = XHRProgress.ready;
-          // log("start capture : semester");
           existXHR = false;
-          await Future.doWhile(() async {
-            if (isFinished) return false;
-            try {
-              var selected = await controller.evaluateJavascript(
-                  source:
-                      'document.querySelectorAll("table table table table")[12].querySelector("td:nth-child(5) span")?.querySelector("*[value]").value;');
-              if (selected == null) {
-                await Future.delayed(const Duration(milliseconds: 100));
-                return true;
-              }
-              if (selected?.replaceAll(" ", "") == search.semester.name) return false;
-              if (existXHR) return false;
-              existXHR = true;
+          l2:
+          try {
+            var selected = await controller.evaluateJavascript(
+                source:
+                    'document.querySelectorAll("table table table table")[12].querySelector("td:nth-child(5) span")?.querySelector("*[value]").value;');
+            if (selected!.replaceAll(" ", "") == search.semester.name) break l2;
+            existXHR = true;
 
-              if (await controller.evaluateJavascript(source: '''
+            if (await controller.evaluateJavascript(source: '''
               document.evaluate("//span[normalize-space()='닫기']", document, null, XPathResult.ANY_TYPE, null ).iterateNext()
               ''') != null) {
-                await controller.evaluateJavascript(source: '''
+              await controller.evaluateJavascript(source: '''
               document.evaluate("//span[normalize-space()='닫기']", document, null, XPathResult.ANY_TYPE, null ).iterateNext()?.click();
               ''');
-                await controller.waitForSingleXHRRequest();
-                controller.webViewXHRProgress = XHRProgress.ready;
-              }
-
-              await controller.evaluateJavascript(
-                  source: 'document.querySelectorAll("table table table table")[12].querySelector("td:nth-child(5) span").click();');
-              await Future.delayed(const Duration(milliseconds: 100));
-              await controller.evaluateJavascript(
-                  source:
-                      'document.querySelector("div div div div:nth-child(3) div div:nth-child(2) div:nth-child(2) div div div:nth-child(${search.semester.webIndex})").click();');
-              await Future.delayed(const Duration(milliseconds: 100));
-            } catch (e, s) {
-              // showToast("error : ${e.toString()} (${s.toString()}");
-              log(e.toString());
-              log(s.toString());
+              await controller.waitForSingleXHRRequest();
+              controller.webViewXHRProgress = XHRProgress.ready;
             }
-            return true;
-          });
-          // showToast("select sem : ${DateTime.now().difference(time).inMilliseconds}ms");
-          // log("select sem : ${DateTime.now().difference(time).inMilliseconds}ms");
-          // time = DateTime.now();
 
-          // 현재 학기 정보가 모두 로딩될 때까지 대기
+            await controller.evaluateJavascript(
+                source: 'document.querySelectorAll("table table table table")[12].querySelector("td:nth-child(5) span").click();');
+            await Future.delayed(const Duration(milliseconds: 10));
+            await controller.evaluateJavascript(
+                source:
+                    'document.querySelector("div div div div:nth-child(3) div div:nth-child(2) div:nth-child(2) div div div:nth-child(${search.semester.webIndex})").click();');
+            await Future.delayed(const Duration(milliseconds: 10));
+          } catch (e, s) {
+            log(e.toString());
+            log(s.toString());
+
+            span.throwable = e;
+            Sentry.captureException(
+              e,
+              stackTrace: s,
+              withScope: (scope) {
+                scope.span = span;
+                scope.level = SentryLevel.error;
+              },
+            );
+            span.finish(status: const SpanStatus.internalError());
+
+            return null;
+          }
+          span.finish(status: const SpanStatus.ok());
+
           if (existXHR) {
+            span = transaction.startChild("select_semester_xhr");
             await controller.waitForSingleXHRRequest();
-            // showToast("load sem : ${DateTime.now().difference(time).inMilliseconds}ms");
-            // log("load sem : ${DateTime.now().difference(time).inMilliseconds}ms");
-            // time = DateTime.now();
+            span.finish(status: const SpanStatus.ok());
           }
 
-          dynamic temp = "";
-          await Future.any([
-            Future.doWhile(() async {
-              if (isFinished) return false;
-              try {
-                temp = await controller.evaluateJavascript(source: '''
+          span = transaction.startChild("get_grade");
+          dynamic temp = await controller.evaluateJavascript(source: '''
                 JSON.stringify(
                   Array(...document.querySelectorAll(`table tr table tr table tr:nth-child(11) td table table table table tbody:nth-child(2) tr`))
                     .slice(1).map(element => [
@@ -210,26 +178,13 @@ class SingleGrade extends CrawlingTask<SemesterSubjects?> {
                   )
                 );
               ''');
+          span.finish(status: const SpanStatus.ok());
 
-                temp ??= "";
-                temp = temp.trim();
-                return temp.isEmpty;
-              } catch (e, stacktrace) {
-                log(e.toString());
-                log(stacktrace.toString());
-                await Future.delayed(const Duration(milliseconds: 100));
-                return true;
-              }
-            }),
-            Future.delayed(const Duration(seconds: 5))
-          ]);
-          // showToast("finish : ${DateTime.now().difference(time).inMilliseconds}ms");
-          // log("finish : ${DateTime.now().difference(time).inMilliseconds}ms");
-          // time = DateTime.now();
-
+          span = transaction.startChild("get_rank");
           Ranking semesterRanking = Ranking(0, 0), totalRanking = Ranking(0, 0);
+          l3:
           try {
-            String temp = await controller.evaluateJavascript(source: '''
+            String? temp = await controller.evaluateJavascript(source: '''
             JSON.stringify(
               Array(
                 ...document.querySelectorAll("table tbody tr td table tbody tr td table tbody tr:nth-child(4) table tr table tbody tr table tbody td:nth-child(1) table tbody tr")
@@ -242,12 +197,28 @@ class SingleGrade extends CrawlingTask<SemesterSubjects?> {
               ])[0]
             );
             ''');
+            if (temp == null) break l3;
 
             var json = jsonDecode(temp);
             semesterRanking = Ranking.parse(json[0]);
             totalRanking = Ranking.parse(json[1]);
-          } catch (e) {}
+          } catch (e, s) {
+            span.throwable = e;
+            Sentry.captureException(
+              e,
+              stackTrace: s,
+              withScope: (scope) {
+                scope.span = span;
+                scope.level = SentryLevel.error;
+              },
+            );
+            span.finish(status: const SpanStatus.internalError());
 
+            return null;
+          }
+          span.finish(status: semesterRanking.isEmpty || totalRanking.isEmpty ? const SpanStatus.unavailable() : const SpanStatus.ok());
+
+          span = transaction.startChild("finalizing_data");
           temp = jsonDecode(temp);
 
           SemesterSubjects result = SemesterSubjects(SplayTreeMap(), semesterRanking, totalRanking, search);
@@ -255,6 +226,7 @@ class SingleGrade extends CrawlingTask<SemesterSubjects?> {
             var data = Subject(obj[0], obj[1], double.parse(obj[2]), obj[3], obj[4], "", false, Subject.STATE_SEMESTER);
             result.subjects[data.code] = data;
           }
+          span.finish(status: const SpanStatus.ok());
 
           return result;
         }),
@@ -264,14 +236,21 @@ class SingleGrade extends CrawlingTask<SemesterSubjects?> {
       log(e.toString());
       log(stacktrace.toString());
 
+      transaction.throwable = e;
       Sentry.captureException(
         e,
         stackTrace: stacktrace,
+        withScope: (scope) {
+          scope.span = transaction;
+          scope.level = SentryLevel.error;
+        },
       );
 
       return null;
     } finally {
       isFinished = true;
+      transaction.status = result != null ? const SpanStatus.ok() : const SpanStatus.internalError();
+      transaction.finish();
     }
 
     return result;
