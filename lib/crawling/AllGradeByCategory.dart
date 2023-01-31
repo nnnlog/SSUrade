@@ -30,8 +30,6 @@ class AllGradeByCategory extends CrawlingTask<SemesterSubjectsManager?> {
 
   @override
   Future<SemesterSubjectsManager?> internalExecute(InAppWebViewController controller) async {
-    bool isFinished = false;
-
     final transaction = parentTransaction == null ? Sentry.startTransaction('AllGradeByCategory', task_id) : parentTransaction!.startChild(task_id);
     late ISentrySpan span;
 
@@ -123,7 +121,6 @@ class AllGradeByCategory extends CrawlingTask<SemesterSubjectsManager?> {
 
       return null;
     } finally {
-      isFinished = true;
       transaction.status = result != null ? const SpanStatus.ok() : const SpanStatus.internalError();
       await transaction.finish();
     }

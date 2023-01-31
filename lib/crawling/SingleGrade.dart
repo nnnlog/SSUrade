@@ -34,8 +34,6 @@ class SingleGrade extends CrawlingTask<SemesterSubjects?> {
 
   @override
   Future<SemesterSubjects?> internalExecute(InAppWebViewController controller) async {
-    bool isFinished = false;
-
     final transaction = parentTransaction == null ? Sentry.startTransaction('SingleGrade', task_id) : parentTransaction!.startChild(task_id);
     late ISentrySpan span;
 
@@ -82,9 +80,9 @@ class SingleGrade extends CrawlingTask<SemesterSubjects?> {
 
             await controller.evaluateJavascript(
                 source: 'document.querySelectorAll("table table table table")[12].querySelector("td:nth-child(2) span").click();');
-            await Future.delayed(const Duration(milliseconds: 10));
+            // await Future.delayed(const Duration(milliseconds: 10));
             await controller.evaluateJavascript(source: 'document.querySelector("div[data-itemvalue1=\'${search.year}학년도\']").click();');
-            await Future.delayed(const Duration(milliseconds: 10));
+            // await Future.delayed(const Duration(milliseconds: 10));
           } catch (e, s) {
             log(e.toString());
             log(s.toString());
@@ -134,11 +132,11 @@ class SingleGrade extends CrawlingTask<SemesterSubjects?> {
 
             await controller.evaluateJavascript(
                 source: 'document.querySelectorAll("table table table table")[12].querySelector("td:nth-child(5) span").click();');
-            await Future.delayed(const Duration(milliseconds: 10));
+            // await Future.delayed(const Duration(milliseconds: 10));
             await controller.evaluateJavascript(
                 source:
                     'document.querySelector("div div div div:nth-child(3) div div:nth-child(2) div:nth-child(2) div div div:nth-child(${search.semester.webIndex})").click();');
-            await Future.delayed(const Duration(milliseconds: 10));
+            // await Future.delayed(const Duration(milliseconds: 10));
           } catch (e, s) {
             log(e.toString());
             log(s.toString());
@@ -248,7 +246,6 @@ class SingleGrade extends CrawlingTask<SemesterSubjects?> {
 
       return null;
     } finally {
-      isFinished = true;
       transaction.status = result != null ? const SpanStatus.ok() : const SpanStatus.internalError();
       transaction.finish();
     }

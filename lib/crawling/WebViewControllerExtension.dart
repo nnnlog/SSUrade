@@ -127,8 +127,7 @@ extension WebViewControllerExtension on InAppWebViewController {
   waitForSingleXHRRequest() async {
     await Future.any([
       Future.doWhile(() async {
-        // if (isFinished) return false;
-        await Future.delayed(const Duration(milliseconds: 10));
+        await Future.delayed(const Duration(milliseconds: 1));
         return webViewXHRProgress != XHRProgress.finish;
       }),
       Future.delayed(const Duration(seconds: 5))
