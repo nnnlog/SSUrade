@@ -1,13 +1,14 @@
 # ssurade
-SSUrade : 숭실대학교 학점 조회 애플리케이션
+SSUrade : 숭실대학교 성적/학점 조회 애플리케이션
 
 ## Installation
 * [Play Store](https://play.google.com/store/apps/details?id=com.nnnlog.ssurade)
 * [Github Release](https://github.com/nnnlog/ssurade/releases)
 
-## Build
+## Build Instruction (for Android only)
 ### Set signing key
-* Put your key file as `key/nlog.jks`
+* Put your `key.properties` in `android/` directory.
+* If you don't have your own `key.properties`, you can copy and paste of auto-generated `android/local.properties`.
 
 ### Analytics (Firebase)
 #### Init
@@ -25,7 +26,7 @@ adb shell setprop debug.firebase.analytics.app com.nnnlog.ssurade
 adb shell setprop debug.firebase.analytics.app .none.
 ```
 
-### Build for Android
+### Build
 ```shell
 flutter pub run build_runner build
 flutter build apk
