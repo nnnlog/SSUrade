@@ -73,28 +73,28 @@ class _MainPageState extends State<MainPage> {
             globals.analytics.logEvent(name: "login", parameters: {"auto_login": "true"});
           }
         });
+
+        Crawler.allGrade(base: globals.semesterSubjectsManager).execute().then((value) {
+          // base가 주어져도 grade by category가 overwrite하도록 바꿔야 함
+          if (value == null) return;
+          bool update = false;
+          for (var key in value.data.keys) {
+            if (!globals.semesterSubjectsManager.data.containsKey(key)) {
+              update = true;
+              globals.semesterSubjectsManager.data[key] = value.data[key]!;
+            }
+          }
+
+          if (update) {
+            showToast("새로운 학기 성적을 찾았습니다.");
+            globals.newGradeFoundEvent.broadcast();
+          }
+        });
       }
 
       fetchAppVersion().then((value) {
         if (value.item2 != "") {
           showToast("새로운 버전 v${value.item2}(으)로 업데이트할 수 있습니다.");
-        }
-      });
-
-      Crawler.allGrade(base: globals.semesterSubjectsManager).execute().then((value) {
-        // base가 주어져도 grade by category가 overwrite하도록 바꿔야 함
-        if (value == null) return;
-        bool update = false;
-        for (var key in value.data.keys) {
-          if (!globals.semesterSubjectsManager.data.containsKey(key)) {
-            update = true;
-            globals.semesterSubjectsManager.data[key] = value.data[key]!;
-          }
-        }
-
-        if (update) {
-          showToast("새로운 학기 성적을 찾았습니다.");
-          globals.newGradeFoundEvent.broadcast();
         }
       });
     })();
@@ -103,8 +103,7 @@ class _MainPageState extends State<MainPage> {
   @override
   Widget build(BuildContext context) {
     return Stack(
-      children: List.filled(webViewCount, null).map<Widget>((e) => BackgroundWebView(_webViewInitialized)).toList() +
-          <Widget>[
+      children: List.filled(webViewCount, null).map<Widget>((e) => BackgroundWebView(_webViewInitialized)).toList() + <Widget>[
             Scaffold(
               appBar: customAppBar("숭실대학교 성적/학점 조회"),
               body: Padding(
