@@ -70,9 +70,6 @@ class AllGradeByCategory extends CrawlingTask<SemesterSubjectsManager?> {
           await com2.future; // 페이지 리다이렉션 후 xhr 요청이 완료될 때까지 기다린다.
 
           var gradeData = await extractDataFromViewer(controller, parentTransaction: transaction);
-          if (gradeData == null) {
-            throw Exception("extractDataFromViewer returns null");
-          }
 
           span = transaction.startChild("finalizing_data");
           var tmp = SemesterSubjectsManager(SplayTreeMap());

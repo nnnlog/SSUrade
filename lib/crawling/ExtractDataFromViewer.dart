@@ -31,13 +31,15 @@ List<DataFrame> _parse(String raw) {
   return ret;
 }
 
-Future<DataFrame?> extractDataFromViewer(InAppWebViewController controller, {ISentrySpan? parentTransaction}) async {
-  if (!(await controller.getUrl()).toString().startsWith("https://office.ssu.ac.kr/")) return null;
+Future<DataFrame> extractDataFromViewer(InAppWebViewController controller, {ISentrySpan? parentTransaction}) async {
+  if (!(await controller.getUrl()).toString().startsWith("https://office.ssu.ac.kr/")) throw Exception("webview is not viewer, current url is ${(await controller.getUrl()).toString()}");
   var transaction = parentTransaction?.startChild("get_data_from_viewer");
   late ISentrySpan? span;
   DataFrame ret = DataFrame();
   try {
-    if (await controller.evaluateJavascript(source: """document.querySelector("input[tabindex='4']")""") == null) return null;
+    while (await controller.evaluateJavascript(source: """document.querySelector("input[tabindex='4']")""") == null) {
+      await Future.delayed(const Duration(milliseconds: 10));
+    }
 
     span = transaction?.startChild("click_export_btn");
     await controller.evaluateJavascript(source: """document.querySelector("input[tabindex='4']").click()""");
