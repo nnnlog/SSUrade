@@ -55,3 +55,6 @@ app.*.map.json
 # keystore information
 /key/
 /android/key.properties
+
+# debug symbols
+/debug/

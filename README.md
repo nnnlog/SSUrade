@@ -29,5 +29,11 @@ adb shell setprop debug.firebase.analytics.app .none.
 ### Build
 ```shell
 flutter pub run build_runner build
-flutter build apk
+flutter build apk --obfuscate --split-debug-info=./debug/
+flutter build appbundle --obfuscate --split-debug-info=./debug/
+```
+
+### (Optional) Upload debug symbols to Sentry
+```shell
+SENTRY_AUTH_TOKEN=<token> SENTRY_ORG=<org> SENTRY_PROJECT=<project name> flutter packages pub run sentry_dart_plugin
 ```
