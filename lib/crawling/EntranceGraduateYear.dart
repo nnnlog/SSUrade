@@ -37,6 +37,11 @@ class EntranceGraduateYear extends CrawlingTask<Tuple2<String, String>?> {
 
           span = transaction.startChild("get_data");
           try {
+            while (await controller.evaluateJavascript(
+                source:
+                'document.querySelectorAll("table tr div div:nth-child(1) span span:nth-child(2) tbody:nth-child(2) tr td span span table tbody tr:nth-child(1) td:nth-child(1) table tr table tr:nth-child(1) td:nth-child(2) span input")[0].value;') == null) {
+              await Future.delayed(Duration.zero);
+            }
             String? entrance = await controller.evaluateJavascript(
                 source:
                     'document.querySelectorAll("table tr div div:nth-child(1) span span:nth-child(2) tbody:nth-child(2) tr td span span table tbody tr:nth-child(1) td:nth-child(1) table tr table tr:nth-child(1) td:nth-child(2) span input")[0].value;');
