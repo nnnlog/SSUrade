@@ -10,8 +10,7 @@ SSUrade : 숭실대학교 성적/학점 조회 애플리케이션
 * Put your `key.properties` in `android/` directory.
 * If you don't have your own `key.properties`, you can copy and paste of auto-generated `android/local.properties`.
 
-### Analytics (Firebase)
-#### Init
+### Setup Analytics (Firebase)
 ```shell
 flutterfire configure --project=<Firbase project id>
 ```
@@ -36,4 +35,15 @@ flutter build appbundle --obfuscate --split-debug-info=./debug/
 ### (Optional) Upload debug symbols to Sentry
 ```shell
 SENTRY_AUTH_TOKEN=<token> SENTRY_ORG=<org> SENTRY_PROJECT=<project name> flutter packages pub run sentry_dart_plugin
+```
+
+## Debug using Analytics (Firebase)
+### Debug (Start)
+```shell
+adb shell setprop debug.firebase.analytics.app com.nnnlog.ssurade
+```
+
+### Debug (End)
+```shell
+adb shell setprop debug.firebase.analytics.app .none.
 ```
