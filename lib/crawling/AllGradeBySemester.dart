@@ -53,11 +53,13 @@ class AllGradeBySemester extends CrawlingTask<SemesterSubjectsManager?> {
             for (var semester in Semester.values) {
               if (isFinished) return null;
               YearSemester key = YearSemester(i, semester);
-              result!.data[key] = (await Crawler.singleGrade(
+              var tmp = await Crawler.singleGrade(
                 key,
                 reloadPage: false,
                 parentTransaction: transaction,
-              ).directExecute(controller))!;
+              ).directExecute(controller);
+              if (tmp == null) throw Exception("single grade returns null");
+              result!.data[key] = tmp;
 
               if (result!.data[key]?.subjects.isEmpty == true) {
                 result!.data.remove(key);

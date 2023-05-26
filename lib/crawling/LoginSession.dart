@@ -147,10 +147,12 @@ class LoginSession extends CrawlingTask<bool> {
               span.finish(status: const SpanStatus.ok());
 
               span = transaction.startChild("wait_redirection");
-              while (!fail && (await controller.getUrl()).toString().startsWith("https://smartid.ssu.ac.kr/")) {
-                await Future.delayed(const Duration(milliseconds: 10));
+              while (!fail && !(await controller.getUrl()).toString().startsWith("https://saint.ssu.ac.kr/irj/portal")) {
+                await Future.delayed(Duration.zero);
               }
               span.finish(status: fail ? const SpanStatus.cancelled() : const SpanStatus.ok());
+
+              await controller.customLoadPage("https://ecc.ssu.ac.kr/sap/bc/webdynpro/SAP/ZCMW0000?sap-language=KO", xhr: false); // loads any page
 
               return !fail;
             }),
