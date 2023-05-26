@@ -38,13 +38,13 @@ Future<DataFrame> extractDataFromViewer(InAppWebViewController controller, {ISen
   DataFrame ret = DataFrame();
   try {
     while (await controller.evaluateJavascript(source: """document.querySelector("input[tabindex='4']")""") == null) {
-      await Future.delayed(const Duration(milliseconds: 10));
+      await Future.delayed(Duration.zero);
     }
 
     span = transaction?.startChild("click_export_btn");
     await controller.evaluateJavascript(source: """document.querySelector("input[tabindex='4']").click()""");
     while (await controller.evaluateJavascript(source: """document.querySelectorAll("select").length""") < 3) {
-      await Future.delayed(const Duration(milliseconds: 10));
+      await Future.delayed(Duration.zero);
     }
     span?.finish(status: const SpanStatus.ok());
 

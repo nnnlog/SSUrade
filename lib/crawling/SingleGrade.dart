@@ -62,6 +62,9 @@ class SingleGrade extends CrawlingTask<SemesterSubjects?> {
           bool existXHR = false;
           l1:
           try {
+            while (await controller.evaluateJavascript(source: """document.querySelectorAll("table table table table")[12].querySelector("td:nth-child(2) span")?.querySelector("*[value]").value;""") == null) {
+              await Future.delayed(Duration.zero);
+            }
             var selected = (await controller.evaluateJavascript(
                 source:
                     'document.querySelectorAll("table table table table")[12].querySelector("td:nth-child(2) span")?.querySelector("*[value]").value;'));
@@ -114,6 +117,9 @@ class SingleGrade extends CrawlingTask<SemesterSubjects?> {
           existXHR = false;
           l2:
           try {
+            while (await controller.evaluateJavascript(source: """document.querySelectorAll("table table table table")[12].querySelector("td:nth-child(5) span")?.querySelector("*[value]").value;""") == null) {
+              await Future.delayed(Duration.zero);
+            }
             var selected = await controller.evaluateJavascript(
                 source:
                     'document.querySelectorAll("table table table table")[12].querySelector("td:nth-child(5) span")?.querySelector("*[value]").value;');
