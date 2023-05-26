@@ -98,9 +98,10 @@ class LoginSession extends CrawlingTask<bool> {
   Future<bool> internalExecute(InAppWebViewController controller) async {
     if (isLogin) return true;
     if (_future != null) {
+      var tmp = _future!;
       return Future(() async {
         final transaction = parentTransaction == null ? null : parentTransaction!.startChild("${task_id}_share");
-        var res = await _future!;
+        var res = await tmp;
         transaction?.finish(status: res ? const SpanStatus.ok() : const SpanStatus.unauthenticated());
         return res;
       });
