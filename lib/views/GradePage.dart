@@ -3,6 +3,7 @@ import 'package:image_gallery_saver/image_gallery_saver.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:screenshot/screenshot.dart';
 import 'package:ssurade/components/CustomAppBar.dart';
+import 'package:ssurade/components/GradeLogo.dart';
 import 'package:ssurade/components/GradePageHeader.dart';
 import 'package:ssurade/components/SubjectWidget.dart';
 import 'package:ssurade/crawling/Crawler.dart';
@@ -119,6 +120,23 @@ class _GradePageState extends State<GradePage> {
 
       setState(() {
         _semesterSubjects = globals.semesterSubjectsManager.data.values.last;
+
+        // 계절학기 수강 신청이 시작되면 본학기 성적 입력 기간이더라도 계절학기 성적도 함께 보임
+        for (var data in globals.semesterSubjectsManager.data.values) {
+          bool unknownGrade = false;
+          for (var subject in data.subjects.values) {
+            if (GradeLogo.parse(subject.grade) == GradeLogo.unknown) { // TODO: remove dependency related to widget
+              unknownGrade = true;
+              break;
+            }
+          }
+
+          if (unknownGrade) {
+            _semesterSubjects = data;
+            break;
+          }
+        }
+
         _progress = GradeProgress.finish;
       });
 
@@ -139,14 +157,15 @@ class _GradePageState extends State<GradePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: customAppBar("학기별 성적 조회"),
+      backgroundColor: globals.isLightMode ? (_progress == GradeProgress.init ? null : const Color.fromRGBO(241, 242, 245, 1)) : null,
       body: _progress == GradeProgress.init
-          ? Padding(
-              padding: const EdgeInsets.all(30),
+          ? const Padding(
+              padding: EdgeInsets.all(30),
               child: Center(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
-                  children: const [
+                  children: [
                     LinearProgressIndicator(),
                     SizedBox(
                       width: 1,

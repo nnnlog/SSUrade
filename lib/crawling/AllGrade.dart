@@ -25,13 +25,14 @@ class AllGrade {
     span = transaction.startChild("get_grade_info");
     List<Future<SemesterSubjectsManager?>> wait = [];
     wait.add(Crawler.allGradeByCategory(parentTransaction: span).execute());
-    if (base == null) {
+    // TODO: 이수구분별 성적표 조회가 상당히 느림
+    // if (base == null) {
       wait.add(Crawler.allGradeBySemester(parentTransaction: span).execute());
-    } else {
-      wait.add(Future(() {
-        return base;
-      }));
-    }
+    // } else {
+    //   wait.add(Future(() {
+    //     return base;
+    //   }));
+    // }
 
     var ret = (await Future.wait(wait)).whereType<SemesterSubjectsManager>().toList(); // remove null
     span.finish(status: const SpanStatus.ok());
@@ -48,19 +49,19 @@ class AllGrade {
     }
     span.finish(status: const SpanStatus.ok());
 
-    if (base != null) {
-      span = transaction.startChild("get_more_grade_info");
-      List<Future<SemesterSubjects?>> wait2 = [];
-      for (var subjects in result.getIncompleteSemester()) {
-        wait2.add(Crawler.singleGrade(subjects.currentSemester, reloadPage: false, parentTransaction: transaction).execute());
-      }
-
-      for (var element in (await Future.wait(wait2))) {
-        if (element == null) continue;
-        result.data[element.currentSemester]!.merge(element);
-      }
-      span.finish(status: const SpanStatus.ok());
-    }
+    // if (base != null) {
+    //   span = transaction.startChild("get_more_grade_info");
+    //   List<Future<SemesterSubjects?>> wait2 = [];
+    //   for (var subjects in result.getIncompleteSemester()) {
+    //     wait2.add(Crawler.singleGrade(subjects.currentSemester, reloadPage: false, parentTransaction: transaction).execute());
+    //   }
+    //
+    //   for (var element in (await Future.wait(wait2))) {
+    //     if (element == null) continue;
+    //     result.data[element.currentSemester]!.merge(element);
+    //   }
+    //   span.finish(status: const SpanStatus.ok());
+    // }
 
     result.cleanup();
     transaction.finish(status: const SpanStatus.ok());
