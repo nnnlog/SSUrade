@@ -80,9 +80,31 @@ class _GradePageState extends State<GradePage> {
     _refreshController.refreshCompleted();
   }
 
+  SemesterSubjects getMainSemester() {
+    var ret = globals.semesterSubjectsManager.data.values.last;
+
+    // 계절학기 수강 신청이 시작되면 본학기 성적 입력 기간이더라도 계절학기 성적도 함께 보임
+    for (var data in globals.semesterSubjectsManager.data.values) {
+      bool unknownGrade = false;
+      for (var subject in data.subjects.values) {
+        if (GradeLogo.parse(subject.grade) == GradeLogo.unknown) { // TODO: remove dependency related to widget
+          unknownGrade = true;
+          break;
+        }
+      }
+
+      if (unknownGrade) {
+        ret = data;
+        break;
+      }
+    }
+
+    return ret;
+  }
+
   void newGradeFoundEventHandler(_) {
     setState(() {
-      _semesterSubjects = globals.semesterSubjectsManager.data.values.last;
+      _semesterSubjects = getMainSemester();
     });
   }
 
@@ -119,24 +141,7 @@ class _GradePageState extends State<GradePage> {
       }
 
       setState(() {
-        _semesterSubjects = globals.semesterSubjectsManager.data.values.last;
-
-        // 계절학기 수강 신청이 시작되면 본학기 성적 입력 기간이더라도 계절학기 성적도 함께 보임
-        for (var data in globals.semesterSubjectsManager.data.values) {
-          bool unknownGrade = false;
-          for (var subject in data.subjects.values) {
-            if (GradeLogo.parse(subject.grade) == GradeLogo.unknown) { // TODO: remove dependency related to widget
-              unknownGrade = true;
-              break;
-            }
-          }
-
-          if (unknownGrade) {
-            _semesterSubjects = data;
-            break;
-          }
-        }
-
+        _semesterSubjects = getMainSemester();
         _progress = GradeProgress.finish;
       });
 

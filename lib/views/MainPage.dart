@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' show rootBundle;
@@ -9,6 +10,7 @@ import 'package:ssurade/components/CustomAppBar.dart';
 import 'package:ssurade/crawling/Crawler.dart';
 import 'package:ssurade/globals.dart' as globals;
 import 'package:ssurade/types/Progress.dart';
+import 'package:ssurade/types/Semester.dart';
 import 'package:ssurade/utils/toast.dart';
 import 'package:ssurade/utils/update.dart';
 
@@ -77,16 +79,29 @@ class _MainPageState extends State<MainPage> {
         Crawler.allGrade(base: globals.semesterSubjectsManager).execute().then((value) {
           // base가 주어져도 grade by category가 overwrite하도록 바꿔야 함
           if (value == null) return;
-          bool update = false;
+          bool foundNewSemester = false;
+          String newSemester = "";
+          bool foundUpdatedGradeData = false;
+          String updatedSemester = "";
           for (var key in value.data.keys) {
             if (!globals.semesterSubjectsManager.data.containsKey(key)) {
-              update = true;
-              globals.semesterSubjectsManager.data[key] = value.data[key]!;
+              foundNewSemester = true;
+              newSemester = "${key.year}학년도 ${key.semester.name}";
+              break;
+            } else if (jsonEncode(globals.semesterSubjectsManager.data[key]?.toJson()) != jsonEncode(value.data[key]?.toJson())) {
+              foundUpdatedGradeData = true;
+              updatedSemester = "${key.year}학년도 ${key.semester.name}";
             }
           }
 
-          if (update) {
-            showToast("새로운 학기 성적을 찾았습니다.");
+          globals.semesterSubjectsManager = value;
+          globals.semesterSubjectsManager.saveFile();
+
+          if (foundNewSemester) {
+            showToast("새로운 학기($newSemester) 성적을 찾았습니다.");
+            globals.newGradeFoundEvent.broadcast();
+          } else if (foundUpdatedGradeData) {
+            showToast("해당 학기($updatedSemester) 성적에 변경 사항이 있습니다.");
             globals.newGradeFoundEvent.broadcast();
           }
         });
