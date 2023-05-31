@@ -54,11 +54,11 @@ class AllGradeByCategory extends CrawlingTask<SemesterSubjectsManager?> {
             })();
           };
 
+          span = transaction.startChild("click_print_btn");
           while (await controller.evaluateJavascript(source: """
               document.evaluate("//span[normalize-space()='이수구분별 성적현황 출력 인쇄']", document, null, XPathResult.ANY_TYPE, null ).iterateNext();
             """) == null) {
           }
-          span = transaction.startChild("click_print_btn");
           controller.webViewXHRProgress = XHRProgress.ready;
           await controller.evaluateJavascript(source: """
               document.evaluate("//span[normalize-space()='이수구분별 성적현황 출력 인쇄']", document, null, XPathResult.ANY_TYPE, null ).iterateNext().click();

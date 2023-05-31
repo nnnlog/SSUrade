@@ -37,18 +37,18 @@ Future<DataFrame> extractDataFromViewer(InAppWebViewController controller, {ISen
   late ISentrySpan? span;
   DataFrame ret = DataFrame();
   try {
+    span = transaction?.startChild("click_export_btn");
     while (await controller.evaluateJavascript(source: """document.querySelector("input[tabindex='4']")""") == null) {
       await Future.delayed(Duration.zero);
     }
 
-    span = transaction?.startChild("click_export_btn");
     await controller.evaluateJavascript(source: """document.querySelector("input[tabindex='4']").click()""");
-    while (await controller.evaluateJavascript(source: """document.querySelectorAll("select").length""") < 3) {
-      await Future.delayed(Duration.zero);
-    }
     span?.finish(status: const SpanStatus.ok());
 
     span = transaction?.startChild("change_export_setting");
+    while (await controller.evaluateJavascript(source: """document.querySelectorAll("select").length""") < 3) {
+      await Future.delayed(Duration.zero);
+    }
     await controller.evaluateJavascript(source: """document.querySelectorAll("select")[1].selectedIndex = 6""");
     await controller.evaluateJavascript(source: """document.querySelectorAll("select")[1].dispatchEvent(new Event('change'))""");
     await controller
