@@ -15,16 +15,6 @@ SSUrade : 숭실대학교 성적/학점 조회 애플리케이션
 flutterfire configure --project=<Firbase project id>
 ```
 
-#### Debug (Start)
-```shell
-adb shell setprop debug.firebase.analytics.app com.nnnlog.ssurade
-```
-
-#### Debug (End)
-```shell
-adb shell setprop debug.firebase.analytics.app .none.
-```
-
 ### Build
 ```shell
 flutter pub run build_runner build
@@ -36,6 +26,9 @@ flutter build appbundle --obfuscate --split-debug-info=./debug/
 ```shell
 SENTRY_AUTH_TOKEN=<token> SENTRY_ORG=<org> SENTRY_PROJECT=<project name> flutter packages pub run sentry_dart_plugin
 ```
+
+### Native Debug Symbols Location (used in Play Console)
+* Found in `buld/app/intermediates/merged_naive_libs/release/out/lib/`
 
 ## Debug using Analytics (Firebase)
 ### Debug (Start)
