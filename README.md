@@ -28,7 +28,7 @@ SENTRY_AUTH_TOKEN=<token> SENTRY_ORG=<org> SENTRY_PROJECT=<project name> flutter
 ```
 
 ### Native Debug Symbols Location (used in Play Console)
-* Found in `buld/app/intermediates/merged_naive_libs/release/out/lib/`
+* Found in `build/app/intermediates/merged_native_libs/release/out/lib/`
 
 ## Debug using Analytics (Firebase)
 ### Debug (Start)

@@ -58,3 +58,6 @@ app.*.map.json
 
 # debug symbols
 /debug/
+
+# build scripts
+/build.sh
