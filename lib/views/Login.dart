@@ -53,7 +53,9 @@ class _LoginPageState extends State<LoginPage> {
                 TextButton(
                   onPressed: () async {
                     if (lockLoginButton) return;
-                    lockLoginButton = true;
+                    setState(() {
+                      lockLoginButton = true;
+                    });
 
                     var session = Crawler.loginSession();
                     session.id = idController.text;
@@ -72,12 +74,14 @@ class _LoginPageState extends State<LoginPage> {
                     }
                     session.saveFile();
 
-                    lockLoginButton = false;
+                    setState(() {
+                      lockLoginButton = false;
+                    });
                   },
                   style: TextButton.styleFrom(
                     minimumSize: const Size.fromHeight(40),
                   ),
-                  child: const Text("로그인"),
+                  child: Text(lockLoginButton ? "로그인하는 중..." : "로그인"),
                 ),
               ],
             ),
