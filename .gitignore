@@ -61,3 +61,4 @@ app.*.map.json
 
 # build scripts
 /build.sh
+/dist/
