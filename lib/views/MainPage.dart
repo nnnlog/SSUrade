@@ -79,6 +79,7 @@ class _MainPageState extends State<MainPage> {
         Crawler.allGrade(base: globals.semesterSubjectsManager).execute().then((value) {
           // base가 주어져도 grade by category가 overwrite하도록 바꿔야 함
           if (value == null) return;
+          if (value.isEmpty == null) return;
           bool foundNewSemester = false;
           String newSemester = "";
           bool foundUpdatedGradeData = false;
