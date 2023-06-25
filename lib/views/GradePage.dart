@@ -49,7 +49,7 @@ class _GradePageState extends State<GradePage> {
 
     showToast("${search.year}학년도 ${search.semester.name} 성적을 불러옵니다.");
 
-    SemesterSubjects? data = (await Crawler.singleGrade(search).execute());
+    SemesterSubjects? data = (await Crawler.singleGrade(search, reloadPage: true).execute());
 
     if (data != null) {
       globals.semesterSubjectsManager.data[search]!.merge(data);

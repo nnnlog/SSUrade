@@ -48,9 +48,14 @@ class Subject extends Comparable<Subject> {
   bool get isMajor => category.startsWith("전공");
 
   Subject merge(Subject other) {
+    // 학기별 성적 조회 페이지
     if (other.name.isNotEmpty) name = other.name;
     if (other.professor.isNotEmpty) professor = other.professor;
+    if (other.grade.isNotEmpty) grade = other.grade; // 성적 입력 기간
+
+    // 이수구분별 성적 조회 페이지
     if (other.category.isNotEmpty) category = other.category;
+
     isPassFail |= other.isPassFail;
     _state |= other._state;
 

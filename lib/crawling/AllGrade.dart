@@ -63,7 +63,7 @@ class AllGrade {
     //   span.finish(status: const SpanStatus.ok());
     // }
 
-    result.cleanup();
+    // result.cleanup();
     transaction.finish(status: const SpanStatus.ok());
 
     var end = DateTime.now();
