@@ -172,7 +172,11 @@ class SingleGrade extends CrawlingTask<SemesterSubjects?> {
           dynamic temp = await controller.evaluateJavascript(source: '''
                 JSON.stringify(
                   Array(...document.querySelectorAll(`table tr table tr table tr:nth-child(11) td table table table table tbody:nth-child(2) tr`))
-                    .slice(1).filter(element => element.querySelector(`td:nth-child(4) span span`) !== null).map(element => [
+                    .slice(1)
+                    .filter(element => element.querySelector(`td:nth-child(4) span span`) !== null)
+                    .filter(element => element.querySelector(`td:nth-child(2) span span`).textContent === "${search.year}학년도")
+                    .filter(element => element.querySelector(`td:nth-child(3) span span`).textContent.replace(/ /g, "") === "${search.semester.name}")
+                    .map(element => [
                       element.querySelector(`td:nth-child(4) span span`).textContent.trim(), // 과목 번호
                       element.querySelector(`td:nth-child(5) span span`).textContent.trim(), // 과목명
                       element.querySelector(`td:nth-child(6) span span`).textContent.trim(), // 학점 (이수 단위)

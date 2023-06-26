@@ -92,6 +92,7 @@ class SemesterSubjects {
       double? score = gradeTable[data.grade];
       if (score == null) continue; // not available
       if (data.isPassFail) continue; // Pass/Fail subject
+      if (data.grade == "P") continue; // Pass subject (이수구분별 성적표 미작동 시)
       totalGrade += score * data.credit; // Fail subject's weight(score) is zero
       totalCredit += data.credit;
     }

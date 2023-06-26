@@ -129,7 +129,6 @@ class _GradePageState extends State<GradePage> {
         }
 
         globals.semesterSubjectsManager = res;
-        globals.semesterSubjectsManager.saveFile(); // saving file does not need await
       }
 
       if (globals.semesterSubjectsManager.isEmpty) {
@@ -139,6 +138,8 @@ class _GradePageState extends State<GradePage> {
         showToast("성적 정보가 없습니다.");
         return;
       }
+
+      globals.semesterSubjectsManager.saveFile(); // saving file does not need await
 
       setState(() {
         _semesterSubjects = getMainSemester();
