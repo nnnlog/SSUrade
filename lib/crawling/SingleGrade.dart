@@ -62,12 +62,12 @@ class SingleGrade extends CrawlingTask<SemesterSubjects?> {
           bool existXHR = false;
           l1:
           try {
-            while (await controller.evaluateJavascript(source: """document.querySelectorAll("table table table table")[12].querySelector("td:nth-child(2) span")?.querySelector("*[value]").value;""") == null) {
+            while (await controller.evaluateJavascript(source: """document.querySelectorAll("table table table table")[17].querySelector("td:nth-child(2) span")?.querySelector("*[value]").value;""") == null) {
               await Future.delayed(Duration.zero);
             }
             var selected = (await controller.evaluateJavascript(
                 source:
-                    'document.querySelectorAll("table table table table")[12].querySelector("td:nth-child(2) span")?.querySelector("*[value]").value;'));
+                    'document.querySelectorAll("table table table table")[17].querySelector("td:nth-child(2) span")?.querySelector("*[value]").value;'));
             if (selected!.replaceAll(" ", "") == "${search.year}학년도") break l1;
             existXHR = true;
 
@@ -82,7 +82,7 @@ class SingleGrade extends CrawlingTask<SemesterSubjects?> {
             }
 
             await controller.evaluateJavascript(
-                source: 'document.querySelectorAll("table table table table")[12].querySelector("td:nth-child(2) span").click();');
+                source: 'document.querySelectorAll("table table table table")[17].querySelector("td:nth-child(2) span").click();');
             // await Future.delayed(const Duration(milliseconds: 10));
             await controller.evaluateJavascript(source: 'document.querySelector("div[data-itemvalue1=\'${search.year}학년도\']").click();');
             // await Future.delayed(const Duration(milliseconds: 10));
@@ -117,12 +117,12 @@ class SingleGrade extends CrawlingTask<SemesterSubjects?> {
           existXHR = false;
           l2:
           try {
-            while (await controller.evaluateJavascript(source: """document.querySelectorAll("table table table table")[12].querySelector("td:nth-child(5) span")?.querySelector("*[value]").value;""") == null) {
+            while (await controller.evaluateJavascript(source: """document.querySelectorAll("table table table table")[17].querySelector("td:nth-child(5) span")?.querySelector("*[value]").value;""") == null) {
               await Future.delayed(Duration.zero);
             }
             var selected = await controller.evaluateJavascript(
                 source:
-                    'document.querySelectorAll("table table table table")[12].querySelector("td:nth-child(5) span")?.querySelector("*[value]").value;');
+                    'document.querySelectorAll("table table table table")[17].querySelector("td:nth-child(5) span")?.querySelector("*[value]").value;');
             if (selected!.replaceAll(" ", "") == search.semester.name) break l2;
             existXHR = true;
 
@@ -137,11 +137,11 @@ class SingleGrade extends CrawlingTask<SemesterSubjects?> {
             }
 
             await controller.evaluateJavascript(
-                source: 'document.querySelectorAll("table table table table")[12].querySelector("td:nth-child(5) span").click();');
+                source: 'document.querySelectorAll("table table table table")[17].querySelector("td:nth-child(5) span").click();');
             // await Future.delayed(const Duration(milliseconds: 10));
             await controller.evaluateJavascript(
                 source:
-                    'document.querySelector("div div div div:nth-child(3) div div:nth-child(2) div:nth-child(2) div div div:nth-child(${search.semester.webIndex})").click();');
+                    'document.querySelector("div div div div:nth-child(3) div div:nth-child(3) div:nth-child(2) div:nth-child(2) div div:nth-child(${search.semester.webIndex})").click();');
             // await Future.delayed(const Duration(milliseconds: 10));
           } catch (e, s) {
             log(e.toString());
@@ -171,7 +171,7 @@ class SingleGrade extends CrawlingTask<SemesterSubjects?> {
           span = transaction.startChild("get_grade");
           dynamic temp = await controller.evaluateJavascript(source: '''
                 JSON.stringify(
-                  Array(...document.querySelectorAll(`table tr table tr table tr:nth-child(11) td table table table table tbody:nth-child(2) tr`))
+                  Array(...document.querySelectorAll(`table tr table tr table tr:nth-child(12) td table table table table tbody:nth-child(2) tr`))
                     .slice(1)
                     .filter(element => element.querySelector(`td:nth-child(4) span span`) !== null)
                     .filter(element => element.querySelector(`td:nth-child(2) span span`).textContent === "${search.year}학년도")
@@ -195,7 +195,7 @@ class SingleGrade extends CrawlingTask<SemesterSubjects?> {
             String? temp = await controller.evaluateJavascript(source: '''
             JSON.stringify(
               Array(
-                ...document.querySelectorAll("table tbody tr td table tbody tr td table tbody tr:nth-child(4) table tr table tbody tr table tbody td:nth-child(1) table tbody tr")
+                ...document.querySelectorAll("table tbody tr td table tbody tr td table tbody tr:nth-child(5) table tr table tbody tr table tbody td:nth-child(1) table tbody tr")
               ).slice(1).filter(e => 
                   e.querySelector("td:nth-child(2)").innerText === "${search.year}" && 
                   e.querySelector("td:nth-child(3)").innerText.replace(/\\ /g, "") === "${search.semester.name}"

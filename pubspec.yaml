@@ -3,7 +3,7 @@ description: 숭실대학교 성적/학점 조회
 
 publish_to: 'none'
 
-version: 2.0.9+10
+version: 2.0.10+11
 
 environment:
   sdk: ">=2.17.3 <3.0.0"
@@ -12,25 +12,25 @@ dependencies:
   flutter:
     sdk: flutter
 
-  cupertino_icons: ^1.0.5
-  flutter_inappwebview: ^5.7.2+3
-  path_provider: ^2.0.15
-  fluttertoast: ^8.2.2
-  package_info_plus: ^4.0.2
-  http: ^1.0.0
+  cupertino_icons: ^1.0.6
+  flutter_inappwebview: ^5.8.0
+  path_provider: ^2.1.1
+  fluttertoast: ^8.2.4
+  package_info_plus: ^5.0.1
+  http: ^1.1.2
   version: ^3.0.2
-  url_launcher: ^6.1.11
+  url_launcher: ^6.2.2
   tuple: ^2.0.2
   quiver: ^3.2.1
   pull_to_refresh: ^2.0.0
   screenshot: ^2.1.0
-  image_gallery_saver: ^2.0.2
+  image_gallery_saver: ^2.0.3
   json_annotation: ^4.8.1
   event: ^2.1.2
-  firebase_analytics: ^10.4.3
-  firebase_core: ^2.14.0
-  flutter_secure_storage: ^8.0.0
-  sentry_flutter: ^7.8.0
+  firebase_analytics: ^10.7.4
+  firebase_core: ^2.24.2
+  flutter_secure_storage: ^9.0.0
+  sentry_flutter: ^7.13.2
   flutter_exit_app: ^1.1.2
   df: ^0.4.0-nullsafety.0
 
