@@ -1,0 +1,3 @@
+[submodule "usaint-injector"]
+	path = usaint-injector
+	url = https://github.com/nnnlog/usaint-injector

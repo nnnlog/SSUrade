@@ -15,6 +15,15 @@ SSUrade : 숭실대학교 성적/학점 조회 애플리케이션
 flutterfire configure --project=<Firbase project id>
 ```
 
+### Build Javascript code for injecting to WebView
+```shell
+cd usaint-injector/
+npm ci
+npm run build
+mkdir ../assets/js/
+cp dist/main.js ../assets/js/common.js
+```
+
 ### Build
 ```shell
 flutter pub run build_runner build
