@@ -9,7 +9,6 @@ import 'package:ssurade/crawling/CrawlingTask.dart';
 import 'package:ssurade/crawling/ExtractDataFromViewer.dart';
 import 'package:ssurade/crawling/WebViewControllerExtension.dart';
 import 'package:ssurade/globals.dart' as globals;
-import 'package:ssurade/types/Progress.dart';
 import 'package:ssurade/types/Semester.dart';
 import 'package:ssurade/types/YearSemester.dart';
 import 'package:ssurade/types/subject/Ranking.dart';
@@ -23,53 +22,44 @@ class AllGradeByCategory extends CrawlingTask<SemesterSubjectsManager?> {
   }) =>
       AllGradeByCategory._(parentTransaction);
 
-  AllGradeByCategory._(ISentrySpan? parentTransaction) : super(parentTransaction);
+  AllGradeByCategory._(ISentrySpan? parentTransaction)
+      : super(parentTransaction);
 
   @override
   String task_id = "all_grade_by_category";
 
   @override
-  Future<SemesterSubjectsManager?> internalExecute(InAppWebViewController controller) async {
-    final transaction = parentTransaction == null ? Sentry.startTransaction('AllGradeByCategory', task_id) : parentTransaction!.startChild(task_id);
+  Future<SemesterSubjectsManager?> internalExecute(
+      InAppWebViewController controller) async {
+    final transaction = parentTransaction == null
+        ? Sentry.startTransaction('AllGradeByCategory', task_id)
+        : parentTransaction!.startChild(task_id);
     late ISentrySpan span;
 
     SemesterSubjectsManager? result;
     try {
       result = await Future.any([
         Future(() async {
-          if (!(await Crawler.loginSession(parentTransaction: transaction).directExecute(controller))) {
+          if (!(await Crawler.loginSession(parentTransaction: transaction)
+              .directExecute(controller))) {
             return null;
           }
 
           result = SemesterSubjectsManager(SplayTreeMap.from({}));
 
-          await controller.customLoadPage("https://ecc.ssu.ac.kr/sap/bc/webdynpro/SAP/ZCMW8030n?sap-language=KO", parentTransaction: transaction);
+          await controller.customLoadPage(
+              "https://ecc.ssu.ac.kr/sap/bc/webdynpro/SAP/ZCMW8030n?sap-language=KO",
+              parentTransaction: transaction);
 
-          Completer<void> com1 = Completer(), com2 = Completer();
-          controller.jsRedirectCallback = (url) {
-            (() async {
-              await com1.future; // xhr 요청이 끝날 때까지 먼저 기다린다.
-              await controller.customLoadPage(url, parentTransaction: transaction);
-              com2.complete();
-            })();
-          };
-
-          span = transaction.startChild("click_print_btn");
-          while (await controller.evaluateJavascript(source: """
-              document.evaluate("//span[normalize-space()='이수구분별 성적현황 출력 인쇄']", document, null, XPathResult.ANY_TYPE, null ).iterateNext();
-            """) == null) {
-          }
-          controller.webViewXHRProgress = XHRProgress.ready;
-          await controller.evaluateJavascript(source: """
-              document.evaluate("//span[normalize-space()='이수구분별 성적현황 출력 인쇄']", document, null, XPathResult.ANY_TYPE, null ).iterateNext().click();
-            """);
-          await controller.waitForSingleXHRRequest();
-          com1.complete();
+          span = transaction.startChild("get_viewer_url");
+          var url = await controller
+              .customExecuteJavascript("ssurade.crawl.getGradeViewerURL();");
           span.finish(status: const SpanStatus.ok());
 
-          await com2.future; // 페이지 리다이렉션 후 xhr 요청이 완료될 때까지 기다린다.
+          await controller.customLoadPage(url, parentTransaction: transaction);
 
-          var gradeData = await extractDataFromViewer(controller, parentTransaction: transaction);
+          var gradeData = await extractDataFromViewer(controller,
+              parentTransaction: transaction);
 
           span = transaction.startChild("finalizing_data");
           var tmp = SemesterSubjectsManager(SplayTreeMap());
@@ -80,9 +70,11 @@ class AllGradeByCategory extends CrawlingTask<SemesterSubjectsManager?> {
             }
 
             var rawKey = data["HUKGI"]!.split("―"); // format: 2022―1, 2022―겨울
-            var key = YearSemester(int.parse(rawKey[0]), Semester.parse("${rawKey[1]}학기"));
+            var key = YearSemester(
+                int.parse(rawKey[0]), Semester.parse("${rawKey[1]}학기"));
 
-            tmp.data[key] ??= SemesterSubjects(SplayTreeMap(), Ranking(0, 0), Ranking(0, 0), key);
+            tmp.data[key] ??= SemesterSubjects(
+                SplayTreeMap(), Ranking(0, 0), Ranking(0, 0), key);
 
             var category = data["COMPL_TEXT"]!;
             var credit = double.parse(data["CPATTEMP"]!);
@@ -93,7 +85,8 @@ class AllGradeByCategory extends CrawlingTask<SemesterSubjectsManager?> {
             // SUBJECT NAME (SM_TEXT에 존재하지만, 교선에 교선 분류명도 함께 있음)
             // PROF NAME (not exist)
 
-            var subject = Subject(code, "", credit, grade, "", category, isPassFail, Subject.STATE_CATEGORY);
+            var subject = Subject(code, "", credit, grade, "", category,
+                isPassFail, Subject.STATE_CATEGORY);
             tmp.data[key]!.subjects[subject.code] = subject;
           }
           span.finish(status: const SpanStatus.ok());
@@ -103,7 +96,8 @@ class AllGradeByCategory extends CrawlingTask<SemesterSubjectsManager?> {
 
           return result = tmp;
         }),
-        Future.delayed(Duration(seconds: globals.setting.timeoutAllGrade), () => null),
+        Future.delayed(
+            Duration(seconds: globals.setting.timeoutAllGrade), () => null),
       ]);
     } catch (e, stacktrace) {
       log(e.toString());
@@ -121,7 +115,9 @@ class AllGradeByCategory extends CrawlingTask<SemesterSubjectsManager?> {
 
       return null;
     } finally {
-      transaction.status = result != null ? const SpanStatus.ok() : const SpanStatus.internalError();
+      transaction.status = result != null
+          ? const SpanStatus.ok()
+          : const SpanStatus.internalError();
       await transaction.finish();
     }
 

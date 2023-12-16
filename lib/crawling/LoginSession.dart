@@ -135,11 +135,9 @@ class LoginSession extends CrawlingTask<bool> {
 
               await controller.customLoadPage(
                 "https://smartid.ssu.ac.kr/Symtra_sso/smln.asp?apiReturnUrl=https%3A%2F%2Fsaint.ssu.ac.kr%2FwebSSO%2Fsso.jsp",
-                xhr: false,
                 clear: true,
                 parentTransaction: transaction,
               );
-
               span = transaction.startChild("fill_form");
               await controller.evaluateJavascript(source: 'document.LoginInfo.userid.value = atob("${base64Encode(utf8.encode(_id))}");');
               await controller.evaluateJavascript(source: 'document.LoginInfo.pwd.value = atob("${base64Encode(utf8.encode(_password))}");');
@@ -153,7 +151,7 @@ class LoginSession extends CrawlingTask<bool> {
               }
               span.finish(status: fail ? const SpanStatus.cancelled() : const SpanStatus.ok());
 
-              await controller.customLoadPage("https://ecc.ssu.ac.kr/sap/bc/webdynpro/SAP/ZCMW0000?sap-language=KO", xhr: false); // loads any page
+              await controller.customLoadPage("https://ecc.ssu.ac.kr/sap/bc/webdynpro/SAP/ZCMW0000?sap-language=KO"); // loads any page
 
               return !fail;
             }),

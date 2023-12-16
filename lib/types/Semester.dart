@@ -33,16 +33,29 @@ extension SemesterExtension on Semester {
     }
   }
 
-  int get webIndex {
+  String get keyValue {
     switch (this) {
       case Semester.first:
-        return 1;
+        return "090";
       case Semester.summer:
-        return 2;
+        return "091";
       case Semester.second:
-        return 3;
+        return "092";
       case Semester.winter:
-        return 4;
+        return "093";
+    }
+  }
+
+  String get textValue {
+    switch (this) {
+      case Semester.first:
+        return "1 학기";
+      case Semester.summer:
+        return "여름학기";
+      case Semester.second:
+        return "2 학기";
+      case Semester.winter:
+        return "겨울학기";
     }
   }
 }

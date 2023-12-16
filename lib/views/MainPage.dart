@@ -76,36 +76,40 @@ class _MainPageState extends State<MainPage> {
           }
         });
 
-        Crawler.allGrade(base: globals.semesterSubjectsManager).execute().then((value) {
-          // base가 주어져도 grade by category가 overwrite하도록 바꿔야 함
-          if (value == null) return;
-          if (value.isEmpty) return;
-          bool foundNewSemester = false;
-          String newSemester = "";
-          bool foundUpdatedGradeData = false;
-          String updatedSemester = "";
-          for (var key in value.data.keys) {
-            if (!globals.semesterSubjectsManager.data.containsKey(key)) {
-              foundNewSemester = true;
-              newSemester = "${key.year}학년도 ${key.semester.name}";
-              break;
-            } else if (jsonEncode(globals.semesterSubjectsManager.data[key]?.toJson()) != jsonEncode(value.data[key]?.toJson())) {
-              foundUpdatedGradeData = true;
-              updatedSemester = "${key.year}학년도 ${key.semester.name}";
+          Crawler.allGrade(base: globals.semesterSubjectsManager)
+              .execute()
+              .then((value) {
+            // base가 주어져도 grade by category가 overwrite하도록 바꿔야 함
+            if (value == null) return;
+            if (value.isEmpty) return;
+            bool foundNewSemester = false;
+            String newSemester = "";
+            bool foundUpdatedGradeData = false;
+            String updatedSemester = "";
+            for (var key in value.data.keys) {
+              if (!globals.semesterSubjectsManager.data.containsKey(key)) {
+                foundNewSemester = true;
+                newSemester = "${key.year}학년도 ${key.semester.name}";
+                break;
+              } else if (jsonEncode(
+                      globals.semesterSubjectsManager.data[key]?.toJson()) !=
+                  jsonEncode(value.data[key]?.toJson())) {
+                foundUpdatedGradeData = true;
+                updatedSemester = "${key.year}학년도 ${key.semester.name}";
+              }
             }
-          }
 
-          globals.semesterSubjectsManager = value;
-          globals.semesterSubjectsManager.saveFile();
+            globals.semesterSubjectsManager = value;
+            globals.semesterSubjectsManager.saveFile();
 
-          if (foundNewSemester) {
-            showToast("새로운 학기($newSemester) 성적을 찾았습니다.");
-            globals.newGradeFoundEvent.broadcast();
-          } else if (foundUpdatedGradeData) {
-            showToast("해당 학기($updatedSemester) 성적에 변경 사항이 있습니다.");
-            globals.newGradeFoundEvent.broadcast();
-          }
-        });
+            if (foundNewSemester) {
+              showToast("새로운 학기($newSemester) 성적을 찾았습니다.");
+              globals.newGradeFoundEvent.broadcast();
+            } else if (foundUpdatedGradeData) {
+              showToast("해당 학기($updatedSemester) 성적에 변경 사항이 있습니다.");
+              globals.newGradeFoundEvent.broadcast();
+            }
+          });
       }
 
       fetchAppVersion().then((value) {
@@ -119,7 +123,8 @@ class _MainPageState extends State<MainPage> {
   @override
   Widget build(BuildContext context) {
     return Stack(
-      children: List.filled(webViewCount, null).map<Widget>((e) => BackgroundWebView(_webViewInitialized)).toList() + <Widget>[
+      children: List.filled(webViewCount, null).map<Widget>((e) => BackgroundWebView(_webViewInitialized)).toList() +
+          <Widget>[
             Scaffold(
               appBar: customAppBar("숭실대학교 성적/학점 조회"),
               body: Padding(

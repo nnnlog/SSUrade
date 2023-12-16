@@ -4,6 +4,7 @@ import 'dart:developer';
 import 'package:df/df.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
+import 'package:ssurade/crawling/WebViewControllerExtension.dart';
 
 const String SEPARATOR = "|||||";
 
@@ -38,47 +39,8 @@ Future<DataFrame> extractDataFromViewer(InAppWebViewController controller, {ISen
   DataFrame ret = DataFrame();
   try {
     span = transaction?.startChild("click_export_btn");
-    while (await controller.evaluateJavascript(source: """document.querySelector("input[tabindex='4']")""") == null) {
-      await Future.delayed(Duration.zero);
-    }
-
-    await controller.evaluateJavascript(source: """document.querySelector("input[tabindex='4']").click()""");
-    span?.finish(status: const SpanStatus.ok());
-
-    span = transaction?.startChild("change_export_setting");
-    while (await controller.evaluateJavascript(source: """document.querySelectorAll("select").length""") < 3) {
-      await Future.delayed(Duration.zero);
-    }
-    await controller.evaluateJavascript(source: """document.querySelectorAll("select")[1].selectedIndex = 6""");
-    await controller.evaluateJavascript(source: """document.querySelectorAll("select")[1].dispatchEvent(new Event('change'))""");
-    await controller
-        .evaluateJavascript(source: """document.querySelectorAll("select")[1].closest("tr").querySelector("input").value = '$SEPARATOR'""");
-
-    await controller.evaluateJavascript(source: """document.querySelectorAll("select")[2].selectedIndex = 1""");
-    await controller.evaluateJavascript(source: """document.querySelectorAll("select")[2].dispatchEvent(new Event('change'))""");
-    span?.finish(status: const SpanStatus.ok());
-
-    Completer<String> download = Completer();
-    controller.addJavaScriptHandler(
-        handlerName: "download",
-        callback: (data) {
-          download.complete(data[0] as String);
-        });
-
-    span = transaction?.startChild("download");
-    await controller.evaluateJavascript(source: """document.querySelector("button[classname='confirmButtonClass']").click()""");
-
-    var rawText = await Future.any([
-      download.future,
-      Future.delayed(const Duration(seconds: 3)).then((value) => "fail"),
-    ]);
-    span?.finish(status: rawText != "fail" ? const SpanStatus.ok() : const SpanStatus.aborted());
-
-    span = transaction?.startChild("close_export_btn");
-    await controller.evaluateJavascript(source: """document.querySelector("button[classname='confirmButtonClass']").click()""");
-    span?.finish(status: const SpanStatus.ok());
-
-    controller.removeJavaScriptHandler(handlerName: "download");
+    var rawText = await controller.customExecuteJavascript("ssurade.crawl.getGradeFromViewer();");
+    span?.finish();
 
     span = transaction?.startChild("parse");
     ret = _parse(rawText)[0];

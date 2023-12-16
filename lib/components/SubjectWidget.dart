@@ -56,9 +56,6 @@ class _SubjectWidgetState extends State<SubjectWidget> {
                         ),
                         softWrap: true,
                       ),
-                      Container(
-                        height: 4,
-                      ),
                       Text(
                         "${widget._subjectData.professor.isNotEmpty && (!widget._exportImage || widget._showSubject) ? "${widget._subjectData.professor} · " : ""}${widget._subjectData.credit.toStringAsPrecision(1)}학점",
                         textAlign: TextAlign.center,

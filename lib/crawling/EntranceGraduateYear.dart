@@ -36,48 +36,9 @@ class EntranceGraduateYear extends CrawlingTask<Tuple2<String, String>?> {
           await controller.customLoadPage("https://ecc.ssu.ac.kr/sap/bc/webdynpro/SAP/ZCMW1001n?sap-language=KO", parentTransaction: transaction);
 
           span = transaction.startChild("get_data");
-          try {
-            while (await controller.evaluateJavascript(
-                source:
-                'document.querySelectorAll("table table table table table")[2].querySelector("tr:nth-child(1) td:nth-child(1) table tr table tr:nth-child(1) td:nth-child(2) span input");') == null) {
-              await Future.delayed(Duration.zero);
-            }
-            String? entrance = await controller.evaluateJavascript(
-                source:
-                    'document.querySelectorAll("table table table table table")[2].querySelector("tr:nth-child(1) td:nth-child(1) table tr table tr:nth-child(1) td:nth-child(2) span input").value;');
-            if (entrance == null) throw Exception("Entrance year is null");
-
-            while (await controller.evaluateJavascript(
-                source:
-                'document.querySelectorAll("table table table table table")[2].querySelector("tr:nth-child(1) td:nth-child(1) table tr table tr:nth-child(18) td:nth-child(2) span input");') == null) {
-              await Future.delayed(Duration.zero);
-            }
-            String? graduate = await controller.evaluateJavascript(
-                source:
-                    'document.querySelectorAll("table table table table table")[2].querySelector("tr:nth-child(1) td:nth-child(1) table tr table tr:nth-child(18) td:nth-child(2) span input").value;');
-            if (graduate == null) throw Exception("Graduate year is null");
-
-            result = Tuple2(entrance, graduate);
-          } catch (e, stacktrace) {
-            span.throwable = e;
-            Sentry.captureException(
-              e,
-              stackTrace: stacktrace,
-              withScope: (scope) {
-                scope.span = span;
-                scope.level = SentryLevel.error;
-              },
-            );
-            span.finish(status: const SpanStatus.internalError());
-
-            log(e.toString());
-            log(stacktrace.toString());
-
-            return result = null;
-          }
-          if (!span.finished) {
-            span.finish(status: const SpanStatus.ok());
-          }
+          var data = await controller.customExecuteJavascript("ssurade.crawl.getStudentInfo();");
+          result = Tuple2(data[0], data[1]);
+          span.finish();
 
           return result;
         }),

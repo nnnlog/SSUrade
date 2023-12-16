@@ -39,7 +39,7 @@ class YearSemester extends Comparable<YearSemester> {
   }
 
   bool operator <(YearSemester other) {
-    return year == other.year ? semester.webIndex < other.semester.webIndex : year < other.year;
+    return year == other.year ? int.parse(semester.keyValue) < int.parse(other.semester.keyValue) : year < other.year;
   }
 
   @override
