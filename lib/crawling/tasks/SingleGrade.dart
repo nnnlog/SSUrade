@@ -1,5 +1,4 @@
 import 'dart:collection';
-import 'dart:convert';
 import 'dart:developer';
 
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
@@ -60,8 +59,7 @@ class SingleGrade extends CrawlingTask<SemesterSubjects?> {
           }
 
           span = transaction.startChild("execute_js");
-          var res = await controller.customExecuteJavascript(
-              "ssurade.crawl.getSingleGrade('${search.year}', '${search.semester.keyValue}', '${search.semester.textValue}');");
+          var res = await controller.customExecuteJavascript("ssurade.crawl.getSingleGrade('${search.year}', '${search.semester.keyValue}', '${search.semester.textValue}');");
           span.finish(status: const SpanStatus.ok());
 
           span = transaction.startChild("finalizing_data");
@@ -71,8 +69,7 @@ class SingleGrade extends CrawlingTask<SemesterSubjects?> {
 
           SemesterSubjects result = SemesterSubjects(SplayTreeMap(), semesterRanking, totalRanking, search);
           for (var obj in res["subjects"]) {
-            var data = Subject(obj["subject_code"], obj["subject_name"], double.parse(obj["credit"]), obj["grade_symbol"], obj["professor"], "",
-                false, Subject.STATE_SEMESTER);
+            var data = Subject(obj["subject_code"], obj["subject_name"], double.parse(obj["credit"]), obj["grade_symbol"], obj["professor"], "", false, Subject.STATE_SEMESTER);
             result.subjects[data.code] = data;
           }
           span.finish(status: const SpanStatus.ok());

@@ -3,13 +3,11 @@ import 'dart:convert';
 import 'dart:developer';
 
 import 'package:event/event.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 import 'package:ssurade/crawling/common/CrawlingTask.dart';
 import 'package:ssurade/crawling/common/WebViewControllerExtension.dart';
-import 'package:ssurade/crawling/common/WebViewWorker.dart';
 
 /// U-Saint Session Manager
 /// All WebView Controller share same CookieManager, so need only one instance for managing login session.

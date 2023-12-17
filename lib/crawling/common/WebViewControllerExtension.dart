@@ -1,11 +1,8 @@
 import 'dart:async';
 import 'dart:convert';
-import 'dart:developer';
 
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
-import 'package:ssurade/globals.dart' as globals;
-import 'package:ssurade/types/Progress.dart';
 
 Expando<Function(String?)> _jsAlertCallback = Expando();
 Expando<Function(String)> _jsRedirectCallback = Expando();

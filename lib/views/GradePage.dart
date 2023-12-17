@@ -87,7 +87,8 @@ class _GradePageState extends State<GradePage> {
     for (var data in globals.semesterSubjectsManager.data.values) {
       bool unknownGrade = false;
       for (var subject in data.subjects.values) {
-        if (GradeLogo.parse(subject.grade) == GradeLogo.unknown) { // TODO: remove dependency related to widget
+        if (GradeLogo.parse(subject.grade) == GradeLogo.unknown) {
+          // TODO: remove dependency related to widget
           unknownGrade = true;
           break;
         }
@@ -200,9 +201,7 @@ class _GradePageState extends State<GradePage> {
                           children: <Widget>[
                                 GradePageHeader(_semesterSubjects, callbackSelectSubject, refreshCurrentGrade, _exportImage, _showRanking),
                               ] +
-                              (_semesterSubjects.subjects.values.toList()..sort((a, b) => a.compareTo(b)))
-                                  .map((e) => SubjectWidget(e, _exportImage, _showSubjectInfo))
-                                  .toList(),
+                              (_semesterSubjects.subjects.values.toList()..sort((a, b) => a.compareTo(b))).map((e) => SubjectWidget(e, _exportImage, _showSubjectInfo)).toList(),
                         ),
                       ),
                     ),

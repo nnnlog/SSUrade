@@ -65,9 +65,7 @@ class WebViewWorker {
       },
       androidShouldInterceptRequest: (InAppWebViewController controller, WebResourceRequest request) async {
         if (request.url.toString().startsWith("https://ecc.ssu.ac.kr/sap/public/bc/ur/nw7/js/lightspeed.js")) {
-          var res = (await http.get(Uri.parse(
-                  "https://gist.githubusercontent.com/nnnlog/7f2420106e0fdf9260ee7e736c3b3c70/raw/4f3244069a7c576d3b6f1232d8b9e77dca3320ec/lightspeed.js")))
-              .body;
+          var res = (await http.get(Uri.parse("https://gist.githubusercontent.com/nnnlog/7f2420106e0fdf9260ee7e736c3b3c70/raw/4f3244069a7c576d3b6f1232d8b9e77dca3320ec/lightspeed.js"))).body;
           return WebResourceResponse(contentType: "application/x-javascript", data: Uint8List.fromList(res.codeUnits));
         }
       },
