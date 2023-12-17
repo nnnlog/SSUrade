@@ -7,7 +7,7 @@ showNotification(String title, String body) => globals.flutterLocalNotifications
       _id++,
       title,
       body,
-  NotificationDetails(
+      NotificationDetails(
         android: AndroidNotificationDetails(
           "ssurade",
           "notice",
