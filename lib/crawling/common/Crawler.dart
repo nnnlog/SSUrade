@@ -1,11 +1,11 @@
 import 'package:sentry_flutter/sentry_flutter.dart';
-import 'package:ssurade/crawling/AllGrade.dart';
-import 'package:ssurade/crawling/AllGradeByCategory.dart';
-import 'package:ssurade/crawling/AllGradeBySemester.dart';
-import 'package:ssurade/crawling/EntranceGraduateYear.dart';
-import 'package:ssurade/crawling/LoginSession.dart';
-import 'package:ssurade/crawling/SingleGrade.dart';
-import 'package:ssurade/crawling/WebViewWorker.dart';
+import 'package:ssurade/crawling/common/WebViewWorker.dart';
+import 'package:ssurade/crawling/tasks/AllGrade.dart';
+import 'package:ssurade/crawling/tasks/AllGradeByCategory.dart';
+import 'package:ssurade/crawling/tasks/AllGradeBySemester.dart';
+import 'package:ssurade/crawling/tasks/EntranceGraduateYear.dart';
+import 'package:ssurade/crawling/tasks/LoginSession.dart';
+import 'package:ssurade/crawling/tasks/SingleGrade.dart';
 import 'package:ssurade/types/YearSemester.dart';
 import 'package:ssurade/types/subject/SemesterSubjectsManager.dart';
 

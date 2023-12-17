@@ -2,9 +2,9 @@ import 'dart:developer';
 
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
-import 'package:ssurade/crawling/Crawler.dart';
-import 'package:ssurade/crawling/CrawlingTask.dart';
-import 'package:ssurade/crawling/WebViewControllerExtension.dart';
+import 'package:ssurade/crawling/common/Crawler.dart';
+import 'package:ssurade/crawling/common/CrawlingTask.dart';
+import 'package:ssurade/crawling/common/WebViewControllerExtension.dart';
 import 'package:tuple/tuple.dart';
 
 class EntranceGraduateYear extends CrawlingTask<Tuple2<String, String>?> {

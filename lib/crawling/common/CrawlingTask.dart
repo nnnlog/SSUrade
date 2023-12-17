@@ -2,7 +2,7 @@ import 'dart:developer';
 
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
-import 'package:ssurade/crawling/Crawler.dart';
+import 'package:ssurade/crawling/common/Crawler.dart';
 import 'package:ssurade/globals.dart' as globals;
 
 abstract class CrawlingTask<T> {
@@ -28,5 +28,7 @@ abstract class CrawlingTask<T> {
     return res;
   }
 
-  Future<T> execute() => Crawler.worker.addTask(directExecute).future;
+  Future<T> execute() async {
+    return (await Crawler.worker.runTask(directExecute)).future;
+  }
 }

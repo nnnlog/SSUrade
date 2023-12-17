@@ -4,10 +4,10 @@ import 'dart:developer';
 
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
-import 'package:ssurade/crawling/Crawler.dart';
-import 'package:ssurade/crawling/CrawlingTask.dart';
-import 'package:ssurade/crawling/ExtractDataFromViewer.dart';
-import 'package:ssurade/crawling/WebViewControllerExtension.dart';
+import 'package:ssurade/crawling/common/Crawler.dart';
+import 'package:ssurade/crawling/common/CrawlingTask.dart';
+import 'package:ssurade/crawling/tasks/ExtractDataFromViewer.dart';
+import 'package:ssurade/crawling/common/WebViewControllerExtension.dart';
 import 'package:ssurade/globals.dart' as globals;
 import 'package:ssurade/types/Semester.dart';
 import 'package:ssurade/types/YearSemester.dart';

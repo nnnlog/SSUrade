@@ -3,11 +3,13 @@ import 'dart:convert';
 import 'dart:developer';
 
 import 'package:event/event.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
-import 'package:ssurade/crawling/CrawlingTask.dart';
-import 'package:ssurade/crawling/WebViewControllerExtension.dart';
+import 'package:ssurade/crawling/common/CrawlingTask.dart';
+import 'package:ssurade/crawling/common/WebViewControllerExtension.dart';
+import 'package:ssurade/crawling/common/WebViewWorker.dart';
 
 /// U-Saint Session Manager
 /// All WebView Controller share same CookieManager, so need only one instance for managing login session.
@@ -27,14 +29,18 @@ class LoginSession extends CrawlingTask<bool> {
 
   String _password;
 
+  List<Cookie> _credentials = [];
+
   LoginSession._(this._id, this._password) : super(null);
 
   /// Singleton
-  Future loadFromFile() async {
+  Future<LoginSession> loadFromFile() async {
     const storage = FlutterSecureStorage();
 
     id = (await storage.read(key: "id")) ?? "";
     password = (await storage.read(key: "password")) ?? "";
+
+    return this;
   }
 
   saveFile() async {
@@ -96,6 +102,13 @@ class LoginSession extends CrawlingTask<bool> {
 
   @override
   Future<bool> internalExecute(InAppWebViewController controller) async {
+    {
+      if ((await CookieManager.instance().getCookies(url: Uri.parse(".ssu.ac.kr"))).isEmpty) {
+        for (var cookie in _credentials) {
+          await CookieManager.instance().setCookie(url: Uri.parse(".ssu.ac.kr"), name: cookie.name, value: cookie.value);
+        }
+      }
+    }
     if (isLogin) return true;
     if (_future != null) {
       var tmp = _future!;
@@ -152,6 +165,8 @@ class LoginSession extends CrawlingTask<bool> {
               span.finish(status: fail ? const SpanStatus.cancelled() : const SpanStatus.ok());
 
               await controller.customLoadPage("https://ecc.ssu.ac.kr/sap/bc/webdynpro/SAP/ZCMW0000?sap-language=KO"); // loads any page
+
+              _credentials = await CookieManager.instance().getCookies(url: Uri.parse(".ssu.ac.kr"));
 
               return !fail;
             }),

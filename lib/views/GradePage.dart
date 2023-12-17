@@ -6,7 +6,7 @@ import 'package:ssurade/components/CustomAppBar.dart';
 import 'package:ssurade/components/GradeLogo.dart';
 import 'package:ssurade/components/GradePageHeader.dart';
 import 'package:ssurade/components/SubjectWidget.dart';
-import 'package:ssurade/crawling/Crawler.dart';
+import 'package:ssurade/crawling/common/Crawler.dart';
 import 'package:ssurade/globals.dart' as globals;
 import 'package:ssurade/types/Progress.dart';
 import 'package:ssurade/types/Semester.dart';

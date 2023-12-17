@@ -1,8 +1,7 @@
 import 'dart:developer';
 
 import 'package:sentry_flutter/sentry_flutter.dart';
-import 'package:ssurade/crawling/Crawler.dart';
-import 'package:ssurade/types/subject/SemesterSubjects.dart';
+import 'package:ssurade/crawling/common/Crawler.dart';
 import 'package:ssurade/types/subject/SemesterSubjectsManager.dart';
 
 // 가변적인 controller?가 필요..

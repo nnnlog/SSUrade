@@ -4,7 +4,7 @@ import 'dart:developer';
 import 'package:df/df.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
-import 'package:ssurade/crawling/WebViewControllerExtension.dart';
+import 'package:ssurade/crawling/common/WebViewControllerExtension.dart';
 
 const String SEPARATOR = "|||||";
 
