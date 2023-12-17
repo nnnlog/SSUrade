@@ -1,11 +1,8 @@
-import 'dart:convert';
-
 import 'package:flutter/foundation.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:logger/logger.dart';
 import 'package:ssurade/crawling/common/Crawler.dart';
 import 'package:ssurade/globals.dart' as globals;
-import 'package:ssurade/types/subject/Subject.dart';
 import 'package:ssurade/utils/notification.dart';
 import 'package:workmanager/workmanager.dart';
 
