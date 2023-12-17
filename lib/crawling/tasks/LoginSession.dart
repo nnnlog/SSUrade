@@ -168,7 +168,7 @@ class LoginSession extends CrawlingTask<bool> {
 
               return !fail;
             }),
-            Future.delayed(const Duration(seconds: 10), () {
+            Future.delayed(const Duration(seconds: 20), () {
               fail = true;
               return false;
             }),

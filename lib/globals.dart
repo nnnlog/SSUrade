@@ -7,12 +7,14 @@ import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:ssurade/crawling/common/Crawler.dart';
 import 'package:ssurade/crawling/common/WebViewWorker.dart';
 import 'package:ssurade/filesystem/FileSystem.dart';
+import 'package:ssurade/types/BackgroundSetting.dart';
 import 'package:ssurade/types/Setting.dart';
 import 'package:ssurade/types/subject/SemesterSubjectsManager.dart';
 
 bool isLightMode = true; // SchedulerBinding.instance.window.platformBrightness == Brightness.light;
 
 late Setting setting;
+late BackgroundSetting bgSetting;
 late SemesterSubjectsManager semesterSubjectsManager;
 
 late FirebaseAnalytics analytics;
@@ -26,6 +28,7 @@ Future<void> init() async {
   await initFileSystem();
   await Future.wait([
     Setting.loadFromFile().then((value) => setting = value),
+    BackgroundSetting.loadFromFile().then((value) => bgSetting = value),
     Crawler.loginSession().loadFromFile(),
     SemesterSubjectsManager.loadFromFile().then((value) => semesterSubjectsManager = value),
     ...assets.map((e) => rootBundle.loadString("assets/js/$e").then((value) {
