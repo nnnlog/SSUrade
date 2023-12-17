@@ -1,13 +1,19 @@
+import 'dart:io';
+
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
+import 'package:ssurade/crawling/background/BackgroundService.dart';
 import 'package:ssurade/globals.dart' as globals;
 import 'package:ssurade/views/GradePage.dart';
 import 'package:ssurade/views/Information.dart';
 import 'package:ssurade/views/Login.dart';
 import 'package:ssurade/views/MainPage.dart';
 import 'package:ssurade/views/SettingPage.dart';
+import 'package:workmanager/workmanager.dart';
 
 import 'firebase_options.dart';
 
@@ -18,6 +24,12 @@ void main() async {
       options.tracesSampleRate = 0.05;
     },
     appRunner: () async {
+      if (Platform.isAndroid) {
+        await AndroidInAppWebViewController.setWebContentsDebuggingEnabled(kDebugMode);
+      }
+
+      Workmanager().initialize(startBackgroundService, isInDebugMode: kDebugMode);
+
       WidgetsFlutterBinding.ensureInitialized();
       await Firebase.initializeApp(
         options: DefaultFirebaseOptions.currentPlatform,

@@ -42,7 +42,7 @@ class EntranceGraduateYear extends CrawlingTask<Tuple2<String, String>?> {
 
           return result;
         }),
-        Future.delayed(const Duration(seconds: 10), () => null),
+        Future.delayed(const Duration(seconds: 20), () => null),
       ]);
     } catch (e, stacktrace) {
       log(e.toString());

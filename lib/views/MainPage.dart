@@ -4,7 +4,9 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' show rootBundle;
 import 'package:flutter_exit_app/flutter_exit_app.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:ssurade/components/CustomAppBar.dart';
+import 'package:ssurade/crawling/background/BackgroundService.dart';
 import 'package:ssurade/crawling/common/Crawler.dart';
 import 'package:ssurade/globals.dart' as globals;
 import 'package:ssurade/types/Progress.dart';
@@ -47,6 +49,7 @@ class _MainPageState extends State<MainPage> {
 
     (() async {
       await globals.init();
+      await updateBackgroundService();
 
       if (!globals.setting.agree) {
         _agreement = await rootBundle.loadString("assets/agreement.txt");
@@ -56,6 +59,8 @@ class _MainPageState extends State<MainPage> {
         });
         await _agreeFuture.future;
       }
+
+      await globals.flutterLocalNotificationsPlugin.resolvePlatformSpecificImplementation<AndroidFlutterLocalNotificationsPlugin>()?.requestNotificationsPermission();
 
       setState(() {
         _progress = MainProgress.finish;

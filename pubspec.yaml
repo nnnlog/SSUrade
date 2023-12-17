@@ -3,7 +3,7 @@ description: 숭실대학교 성적/학점 조회
 
 publish_to: 'none'
 
-version: 2.1.1+13
+version: 2.2.0+13
 
 environment:
   sdk: ">=2.17.3 <3.0.0"
@@ -33,6 +33,9 @@ dependencies:
   sentry_flutter: ^7.13.2
   flutter_exit_app: ^1.1.2
   df: ^0.4.0-nullsafety.0
+  workmanager: ^0.5.2
+  flutter_local_notifications: ^16.2.0
+  logger: ^2.0.2+1
 
 dev_dependencies:
   flutter_test:
@@ -44,7 +47,7 @@ dev_dependencies:
   sentry_dart_plugin: ^1.6.3
 
 flutter_icons:
-  android: "launcher_icon"
+  android: true
   ios: true
   image_path: "assets/icon/icon.jpg"
 

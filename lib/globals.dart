@@ -3,6 +3,7 @@ library ssurade.globals;
 import 'package:event/event.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:ssurade/crawling/common/Crawler.dart';
 import 'package:ssurade/crawling/common/WebViewWorker.dart';
 import 'package:ssurade/filesystem/FileSystem.dart';
@@ -15,6 +16,8 @@ late Setting setting;
 late SemesterSubjectsManager semesterSubjectsManager;
 
 late FirebaseAnalytics analytics;
+
+FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
 
 Event newGradeFoundEvent = Event();
 List<String> assets = ["common.js"];
@@ -29,4 +32,8 @@ Future<void> init() async {
           WebViewWorker.webViewScript.add(value);
         })),
   ]);
+
+  const AndroidInitializationSettings initializationSettingsAndroid = AndroidInitializationSettings('ic_notification');
+  const InitializationSettings initializationSettings = InitializationSettings(android: initializationSettingsAndroid);
+  await flutterLocalNotificationsPlugin.initialize(initializationSettings, onDidReceiveNotificationResponse: (NotificationResponse r) => Future.value());
 }

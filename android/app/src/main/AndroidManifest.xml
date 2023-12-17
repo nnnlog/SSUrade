@@ -6,7 +6,7 @@
 
     <application
         android:name="${applicationName}"
-        android:icon="@mipmap/launcher_icon"
+        android:icon="@mipmap/ic_launcher"
         android:label="SSUrade"
         android:requestLegacyExternalStorage="true"
         android:usesCleartextTraffic="true">

@@ -10,13 +10,15 @@ class Setting {
   @JsonKey()
   bool refreshGradeAutomatically;
   @JsonKey()
+  bool noticeGradeInBackground;
+  @JsonKey()
   int timeoutGrade;
   @JsonKey()
   int timeoutAllGrade;
   @JsonKey()
   bool agree;
 
-  Setting(this.refreshGradeAutomatically, this.timeoutGrade, this.timeoutAllGrade, this.agree);
+  Setting(this.refreshGradeAutomatically, this.noticeGradeInBackground, this.timeoutGrade, this.timeoutAllGrade, this.agree);
 
   factory Setting.fromJson(Map<String, dynamic> json) => _$SettingFromJson(json);
 
@@ -32,7 +34,7 @@ class Setting {
       }
       return Setting.fromJson(json);
     } catch (e) {
-      return Setting(true, 10, 30, false);
+      return Setting(true, true, 20, 60, false);
     }
   }
 

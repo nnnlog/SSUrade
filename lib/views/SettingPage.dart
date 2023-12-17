@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:ssurade/components/CustomAppBar.dart';
+import 'package:ssurade/crawling/background/BackgroundService.dart';
 import 'package:ssurade/crawling/common/Crawler.dart';
 import 'package:ssurade/globals.dart' as globals;
 import 'package:ssurade/utils/toast.dart';
@@ -59,9 +60,21 @@ class _SettingPageState extends State<SettingPage> {
                     },
                     title: const Text("마지막 학기 성적 자동으로 불러오기"),
                   ),
+                  SwitchListTile(
+                    value: globals.setting.noticeGradeInBackground,
+                    onChanged: (value) {
+                      setState(() {
+                        globals.setting.noticeGradeInBackground = value;
+                      });
+
+                      globals.setting.saveFile();
+                      updateBackgroundService();
+                    },
+                    title: const Text("성적 변경 알림 (백그라운드)"),
+                  ),
                   TextField(
                     controller: _timeoutGradeController,
-                    decoration: const InputDecoration(labelText: "단일 성적 로딩 시간 제한 (기본값 : 10초)"),
+                    decoration: const InputDecoration(labelText: "단일 성적 로딩 시간 제한 (기본값 : 20초)"),
                     keyboardType: TextInputType.number,
                     inputFormatters: [
                       FilteringTextInputFormatter.digitsOnly,
@@ -70,7 +83,7 @@ class _SettingPageState extends State<SettingPage> {
                       var temp = int.parse(_timeoutGradeController.text);
                       if (temp < 1) {
                         showToast("올바른 값을 입력하세요.");
-                        _timeoutGradeController.text = "10";
+                        _timeoutGradeController.text = "20";
                         return;
                       }
                       globals.setting.timeoutGrade = temp;
@@ -80,7 +93,7 @@ class _SettingPageState extends State<SettingPage> {
                   ),
                   TextField(
                     controller: _timeoutAllGradeController,
-                    decoration: const InputDecoration(labelText: "전체 성적 로딩 시간 제한 (기본값 : 30초)"),
+                    decoration: const InputDecoration(labelText: "전체 성적 로딩 시간 제한 (기본값 : 60초)"),
                     keyboardType: TextInputType.number,
                     inputFormatters: [
                       FilteringTextInputFormatter.digitsOnly,
@@ -89,7 +102,7 @@ class _SettingPageState extends State<SettingPage> {
                       var temp = int.parse(_timeoutAllGradeController.text);
                       if (temp < 1) {
                         showToast("올바른 값을 입력하세요.");
-                        _timeoutAllGradeController.text = "30";
+                        _timeoutAllGradeController.text = "60";
                         return;
                       }
                       globals.setting.timeoutAllGrade = temp;
