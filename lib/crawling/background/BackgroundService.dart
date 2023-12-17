@@ -58,7 +58,7 @@ void startBackgroundService() {
       if (updates.isNotEmpty) {
         showNotification("성적 정보 변동", updates.join("\n"));
       } else if (kDebugMode) {
-        showNotification("not updated", gradeData.subjects.values.map((e) => "${e.name} : ${e.grade}").join("\n"));
+        showNotification("not updated (${DateTime.now().toString()})", gradeData.subjects.values.map((e) => "${e.name} : ${e.grade}").join("\n"));
       }
     } catch (err) {
       Logger().e(err.toString());
