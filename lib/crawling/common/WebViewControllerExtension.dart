@@ -42,7 +42,7 @@ extension WebViewControllerExtension on InAppWebViewController {
 
     var span = transaction?.startChild("load_url");
     waitForLoadingPage = Completer();
-    await loadUrl(urlRequest: URLRequest(url: Uri.parse(url)));
+    await loadUrl(urlRequest: URLRequest(url: WebUri(url)));
     await waitForLoadingPage.future;
     span?.finish(status: const SpanStatus.ok());
 

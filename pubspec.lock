@@ -346,10 +346,58 @@ packages:
     dependency: "direct main"
     description:
       name: flutter_inappwebview
-      sha256: d198297060d116b94048301ee6749cd2e7d03c1f2689783f52d210a6b7aba350
+      sha256: "2fe17113b07c94bffe285c26a9653d32afe02bba668f155f15623fc4b074e3d3"
       url: "https://pub.dev"
     source: hosted
-    version: "5.8.0"
+    version: "6.0.0-rc.1"
+  flutter_inappwebview_android:
+    dependency: transitive
+    description:
+      name: flutter_inappwebview_android
+      sha256: "67806c3820e7392864e773b91e432e6554f95d45920ea0e474fbbd65251f2f81"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.9"
+  flutter_inappwebview_internal_annotations:
+    dependency: transitive
+    description:
+      name: flutter_inappwebview_internal_annotations
+      sha256: "5f80fd30e208ddded7dbbcd0d569e7995f9f63d45ea3f548d8dd4c0b473fb4c8"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.1.1"
+  flutter_inappwebview_ios:
+    dependency: transitive
+    description:
+      name: flutter_inappwebview_ios
+      sha256: e84fde1a102eab70b180de17b6986953238980cdc7f9caf57bcbcb1d6bea2bb1
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.10"
+  flutter_inappwebview_macos:
+    dependency: transitive
+    description:
+      name: flutter_inappwebview_macos
+      sha256: "052389c79cc5aeee38988fa4e6c563d6b9cf1ee9c886cdd6c67c234f202f4a59"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.8"
+  flutter_inappwebview_platform_interface:
+    dependency: transitive
+    description:
+      name: flutter_inappwebview_platform_interface
+      sha256: b4db31621880c4f4a60c9ddfc01d2b9f0133bf7776ddbd3a1d34062c076afec7
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.7"
+  flutter_inappwebview_web:
+    dependency: transitive
+    description:
+      name: flutter_inappwebview_web
+      sha256: e9662c68099d43819c5ecef8d7792ea46233312cb1efe37b49cbd47c3a969b85
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.5"
   flutter_launcher_icons:
     dependency: "direct dev"
     description:

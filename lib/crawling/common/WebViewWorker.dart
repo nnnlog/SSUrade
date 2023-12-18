@@ -23,7 +23,7 @@ class WebViewWorker {
     ret.future.whenComplete(() async {
       await webView.dispose();
     });
-    callback(webView.webViewController).then((value) {
+    callback(webView.webViewController!).then((value) {
       if (!ret.isCompleted) {
         ret.complete(value);
       }
@@ -61,10 +61,10 @@ class WebViewWorker {
       onJsPrompt: (controller, action) async {
         return JsPromptResponse(); // cancel prompt event
       },
-      onLoadStart: (InAppWebViewController controller, Uri? url) {
+      onLoadStop: (InAppWebViewController controller, Uri? url) {
         Future.wait(webViewScript.map((e) => controller.evaluateJavascript(source: e)));
       },
-      androidShouldInterceptRequest: (InAppWebViewController controller, WebResourceRequest request) async {
+      shouldInterceptRequest: (InAppWebViewController controller, WebResourceRequest request) async {
         if (request.url.toString().startsWith("https://ecc.ssu.ac.kr/sap/public/bc/ur/nw7/js/lightspeed.js")) {
           if (_lightspeedCache.isEmpty) {
             _lightspeedCache =
@@ -73,19 +73,14 @@ class WebViewWorker {
           return WebResourceResponse(contentType: "application/x-javascript", data: Uint8List.fromList(_lightspeedCache.codeUnits));
         }
       },
-      // onConsoleMessage: (controller, consoleMessage) {
-      //   if (consoleMessage.messageLevel == 3) print(consoleMessage);
-      // },
-      initialOptions: InAppWebViewGroupOptions(
-        android: AndroidInAppWebViewOptions(
-          useShouldInterceptRequest: true,
-          appCachePath: getPath("webview_cache"),
-          cacheMode: AndroidCacheMode.LOAD_CACHE_ELSE_NETWORK,
-        ),
-        crossPlatform: InAppWebViewOptions(
-          /// [[extractDataFromViewer]]를 위한 UA 변경, OZ Viewer에서 Android 특정 버전 외에는 이상한 방법을 통한 다운로드를 택하고 있음
-          userAgent: "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
-        ),
+      onConsoleMessage: (controller, consoleMessage) {
+        /*if (consoleMessage.messageLevel == 3) */ print(consoleMessage);
+      },
+      initialSettings: InAppWebViewSettings(
+        useShouldInterceptRequest: true,
+        appCachePath: getPath("webview_cache"),
+        cacheMode: CacheMode.LOAD_CACHE_ELSE_NETWORK,
+        userAgent: "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
       ),
     );
     await webView.run();

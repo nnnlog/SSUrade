@@ -101,9 +101,9 @@ class LoginSession extends CrawlingTask<bool> {
   @override
   Future<bool> internalExecute(InAppWebViewController controller) async {
     {
-      if ((await CookieManager.instance().getCookies(url: Uri.parse(".ssu.ac.kr"))).isEmpty) {
+      if ((await CookieManager.instance().getCookies(url: WebUri(".ssu.ac.kr"))).isEmpty) {
         for (var cookie in _credentials) {
-          await CookieManager.instance().setCookie(url: Uri.parse(".ssu.ac.kr"), name: cookie.name, value: cookie.value);
+          await CookieManager.instance().setCookie(url: WebUri(".ssu.ac.kr"), name: cookie.name, value: cookie.value);
         }
       }
     }
@@ -164,7 +164,7 @@ class LoginSession extends CrawlingTask<bool> {
 
               await controller.customLoadPage("https://ecc.ssu.ac.kr/sap/bc/webdynpro/SAP/ZCMW0000?sap-language=KO"); // loads any page
 
-              _credentials = await CookieManager.instance().getCookies(url: Uri.parse(".ssu.ac.kr"));
+              _credentials = await CookieManager.instance().getCookies(url: WebUri(".ssu.ac.kr"));
 
               return !fail;
             }),
