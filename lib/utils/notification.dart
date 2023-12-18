@@ -8,10 +8,13 @@ showNotification(String title, String body) async {
     body,
     NotificationDetails(
       android: AndroidNotificationDetails(
-        "ssurade",
-        "notice",
+        globals.channel.id,
+        globals.channel.name,
         channelShowBadge: true,
         styleInformation: BigTextStyleInformation(body),
+        priority: Priority.high,
+        importance: Importance.high,
+        ticker: "ticker",
       ),
     ),
   );

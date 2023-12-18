@@ -49,6 +49,10 @@ class _MainPageState extends State<MainPage> {
 
     (() async {
       await globals.init();
+
+      await globals.flutterLocalNotificationsPlugin.resolvePlatformSpecificImplementation<AndroidFlutterLocalNotificationsPlugin>()?.createNotificationChannel(globals.channel);
+      await disableBatteryOptimize(show: true);
+
       await updateBackgroundService();
 
       if (!globals.setting.agree) {

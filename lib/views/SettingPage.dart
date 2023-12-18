@@ -63,6 +63,9 @@ class _SettingPageState extends State<SettingPage> {
                   SwitchListTile(
                     value: globals.setting.noticeGradeInBackground,
                     onChanged: (value) {
+                      if (value) {
+                        disableBatteryOptimize(show: true);
+                      }
                       setState(() {
                         globals.setting.noticeGradeInBackground = value;
                       });
@@ -71,6 +74,15 @@ class _SettingPageState extends State<SettingPage> {
                       updateBackgroundService();
                     },
                     title: const Text("성적 변경 알림 (백그라운드)"),
+                  ),
+                  OutlinedButton(
+                    onPressed: () {
+                      disableBatteryOptimize(show: true);
+                    },
+                    style: OutlinedButton.styleFrom(
+                      minimumSize: const Size.fromHeight(40),
+                    ),
+                    child: const Text("배터리 최적화 제외하기"),
                   ),
                   TextField(
                     controller: _timeoutGradeController,

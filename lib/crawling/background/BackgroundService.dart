@@ -1,10 +1,27 @@
+import 'package:disable_battery_optimization/disable_battery_optimization.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:logger/logger.dart';
 import 'package:ssurade/crawling/common/Crawler.dart';
 import 'package:ssurade/globals.dart' as globals;
 import 'package:ssurade/utils/notification.dart';
+import 'package:ssurade/utils/toast.dart';
 import 'package:workmanager/workmanager.dart';
+
+Future<void> disableBatteryOptimize({bool show = false}) async {
+  bool? isAlreadyEnabled = await DisableBatteryOptimization.isBatteryOptimizationDisabled;
+  if (isAlreadyEnabled == true) {
+    if (show) showToast("이미 배터리 최적화 대상에서 제외되어 있어요.");
+    return;
+  }
+  bool? ok = await DisableBatteryOptimization.showDisableBatteryOptimizationSettings();
+  if (!show) return;
+  if (ok == true) {
+    showToast("배터리 최적화에서 제외되었어요.");
+  } else {
+    showToast("배터리 최적화가 켜져 있으면 성적 확인이 지연될 수 있어요.");
+  }
+}
 
 Future<void> updateBackgroundService() async {
   await unregisterBackgroundService();
@@ -43,7 +60,8 @@ void startBackgroundService() {
 
       for (var subject in gradeData.subjects.values) {
         if (subject.grade.isNotEmpty && originalGradeData.subjects[subject.code]?.grade != subject.grade) {
-          updates.add("[${subject.name}] : ${subject.grade}");
+          updates.add("${subject.name} > ${subject.grade}");
+          originalGradeData.subjects[subject.code]!.grade = subject.grade;
         }
       }
 
@@ -53,7 +71,8 @@ void startBackgroundService() {
       }
 
       if (updates.isNotEmpty) {
-        await showNotification("성적 정보 변동", updates.join("\n"));
+        await showNotification("성적 정보 변경", updates.join("\n"));
+        await globals.semesterSubjectsManager.saveFile();
       } else if (kDebugMode) {
         await showNotification("not updated (${DateTime.now().toString()})", gradeData.subjects.values.map((e) => "${e.name} : ${e.grade}").join("\n"));
       }

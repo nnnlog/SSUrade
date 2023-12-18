@@ -20,6 +20,12 @@ late SemesterSubjectsManager semesterSubjectsManager;
 late FirebaseAnalytics analytics;
 
 FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
+AndroidNotificationChannel channel = const AndroidNotificationChannel(
+  "ssurade",
+  "notice",
+  importance: Importance.high,
+  showBadge: true,
+);
 
 Event newGradeFoundEvent = Event();
 List<String> assets = ["common.js"];
