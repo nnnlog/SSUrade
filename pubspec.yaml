@@ -30,7 +30,7 @@ dependencies:
   firebase_analytics: ^10.7.4
   firebase_core: ^2.24.2
   flutter_secure_storage: ^9.0.0
-  sentry_flutter: ^7.13.2
+  sentry_flutter: ^7.14.0
   flutter_exit_app: ^1.1.2
   df: ^0.4.0-nullsafety.0
   workmanager: ^0.5.2

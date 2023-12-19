@@ -55,7 +55,7 @@ extension WebViewControllerExtension on InAppWebViewController {
     var port2 = webMessageChannel.port2;
 
     var ret = Completer();
-    await port1.setWebMessageCallback((message) => ret.complete(message));
+    await port1.setWebMessageCallback((message) => ret.complete(message?.data));
 
     await postWebMessage(message: WebMessage(data: "ssurade", ports: [port2]));
     port1.postMessage(WebMessage(data: expression));
