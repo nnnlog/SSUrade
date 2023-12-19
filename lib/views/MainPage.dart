@@ -50,21 +50,23 @@ class _MainPageState extends State<MainPage> {
     (() async {
       await globals.init();
 
-      await globals.flutterLocalNotificationsPlugin.resolvePlatformSpecificImplementation<AndroidFlutterLocalNotificationsPlugin>()?.createNotificationChannel(globals.channel);
-      await disableBatteryOptimize(show: true);
-
-      await updateBackgroundService();
-
       if (!globals.setting.agree) {
+        await disableBatteryOptimize(show: true);
+
         _agreement = await rootBundle.loadString("assets/agreement.txt");
         _agreement_short = await rootBundle.loadString("assets/agreement_short.txt");
         setState(() {
           _progress = MainProgress.agree;
         });
         await _agreeFuture.future;
+      } else {
+        await disableBatteryOptimize();
       }
 
       await globals.flutterLocalNotificationsPlugin.resolvePlatformSpecificImplementation<AndroidFlutterLocalNotificationsPlugin>()?.requestNotificationsPermission();
+      await globals.flutterLocalNotificationsPlugin.resolvePlatformSpecificImplementation<AndroidFlutterLocalNotificationsPlugin>()?.createNotificationChannel(globals.channel);
+
+      await updateBackgroundService();
 
       setState(() {
         _progress = MainProgress.finish;

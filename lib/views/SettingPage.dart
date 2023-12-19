@@ -64,7 +64,7 @@ class _SettingPageState extends State<SettingPage> {
                     value: globals.setting.noticeGradeInBackground,
                     onChanged: (value) {
                       if (value) {
-                        disableBatteryOptimize(show: true);
+                        disableBatteryOptimize();
                       }
                       setState(() {
                         globals.setting.noticeGradeInBackground = value;
