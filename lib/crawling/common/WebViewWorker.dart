@@ -61,7 +61,7 @@ class WebViewWorker {
       onJsPrompt: (controller, action) async {
         return JsPromptResponse(); // cancel prompt event
       },
-      onLoadStop: (InAppWebViewController controller, Uri? url) {
+      onLoadStart: (InAppWebViewController controller, Uri? url) {
         Future.wait(webViewScript.map((e) => controller.evaluateJavascript(source: e)));
       },
       shouldInterceptRequest: (InAppWebViewController controller, WebResourceRequest request) async {
@@ -73,9 +73,9 @@ class WebViewWorker {
           return WebResourceResponse(contentType: "application/x-javascript", data: Uint8List.fromList(_lightspeedCache.codeUnits));
         }
       },
-      onConsoleMessage: (controller, consoleMessage) {
-        /*if (consoleMessage.messageLevel == 3) */ print(consoleMessage);
-      },
+      // onConsoleMessage: (controller, consoleMessage) {
+      //   if (consoleMessage.messageLevel == ConsoleMessageLevel.ERROR) print(consoleMessage);
+      // },
       initialSettings: InAppWebViewSettings(
         useShouldInterceptRequest: true,
         appCachePath: getPath("webview_cache"),

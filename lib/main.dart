@@ -25,7 +25,7 @@ void main() async {
     },
     appRunner: () async {
       if (Platform.isAndroid) {
-        await AndroidInAppWebViewController.setWebContentsDebuggingEnabled(kDebugMode);
+        await InAppWebViewController.setWebContentsDebuggingEnabled(kDebugMode);
       }
 
       Workmanager().initialize(startBackgroundService, isInDebugMode: kDebugMode);
