@@ -10,24 +10,24 @@ Expando<Completer<void>> _pageLoaded = Expando();
 
 extension WebViewControllerExtension on InAppWebViewController {
   Function(String?) get jsAlertCallback {
-    return _jsAlertCallback[this] ??= (_) {};
+    return _jsAlertCallback[platform] ??= (_) {};
   }
 
   set jsAlertCallback(Function(String?) value) {
-    _jsAlertCallback[this] = value;
+    _jsAlertCallback[platform] = value;
   }
 
   Function(String) get jsRedirectCallback {
-    return _jsRedirectCallback[this] ??= (_) {};
+    return _jsRedirectCallback[platform] ??= (_) {};
   }
 
   set jsRedirectCallback(Function(String) value) {
-    _jsRedirectCallback[this] = value;
+    _jsRedirectCallback[platform] = value;
   }
 
-  set waitForLoadingPage(Completer<void> value) => _pageLoaded[this] = value;
+  set waitForLoadingPage(Completer<void> value) => _pageLoaded[platform] = value;
 
-  Completer<void> get waitForLoadingPage => _pageLoaded[this] ??= Completer();
+  Completer<void> get waitForLoadingPage => _pageLoaded[platform] ??= Completer();
 
   Future<void> customLoadPage(String url, {bool clear = false, ISentrySpan? parentTransaction}) async {
     var transaction = parentTransaction?.startChild("load_page");
