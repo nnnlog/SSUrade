@@ -1,12 +1,18 @@
 import 'dart:core';
 import 'dart:io';
 
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:path_provider/path_provider.dart';
 
 late Directory internalDir;
 
 initFileSystem() async {
   internalDir = await getApplicationDocumentsDirectory();
+
+  if (!await existFile("first")) {
+    await writeFile("first", "");
+    await const FlutterSecureStorage().deleteAll();
+  }
 }
 
 String getPath(String name) => "${internalDir.path}/$name";
