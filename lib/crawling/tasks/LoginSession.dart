@@ -33,10 +33,14 @@ class LoginSession extends CrawlingTask<bool> {
 
   /// Singleton
   Future<LoginSession> loadFromFile() async {
-    const storage = FlutterSecureStorage();
+    try {
+      const storage = FlutterSecureStorage();
 
-    id = (await storage.read(key: "id")) ?? "";
-    password = (await storage.read(key: "password")) ?? "";
+      id = (await storage.read(key: "id")) ?? "";
+      password = (await storage.read(key: "password")) ?? "";
+    } catch (e) {
+      id = password = "";
+    }
 
     return this;
   }
