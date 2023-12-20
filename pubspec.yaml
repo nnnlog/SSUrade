@@ -3,7 +3,7 @@ description: 숭실대학교 성적 조회 애플리케이션
 
 publish_to: 'none'
 
-version: 2.2.4+17
+version: 2.2.5+18
 
 environment:
   sdk: ">=2.17.3 <3.0.0"
@@ -37,6 +37,7 @@ dependencies:
   flutter_local_notifications: ^16.2.0
   logger: ^2.0.2+1
   disable_battery_optimization: ^1.1.1
+  randomstring_dart: ^0.0.4
 
 dev_dependencies:
   flutter_test:

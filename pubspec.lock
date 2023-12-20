@@ -856,6 +856,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.2.1"
+  randomstring_dart:
+    dependency: "direct main"
+    description:
+      name: randomstring_dart
+      sha256: "12890e02d0dbcd3355dd50918b77e63b91a52f8e15e79ae5b420c0253b8d538a"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.0.4"
   screenshot:
     dependency: "direct main"
     description:
