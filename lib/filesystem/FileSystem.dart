@@ -9,7 +9,7 @@ late Directory internalDir;
 initFileSystem() async {
   internalDir = await getApplicationDocumentsDirectory();
 
-  if (!await existFile("first")) {
+  if (!await existFile("first") && !await existFile("settings.json")) { // settings.json: legacy..
     await writeFile("first", "");
     await const FlutterSecureStorage().deleteAll();
   }
