@@ -1,7 +1,7 @@
 import 'dart:core';
 import 'dart:io';
 
-import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart' as secureStorage;
 import 'package:path_provider/path_provider.dart';
 
 late Directory internalDir;
@@ -11,7 +11,7 @@ initFileSystem() async {
 
   if (!await existFile("first") && !await existFile("settings.json")) { // settings.json: legacy..
     await writeFile("first", "");
-    await const FlutterSecureStorage().deleteAll();
+    await const secureStorage.FlutterSecureStorage(aOptions: secureStorage.AndroidOptions(encryptedSharedPreferences: true)).deleteAll();
   }
 }
 

@@ -4,7 +4,7 @@ import 'dart:developer';
 
 import 'package:event/event.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
-import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart' as secureStorage;
 import 'package:sentry_flutter/sentry_flutter.dart';
 import 'package:ssurade/crawling/common/CrawlingTask.dart';
 import 'package:ssurade/crawling/common/WebViewControllerExtension.dart';
@@ -34,7 +34,7 @@ class LoginSession extends CrawlingTask<bool> {
   /// Singleton
   Future<LoginSession> loadFromFile() async {
     try {
-      const storage = FlutterSecureStorage();
+      const storage = secureStorage.FlutterSecureStorage(aOptions: secureStorage.AndroidOptions(encryptedSharedPreferences: true));
 
       id = (await storage.read(key: "id")) ?? "";
       password = (await storage.read(key: "password")) ?? "";
@@ -46,7 +46,7 @@ class LoginSession extends CrawlingTask<bool> {
   }
 
   saveFile() async {
-    const storage = FlutterSecureStorage();
+    const storage = secureStorage.FlutterSecureStorage(aOptions: secureStorage.AndroidOptions(encryptedSharedPreferences: true));
 
     await storage.write(key: "id", value: id);
     await storage.write(key: "password", value: password);

@@ -6,6 +6,8 @@
 
     <application
         android:name="${applicationName}"
+        android:allowBackup="false"
+        android:fullBackupContent="false"
         android:icon="@mipmap/ic_launcher"
         android:label="SSUrade"
         android:requestLegacyExternalStorage="true"
