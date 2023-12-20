@@ -83,7 +83,6 @@ class _SettingPageState extends State<SettingPage> {
                       });
 
                       globals.setting.saveFile();
-                      updateBackgroundService();
                     },
                     title: const Text("성적 변경 알림 - 성적 보이기"),
                   ),
