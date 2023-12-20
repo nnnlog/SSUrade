@@ -75,6 +75,18 @@ class _SettingPageState extends State<SettingPage> {
                     },
                     title: const Text("성적 변경 알림 (백그라운드)"),
                   ),
+                  SwitchListTile(
+                    value: globals.setting.showGrade,
+                    onChanged: (value) {
+                      setState(() {
+                        globals.setting.showGrade = value;
+                      });
+
+                      globals.setting.saveFile();
+                      updateBackgroundService();
+                    },
+                    title: const Text("성적 변경 알림 - 성적 보이기"),
+                  ),
                   OutlinedButton(
                     onPressed: () {
                       disableBatteryOptimize(show: true);

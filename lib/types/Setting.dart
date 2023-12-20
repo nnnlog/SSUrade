@@ -12,13 +12,15 @@ class Setting {
   @JsonKey()
   bool noticeGradeInBackground;
   @JsonKey()
+  bool showGrade;
+  @JsonKey()
   int timeoutGrade;
   @JsonKey()
   int timeoutAllGrade;
   @JsonKey()
   bool agree;
 
-  Setting(this.refreshGradeAutomatically, this.noticeGradeInBackground, this.timeoutGrade, this.timeoutAllGrade, this.agree);
+  Setting(this.refreshGradeAutomatically, this.noticeGradeInBackground, this.showGrade, this.timeoutGrade, this.timeoutAllGrade, this.agree);
 
   factory Setting.fromJson(Map<String, dynamic> json) => _$SettingFromJson(json);
 
@@ -34,7 +36,7 @@ class Setting {
       }
       return Setting.fromJson(json);
     } catch (e) {
-      return Setting(true, true, 20, 60, false);
+      return Setting(true, true, true, 20, 60, false);
     }
   }
 
@@ -42,6 +44,6 @@ class Setting {
 
   @override
   String toString() {
-    return "$runtimeType(refreshGradeAutomatically=$refreshGradeAutomatically, timeoutGrade=$timeoutGrade, timeoutAllGrade=$timeoutAllGrade, agree=$agree)";
+    return "$runtimeType(refreshGradeAutomatically=$refreshGradeAutomatically, noticeGradeInBackground=$noticeGradeInBackground, showGrade=$showGrade, timeoutGrade=$timeoutGrade, timeoutAllGrade=$timeoutAllGrade, agree=$agree)";
   }
 }

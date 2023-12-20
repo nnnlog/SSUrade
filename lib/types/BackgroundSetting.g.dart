@@ -6,12 +6,10 @@ part of 'BackgroundSetting.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-BackgroundSetting _$BackgroundSettingFromJson(Map<String, dynamic> json) =>
-    BackgroundSetting(
+BackgroundSetting _$BackgroundSettingFromJson(Map<String, dynamic> json) => BackgroundSetting(
       json['notificationId'] as int,
     );
 
-Map<String, dynamic> _$BackgroundSettingToJson(BackgroundSetting instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$BackgroundSettingToJson(BackgroundSetting instance) => <String, dynamic>{
       'notificationId': instance.notificationId,
     };

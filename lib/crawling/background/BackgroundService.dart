@@ -60,18 +60,29 @@ void startBackgroundService() {
 
       for (var subject in gradeData.subjects.values) {
         if (subject.grade.isNotEmpty && originalGradeData.subjects[subject.code]?.grade != subject.grade) {
-          updates.add("${subject.name} > ${subject.grade}");
+          if (globals.setting.showGrade) {
+            updates.add("${subject.name} > ${subject.grade}");
+          } else {
+            updates.add(subject.name);
+          }
           originalGradeData.subjects[subject.code]!.grade = subject.grade;
         }
       }
 
       if (gradeData.semesterRanking.isNotEmpty && originalGradeData.semesterRanking.isEmpty) {
-        updates.add("[학기 석차] > ${gradeData.semesterRanking}");
-        updates.add("[전체 석차] > ${gradeData.totalRanking}");
+        if (globals.setting.showGrade) {
+          updates.add("[학기 석차] > ${gradeData.semesterRanking.display}");
+          updates.add("[전체 석차] > ${gradeData.totalRanking.display}");
+        } else {
+          updates.add("[학기 석차]");
+          updates.add("[전체 석차]");
+        }
+        originalGradeData.semesterRanking = gradeData.semesterRanking;
+        originalGradeData.totalRanking = gradeData.totalRanking;
       }
 
       if (updates.isNotEmpty) {
-        await showNotification("성적 정보 변경", updates.join("\n"));
+        await showNotification("성적 정보 변경", updates.join(globals.setting.showGrade ? "\n" : ", "));
         await globals.semesterSubjectsManager.saveFile();
       } else if (kDebugMode) {
         await showNotification("not updated (${DateTime.now().toString()})", gradeData.subjects.values.map((e) => "${e.name} : ${e.grade}").join("\n"));
