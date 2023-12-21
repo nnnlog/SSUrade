@@ -21,6 +21,7 @@ class WebViewWorker {
     var ret = Completer<T>();
     var webView = await _initWebView();
     ret.future.whenComplete(() async {
+      await webView.platform.dispose();
       await webView.dispose();
     });
     callback(webView.webViewController!).then((value) {
