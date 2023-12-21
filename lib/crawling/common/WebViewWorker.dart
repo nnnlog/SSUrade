@@ -73,9 +73,6 @@ class WebViewWorker {
           return WebResourceResponse(contentType: "application/x-javascript", data: Uint8List.fromList(_lightspeedCache.codeUnits));
         }
       },
-      // onConsoleMessage: (controller, consoleMessage) {
-      //   if (consoleMessage.messageLevel == ConsoleMessageLevel.ERROR) print(consoleMessage);
-      // },
       initialSettings: InAppWebViewSettings(
         useShouldInterceptRequest: true,
         appCachePath: getPath("webview_cache"),

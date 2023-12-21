@@ -39,7 +39,7 @@ Future<DataFrame> extractDataFromViewer(InAppWebViewController controller, {ISen
   DataFrame ret = DataFrame();
   try {
     span = transaction?.startChild("click_export_btn");
-    var rawText = await controller.customExecuteJavascript("ssurade.crawl.getGradeFromViewer();");
+    var rawText = (await controller.callAsyncJavaScript(functionBody: "return await ssurade.crawl.getGradeFromViewer();"))!.value;
     span?.finish();
 
     span = transaction?.startChild("parse");

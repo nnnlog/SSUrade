@@ -45,7 +45,7 @@ class AllGradeByCategory extends CrawlingTask<SemesterSubjectsManager?> {
           await controller.customLoadPage("https://ecc.ssu.ac.kr/sap/bc/webdynpro/SAP/ZCMW8030n?sap-language=KO", parentTransaction: transaction);
 
           span = transaction.startChild("get_viewer_url");
-          var url = await controller.customExecuteJavascript("ssurade.crawl.getGradeViewerURL();");
+          var url = (await controller.callAsyncJavaScript(functionBody: "return await ssurade.crawl.getGradeViewerURL();"))!.value;
           span.finish(status: const SpanStatus.ok());
 
           await controller.customLoadPage(url, parentTransaction: transaction);

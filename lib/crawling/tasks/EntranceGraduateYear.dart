@@ -36,7 +36,7 @@ class EntranceGraduateYear extends CrawlingTask<Tuple2<String, String>?> {
           await controller.customLoadPage("https://ecc.ssu.ac.kr/sap/bc/webdynpro/SAP/ZCMW1001n?sap-language=KO", parentTransaction: transaction);
 
           span = transaction.startChild("get_data");
-          var data = await controller.customExecuteJavascript("ssurade.crawl.getStudentInfo();");
+          var data = (await controller.callAsyncJavaScript(functionBody: "return await ssurade.crawl.getStudentInfo();"))!.value;
           result = Tuple2(data[0], data[1]);
           span.finish();
 
