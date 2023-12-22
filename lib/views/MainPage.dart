@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' show rootBundle;
 import 'package:flutter_exit_app/flutter_exit_app.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:quiver/time.dart';
 import 'package:ssurade/components/CustomAppBar.dart';
 import 'package:ssurade/crawling/background/BackgroundService.dart';
 import 'package:ssurade/crawling/common/Crawler.dart';
@@ -66,7 +67,9 @@ class _MainPageState extends State<MainPage> {
       await globals.flutterLocalNotificationsPlugin.resolvePlatformSpecificImplementation<AndroidFlutterLocalNotificationsPlugin>()?.requestNotificationsPermission();
       await globals.flutterLocalNotificationsPlugin.resolvePlatformSpecificImplementation<AndroidFlutterLocalNotificationsPlugin>()?.createNotificationChannel(globals.channel);
 
-      await updateBackgroundService();
+      Crawler.loginSession().loginStatusChangeEvent.subscribe((args) {
+        updateBackgroundService(lazy: false);
+      });
 
       setState(() {
         _progress = MainProgress.finish;

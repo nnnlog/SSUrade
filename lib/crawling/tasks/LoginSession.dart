@@ -6,6 +6,7 @@ import 'package:event/event.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart' as secureStorage;
 import 'package:sentry_flutter/sentry_flutter.dart';
+import 'package:ssurade/crawling/background/BackgroundService.dart';
 import 'package:ssurade/crawling/common/CrawlingTask.dart';
 import 'package:ssurade/crawling/common/WebViewControllerExtension.dart';
 
@@ -52,6 +53,7 @@ class LoginSession extends CrawlingTask<bool> {
     await storage.write(key: "password", value: password);
   }
 
+  bool isBackground = false;
   bool _isLogin = false;
   bool _isFail = false;
 
@@ -153,6 +155,8 @@ class LoginSession extends CrawlingTask<bool> {
               await cookie.deleteAllCookies();
               span.finish(status: const SpanStatus.ok());
 
+              if (!isBackground) await updateBackgroundService(lazy: true);
+
               await controller.customLoadPage(
                 "https://smartid.ssu.ac.kr/Symtra_sso/smln.asp?apiReturnUrl=https%3A%2F%2Fsaint.ssu.ac.kr%2FwebSSO%2Fsso.jsp",
                 clear: true,
@@ -171,7 +175,7 @@ class LoginSession extends CrawlingTask<bool> {
               }
               span.finish(status: fail ? const SpanStatus.cancelled() : const SpanStatus.ok());
 
-              await controller.customLoadPage("https://ecc.ssu.ac.kr/sap/bc/webdynpro/SAP/ZCMW0000?sap-language=KO"); // loads any page
+              await controller.customLoadPage("https://ecc.ssu.ac.kr/sap/bc/webdynpro/SAP/ZCMW1001n?sap-language=KO"); // loads any page
 
               _credentials = await CookieManager.instance().getCookies(url: WebUri(".ssu.ac.kr"));
 

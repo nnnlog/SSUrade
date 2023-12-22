@@ -33,15 +33,15 @@ extension WebViewControllerExtension on InAppWebViewController {
 
     if (clear) {
       var span = transaction?.startChild("clear_page");
+      loadData(data: "");
       waitForLoadingPage = Completer();
-      await loadData(data: "");
       await waitForLoadingPage?.future;
       span?.finish(status: const SpanStatus.ok());
     }
 
     var span = transaction?.startChild("load_url");
+    loadUrl(urlRequest: URLRequest(url: WebUri(url)));
     waitForLoadingPage = Completer();
-    await loadUrl(urlRequest: URLRequest(url: WebUri(url)));
     await waitForLoadingPage?.future;
     span?.finish(status: const SpanStatus.ok());
 

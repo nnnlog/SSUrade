@@ -12,6 +12,7 @@ import 'package:ssurade/types/Setting.dart';
 import 'package:ssurade/types/subject/SemesterSubjectsManager.dart';
 
 bool isLightMode = true; // SchedulerBinding.instance.window.platformBrightness == Brightness.light;
+bool isBackground = false;
 
 late Setting setting;
 late BackgroundSetting bgSetting;

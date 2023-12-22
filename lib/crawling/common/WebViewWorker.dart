@@ -62,8 +62,8 @@ class WebViewWorker {
       onJsPrompt: (controller, action) async {
         return JsPromptResponse(); // cancel prompt event
       },
-      onLoadStart: (InAppWebViewController controller, Uri? url) {
-        Future.wait(webViewScript.map((e) => controller.evaluateJavascript(source: e)));
+      onLoadStop: (InAppWebViewController controller, Uri? url) async {
+        await Future.wait(webViewScript.map((e) => controller.evaluateJavascript(source: e)));
       },
       shouldInterceptRequest: (InAppWebViewController controller, WebResourceRequest request) async {
         if (request.url.toString().startsWith("https://ecc.ssu.ac.kr/sap/public/bc/ur/nw7/js/lightspeed.js")) {

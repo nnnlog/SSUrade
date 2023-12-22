@@ -23,14 +23,14 @@ Future<void> disableBatteryOptimize({bool show = false}) async {
   }
 }
 
-Future<void> updateBackgroundService() async {
+Future<void> updateBackgroundService({lazy = false}) async {
   await unregisterBackgroundService();
   if (globals.setting.noticeGradeInBackground) {
-    await registerBackgroundService();
+    await registerBackgroundService(lazy: lazy);
   }
 }
 
-Future<void> registerBackgroundService() async {
+Future<void> registerBackgroundService({lazy = false}) async {
   await globals.flutterLocalNotificationsPlugin.resolvePlatformSpecificImplementation<AndroidFlutterLocalNotificationsPlugin>()?.requestNotificationsPermission();
   await Workmanager().registerPeriodicTask(
     "ssurade",
@@ -41,6 +41,7 @@ Future<void> registerBackgroundService() async {
     ),
     backoffPolicy: BackoffPolicy.linear,
     existingWorkPolicy: ExistingWorkPolicy.replace,
+    initialDelay: lazy ? const Duration(minutes: 15) : Duration.zero,
   );
 }
 
@@ -51,6 +52,7 @@ void startBackgroundService() {
   Workmanager().executeTask((task, inputData) async {
     try {
       await globals.init();
+      Crawler.loginSession().isBackground = true;
 
       var lastSemester = globals.semesterSubjectsManager.data.keys.last;
       var gradeData = (await Crawler.singleGrade(lastSemester).execute())!;
@@ -87,8 +89,9 @@ void startBackgroundService() {
       } else if (kDebugMode) {
         await showNotification("not updated (${DateTime.now().toString()})", gradeData.subjects.values.map((e) => "${e.name} : ${e.grade}").join("\n"));
       }
-    } catch (err) {
+    } catch (err, st) {
       Logger().e(err.toString());
+      Logger().e(st.toString());
       throw Exception(err);
     }
     return true;
