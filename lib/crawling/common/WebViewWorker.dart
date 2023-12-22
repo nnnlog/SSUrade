@@ -45,7 +45,7 @@ class WebViewWorker {
         controller.addJavaScriptHandler(
             handlerName: "load",
             callback: (_) {
-              controller.waitForLoadingPage.complete();
+              controller.waitForLoadingPage?.complete();
             });
 
         ret.complete(webView);

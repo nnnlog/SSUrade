@@ -24,9 +24,9 @@ extension WebViewControllerExtension on InAppWebViewController {
     _jsRedirectCallback[platform] = value;
   }
 
-  set waitForLoadingPage(Completer<void> value) => _pageLoaded[platform] = value;
+  set waitForLoadingPage(Completer<void>? value) => _pageLoaded[platform] = value;
 
-  Completer<void> get waitForLoadingPage => _pageLoaded[platform] ??= Completer();
+  Completer<void>? get waitForLoadingPage => _pageLoaded[platform];
 
   Future<void> customLoadPage(String url, {bool clear = false, ISentrySpan? parentTransaction}) async {
     var transaction = parentTransaction?.startChild("load_page");
@@ -35,14 +35,14 @@ extension WebViewControllerExtension on InAppWebViewController {
       var span = transaction?.startChild("clear_page");
       waitForLoadingPage = Completer();
       await loadData(data: "");
-      await waitForLoadingPage.future;
+      await waitForLoadingPage?.future;
       span?.finish(status: const SpanStatus.ok());
     }
 
     var span = transaction?.startChild("load_url");
     waitForLoadingPage = Completer();
     await loadUrl(urlRequest: URLRequest(url: WebUri(url)));
-    await waitForLoadingPage.future;
+    await waitForLoadingPage?.future;
     span?.finish(status: const SpanStatus.ok());
 
     transaction?.finish(status: const SpanStatus.ok());

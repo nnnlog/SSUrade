@@ -102,21 +102,26 @@ class LoginSession extends CrawlingTask<bool> {
     loginStatusChangeEvent.broadcast(Value(_isLogin)); // false
   }
 
-  @override
-  Future<bool> internalExecute(InAppWebViewController controller) async {
-    {
-      if ((await CookieManager.instance().getCookies(url: WebUri(".ssu.ac.kr"))).isEmpty) {
-        for (var cookie in _credentials) {
-          await CookieManager.instance().setCookie(url: WebUri(".ssu.ac.kr"), name: cookie.name, value: cookie.value);
-        }
+  Future<void> copyCredentials(InAppWebViewController controller) async {
+    if ((await CookieManager.instance().getCookies(url: WebUri(".ssu.ac.kr"))).isEmpty) {
+      for (var cookie in _credentials) {
+        await CookieManager.instance().setCookie(url: WebUri(".ssu.ac.kr"), name: cookie.name, value: cookie.value);
       }
     }
-    if (isLogin) return true;
+  }
+
+  @override
+  Future<bool> internalExecute(InAppWebViewController controller) async {
+    if (isLogin) {
+      await copyCredentials(controller);
+      return true;
+    }
     if (_future != null) {
       var tmp = _future!;
       return Future(() async {
         final transaction = parentTransaction == null ? null : parentTransaction!.startChild("${task_id}_share");
         var res = await tmp;
+        await copyCredentials(controller);
         transaction?.finish(status: res ? const SpanStatus.ok() : const SpanStatus.unauthenticated());
         return res;
       });
