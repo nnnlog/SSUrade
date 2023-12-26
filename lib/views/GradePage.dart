@@ -66,6 +66,7 @@ class _GradePageState extends State<GradePage> {
       }
 
       globals.semesterSubjectsManager.data[search] = data1;
+      globals.semesterSubjectsManager.saveFile();
       setState(() {
         _semesterSubjects = globals.semesterSubjectsManager.data[search]!;
       });
