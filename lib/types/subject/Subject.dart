@@ -22,6 +22,8 @@ class Subject extends Comparable<Subject> {
   String category = ""; // 이수 구분 (전공기초, 전공필수, 전공선택, 교양필수, 교양선택, 채플, 복수전공, 교직, 논문/시험, 일반선택)
   @JsonKey()
   bool isPassFail = false; // P/F 과목 여부
+  @JsonKey()
+  Map<String, String> detail = Map();
 
   static const int STATE_CATEGORY = 1 << 0; // 이수구분별 성적표에 의해 Subject가 채워지면,
   static const int STATE_SEMESTER = 1 << 1; // 학기별 성적 조회에 의해 Subject가 채워지면,

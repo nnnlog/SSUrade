@@ -2,10 +2,12 @@ import 'package:ssurade/crawling/common/WebViewWorker.dart';
 import 'package:ssurade/crawling/tasks/combine/AllGrade.dart';
 import 'package:ssurade/crawling/tasks/combine/AllGradeByCategory.dart';
 import 'package:ssurade/crawling/tasks/combine/AllGradeBySemester.dart';
+import 'package:ssurade/crawling/tasks/combine/SemesterSubjectDetailGrade.dart';
 import 'package:ssurade/crawling/tasks/units/ExtractDataFromViewer.dart';
 import 'package:ssurade/crawling/tasks/units/GradeSemesterList.dart';
 import 'package:ssurade/crawling/tasks/units/LoginSession.dart';
 import 'package:ssurade/crawling/tasks/units/SingleGradeBySemester.dart';
+import 'package:ssurade/crawling/tasks/units/SubjectDetailGrade.dart';
 import 'package:ssurade/crawling/tasks/units/WebUrlByCategory.dart';
 
 class Crawler {
@@ -21,4 +23,6 @@ class Crawler {
   static const allGradeBySemester = AllGradeBySemester.get;
   static const gradeSemesterList = GradeSemesterList.get;
   static const singleGrade = SingleGrade.get;
+  static const subjectDetailGrade = SubjectDetailGrade.get;
+  static const semesterSubjectDetailGrade = SemesterSubjectDetailGrade.get;
 }

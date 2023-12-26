@@ -62,8 +62,8 @@ class SingleGrade extends CrawlingTask<SemesterSubjects> {
     span = transaction.startChild("finalizing_data");
     Ranking semesterRanking = Ranking.unknown, totalRanking = Ranking.unknown;
     if (getRanking) {
-      semesterRanking = Ranking.parse(res["rank"]?["semester_rank"]);
-      totalRanking = Ranking.parse(res["rank"]?["total_rank"]);
+      semesterRanking = Ranking.parse(res["rank"]?["semester_rank"] ?? "");
+      totalRanking = Ranking.parse(res["rank"]?["total_rank"] ?? "");
     }
 
     SemesterSubjects result = SemesterSubjects(SplayTreeMap(), semesterRanking, totalRanking, search);

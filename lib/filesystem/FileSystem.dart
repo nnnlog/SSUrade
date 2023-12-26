@@ -9,7 +9,7 @@ late Directory internalDir;
 initFileSystem() async {
   internalDir = await getApplicationDocumentsDirectory();
 
-  if (!await existFile("first") && !await existFile("settings.json")) { // settings.json: legacy..
+  if (!await existFile("first") && !await existFile("settings.json")) {
     await writeFile("first", "");
     await const secureStorage.FlutterSecureStorage(aOptions: secureStorage.AndroidOptions(encryptedSharedPreferences: true)).deleteAll();
   }

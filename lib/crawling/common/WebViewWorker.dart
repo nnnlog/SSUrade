@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'dart:collection';
-import 'dart:typed_data';
 
+import 'package:flutter/services.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:http/http.dart' as http;
 import 'package:logger/logger.dart';
@@ -26,11 +26,9 @@ class WebViewWorker {
     var list = <HeadlessInAppWebView>[];
     var futures = <Future>[];
     for (int i = 0; i < taskInformation.getWebViewCount(); i++) {
-      var webView = _initWebView();
-      webView.then((webView) {
+      futures.add(_initWebView().then((webView) {
         list.add(webView);
-      });
-      futures.add(webView);
+      }));
     }
     await Future.wait(futures);
 
@@ -40,23 +38,13 @@ class WebViewWorker {
       ret.completeError(TimeoutException(taskInformation.getTaskId(), Duration(seconds: taskInformation.getTimeout())));
     });
 
-    ret.future.whenComplete(() async {
-      if (timer.isActive) timer.cancel();
-
-      for (var webView in list) {
-        webView.platform.dispose().whenComplete(() => webView.dispose());
-      }
-    });
-
-    callback(Queue()..addAll(list.map((e) => e.webViewController!))).then((value) {
-      if (!ret.isCompleted) {
-        ret.complete(value);
-      }
-    }).catchError((error, stacktrace) {
+    ret.future.catchError((error, stacktrace) {
       var reportError = true;
 
       if (ret.isCompleted) reportError = false;
       if (error is UnauthenticatedException) reportError = false;
+      if (error is TimeoutException) reportError = false;
+      if (error is MissingPluginException) reportError = false;
 
       if (reportError) {
         taskInformation.parentTransaction?.throwable = error;
@@ -71,11 +59,25 @@ class WebViewWorker {
         );
 
         taskInformation.parentTransaction?.finish(status: const SpanStatus.internalError());
-
-        ret.completeError(error, stacktrace);
       }
 
       Logger().e(error, stackTrace: stacktrace);
+    }).whenComplete(() async {
+      if (timer.isActive) timer.cancel();
+
+      for (var webView in list) {
+        webView.platform.dispose().whenComplete(() => webView.dispose());
+      }
+    });
+
+    callback(Queue()..addAll(list.map((e) => e.webViewController!))).then((value) {
+      print(value);
+      print(ret.isCompleted);
+      if (!ret.isCompleted) {
+        ret.complete(value);
+      }
+    }).catchError((error, stacktrace) {
+      ret.completeError(error, stacktrace);
     });
     return ret;
   }

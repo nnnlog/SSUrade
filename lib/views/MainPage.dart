@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' show rootBundle;
 import 'package:flutter_exit_app/flutter_exit_app.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-import 'package:quiver/time.dart';
 import 'package:ssurade/components/CustomAppBar.dart';
 import 'package:ssurade/crawling/background/BackgroundService.dart';
 import 'package:ssurade/crawling/common/Crawler.dart';

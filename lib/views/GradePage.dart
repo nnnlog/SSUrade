@@ -53,6 +53,7 @@ class _GradePageState extends State<GradePage> {
     SemesterSubjects? data;
     try {
       data = (await Crawler.singleGrade(search, reloadPage: true).execute());
+      globals.semesterSubjectsManager.data[search] = data;
     } catch (_) {}
 
     _lockedForRefresh.remove(search);
