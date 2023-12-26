@@ -17,6 +17,8 @@ class Subject extends Comparable<Subject> {
   @JsonKey()
   String grade; // 학점 (성적)
   @JsonKey()
+  String score;
+  @JsonKey()
   String professor; // 교수명
   @JsonKey()
   String category = ""; // 이수 구분 (전공기초, 전공필수, 전공선택, 교양필수, 교양선택, 채플, 복수전공, 교직, 논문/시험, 일반선택)
@@ -25,7 +27,7 @@ class Subject extends Comparable<Subject> {
   @JsonKey()
   Map<String, String> detail = Map();
 
-  Subject(this._code, this.name, this.credit, this.grade, this.professor, this.category, this.isPassFail);
+  Subject(this._code, this.name, this.credit, this.grade, this.score, this.professor, this.category, this.isPassFail);
 
   String get code => _code;
 
@@ -51,13 +53,13 @@ class Subject extends Comparable<Subject> {
 
   @override
   String toString() {
-    return "$runtimeType(code=$code, name=$name, credit=$credit, grade=$grade, professor=$professor, category=$category, isPassFail=$isPassFail, detail=$detail)";
+    return "$runtimeType(code=$code, name=$name, credit=$credit, grade=$grade, score=$score, professor=$professor, category=$category, isPassFail=$isPassFail, detail=$detail)";
   }
 
   @override
   int compareTo(Subject other) {
-    double x = gradeTable[grade] ?? -5;
-    double y = gradeTable[other.grade] ?? -5;
+    int x = gradeTable[grade] ?? -5;
+    int y = gradeTable[other.grade] ?? -5;
     if (x != y) return x > y ? -1 : 1; // 성적(grade) 높은 것부터
     if (credit != other.credit) return credit > other.credit ? -1 : 1; // 학점(credit) 높은 것부터
     return name.compareTo(other.name);

@@ -46,14 +46,15 @@ class AllGradeByCategory extends CrawlingTask<SemesterSubjectsManager> {
 
       var category = data["COMPL_TEXT"]!;
       var credit = double.parse(data["CPATTEMP"]!);
-      var grade = data["GRADE"]!;
+      var grade = data["GRADE"]!; // 성적 기호
+      var score = data["GRADESYMBOL"]!; // 최종 점수 (근데 이름이 왜 이래)
       var isPassFail = data["GRADESCALE"]! == "PF"; // otherwise, '100P'
       // var code = data["SE_SHORT"]!.replaceAll(RegExp("\\(|\\)"), ""); // FORMAT: 21501015(06) - 괄호 안은 분반 정보
       var code = data["SM_ID"]!; // FORMAT: 21501015
       // SUBJECT NAME (SM_TEXT에 존재하지만, 교선에 교선 분류명도 함께 있음)
       // PROF NAME (not exist)
 
-      var subject = Subject(code, "", credit, grade, "", category, isPassFail);
+      var subject = Subject(code, "", credit, grade, score, "", category, isPassFail);
       ret.data[key]!.subjects[subject.code] = subject;
     }
     span.finish(status: const SpanStatus.ok());

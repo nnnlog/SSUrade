@@ -27,7 +27,7 @@ class Ranking {
   }
 
   double get percentage {
-    return my / total * 100;
+    return (my * 1000 ~/ total) / 10;
   }
 
   bool get isEmpty => my == 0 || total == 0;

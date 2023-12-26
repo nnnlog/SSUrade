@@ -172,7 +172,7 @@ class _SettingPageState extends State<SettingPage> {
                             if (_refreshGradeDetail) return;
                             _refreshGradeDetail = true;
 
-                            showToast("성적 상세 정보를 불러오는 중이에요.");
+                            showToast("성적 상세 정보를 불러오는 중이에요...");
 
                             var data = globals.semesterSubjectsManager.data;
                             var futures = <Future>[];
@@ -191,6 +191,7 @@ class _SettingPageState extends State<SettingPage> {
 
                             _refreshGradeDetail = false;
                             showToast("성적 상세 정보를 불러왔어요.");
+                            showToast("성적 조회에서 과목을 꾹 누르면 상세 성적을 조회할 수 있어요.");
                           },
                           style: OutlinedButton.styleFrom(
                             minimumSize: const Size.fromHeight(40),

@@ -40,7 +40,47 @@ class _SubjectWidgetState extends State<SubjectWidget> {
                         shrinkWrap: true,
                         children: [
                           Table(
-                            border: TableBorder.all(),
+                            border: TableBorder.all(
+                              color: const Color.fromRGBO(0, 0, 0, .5),
+                            ),
+                            children: [
+                              TableRow(children: [
+                                TableCell(
+                                  verticalAlignment: TableCellVerticalAlignment.middle,
+                                  child: Container(
+                                    padding: const EdgeInsets.all(10),
+                                    child: const SelectableText(
+                                      "최종 성적",
+                                      textAlign: TextAlign.center,
+                                      style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                TableCell(
+                                  verticalAlignment: TableCellVerticalAlignment.middle,
+                                  child: Container(
+                                    padding: const EdgeInsets.all(10),
+                                    child: SelectableText(
+                                      widget._subjectData.score,
+                                      textAlign: TextAlign.center,
+                                      style: const TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ]),
+                            ],
+                          ),
+                          Container(
+                            height: 20,
+                          ),
+                          Table(
+                            border: TableBorder.all(
+                              color: const Color.fromRGBO(0, 0, 0, .5),
+                            ),
                             children: detail.keys
                                 .map((e) => TableRow(
                                       children: [

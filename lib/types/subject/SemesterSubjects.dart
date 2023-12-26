@@ -86,34 +86,34 @@ class SemesterSubjects {
   }
 
   double get averageGrade {
-    double totalGrade = 0, totalCredit = 0;
+    int totalGrade = 0, totalCredit = 0;
 
     for (var data in subjects.values) {
-      double? score = gradeTable[data.grade];
+      int? score = gradeTable[data.grade];
       if (score == null) continue; // not available
       if (data.isPassFail) continue; // Pass/Fail subject
       if (data.grade == "P") continue; // Pass subject (이수구분별 성적표 미작동 시)
-      totalGrade += score * data.credit; // Fail subject's weight(score) is zero
-      totalCredit += data.credit;
+      totalGrade += score * data.credit.toInt(); // Fail subject's weight(score) is zero
+      totalCredit += (data.credit * 10).toInt();
     }
     if (totalCredit == 0) return 0;
-    return totalGrade / totalCredit;
+    return ((totalGrade * 100) ~/ totalCredit) / 100;
   }
 
   double get averageMajorGrade {
-    double totalGrade = 0, totalCredit = 0;
+    int totalGrade = 0, totalCredit = 0;
 
     for (var data in subjects.values) {
       if (!data.isMajor) continue;
-
-      double? score = gradeTable[data.grade];
+      int? score = gradeTable[data.grade];
       if (score == null) continue; // not available
       if (data.isPassFail) continue; // Pass/Fail subject
-      totalGrade += score * data.credit; // Fail subject's weight(score) is zero
-      totalCredit += data.credit;
+      if (data.grade == "P") continue; // Pass subject (이수구분별 성적표 미작동 시)
+      totalGrade += (score * data.credit).toInt(); // Fail subject's weight(score) is zero
+      totalCredit += (data.credit).toInt();
     }
     if (totalCredit == 0) return 0;
-    return totalGrade / totalCredit;
+    return ((totalGrade * 100) ~/ totalCredit) / 100;
   }
 
   @override

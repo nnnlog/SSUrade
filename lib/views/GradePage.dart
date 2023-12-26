@@ -49,6 +49,7 @@ class _GradePageState extends State<GradePage> {
     _lockedForRefresh.add(search);
 
     showToast("${search.year}학년도 ${search.semester.name} 성적을 불러오는 중이에요...");
+    showToast("불러오는 시간이 오래 걸릴 수 있어요.");
 
     try {
       late SemesterSubjects data1;

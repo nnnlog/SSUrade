@@ -3,7 +3,6 @@ import 'package:ssurade/globals.dart' as globals;
 import 'package:ssurade/types/Semester.dart';
 import 'package:ssurade/types/YearSemester.dart';
 import 'package:ssurade/types/subject/SemesterSubjects.dart';
-import 'package:ssurade/utils/DoubleToString.dart';
 
 class GradePageHeader extends StatefulWidget {
   final SemesterSubjects data;
@@ -118,7 +117,7 @@ class _GradePageHeaderState extends State<GradePageHeader> {
                       textBaseline: TextBaseline.alphabetic,
                       children: [
                         Text(
-                          toStringWithPrecision(widget.data.averageGrade, 2),
+                          widget.data.averageGrade.toStringAsFixed(2),
                           style: const TextStyle(
                             fontSize: 50,
                             fontWeight: FontWeight.w600,
@@ -157,7 +156,7 @@ class _GradePageHeaderState extends State<GradePageHeader> {
                         height: 2,
                       ),
                       Text(
-                        "${widget.data.semesterRanking.display} ${widget.data.semesterRanking.isEmpty ? '' : '(상위 ${toStringWithPrecision(widget.data.semesterRanking.percentage, 1)}%)'}",
+                        "${widget.data.semesterRanking.display} ${widget.data.semesterRanking.isEmpty ? '' : '(상위 ${widget.data.semesterRanking.percentage.toStringAsFixed(1)}%)'}",
                         style: const TextStyle(
                           fontSize: 12,
                           fontWeight: FontWeight.w500,
@@ -178,7 +177,7 @@ class _GradePageHeaderState extends State<GradePageHeader> {
                         height: 2,
                       ),
                       Text(
-                        "${widget.data.totalRanking.display} ${widget.data.totalRanking.isEmpty ? '' : '(상위 ${toStringWithPrecision(widget.data.totalRanking.percentage, 1)}%)'}",
+                        "${widget.data.totalRanking.display} ${widget.data.totalRanking.isEmpty ? '' : '(상위 ${widget.data.totalRanking.percentage.toStringAsFixed(1)}%)'}",
                         style: const TextStyle(
                           fontSize: 12,
                           fontWeight: FontWeight.w500,
