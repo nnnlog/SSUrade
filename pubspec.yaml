@@ -13,7 +13,7 @@ dependencies:
     sdk: flutter
 
   cupertino_icons: ^1.0.6
-  flutter_inappwebview: ^6.0.0-rc.3
+  flutter_inappwebview: ^6.0.0
   path_provider: ^2.1.1
   fluttertoast: ^8.2.4
   package_info_plus: ^5.0.1

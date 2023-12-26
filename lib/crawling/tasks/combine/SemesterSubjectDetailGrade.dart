@@ -29,7 +29,7 @@ class SemesterSubjectDetailGrade extends CrawlingTask<Map<String, Map<String, St
 
   @override
   int getTimeout() {
-    return getWebViewCount() * 10 + subjectCountPerController * 5;
+    return getWebViewCount() * 10 + subjectCountPerController * 10;
   }
 
   @override

@@ -4,6 +4,7 @@ import 'package:ssurade/components/CustomAppBar.dart';
 import 'package:ssurade/crawling/background/BackgroundService.dart';
 import 'package:ssurade/crawling/common/Crawler.dart';
 import 'package:ssurade/globals.dart' as globals;
+import 'package:ssurade/types/subject/SemesterSubjectsManager.dart';
 import 'package:ssurade/utils/toast.dart';
 
 class SettingPage extends StatefulWidget {
@@ -15,6 +16,7 @@ class SettingPage extends StatefulWidget {
 
 class _SettingPageState extends State<SettingPage> {
   bool _refreshGrade = false;
+  bool _refreshGradeDetail = false;
   final TextEditingController _timeoutGradeController = TextEditingController(), _timeoutAllGradeController = TextEditingController();
 
   void _proxySetState(_) {
@@ -145,23 +147,55 @@ class _SettingPageState extends State<SettingPage> {
                             if (_refreshGrade) return;
                             _refreshGrade = true;
 
-                            showToast("성적 정보 동기화를 시작합니다.");
+                            showToast("전체 학기 성적을 불러오는 중이에요.");
 
-                            var res = await Crawler.allGrade().execute();
-                            if (res == null) {
-                              showToast("성적 정보를 가져오지 못했습니다.\n다시 시도해주세요.");
+                            SemesterSubjectsManager res;
+                            try {
+                              res = await Crawler.allGrade().execute();
+                            } catch (_) {
+                              showToast("성적 정보를 가져오지 못했어요.\n다시 시도해주세요.");
                               return;
                             }
 
                             globals.semesterSubjectsManager = res;
                             globals.semesterSubjectsManager.saveFile(); // saving file does not need await
                             _refreshGrade = false;
-                            showToast("성적 정보를 동기화했습니다.");
+                            showToast("전체 학기 성적을 불러왔어요.");
                           },
                           style: OutlinedButton.styleFrom(
                             minimumSize: const Size.fromHeight(40),
                           ),
-                          child: const Text("전체 학기 성적 동기화"),
+                          child: const Text("전체 학기 성적 불러오기"),
+                        ),
+                        OutlinedButton(
+                          onPressed: () async {
+                            if (_refreshGradeDetail) return;
+                            _refreshGradeDetail = true;
+
+                            showToast("성적 상세 정보를 불러오는 중이에요.");
+
+                            var data = globals.semesterSubjectsManager.data;
+                            var futures = <Future>[];
+                            for (var key in data.keys) {
+                              futures.add(Crawler.semesterSubjectDetailGrade(data[key]!).execute().then((value) {
+                                for (var subjectCode in value.keys) {
+                                  if (value[subjectCode]?.isNotEmpty == true) {
+                                    globals.semesterSubjectsManager.data[key]?.subjects[subjectCode]?.detail = value[subjectCode]!;
+                                    globals.semesterSubjectsManager.saveFile();
+                                  }
+                                }
+                              }));
+                            }
+
+                            await Future.wait(futures);
+
+                            _refreshGradeDetail = false;
+                            showToast("성적 상세 정보를 불러왔어요.");
+                          },
+                          style: OutlinedButton.styleFrom(
+                            minimumSize: const Size.fromHeight(40),
+                          ),
+                          child: const Text("성적 상세 정보 불러오기"),
                         ),
                         OutlinedButton(
                           onPressed: () async {

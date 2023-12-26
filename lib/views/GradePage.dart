@@ -48,29 +48,35 @@ class _GradePageState extends State<GradePage> {
     if (_lockedForRefresh.contains(search)) return;
     _lockedForRefresh.add(search);
 
-    showToast("${search.year}학년도 ${search.semester.name} 성적을 불러옵니다.");
+    showToast("${search.year}학년도 ${search.semester.name} 성적을 불러오는 중이에요...");
 
-    SemesterSubjects? data;
     try {
-      data = (await Crawler.singleGrade(search, reloadPage: true).execute());
-      globals.semesterSubjectsManager.data[search] = data;
-    } catch (_) {}
+      late SemesterSubjects data1;
+      late Map<String, Map<String, String>> data2;
 
-    _lockedForRefresh.remove(search);
-    if (!mounted) return;
+      var futures = <Future>[];
+      futures.add(Crawler.singleGrade(search).execute().then((value) => data1 = value));
+      futures.add(Crawler.semesterSubjectDetailGrade(_semesterSubjects).execute().then((value) => data2 = value));
 
-    if (search != _semesterSubjects.currentSemester) return;
+      await Future.wait(futures);
 
-    if (data == null) {
-      showToast("${search.year}학년도 ${search.semester.name} 성적을 불러오지 못했습니다.");
-      return;
+      for (var subjectCode in data2.keys) {
+        data1.subjects[subjectCode]?.detail = data2[subjectCode]!;
+      }
+
+      globals.semesterSubjectsManager.data[search] = data1;
+      setState(() {
+        _semesterSubjects = globals.semesterSubjectsManager.data[search]!;
+      });
+
+      if (!mounted) return;
+      if (search != _semesterSubjects.currentSemester) return;
+      showToast("${search.year}학년도 ${search.semester.name} 성적을 불러왔어요.");
+    } catch (_) {
+      showToast("${search.year}학년도 ${search.semester.name} 성적을 불러오지 못했어요.");
+    } finally {
+      _lockedForRefresh.remove(search);
     }
-
-    setState(() {
-      _semesterSubjects = globals.semesterSubjectsManager.data[search]!;
-    });
-
-    showToast("${search.year}학년도 ${search.semester.name} 성적을 불러왔습니다.");
   }
 
   refreshCurrentGradeWithPull() async {
@@ -113,7 +119,7 @@ class _GradePageState extends State<GradePage> {
   void initState() {
     super.initState();
 
-    globals.newGradeFoundEvent.subscribe(newGradeFoundEventHandler);
+    globals.gradeUpdateEvent.subscribe(newGradeFoundEventHandler);
 
     (() async {
       bool needRefresh = true;
@@ -159,7 +165,7 @@ class _GradePageState extends State<GradePage> {
   void dispose() {
     super.dispose();
 
-    globals.newGradeFoundEvent.unsubscribe(newGradeFoundEventHandler);
+    globals.gradeUpdateEvent.unsubscribe(newGradeFoundEventHandler);
   }
 
   @override

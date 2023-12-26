@@ -32,7 +32,7 @@ class AllGradeByCategory extends CrawlingTask<SemesterSubjectsManager> {
     var gradeData = await Crawler.extractDataFromViewer(viewerUrl, parentTransaction: transaction).directExecute(Queue()..add(controller));
 
     span = transaction.startChild("finalizing_data");
-    var ret = SemesterSubjectsManager(SplayTreeMap());
+    var ret = SemesterSubjectsManager(SplayTreeMap(), SemesterSubjectsManager.STATE_CATEGORY);
     for (var _data in gradeData.rows) {
       Map<String, String> data = {};
       for (var key in _data.keys) {
@@ -53,13 +53,13 @@ class AllGradeByCategory extends CrawlingTask<SemesterSubjectsManager> {
       // SUBJECT NAME (SM_TEXT에 존재하지만, 교선에 교선 분류명도 함께 있음)
       // PROF NAME (not exist)
 
-      var subject = Subject(code, "", credit, grade, "", category, isPassFail, Subject.STATE_CATEGORY);
+      var subject = Subject(code, "", credit, grade, "", category, isPassFail);
       ret.data[key]!.subjects[subject.code] = subject;
     }
     span.finish(status: const SpanStatus.ok());
 
     transaction.status = const SpanStatus.ok();
-    await transaction.finish();
+    transaction.finish();
     return ret;
   }
 

@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' show rootBundle;
@@ -10,7 +9,7 @@ import 'package:ssurade/crawling/background/BackgroundService.dart';
 import 'package:ssurade/crawling/common/Crawler.dart';
 import 'package:ssurade/globals.dart' as globals;
 import 'package:ssurade/types/Progress.dart';
-import 'package:ssurade/types/Semester.dart';
+import 'package:ssurade/types/subject/SemesterSubjectsManager.dart';
 import 'package:ssurade/utils/toast.dart';
 import 'package:ssurade/utils/update.dart';
 
@@ -83,34 +82,37 @@ class _MainPageState extends State<MainPage> {
           }
         });
 
-        Crawler.allGrade(base: globals.semesterSubjectsManager).execute().then((value) {
-          // base가 주어져도 grade by category가 overwrite하도록 바꿔야 함
-          if (value == null) return;
+        Crawler.allGrade().execute().then((value) {
           if (value.isEmpty) return;
+          if (value.state != SemesterSubjectsManager.STATE_FULL) return;
+
           bool foundNewSemester = false;
-          String newSemester = "";
-          bool foundUpdatedGradeData = false;
-          String updatedSemester = "";
+          List<String> newSemester = [];
+
           for (var key in value.data.keys) {
             if (!globals.semesterSubjectsManager.data.containsKey(key)) {
               foundNewSemester = true;
-              newSemester = "${key.year}학년도 ${key.semester.name}";
-              break;
-            } else if (jsonEncode(globals.semesterSubjectsManager.data[key]?.toJson()) != jsonEncode(value.data[key]?.toJson())) {
-              foundUpdatedGradeData = true;
-              updatedSemester = "${key.year}학년도 ${key.semester.name}";
+              newSemester.add("${key.year}학년도 ${key.semester.name}");
             }
+          }
+
+          for (var key in value.data.keys) {
+            Crawler.semesterSubjectDetailGrade(value.data[key]!).execute().then((value) {
+              for (var subjectCode in value.keys) {
+                if (value[subjectCode]?.isNotEmpty == true) {
+                  globals.semesterSubjectsManager.data[key]?.subjects[subjectCode]?.detail = value[subjectCode]!;
+                  globals.semesterSubjectsManager.saveFile();
+                }
+              }
+            });
           }
 
           globals.semesterSubjectsManager = value;
           globals.semesterSubjectsManager.saveFile();
 
           if (foundNewSemester) {
-            showToast("새로운 학기($newSemester) 성적을 찾았습니다.");
-            globals.newGradeFoundEvent.broadcast();
-          } else if (foundUpdatedGradeData) {
-            showToast("해당 학기($updatedSemester) 성적에 변경 사항이 있습니다.");
-            globals.newGradeFoundEvent.broadcast();
+            showToast("새로운 학기(${newSemester.join(", ")}) 성적을 찾았습니다.");
+            globals.gradeUpdateEvent.broadcast();
           }
         });
       }

@@ -122,11 +122,12 @@ class LoginSession extends CrawlingTask<bool> {
     if (_future != null) {
       final transaction = parentTransaction?.startChild("${getTaskId()}_share");
       var res = await _future!;
-      if (!res) return false;
-      await copyCredentials(controller);
+      if (res) await copyCredentials(controller);
       transaction?.finish(status: res ? const SpanStatus.ok() : const SpanStatus.unauthenticated());
       return res;
     }
+
+    if (!isBackground) await updateBackgroundService(lazy: true);
 
     _isLogin = false;
     _isFail = false;
@@ -152,8 +153,6 @@ class LoginSession extends CrawlingTask<bool> {
     await cookie.deleteAllCookies();
     span.finish(status: const SpanStatus.ok());
 
-    if (!isBackground) await updateBackgroundService(lazy: true);
-
     await controller.customLoadPage(
       "https://smartid.ssu.ac.kr/Symtra_sso/smln.asp?apiReturnUrl=https%3A%2F%2Fsaint.ssu.ac.kr%2FwebSSO%2Fsso.jsp",
       clear: true,
@@ -165,10 +164,9 @@ class LoginSession extends CrawlingTask<bool> {
 
     await controller.evaluateJavascript(source: 'document.LoginInfo.submit();');
     span.finish(status: const SpanStatus.ok());
-
     span = transaction.startChild("wait_redirection");
     while (!(await controller.getUrl()).toString().startsWith("https://saint.ssu.ac.kr/irj/portal")) {
-      await Future.delayed(Duration.zero);
+      await Future.delayed(const Duration(milliseconds: 1));
     }
     span.finish(status: fail ? const SpanStatus.cancelled() : const SpanStatus.ok());
 

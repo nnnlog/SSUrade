@@ -14,7 +14,6 @@ Subject _$SubjectFromJson(Map<String, dynamic> json) => Subject(
       json['professor'] as String,
       json['category'] as String,
       json['isPassFail'] as bool,
-      json['_state'] as int,
     )..detail = Map<String, String>.from(json['detail'] as Map);
 
 Map<String, dynamic> _$SubjectToJson(Subject instance) => <String, dynamic>{
@@ -26,5 +25,4 @@ Map<String, dynamic> _$SubjectToJson(Subject instance) => <String, dynamic>{
       'category': instance.category,
       'isPassFail': instance.isPassFail,
       'detail': instance.detail,
-      '_state': instance._state,
     };

@@ -25,21 +25,7 @@ class Subject extends Comparable<Subject> {
   @JsonKey()
   Map<String, String> detail = Map();
 
-  static const int STATE_CATEGORY = 1 << 0; // 이수구분별 성적표에 의해 Subject가 채워지면,
-  static const int STATE_SEMESTER = 1 << 1; // 학기별 성적 조회에 의해 Subject가 채워지면,
-  static const int STATE_FULL = STATE_CATEGORY | STATE_SEMESTER;
-
-  @JsonKey(
-    includeToJson: true,
-    includeFromJson: true,
-  )
-  int _state = 0;
-
-  bool get isEmpty => _state != STATE_FULL;
-
-  bool get isNotEmpty => !isEmpty;
-
-  Subject(this._code, this.name, this.credit, this.grade, this.professor, this.category, this.isPassFail, this._state);
+  Subject(this._code, this.name, this.credit, this.grade, this.professor, this.category, this.isPassFail);
 
   String get code => _code;
 
@@ -59,14 +45,13 @@ class Subject extends Comparable<Subject> {
     if (other.category.isNotEmpty) category = other.category;
 
     isPassFail |= other.isPassFail;
-    _state |= other._state;
 
     return this;
   }
 
   @override
   String toString() {
-    return "$runtimeType(code=$code, name=$name, credit=$credit, grade=$grade, professor=$professor, category=$category, isPassFail=$isPassFail, state=$_state)";
+    return "$runtimeType(code=$code, name=$name, credit=$credit, grade=$grade, professor=$professor, category=$category, isPassFail=$isPassFail, detail=$detail)";
   }
 
   @override

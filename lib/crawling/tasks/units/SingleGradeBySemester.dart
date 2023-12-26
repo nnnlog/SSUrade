@@ -68,7 +68,7 @@ class SingleGrade extends CrawlingTask<SemesterSubjects> {
 
     SemesterSubjects result = SemesterSubjects(SplayTreeMap(), semesterRanking, totalRanking, search);
     for (var obj in res["subjects"]) {
-      var data = Subject(obj["subject_code"], obj["subject_name"], double.parse(obj["credit"]), obj["grade_symbol"], obj["professor"], "", false, Subject.STATE_SEMESTER);
+      var data = Subject(obj["subject_code"], obj["subject_name"], double.parse(obj["credit"]), obj["grade_symbol"], obj["professor"], "", false);
       result.subjects[data.code] = data;
     }
     span.finish(status: const SpanStatus.ok());

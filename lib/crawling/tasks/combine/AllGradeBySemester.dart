@@ -29,7 +29,7 @@ class AllGradeBySemester extends CrawlingTask<SemesterSubjectsManager> {
 
     var map = await Crawler.gradeSemesterList(parentTransaction: transaction).directExecute(Queue()..add(controller));
 
-    result = SemesterSubjectsManager(SplayTreeMap.from({}));
+    result = SemesterSubjectsManager(SplayTreeMap.from({}), SemesterSubjectsManager.STATE_SEMESTER);
 
     for (var key in map.keys) {
       var tmp = await Crawler.singleGrade(
@@ -38,15 +38,12 @@ class AllGradeBySemester extends CrawlingTask<SemesterSubjectsManager> {
         getRanking: false,
         parentTransaction: transaction,
       ).directExecute(Queue()..add(controller));
-      if (map.containsKey(key)) {
-        tmp.semesterRanking = map[key]!.item1;
-        tmp.totalRanking = map[key]!.item2;
-      }
-      result.data[key] = tmp;
+      if (tmp.isEmpty) continue;
 
-      if (result.data[key]?.subjects.isEmpty == true) {
-        result.data.remove(key);
-      }
+      tmp.semesterRanking = map[key]!.item1;
+      tmp.totalRanking = map[key]!.item2;
+
+      result.data[key] = tmp;
     }
 
     return result;

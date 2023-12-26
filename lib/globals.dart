@@ -28,7 +28,7 @@ AndroidNotificationChannel channel = const AndroidNotificationChannel(
   showBadge: true,
 );
 
-Event newGradeFoundEvent = Event();
+Event gradeUpdateEvent = Event();
 List<String> assets = ["common.js"];
 
 Future<void> init() async {

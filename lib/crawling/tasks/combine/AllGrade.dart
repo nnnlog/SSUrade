@@ -30,8 +30,8 @@ class AllGrade extends CrawlingTask<SemesterSubjectsManager> {
     span = transaction.startChild("get_grade_info");
     List<Future<SemesterSubjectsManager>> wait = [];
 
-    wait.add(Crawler.allGradeByCategory(parentTransaction: span).directExecute(Queue()..add(con1)).catchError((_) => SemesterSubjectsManager(SplayTreeMap())));
-    wait.add(Crawler.allGradeBySemester(parentTransaction: span).directExecute(Queue()..add(con2)).catchError((_) => SemesterSubjectsManager(SplayTreeMap())));
+    wait.add(Crawler.allGradeByCategory(parentTransaction: span).directExecute(Queue()..add(con1)).catchError((_) => SemesterSubjectsManager(SplayTreeMap(), SemesterSubjectsManager.STATE_CATEGORY)));
+    wait.add(Crawler.allGradeBySemester(parentTransaction: span).directExecute(Queue()..add(con2)).catchError((_) => SemesterSubjectsManager(SplayTreeMap(), SemesterSubjectsManager.STATE_SEMESTER)));
 
     var ret = (await Future.wait(wait))..removeWhere((element) => element.isEmpty);
     span.finish(status: const SpanStatus.ok());

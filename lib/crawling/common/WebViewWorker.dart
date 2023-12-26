@@ -71,8 +71,6 @@ class WebViewWorker {
     });
 
     callback(Queue()..addAll(list.map((e) => e.webViewController!))).then((value) {
-      print(value);
-      print(ret.isCompleted);
       if (!ret.isCompleted) {
         ret.complete(value);
       }
@@ -94,7 +92,11 @@ class WebViewWorker {
         controller.addJavaScriptHandler(
             handlerName: "load",
             callback: (_) {
-              controller.waitForLoadingPage?.complete();
+              final waitForLoadingPage = controller.waitForLoadingPage;
+              if (waitForLoadingPage != null) {
+                waitForLoadingPage.complete();
+                controller.waitForLoadingPage = null;
+              }
             });
 
         ret.complete(webView);

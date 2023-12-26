@@ -11,20 +11,34 @@ part 'SemesterSubjectsManager.g.dart';
 
 @JsonSerializable(converters: [_DataConverter()])
 class SemesterSubjectsManager {
+  static const int STATE_EMPTY = 0;
+  static const int STATE_CATEGORY = 1 << 0; // 이수구분별 성적표에 의해 정보가 채워지면
+  static const int STATE_SEMESTER = 1 << 1; // 학기별 성적 조회에 의해 정보가 채워지면
+  static const int STATE_FULL = STATE_CATEGORY | STATE_SEMESTER;
+
+  @JsonKey(
+    includeToJson: true,
+    includeFromJson: true,
+  )
+  int _state = 0;
+
   @JsonKey()
   SplayTreeMap<YearSemester, SemesterSubjects> data;
 
-  SemesterSubjectsManager(this.data);
+  SemesterSubjectsManager(this.data, this._state);
 
   factory SemesterSubjectsManager.fromJson(Map<String, dynamic> json) => _$SemesterSubjectsManagerFromJson(json);
 
   Map<String, dynamic> toJson() => _$SemesterSubjectsManagerToJson(this);
+
+  int get state => _state;
 
   bool get isEmpty => data.isEmpty;
 
   bool get isNotEmpty => !isEmpty;
 
   SemesterSubjectsManager merge(SemesterSubjectsManager other) {
+    _state |= other._state;
     for (var subjects in other.data.values) {
       if (data.containsKey(subjects.currentSemester)) {
         data[subjects.currentSemester]!.merge(subjects);
@@ -70,7 +84,7 @@ class SemesterSubjectsManager {
       log(e.toString());
       log(stacktrace.toString());
     }
-    return SemesterSubjectsManager(SplayTreeMap());
+    return SemesterSubjectsManager(SplayTreeMap(), STATE_EMPTY);
   }
 
   saveFile() => writeFile(_filename, jsonEncode(toJson()));

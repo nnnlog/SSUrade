@@ -51,7 +51,7 @@ class SemesterSubjects {
   List<Subject> getIncompleteSubjects() {
     List<Subject> ret = [];
     for (var subject in subjects.values) {
-      if (subject.isEmpty) {
+      if (subject.grade.isEmpty) {
         ret.add(subject);
       }
     }

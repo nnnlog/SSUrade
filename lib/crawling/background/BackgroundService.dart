@@ -55,7 +55,7 @@ void startBackgroundService() {
       Crawler.loginSession().isBackground = true;
 
       var lastSemester = globals.semesterSubjectsManager.data.keys.last;
-      var gradeData = (await Crawler.singleGrade(lastSemester).execute())!;
+      var gradeData = await Crawler.singleGrade(lastSemester).execute();
 
       var originalGradeData = globals.semesterSubjectsManager.data[lastSemester]!;
       List<String> updates = [];
