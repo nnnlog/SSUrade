@@ -1,9 +1,14 @@
 import 'dart:async';
+import 'dart:collection';
 import 'dart:typed_data';
 
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:http/http.dart' as http;
+import 'package:logger/logger.dart';
+import 'package:sentry_flutter/sentry_flutter.dart';
+import 'package:ssurade/crawling/common/CrawlingTask.dart';
 import 'package:ssurade/crawling/common/WebViewControllerExtension.dart';
+import 'package:ssurade/crawling/error/UnauthenticatedExcpetion.dart';
 import 'package:ssurade/filesystem/FileSystem.dart';
 
 /// Execute task with headless webview.
@@ -17,26 +22,68 @@ class WebViewWorker {
   factory WebViewWorker() => instance;
 
   /// run task in here. resolve value or cancel task using Completer.
-  Future<Completer<T>> runTask<T>(Future<T> Function(InAppWebViewController) callback) async {
+  Future<Completer<T>> runTask<T>(Future<T> Function(Queue<InAppWebViewController>) callback, CrawlingTask<T> taskInformation) async {
+    var list = <HeadlessInAppWebView>[];
+    var futures = <Future>[];
+    for (int i = 0; i < taskInformation.getWebViewCount(); i++) {
+      var webView = _initWebView();
+      webView.then((webView) {
+        list.add(webView);
+      });
+      futures.add(webView);
+    }
+    await Future.wait(futures);
+
     var ret = Completer<T>();
-    var webView = await _initWebView();
-    ret.future.whenComplete(() async {
-      await webView.platform.dispose();
-      await webView.dispose();
+
+    var timer = Timer(Duration(seconds: taskInformation.getTimeout()), () {
+      ret.completeError(TimeoutException(taskInformation.getTaskId(), Duration(seconds: taskInformation.getTimeout())));
     });
-    callback(webView.webViewController!).then((value) {
+
+    ret.future.whenComplete(() async {
+      if (timer.isActive) timer.cancel();
+
+      for (var webView in list) {
+        webView.platform.dispose().whenComplete(() => webView.dispose());
+      }
+    });
+
+    callback(Queue()..addAll(list.map((e) => e.webViewController!))).then((value) {
       if (!ret.isCompleted) {
         ret.complete(value);
       }
+    }).catchError((error, stacktrace) {
+      var reportError = true;
+
+      if (ret.isCompleted) reportError = false;
+      if (error is UnauthenticatedException) reportError = false;
+
+      if (reportError) {
+        taskInformation.parentTransaction?.throwable = error;
+
+        Sentry.captureException(
+          error,
+          stackTrace: stacktrace,
+          withScope: (scope) {
+            scope.span = taskInformation.parentTransaction;
+            scope.level = SentryLevel.error;
+          },
+        );
+
+        taskInformation.parentTransaction?.finish(status: const SpanStatus.internalError());
+
+        ret.completeError(error, stacktrace);
+      }
+
+      Logger().e(error, stackTrace: stacktrace);
     });
     return ret;
   }
 
   void cancelTask(Completer completer) {
-    completer.completeError(Error());
+    completer.completeError(Exception("canceled by user"));
   }
 
-  // TODO: so slow due to cache miss (maybe?)
   Future<HeadlessInAppWebView> _initWebView() async {
     var ret = Completer<HeadlessInAppWebView>();
     late HeadlessInAppWebView webView;

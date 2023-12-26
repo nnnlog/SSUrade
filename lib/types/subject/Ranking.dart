@@ -4,6 +4,8 @@ part 'Ranking.g.dart';
 
 @JsonSerializable()
 class Ranking {
+  static final Ranking unknown = Ranking(0, 0);
+
   @JsonKey()
   int my;
   @JsonKey()
@@ -16,11 +18,12 @@ class Ranking {
   Map<String, dynamic> toJson() => _$RankingToJson(this);
 
   factory Ranking.parse(String str) {
-    if (str == "-") {
-      return Ranking(0, 0);
+    try {
+      var a = str.split("/").map((e) => int.parse(e)).toList();
+      return Ranking(a[0], a[1]);
+    } catch (e) {
+      return Ranking.unknown;
     }
-    var a = str.split("/").map((e) => int.parse(e)).toList();
-    return Ranking(a[0], a[1]);
   }
 
   double get percentage {

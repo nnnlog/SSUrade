@@ -1,19 +1,34 @@
+import 'dart:async';
+import 'dart:collection';
+
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 import 'package:ssurade/crawling/common/Crawler.dart';
 
 abstract class CrawlingTask<T> {
   // abstract static method : get(...), return new instance or existed instance with args.
-  late String task_id; // analytics task_id
   ISentrySpan? parentTransaction;
 
   CrawlingTask(this.parentTransaction);
 
-  Future<T> internalExecute(InAppWebViewController controller);
+  /// @protected
+  Future<T> internalExecute(Queue<InAppWebViewController> controllers);
 
-  Future<T> directExecute(InAppWebViewController controller) => internalExecute(controller);
+  /// @public
+  Future<T> directExecute(Queue<InAppWebViewController> controllers) => internalExecute(controllers);
 
+  /// Execute new task in here. It'll create new [InAppWebViewController] and holds itself timer for timeout.
+  /// If timeouts, throw [TimeoutException].
   Future<T> execute() async {
-    return (await Crawler.worker.runTask(directExecute)).future;
+    var completer = await Crawler.worker.runTask(internalExecute, this);
+    return completer.future;
   }
+
+  int getTimeout();
+
+  int getWebViewCount() {
+    return 1;
+  }
+
+  String getTaskId();
 }

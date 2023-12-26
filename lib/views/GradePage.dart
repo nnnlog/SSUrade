@@ -12,6 +12,7 @@ import 'package:ssurade/types/Progress.dart';
 import 'package:ssurade/types/Semester.dart';
 import 'package:ssurade/types/YearSemester.dart';
 import 'package:ssurade/types/subject/SemesterSubjects.dart';
+import 'package:ssurade/types/subject/SemesterSubjectsManager.dart';
 import 'package:ssurade/utils/toast.dart';
 
 class GradePage extends StatefulWidget {
@@ -49,12 +50,10 @@ class _GradePageState extends State<GradePage> {
 
     showToast("${search.year}학년도 ${search.semester.name} 성적을 불러옵니다.");
 
-    SemesterSubjects? data = (await Crawler.singleGrade(search, reloadPage: true).execute());
-
-    if (data != null) {
-      globals.semesterSubjectsManager.data[search]!.merge(data);
-      globals.semesterSubjectsManager.saveFile();
-    }
+    SemesterSubjects? data;
+    try {
+      data = (await Crawler.singleGrade(search, reloadPage: true).execute());
+    } catch (_) {}
 
     _lockedForRefresh.remove(search);
     if (!mounted) return;
@@ -120,8 +119,10 @@ class _GradePageState extends State<GradePage> {
       if (globals.semesterSubjectsManager.isEmpty) {
         needRefresh = false;
 
-        var res = await Crawler.allGrade().execute();
-        if (res == null) {
+        SemesterSubjectsManager res;
+        try {
+          res = await Crawler.allGrade().execute();
+        } catch (_) {
           if (mounted) {
             Navigator.pop(context);
           }

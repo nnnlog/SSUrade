@@ -90,8 +90,7 @@ void startBackgroundService() {
         await showNotification("not updated (${DateTime.now().toString()})", gradeData.subjects.values.map((e) => "${e.name} : ${e.grade}").join("\n"));
       }
     } catch (err, st) {
-      Logger().e(err.toString());
-      Logger().e(st.toString());
+      Logger().e(err, stackTrace: st);
       throw Exception(err);
     }
     return true;
