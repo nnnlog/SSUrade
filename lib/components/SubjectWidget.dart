@@ -40,7 +40,7 @@ class _SubjectWidgetState extends State<SubjectWidget> {
                       KeyValueTable(
                         map: {
                           "이수 구분": widget._subjectData.category,
-                          "성적 산출 방식": widget._subjectData.isPassFail || widget._subjectData.grade == "P" ? "P/F" : "100P",
+                          "성적 산출 방식": widget._subjectData.isPassFail || widget._subjectData.grade == "P" ? "P/F" : "100점 기준",
                           "최종 성적": widget._subjectData.score,
                           "성적 기호": widget._subjectData.grade,
                         },

@@ -14,6 +14,7 @@ import 'package:ssurade/types/subject/SemesterSubjectsManager.dart';
 import 'package:ssurade/types/subject/state.dart';
 import 'package:ssurade/utils/toast.dart';
 import 'package:ssurade/utils/update.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({super.key});
@@ -331,6 +332,18 @@ class _MainPageState extends State<MainPage> {
                                   minimumSize: const Size.fromHeight(40),
                                 ),
                                 child: const Text("정보"),
+                              ),
+                              OutlinedButton(
+                                onPressed: () => launchUrl(
+                                  Uri.parse("https://github.com/nnnlog/SSUrade/blob/master/USAGE.md"),
+                                  mode: LaunchMode.externalApplication,
+                                ),
+                                style: OutlinedButton.styleFrom(
+                                  minimumSize: const Size.fromHeight(40),
+                                ),
+                                child: const Text(
+                                  "사용법 및 도움말",
+                                ),
                               ),
                             ])),
               ),
