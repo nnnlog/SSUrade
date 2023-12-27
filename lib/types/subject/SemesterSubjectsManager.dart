@@ -6,16 +6,12 @@ import 'package:json_annotation/json_annotation.dart';
 import 'package:ssurade/filesystem/FileSystem.dart';
 import 'package:ssurade/types/YearSemester.dart';
 import 'package:ssurade/types/subject/SemesterSubjects.dart';
+import 'package:ssurade/types/subject/state.dart';
 
 part 'SemesterSubjectsManager.g.dart';
 
 @JsonSerializable(converters: [_DataConverter()])
 class SemesterSubjectsManager {
-  static const int STATE_EMPTY = 0;
-  static const int STATE_CATEGORY = 1 << 0; // 이수구분별 성적표에 의해 정보가 채워지면
-  static const int STATE_SEMESTER = 1 << 1; // 학기별 성적 조회에 의해 정보가 채워지면
-  static const int STATE_FULL = STATE_CATEGORY | STATE_SEMESTER;
-
   @JsonKey(
     includeToJson: true,
     includeFromJson: true,
@@ -36,18 +32,6 @@ class SemesterSubjectsManager {
   bool get isEmpty => data.isEmpty;
 
   bool get isNotEmpty => !isEmpty;
-
-  SemesterSubjectsManager merge(SemesterSubjectsManager other) {
-    _state |= other._state;
-    for (var subjects in other.data.values) {
-      if (data.containsKey(subjects.currentSemester)) {
-        data[subjects.currentSemester]!.merge(subjects);
-      } else {
-        data[subjects.currentSemester] = subjects;
-      }
-    }
-    return this;
-  }
 
   List<SemesterSubjects> getIncompleteSemester() {
     List<SemesterSubjects> ret = [];
@@ -88,6 +72,17 @@ class SemesterSubjectsManager {
   }
 
   saveFile() => writeFile(_filename, jsonEncode(toJson()));
+
+  static SemesterSubjectsManager? merge(SemesterSubjectsManager after, SemesterSubjectsManager before) {
+    if (after.state | before.state != STATE_FULL) return null;
+    SemesterSubjectsManager ret = SemesterSubjectsManager(SplayTreeMap(), STATE_FULL);
+    for (var key in after.data.keys) {
+      if (before.data.containsKey(key)) {
+        ret.data[key] = SemesterSubjects.merge(after.data[key]!, before.data[key]!, after.state, before.state)!;
+      }
+    }
+    return ret;
+  }
 }
 
 class _DataConverter extends JsonConverter<SplayTreeMap<YearSemester, SemesterSubjects>, List<dynamic>> {

@@ -5,6 +5,7 @@ import 'package:ssurade/crawling/background/BackgroundService.dart';
 import 'package:ssurade/crawling/common/Crawler.dart';
 import 'package:ssurade/globals.dart' as globals;
 import 'package:ssurade/types/subject/SemesterSubjectsManager.dart';
+import 'package:ssurade/types/subject/state.dart';
 import 'package:ssurade/utils/toast.dart';
 
 class SettingPage extends StatefulWidget {
@@ -152,6 +153,7 @@ class _SettingPageState extends State<SettingPage> {
                             SemesterSubjectsManager res;
                             try {
                               res = await Crawler.allGrade().execute();
+                              if (res.state != STATE_FULL) throw Exception();
                             } catch (_) {
                               showToast("성적 정보를 가져오지 못했어요.\n다시 시도해주세요.");
                               return;

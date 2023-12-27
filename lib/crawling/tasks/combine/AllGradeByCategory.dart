@@ -12,6 +12,7 @@ import 'package:ssurade/types/subject/Ranking.dart';
 import 'package:ssurade/types/subject/SemesterSubjects.dart';
 import 'package:ssurade/types/subject/SemesterSubjectsManager.dart';
 import 'package:ssurade/types/subject/Subject.dart';
+import 'package:ssurade/types/subject/state.dart';
 
 class AllGradeByCategory extends CrawlingTask<SemesterSubjectsManager> {
   factory AllGradeByCategory.get({
@@ -32,7 +33,7 @@ class AllGradeByCategory extends CrawlingTask<SemesterSubjectsManager> {
     var gradeData = await Crawler.extractDataFromViewer(viewerUrl, parentTransaction: transaction).directExecute(Queue()..add(controller));
 
     span = transaction.startChild("finalizing_data");
-    var ret = SemesterSubjectsManager(SplayTreeMap(), SemesterSubjectsManager.STATE_CATEGORY);
+    var ret = SemesterSubjectsManager(SplayTreeMap(), STATE_CATEGORY);
     for (var _data in gradeData.rows) {
       Map<String, String> data = {};
       for (var key in _data.keys) {

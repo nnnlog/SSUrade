@@ -11,6 +11,7 @@ import 'package:ssurade/crawling/common/Crawler.dart';
 import 'package:ssurade/globals.dart' as globals;
 import 'package:ssurade/types/Progress.dart';
 import 'package:ssurade/types/subject/SemesterSubjectsManager.dart';
+import 'package:ssurade/types/subject/state.dart';
 import 'package:ssurade/utils/toast.dart';
 import 'package:ssurade/utils/update.dart';
 
@@ -77,7 +78,7 @@ class _MainPageState extends State<MainPage> {
       if (Crawler.loginSession().isNotEmpty) {
         Crawler.loginSession().execute().then((value) {
           if (value) {
-            showToast("자동 로그인했습니다.");
+            showToast("자동으로 로그인 했어요.");
 
             globals.analytics.logEvent(name: "login", parameters: {"auto_login": "true"});
           }
@@ -89,7 +90,7 @@ class _MainPageState extends State<MainPage> {
 
         Crawler.allGrade().execute().then((value) {
           if (value.isEmpty) return;
-          if (value.state != SemesterSubjectsManager.STATE_FULL) return;
+          if (value.state != STATE_FULL) return;
 
           bool foundNewSemester = false;
           List<String> newSemester = [];
@@ -103,16 +104,19 @@ class _MainPageState extends State<MainPage> {
                 for (var subjectCode in value.keys) {
                   if (value[subjectCode]?.isNotEmpty == true) {
                     globals.semesterSubjectsManager.data[key]?.subjects[subjectCode]?.detail = value[subjectCode]!;
-                    globals.gradeUpdateEvent.broadcast();
                     globals.semesterSubjectsManager.saveFile();
+
+                    globals.gradeUpdateEvent.broadcast();
                   }
                 }
               });
             }
           }
 
-          globals.semesterSubjectsManager = value;
+          globals.semesterSubjectsManager = SemesterSubjectsManager.merge(value, globals.semesterSubjectsManager)!;
           globals.semesterSubjectsManager.saveFile();
+
+          globals.gradeUpdateEvent.broadcast();
 
           if (foundNewSemester) {
             showToast("새로운 학기(${newSemester.join(", ")}) 성적을 찾았습니다.");

@@ -1,5 +1,6 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'package:ssurade/types/subject/gradeTable.dart';
+import 'package:ssurade/types/subject/state.dart';
 
 part 'Subject.g.dart';
 
@@ -35,24 +36,7 @@ class Subject extends Comparable<Subject> {
 
   Map<String, dynamic> toJson() => _$SubjectToJson(this);
 
-  bool get isMajor => category.startsWith("전공");
-
-  Subject merge(Subject other) {
-    // 학기별 성적 조회 페이지
-    if (other.name.isNotEmpty) name = other.name;
-    if (other.professor.isNotEmpty) professor = other.professor;
-    if (other.grade.isNotEmpty) grade = other.grade; // 성적 입력 기간
-
-    // 이수구분별 성적 조회 페이지
-    if (other.category.isNotEmpty) category = other.category;
-
-    // 성적 상세 조회
-    if (other.detail.isNotEmpty) detail = other.detail;
-
-    isPassFail |= other.isPassFail;
-
-    return this;
-  }
+  bool get isMajor => category.startsWith("전공") && category != "전공기초";
 
   @override
   String toString() {
@@ -66,5 +50,29 @@ class Subject extends Comparable<Subject> {
     if (x != y) return x > y ? -1 : 1; // 성적(grade) 높은 것부터
     if (credit != other.credit) return credit > other.credit ? -1 : 1; // 학점(credit) 높은 것부터
     return name.compareTo(other.name);
+  }
+
+  static Subject? merge(Subject after, Subject before, int stateAfter, int stateBefore) {
+    if (stateAfter | stateBefore != STATE_FULL) return null;
+
+    // 성적 상세 조회
+    if (after.detail.isEmpty) after.detail = before.detail;
+
+    if (stateAfter == STATE_FULL) return after;
+
+    // 학기별 성적 조회
+    if ((stateAfter & STATE_SEMESTER == 0) && (stateBefore & STATE_SEMESTER > 0)) {
+      if (after.name.isEmpty) after.name = before.name;
+      if (after.professor.isEmpty) after.professor = before.professor;
+      if (after.grade.isEmpty) after.grade = before.grade; // 성적 입력 기간
+    }
+
+    // 이수구분별 성적 조회
+    if ((stateAfter & STATE_CATEGORY == 0) && (STATE_CATEGORY & STATE_CATEGORY > 0)) {
+      if (after.category.isEmpty) after.category = before.category;
+      after.isPassFail = before.isPassFail;
+    }
+
+    return after;
   }
 }

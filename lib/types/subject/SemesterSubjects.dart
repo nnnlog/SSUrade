@@ -5,6 +5,7 @@ import 'package:ssurade/types/YearSemester.dart';
 import 'package:ssurade/types/subject/Ranking.dart';
 import 'package:ssurade/types/subject/Subject.dart';
 import 'package:ssurade/types/subject/gradeTable.dart';
+import 'package:ssurade/types/subject/state.dart';
 
 part 'SemesterSubjects.g.dart';
 
@@ -34,19 +35,6 @@ class SemesterSubjects {
   bool get isEmpty => subjects.isEmpty;
 
   bool get isNotEmpty => !isEmpty;
-
-  SemesterSubjects merge(SemesterSubjects other) {
-    for (var subject in other.subjects.values) {
-      if (subjects.containsKey(subject.code)) {
-        subjects[subject.code]!.merge(subject);
-      } else {
-        subjects[subject.code] = subject;
-      }
-    }
-    if (other.semesterRanking.isNotEmpty) semesterRanking = other.semesterRanking;
-    if (other.totalRanking.isNotEmpty) totalRanking = other.totalRanking;
-    return this;
-  }
 
   List<Subject> getIncompleteSubjects() {
     List<Subject> ret = [];
@@ -114,6 +102,23 @@ class SemesterSubjects {
     }
     if (totalCredit == 0) return 0;
     return ((totalGrade * 100) ~/ totalCredit) / 100;
+  }
+
+  static SemesterSubjects? merge(SemesterSubjects after, SemesterSubjects before, int stateAfter, int stateBefore) {
+    if (stateAfter | stateBefore != STATE_FULL) return null;
+
+    for (var key in after.subjects.keys) {
+      if (before.subjects.containsKey(key)) {
+        after.subjects[key] = Subject.merge(after.subjects[key]!, before.subjects[key]!, stateAfter, stateBefore)!;
+      }
+    }
+
+    if ((stateAfter & STATE_SEMESTER == 0) && (stateBefore & STATE_SEMESTER > 0)) {
+      if (before.semesterRanking.isNotEmpty) after.semesterRanking = before.semesterRanking;
+      if (before.totalRanking.isNotEmpty) after.totalRanking = before.totalRanking;
+    }
+
+    return after;
   }
 
   @override

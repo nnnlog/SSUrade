@@ -7,6 +7,7 @@ import 'package:ssurade/crawling/common/CrawlingTask.dart';
 import 'package:ssurade/crawling/error/UnauthenticatedExcpetion.dart';
 import 'package:ssurade/globals.dart' as globals;
 import 'package:ssurade/types/subject/SemesterSubjectsManager.dart';
+import 'package:ssurade/types/subject/state.dart';
 
 class AllGrade extends CrawlingTask<SemesterSubjectsManager> {
   SemesterSubjectsManager? base;
@@ -30,8 +31,8 @@ class AllGrade extends CrawlingTask<SemesterSubjectsManager> {
     span = transaction.startChild("get_grade_info");
     List<Future<SemesterSubjectsManager>> wait = [];
 
-    wait.add(Crawler.allGradeByCategory(parentTransaction: span).directExecute(Queue()..add(con1)).catchError((_) => SemesterSubjectsManager(SplayTreeMap(), SemesterSubjectsManager.STATE_CATEGORY)));
-    wait.add(Crawler.allGradeBySemester(parentTransaction: span).directExecute(Queue()..add(con2)).catchError((_) => SemesterSubjectsManager(SplayTreeMap(), SemesterSubjectsManager.STATE_SEMESTER)));
+    wait.add(Crawler.allGradeByCategory(parentTransaction: span).directExecute(Queue()..add(con1)).catchError((_) => SemesterSubjectsManager(SplayTreeMap(), STATE_CATEGORY)));
+    wait.add(Crawler.allGradeBySemester(parentTransaction: span).directExecute(Queue()..add(con2)).catchError((_) => SemesterSubjectsManager(SplayTreeMap(), STATE_SEMESTER)));
 
     var ret = (await Future.wait(wait))..removeWhere((element) => element.isEmpty);
     span.finish(status: const SpanStatus.ok());
@@ -44,7 +45,7 @@ class AllGrade extends CrawlingTask<SemesterSubjectsManager> {
     span = transaction.startChild("merge_grade_info");
     var result = ret.removeLast();
     while (ret.isNotEmpty) {
-      result.merge(ret.removeLast());
+      result = SemesterSubjectsManager.merge(ret.removeLast(), result)!;
     }
     span.finish(status: const SpanStatus.ok());
 

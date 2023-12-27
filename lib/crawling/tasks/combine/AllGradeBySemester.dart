@@ -7,6 +7,7 @@ import 'package:ssurade/crawling/common/CrawlingTask.dart';
 import 'package:ssurade/crawling/error/UnauthenticatedExcpetion.dart';
 import 'package:ssurade/globals.dart' as globals;
 import 'package:ssurade/types/subject/SemesterSubjectsManager.dart';
+import 'package:ssurade/types/subject/state.dart';
 
 class AllGradeBySemester extends CrawlingTask<SemesterSubjectsManager> {
   factory AllGradeBySemester.get({
@@ -29,7 +30,7 @@ class AllGradeBySemester extends CrawlingTask<SemesterSubjectsManager> {
 
     var map = await Crawler.gradeSemesterList(parentTransaction: transaction).directExecute(Queue()..add(controller));
 
-    result = SemesterSubjectsManager(SplayTreeMap.from({}), SemesterSubjectsManager.STATE_SEMESTER);
+    result = SemesterSubjectsManager(SplayTreeMap.from({}), STATE_SEMESTER);
 
     for (var key in map.keys) {
       var tmp = await Crawler.singleGrade(

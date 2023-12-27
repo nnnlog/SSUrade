@@ -13,6 +13,7 @@ import 'package:ssurade/types/Semester.dart';
 import 'package:ssurade/types/YearSemester.dart';
 import 'package:ssurade/types/subject/SemesterSubjects.dart';
 import 'package:ssurade/types/subject/SemesterSubjectsManager.dart';
+import 'package:ssurade/types/subject/state.dart';
 import 'package:ssurade/utils/toast.dart';
 
 class GradePage extends StatefulWidget {
@@ -66,7 +67,7 @@ class _GradePageState extends State<GradePage> {
       }
 
       if (globals.semesterSubjectsManager.data.containsKey(search)) {
-        globals.semesterSubjectsManager.data[search]!.merge(data1);
+        globals.semesterSubjectsManager.data[search] = SemesterSubjects.merge(data1, globals.semesterSubjectsManager.data[search]!, STATE_SEMESTER, globals.semesterSubjectsManager.state)!;
       } else {
         globals.semesterSubjectsManager.data[search] = data1;
       }
