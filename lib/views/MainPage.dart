@@ -89,41 +89,41 @@ class _MainPageState extends State<MainPage> {
           Crawler.loginSession().loginFailEvent.broadcast(Value("시간 초과"));
         });
 
-        Crawler.allGrade().execute().then((value) {
-          if (value.isEmpty) return;
-          if (value.state != STATE_FULL) return;
-
-          bool foundNewSemester = false;
-          List<String> newSemester = [];
-
-          for (var key in value.data.keys) {
-            if (!globals.semesterSubjectsManager.data.containsKey(key)) {
-              foundNewSemester = true;
-              newSemester.add("${key.year}학년도 ${key.semester.name}");
-
-              Crawler.semesterSubjectDetailGrade(value.data[key]!).execute().then((value) {
-                for (var subjectCode in value.keys) {
-                  if (value[subjectCode]?.isNotEmpty == true) {
-                    globals.semesterSubjectsManager.data[key]?.subjects[subjectCode]?.detail = value[subjectCode]!;
-                    globals.semesterSubjectsManager.saveFile();
-
-                    globals.gradeUpdateEvent.broadcast();
-                  }
-                }
-              });
-            }
-          }
-
-          globals.semesterSubjectsManager = SemesterSubjectsManager.merge(value, globals.semesterSubjectsManager)!;
-          globals.semesterSubjectsManager.saveFile();
-
-          globals.gradeUpdateEvent.broadcast();
-
-          if (foundNewSemester) {
-            showToast("새로운 학기(${newSemester.join(", ")}) 성적을 찾았어요.");
-            globals.gradeUpdateEvent.broadcast();
-          }
-        });
+        // Crawler.allGrade().execute().then((value) {
+        //   if (value.isEmpty) return;
+        //   if (value.state != STATE_FULL) return;
+        //
+        //   bool foundNewSemester = false;
+        //   List<String> newSemester = [];
+        //
+        //   for (var key in value.data.keys) {
+        //     if (!globals.semesterSubjectsManager.data.containsKey(key)) {
+        //       foundNewSemester = true;
+        //       newSemester.add("${key.year}학년도 ${key.semester.name}");
+        //
+        //       Crawler.semesterSubjectDetailGrade(value.data[key]!).execute().then((value) {
+        //         for (var subjectCode in value.keys) {
+        //           if (value[subjectCode]?.isNotEmpty == true) {
+        //             globals.semesterSubjectsManager.data[key]?.subjects[subjectCode]?.detail = value[subjectCode]!;
+        //             globals.semesterSubjectsManager.saveFile();
+        //
+        //             globals.gradeUpdateEvent.broadcast();
+        //           }
+        //         }
+        //       });
+        //     }
+        //   }
+        //
+        //   globals.semesterSubjectsManager = SemesterSubjectsManager.merge(value, globals.semesterSubjectsManager)!;
+        //   globals.semesterSubjectsManager.saveFile();
+        //
+        //   globals.gradeUpdateEvent.broadcast();
+        //
+        //   if (foundNewSemester) {
+        //     showToast("새로운 학기(${newSemester.join(", ")}) 성적을 찾았어요.");
+        //     globals.gradeUpdateEvent.broadcast();
+        //   }
+        // });
 
         {
           var value = globals.semesterSubjectsManager;

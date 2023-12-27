@@ -58,7 +58,11 @@ class _GradePageState extends State<GradePage> {
 
       var futures = <Future>[];
       futures.add(Crawler.singleGrade(search).execute().then((value) => data1 = value));
-      futures.add(Crawler.semesterSubjectDetailGrade(_semesterSubjects).execute().then((value) => data2 = value));
+      futures.add(Crawler.semesterSubjectDetailGrade(_semesterSubjects).execute().then((value) => data2 = value).then((value) {
+        if (_semesterSubjects.currentSemester.toString() == search.toString()) {
+          showToast("성적 상세 정보를 불러왔어요.");
+        }
+      }));
 
       await Future.wait(futures);
 
@@ -122,17 +126,20 @@ class _GradePageState extends State<GradePage> {
     return ret;
   }
 
-  void newGradeFoundEventHandler(_) {
+  void updateGradeEventHandler(_) {
     setState(() {
-      _semesterSubjects = getMainSemester();
+      var data = globals.semesterSubjectsManager.data;
+      if (data.containsKey(_semesterSubjects.currentSemester)) {
+        _semesterSubjects = data[_semesterSubjects.currentSemester]!;
+      } else {
+        _semesterSubjects = getMainSemester();
+      }
     });
   }
 
   @override
   void initState() {
     super.initState();
-
-    globals.gradeUpdateEvent.subscribe(newGradeFoundEventHandler);
 
     (() async {
       bool needRefresh = true;
@@ -151,9 +158,13 @@ class _GradePageState extends State<GradePage> {
         }
 
         globals.semesterSubjectsManager = res;
+        globals.semesterSubjectsManager.saveFile(); // saving file does not need await
+
         globals.gradeUpdateEvent.broadcast();
 
         {
+          showToast("성적 상세 정보를 불러오는 중이에요...");
+
           var value = globals.semesterSubjectsManager;
           for (var key in value.data.keys) {
             Crawler.semesterSubjectDetailGrade(value.data[key]!).execute().then((value) {
@@ -164,6 +175,10 @@ class _GradePageState extends State<GradePage> {
 
                   globals.gradeUpdateEvent.broadcast();
                 }
+              }
+
+              if (mounted && key.toString() == _semesterSubjects.currentSemester.toString()) {
+                showToast("성적 상세 정보를 불러왔어요.");
               }
             });
           }
@@ -178,7 +193,7 @@ class _GradePageState extends State<GradePage> {
         return;
       }
 
-      globals.semesterSubjectsManager.saveFile(); // saving file does not need await
+      globals.gradeUpdateEvent.subscribe(updateGradeEventHandler);
 
       setState(() {
         _semesterSubjects = getMainSemester();
@@ -195,7 +210,7 @@ class _GradePageState extends State<GradePage> {
   void dispose() {
     super.dispose();
 
-    globals.gradeUpdateEvent.unsubscribe(newGradeFoundEventHandler);
+    globals.gradeUpdateEvent.unsubscribe(updateGradeEventHandler);
   }
 
   @override

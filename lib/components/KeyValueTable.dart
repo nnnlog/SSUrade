@@ -15,6 +15,7 @@ class _KeyValueTableSate extends State<KeyValueTable> {
     return Table(
       border: TableBorder.all(
         color: const Color.fromRGBO(0, 0, 0, .5),
+        borderRadius: const BorderRadius.all(Radius.circular(10)),
       ),
       children: widget.map.keys
           .map((e) => TableRow(
