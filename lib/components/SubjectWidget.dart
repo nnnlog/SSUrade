@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ssurade/components/GradeLogo.dart';
+import 'package:ssurade/components/KeyValueTable.dart';
 import 'package:ssurade/globals.dart' as globals;
 import 'package:ssurade/types/subject/Subject.dart';
 import 'package:ssurade/utils/toast.dart';
@@ -8,7 +9,7 @@ class SubjectWidget extends StatefulWidget {
   final Subject _subjectData;
   final bool _exportImage, _showSubject;
 
-  const SubjectWidget(this._subjectData, this._exportImage, this._showSubject, {Key? key}) : super(key: key);
+  const SubjectWidget(this._subjectData, this._exportImage, this._showSubject, {super.key});
 
   @override
   State<StatefulWidget> createState() => _SubjectWidgetState();
@@ -33,85 +34,22 @@ class _SubjectWidgetState extends State<SubjectWidget> {
               return Dialog(
                 child: Padding(
                   padding: const EdgeInsets.fromLTRB(25, 25, 20, 15),
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
+                  child: ListView(
+                    shrinkWrap: true,
                     children: [
-                      ListView(
-                        shrinkWrap: true,
-                        children: [
-                          Table(
-                            border: TableBorder.all(
-                              color: const Color.fromRGBO(0, 0, 0, .5),
-                            ),
-                            children: [
-                              TableRow(children: [
-                                TableCell(
-                                  verticalAlignment: TableCellVerticalAlignment.middle,
-                                  child: Container(
-                                    padding: const EdgeInsets.all(10),
-                                    child: const SelectableText(
-                                      "최종 성적",
-                                      textAlign: TextAlign.center,
-                                      style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                TableCell(
-                                  verticalAlignment: TableCellVerticalAlignment.middle,
-                                  child: Container(
-                                    padding: const EdgeInsets.all(10),
-                                    child: SelectableText(
-                                      widget._subjectData.score,
-                                      textAlign: TextAlign.center,
-                                      style: const TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ]),
-                            ],
-                          ),
-                          Container(
-                            height: 20,
-                          ),
-                          Table(
-                            border: TableBorder.all(
-                              color: const Color.fromRGBO(0, 0, 0, .5),
-                            ),
-                            children: detail.keys
-                                .map((e) => TableRow(
-                                      children: [
-                                        TableCell(
-                                          verticalAlignment: TableCellVerticalAlignment.middle,
-                                          child: Container(
-                                            padding: const EdgeInsets.all(10),
-                                            child: SelectableText(
-                                              e,
-                                              textAlign: TextAlign.center,
-                                              style: const TextStyle(
-                                                fontWeight: FontWeight.bold,
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                        TableCell(
-                                          verticalAlignment: TableCellVerticalAlignment.middle,
-                                          child: Container(
-                                            padding: const EdgeInsets.all(10),
-                                            child: SelectableText(
-                                              detail[e]!,
-                                              textAlign: TextAlign.center,
-                                            ),
-                                          ),
-                                        ),
-                                      ],
-                                    ))
-                                .toList(),
-                          ),
-                        ],
+                      KeyValueTable(
+                        map: {
+                          "이수 구분": widget._subjectData.category,
+                          "성적 산출 방식": widget._subjectData.isPassFail || widget._subjectData.grade == "P" ? "P/F" : "100P",
+                          "최종 성적": widget._subjectData.score,
+                          "성적 기호": widget._subjectData.grade,
+                        },
+                      ),
+                      Container(
+                        height: 20,
+                      ),
+                      KeyValueTable(
+                        map: detail,
                       ),
                       const SizedBox(
                         height: 10,

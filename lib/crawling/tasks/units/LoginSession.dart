@@ -127,15 +127,15 @@ class LoginSession extends CrawlingTask<bool> {
       return res;
     }
 
-    if (!isBackground) await updateBackgroundService(lazy: true);
-
-    _isLogin = false;
-    _isFail = false;
-    Value<String>? cause;
+    if (!isBackground) updateBackgroundService(lazy: true);
 
     var completer = Completer<bool>();
     _future = completer.future;
     var fail = false;
+
+    _isLogin = false;
+    _isFail = false;
+    Value<String>? cause;
 
     final transaction = parentTransaction?.startChild(getTaskId()) ?? Sentry.startTransaction('Login', getTaskId());
     late ISentrySpan span;

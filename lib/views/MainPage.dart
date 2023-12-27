@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:event/event.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' show rootBundle;
 import 'package:flutter_exit_app/flutter_exit_app.dart';
@@ -80,6 +81,10 @@ class _MainPageState extends State<MainPage> {
 
             globals.analytics.logEvent(name: "login", parameters: {"auto_login": "true"});
           }
+        }).catchError((_) {
+          showToast("자동 로그인을 실패했어요.");
+          Crawler.loginSession().loginStatusChangeEvent.broadcast(Value(false));
+          Crawler.loginSession().loginFailEvent.broadcast(Value("시간 초과"));
         });
 
         Crawler.allGrade().execute().then((value) {
@@ -93,18 +98,17 @@ class _MainPageState extends State<MainPage> {
             if (!globals.semesterSubjectsManager.data.containsKey(key)) {
               foundNewSemester = true;
               newSemester.add("${key.year}학년도 ${key.semester.name}");
-            }
-          }
 
-          for (var key in value.data.keys) {
-            Crawler.semesterSubjectDetailGrade(value.data[key]!).execute().then((value) {
-              for (var subjectCode in value.keys) {
-                if (value[subjectCode]?.isNotEmpty == true) {
-                  globals.semesterSubjectsManager.data[key]?.subjects[subjectCode]?.detail = value[subjectCode]!;
-                  globals.semesterSubjectsManager.saveFile();
+              Crawler.semesterSubjectDetailGrade(value.data[key]!).execute().then((value) {
+                for (var subjectCode in value.keys) {
+                  if (value[subjectCode]?.isNotEmpty == true) {
+                    globals.semesterSubjectsManager.data[key]?.subjects[subjectCode]?.detail = value[subjectCode]!;
+                    globals.gradeUpdateEvent.broadcast();
+                    globals.semesterSubjectsManager.saveFile();
+                  }
                 }
-              }
-            });
+              });
+            }
           }
 
           globals.semesterSubjectsManager = value;
@@ -115,6 +119,21 @@ class _MainPageState extends State<MainPage> {
             globals.gradeUpdateEvent.broadcast();
           }
         });
+
+        {
+          var value = globals.semesterSubjectsManager;
+          for (var key in value.data.keys) {
+            Crawler.semesterSubjectDetailGrade(value.data[key]!).execute().then((value) {
+              for (var subjectCode in value.keys) {
+                if (value[subjectCode]?.isNotEmpty == true) {
+                  globals.semesterSubjectsManager.data[key]?.subjects[subjectCode]?.detail = value[subjectCode]!;
+                  globals.gradeUpdateEvent.broadcast();
+                  globals.semesterSubjectsManager.saveFile();
+                }
+              }
+            });
+          }
+        }
       }
 
       fetchAppVersion().then((value) {
@@ -275,7 +294,10 @@ class _MainPageState extends State<MainPage> {
                                 visible: Crawler.loginSession().isNotEmpty && Crawler.loginSession().isFail, // 자동 로그인 실패했을 때
                                 child: OutlinedButton(
                                   onPressed: () async {
-                                    if (await Crawler.loginSession().execute()) {
+                                    if (await Crawler.loginSession().execute().catchError((_) {
+                                      showToast("자동 로그인을 실패했어요.");
+                                      return false;
+                                    })) {
                                       showToast("자동 로그인했습니다.");
                                     }
                                   },

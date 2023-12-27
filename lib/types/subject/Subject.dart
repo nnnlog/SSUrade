@@ -46,6 +46,9 @@ class Subject extends Comparable<Subject> {
     // 이수구분별 성적 조회 페이지
     if (other.category.isNotEmpty) category = other.category;
 
+    // 성적 상세 조회
+    if (other.detail.isNotEmpty) detail = other.detail;
+
     isPassFail |= other.isPassFail;
 
     return this;

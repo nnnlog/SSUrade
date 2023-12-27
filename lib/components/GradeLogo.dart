@@ -4,7 +4,7 @@ class GradeLogo extends StatefulWidget {
   final String bigText, smallText;
   final Color backgroundColor, textColor;
 
-  const GradeLogo({Key? key, this.bigText = "", this.smallText = "", required this.backgroundColor, required this.textColor}) : super(key: key);
+  const GradeLogo({super.key, this.bigText = "", this.smallText = "", required this.backgroundColor, required this.textColor});
 
   @override
   State<StatefulWidget> createState() => _GradeLogoState();

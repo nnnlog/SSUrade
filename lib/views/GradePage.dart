@@ -65,7 +65,12 @@ class _GradePageState extends State<GradePage> {
         data1.subjects[subjectCode]?.detail = data2[subjectCode]!;
       }
 
-      globals.semesterSubjectsManager.data[search] = data1;
+      if (globals.semesterSubjectsManager.data.containsKey(search)) {
+        globals.semesterSubjectsManager.data[search]!.merge(data1);
+      } else {
+        globals.semesterSubjectsManager.data[search] = data1;
+      }
+
       globals.semesterSubjectsManager.saveFile();
       setState(() {
         _semesterSubjects = globals.semesterSubjectsManager.data[search]!;
@@ -140,6 +145,22 @@ class _GradePageState extends State<GradePage> {
         }
 
         globals.semesterSubjectsManager = res;
+
+        {
+          var value = globals.semesterSubjectsManager;
+          for (var key in value.data.keys) {
+            Crawler.semesterSubjectDetailGrade(value.data[key]!).execute().then((value) {
+              for (var subjectCode in value.keys) {
+                if (value[subjectCode]?.isNotEmpty == true) {
+                  globals.semesterSubjectsManager.data[key]?.subjects[subjectCode]?.detail = value[subjectCode]!;
+                  globals.semesterSubjectsManager.saveFile();
+
+                  globals.gradeUpdateEvent.broadcast();
+                }
+              }
+            });
+          }
+        }
       }
 
       if (globals.semesterSubjectsManager.isEmpty) {

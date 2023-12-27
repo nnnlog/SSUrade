@@ -147,7 +147,7 @@ class _SettingPageState extends State<SettingPage> {
                             if (_refreshGrade) return;
                             _refreshGrade = true;
 
-                            showToast("전체 학기 성적을 불러오는 중이에요.");
+                            showToast("전체 학기 성적을 불러오는 중이에요...");
 
                             SemesterSubjectsManager res;
                             try {
@@ -196,7 +196,7 @@ class _SettingPageState extends State<SettingPage> {
                           style: OutlinedButton.styleFrom(
                             minimumSize: const Size.fromHeight(40),
                           ),
-                          child: const Text("성적 상세 정보 불러오기"),
+                          child: const Text("전체 학기 상세 성적 불러오기"),
                         ),
                         OutlinedButton(
                           onPressed: () async {
