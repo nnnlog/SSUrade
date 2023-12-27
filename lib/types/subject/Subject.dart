@@ -60,16 +60,16 @@ class Subject extends Comparable<Subject> {
 
     if (stateAfter == STATE_FULL) return after;
 
-    // 학기별 성적 조회
+    // 이수구분별 성적 조회
     if ((stateAfter & STATE_SEMESTER == 0) && (stateBefore & STATE_SEMESTER > 0)) {
       if (after.name.isEmpty) after.name = before.name;
       if (after.professor.isEmpty) after.professor = before.professor;
       if (after.grade.isEmpty) after.grade = before.grade; // 성적 입력 기간
+      if (after.score.isEmpty) after.score = before.score; // Pass 과목
     }
 
-    // 이수구분별 성적 조회
+    // 학기별 성적 조회
     if ((stateAfter & STATE_CATEGORY == 0) && (STATE_CATEGORY & STATE_CATEGORY > 0)) {
-      if (after.score.isEmpty) after.score = before.score;
       if (after.category.isEmpty) after.category = before.category;
       after.isPassFail = before.isPassFail;
     }
