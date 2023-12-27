@@ -5,6 +5,9 @@ SSUrade : 숭실대학교 성적/학점 조회 애플리케이션
 * [Play Store](https://play.google.com/store/apps/details?id=com.nnnlog.ssurade)
 * [Github Release](https://github.com/nnnlog/ssurade/releases)
 
+## Usage
+* Read [Usage.md](./USAGE.md)
+
 ## Build Instruction (for Android only)
 ### Set signing key
 * Put your `key.properties` in `android/` directory.
