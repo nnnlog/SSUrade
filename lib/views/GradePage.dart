@@ -72,16 +72,21 @@ class _GradePageState extends State<GradePage> {
         globals.semesterSubjectsManager.data[search] = data1;
       }
 
+      globals.gradeUpdateEvent.broadcast();
       globals.semesterSubjectsManager.saveFile();
+
+      if (!mounted) return;
+      if (search != _semesterSubjects.currentSemester) return;
+
       setState(() {
         _semesterSubjects = globals.semesterSubjectsManager.data[search]!;
       });
 
-      if (!mounted) return;
-      if (search != _semesterSubjects.currentSemester) return;
       showToast("${search.year}학년도 ${search.semester.name} 성적을 불러왔어요.");
     } catch (_) {
-      showToast("${search.year}학년도 ${search.semester.name} 성적을 불러오지 못했어요.");
+      if (mounted) {
+        showToast("${search.year}학년도 ${search.semester.name} 성적을 불러오지 못했어요.");
+      }
     } finally {
       _lockedForRefresh.remove(search);
     }
@@ -141,11 +146,12 @@ class _GradePageState extends State<GradePage> {
           if (mounted) {
             Navigator.pop(context);
           }
-          showToast("성적 정보를 가져오지 못했습니다.\n다시 시도해주세요.");
+          showToast("성적 정보를 가져오지 못했어요.\n다시 시도해주세요.");
           return;
         }
 
         globals.semesterSubjectsManager = res;
+        globals.gradeUpdateEvent.broadcast();
 
         {
           var value = globals.semesterSubjectsManager;
@@ -168,7 +174,7 @@ class _GradePageState extends State<GradePage> {
         if (mounted) {
           Navigator.pop(context);
         }
-        showToast("성적 정보가 없습니다.");
+        showToast("성적 정보를 불러오지 못했거나 성적 정보가 없어요.");
         return;
       }
 
@@ -306,7 +312,7 @@ class _GradePageState extends State<GradePage> {
                                               _exportImage = false;
                                             });
 
-                                            showToast("이미지를 저장했습니다.");
+                                            showToast("이미지를 저장했어요.");
                                           },
                                           child: const Text("내보내기"))
                                     ],

@@ -63,14 +63,14 @@ class _LoginPageState extends State<LoginPage> {
 
                     if (await session.execute()) {
                       Navigator.pop(context);
-                      showToast("로그인했습니다.");
+                      showToast("로그인했어요.");
 
                       globals.analytics.logEvent(name: "login", parameters: {"auto_login": "false"});
                     } else {
                       session.id = "";
                       session.password = "";
 
-                      showToast("로그인을 실패했습니다.\n정보를 확인하고 다시 시도해주세요.");
+                      showToast("로그인을 실패했어요.\n정보를 확인하고 다시 시도해주세요.");
                     }
                     session.saveFile();
 

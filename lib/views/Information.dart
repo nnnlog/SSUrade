@@ -226,8 +226,8 @@ class _InformationPageState extends State<InformationPage> {
             const SizedBox(
               height: 3,
             ),
-            Row(
-              children: const [
+            const Row(
+              children: [
                 Text(
                   "Designed by ",
                 ),
@@ -239,7 +239,7 @@ class _InformationPageState extends State<InformationPage> {
               ],
             ),
             Text(
-              "· 유어슈의 '숨쉴때 성적표' 앱의 디자인을 일부 참고하여 제작하였습니다.",
+              "· 유어슈의 '숨쉴때 성적표'의 디자인을 일부 참고하였습니다.",
               style: TextStyle(color: Colors.black.withOpacity(0.7), fontSize: 13, fontWeight: FontWeight.w300),
             ),
           ],

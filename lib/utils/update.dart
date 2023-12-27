@@ -30,7 +30,7 @@ Future<Tuple3<String, String, String>> fetchAppVersion() async {
     newVer = "";
     devVer = "";
 
-    showToast("앱 최신 정보를 가져오지 못했습니다.");
+    showToast("앱 최신 정보를 가져오지 못했어요.");
   }
 
   var appVerInstance = Version.parse(appVer);

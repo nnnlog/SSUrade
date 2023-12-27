@@ -38,7 +38,7 @@ class _MainPageState extends State<MainPage> {
     });
 
     Crawler.loginSession().loginFailEvent.subscribe((msg) {
-      showToast("로그인을 실패했습니다.");
+      showToast("로그인을 실패했어요.");
       // showToast("메인 화면에서 자동 로그인을 다시 시도하거나 새로운 계정으로 로그인하세요.");
 
       if (msg != null) {
@@ -119,7 +119,7 @@ class _MainPageState extends State<MainPage> {
           globals.gradeUpdateEvent.broadcast();
 
           if (foundNewSemester) {
-            showToast("새로운 학기(${newSemester.join(", ")}) 성적을 찾았습니다.");
+            showToast("새로운 학기(${newSemester.join(", ")}) 성적을 찾았어요.");
             globals.gradeUpdateEvent.broadcast();
           }
         });
@@ -142,7 +142,8 @@ class _MainPageState extends State<MainPage> {
 
       fetchAppVersion().then((value) {
         if (value.item2 != "") {
-          showToast("새로운 버전 v${value.item2}(으)로 업데이트할 수 있습니다.");
+          showToast("새로운 버전 v${value.item2}(으)로 업데이트할 수 있습어요.");
+          showToast("Github 또는 Play Store에 방문해 주세요.");
         }
       });
     })();
@@ -302,7 +303,7 @@ class _MainPageState extends State<MainPage> {
                                       showToast("자동 로그인을 실패했어요.");
                                       return false;
                                     })) {
-                                      showToast("자동 로그인했습니다.");
+                                      showToast("자동으로 로그인 했어요.");
                                     }
                                   },
                                   style: OutlinedButton.styleFrom(

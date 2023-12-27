@@ -114,7 +114,7 @@ class _SettingPageState extends State<SettingPage> {
                       }
                       globals.setting.timeoutGrade = temp;
                       globals.setting.saveFile();
-                      showToast("설정을 변경했습니다.");
+                      showToast("설정을 변경했어요.");
                     },
                   ),
                   TextField(
@@ -133,7 +133,7 @@ class _SettingPageState extends State<SettingPage> {
                       }
                       globals.setting.timeoutAllGrade = temp;
                       globals.setting.saveFile();
-                      showToast("설정을 변경했습니다.");
+                      showToast("설정을 변경했어요.");
                     },
                   ),
                   const SizedBox(
@@ -193,7 +193,7 @@ class _SettingPageState extends State<SettingPage> {
 
                             _refreshGradeDetail = false;
                             showToast("성적 상세 정보를 불러왔어요.");
-                            showToast("성적 조회에서 과목을 꾹 누르면 상세 성적을 조회할 수 있어요.");
+                            showToast("성적 조회에서 과목을 길게 누르면 상세 성적을 조회할 수 있어요.");
                           },
                           style: OutlinedButton.styleFrom(
                             minimumSize: const Size.fromHeight(40),
@@ -204,7 +204,7 @@ class _SettingPageState extends State<SettingPage> {
                           onPressed: () async {
                             globals.semesterSubjectsManager.data.clear();
                             globals.semesterSubjectsManager.saveFile();
-                            showToast("저장된 성적 정보를 삭제했습니다.");
+                            showToast("저장된 성적 정보를 삭제했어요.");
                           },
                           style: OutlinedButton.styleFrom(
                             minimumSize: const Size.fromHeight(40),
@@ -219,7 +219,7 @@ class _SettingPageState extends State<SettingPage> {
                             globals.semesterSubjectsManager.data.clear();
                             globals.semesterSubjectsManager.saveFile();
 
-                            showToast("로그아웃했습니다.");
+                            showToast("로그아웃했어요.");
                           },
                           style: OutlinedButton.styleFrom(
                             minimumSize: const Size.fromHeight(40),
