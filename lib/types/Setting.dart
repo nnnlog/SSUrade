@@ -36,7 +36,7 @@ class Setting {
       }
       return Setting.fromJson(json);
     } catch (e) {
-      return Setting(true, true, true, 20, 60, false);
+      return Setting(false, true, true, 20, 60, false);
     }
   }
 
