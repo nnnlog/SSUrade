@@ -61,9 +61,9 @@ class _LoginPageState extends State<LoginPage> {
                     session.id = idController.text;
                     session.password = pwController.text;
 
-                    if (await session.execute()) {
-                      Navigator.pop(context);
-                      showToast("로그인했어요.");
+                    if (await session.execute().catchError((_) => false)) {
+                      if (mounted) Navigator.pop(context);
+                      showToast("로그인 했어요.");
 
                       globals.analytics.logEvent(name: "login", parameters: {"auto_login": "false"});
                     } else {

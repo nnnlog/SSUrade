@@ -143,7 +143,7 @@ class _MainPageState extends State<MainPage> {
 
       fetchAppVersion().then((value) {
         if (value.item2 != "") {
-          showToast("새로운 버전 v${value.item2}(으)로 업데이트할 수 있습어요.");
+          showToast("새로운 버전 v${value.item2}(으)로 업데이트할 수 있어요.");
           showToast("Github 또는 Play Store에 방문해 주세요.");
         }
       });

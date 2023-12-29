@@ -108,6 +108,7 @@ class _SubjectWidgetState extends State<SubjectWidget> {
                           style: const TextStyle(
                             fontWeight: FontWeight.w800,
                             fontSize: 17,
+                            color: Colors.black,
                           ),
                           softWrap: true,
                         ),
