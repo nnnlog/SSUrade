@@ -81,7 +81,7 @@ class _GradeStatisticsPageState extends State<GradeStatisticsPage> {
                         child: Text(
                           "전체 평점",
                           style: TextStyle(
-                            fontSize: 18,
+                            fontSize: 17,
                             fontWeight: FontWeight.w600,
                           ),
                           textAlign: TextAlign.left,
@@ -133,6 +133,7 @@ class _GradeStatisticsPageState extends State<GradeStatisticsPage> {
                           style: TextStyle(
                             fontSize: 15,
                             fontWeight: FontWeight.w400,
+                            color: Colors.black54,
                           ),
                           textAlign: TextAlign.left,
                         ),
@@ -157,7 +158,7 @@ class _GradeStatisticsPageState extends State<GradeStatisticsPage> {
                             Text(
                               "/ 4.50",
                               style: TextStyle(
-                                fontSize: 14,
+                                fontSize: 13,
                                 color: globals.isLightMode ? Colors.black.withOpacity(0.5) : Colors.white,
                                 fontWeight: FontWeight.w600,
                               ),
@@ -180,6 +181,7 @@ class _GradeStatisticsPageState extends State<GradeStatisticsPage> {
                           style: TextStyle(
                             fontSize: 15,
                             fontWeight: FontWeight.w400,
+                            color: Colors.black54,
                           ),
                           textAlign: TextAlign.left,
                         ),
@@ -241,19 +243,19 @@ class _GradeStatisticsPageState extends State<GradeStatisticsPage> {
                             textBaseline: TextBaseline.alphabetic,
                             children: [
                               Text(
-                                data[e]!.averageGrade.toStringAsFixed(1),
+                                data[e]!.averageGrade.toStringAsFixed(2),
                                 style: const TextStyle(
                                   fontWeight: FontWeight.w600,
                                 ),
                               ),
                               const Text(
-                                "  / 4.5",
+                                " / 4.50",
                                 style: TextStyle(
                                   fontSize: 12,
                                 ),
                               ),
                             ],
-                          ),
+                          )
                         ],
                       ),
                       childrenPadding: const EdgeInsets.fromLTRB(40, 10, 40, 20),
@@ -265,14 +267,15 @@ class _GradeStatisticsPageState extends State<GradeStatisticsPage> {
                             Tuple2("학기 석차", data[e]!.semesterRanking.display),
                             Tuple2("전체 석차", data[e]!.totalRanking.display),
                           ]
-                              .map((e) => SizedBox(
-                                    width: MediaQuery.of(context).size.width * 0.7,
+                              .map((e) => Container(
+                                    margin: const EdgeInsets.symmetric(vertical: 5),
                                     child: Row(
-                                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                       children: [
                                         Text(
                                           e.item1,
                                           textAlign: TextAlign.left,
+                                          style: const TextStyle(color: Colors.black54),
                                         ),
                                         Expanded(child: Container()),
                                         Text(
