@@ -10,7 +10,7 @@ enum Semester {
   static Semester parse(String str) {
     str = str.replaceAll(" ", "");
     for (var semester in Semester.values) {
-      if (str == semester.name) {
+      if (str == semester.displayName) {
         return semester;
       }
     }
@@ -20,7 +20,7 @@ enum Semester {
 }
 
 extension SemesterExtension on Semester {
-  String get name {
+  String get displayName {
     switch (this) {
       case Semester.first:
         return "1학기";

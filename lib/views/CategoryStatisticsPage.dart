@@ -119,7 +119,7 @@ class _StatisticsPageState extends State<StatisticsPage> with SingleTickerProvid
                                 ([...data[key]!]..removeWhere((element) => element.item1.isExcluded)),
                                 key: (e) => e.hashCode.toString(),
                                 value: (e) => e.item1,
-                              )).averageGrade.toStringAsPrecision(3),
+                              )).averageGrade.toStringAsFixed(2),
                             ),
                           ]
                               .map((e) => DataRow(cells: [
@@ -187,7 +187,7 @@ class _StatisticsPageState extends State<StatisticsPage> with SingleTickerProvid
                                         SizedBox(
                                           width: MediaQuery.of(context).size.width * 0.25,
                                           child: Text(
-                                            "${e.item2.year}-${e.item2.semester.name.replaceAll("학기", "")}",
+                                            "${e.item2.year}-${e.item2.semester.displayName.replaceAll("학기", "")}",
                                             textAlign: TextAlign.center,
                                             softWrap: true,
                                           ),

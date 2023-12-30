@@ -99,7 +99,7 @@ class SemesterSubjects {
       if (data.isPassFail) continue; // Pass/Fail subject
       if (data.grade == "P") continue; // Pass subject (이수구분별 성적표 미작동 시)
       totalGrade += (score * data.credit).toInt(); // Fail subject's weight(score) is zero
-      totalCredit += (data.credit).toInt();
+      totalCredit += (data.credit * 10).toInt();
     }
     if (totalCredit == 0) return 0;
     return ((totalGrade * 100) ~/ totalCredit) / 100;

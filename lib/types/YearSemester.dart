@@ -30,6 +30,8 @@ class YearSemester with Comparable<YearSemester> {
   @override
   String toString() => "$runtimeType(year=$year, semester=$semester)";
 
+  get display => "$year-${semester.displayName}";
+
   @override
   int get hashCode => hash2(year.hashCode, semester.hashCode);
 

@@ -55,7 +55,7 @@ class _GradePageHeaderState extends State<GradePageHeader> {
                       .map((e) => DropdownMenuItem<YearSemester>(
                             value: e.key,
                             child: Text(
-                              "${e.key.year}학년도 ${e.key.semester.name} (${e.value.totalCredit}학점)",
+                              "${e.key.year}학년도 ${e.key.semester.displayName} (${e.value.totalCredit}학점)",
                               style: TextStyle(
                                 color: globals.isLightMode ? Colors.black : Colors.white,
                                 fontFamily: "Pretendard",

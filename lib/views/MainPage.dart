@@ -275,6 +275,18 @@ class _MainPageState extends State<MainPage> {
                                 visible: Crawler.loginSession().isNotEmpty,
                                 child: OutlinedButton(
                                   onPressed: () async {
+                                    Navigator.pushNamed(context, "/grade_statistics");
+                                  },
+                                  style: OutlinedButton.styleFrom(
+                                    minimumSize: const Size.fromHeight(40),
+                                  ),
+                                  child: const Text("성적 통계"),
+                                ),
+                              ),
+                              Visibility(
+                                visible: Crawler.loginSession().isNotEmpty,
+                                child: OutlinedButton(
+                                  onPressed: () async {
                                     Navigator.pushNamed(context, "/category_statistics");
                                   },
                                   style: OutlinedButton.styleFrom(
