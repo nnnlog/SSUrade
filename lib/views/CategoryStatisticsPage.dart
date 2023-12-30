@@ -110,9 +110,9 @@ class _StatisticsPageState extends State<StatisticsPage> with SingleTickerProvid
                           showBottomBorder: true,
                           columns: [DataColumn(label: Container()), DataColumn(label: Container())],
                           rows: [
-                            Tuple2("이수 과목수", data[key]!.map((e) => e.item1.isExcluded ? 0 : 1).reduce((value, element) => value + element).toString()),
-                            Tuple2("이수 학점수", data[key]!.map((e) => e.item1.isExcluded ? 0 : e.item1.credit).reduce((value, element) => value + element).toString()),
-                            Tuple2("P/F 제외 이수 학점수", data[key]!.map((e) => e.item1.isExcluded || e.item1.isPassFail ? 0 : e.item1.credit).reduce((value, element) => value + element).toString()),
+                            Tuple2("이수 과목 수", data[key]!.map((e) => e.item1.isExcluded ? 0 : 1).reduce((value, element) => value + element).toString()),
+                            Tuple2("이수 학점 수", data[key]!.map((e) => e.item1.isExcluded ? 0 : e.item1.credit).reduce((value, element) => value + element).toString()),
+                            Tuple2("P/F 제외 이수 학점 수", data[key]!.map((e) => e.item1.isExcluded || e.item1.isPassFail ? 0 : e.item1.credit).reduce((value, element) => value + element).toString()),
                             Tuple2(
                               "평점",
                               SemesterSubjects(SplayTreeMap.fromIterable(
