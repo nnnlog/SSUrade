@@ -163,7 +163,7 @@ class _MainPageState extends State<MainPage> {
     return Stack(
       children: <Widget>[
         Scaffold(
-          appBar: customAppBar("숭실대학교 성적/학점 조회"),
+          appBar: customAppBar("숭실대학교 성적 조회"),
           body: Padding(
             padding: const EdgeInsets.all(30),
             child: Center(
@@ -280,7 +280,7 @@ class _MainPageState extends State<MainPage> {
                                   style: OutlinedButton.styleFrom(
                                     minimumSize: const Size.fromHeight(40),
                                   ),
-                                  child: const Text("이수구분별 성적 통계"),
+                                  child: const Text("이수 구분별 성적 통계"),
                                 ),
                               ),
                               Visibility(

@@ -5,14 +5,14 @@ import 'package:ssurade/utils/update.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class InformationPage extends StatefulWidget {
-  const InformationPage({Key? key}) : super(key: key);
+  const InformationPage({super.key});
 
   @override
   State<StatefulWidget> createState() => _InformationPageState();
 }
 
 class _InformationPageState extends State<InformationPage> {
-  String appVer = "불러오는 중...", newVer = "-", devVer = "";
+  String appVer = "불러오는 중...", newVer = "-", devVer = "", buildNum = "불러오는 중...";
 
   @override
   void initState() {
@@ -24,6 +24,7 @@ class _InformationPageState extends State<InformationPage> {
         appVer = temp.item1;
         newVer = temp.item2;
         devVer = temp.item3;
+        buildNum = temp.item4;
       });
     })();
   }
@@ -59,7 +60,7 @@ class _InformationPageState extends State<InformationPage> {
               height: 15,
             ),
             Text(
-              "앱 버전 : $appVer",
+              "앱 버전 : $appVer (빌드 번호 : $buildNum)",
               style: const TextStyle(
                 fontSize: 15,
                 fontWeight: FontWeight.w400,

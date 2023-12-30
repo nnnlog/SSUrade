@@ -6,10 +6,11 @@ import 'package:ssurade/utils/toast.dart';
 import 'package:tuple/tuple.dart';
 import 'package:version/version.dart';
 
-Future<Tuple3<String, String, String>> fetchAppVersion() async {
-  String appVer = "", newVer = "", devVer = "";
+Future<Tuple4<String, String, String, String>> fetchAppVersion() async {
+  String appVer = "", newVer = "", devVer = "", buildNum = "";
   try {
     appVer = (await PackageInfo.fromPlatform()).version;
+    buildNum = (await PackageInfo.fromPlatform()).buildNumber;
 
     var response = jsonDecode((await http.get(Uri.parse("https://api.github.com/repos/nnnlog/ssurade/releases"))).body);
     bool newVerFound = false, devVerFound = false;
@@ -37,5 +38,5 @@ Future<Tuple3<String, String, String>> fetchAppVersion() async {
   if (newVer != "" && appVerInstance >= Version.parse(newVer)) newVer = "";
   if (devVer != "" && appVerInstance >= Version.parse(devVer)) devVer = "";
   if (newVer != "" && devVer != "" && Version.parse(newVer) >= Version.parse(devVer)) devVer = "";
-  return Tuple3(appVer, newVer, devVer);
+  return Tuple4(appVer, newVer, devVer, buildNum);
 }
