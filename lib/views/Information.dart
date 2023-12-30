@@ -50,7 +50,7 @@ class _InformationPageState extends State<InformationPage> {
               height: 5,
             ),
             const Text(
-              "숭실대학교 성적/학점 조회 앱",
+              "숭실대학교 성적 조회 앱",
               style: TextStyle(
                 fontSize: 16,
                 fontWeight: FontWeight.w600,

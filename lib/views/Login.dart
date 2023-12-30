@@ -1,4 +1,3 @@
-import 'package:event/event.dart';
 import 'package:flutter/material.dart';
 import 'package:ssurade/components/CustomAppBar.dart';
 import 'package:ssurade/crawling/common/Crawler.dart';

@@ -196,7 +196,8 @@ class _StatisticsPageState extends State<StatisticsPage> with SingleTickerProvid
                                       DataCell(
                                         SizedBox(
                                           width: MediaQuery.of(context).size.width * 0.45,
-                                          child: Text( // Need dynamic height, but DataTable doesn't support.
+                                          child: Text(
+                                            // Need dynamic height, but DataTable doesn't support.
                                             e.item1.name,
                                             textAlign: TextAlign.center,
                                             softWrap: true,
