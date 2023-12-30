@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:collection';
 
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
@@ -28,7 +29,7 @@ class GradeSemesterList extends CrawlingTask<Map<YearSemester, Tuple2<Ranking, R
   }
 
   @override
-  Future<Map<YearSemester, Tuple2<Ranking, Ranking>>> internalExecute(Queue<InAppWebViewController> controllers) async {
+  Future<Map<YearSemester, Tuple2<Ranking, Ranking>>> internalExecute(Queue<InAppWebViewController> controllers, [Completer? onComplete]) async {
     var controller = controllers.removeFirst();
 
     final transaction = parentTransaction == null ? Sentry.startTransaction("GradeSemesterList", getTaskId()) : parentTransaction!.startChild(getTaskId());

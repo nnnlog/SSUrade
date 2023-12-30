@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:collection';
 
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
@@ -29,7 +30,7 @@ class SingleGrade extends CrawlingTask<SemesterSubjects> {
   SingleGrade._(this.search, this.reloadPage, this.getRanking, ISentrySpan? parentTransaction) : super(parentTransaction);
 
   @override
-  Future<SemesterSubjects> internalExecute(Queue<InAppWebViewController> controllers) async {
+  Future<SemesterSubjects> internalExecute(Queue<InAppWebViewController> controllers, [Completer? onComplete]) async {
     var controller = controllers.removeFirst();
 
     final transaction = parentTransaction?.startChild(getTaskId()) ?? Sentry.startTransaction('SingleGrade', getTaskId());
@@ -66,9 +67,9 @@ class SingleGrade extends CrawlingTask<SemesterSubjects> {
       totalRanking = Ranking.parse(res["rank"]?["total_rank"] ?? "");
     }
 
-    SemesterSubjects result = SemesterSubjects(SplayTreeMap(), semesterRanking, totalRanking, search);
+    SemesterSubjects result = SemesterSubjects(SplayTreeMap(), search, semesterRanking, totalRanking);
     for (var obj in res["subjects"]) {
-      var data = Subject(obj["subject_code"], obj["subject_name"], double.parse(obj["credit"]), obj["grade_symbol"], obj["grade_score"], obj["professor"], "", false);
+      var data = Subject(obj["subject_code"], obj["subject_name"], double.parse(obj["credit"]), obj["grade_symbol"], obj["grade_score"], obj["professor"], "", false, "");
       result.subjects[data.code] = data;
     }
     span.finish(status: const SpanStatus.ok());

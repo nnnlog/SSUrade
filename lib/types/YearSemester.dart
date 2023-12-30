@@ -5,19 +5,19 @@ import 'package:ssurade/types/Semester.dart';
 part 'YearSemester.g.dart';
 
 @JsonSerializable()
-class YearSemester extends Comparable<YearSemester> {
+class YearSemester with Comparable<YearSemester> {
   @JsonKey(
     includeToJson: true,
     includeFromJson: true,
   )
-  int _year;
+  final int _year;
   @JsonKey(
     includeToJson: true,
     includeFromJson: true,
   )
-  Semester _semester;
+  final Semester _semester;
 
-  YearSemester(this._year, this._semester);
+  const YearSemester(this._year, this._semester);
 
   factory YearSemester.fromJson(Map<String, dynamic> json) => _$YearSemesterFromJson(json);
 

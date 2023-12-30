@@ -12,7 +12,7 @@ abstract class CrawlingTask<T> {
   CrawlingTask(this.parentTransaction);
 
   /// @protected
-  Future<T> internalExecute(Queue<InAppWebViewController> controllers);
+  Future<T> internalExecute(Queue<InAppWebViewController> controllers, [Completer? onComplete]);
 
   /// @public
   Future<T> directExecute(Queue<InAppWebViewController> controllers) => internalExecute(controllers);

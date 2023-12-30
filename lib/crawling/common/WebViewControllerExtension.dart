@@ -47,4 +47,10 @@ extension WebViewControllerExtension on InAppWebViewController {
 
     transaction?.finish(status: const SpanStatus.ok());
   }
+
+  void customDispose() {
+    if (waitForLoadingPage?.isCompleted == false) waitForLoadingPage?.completeError(Exception("dispose"));
+    jsAlertCallback(null);
+    jsRedirectCallback("");
+  }
 }

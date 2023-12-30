@@ -26,9 +26,11 @@ class Subject extends Comparable<Subject> {
   @JsonKey()
   bool isPassFail = false; // P/F 과목 여부
   @JsonKey()
-  Map<String, String> detail = Map();
+  String info; // 졸업 사정 제외 사유
+  @JsonKey()
+  Map<String, String> detail = {};
 
-  Subject(this._code, this.name, this.credit, this.grade, this.score, this.professor, this.category, this.isPassFail);
+  Subject(this._code, this.name, this.credit, this.grade, this.score, this.professor, this.category, this.isPassFail, this.info);
 
   String get code => _code;
 
@@ -38,9 +40,11 @@ class Subject extends Comparable<Subject> {
 
   bool get isMajor => category.startsWith("전공") && category != "전공기초";
 
+  bool get isExcluded => info.split(",").indexWhere((element) => element.startsWith("Ex")) > -1;
+
   @override
   String toString() {
-    return "$runtimeType(code=$code, name=$name, credit=$credit, grade=$grade, score=$score, professor=$professor, category=$category, isPassFail=$isPassFail, detail=$detail)";
+    return "$runtimeType(code=$code, name=$name, credit=$credit, grade=$grade, score=$score, professor=$professor, category=$category, isPassFail=$isPassFail, info=$info, detail=$detail)";
   }
 
   @override
@@ -61,7 +65,7 @@ class Subject extends Comparable<Subject> {
     if (stateAfter == STATE_FULL) return after;
 
     // 이수구분별 성적 조회
-    if ((stateAfter & STATE_SEMESTER == 0) && (stateBefore & STATE_SEMESTER > 0)) {
+    if ((stateAfter & STATE_CATEGORY > 0) && (stateBefore & STATE_SEMESTER > 0)) {
       if (after.name.isEmpty) after.name = before.name;
       if (after.professor.isEmpty) after.professor = before.professor;
       if (after.grade.isEmpty) after.grade = before.grade; // 성적 입력 기간
@@ -69,9 +73,10 @@ class Subject extends Comparable<Subject> {
     }
 
     // 학기별 성적 조회
-    if ((stateAfter & STATE_CATEGORY == 0) && (STATE_CATEGORY & STATE_CATEGORY > 0)) {
+    if ((stateAfter & STATE_SEMESTER > 0) && (STATE_CATEGORY & STATE_CATEGORY > 0)) {
       if (after.category.isEmpty) after.category = before.category;
       after.isPassFail = before.isPassFail;
+      after.info = before.info;
     }
 
     return after;

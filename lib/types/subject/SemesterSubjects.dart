@@ -1,6 +1,7 @@
 import 'dart:collection';
 
 import 'package:json_annotation/json_annotation.dart';
+import 'package:ssurade/types/Semester.dart';
 import 'package:ssurade/types/YearSemester.dart';
 import 'package:ssurade/types/subject/Ranking.dart';
 import 'package:ssurade/types/subject/Subject.dart';
@@ -26,7 +27,7 @@ class SemesterSubjects {
   )
   Map<String, bool>? list;
 
-  SemesterSubjects(this.subjects, this.semesterRanking, this.totalRanking, this.currentSemester);
+  SemesterSubjects(this.subjects, [this.currentSemester = const YearSemester(0, Semester.first), this.semesterRanking = Ranking.unknown, this.totalRanking = Ranking.unknown]);
 
   factory SemesterSubjects.fromJson(Map<String, dynamic> json) => _$SemesterSubjectsFromJson(json);
 

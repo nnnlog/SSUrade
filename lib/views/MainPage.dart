@@ -6,12 +6,11 @@ import 'package:flutter/services.dart' show rootBundle;
 import 'package:flutter_exit_app/flutter_exit_app.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:ssurade/components/CustomAppBar.dart';
+import 'package:ssurade/components/showScrollableDialog.dart';
 import 'package:ssurade/crawling/background/BackgroundService.dart';
 import 'package:ssurade/crawling/common/Crawler.dart';
 import 'package:ssurade/globals.dart' as globals;
 import 'package:ssurade/types/Progress.dart';
-import 'package:ssurade/types/subject/SemesterSubjectsManager.dart';
-import 'package:ssurade/types/subject/state.dart';
 import 'package:ssurade/utils/toast.dart';
 import 'package:ssurade/utils/update.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -28,26 +27,35 @@ class _MainPageState extends State<MainPage> {
   late String _agreement, _agreement_short;
   MainProgress _progress = MainProgress.init;
 
+  void handleLoginStatusChange(_) {
+    setState(() {});
+  }
+
+  void handleLoginFail(msg) {
+    showToast("로그인을 실패했어요.");
+    // showToast("메인 화면에서 자동 로그인을 다시 시도하거나 새로운 계정으로 로그인하세요.");
+
+    if (msg != null) {
+      showToast(msg.value);
+    }
+
+    globals.analytics.logEvent(name: "login_fail");
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+
+    Crawler.loginSession().loginStatusChangeEvent.unsubscribe(handleLoginStatusChange);
+    Crawler.loginSession().loginFailEvent.unsubscribe(handleLoginFail);
+  }
+
   @override
   void initState() {
     super.initState();
 
-    Crawler.loginSession().loginStatusChangeEvent.subscribe((args) {
-      setState(() {});
-
-      // add analytics?
-    });
-
-    Crawler.loginSession().loginFailEvent.subscribe((msg) {
-      showToast("로그인을 실패했어요.");
-      // showToast("메인 화면에서 자동 로그인을 다시 시도하거나 새로운 계정으로 로그인하세요.");
-
-      if (msg != null) {
-        showToast(msg.value);
-      }
-
-      globals.analytics.logEvent(name: "login_fail");
-    });
+    Crawler.loginSession().loginStatusChangeEvent.subscribe(handleLoginStatusChange);
+    Crawler.loginSession().loginFailEvent.subscribe(handleLoginFail);
 
     (() async {
       await globals.init();
@@ -198,43 +206,22 @@ class _MainPageState extends State<MainPage> {
                                       minimumSize: const Size.fromHeight(40),
                                     ),
                                     onPressed: () {
-                                      showDialog(
-                                        context: context,
-                                        builder: (context) {
-                                          return StatefulBuilder(builder: (BuildContext context, StateSetter setStateDialog) {
-                                            return Dialog(
-                                              child: Padding(
-                                                padding: const EdgeInsets.fromLTRB(25, 25, 20, 15),
-                                                child: Column(
-                                                  children: [
-                                                    Flexible(
-                                                      child: ListView(
-                                                        shrinkWrap: true,
-                                                        children: [
-                                                          SingleChildScrollView(
-                                                            child: Text(_agreement),
-                                                          ),
-                                                        ],
-                                                      ),
-                                                    ),
-                                                    const SizedBox(
-                                                      height: 10,
-                                                    ),
-                                                    TextButton(
-                                                      style: ElevatedButton.styleFrom(
-                                                        minimumSize: const Size.fromHeight(40),
-                                                      ),
-                                                      onPressed: () {
-                                                        Navigator.pop(context);
-                                                      },
-                                                      child: const Text("닫기"),
-                                                    ),
-                                                  ],
-                                                ),
-                                              ),
-                                            );
-                                          });
-                                        },
+                                      showScrollableDialog(
+                                        context,
+                                        [
+                                          SingleChildScrollView(
+                                            child: SelectableText(_agreement),
+                                          ),
+                                          TextButton(
+                                            style: ElevatedButton.styleFrom(
+                                              minimumSize: const Size.fromHeight(40),
+                                            ),
+                                            onPressed: () {
+                                              Navigator.pop(context);
+                                            },
+                                            child: const Text("닫기"),
+                                          ),
+                                        ],
                                       );
                                     },
                                     child: const Text(
@@ -282,6 +269,18 @@ class _MainPageState extends State<MainPage> {
                                     minimumSize: const Size.fromHeight(40),
                                   ),
                                   child: const Text("학기별 성적 조회"),
+                                ),
+                              ),
+                              Visibility(
+                                visible: Crawler.loginSession().isNotEmpty,
+                                child: OutlinedButton(
+                                  onPressed: () async {
+                                    Navigator.pushNamed(context, "/category_statistics");
+                                  },
+                                  style: OutlinedButton.styleFrom(
+                                    minimumSize: const Size.fromHeight(40),
+                                  ),
+                                  child: const Text("이수구분별 성적 통계"),
                                 ),
                               ),
                               Visibility(

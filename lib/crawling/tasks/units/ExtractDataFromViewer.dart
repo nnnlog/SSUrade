@@ -45,7 +45,7 @@ class ExtractDataFromViewer extends CrawlingTask<DataFrame> {
   }
 
   @override
-  Future<DataFrame> internalExecute(Queue<InAppWebViewController> controllers) async {
+  Future<DataFrame> internalExecute(Queue<InAppWebViewController> controllers, [Completer? onComplete]) async {
     var controller = controllers.removeFirst();
 
     var transaction = parentTransaction?.startChild("extract_data_from_viewer");

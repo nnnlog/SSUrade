@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ssurade/components/GradeLogo.dart';
 import 'package:ssurade/components/KeyValueTable.dart';
+import 'package:ssurade/components/showScrollableDialog.dart';
 import 'package:ssurade/globals.dart' as globals;
 import 'package:ssurade/types/subject/Subject.dart';
 import 'package:ssurade/utils/toast.dart';
@@ -27,48 +28,36 @@ class _SubjectWidgetState extends State<SubjectWidget> {
           return;
         }
 
-        showDialog(
-          context: context,
-          builder: (context) {
-            return StatefulBuilder(builder: (BuildContext context, StateSetter setStateDialog) {
-              return Dialog(
-                child: Padding(
-                  padding: const EdgeInsets.fromLTRB(25, 25, 20, 15),
-                  child: ListView(
-                    shrinkWrap: true,
-                    children: [
-                      KeyValueTable(
-                        map: {
-                          "이수 구분": widget._subjectData.category,
-                          "성적 산출 방식": widget._subjectData.isPassFail || widget._subjectData.grade == "P" ? "P/F" : "100점 기준",
-                          "최종 성적": widget._subjectData.score,
-                          "성적 기호": widget._subjectData.grade,
-                        },
-                      ),
-                      Container(
-                        height: 20,
-                      ),
-                      KeyValueTable(
-                        map: detail,
-                      ),
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      TextButton(
-                        style: ElevatedButton.styleFrom(
-                          minimumSize: const Size.fromHeight(40),
-                        ),
-                        onPressed: () {
-                          Navigator.pop(context);
-                        },
-                        child: const Text("닫기"),
-                      ),
-                    ],
-                  ),
-                ),
-              );
-            });
-          },
+        showScrollableDialog(
+          context,
+          [
+            KeyValueTable(
+              map: {
+                "이수 구분": widget._subjectData.category,
+                "성적 산출 방식": widget._subjectData.isPassFail || widget._subjectData.grade == "P" ? "P/F" : "100점 기준",
+                "최종 성적": widget._subjectData.score,
+                "성적 기호": widget._subjectData.grade,
+              },
+            ),
+            Container(
+              height: 20,
+            ),
+            KeyValueTable(
+              map: detail,
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+            TextButton(
+              style: ElevatedButton.styleFrom(
+                minimumSize: const Size.fromHeight(40),
+              ),
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              child: const Text("닫기"),
+            ),
+          ],
         );
       },
       child: Container(

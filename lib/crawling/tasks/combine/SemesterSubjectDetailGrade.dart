@@ -39,7 +39,7 @@ class SemesterSubjectDetailGrade extends CrawlingTask<Map<String, Map<String, St
   }
 
   @override
-  Future<Map<String, Map<String, String>>> internalExecute(Queue<InAppWebViewController> controllers) async {
+  Future<Map<String, Map<String, String>>> internalExecute(Queue<InAppWebViewController> controllers, [Completer? onComplete]) async {
     assert(controllers.length == getWebViewCount());
 
     final transaction = parentTransaction?.startChild(getTaskId()) ?? Sentry.startTransaction('SemesterSubjectDetailGrade', getTaskId());

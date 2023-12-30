@@ -23,7 +23,7 @@ class AllGradeByCategory extends CrawlingTask<SemesterSubjectsManager> {
   AllGradeByCategory._(ISentrySpan? parentTransaction) : super(parentTransaction);
 
   @override
-  Future<SemesterSubjectsManager> internalExecute(Queue<InAppWebViewController> controllers) async {
+  Future<SemesterSubjectsManager> internalExecute(Queue<InAppWebViewController> controllers, [Completer? onComplete]) async {
     var controller = controllers.removeFirst();
 
     final transaction = parentTransaction == null ? Sentry.startTransaction('AllGradeByCategory', getTaskId()) : parentTransaction!.startChild(getTaskId());
@@ -43,7 +43,7 @@ class AllGradeByCategory extends CrawlingTask<SemesterSubjectsManager> {
       var rawKey = data["HUKGI"]!.split("―"); // format: 2022―1, 2022―겨울
       var key = YearSemester(int.parse(rawKey[0]), Semester.parse("${rawKey[1]}학기"));
 
-      ret.data[key] ??= SemesterSubjects(SplayTreeMap(), Ranking(0, 0), Ranking(0, 0), key);
+      ret.data[key] ??= SemesterSubjects(SplayTreeMap(), key, Ranking(0, 0), Ranking(0, 0));
 
       var category = data["COMPL_TEXT"]!;
       var credit = double.parse(data["CPATTEMP"]!);
@@ -52,10 +52,11 @@ class AllGradeByCategory extends CrawlingTask<SemesterSubjectsManager> {
       var isPassFail = data["GRADESCALE"]! == "PF"; // otherwise, '100P'
       // var code = data["SE_SHORT"]!.replaceAll(RegExp("\\(|\\)"), ""); // FORMAT: 21501015(06) - 괄호 안은 분반 정보
       var code = data["SM_ID"]!; // FORMAT: 21501015
+      var info = data["SM_INFO"]!; // 재수강 시 어떻게 표기되는지 모릅니다. / 과목 정보(재수강되어 졸업 사정되지 않는 과목 / 영어 강의 등..)
       // SUBJECT NAME (SM_TEXT에 존재하지만, 교선에 교선 분류명도 함께 있음)
       // PROF NAME (not exist)
 
-      var subject = Subject(code, "", credit, grade, score, "", category, isPassFail);
+      var subject = Subject(code, "", credit, grade, score, "", category, isPassFail, info);
       ret.data[key]!.subjects[subject.code] = subject;
     }
     span.finish(status: const SpanStatus.ok());

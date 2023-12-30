@@ -4,14 +4,14 @@ part 'Ranking.g.dart';
 
 @JsonSerializable()
 class Ranking {
-  static final Ranking unknown = Ranking(0, 0);
+  static const Ranking unknown = Ranking(0, 0);
 
   @JsonKey()
-  int my;
+  final int my;
   @JsonKey()
-  int total;
+  final int total;
 
-  Ranking(this.my, this.total);
+  const Ranking(this.my, this.total);
 
   factory Ranking.fromJson(Map<String, dynamic> json) => _$RankingFromJson(json);
 

@@ -1,3 +1,4 @@
+import 'package:event/event.dart';
 import 'package:flutter/material.dart';
 import 'package:ssurade/components/CustomAppBar.dart';
 import 'package:ssurade/crawling/common/Crawler.dart';
@@ -67,10 +68,7 @@ class _LoginPageState extends State<LoginPage> {
 
                       globals.analytics.logEvent(name: "login", parameters: {"auto_login": "false"});
                     } else {
-                      session.id = "";
-                      session.password = "";
-
-                      showToast("로그인을 실패했어요.\n정보를 확인하고 다시 시도해주세요.");
+                      session.logout();
                     }
                     session.saveFile();
 

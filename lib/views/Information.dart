@@ -90,7 +90,7 @@ class _InformationPageState extends State<InformationPage> {
                               ),
                               onTap: () => launchUrl(
                                 Uri.parse("https://github.com/nnnlog/ssurade/releases/tag/v$newVer"),
-                                mode: LaunchMode.externalApplication,
+                                mode: LaunchMode.inAppBrowserView,
                               ),
                             )),
                       const Text(" "),
@@ -107,7 +107,7 @@ class _InformationPageState extends State<InformationPage> {
                               ),
                               onTap: () => launchUrl(
                                 Uri.parse("https://github.com/nnnlog/ssurade/releases/tag/v$devVer"),
-                                mode: LaunchMode.externalApplication,
+                                mode: LaunchMode.inAppBrowserView,
                               ),
                             )),
                     ],
@@ -129,7 +129,7 @@ class _InformationPageState extends State<InformationPage> {
                   ),
                   onTap: () => launchUrl(
                     Uri.parse("https://github.com/nnnlog/ssurade"),
-                    mode: LaunchMode.externalApplication,
+                    mode: LaunchMode.inAppBrowserView,
                   ),
                 ),
                 const Text(
@@ -165,7 +165,7 @@ class _InformationPageState extends State<InformationPage> {
                   ),
                   onTap: () => launchUrl(
                     Uri.parse("https://github.com/nnnlog/ssurade/issues"),
-                    mode: LaunchMode.externalApplication,
+                    mode: LaunchMode.inAppBrowserView,
                   ),
                 ),
                 const Text(
@@ -218,7 +218,7 @@ class _InformationPageState extends State<InformationPage> {
                   ),
                   onTap: () => launchUrl(
                     Uri.parse("https://nlog.dev/"),
-                    mode: LaunchMode.externalApplication,
+                    mode: LaunchMode.inAppBrowserView,
                   ),
                 )
               ],
@@ -239,7 +239,7 @@ class _InformationPageState extends State<InformationPage> {
               ],
             ),
             Text(
-              "· 유어슈의 '숨쉴때 성적표'의 디자인을 일부 참고하였습니다.",
+              "· 유어슈 '숨쉴때 성적표'의 디자인을 일부 참고하였습니다.",
               style: TextStyle(color: Colors.black.withOpacity(0.7), fontSize: 13, fontWeight: FontWeight.w300),
             ),
           ],

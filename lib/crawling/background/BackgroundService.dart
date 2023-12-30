@@ -14,13 +14,14 @@ Future<void> disableBatteryOptimize({bool show = false}) async {
     if (show) showToast("이미 배터리 최적화 대상에서 제외되어 있어요.");
     return;
   }
-  bool? ok = await DisableBatteryOptimization.showDisableBatteryOptimizationSettings();
-  if (!show) return;
-  if (ok == true) {
-    showToast("배터리 최적화에서 제외되었어요.");
-  } else {
-    showToast("배터리 최적화가 켜져 있으면 성적 확인이 지연될 수 있어요.");
-  }
+  /*bool? ok = */
+  await DisableBatteryOptimization.showDisableBatteryOptimizationSettings();
+  // if (!show) return;
+  // if (ok == true) {
+  //   showToast("배터리 최적화에서 제외되었어요.");
+  // } else {
+  //   showToast("배터리 최적화가 켜져 있으면 성적 확인이 지연될 수 있어요.");
+  // }
 }
 
 Future<void> updateBackgroundService({lazy = false}) async {

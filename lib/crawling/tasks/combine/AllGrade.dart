@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:collection';
 
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
@@ -17,7 +18,7 @@ class AllGrade extends CrawlingTask<SemesterSubjectsManager> {
   AllGrade._(this.base, ISentrySpan? parentTransaction) : super(parentTransaction);
 
   @override
-  Future<SemesterSubjectsManager> internalExecute(Queue<InAppWebViewController> controllers) async {
+  Future<SemesterSubjectsManager> internalExecute(Queue<InAppWebViewController> controllers, [Completer? onComplete]) async {
     var con1 = controllers.removeFirst();
     var con2 = controllers.removeFirst();
 

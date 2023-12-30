@@ -8,6 +8,7 @@ import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 import 'package:ssurade/crawling/background/BackgroundService.dart';
 import 'package:ssurade/globals.dart' as globals;
+import 'package:ssurade/views/CategoryStatisticsPage.dart';
 import 'package:ssurade/views/GradePage.dart';
 import 'package:ssurade/views/Information.dart';
 import 'package:ssurade/views/Login.dart';
@@ -70,6 +71,7 @@ class MyApp extends StatelessWidget {
         '/': (context) => const MainPage(),
         '/login': (context) => const LoginPage(),
         '/grade_view': (context) => const GradePage(),
+        '/category_statistics': (context) => const StatisticsPage(),
         '/setting': (context) => const SettingPage(),
         '/information': (context) => const InformationPage(),
       },

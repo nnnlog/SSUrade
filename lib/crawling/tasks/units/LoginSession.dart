@@ -98,6 +98,7 @@ class LoginSession extends CrawlingTask<bool> {
 
   logout() {
     id = password = "";
+    _credentials = [];
     loginStatusChangeEvent.broadcast(Value(_isLogin)); // false
   }
 
@@ -111,7 +112,7 @@ class LoginSession extends CrawlingTask<bool> {
 
   /// Critical section (even for between foreground and background service)
   @override
-  Future<bool> internalExecute(Queue<InAppWebViewController> controllers) async {
+  Future<bool> internalExecute(Queue<InAppWebViewController> controllers, [Completer? onComplete]) async {
     var controller = controllers.removeFirst();
 
     if (isLogin) {
@@ -128,6 +129,10 @@ class LoginSession extends CrawlingTask<bool> {
     }
 
     if (!isBackground) updateBackgroundService(lazy: true);
+
+    onComplete?.future.catchError((_) {
+      _future = null;
+    });
 
     var completer = Completer<bool>();
     _future = completer.future;
@@ -165,7 +170,7 @@ class LoginSession extends CrawlingTask<bool> {
     await controller.evaluateJavascript(source: 'document.LoginInfo.submit();');
     span.finish(status: const SpanStatus.ok());
     span = transaction.startChild("wait_redirection");
-    while (!(await controller.getUrl()).toString().startsWith("https://saint.ssu.ac.kr/irj/portal")) {
+    while (!fail && !(await controller.getUrl()).toString().startsWith("https://saint.ssu.ac.kr/irj/portal")) {
       await Future.delayed(const Duration(milliseconds: 1));
     }
     span.finish(status: fail ? const SpanStatus.cancelled() : const SpanStatus.ok());

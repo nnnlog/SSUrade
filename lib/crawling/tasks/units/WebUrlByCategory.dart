@@ -18,7 +18,7 @@ class WebUrlByCategory extends CrawlingTask<String> {
   WebUrlByCategory._(ISentrySpan? parentTransaction) : super(parentTransaction);
 
   @override
-  Future<String> internalExecute(Queue<InAppWebViewController> controllers) async {
+  Future<String> internalExecute(Queue<InAppWebViewController> controllers, [Completer? onComplete]) async {
     var controller = controllers.removeFirst();
 
     final transaction = parentTransaction == null ? Sentry.startTransaction('WebUrlByCategory', getTaskId()) : parentTransaction!.startChild(getTaskId());

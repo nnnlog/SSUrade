@@ -22,7 +22,7 @@ class WebViewWorker {
   factory WebViewWorker() => instance;
 
   /// run task in here. resolve value or cancel task using Completer.
-  Future<Completer<T>> runTask<T>(Future<T> Function(Queue<InAppWebViewController>) callback, CrawlingTask<T> taskInformation) async {
+  Future<Completer<T>> runTask<T>(Future<T> Function(Queue<InAppWebViewController>, [Completer? onComplete]) callback, CrawlingTask<T> taskInformation) async {
     var list = <HeadlessInAppWebView>[];
     var futures = <Future>[];
     for (int i = 0; i < taskInformation.getWebViewCount(); i++) {
@@ -66,11 +66,12 @@ class WebViewWorker {
       if (timer.isActive) timer.cancel();
 
       for (var webView in list) {
+        webView.webViewController!.customDispose();
         webView.platform.dispose().whenComplete(() => webView.dispose());
       }
     });
 
-    callback(Queue()..addAll(list.map((e) => e.webViewController!))).then((value) {
+    callback(Queue()..addAll(list.map((e) => e.webViewController!)), ret).then((value) {
       if (!ret.isCompleted) {
         ret.complete(value);
       }
