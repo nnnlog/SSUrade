@@ -240,26 +240,19 @@ class _GradePageState extends State<GradePage> {
               controller: _refreshController,
               onRefresh: refreshCurrentGradeWithPull,
               // onLoading: refreshCurrentGradeWithPull,
-              child: ListView(
-                controller: ScrollController(),
-                children: [
-                  SingleChildScrollView(
-                    child: Screenshot(
-                      controller: _imageController,
-                      child: Container(
-                        color: globals.isLightMode ? (_progress == GradeProgress.init ? null : const Color.fromRGBO(241, 242, 245, 1)) : null,
-                        child: ListView(
-                          shrinkWrap: true,
-                          physics: const NeverScrollableScrollPhysics(),
-                          children: <Widget>[
-                                GradePageHeader(_semesterSubjects, callbackSelectSubject, refreshCurrentGrade, _exportImage, _showRanking),
-                              ] +
-                              (_semesterSubjects.subjects.values.toList()..sort((a, b) => a.compareTo(b))).map((e) => SubjectWidget(e, _exportImage, _showSubjectInfo)).toList(),
-                        ),
-                      ),
+              child: SingleChildScrollView(
+                child: Screenshot(
+                  controller: _imageController,
+                  child: Container(
+                    color: globals.isLightMode ? (_progress == GradeProgress.init ? null : const Color.fromRGBO(241, 242, 245, 1)) : null,
+                    child: Column(
+                      children: <Widget>[
+                            GradePageHeader(_semesterSubjects, callbackSelectSubject, refreshCurrentGrade, _exportImage, _showRanking),
+                          ] +
+                          (_semesterSubjects.subjects.values.toList()..sort((a, b) => a.compareTo(b))).map((e) => SubjectWidget(e, _exportImage, _showSubjectInfo)).toList(),
                     ),
                   ),
-                ],
+                ),
               ),
             ),
       floatingActionButton: _progress == GradeProgress.finish
