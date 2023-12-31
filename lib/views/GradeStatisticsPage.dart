@@ -148,7 +148,7 @@ class _GradeStatisticsPageState extends State<GradeStatisticsPage> {
                             Text(
                               subjects.averageMajorGrade.toStringAsFixed(2),
                               style: const TextStyle(
-                                fontSize: 18,
+                                fontSize: 28,
                                 fontWeight: FontWeight.w600,
                               ),
                             ),
@@ -264,11 +264,12 @@ class _GradeStatisticsPageState extends State<GradeStatisticsPage> {
                           children: [
                             Tuple2("이수 학점", data[e]!.totalCredit.toStringAsFixed(1)),
                             Tuple2("이수 전공 학점", data[e]!.majorCredit.toStringAsFixed(1)),
+                            Tuple2("전공 평점", "${data[e]!.averageMajorGrade.toStringAsFixed(2)} / 4.50"),
                             Tuple2("학기 석차", data[e]!.semesterRanking.display),
                             Tuple2("전체 석차", data[e]!.totalRanking.display),
                           ]
                               .map((e) => Container(
-                                    margin: const EdgeInsets.symmetric(vertical: 5),
+                                    margin: const EdgeInsets.symmetric(vertical: 3),
                                     child: Row(
                                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                       children: [
