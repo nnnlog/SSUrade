@@ -8,7 +8,7 @@ part of 'SemesterSubjects.dart';
 
 SemesterSubjects _$SemesterSubjectsFromJson(Map<String, dynamic> json) => SemesterSubjects(
       const _DataConverter().fromJson(json['subjects'] as List),
-      YearSemester.fromJson(json['currentSemester'] as Map<String, dynamic>),
+      json['currentSemester'] == null ? const YearSemester(0, Semester.first) : YearSemester.fromJson(json['currentSemester'] as Map<String, dynamic>),
       json['semesterRanking'] == null ? Ranking.unknown : Ranking.fromJson(json['semesterRanking'] as Map<String, dynamic>),
       json['totalRanking'] == null ? Ranking.unknown : Ranking.fromJson(json['totalRanking'] as Map<String, dynamic>),
     );
