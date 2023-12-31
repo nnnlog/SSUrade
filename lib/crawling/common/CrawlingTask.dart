@@ -15,7 +15,7 @@ abstract class CrawlingTask<T> {
   Future<T> internalExecute(Queue<InAppWebViewController> controllers, [Completer? onComplete]);
 
   /// @public
-  Future<T> directExecute(Queue<InAppWebViewController> controllers) => internalExecute(controllers);
+  Future<T> directExecute(Queue<InAppWebViewController> controllers, [Completer? onComplete]) => internalExecute(controllers, onComplete);
 
   /// Execute new task in here. It'll create new [InAppWebViewController] and holds itself timer for timeout.
   /// If timeouts, throw [TimeoutException].

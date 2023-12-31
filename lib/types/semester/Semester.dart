@@ -17,9 +17,7 @@ enum Semester {
 
     throw Exception("Unknown semester, got $str");
   }
-}
 
-extension SemesterExtension on Semester {
   String get displayName {
     switch (this) {
       case Semester.first:

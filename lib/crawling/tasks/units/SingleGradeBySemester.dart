@@ -8,26 +8,25 @@ import 'package:ssurade/crawling/common/CrawlingTask.dart';
 import 'package:ssurade/crawling/common/WebViewControllerExtension.dart';
 import 'package:ssurade/crawling/error/UnauthenticatedExcpetion.dart';
 import 'package:ssurade/globals.dart' as globals;
-import 'package:ssurade/types/Semester.dart';
-import 'package:ssurade/types/YearSemester.dart';
+import 'package:ssurade/types/semester/YearSemester.dart';
 import 'package:ssurade/types/subject/Ranking.dart';
 import 'package:ssurade/types/subject/SemesterSubjects.dart';
 import 'package:ssurade/types/subject/Subject.dart';
 
-class SingleGrade extends CrawlingTask<SemesterSubjects> {
+class SingleGradeBySemester extends CrawlingTask<SemesterSubjects> {
   YearSemester search;
   bool reloadPage;
   bool getRanking;
 
-  factory SingleGrade.get(
+  factory SingleGradeBySemester.get(
     YearSemester search, {
     bool reloadPage = false,
     bool getRanking = true,
     ISentrySpan? parentTransaction,
   }) =>
-      SingleGrade._(search, reloadPage, getRanking, parentTransaction);
+      SingleGradeBySemester._(search, reloadPage, getRanking, parentTransaction);
 
-  SingleGrade._(this.search, this.reloadPage, this.getRanking, ISentrySpan? parentTransaction) : super(parentTransaction);
+  SingleGradeBySemester._(this.search, this.reloadPage, this.getRanking, ISentrySpan? parentTransaction) : super(parentTransaction);
 
   @override
   Future<SemesterSubjects> internalExecute(Queue<InAppWebViewController> controllers, [Completer? onComplete]) async {
@@ -84,6 +83,6 @@ class SingleGrade extends CrawlingTask<SemesterSubjects> {
 
   @override
   String getTaskId() {
-    return "single_grade";
+    return "single_grade_by_semester";
   }
 }

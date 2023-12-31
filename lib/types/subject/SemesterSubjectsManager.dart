@@ -1,10 +1,10 @@
 import 'dart:collection';
 import 'dart:convert';
-import 'dart:developer';
 
 import 'package:json_annotation/json_annotation.dart';
+import 'package:logger/logger.dart';
 import 'package:ssurade/filesystem/FileSystem.dart';
-import 'package:ssurade/types/YearSemester.dart';
+import 'package:ssurade/types/semester/YearSemester.dart';
 import 'package:ssurade/types/subject/SemesterSubjects.dart';
 import 'package:ssurade/types/subject/state.dart';
 
@@ -56,7 +56,7 @@ class SemesterSubjectsManager {
   String toString() => data.toString();
 
   // FILE I/O
-  static const String _filename = "cache.json"; // internal file name
+  static const String _filename = "grade.json"; // internal file name
 
   static Future<SemesterSubjectsManager> loadFromFile() async {
     try {
@@ -65,8 +65,7 @@ class SemesterSubjectsManager {
         return SemesterSubjectsManager.fromJson(data);
       }
     } catch (e, stacktrace) {
-      log(e.toString());
-      log(stacktrace.toString());
+      Logger().e(e, stackTrace: stacktrace);
     }
     return SemesterSubjectsManager(SplayTreeMap(), STATE_EMPTY);
   }

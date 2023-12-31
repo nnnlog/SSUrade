@@ -5,8 +5,8 @@ import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 import 'package:ssurade/crawling/common/CrawlingTask.dart';
 import 'package:ssurade/crawling/common/WebViewControllerExtension.dart';
-import 'package:ssurade/types/Semester.dart';
-import 'package:ssurade/types/YearSemester.dart';
+import 'package:ssurade/types/semester/Semester.dart';
+import 'package:ssurade/types/semester/YearSemester.dart';
 import 'package:ssurade/types/subject/Ranking.dart';
 import 'package:tuple/tuple.dart';
 

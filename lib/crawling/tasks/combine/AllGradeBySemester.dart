@@ -34,7 +34,7 @@ class AllGradeBySemester extends CrawlingTask<SemesterSubjectsManager> {
     result = SemesterSubjectsManager(SplayTreeMap.from({}), STATE_SEMESTER);
 
     for (var key in map.keys) {
-      var tmp = await Crawler.singleGrade(
+      var tmp = await Crawler.singleGradeBySemester(
         key,
         reloadPage: false,
         getRanking: false,

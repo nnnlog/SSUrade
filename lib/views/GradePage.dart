@@ -8,9 +8,8 @@ import 'package:ssurade/components/GradePageHeader.dart';
 import 'package:ssurade/components/SubjectWidget.dart';
 import 'package:ssurade/crawling/common/Crawler.dart';
 import 'package:ssurade/globals.dart' as globals;
-import 'package:ssurade/types/Progress.dart';
-import 'package:ssurade/types/Semester.dart';
-import 'package:ssurade/types/YearSemester.dart';
+import 'package:ssurade/types/etc/Progress.dart';
+import 'package:ssurade/types/semester/YearSemester.dart';
 import 'package:ssurade/types/subject/SemesterSubjects.dart';
 import 'package:ssurade/types/subject/SemesterSubjectsManager.dart';
 import 'package:ssurade/types/subject/state.dart';
@@ -57,7 +56,7 @@ class _GradePageState extends State<GradePage> {
       late Map<String, Map<String, String>> data2;
 
       var futures = <Future>[];
-      futures.add(Crawler.singleGrade(search).execute().then((value) => data1 = value));
+      futures.add(Crawler.singleGradeBySemester(search).execute().then((value) => data1 = value));
       futures.add(Crawler.semesterSubjectDetailGrade(_semesterSubjects).execute().then((value) => data2 = value).then((value) {
         if (_semesterSubjects.currentSemester.toString() == search.toString()) {
           showToast("성적 상세 정보를 불러왔어요.");

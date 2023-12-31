@@ -1,8 +1,8 @@
 import 'dart:collection';
 
 import 'package:json_annotation/json_annotation.dart';
-import 'package:ssurade/types/Semester.dart';
-import 'package:ssurade/types/YearSemester.dart';
+import 'package:ssurade/types/semester/Semester.dart';
+import 'package:ssurade/types/semester/YearSemester.dart';
 import 'package:ssurade/types/subject/Ranking.dart';
 import 'package:ssurade/types/subject/Subject.dart';
 import 'package:ssurade/types/subject/gradeTable.dart';

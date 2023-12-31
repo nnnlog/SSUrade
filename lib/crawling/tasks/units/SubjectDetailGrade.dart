@@ -7,8 +7,7 @@ import 'package:ssurade/crawling/common/Crawler.dart';
 import 'package:ssurade/crawling/common/CrawlingTask.dart';
 import 'package:ssurade/crawling/common/WebViewControllerExtension.dart';
 import 'package:ssurade/crawling/error/UnauthenticatedExcpetion.dart';
-import 'package:ssurade/types/Semester.dart';
-import 'package:ssurade/types/YearSemester.dart';
+import 'package:ssurade/types/semester/YearSemester.dart';
 
 class SubjectDetailGrade extends CrawlingTask<Map<String, String>> {
   YearSemester search;

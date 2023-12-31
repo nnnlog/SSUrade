@@ -10,7 +10,7 @@ import 'package:ssurade/components/showScrollableDialog.dart';
 import 'package:ssurade/crawling/background/BackgroundService.dart';
 import 'package:ssurade/crawling/common/Crawler.dart';
 import 'package:ssurade/globals.dart' as globals;
-import 'package:ssurade/types/Progress.dart';
+import 'package:ssurade/types/etc/Progress.dart';
 import 'package:ssurade/utils/toast.dart';
 import 'package:ssurade/utils/update.dart';
 import 'package:url_launcher/url_launcher.dart';
