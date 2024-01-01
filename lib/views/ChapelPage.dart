@@ -19,7 +19,7 @@ class ChapelPage extends StatefulWidget {
   State<StatefulWidget> createState() => _ChapelPageState();
 }
 
-class _ChapelPageState extends State<ChapelPage> with SingleTickerProviderStateMixin {
+class _ChapelPageState extends State<ChapelPage> with SingleTickerProviderStateMixin, AutomaticKeepAliveClientMixin<ChapelPage> {
   late ChapelInformation _chapelInformation;
   final RefreshController _refreshController = RefreshController();
   late TabController _tabController;
@@ -139,6 +139,7 @@ class _ChapelPageState extends State<ChapelPage> with SingleTickerProviderStateM
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     return Scaffold(
       appBar: customAppBar("채플 정보 조회"),
       backgroundColor: globals.isLightMode ? (_progress == GradeProgress.init ? null : const Color.fromRGBO(241, 242, 245, 1)) : null,
@@ -334,6 +335,17 @@ class _ChapelPageState extends State<ChapelPage> with SingleTickerProviderStateM
                         ],
                       ),
                     ),
+                    Container(
+                      decoration: BoxDecoration(
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.black.withOpacity(0.15),
+                            spreadRadius: 1,
+                            blurRadius: 10,
+                            offset: const Offset(0, 3),
+                          )
+                        ],
+                      ),),
                     Expanded(
                       child: TabBarView(
                         controller: _tabController,
@@ -418,6 +430,7 @@ class _ChapelPageState extends State<ChapelPage> with SingleTickerProviderStateM
                                     ],
                                   ),
                                 ),
+                                const SizedBox(height: 10),
                                 RichText(
                                   text: const TextSpan(
                                     children: [
@@ -429,7 +442,7 @@ class _ChapelPageState extends State<ChapelPage> with SingleTickerProviderStateM
                                         ),
                                       ),
                                       TextSpan(
-                                        text: " 오류 또는 변경 사항으로 인해 실제 기준 또는 정보와 다를 수 있으니 참고용으로만 사용하세요. 앱 개발자는 어떠한 책임도 지지 않습니다.",
+                                        text: " 오류 또는 변경 사항으로 인해 실제 기준 또는 정보와 다를 수 있으니 참고용으로만 사용하세요. 앱 개발자는 앱에 표시되는 정보에 대하여 어떠한 책임도 지지 않습니다.",
                                         style: TextStyle(
                                           fontSize: 12,
                                           color: Colors.redAccent,
@@ -465,11 +478,12 @@ class _ChapelPageState extends State<ChapelPage> with SingleTickerProviderStateM
                             ),
                           ),
                           Container(
-                            padding: const EdgeInsets.fromLTRB(20, 20, 20, 0),
+                            padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
                             child: ListView(
                               children: [
                                 Column(
                                   children: [
+                                    const SizedBox(height: 20),
                                     ..._chapelInformation.attendances.map((e) => Container(
                                           margin: const EdgeInsets.only(bottom: 10),
                                           decoration: BoxDecoration(
@@ -492,10 +506,13 @@ class _ChapelPageState extends State<ChapelPage> with SingleTickerProviderStateM
                                               child: Row(
                                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                 children: [
-                                                  Text(e.lectureDate),
+                                                  Text(
+                                                    e.lectureDate,
+                                                    style: const TextStyle(fontWeight: FontWeight.w500),
+                                                  ),
                                                   Text(
                                                     e.displayAttendance.display,
-                                                    style: TextStyle(color: e.displayAttendance.color),
+                                                    style: TextStyle(color: e.displayAttendance.color, fontWeight: FontWeight.w500),
                                                   ),
                                                 ],
                                               ),
@@ -537,19 +554,23 @@ class _ChapelPageState extends State<ChapelPage> with SingleTickerProviderStateM
                                                     style: TextStyle(color: Colors.black54),
                                                   ),
                                                   DropdownButton(
+                                                    isDense: true,
+                                                    alignment: AlignmentDirectional.centerEnd,
                                                     padding: EdgeInsets.zero,
                                                     style: const TextStyle(
                                                       color: Colors.black,
                                                       fontWeight: FontWeight.w500,
-                                                      fontSize: 13,
+                                                      fontSize: 14,
+                                                      fontFamily: "Pretendard",
                                                     ),
+                                                    icon: Container(),
                                                     items: ChapelAttendance.values
                                                         .map((state) => DropdownMenuItem(
                                                               value: state,
                                                               child: Text(
                                                                 state == ChapelAttendance.unknown ? "지정하지 않음" : state.display,
                                                                 textAlign: TextAlign.right,
-                                                                style: const TextStyle(fontWeight: FontWeight.w500),
+                                                                style: const TextStyle(fontWeight: FontWeight.w500, fontFamily: "Pretendard", fontStyle: FontStyle.italic),
                                                               ),
                                                             ))
                                                         .toList(),
@@ -589,6 +610,7 @@ class _ChapelPageState extends State<ChapelPage> with SingleTickerProviderStateM
                                     ),
                                   ],
                                 ),
+                                const SizedBox(height: 10),
                                 RichText(
                                   text: const TextSpan(
                                     children: [
@@ -600,7 +622,7 @@ class _ChapelPageState extends State<ChapelPage> with SingleTickerProviderStateM
                                         ),
                                       ),
                                       TextSpan(
-                                        text: " 오류 또는 변경 사항으로 인해 실제 기준 또는 정보와 다를 수 있으니 참고용으로만 사용하세요. 앱 개발자는 어떠한 책임도 지지 않습니다.",
+                                        text: " 오류 또는 변경 사항으로 인해 실제 기준 또는 정보와 다를 수 있으니 참고용으로만 사용하세요. 앱 개발자는 앱에 표시되는 정보에 대하여 어떠한 책임도 지지 않습니다.",
                                         style: TextStyle(
                                           fontSize: 12,
                                           color: Colors.redAccent,
@@ -623,7 +645,7 @@ class _ChapelPageState extends State<ChapelPage> with SingleTickerProviderStateM
                                         ),
                                       ),
                                       TextSpan(
-                                        text: " '출결 상태 강제 지정'은 앱에서 표시되는 출결 상태만 변경하는 것으로 중간고사 기간의 비대면 채플이 출결 처리 되기 이전에 출석으로 표시될 수 있게끔 설계한 기능입니다.",
+                                        text: " '출결 상태 강제 지정'은 앱에서 표시되는 출결 상태만 변경하는 것으로 중간고사 기간의 비대면 채플이 출결 처리 되기 이전에 출석으로 표시될 수 있게끔 설계한 기능이에요.",
                                         style: TextStyle(
                                           fontSize: 12,
                                           color: Colors.black54,
@@ -647,6 +669,9 @@ class _ChapelPageState extends State<ChapelPage> with SingleTickerProviderStateM
             ),
     );
   }
+
+  @override
+  bool get wantKeepAlive => true;
 }
 
 class FullScreenImage extends StatelessWidget {
