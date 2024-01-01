@@ -191,6 +191,7 @@ class LoginSession extends CrawlingTask<bool> {
     _credentials = await CookieManager.instance().getCookies(url: WebUri(".ssu.ac.kr"));
 
     _isLogin = true;
+    loginStatusChangeEvent.broadcast(Value(true));
     completer.complete(_isLogin);
 
     return _isLogin;
