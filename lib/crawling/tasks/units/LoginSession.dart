@@ -128,10 +128,24 @@ class LoginSession extends CrawlingTask<bool> {
       return res;
     }
 
+    final transaction = parentTransaction?.startChild(getTaskId()) ?? Sentry.startTransaction('Login', getTaskId());
+    late ISentrySpan span;
+
     if (!isBackground) updateBackgroundService(lazy: true);
 
     onComplete?.future.catchError((_) {
+      controller.jsAlertCallback = (_) {};
+
+      span = transaction.startChild("broadcast_event");
       _future = null;
+      loginFailEvent.broadcast(Value("timeout"));
+
+      _isLogin = false;
+      _isFail = true;
+      loginStatusChangeEvent.broadcast(Value(false));
+      span.finish(status: const SpanStatus.ok());
+
+      transaction.finish(status: const SpanStatus.ok());
     });
 
     var completer = Completer<bool>();
@@ -141,9 +155,6 @@ class LoginSession extends CrawlingTask<bool> {
     _isLogin = false;
     _isFail = false;
     Value<String>? cause;
-
-    final transaction = parentTransaction?.startChild(getTaskId()) ?? Sentry.startTransaction('Login', getTaskId());
-    late ISentrySpan span;
 
     controller.jsAlertCallback = (String? reason) {
       fail = true;
@@ -179,22 +190,7 @@ class LoginSession extends CrawlingTask<bool> {
 
     _credentials = await CookieManager.instance().getCookies(url: WebUri(".ssu.ac.kr"));
 
-    controller.jsAlertCallback = (_) {};
-
-    span = transaction.startChild("broadcast_event");
-    _future = null;
-    if (fail) {
-      _isFail = true;
-      loginFailEvent.broadcast(cause);
-    }
-
-    var res = !fail;
-    loginStatusChangeEvent.broadcast(Value(res));
-    span.finish(status: const SpanStatus.ok());
-
-    transaction.finish(status: const SpanStatus.ok());
-
-    _isLogin = res;
+    _isLogin = true;
     completer.complete(_isLogin);
 
     return _isLogin;

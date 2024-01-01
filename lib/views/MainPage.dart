@@ -32,7 +32,7 @@ class _MainPageState extends State<MainPage> {
   }
 
   void handleLoginFail(msg) {
-    showToast("로그인을 실패했어요.");
+    // showToast("로그인을 실패했어요.");
     // showToast("메인 화면에서 자동 로그인을 다시 시도하거나 새로운 계정으로 로그인하세요.");
 
     if (msg != null) {
@@ -94,7 +94,7 @@ class _MainPageState extends State<MainPage> {
         }).catchError((_) {
           showToast("자동 로그인을 실패했어요.");
           Crawler.loginSession().loginStatusChangeEvent.broadcast(Value(false));
-          Crawler.loginSession().loginFailEvent.broadcast(Value("시간 초과"));
+          // Crawler.loginSession().loginFailEvent.broadcast(Value("시간 초과"));
         });
 
         // Crawler.allGrade().execute().then((value) {

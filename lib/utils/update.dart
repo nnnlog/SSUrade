@@ -34,7 +34,7 @@ Future<Tuple4<String, String, String, String>> fetchAppVersion() async {
     showToast("앱 최신 정보를 가져오지 못했어요.");
   }
 
-  var appVerInstance = Version.parse(appVer);
+  var appVerInstance = Version.parse("$appVer+${buildNum}");
   if (newVer != "" && appVerInstance >= Version.parse(newVer)) newVer = "";
   if (devVer != "" && appVerInstance >= Version.parse(devVer)) devVer = "";
   if (newVer != "" && devVer != "" && Version.parse(newVer) >= Version.parse(devVer)) devVer = "";
