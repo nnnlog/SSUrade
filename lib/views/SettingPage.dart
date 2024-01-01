@@ -212,6 +212,17 @@ class _SettingPageState extends State<SettingPage> {
                           child: const Text("성적 정보 삭제"),
                         ),
                         OutlinedButton(
+                          onPressed: () async {
+                            globals.chapelInformationManager.data.clear();
+                            globals.chapelInformationManager.saveFile();
+                            showToast("저장된 채플 정보를 삭제했어요.");
+                          },
+                          style: OutlinedButton.styleFrom(
+                            minimumSize: const Size.fromHeight(40),
+                          ),
+                          child: const Text("채플 정보 삭제"),
+                        ),
+                        OutlinedButton(
                           onPressed: () {
                             Crawler.loginSession().logout();
                             Crawler.loginSession().saveFile();

@@ -10,6 +10,8 @@ class ChapelAttendanceInformation with Comparable<ChapelAttendanceInformation> {
   @JsonKey()
   ChapelAttendance overwrittenAttendance;
   @JsonKey()
+  final String affiliation;
+  @JsonKey()
   final String lectureDate;
   @JsonKey()
   final String lectureEtc;
@@ -20,7 +22,7 @@ class ChapelAttendanceInformation with Comparable<ChapelAttendanceInformation> {
   @JsonKey()
   final String lecturer;
 
-  ChapelAttendanceInformation(this.attendance, this.overwrittenAttendance, this.lectureDate, this.lectureEtc, this.lectureName, this.lectureType, this.lecturer);
+  ChapelAttendanceInformation(this.attendance, this.overwrittenAttendance, this.affiliation, this.lectureDate, this.lectureEtc, this.lectureName, this.lectureType, this.lecturer);
 
   ChapelAttendance get displayAttendance => overwrittenAttendance != ChapelAttendance.unknown ? overwrittenAttendance : attendance;
 
@@ -30,7 +32,7 @@ class ChapelAttendanceInformation with Comparable<ChapelAttendanceInformation> {
 
   @override
   String toString() {
-    return "$runtimeType(attendance=$attendance, overwrittenAttendance=$overwrittenAttendance, lectureDate=$lectureDate, lectureEtc=$lectureEtc, lectureName=$lectureName, lectureType=$lectureType, lecturer=$lecturer)";
+    return "$runtimeType(attendance=$attendance, overwrittenAttendance=$overwrittenAttendance, affiliation=$affiliation, lectureDate=$lectureDate, lectureEtc=$lectureEtc, lectureName=$lectureName, lectureType=$lectureType, lecturer=$lecturer)";
   }
 
   @override

@@ -9,6 +9,7 @@ import 'package:sentry_flutter/sentry_flutter.dart';
 import 'package:ssurade/crawling/background/BackgroundService.dart';
 import 'package:ssurade/globals.dart' as globals;
 import 'package:ssurade/views/CategoryStatisticsPage.dart';
+import 'package:ssurade/views/ChapelPage.dart';
 import 'package:ssurade/views/GradePage.dart';
 import 'package:ssurade/views/GradeStatisticsPage.dart';
 import 'package:ssurade/views/Information.dart';
@@ -74,6 +75,7 @@ class MyApp extends StatelessWidget {
         '/grade_view': (context) => const GradePage(),
         '/grade_statistics': (context) => const GradeStatisticsPage(),
         '/category_statistics': (context) => const StatisticsPage(),
+        '/chapel': (context) => const ChapelPage(),
         '/setting': (context) => const SettingPage(),
         '/information': (context) => const InformationPage(),
       },

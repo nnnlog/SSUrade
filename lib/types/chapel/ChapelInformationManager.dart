@@ -24,6 +24,10 @@ class ChapelInformationManager {
     return "$runtimeType(data=$data)";
   }
 
+  bool get isEmpty => data.isEmpty;
+
+  bool get isNotEmpty => data.isNotEmpty;
+
   // FILE I/O
   static const String _filename = "chapel.json"; // internal file name
 

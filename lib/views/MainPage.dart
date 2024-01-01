@@ -296,6 +296,18 @@ class _MainPageState extends State<MainPage> {
                                 ),
                               ),
                               Visibility(
+                                visible: Crawler.loginSession().isNotEmpty,
+                                child: OutlinedButton(
+                                  onPressed: () async {
+                                    Navigator.pushNamed(context, "/chapel");
+                                  },
+                                  style: OutlinedButton.styleFrom(
+                                    minimumSize: const Size.fromHeight(40),
+                                  ),
+                                  child: const Text("채플 정보 조회"),
+                                ),
+                              ),
+                              Visibility(
                                 visible: Crawler.loginSession().isEmpty || Crawler.loginSession().isFail, // 자동 로그인 실패했거나 로그인이 필요하면
                                 child: OutlinedButton(
                                   onPressed: () {

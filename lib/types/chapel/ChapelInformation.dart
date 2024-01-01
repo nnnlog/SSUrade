@@ -29,6 +29,10 @@ class ChapelInformation with Comparable<ChapelInformation> {
 
   int get absentCount => attendances.map((e) => e.displayAttendance == ChapelAttendance.absent ? 1 : 0).reduce((value, element) => value + element);
 
+  int get attendCount => attendances.map((e) => e.displayAttendance == ChapelAttendance.attend ? 1 : 0).reduce((value, element) => value + element);
+
+  int get passAttendCount => attendances.length - attendances.length ~/ 3;
+
   factory ChapelInformation.fromJson(Map<String, dynamic> json) => _$ChapelInformationFromJson(json);
 
   Map<String, dynamic> toJson() => _$ChapelInformationToJson(this);

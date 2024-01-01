@@ -1,4 +1,5 @@
 import 'package:ssurade/crawling/common/WebViewWorker.dart';
+import 'package:ssurade/crawling/tasks/combine/AllChapel.dart';
 import 'package:ssurade/crawling/tasks/combine/AllGrade.dart';
 import 'package:ssurade/crawling/tasks/combine/AllGradeByCategory.dart';
 import 'package:ssurade/crawling/tasks/combine/AllGradeBySemester.dart';
@@ -27,4 +28,5 @@ class Crawler {
   static const subjectDetailGrade = SubjectDetailGrade.get;
   static const semesterSubjectDetailGrade = SemesterSubjectDetailGrade.get;
   static const singleChapelBySemester = SingleChapelBySemester.get;
+  static const allChapel = AllChapel.get;
 }

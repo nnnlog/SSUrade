@@ -1,5 +1,7 @@
+import 'package:flutter/material.dart';
+
 enum ChapelAttendance {
-  unknown(""),
+  unknown("미결"),
   absent("결석"),
   attend("출석");
 
@@ -12,5 +14,11 @@ enum ChapelAttendance {
       if (str == value.display) return value;
     }
     return ChapelAttendance.unknown;
+  }
+
+  Color get color {
+    if (this == ChapelAttendance.attend) return Colors.green;
+    if (this == ChapelAttendance.absent) return Colors.redAccent;
+    return Colors.black54;
   }
 }

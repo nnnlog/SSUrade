@@ -230,7 +230,7 @@ class _GradePageState extends State<GradePage> {
                       width: 1,
                       height: 15,
                     ),
-                    Text("전체 학기 성적을 불러오고 있습니다..."),
+                    Text("전체 학기 성적을 불러오고 있어요..."),
                   ],
                 ),
               ),

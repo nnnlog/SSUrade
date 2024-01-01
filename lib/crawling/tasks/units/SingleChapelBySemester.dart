@@ -61,7 +61,7 @@ class SingleChapelBySemester extends CrawlingTask<ChapelInformation> {
     ChapelInformation result = ChapelInformation(search, SplayTreeSet(), summary["subject_code"], summary["subject_place"], summary["subject_time"], summary["floor"], summary["seat_no"]);
     for (var obj in res["attendance"]) {
       var data = ChapelAttendanceInformation(
-          ChapelAttendance.from(obj["attendance"]), ChapelAttendance.unknown, obj["lecture_date"], obj["lecture_etc"], obj["lecture_name"], obj["lecture_type"], obj["lecturer"]);
+          ChapelAttendance.from(obj["attendance"]), ChapelAttendance.unknown, obj["affiliation"], obj["lecture_date"], obj["lecture_etc"], obj["lecture_name"], obj["lecture_type"], obj["lecturer"]);
       result.attendances.add(data);
     }
     span.finish(status: const SpanStatus.ok());

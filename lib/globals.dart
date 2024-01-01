@@ -7,6 +7,7 @@ import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:ssurade/crawling/common/Crawler.dart';
 import 'package:ssurade/crawling/common/WebViewWorker.dart';
 import 'package:ssurade/filesystem/FileSystem.dart';
+import 'package:ssurade/types/chapel/ChapelInformationManager.dart';
 import 'package:ssurade/types/setting/BackgroundSetting.dart';
 import 'package:ssurade/types/setting/Setting.dart';
 import 'package:ssurade/types/subject/SemesterSubjectsManager.dart';
@@ -17,6 +18,7 @@ bool isBackground = false;
 late Setting setting;
 late BackgroundSetting bgSetting;
 late SemesterSubjectsManager semesterSubjectsManager;
+late ChapelInformationManager chapelInformationManager;
 
 late FirebaseAnalytics analytics;
 
@@ -38,6 +40,7 @@ Future<void> init() async {
     BackgroundSetting.loadFromFile().then((value) => bgSetting = value),
     Crawler.loginSession().loadFromFile(),
     SemesterSubjectsManager.loadFromFile().then((value) => semesterSubjectsManager = value),
+    ChapelInformationManager.loadFromFile().then((value) => chapelInformationManager = value),
     ...assets.map((e) => rootBundle.loadString("assets/js/$e").then((value) {
           WebViewWorker.webViewScript.add(value);
         })),
