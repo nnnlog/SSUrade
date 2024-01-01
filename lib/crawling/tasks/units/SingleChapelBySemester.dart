@@ -52,7 +52,7 @@ class SingleChapelBySemester extends CrawlingTask<ChapelInformation> {
     }
 
     span = transaction.startChild("execute_js");
-    var res = (await controller.callAsyncJavaScript(functionBody: "return await ssurade.crawl.getChapelInformation('${search.year}', '${search.semester.keyValue}');"))!.value;
+    var res = (await controller.callAsyncJavaScript(functionBody: "return await ssurade.crawl.getChapelInformation('${search.year}', '${search.semester.keyValue}').catch(() => {});"))!.value;
     var summary = res["summary"];
     span.finish(status: const SpanStatus.ok());
 
@@ -61,7 +61,15 @@ class SingleChapelBySemester extends CrawlingTask<ChapelInformation> {
     ChapelInformation result = ChapelInformation(search, SplayTreeSet(), summary["subject_code"], summary["subject_place"], summary["subject_time"], summary["floor"], summary["seat_no"]);
     for (var obj in res["attendance"]) {
       var data = ChapelAttendanceInformation(
-          ChapelAttendance.from(obj["attendance"]), ChapelAttendance.unknown, obj["affiliation"], obj["lecture_date"], obj["lecture_etc"], obj["lecture_name"], obj["lecture_type"], obj["lecturer"]);
+        attendance: ChapelAttendance.from(obj["attendance"]),
+        overwrittenAttendance: ChapelAttendance.unknown,
+        affiliation: obj["affiliation"],
+        lectureDate: obj["lecture_date"],
+        lectureEtc: obj["lecture_etc"],
+        lectureName: obj["lecture_name"],
+        lectureType: obj["lecture_type"],
+        lecturer: obj["lecturer"],
+      );
       result.attendances.add(data);
     }
     span.finish(status: const SpanStatus.ok());

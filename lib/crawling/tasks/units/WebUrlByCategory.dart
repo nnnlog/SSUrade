@@ -31,7 +31,7 @@ class WebUrlByCategory extends CrawlingTask<String> {
     await controller.customLoadPage("https://ecc.ssu.ac.kr/sap/bc/webdynpro/SAP/ZCMW8030n?sap-language=KO", parentTransaction: transaction);
 
     span = transaction.startChild("get_viewer_url");
-    var url = (await controller.callAsyncJavaScript(functionBody: "return await ssurade.crawl.getGradeViewerURL();"))!.value;
+    var url = (await controller.callAsyncJavaScript(functionBody: "return await ssurade.crawl.getGradeViewerURL().catch(() => {});"))!.value;
     span.finish(status: const SpanStatus.ok());
 
     transaction.finish(status: const SpanStatus.ok());

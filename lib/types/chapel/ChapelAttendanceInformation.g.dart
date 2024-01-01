@@ -7,14 +7,14 @@ part of 'ChapelAttendanceInformation.dart';
 // **************************************************************************
 
 ChapelAttendanceInformation _$ChapelAttendanceInformationFromJson(Map<String, dynamic> json) => ChapelAttendanceInformation(
-      $enumDecode(_$ChapelAttendanceEnumMap, json['attendance']),
-      $enumDecode(_$ChapelAttendanceEnumMap, json['overwrittenAttendance']),
-      json['affiliation'] as String,
-      json['lectureDate'] as String,
-      json['lectureEtc'] as String,
-      json['lectureName'] as String,
-      json['lectureType'] as String,
-      json['lecturer'] as String,
+      attendance: $enumDecodeNullable(_$ChapelAttendanceEnumMap, json['attendance']) ?? ChapelAttendance.unknown,
+      overwrittenAttendance: $enumDecodeNullable(_$ChapelAttendanceEnumMap, json['overwrittenAttendance']) ?? ChapelAttendance.unknown,
+      affiliation: json['affiliation'] as String? ?? "",
+      lectureDate: json['lectureDate'] as String? ?? "",
+      lectureEtc: json['lectureEtc'] as String? ?? "",
+      lectureName: json['lectureName'] as String? ?? "",
+      lectureType: json['lectureType'] as String? ?? "",
+      lecturer: json['lecturer'] as String? ?? "",
     );
 
 Map<String, dynamic> _$ChapelAttendanceInformationToJson(ChapelAttendanceInformation instance) => <String, dynamic>{

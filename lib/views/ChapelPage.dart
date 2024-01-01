@@ -48,6 +48,11 @@ class _ChapelPageState extends State<ChapelPage> with SingleTickerProviderStateM
     try {
       ChapelInformation data = await Crawler.singleChapelBySemester(search).execute();
 
+      var original = globals.chapelInformationManager.data[search];
+      if (original != null) {
+        ChapelInformation.merge(data, original);
+      }
+
       globals.chapelInformationManager.data.remove(data);
       globals.chapelInformationManager.data.add(data);
       globals.semesterSubjectsManager.saveFile();
@@ -345,7 +350,8 @@ class _ChapelPageState extends State<ChapelPage> with SingleTickerProviderStateM
                             offset: const Offset(0, 3),
                           )
                         ],
-                      ),),
+                      ),
+                    ),
                     Expanded(
                       child: TabBarView(
                         controller: _tabController,

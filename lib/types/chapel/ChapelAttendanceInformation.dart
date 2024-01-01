@@ -22,7 +22,16 @@ class ChapelAttendanceInformation with Comparable<ChapelAttendanceInformation> {
   @JsonKey()
   final String lecturer;
 
-  ChapelAttendanceInformation(this.attendance, this.overwrittenAttendance, this.affiliation, this.lectureDate, this.lectureEtc, this.lectureName, this.lectureType, this.lecturer);
+  ChapelAttendanceInformation({
+    this.attendance = ChapelAttendance.unknown,
+    this.overwrittenAttendance = ChapelAttendance.unknown,
+    this.affiliation = "",
+    this.lectureDate = "",
+    this.lectureEtc = "",
+    this.lectureName = "",
+    this.lectureType = "",
+    this.lecturer = "",
+  });
 
   ChapelAttendance get displayAttendance => overwrittenAttendance != ChapelAttendance.unknown ? overwrittenAttendance : attendance;
 
@@ -38,5 +47,13 @@ class ChapelAttendanceInformation with Comparable<ChapelAttendanceInformation> {
   @override
   int compareTo(ChapelAttendanceInformation other) {
     return lectureDate.compareTo(other.lectureDate);
+  }
+
+  static ChapelAttendanceInformation merge(ChapelAttendanceInformation after, ChapelAttendanceInformation before) {
+    if (after.overwrittenAttendance == ChapelAttendance.unknown) {
+      after.overwrittenAttendance = before.overwrittenAttendance;
+    }
+
+    return after;
   }
 }

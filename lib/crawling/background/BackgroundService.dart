@@ -4,7 +4,9 @@ import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:logger/logger.dart';
 import 'package:ssurade/crawling/common/Crawler.dart';
 import 'package:ssurade/globals.dart' as globals;
+import 'package:ssurade/types/chapel/chapel_attendance.dart';
 import 'package:ssurade/utils/notification.dart';
+import 'package:ssurade/utils/set.dart';
 import 'package:ssurade/utils/toast.dart';
 import 'package:workmanager/workmanager.dart';
 
@@ -48,6 +50,71 @@ Future<void> registerBackgroundService({lazy = false}) async {
 
 Future<void> unregisterBackgroundService() => Workmanager().cancelByUniqueName("ssurade");
 
+Future<void> fetchGrade() async {
+  if (globals.semesterSubjectsManager.isEmpty) return;
+
+  var lastSemester = globals.semesterSubjectsManager.data.keys.last;
+  var gradeData = await Crawler.singleGradeBySemester(lastSemester).execute();
+
+  var originalGradeData = globals.semesterSubjectsManager.data[lastSemester]!;
+  List<String> updates = [];
+
+  for (var subject in gradeData.subjects.values) {
+    if (subject.grade.isNotEmpty && originalGradeData.subjects[subject.code]?.grade != subject.grade) {
+      if (globals.setting.showGrade) {
+        updates.add("${subject.name} > ${subject.grade}");
+      } else {
+        updates.add(subject.name);
+      }
+      originalGradeData.subjects[subject.code]!.grade = subject.grade;
+    }
+  }
+
+  if (gradeData.semesterRanking.isNotEmpty && originalGradeData.semesterRanking.isEmpty) {
+    if (globals.setting.showGrade) {
+      updates.add("[학기 석차] > ${gradeData.semesterRanking.display}");
+      updates.add("[전체 석차] > ${gradeData.totalRanking.display}");
+    } else {
+      updates.add("[학기 석차]");
+      updates.add("[전체 석차]");
+    }
+    originalGradeData.semesterRanking = gradeData.semesterRanking;
+    originalGradeData.totalRanking = gradeData.totalRanking;
+  }
+
+  if (updates.isNotEmpty) {
+    await showNotification("성적 정보 변경", updates.join(globals.setting.showGrade ? "\n" : ", "));
+    await globals.semesterSubjectsManager.saveFile();
+  } else if (kDebugMode) {
+    await showNotification("not updated (${DateTime.now().toString()})", gradeData.subjects.values.map((e) => "${e.name} : ${e.grade}").join("\n"));
+  }
+}
+
+Future<void> fetchChapel() async {
+  if (globals.semesterSubjectsManager.isEmpty) return;
+
+  var lastSemester = globals.chapelInformationManager.data.last.currentSemester;
+  var chapelData = await Crawler.singleChapelBySemester(lastSemester).execute();
+
+  var originalAttendanceData = globals.chapelInformationManager.data[lastSemester]!;
+  List<String> updates = [];
+
+  for (var data in chapelData.attendances) {
+    if (data.attendance != ChapelAttendance.unknown && originalAttendanceData.attendances[data.lectureDate]?.attendance != data.attendance) {
+      updates.add("${data.lectureDate} > ${data.attendance.display}");
+      originalAttendanceData.attendances.remove(data);
+      originalAttendanceData.attendances.add(data);
+    }
+  }
+
+  if (updates.isNotEmpty) {
+    await showNotification("채플 출결 변경", updates.join("\n"));
+    await globals.chapelInformationManager.saveFile();
+  } else if (kDebugMode) {
+    await showNotification("not updated (${DateTime.now().toString()})", chapelData.attendances.map((e) => "${e.lectureDate} : ${e.attendance.display}").join("\n"));
+  }
+}
+
 @pragma('vm:entry-point')
 void startBackgroundService() {
   Workmanager().executeTask((task, inputData) async {
@@ -55,41 +122,12 @@ void startBackgroundService() {
       await globals.init();
       Crawler.loginSession().isBackground = true;
 
-      var lastSemester = globals.semesterSubjectsManager.data.keys.last;
-      var gradeData = await Crawler.singleGradeBySemester(lastSemester).execute();
+      var futures = [
+        fetchGrade(),
+        fetchChapel(),
+      ];
 
-      var originalGradeData = globals.semesterSubjectsManager.data[lastSemester]!;
-      List<String> updates = [];
-
-      for (var subject in gradeData.subjects.values) {
-        if (subject.grade.isNotEmpty && originalGradeData.subjects[subject.code]?.grade != subject.grade) {
-          if (globals.setting.showGrade) {
-            updates.add("${subject.name} > ${subject.grade}");
-          } else {
-            updates.add(subject.name);
-          }
-          originalGradeData.subjects[subject.code]!.grade = subject.grade;
-        }
-      }
-
-      if (gradeData.semesterRanking.isNotEmpty && originalGradeData.semesterRanking.isEmpty) {
-        if (globals.setting.showGrade) {
-          updates.add("[학기 석차] > ${gradeData.semesterRanking.display}");
-          updates.add("[전체 석차] > ${gradeData.totalRanking.display}");
-        } else {
-          updates.add("[학기 석차]");
-          updates.add("[전체 석차]");
-        }
-        originalGradeData.semesterRanking = gradeData.semesterRanking;
-        originalGradeData.totalRanking = gradeData.totalRanking;
-      }
-
-      if (updates.isNotEmpty) {
-        await showNotification("성적 정보 변경", updates.join(globals.setting.showGrade ? "\n" : ", "));
-        await globals.semesterSubjectsManager.saveFile();
-      } else if (kDebugMode) {
-        await showNotification("not updated (${DateTime.now().toString()})", gradeData.subjects.values.map((e) => "${e.name} : ${e.grade}").join("\n"));
-      }
+      await Future.wait(futures).catchError((e) => throw e);
     } catch (err, st) {
       Logger().e(err, stackTrace: st);
       throw Exception(err);

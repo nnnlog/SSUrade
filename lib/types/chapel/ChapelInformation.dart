@@ -5,6 +5,7 @@ import 'package:json_annotation/json_annotation.dart';
 import 'package:ssurade/types/chapel/ChapelAttendanceInformation.dart';
 import 'package:ssurade/types/chapel/chapel_attendance.dart';
 import 'package:ssurade/types/semester/YearSemester.dart';
+import 'package:ssurade/utils/set.dart';
 
 part 'ChapelInformation.g.dart';
 
@@ -45,6 +46,14 @@ class ChapelInformation with Comparable<ChapelInformation> {
   @override
   int compareTo(ChapelInformation other) {
     return currentSemester.compareTo(other.currentSemester);
+  }
+
+  static ChapelInformation merge(ChapelInformation after, ChapelInformation before) {
+    for (var attendance in after.attendances) {
+      ChapelAttendanceInformation.merge(attendance, before.attendances[attendance.lectureDate]!);
+    }
+
+    return after;
   }
 }
 

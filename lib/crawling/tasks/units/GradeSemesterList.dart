@@ -41,7 +41,7 @@ class GradeSemesterList extends CrawlingTask<Map<YearSemester, Tuple2<Ranking, R
     );
 
     span = transaction.startChild("execute_js");
-    var data = (await controller.callAsyncJavaScript(functionBody: "return await ssurade.crawl.getGradeSemesterList();"))!.value;
+    var data = (await controller.callAsyncJavaScript(functionBody: "return await ssurade.crawl.getGradeSemesterList().catch(() => {});"))!.value;
     span.finish(status: const SpanStatus.ok());
 
     span = transaction.startChild("finalizing_data");
