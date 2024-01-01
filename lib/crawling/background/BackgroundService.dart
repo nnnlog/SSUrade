@@ -5,6 +5,8 @@ import 'package:logger/logger.dart';
 import 'package:ssurade/crawling/common/Crawler.dart';
 import 'package:ssurade/globals.dart' as globals;
 import 'package:ssurade/types/chapel/chapel_attendance.dart';
+import 'package:ssurade/types/semester/Semester.dart';
+import 'package:ssurade/types/semester/YearSemester.dart';
 import 'package:ssurade/utils/notification.dart';
 import 'package:ssurade/utils/set.dart';
 import 'package:ssurade/utils/toast.dart';
@@ -91,7 +93,7 @@ Future<void> fetchGrade() async {
 }
 
 Future<void> fetchChapel() async {
-  if (globals.semesterSubjectsManager.isEmpty) return;
+  if (globals.chapelInformationManager.isEmpty) return;
 
   var lastSemester = globals.chapelInformationManager.data.last.currentSemester;
   var chapelData = await Crawler.singleChapelBySemester(lastSemester).execute();
@@ -115,6 +117,31 @@ Future<void> fetchChapel() async {
   }
 }
 
+Future<void> fetchNewChapel() async {
+  List<YearSemester> search = [];
+
+  int year = DateTime.now().year;
+  search.add(YearSemester(year, Semester.first));
+  search.add(YearSemester(year, Semester.second));
+
+  var chapelData = await Crawler.allChapel(search).execute();
+  List<String> updates = [];
+
+  for (var data in chapelData.data) {
+    if (!globals.chapelInformationManager.data.contains(data)) {
+      updates.add(data.currentSemester.display);
+      globals.chapelInformationManager.data.add(data);
+    }
+  }
+
+  if (updates.isNotEmpty) {
+    await showNotification("채플 정보 등록", updates.join("\n"));
+    await globals.chapelInformationManager.saveFile();
+  } else if (kDebugMode) {
+    await showNotification("not updated (${DateTime.now().toString()})", globals.chapelInformationManager.data.map((e) => "${e.currentSemester.display}").join("\n"));
+  }
+}
+
 @pragma('vm:entry-point')
 void startBackgroundService() {
   Workmanager().executeTask((task, inputData) async {
@@ -125,6 +152,7 @@ void startBackgroundService() {
       var futures = [
         fetchGrade(),
         fetchChapel(),
+        fetchNewChapel(),
       ];
 
       await Future.wait(futures).catchError((e) => throw e);

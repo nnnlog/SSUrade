@@ -1,0 +1,1 @@
+class NoDataException implements Exception {}

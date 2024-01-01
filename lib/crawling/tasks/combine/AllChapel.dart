@@ -6,8 +6,11 @@ import 'package:sentry_flutter/sentry_flutter.dart';
 import 'package:ssurade/crawling/common/Crawler.dart';
 import 'package:ssurade/crawling/common/CrawlingTask.dart';
 import 'package:ssurade/crawling/common/WebViewControllerExtension.dart';
+import 'package:ssurade/crawling/error/NoDataException.dart';
 import 'package:ssurade/crawling/error/UnauthenticatedExcpetion.dart';
+import 'package:ssurade/types/chapel/ChapelInformation.dart';
 import 'package:ssurade/types/chapel/ChapelInformationManager.dart';
+import 'package:ssurade/types/semester/Semester.dart';
 import 'package:ssurade/types/semester/YearSemester.dart';
 
 class AllChapel extends CrawlingTask<ChapelInformationManager> {
@@ -47,6 +50,7 @@ class AllChapel extends CrawlingTask<ChapelInformationManager> {
     late ISentrySpan span;
 
     var subjects = Queue()..addAll(search);
+    var dump = ChapelInformation(const YearSemester(0, Semester.first), SplayTreeSet());
 
     span = transaction.startChild("login_execute_js");
     ChapelInformationManager ret = ChapelInformationManager(SplayTreeSet());
@@ -72,8 +76,11 @@ class AllChapel extends CrawlingTask<ChapelInformationManager> {
         );
 
         for (var current in inputs) {
-          ret.data.add(await Crawler.singleChapelBySemester(current, reloadPage: false, parentTransaction: transaction).directExecute(Queue()..add(controller)));
-          print(ret.data);
+          ret.data.add(await Crawler.singleChapelBySemester(current, reloadPage: false, parentTransaction: transaction).directExecute(Queue()..add(controller)).catchError((e) {
+            if (e is NoDataException) {
+              return dump;
+            }
+          }));
         }
 
         completer.complete();
@@ -85,6 +92,7 @@ class AllChapel extends CrawlingTask<ChapelInformationManager> {
     span.finish(status: const SpanStatus.ok());
     transaction.finish(status: const SpanStatus.ok());
 
+    ret.data.remove(dump);
     return ret;
   }
 }

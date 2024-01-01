@@ -6,6 +6,7 @@ import 'package:sentry_flutter/sentry_flutter.dart';
 import 'package:ssurade/crawling/common/Crawler.dart';
 import 'package:ssurade/crawling/common/CrawlingTask.dart';
 import 'package:ssurade/crawling/common/WebViewControllerExtension.dart';
+import 'package:ssurade/crawling/error/NoDataException.dart';
 import 'package:ssurade/crawling/error/UnauthenticatedExcpetion.dart';
 import 'package:ssurade/globals.dart' as globals;
 import 'package:ssurade/types/chapel/ChapelAttendanceInformation.dart';
@@ -55,6 +56,8 @@ class SingleChapelBySemester extends CrawlingTask<ChapelInformation> {
     var res = (await controller.callAsyncJavaScript(functionBody: "return await ssurade.crawl.getChapelInformation('${search.year}', '${search.semester.keyValue}').catch(() => {});"))!.value;
     var summary = res["summary"];
     span.finish(status: const SpanStatus.ok());
+
+    if (summary == null) throw NoDataException();
 
     span = transaction.startChild("finalizing_data");
 

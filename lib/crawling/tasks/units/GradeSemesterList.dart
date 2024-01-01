@@ -57,7 +57,7 @@ class GradeSemesterList extends CrawlingTask<Map<YearSemester, Tuple2<Ranking, R
     for (var semester in Semester.values) {
       var key = YearSemester(year, semester);
       if (!ret.containsKey(key)) {
-        ret[key] = Tuple2(Ranking.unknown, Ranking.unknown);
+        ret[key] = const Tuple2(Ranking.unknown, Ranking.unknown);
       }
     }
     span.finish(status: const SpanStatus.ok());

@@ -7,6 +7,7 @@ import 'package:ssurade/types/chapel/ChapelInformation.dart';
 import 'package:ssurade/types/chapel/ChapelInformationManager.dart';
 import 'package:ssurade/types/chapel/chapel_attendance.dart';
 import 'package:ssurade/types/etc/Progress.dart';
+import 'package:ssurade/types/semester/Semester.dart';
 import 'package:ssurade/types/semester/YearSemester.dart';
 import 'package:ssurade/utils/set.dart';
 import 'package:ssurade/utils/toast.dart';
@@ -98,7 +99,7 @@ class _ChapelPageState extends State<ChapelPage> with SingleTickerProviderStateM
       if (globals.chapelInformationManager.isEmpty) {
         needRefresh = false;
 
-        var search = <YearSemester>[];
+        var search = Set<YearSemester>();
         for (var value in globals.semesterSubjectsManager.data.values) {
           for (var subject in value.subjects.values) {
             if (subject.category == "채플" || subject.name == "CHAPEL") {
@@ -108,9 +109,13 @@ class _ChapelPageState extends State<ChapelPage> with SingleTickerProviderStateM
           }
         }
 
+        int year = DateTime.now().year;
+        search.add(YearSemester(year, Semester.first));
+        search.add(YearSemester(year, Semester.second));
+
         ChapelInformationManager res;
         try {
-          res = await Crawler.allChapel(search).execute();
+          res = await Crawler.allChapel(search.toList()).execute();
         } catch (_) {
           if (mounted) {
             Navigator.pop(context);
