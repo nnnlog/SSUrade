@@ -438,6 +438,29 @@ class _ChapelPageState extends State<ChapelPage> with SingleTickerProviderStateM
                                     ],
                                   ),
                                 ),
+                                const SizedBox(
+                                  height: 5,
+                                ),
+                                RichText(
+                                  text: const TextSpan(
+                                    children: [
+                                      WidgetSpan(
+                                        child: Icon(
+                                          Icons.info_outline_rounded,
+                                          size: 12,
+                                          color: Colors.black54,
+                                        ),
+                                      ),
+                                      TextSpan(
+                                        text: " 자리 배치도 사진을 누르면 확대할 수 있어요.",
+                                        style: TextStyle(
+                                          fontSize: 12,
+                                          color: Colors.black54,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
                               ],
                             ),
                           ),
@@ -477,7 +500,7 @@ class _ChapelPageState extends State<ChapelPage> with SingleTickerProviderStateM
                                                 ],
                                               ),
                                             ),
-                                            childrenPadding: const EdgeInsets.fromLTRB(0, 10, 10, 20),
+                                            childrenPadding: const EdgeInsets.fromLTRB(40, 10, 40, 20),
                                             children: [
                                               ...[
                                                 Tuple2("강의 구분", e.lectureType),
@@ -487,7 +510,6 @@ class _ChapelPageState extends State<ChapelPage> with SingleTickerProviderStateM
                                                 Tuple2("입력된 출결 상태", e.attendance.display),
                                                 Tuple2("비고", e.lectureEtc.isEmpty ? "-" : e.lectureEtc),
                                               ].map((e) => Container(
-                                                    padding: const EdgeInsets.symmetric(horizontal: 20),
                                                     margin: const EdgeInsets.symmetric(vertical: 3),
                                                     child: Row(
                                                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -506,44 +528,40 @@ class _ChapelPageState extends State<ChapelPage> with SingleTickerProviderStateM
                                                       ],
                                                     ),
                                                   )),
-                                              Container(
-                                                padding: const EdgeInsets.symmetric(horizontal: 20),
-                                                margin: const EdgeInsets.symmetric(vertical: 3),
-                                                child: Row(
-                                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                                  children: [
-                                                    const Text(
-                                                      "출결 상태 강제 지정",
-                                                      textAlign: TextAlign.left,
-                                                      style: TextStyle(color: Colors.black54),
+                                              Row(
+                                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                children: [
+                                                  const Text(
+                                                    "출결 상태 강제 지정",
+                                                    textAlign: TextAlign.left,
+                                                    style: TextStyle(color: Colors.black54),
+                                                  ),
+                                                  DropdownButton(
+                                                    padding: EdgeInsets.zero,
+                                                    style: const TextStyle(
+                                                      color: Colors.black,
+                                                      fontWeight: FontWeight.w500,
+                                                      fontSize: 13,
                                                     ),
-                                                    DropdownButton(
-                                                      padding: EdgeInsets.zero,
-                                                      style: const TextStyle(
-                                                        color: Colors.black,
-                                                        fontWeight: FontWeight.w500,
-                                                        fontSize: 14,
-                                                      ),
-                                                      items: ChapelAttendance.values
-                                                          .map((state) => DropdownMenuItem(
-                                                                value: state,
-                                                                child: Text(
-                                                                  state == ChapelAttendance.unknown ? "지정하지 않음" : state.display,
-                                                                  textAlign: TextAlign.right,
-                                                                  style: const TextStyle(fontWeight: FontWeight.w500),
-                                                                ),
-                                                              ))
-                                                          .toList(),
-                                                      onChanged: (ChapelAttendance? value) {
-                                                        setState(() {
-                                                          e.overwrittenAttendance = value!;
-                                                        });
-                                                        globals.chapelInformationManager.saveFile();
-                                                      },
-                                                      value: e.overwrittenAttendance,
-                                                    ),
-                                                  ],
-                                                ),
+                                                    items: ChapelAttendance.values
+                                                        .map((state) => DropdownMenuItem(
+                                                              value: state,
+                                                              child: Text(
+                                                                state == ChapelAttendance.unknown ? "지정하지 않음" : state.display,
+                                                                textAlign: TextAlign.right,
+                                                                style: const TextStyle(fontWeight: FontWeight.w500),
+                                                              ),
+                                                            ))
+                                                        .toList(),
+                                                    onChanged: (ChapelAttendance? value) {
+                                                      setState(() {
+                                                        e.overwrittenAttendance = value!;
+                                                      });
+                                                      globals.chapelInformationManager.saveFile();
+                                                    },
+                                                    value: e.overwrittenAttendance,
+                                                  ),
+                                                ],
                                               ),
                                             ],
                                           ),
