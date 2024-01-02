@@ -311,7 +311,7 @@ class _GradePageState extends State<GradePage> {
                                               _exportImage = true;
                                             });
                                             final bytes = await _imageController.capture();
-                                            await ImageGallerySaver.saveImage(bytes!, name: "ssurade_${_semesterSubjects.currentSemester.display}-${DateTime.now().toLocal().millisecondsSinceEpoch}");
+                                            await ImageGallerySaver.saveImage(bytes!, name: "ssurade_${_semesterSubjects.currentSemester.display}_${DateTime.now().toLocal().millisecondsSinceEpoch}");
 
                                             setState(() {
                                               _exportImage = false;

@@ -78943,8 +78943,8 @@ UCF_System is not available yet
             this["checkParameter"]('s', 'ThemedFormLayoutRowHeight', '', aData);
             this["checkParameter"]('s', 'ThemedScrollbarDimension', '', aData);
             this["checkParameter"]('s', 'ThemedDocumentBackgroundColor', '', aData);
-            // this["checkParameter"]('s', 'ThemedSvgLibs', '', aData);
-            // this["checkParameter"]('s', 'ThemedSvgLibUrls', '', aData, true);
+            this["checkParameter"]('s', 'ThemedSvgLibs', '', aData);
+            this["checkParameter"]('s', 'ThemedSvgLibUrls', '', aData, true);
             this["checkParameter"]('s', 'ThemedRasterHeight', '', aData);
             this["checkParameter"]('s', 'ThemedRasterWidth', '', aData);
             this["checkParameter"]('s', 'ThemedAbapListRasterHeight', '', aData);

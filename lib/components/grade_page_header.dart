@@ -31,7 +31,7 @@ class _GradePageHeaderState extends State<GradePageHeader> {
             spreadRadius: 3,
             blurRadius: 10,
             offset: const Offset(0, 3),
-          )
+          ),
         ],
       ),
       margin: const EdgeInsets.only(bottom: 10),

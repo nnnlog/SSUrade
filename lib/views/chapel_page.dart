@@ -24,7 +24,7 @@ class _ChapelPageState extends State<ChapelPage> with SingleTickerProviderStateM
   late ChapelInformation _chapelInformation;
   final RefreshController _refreshController = RefreshController();
   late TabController _tabController;
-  late Map<int, ExpansionTileController> _expansionTileController;
+  final Map<int, ExpansionTileController> _expansionTileController = {};
 
   GradeProgress _progress = GradeProgress.init;
   final Set<YearSemester> _lockedForRefresh = {};
@@ -32,10 +32,6 @@ class _ChapelPageState extends State<ChapelPage> with SingleTickerProviderStateM
   void callbackSelectSubject(YearSemester value) {
     setState(() {
       _chapelInformation = globals.chapelInformationManager.data[value]!;
-      _expansionTileController = {};
-      for (var obj in _chapelInformation.attendances) {
-        _expansionTileController[obj.hashCode] = ExpansionTileController();
-      }
     });
   }
 
@@ -99,7 +95,7 @@ class _ChapelPageState extends State<ChapelPage> with SingleTickerProviderStateM
       if (globals.chapelInformationManager.isEmpty) {
         needRefresh = false;
 
-        var search = Set<YearSemester>();
+        var search = <YearSemester>{};
         for (var value in globals.semesterSubjectsManager.data.values) {
           for (var subject in value.subjects.values) {
             if (subject.category == "채플" || subject.name == "CHAPEL") {
@@ -510,7 +506,7 @@ class _ChapelPageState extends State<ChapelPage> with SingleTickerProviderStateM
                                             borderRadius: const BorderRadius.all(Radius.circular(10)),
                                           ),
                                           child: ExpansionTile(
-                                            controller: _expansionTileController[e.hashCode],
+                                            controller: _expansionTileController[e.hashCode] ??= ExpansionTileController(),
                                             shape: Border.all(width: 0, color: Colors.transparent),
                                             title: Container(
                                               padding: const EdgeInsets.only(left: 5),
