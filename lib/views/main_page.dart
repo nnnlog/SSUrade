@@ -133,20 +133,20 @@ class _MainPageState extends State<MainPage> {
         //   }
         // });
 
-        {
-          var value = globals.semesterSubjectsManager;
-          for (var key in value.data.keys) {
-            Crawler.semesterSubjectDetailGrade(value.data[key]!).execute().then((value) {
-              for (var subjectCode in value.keys) {
-                if (value[subjectCode]?.isNotEmpty == true) {
-                  globals.semesterSubjectsManager.data[key]?.subjects[subjectCode]?.detail = value[subjectCode]!;
-                  globals.gradeUpdateEvent.broadcast();
-                  globals.semesterSubjectsManager.saveFile();
-                }
-              }
-            });
-          }
-        }
+        // {
+        //   var value = globals.semesterSubjectsManager;
+        //   for (var key in value.data.keys) {
+        //     Crawler.semesterSubjectDetailGrade(value.data[key]!).execute().then((value) {
+        //       for (var subjectCode in value.keys) {
+        //         if (value[subjectCode]?.isNotEmpty == true) {
+        //           globals.semesterSubjectsManager.data[key]?.subjects[subjectCode]?.detail = value[subjectCode]!;
+        //           globals.gradeUpdateEvent.broadcast();
+        //           globals.semesterSubjectsManager.saveFile();
+        //         }
+        //       }
+        //     });
+        //   }
+        // }
       }
 
       fetchAppVersion().then((value) {

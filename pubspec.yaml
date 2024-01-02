@@ -3,7 +3,7 @@ description: 숭실대학교 성적 조회 애플리케이션
 
 publish_to: 'none'
 
-version: 2.4.0-pre6+35
+version: 2.4.0+35
 
 environment:
   sdk: ">=2.17.3 <3.0.0"

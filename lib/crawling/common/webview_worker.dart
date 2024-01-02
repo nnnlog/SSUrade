@@ -120,16 +120,33 @@ class WebViewWorker {
       shouldInterceptRequest: (InAppWebViewController controller, WebResourceRequest request) async {
         if (request.url.toString().startsWith("https://ecc.ssu.ac.kr/sap/public/bc/ur/nw7/js/lightspeed.js")) {
           if (_lightspeedCache.isEmpty) {
-            _lightspeedCache =
-                (await http.get(Uri.parse("https://gist.githubusercontent.com/nnnlog/7f2420106e0fdf9260ee7e736c3b3c70/raw/4f3244069a7c576d3b6f1232d8b9e77dca3320ec/lightspeed.js"))).body;
+            // _lightspeedCache =
+            //     (await http.get(Uri.parse("https://gist.githubusercontent.com/nnnlog/7f2420106e0fdf9260ee7e736c3b3c70/raw/ec02c5a98485fdd297485a585ac2b3c25f0d9bda/lightspeed.js"))).body;
+            _lightspeedCache = await rootBundle.loadString("assets/js/lightspeed.js");
           }
           return WebResourceResponse(contentType: "application/x-javascript", data: Uint8List.fromList(_lightspeedCache.codeUnits));
+        }
+        if (/*request.url.path.endsWith(".css") || */request.url.toString().startsWith("https://fonts.googleapis.com/css")) {
+          return WebResourceResponse(contentType: "text/css", data: Uint8List.fromList([]));
+        }
+        if (request.url.path.endsWith(".jpg")) {
+          return WebResourceResponse(contentType: "image/jpeg", data: Uint8List.fromList([]));
+        }
+        if (request.url.path.endsWith(".png")) {
+          return WebResourceResponse(contentType: "image/png", data: Uint8List.fromList([]));
+        }
+        if (request.url.path.endsWith(".svg")) {
+          return WebResourceResponse(contentType: "image/svg+xml", data: Uint8List.fromList([]));
+        }
+        if (request.url.path.endsWith(".woff2")) {
+          return WebResourceResponse(contentType: "font/woff2", data: Uint8List.fromList([]));
         }
       },
       initialSettings: InAppWebViewSettings(
         useShouldInterceptRequest: true,
         appCachePath: getPath("webview_cache"),
         cacheMode: CacheMode.LOAD_CACHE_ELSE_NETWORK,
+        cacheEnabled: true,
         userAgent: "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
       ),
     );
