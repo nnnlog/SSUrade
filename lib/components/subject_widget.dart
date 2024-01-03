@@ -14,7 +14,7 @@ class SubjectWidget extends StatefulWidget {
 }
 
 class _SubjectWidgetState extends State<SubjectWidget> {
-  final Map<int, ExpansionTileController> _expansionTileController = {};
+  final Map<Subject, ExpansionTileController> _expansionTileController = {};
 
   @override
   Widget build(BuildContext context) {
@@ -36,8 +36,8 @@ class _SubjectWidgetState extends State<SubjectWidget> {
         child: ExpansionTile(
           iconColor: widget._exportImage ? Colors.transparent : null,
           collapsedIconColor: widget._exportImage ? Colors.transparent : null,
-          controller: _expansionTileController[widget._subjectData.hashCode] ??= ExpansionTileController(),
-          tilePadding: const EdgeInsets.symmetric(vertical: 13, horizontal: 20),
+          controller: _expansionTileController[widget._subjectData] ??= ExpansionTileController(),
+          tilePadding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
           childrenPadding: const EdgeInsets.symmetric(horizontal: 40),
           shape: Border.all(width: 0, color: Colors.transparent),
           title: IntrinsicHeight(

@@ -4,6 +4,7 @@ import 'package:ssurade/components/custom_app_bar.dart';
 import 'package:ssurade/crawling/common/crawler.dart';
 import 'package:ssurade/globals.dart' as globals;
 import 'package:ssurade/types/chapel/chapel_attendance.dart';
+import 'package:ssurade/types/chapel/chapel_attendance_information.dart';
 import 'package:ssurade/types/chapel/chapel_information.dart';
 import 'package:ssurade/types/chapel/chapel_information_manager.dart';
 import 'package:ssurade/types/etc/progress.dart';
@@ -24,7 +25,7 @@ class _ChapelPageState extends State<ChapelPage> with SingleTickerProviderStateM
   late ChapelInformation _chapelInformation;
   final RefreshController _refreshController = RefreshController();
   late TabController _tabController;
-  final Map<int, ExpansionTileController> _expansionTileController = {};
+  final Map<ChapelAttendanceInformation, ExpansionTileController> _expansionTileController = {};
 
   GradeProgress _progress = GradeProgress.init;
   final Set<YearSemester> _lockedForRefresh = {};
@@ -506,7 +507,7 @@ class _ChapelPageState extends State<ChapelPage> with SingleTickerProviderStateM
                                             borderRadius: const BorderRadius.all(Radius.circular(10)),
                                           ),
                                           child: ExpansionTile(
-                                            controller: _expansionTileController[e.hashCode] ??= ExpansionTileController(),
+                                            controller: _expansionTileController[e] ??= ExpansionTileController(),
                                             shape: Border.all(width: 0, color: Colors.transparent),
                                             title: Container(
                                               padding: const EdgeInsets.only(left: 5),

@@ -146,6 +146,7 @@ class WebViewWorker {
         if (request.url.path.endsWith(".woff2")) {
           return WebResourceResponse(contentType: "font/woff2", data: Uint8List.fromList([]));
         }
+        return null;
       },
       initialSettings: InAppWebViewSettings(
         useShouldInterceptRequest: true,
