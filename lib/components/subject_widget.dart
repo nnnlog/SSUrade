@@ -92,6 +92,7 @@ class _SubjectWidgetState extends State<SubjectWidget> {
                     children: [
                       ...e.entries.map<Row>((entry) => Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            textBaseline: TextBaseline.alphabetic,
                             children: [
                               Flexible(
                                 child: SelectableText(
