@@ -1,9 +1,9 @@
 import 'dart:async';
 import 'dart:collection';
+import 'dart:io';
 
 import 'package:flutter/services.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
-import 'package:http/http.dart' as http;
 import 'package:logger/logger.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 import 'package:ssurade/crawling/common/crawling_task.dart';
@@ -86,6 +86,11 @@ class WebViewWorker {
   }
 
   Future<HeadlessInAppWebView> _initWebView() async {
+    var dir = Directory(getPath("webview_cache"));
+    if (!await dir.exists()) {
+      await dir.create(recursive: true);
+    }
+
     var ret = Completer<HeadlessInAppWebView>();
     late HeadlessInAppWebView webView;
     webView = HeadlessInAppWebView(
@@ -126,7 +131,7 @@ class WebViewWorker {
           }
           return WebResourceResponse(contentType: "application/x-javascript", data: Uint8List.fromList(_lightspeedCache.codeUnits));
         }
-        if (/*request.url.path.endsWith(".css") || */request.url.toString().startsWith("https://fonts.googleapis.com/css")) {
+        if ((request.url.path.endsWith(".css") && !request.url.toString().contains("ecc.ssu.ac.kr")) ||  request.url.toString().startsWith("https://fonts.googleapis.com/css")) {
           return WebResourceResponse(contentType: "text/css", data: Uint8List.fromList([]));
         }
         if (request.url.path.endsWith(".jpg")) {
