@@ -86,7 +86,9 @@ class _SubjectWidgetState extends State<SubjectWidget> {
               "최종 성적": widget._subjectData.score,
               "성적 기호": widget._subjectData.grade,
             },
-            widget._subjectData.detail
+            widget._subjectData.detail.isEmpty ? {
+              "-": "성적 상세 정보를 불러와야 해요. 현재 학기 정보를 다시 불러와주세요."
+            } : widget._subjectData.detail
           ]
               .map((e) => Column(
                     children: [

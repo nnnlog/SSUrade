@@ -81,7 +81,7 @@ class _InformationPageState extends State<InformationPage> {
                             )
                           : InkWell(
                               child: Text(
-                                "버전 $newVer으로 업데이트할 수 있습어요.",
+                                "버전 $newVer으로 업데이트할 수 있어요.",
                                 style: const TextStyle(
                                   fontSize: 15,
                                   fontWeight: FontWeight.w400,
