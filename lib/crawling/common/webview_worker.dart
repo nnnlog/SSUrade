@@ -131,7 +131,7 @@ class WebViewWorker {
           }
           return WebResourceResponse(contentType: "application/x-javascript", data: Uint8List.fromList(_lightspeedCache.codeUnits));
         }
-        if ((request.url.path.endsWith(".css") && !request.url.toString().contains("ecc.ssu.ac.kr")) ||  request.url.toString().startsWith("https://fonts.googleapis.com/css")) {
+        if ((request.url.path.endsWith(".css") && !request.url.toString().contains("ecc.ssu.ac.kr")) || request.url.toString().startsWith("https://fonts.googleapis.com/css")) {
           return WebResourceResponse(contentType: "text/css", data: Uint8List.fromList([]));
         }
         if (request.url.path.endsWith(".jpg")) {

@@ -46,7 +46,7 @@ Future<void> registerBackgroundService({lazy = false}) async {
     ),
     backoffPolicy: BackoffPolicy.linear,
     existingWorkPolicy: ExistingWorkPolicy.replace,
-    initialDelay: lazy ? const Duration(minutes: 15) : Duration.zero,
+    initialDelay: lazy ? Duration(minutes: globals.setting.interval) : Duration.zero,
   );
 }
 

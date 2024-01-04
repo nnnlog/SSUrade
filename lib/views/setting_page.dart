@@ -18,7 +18,7 @@ class SettingPage extends StatefulWidget {
 class _SettingPageState extends State<SettingPage> {
   bool _refreshGrade = false;
   bool _refreshGradeDetail = false;
-  final TextEditingController _timeoutGradeController = TextEditingController(), _timeoutAllGradeController = TextEditingController();
+  final TextEditingController _intervalController = TextEditingController(), _timeoutGradeController = TextEditingController(), _timeoutAllGradeController = TextEditingController();
 
   void _proxySetState(_) {
     setState(() {});
@@ -28,6 +28,7 @@ class _SettingPageState extends State<SettingPage> {
   void initState() {
     super.initState();
 
+    _intervalController.text = globals.setting.interval.toString();
     _timeoutGradeController.text = globals.setting.timeoutGrade.toString();
     _timeoutAllGradeController.text = globals.setting.timeoutAllGrade.toString();
 
@@ -76,7 +77,7 @@ class _SettingPageState extends State<SettingPage> {
                       globals.setting.saveFile();
                       updateBackgroundService();
                     },
-                    title: const Text("성적 변경 알림 (백그라운드)"),
+                    title: const Text("성적/채플 변경 알림 (백그라운드)"),
                   ),
                   SwitchListTile(
                     value: globals.setting.showGrade,
@@ -87,7 +88,7 @@ class _SettingPageState extends State<SettingPage> {
 
                       globals.setting.saveFile();
                     },
-                    title: const Text("성적 변경 알림 - 성적 보이기"),
+                    title: const Text("성적/채플 변경 알림 - 성적 보이기"),
                   ),
                   OutlinedButton(
                     onPressed: () {
@@ -97,6 +98,25 @@ class _SettingPageState extends State<SettingPage> {
                       minimumSize: const Size.fromHeight(40),
                     ),
                     child: const Text("배터리 최적화 제외하기"),
+                  ),
+                  TextField(
+                    controller: _intervalController,
+                    decoration: const InputDecoration(labelText: "성적/채플 변경 알림 - 확인 주기 (최솟값 : 15분)"),
+                    keyboardType: TextInputType.number,
+                    inputFormatters: [
+                      FilteringTextInputFormatter.digitsOnly,
+                    ],
+                    onEditingComplete: () {
+                      var temp = int.parse(_intervalController.text);
+                      if (temp < 1) {
+                        showToast("올바른 값을 입력하세요.");
+                        _intervalController.text = "15";
+                        return;
+                      }
+                      globals.setting.interval = temp;
+                      globals.setting.saveFile();
+                      showToast("설정을 변경했어요.");
+                    },
                   ),
                   TextField(
                     controller: _timeoutGradeController,
