@@ -308,6 +308,7 @@ class _ChapelPageState extends State<ChapelPage> with SingleTickerProviderStateM
                               text: const TextSpan(
                                 children: [
                                   WidgetSpan(
+                                    alignment: PlaceholderAlignment.middle,
                                     child: Icon(
                                       Icons.info_outline_rounded,
                                       size: 12,
@@ -443,6 +444,7 @@ class _ChapelPageState extends State<ChapelPage> with SingleTickerProviderStateM
                                   text: const TextSpan(
                                     children: [
                                       WidgetSpan(
+                                        alignment: PlaceholderAlignment.middle,
                                         child: Icon(
                                           Icons.info_outline_rounded,
                                           size: 12,
@@ -466,6 +468,7 @@ class _ChapelPageState extends State<ChapelPage> with SingleTickerProviderStateM
                                   text: const TextSpan(
                                     children: [
                                       WidgetSpan(
+                                        alignment: PlaceholderAlignment.middle,
                                         child: Icon(
                                           Icons.info_outline_rounded,
                                           size: 12,
@@ -623,6 +626,7 @@ class _ChapelPageState extends State<ChapelPage> with SingleTickerProviderStateM
                                   text: const TextSpan(
                                     children: [
                                       WidgetSpan(
+                                        alignment: PlaceholderAlignment.middle,
                                         child: Icon(
                                           Icons.info_outline_rounded,
                                           size: 12,
@@ -646,6 +650,7 @@ class _ChapelPageState extends State<ChapelPage> with SingleTickerProviderStateM
                                   text: const TextSpan(
                                     children: [
                                       WidgetSpan(
+                                        alignment: PlaceholderAlignment.middle,
                                         child: Icon(
                                           Icons.info_outline_rounded,
                                           size: 12,
