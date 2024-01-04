@@ -1,6 +1,5 @@
 import 'dart:async';
 
-import 'package:event/event.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' show rootBundle;
 import 'package:flutter_exit_app/flutter_exit_app.dart';
@@ -11,8 +10,14 @@ import 'package:ssurade/crawling/background/background_service.dart';
 import 'package:ssurade/crawling/common/crawler.dart';
 import 'package:ssurade/globals.dart' as globals;
 import 'package:ssurade/types/etc/progress.dart';
+import 'package:ssurade/types/semester/semester.dart';
+import 'package:ssurade/types/semester/year_semester.dart';
+import 'package:ssurade/types/subject/ranking.dart';
+import 'package:ssurade/types/subject/semester_subjects_manager.dart';
+import 'package:ssurade/utils/set.dart';
 import 'package:ssurade/utils/toast.dart';
 import 'package:ssurade/utils/update.dart';
+import 'package:tuple/tuple.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class MainPage extends StatefulWidget {
@@ -93,9 +98,64 @@ class _MainPageState extends State<MainPage> {
           }
         }).catchError((_) {
           showToast("자동 로그인을 실패했어요.");
-          Crawler.loginSession().loginStatusChangeEvent.broadcast(Value(false));
+          // Crawler.loginSession().loginStatusChangeEvent.broadcast(Value(false));
           // Crawler.loginSession().loginFailEvent.broadcast(Value("시간 초과"));
         });
+
+        Crawler.gradeSemesterList().execute().then((value) async {
+          int year = DateTime.now().year;
+          if (DateTime.now().month <= 2) year--;
+          for (var e in Semester.values) {
+            var key = YearSemester(year, e);
+            if (!value.containsKey(key)) {
+              value[key] = const Tuple2(Ranking.unknown, Ranking.unknown);
+            }
+          }
+
+          var manager = globals.semesterSubjectsManager;
+          Map<YearSemester, Tuple2<Ranking, Ranking>> newSemesters = {};
+
+          for (var semester in value.keys) {
+            if (!manager.data.containsKey(semester)) {
+              newSemesters[semester] = value[semester]!;
+            }
+          }
+
+          if (newSemesters.isNotEmpty) {
+            List<Future<SemesterSubjectsManager>> wait = [];
+
+            wait.add(Crawler.allGradeByCategory().execute());
+            wait.add(Crawler.allGradeBySemester(map: newSemesters).execute());
+
+            var ret = (await Future.wait(wait))..removeWhere((element) => element.isEmpty);
+            var result = SemesterSubjectsManager.merges(ret);
+            if (result == null) return;
+
+            for (var semester in newSemesters.keys) {
+              globals.semesterSubjectsManager.data[semester] = result.data[semester]!;
+            }
+          }
+        });
+
+        {
+          int year = DateTime.now().year;
+          if (DateTime.now().month <= 2) year--;
+          List<YearSemester> searches = [];
+          for (var e in [Semester.first, Semester.second]) {
+            var key = YearSemester(year, e);
+            if (globals.chapelInformationManager.data[key] != null) {
+              searches.add(key);
+            }
+          }
+
+          Crawler.allChapel(searches).execute().then((value) {
+            if (value.isEmpty) return;
+
+            for (var data in value.data) {
+              globals.chapelInformationManager.data.add(data);
+            }
+          });
+        }
 
         // Crawler.allGrade().execute().then((value) {
         //   if (value.isEmpty) return;

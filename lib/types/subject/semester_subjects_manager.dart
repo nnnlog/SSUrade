@@ -82,6 +82,15 @@ class SemesterSubjectsManager {
     }
     return ret;
   }
+
+  static SemesterSubjectsManager? merges(List<SemesterSubjectsManager> list) {
+    if (list.isEmpty) return null;
+    var result = list.removeLast();
+    while (list.isNotEmpty) {
+      result = SemesterSubjectsManager.merge(list.removeLast(), result)!;
+    }
+    return result;
+  }
 }
 
 class _DataConverter extends JsonConverter<SplayTreeMap<YearSemester, SemesterSubjects>, List<dynamic>> {

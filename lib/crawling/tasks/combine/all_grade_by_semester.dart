@@ -7,16 +7,22 @@ import 'package:ssurade/crawling/common/crawler.dart';
 import 'package:ssurade/crawling/common/crawling_task.dart';
 import 'package:ssurade/crawling/error/unauthenticated_exception.dart';
 import 'package:ssurade/globals.dart' as globals;
+import 'package:ssurade/types/semester/year_semester.dart';
+import 'package:ssurade/types/subject/ranking.dart';
 import 'package:ssurade/types/subject/semester_subjects_manager.dart';
 import 'package:ssurade/types/subject/state.dart';
+import 'package:tuple/tuple.dart';
 
 class AllGradeBySemester extends CrawlingTask<SemesterSubjectsManager> {
+  Map<YearSemester, Tuple2<Ranking, Ranking>> map;
+
   factory AllGradeBySemester.get({
+    Map<YearSemester, Tuple2<Ranking, Ranking>> map = const {},
     ISentrySpan? parentTransaction,
   }) =>
-      AllGradeBySemester._(parentTransaction);
+      AllGradeBySemester._(map, parentTransaction);
 
-  AllGradeBySemester._(ISentrySpan? parentTransaction) : super(parentTransaction);
+  AllGradeBySemester._(this.map, ISentrySpan? parentTransaction) : super(parentTransaction);
 
   @override
   Future<SemesterSubjectsManager> internalExecute(Queue<InAppWebViewController> controllers, [Completer? onComplete]) async {
@@ -29,11 +35,12 @@ class AllGradeBySemester extends CrawlingTask<SemesterSubjectsManager> {
       throw UnauthenticatedException();
     }
 
-    var map = await Crawler.gradeSemesterList(parentTransaction: transaction).directExecute(Queue()..add(controller));
+    var semesters = map;
+    if (map.isEmpty) semesters = await Crawler.gradeSemesterList(parentTransaction: transaction).directExecute(Queue()..add(controller));
 
     result = SemesterSubjectsManager(SplayTreeMap.from({}), STATE_SEMESTER);
 
-    for (var key in map.keys) {
+    for (var key in semesters.keys) {
       var tmp = await Crawler.singleGradeBySemester(
         key,
         reloadPage: false,

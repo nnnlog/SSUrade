@@ -44,10 +44,7 @@ class AllGrade extends CrawlingTask<SemesterSubjectsManager> {
     }
 
     span = transaction.startChild("merge_grade_info");
-    var result = ret.removeLast();
-    while (ret.isNotEmpty) {
-      result = SemesterSubjectsManager.merge(ret.removeLast(), result)!;
-    }
+    var result = SemesterSubjectsManager.merges(ret)!;
     span.finish(status: const SpanStatus.ok());
 
     transaction.finish(status: const SpanStatus.ok());
