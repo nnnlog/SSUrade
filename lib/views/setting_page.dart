@@ -115,6 +115,7 @@ class _SettingPageState extends State<SettingPage> {
                       }
                       globals.setting.interval = temp;
                       globals.setting.saveFile();
+                      updateBackgroundService(lazy: true);
                       showToast("설정을 변경했어요.");
                     },
                   ),
