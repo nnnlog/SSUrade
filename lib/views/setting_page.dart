@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:ssurade/components/custom_app_bar.dart';
+import 'package:ssurade/components/common/custom_app_bar.dart';
 import 'package:ssurade/crawling/background/background_service.dart';
 import 'package:ssurade/crawling/common/crawler.dart';
 import 'package:ssurade/globals.dart' as globals;

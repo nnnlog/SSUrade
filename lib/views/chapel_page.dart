@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
-import 'package:ssurade/components/custom_app_bar.dart';
+import 'package:ssurade/components/common/custom_app_bar.dart';
 import 'package:ssurade/crawling/common/crawler.dart';
 import 'package:ssurade/globals.dart' as globals;
 import 'package:ssurade/types/chapel/chapel_attendance.dart';

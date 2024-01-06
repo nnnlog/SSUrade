@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ssurade/components/grade_logo.dart';
+import 'package:ssurade/components/grade_view/grade_logo.dart';
 import 'package:ssurade/globals.dart' as globals;
 import 'package:ssurade/types/subject/subject.dart';
 
@@ -87,7 +87,7 @@ class _SubjectWidgetState extends State<SubjectWidget> {
               "성적 기호": widget._subjectData.grade,
             },
             widget._subjectData.detail.isEmpty ? {
-              "-": "성적 상세 정보를 불러와야 해요. 현재 학기 정보를 다시 불러와주세요."
+              "-": "성적 상세 정보가 없어요. 현재 학기 정보를 다시 불러오세요."
             } : widget._subjectData.detail
           ]
               .map((e) => Column(
