@@ -1184,6 +1184,139 @@ var sap = window.sap || {};
     sap["ls"]["preload"] = {};
 
     UCF_ClassLoader.prototype["aPublicMethods"] = ["connectToParentClassLoader"].concat(UCF_ClassLoader.prototype.aPublicMethods || []);
+    /** @typedef {'CTRL_0'} UCF_HotkeyValue_CTRL_0 */
+    /** @typedef {'CTRL_1'} UCF_HotkeyValue_CTRL_1 */
+    /** @typedef {'CTRL_2'} UCF_HotkeyValue_CTRL_2 */
+    /** @typedef {'CTRL_3'} UCF_HotkeyValue_CTRL_3 */
+    /** @typedef {'CTRL_4'} UCF_HotkeyValue_CTRL_4 */
+    /** @typedef {'CTRL_5'} UCF_HotkeyValue_CTRL_5 */
+    /** @typedef {'CTRL_6'} UCF_HotkeyValue_CTRL_6 */
+    /** @typedef {'CTRL_7'} UCF_HotkeyValue_CTRL_7 */
+    /** @typedef {'CTRL_8'} UCF_HotkeyValue_CTRL_8 */
+    /** @typedef {'CTRL_9'} UCF_HotkeyValue_CTRL_9 */
+    /** @typedef {'CTRL_A'} UCF_HotkeyValue_CTRL_A */
+    /** @typedef {'CTRL_B'} UCF_HotkeyValue_CTRL_B */
+    /** @typedef {'CTRL_C'} UCF_HotkeyValue_CTRL_C */
+    /** @typedef {'CTRL_D'} UCF_HotkeyValue_CTRL_D */
+    /** @typedef {'CTRL_E'} UCF_HotkeyValue_CTRL_E */
+    /** @typedef {'CTRL_F'} UCF_HotkeyValue_CTRL_F */
+    /** @typedef {'CTRL_G'} UCF_HotkeyValue_CTRL_G */
+    /** @typedef {'CTRL_H'} UCF_HotkeyValue_CTRL_H */
+    /** @typedef {'CTRL_I'} UCF_HotkeyValue_CTRL_I */
+    /** @typedef {'CTRL_J'} UCF_HotkeyValue_CTRL_J */
+    /** @typedef {'CTRL_K'} UCF_HotkeyValue_CTRL_K */
+    /** @typedef {'CTRL_L'} UCF_HotkeyValue_CTRL_L */
+    /** @typedef {'CTRL_M'} UCF_HotkeyValue_CTRL_M */
+    /** @typedef {'CTRL_N'} UCF_HotkeyValue_CTRL_N */
+    /** @typedef {'CTRL_O'} UCF_HotkeyValue_CTRL_O */
+    /** @typedef {'CTRL_P'} UCF_HotkeyValue_CTRL_P */
+    /** @typedef {'CTRL_Q'} UCF_HotkeyValue_CTRL_Q */
+    /** @typedef {'CTRL_R'} UCF_HotkeyValue_CTRL_R */
+    /** @typedef {'CTRL_S'} UCF_HotkeyValue_CTRL_S */
+    /** @typedef {'CTRL_T'} UCF_HotkeyValue_CTRL_T */
+    /** @typedef {'CTRL_U'} UCF_HotkeyValue_CTRL_U */
+    /** @typedef {'CTRL_V'} UCF_HotkeyValue_CTRL_V */
+    /** @typedef {'CTRL_W'} UCF_HotkeyValue_CTRL_W */
+    /** @typedef {'CTRL_X'} UCF_HotkeyValue_CTRL_X */
+    /** @typedef {'CTRL_Y'} UCF_HotkeyValue_CTRL_Y */
+    /** @typedef {'CTRL_Z'} UCF_HotkeyValue_CTRL_Z */
+    /** @typedef {'CTRL_DOT'} UCF_HotkeyValue_CTRL_DOT */
+    /** @typedef {'CTRL_COMMA'} UCF_HotkeyValue_CTRL_COMMA */
+    /** @typedef {'ESCAPE'} UCF_HotkeyValue_ESCAPE */
+    /** @typedef {'DELETE'} UCF_HotkeyValue_DELETE */
+    /** @typedef {'INSERT'} UCF_HotkeyValue_INSERT */
+    /** @typedef {'ENTER'} UCF_HotkeyValue_ENTER */
+    /** @typedef {'F1'} UCF_HotkeyValue_F1 */
+    /** @typedef {'F2'} UCF_HotkeyValue_F2 */
+    /** @typedef {'F3'} UCF_HotkeyValue_F3 */
+    /** @typedef {'F4'} UCF_HotkeyValue_F4 */
+    /** @typedef {'F5'} UCF_HotkeyValue_F5 */
+    /** @typedef {'F6'} UCF_HotkeyValue_F6 */
+    /** @typedef {'F7'} UCF_HotkeyValue_F7 */
+    /** @typedef {'F8'} UCF_HotkeyValue_F8 */
+    /** @typedef {'F9'} UCF_HotkeyValue_F9 */
+    /** @typedef {'F10'} UCF_HotkeyValue_F10 */
+    /** @typedef {'F11'} UCF_HotkeyValue_F11 */
+    /** @typedef {'F12'} UCF_HotkeyValue_F12 */
+    /** @typedef {'CTRL_F1'} UCF_HotkeyValue_CTRL_F1 */
+    /** @typedef {'CTRL_F2'} UCF_HotkeyValue_CTRL_F2 */
+    /** @typedef {'CTRL_F3'} UCF_HotkeyValue_CTRL_F3 */
+    /** @typedef {'CTRL_F4'} UCF_HotkeyValue_CTRL_F4 */
+    /** @typedef {'CTRL_F5'} UCF_HotkeyValue_CTRL_F5 */
+    /** @typedef {'CTRL_F6'} UCF_HotkeyValue_CTRL_F6 */
+    /** @typedef {'CTRL_F7'} UCF_HotkeyValue_CTRL_F7 */
+    /** @typedef {'CTRL_F8'} UCF_HotkeyValue_CTRL_F8 */
+    /** @typedef {'CTRL_F9'} UCF_HotkeyValue_CTRL_F9 */
+    /** @typedef {'CTRL_F10'} UCF_HotkeyValue_CTRL_F10 */
+    /** @typedef {'CTRL_F11'} UCF_HotkeyValue_CTRL_F11 */
+    /** @typedef {'CTRL_F12'} UCF_HotkeyValue_CTRL_F12 */
+    /** @typedef {'CTRL_SHIFT_F1'} UCF_HotkeyValue_CTRL_SHIFT_F1 */
+    /** @typedef {'CTRL_SHIFT_F2'} UCF_HotkeyValue_CTRL_SHIFT_F2 */
+    /** @typedef {'CTRL_SHIFT_F3'} UCF_HotkeyValue_CTRL_SHIFT_F3 */
+    /** @typedef {'CTRL_SHIFT_F4'} UCF_HotkeyValue_CTRL_SHIFT_F4 */
+    /** @typedef {'CTRL_SHIFT_F5'} UCF_HotkeyValue_CTRL_SHIFT_F5 */
+    /** @typedef {'CTRL_SHIFT_F6'} UCF_HotkeyValue_CTRL_SHIFT_F6 */
+    /** @typedef {'CTRL_SHIFT_F7'} UCF_HotkeyValue_CTRL_SHIFT_F7 */
+    /** @typedef {'CTRL_SHIFT_F8'} UCF_HotkeyValue_CTRL_SHIFT_F8 */
+    /** @typedef {'CTRL_SHIFT_F9'} UCF_HotkeyValue_CTRL_SHIFT_F9 */
+    /** @typedef {'CTRL_SHIFT_F10'} UCF_HotkeyValue_CTRL_SHIFT_F10 */
+    /** @typedef {'CTRL_SHIFT_F11'} UCF_HotkeyValue_CTRL_SHIFT_F11 */
+    /** @typedef {'CTRL_SHIFT_F12'} UCF_HotkeyValue_CTRL_SHIFT_F12 */
+    /** @typedef {'SHIFT_F1'} UCF_HotkeyValue_SHIFT_F1 */
+    /** @typedef {'SHIFT_F2'} UCF_HotkeyValue_SHIFT_F2 */
+    /** @typedef {'SHIFT_F3'} UCF_HotkeyValue_SHIFT_F3 */
+    /** @typedef {'SHIFT_F4'} UCF_HotkeyValue_SHIFT_F4 */
+    /** @typedef {'SHIFT_F5'} UCF_HotkeyValue_SHIFT_F5 */
+    /** @typedef {'SHIFT_F6'} UCF_HotkeyValue_SHIFT_F6 */
+    /** @typedef {'SHIFT_F7'} UCF_HotkeyValue_SHIFT_F7 */
+    /** @typedef {'SHIFT_F8'} UCF_HotkeyValue_SHIFT_F8 */
+    /** @typedef {'SHIFT_F9'} UCF_HotkeyValue_SHIFT_F9 */
+    /** @typedef {'SHIFT_F10'} UCF_HotkeyValue_SHIFT_F10 */
+    /** @typedef {'SHIFT_F11'} UCF_HotkeyValue_SHIFT_F11 */
+    /** @typedef {'SHIFT_F12'} UCF_HotkeyValue_SHIFT_F12 */
+    /** @typedef {'CTRL_ALT_N'} UCF_HotkeyValue_CTRL_ALT_N */
+    /** @typedef {'CTRL_SHIFT_0'} UCF_HotkeyValue_CTRL_SHIFT_0 */
+    /** @typedef {'CTRL_SHIFT_1'} UCF_HotkeyValue_CTRL_SHIFT_1 */
+    /** @typedef {'CTRL_SHIFT_2'} UCF_HotkeyValue_CTRL_SHIFT_2 */
+    /** @typedef {'CTRL_SHIFT_3'} UCF_HotkeyValue_CTRL_SHIFT_3 */
+    /** @typedef {'CTRL_SHIFT_4'} UCF_HotkeyValue_CTRL_SHIFT_4 */
+    /** @typedef {'CTRL_SHIFT_5'} UCF_HotkeyValue_CTRL_SHIFT_5 */
+    /** @typedef {'CTRL_SHIFT_6'} UCF_HotkeyValue_CTRL_SHIFT_6 */
+    /** @typedef {'CTRL_SHIFT_7'} UCF_HotkeyValue_CTRL_SHIFT_7 */
+    /** @typedef {'CTRL_SHIFT_8'} UCF_HotkeyValue_CTRL_SHIFT_8 */
+    /** @typedef {'CTRL_SHIFT_9'} UCF_HotkeyValue_CTRL_SHIFT_9 */
+    /** @typedef {'CTRL_SHIFT_A'} UCF_HotkeyValue_CTRL_SHIFT_A */
+    /** @typedef {'CTRL_SHIFT_B'} UCF_HotkeyValue_CTRL_SHIFT_B */
+    /** @typedef {'CTRL_SHIFT_C'} UCF_HotkeyValue_CTRL_SHIFT_C */
+    /** @typedef {'CTRL_SHIFT_D'} UCF_HotkeyValue_CTRL_SHIFT_D */
+    /** @typedef {'CTRL_SHIFT_E'} UCF_HotkeyValue_CTRL_SHIFT_E */
+    /** @typedef {'CTRL_SHIFT_F'} UCF_HotkeyValue_CTRL_SHIFT_F */
+    /** @typedef {'CTRL_SHIFT_G'} UCF_HotkeyValue_CTRL_SHIFT_G */
+    /** @typedef {'CTRL_SHIFT_H'} UCF_HotkeyValue_CTRL_SHIFT_H */
+    /** @typedef {'CTRL_SHIFT_I'} UCF_HotkeyValue_CTRL_SHIFT_I */
+    /** @typedef {'CTRL_SHIFT_J'} UCF_HotkeyValue_CTRL_SHIFT_J */
+    /** @typedef {'CTRL_SHIFT_K'} UCF_HotkeyValue_CTRL_SHIFT_K */
+    /** @typedef {'CTRL_SHIFT_L'} UCF_HotkeyValue_CTRL_SHIFT_L */
+    /** @typedef {'CTRL_SHIFT_M'} UCF_HotkeyValue_CTRL_SHIFT_M */
+    /** @typedef {'CTRL_SHIFT_N'} UCF_HotkeyValue_CTRL_SHIFT_N */
+    /** @typedef {'CTRL_SHIFT_O'} UCF_HotkeyValue_CTRL_SHIFT_O */
+    /** @typedef {'CTRL_SHIFT_P'} UCF_HotkeyValue_CTRL_SHIFT_P */
+    /** @typedef {'CTRL_SHIFT_Q'} UCF_HotkeyValue_CTRL_SHIFT_Q */
+    /** @typedef {'CTRL_SHIFT_R'} UCF_HotkeyValue_CTRL_SHIFT_R */
+    /** @typedef {'CTRL_SHIFT_S'} UCF_HotkeyValue_CTRL_SHIFT_S */
+    /** @typedef {'CTRL_SHIFT_T'} UCF_HotkeyValue_CTRL_SHIFT_T */
+    /** @typedef {'CTRL_SHIFT_U'} UCF_HotkeyValue_CTRL_SHIFT_U */
+    /** @typedef {'CTRL_SHIFT_V'} UCF_HotkeyValue_CTRL_SHIFT_V */
+    /** @typedef {'CTRL_SHIFT_W'} UCF_HotkeyValue_CTRL_SHIFT_W */
+    /** @typedef {'CTRL_SHIFT_X'} UCF_HotkeyValue_CTRL_SHIFT_X */
+    /** @typedef {'CTRL_SHIFT_Y'} UCF_HotkeyValue_CTRL_SHIFT_Y */
+    /** @typedef {'CTRL_SHIFT_Z'} UCF_HotkeyValue_CTRL_SHIFT_Z */
+    /** @typedef {'ALT_ARROW_LEFT'} UCF_HotkeyValue_ALT_ARROW_LEFT */
+    /** @typedef {'ALT_ARROW_UP'} UCF_HotkeyValue_ALT_ARROW_UP */
+    /** @typedef {'ALT_ARROW_RIGHT'} UCF_HotkeyValue_ALT_ARROW_RIGHT */
+    /** @typedef {'ALT_ARROW_DOWN'} UCF_HotkeyValue_ALT_ARROW_DOWN */
+
+    /** @typedef {UCF_HotkeyValue_CTRL_0|UCF_HotkeyValue_CTRL_1|UCF_HotkeyValue_CTRL_2|UCF_HotkeyValue_CTRL_3|UCF_HotkeyValue_CTRL_4|UCF_HotkeyValue_CTRL_5|UCF_HotkeyValue_CTRL_6|UCF_HotkeyValue_CTRL_7|UCF_HotkeyValue_CTRL_8|UCF_HotkeyValue_CTRL_9|UCF_HotkeyValue_CTRL_A|UCF_HotkeyValue_CTRL_B|UCF_HotkeyValue_CTRL_C|UCF_HotkeyValue_CTRL_D|UCF_HotkeyValue_CTRL_E|UCF_HotkeyValue_CTRL_F|UCF_HotkeyValue_CTRL_G|UCF_HotkeyValue_CTRL_H|UCF_HotkeyValue_CTRL_I|UCF_HotkeyValue_CTRL_J|UCF_HotkeyValue_CTRL_K|UCF_HotkeyValue_CTRL_L|UCF_HotkeyValue_CTRL_M|UCF_HotkeyValue_CTRL_N|UCF_HotkeyValue_CTRL_O|UCF_HotkeyValue_CTRL_P|UCF_HotkeyValue_CTRL_Q|UCF_HotkeyValue_CTRL_R|UCF_HotkeyValue_CTRL_S|UCF_HotkeyValue_CTRL_T|UCF_HotkeyValue_CTRL_U|UCF_HotkeyValue_CTRL_V|UCF_HotkeyValue_CTRL_W|UCF_HotkeyValue_CTRL_X|UCF_HotkeyValue_CTRL_Y|UCF_HotkeyValue_CTRL_Z|UCF_HotkeyValue_CTRL_DOT|UCF_HotkeyValue_CTRL_COMMA|UCF_HotkeyValue_ESCAPE|UCF_HotkeyValue_DELETE|UCF_HotkeyValue_INSERT|UCF_HotkeyValue_ENTER|UCF_HotkeyValue_F1|UCF_HotkeyValue_F2|UCF_HotkeyValue_F3|UCF_HotkeyValue_F4|UCF_HotkeyValue_F5|UCF_HotkeyValue_F6|UCF_HotkeyValue_F7|UCF_HotkeyValue_F8|UCF_HotkeyValue_F9|UCF_HotkeyValue_F10|UCF_HotkeyValue_F11|UCF_HotkeyValue_F12|UCF_HotkeyValue_CTRL_F1|UCF_HotkeyValue_CTRL_F2|UCF_HotkeyValue_CTRL_F3|UCF_HotkeyValue_CTRL_F4|UCF_HotkeyValue_CTRL_F5|UCF_HotkeyValue_CTRL_F6|UCF_HotkeyValue_CTRL_F7|UCF_HotkeyValue_CTRL_F8|UCF_HotkeyValue_CTRL_F9|UCF_HotkeyValue_CTRL_F10|UCF_HotkeyValue_CTRL_F11|UCF_HotkeyValue_CTRL_F12|UCF_HotkeyValue_CTRL_SHIFT_F1|UCF_HotkeyValue_CTRL_SHIFT_F2|UCF_HotkeyValue_CTRL_SHIFT_F3|UCF_HotkeyValue_CTRL_SHIFT_F4|UCF_HotkeyValue_CTRL_SHIFT_F5|UCF_HotkeyValue_CTRL_SHIFT_F6|UCF_HotkeyValue_CTRL_SHIFT_F7|UCF_HotkeyValue_CTRL_SHIFT_F8|UCF_HotkeyValue_CTRL_SHIFT_F9|UCF_HotkeyValue_CTRL_SHIFT_F10|UCF_HotkeyValue_CTRL_SHIFT_F11|UCF_HotkeyValue_CTRL_SHIFT_F12|UCF_HotkeyValue_SHIFT_F1|UCF_HotkeyValue_SHIFT_F2|UCF_HotkeyValue_SHIFT_F3|UCF_HotkeyValue_SHIFT_F4|UCF_HotkeyValue_SHIFT_F5|UCF_HotkeyValue_SHIFT_F6|UCF_HotkeyValue_SHIFT_F7|UCF_HotkeyValue_SHIFT_F8|UCF_HotkeyValue_SHIFT_F9|UCF_HotkeyValue_SHIFT_F10|UCF_HotkeyValue_SHIFT_F11|UCF_HotkeyValue_SHIFT_F12|UCF_HotkeyValue_CTRL_ALT_N|UCF_HotkeyValue_CTRL_SHIFT_0|UCF_HotkeyValue_CTRL_SHIFT_1|UCF_HotkeyValue_CTRL_SHIFT_2|UCF_HotkeyValue_CTRL_SHIFT_3|UCF_HotkeyValue_CTRL_SHIFT_4|UCF_HotkeyValue_CTRL_SHIFT_5|UCF_HotkeyValue_CTRL_SHIFT_6|UCF_HotkeyValue_CTRL_SHIFT_7|UCF_HotkeyValue_CTRL_SHIFT_8|UCF_HotkeyValue_CTRL_SHIFT_9|UCF_HotkeyValue_CTRL_SHIFT_A|UCF_HotkeyValue_CTRL_SHIFT_B|UCF_HotkeyValue_CTRL_SHIFT_C|UCF_HotkeyValue_CTRL_SHIFT_D|UCF_HotkeyValue_CTRL_SHIFT_E|UCF_HotkeyValue_CTRL_SHIFT_F|UCF_HotkeyValue_CTRL_SHIFT_G|UCF_HotkeyValue_CTRL_SHIFT_H|UCF_HotkeyValue_CTRL_SHIFT_I|UCF_HotkeyValue_CTRL_SHIFT_J|UCF_HotkeyValue_CTRL_SHIFT_K|UCF_HotkeyValue_CTRL_SHIFT_L|UCF_HotkeyValue_CTRL_SHIFT_M|UCF_HotkeyValue_CTRL_SHIFT_N|UCF_HotkeyValue_CTRL_SHIFT_O|UCF_HotkeyValue_CTRL_SHIFT_P|UCF_HotkeyValue_CTRL_SHIFT_Q|UCF_HotkeyValue_CTRL_SHIFT_R|UCF_HotkeyValue_CTRL_SHIFT_S|UCF_HotkeyValue_CTRL_SHIFT_T|UCF_HotkeyValue_CTRL_SHIFT_U|UCF_HotkeyValue_CTRL_SHIFT_V|UCF_HotkeyValue_CTRL_SHIFT_W|UCF_HotkeyValue_CTRL_SHIFT_X|UCF_HotkeyValue_CTRL_SHIFT_Y|UCF_HotkeyValue_CTRL_SHIFT_Z|UCF_HotkeyValue_ALT_ARROW_LEFT|UCF_HotkeyValue_ALT_ARROW_UP|UCF_HotkeyValue_ALT_ARROW_RIGHT|UCF_HotkeyValue_ALT_ARROW_DOWN} UCF_HotkeyValue */
 
     /**
      *
@@ -1349,14 +1482,219 @@ var sap = window.sap || {};
     UCF_HotkeyValues['ALT_ARROW_RIGHT'] = true;
     UCF_HotkeyValues['ALT_ARROW_DOWN'] = true;
 
+    /** @typedef {8} UCF_KeyCode_Backspace */
+    /** @typedef {9} UCF_KeyCode_Tab */
+    /** @typedef {13} UCF_KeyCode_Enter */
+    /** @typedef {16} UCF_KeyCode_Shift */
+    /** @typedef {17} UCF_KeyCode_Control */
+    /** @typedef {18} UCF_KeyCode_Alt */
+    /** @typedef {19} UCF_KeyCode_Break */
+    /** @typedef {20} UCF_KeyCode_CapsLock */
+    /** @typedef {22} UCF_KeyCode_Backslash */
+    /** @typedef {27} UCF_KeyCode_Escape */
+    /** @typedef {32} UCF_KeyCode_Space */
+    /** @typedef {33} UCF_KeyCode_PageUp */
+    /** @typedef {34} UCF_KeyCode_PageDown */
+    /** @typedef {35} UCF_KeyCode_End */
+    /** @typedef {36} UCF_KeyCode_Home */
+    /** @typedef {37} UCF_KeyCode_ArrowLeft */
+    /** @typedef {38} UCF_KeyCode_ArrowUp */
+    /** @typedef {39} UCF_KeyCode_ArrowRight */
+    /** @typedef {40} UCF_KeyCode_ArrowDown */
+    /** @typedef {44} UCF_KeyCode_Print */
+    /** @typedef {45} UCF_KeyCode_Insert */
+    /** @typedef {46} UCF_KeyCode_Delete */
+    /** @typedef {48} UCF_KeyCode_0 */
+    /** @typedef {49} UCF_KeyCode_1 */
+    /** @typedef {50} UCF_KeyCode_2 */
+    /** @typedef {51} UCF_KeyCode_3 */
+    /** @typedef {52} UCF_KeyCode_4 */
+    /** @typedef {53} UCF_KeyCode_5 */
+    /** @typedef {54} UCF_KeyCode_6 */
+    /** @typedef {55} UCF_KeyCode_7 */
+    /** @typedef {56} UCF_KeyCode_8 */
+    /** @typedef {57} UCF_KeyCode_9 */
+    /** @typedef {65} UCF_KeyCode_A */
+    /** @typedef {66} UCF_KeyCode_B */
+    /** @typedef {67} UCF_KeyCode_C */
+    /** @typedef {68} UCF_KeyCode_D */
+    /** @typedef {69} UCF_KeyCode_E */
+    /** @typedef {70} UCF_KeyCode_F */
+    /** @typedef {71} UCF_KeyCode_G */
+    /** @typedef {72} UCF_KeyCode_H */
+    /** @typedef {73} UCF_KeyCode_I */
+    /** @typedef {74} UCF_KeyCode_J */
+    /** @typedef {75} UCF_KeyCode_K */
+    /** @typedef {76} UCF_KeyCode_L */
+    /** @typedef {77} UCF_KeyCode_M */
+    /** @typedef {78} UCF_KeyCode_N */
+    /** @typedef {79} UCF_KeyCode_O */
+    /** @typedef {80} UCF_KeyCode_P */
+    /** @typedef {81} UCF_KeyCode_Q */
+    /** @typedef {82} UCF_KeyCode_R */
+    /** @typedef {83} UCF_KeyCode_S */
+    /** @typedef {84} UCF_KeyCode_T */
+    /** @typedef {85} UCF_KeyCode_U */
+    /** @typedef {86} UCF_KeyCode_V */
+    /** @typedef {87} UCF_KeyCode_W */
+    /** @typedef {88} UCF_KeyCode_X */
+    /** @typedef {89} UCF_KeyCode_Y */
+    /** @typedef {90} UCF_KeyCode_Z */
+    /** @typedef {91} UCF_KeyCode_Windows */
+    /** @typedef {93} UCF_KeyCode_ContextMenu */
+    /** @typedef {94} UCF_KeyCode_TurnOff */
+    /** @typedef {95} UCF_KeyCode_Sleep */
+    /** @typedef {96} UCF_KeyCode_Numpad0 */
+    /** @typedef {97} UCF_KeyCode_Numpad1 */
+    /** @typedef {98} UCF_KeyCode_Numpad2 */
+    /** @typedef {99} UCF_KeyCode_Numpad3 */
+    /** @typedef {100} UCF_KeyCode_Numpad4 */
+    /** @typedef {101} UCF_KeyCode_Numpad5 */
+    /** @typedef {102} UCF_KeyCode_Numpad6 */
+    /** @typedef {103} UCF_KeyCode_Numpad7 */
+    /** @typedef {104} UCF_KeyCode_Numpad8 */
+    /** @typedef {105} UCF_KeyCode_Numpad9 */
+    /** @typedef {106} UCF_KeyCode_NumpadAsterisk */
+    /** @typedef {107} UCF_KeyCode_NumpadPlus */
+    /** @typedef {109} UCF_KeyCode_NumpadMinus */
+    /** @typedef {110} UCF_KeyCode_NumpadComma */
+    /** @typedef {111} UCF_KeyCode_NumpadSlash */
+    /** @typedef {112} UCF_KeyCode_F1 */
+    /** @typedef {113} UCF_KeyCode_F2 */
+    /** @typedef {114} UCF_KeyCode_F3 */
+    /** @typedef {115} UCF_KeyCode_F4 */
+    /** @typedef {116} UCF_KeyCode_F5 */
+    /** @typedef {117} UCF_KeyCode_F6 */
+    /** @typedef {118} UCF_KeyCode_F7 */
+    /** @typedef {119} UCF_KeyCode_F8 */
+    /** @typedef {120} UCF_KeyCode_F9 */
+    /** @typedef {121} UCF_KeyCode_F10 */
+    /** @typedef {122} UCF_KeyCode_F11 */
+    /** @typedef {123} UCF_KeyCode_F12 */
+    /** @typedef {144} UCF_KeyCode_NumLock */
+    /** @typedef {145} UCF_KeyCode_ScrollLock */
+    /** @typedef {186} UCF_KeyCode_OpenBracket */
+    /** @typedef {187} UCF_KeyCode_Plus */
+    /** @typedef {188} UCF_KeyCode_Comma */
+    /** @typedef {189} UCF_KeyCode_Dash */
+    /** @typedef {190} UCF_KeyCode_Dot */
+    /** @typedef {191} UCF_KeyCode_Pipe */
+    /** @typedef {192} UCF_KeyCode_Semicolon */
+    /** @typedef {219} UCF_KeyCode_Minus */
+    /** @typedef {220} UCF_KeyCode_GreatAccent */
+    /** @typedef {221} UCF_KeyCode_Equals */
+    /** @typedef {222} UCF_KeyCode_SingleQuote */
+    /** @typedef {UCF_KeyCode_Backspace|UCF_KeyCode_Tab|UCF_KeyCode_Enter|UCF_KeyCode_Shift|UCF_KeyCode_Control|UCF_KeyCode_Alt|UCF_KeyCode_Break|UCF_KeyCode_CapsLock|UCF_KeyCode_Backslash|UCF_KeyCode_Escape|UCF_KeyCode_Space|UCF_KeyCode_PageUp|UCF_KeyCode_PageDown|UCF_KeyCode_End|UCF_KeyCode_Home|UCF_KeyCode_ArrowLeft|UCF_KeyCode_ArrowUp|UCF_KeyCode_ArrowRight|UCF_KeyCode_ArrowDown|UCF_KeyCode_Print|UCF_KeyCode_Insert|UCF_KeyCode_Delete|UCF_KeyCode_0|UCF_KeyCode_1|UCF_KeyCode_2|UCF_KeyCode_3|UCF_KeyCode_4|UCF_KeyCode_5|UCF_KeyCode_6|UCF_KeyCode_7|UCF_KeyCode_8|UCF_KeyCode_9|UCF_KeyCode_A|UCF_KeyCode_B|UCF_KeyCode_C|UCF_KeyCode_D|UCF_KeyCode_E|UCF_KeyCode_F|UCF_KeyCode_G|UCF_KeyCode_H|UCF_KeyCode_I|UCF_KeyCode_J|UCF_KeyCode_K|UCF_KeyCode_L|UCF_KeyCode_M|UCF_KeyCode_N|UCF_KeyCode_O|UCF_KeyCode_P|UCF_KeyCode_Q|UCF_KeyCode_R|UCF_KeyCode_S|UCF_KeyCode_T|UCF_KeyCode_U|UCF_KeyCode_V|UCF_KeyCode_W|UCF_KeyCode_X|UCF_KeyCode_Y|UCF_KeyCode_Z|UCF_KeyCode_Windows|UCF_KeyCode_ContextMenu|UCF_KeyCode_TurnOff|UCF_KeyCode_Sleep|UCF_KeyCode_Numpad0|UCF_KeyCode_Numpad1|UCF_KeyCode_Numpad2|UCF_KeyCode_Numpad3|UCF_KeyCode_Numpad4|UCF_KeyCode_Numpad5|UCF_KeyCode_Numpad6|UCF_KeyCode_Numpad7|UCF_KeyCode_Numpad8|UCF_KeyCode_Numpad9|UCF_KeyCode_NumpadAsterisk|UCF_KeyCode_NumpadPlus|UCF_KeyCode_NumpadMinus|UCF_KeyCode_NumpadComma|UCF_KeyCode_NumpadSlash|UCF_KeyCode_F1|UCF_KeyCode_F2|UCF_KeyCode_F3|UCF_KeyCode_F4|UCF_KeyCode_F5|UCF_KeyCode_F6|UCF_KeyCode_F7|UCF_KeyCode_F8|UCF_KeyCode_F9|UCF_KeyCode_F10|UCF_KeyCode_F11|UCF_KeyCode_F12|UCF_KeyCode_NumLock|UCF_KeyCode_ScrollLock|UCF_KeyCode_OpenBracket|UCF_KeyCode_Plus|UCF_KeyCode_Comma|UCF_KeyCode_Dash|UCF_KeyCode_Dot|UCF_KeyCode_Pipe|UCF_KeyCode_Semicolon|UCF_KeyCode_Minus|UCF_KeyCode_GreatAccent|UCF_KeyCode_Equals|UCF_KeyCode_SingleQuote} UCF_KeyCode */
+
     /**
-     * KeyCodes enumeration
-     *
-     * @class
-     *
-     *
+     * @typedef {Object} UCF_KeyCodeEnum
+     * @property {UCF_KeyCode_Backspace} BACKSPACE
+     * @property {UCF_KeyCode_Tab} TAB
+     * @property {UCF_KeyCode_Enter} ENTER
+     * @property {UCF_KeyCode_Shift} SHIFT
+     * @property {UCF_KeyCode_Control} CONTROL
+     * @property {UCF_KeyCode_Alt} ALT
+     * @property {UCF_KeyCode_Break} BREAK
+     * @property {UCF_KeyCode_CapsLock} CAPS_LOCK
+     * @property {UCF_KeyCode_Backslash} BACKSLASH
+     * @property {UCF_KeyCode_Escape} ESCAPE
+     * @property {UCF_KeyCode_Space} SPACE
+     * @property {UCF_KeyCode_PageUp} PAGE_UP
+     * @property {UCF_KeyCode_PageDown} PAGE_DOWN
+     * @property {UCF_KeyCode_End} END
+     * @property {UCF_KeyCode_Home} HOME
+     * @property {UCF_KeyCode_ArrowLeft} ARROW_LEFT
+     * @property {UCF_KeyCode_ArrowUp} ARROW_UP
+     * @property {UCF_KeyCode_ArrowRight} ARROW_RIGHT
+     * @property {UCF_KeyCode_ArrowDown} ARROW_DOWN
+     * @property {UCF_KeyCode_Print} PRINT
+     * @property {UCF_KeyCode_Insert} INSERT
+     * @property {UCF_KeyCode_Delete} DELETE
+     * @property {UCF_KeyCode_0} _0
+     * @property {UCF_KeyCode_1} _1
+     * @property {UCF_KeyCode_2} _2
+     * @property {UCF_KeyCode_3} _3
+     * @property {UCF_KeyCode_4} _4
+     * @property {UCF_KeyCode_5} _5
+     * @property {UCF_KeyCode_6} _6
+     * @property {UCF_KeyCode_7} _7
+     * @property {UCF_KeyCode_8} _8
+     * @property {UCF_KeyCode_9} _9
+     * @property {UCF_KeyCode_A} A
+     * @property {UCF_KeyCode_B} B
+     * @property {UCF_KeyCode_C} C
+     * @property {UCF_KeyCode_D} D
+     * @property {UCF_KeyCode_E} E
+     * @property {UCF_KeyCode_F} F
+     * @property {UCF_KeyCode_G} G
+     * @property {UCF_KeyCode_H} H
+     * @property {UCF_KeyCode_I} I
+     * @property {UCF_KeyCode_J} J
+     * @property {UCF_KeyCode_K} K
+     * @property {UCF_KeyCode_L} L
+     * @property {UCF_KeyCode_M} M
+     * @property {UCF_KeyCode_N} N
+     * @property {UCF_KeyCode_O} O
+     * @property {UCF_KeyCode_P} P
+     * @property {UCF_KeyCode_Q} Q
+     * @property {UCF_KeyCode_R} R
+     * @property {UCF_KeyCode_S} S
+     * @property {UCF_KeyCode_T} T
+     * @property {UCF_KeyCode_U} U
+     * @property {UCF_KeyCode_V} V
+     * @property {UCF_KeyCode_W} W
+     * @property {UCF_KeyCode_X} X
+     * @property {UCF_KeyCode_Y} Y
+     * @property {UCF_KeyCode_Z} Z
+     * @property {UCF_KeyCode_Windows} WINDOWS
+     * @property {UCF_KeyCode_ContextMenu} CONTEXT_MENU
+     * @property {UCF_KeyCode_TurnOff} TURN_OFF
+     * @property {UCF_KeyCode_Sleep} SLEEP
+     * @property {UCF_KeyCode_Numpad0} NUMPAD_0
+     * @property {UCF_KeyCode_Numpad1} NUMPAD_1
+     * @property {UCF_KeyCode_Numpad2} NUMPAD_2
+     * @property {UCF_KeyCode_Numpad3} NUMPAD_3
+     * @property {UCF_KeyCode_Numpad4} NUMPAD_4
+     * @property {UCF_KeyCode_Numpad5} NUMPAD_5
+     * @property {UCF_KeyCode_Numpad6} NUMPAD_6
+     * @property {UCF_KeyCode_Numpad7} NUMPAD_7
+     * @property {UCF_KeyCode_Numpad8} NUMPAD_8
+     * @property {UCF_KeyCode_Numpad9} NUMPAD_9
+     * @property {UCF_KeyCode_NumpadAsterisk} NUMPAD_ASTERISK
+     * @property {UCF_KeyCode_NumpadPlus} NUMPAD_PLUS
+     * @property {UCF_KeyCode_NumpadMinus} NUMPAD_MINUS
+     * @property {UCF_KeyCode_NumpadComma} NUMPAD_COMMA
+     * @property {UCF_KeyCode_NumpadSlash} NUMPAD_SLASH
+     * @property {UCF_KeyCode_F1} F1
+     * @property {UCF_KeyCode_F2} F2
+     * @property {UCF_KeyCode_F3} F3
+     * @property {UCF_KeyCode_F4} F4
+     * @property {UCF_KeyCode_F5} F5
+     * @property {UCF_KeyCode_F6} F6
+     * @property {UCF_KeyCode_F7} F7
+     * @property {UCF_KeyCode_F8} F8
+     * @property {UCF_KeyCode_F9} F9
+     * @property {UCF_KeyCode_F10} F10
+     * @property {UCF_KeyCode_F11} F11
+     * @property {UCF_KeyCode_F12} F12
+     * @property {UCF_KeyCode_NumLock} NUM_LOCK
+     * @property {UCF_KeyCode_ScrollLock} SCROLL_LOCK
+     * @property {UCF_KeyCode_OpenBracket} OPEN_BRACKET
+     * @property {UCF_KeyCode_Plus} PLUS
+     * @property {UCF_KeyCode_Comma} COMMA
+     * @property {UCF_KeyCode_Dash} DASH
+     * @property {UCF_KeyCode_Dot} DOT
+     * @property {UCF_KeyCode_Pipe} PIPE
+     * @property {UCF_KeyCode_Semicolon} SEMICOLON
+     * @property {UCF_KeyCode_Minus} MINUS
+     * @property {UCF_KeyCode_GreatAccent} GREAT_ACCENT
+     * @property {UCF_KeyCode_Equals} EQUALS
+     * @property {UCF_KeyCode_SingleQuote} SINGLE_QUOTE
+     */
+
+    /**
      * @see KeyNames
-     * @version
+     * @type {UCF_KeyCodeEnum}
      */
     function UCF_KeyCodes() {
         if (__UCF_COVERAGE__) {
@@ -1381,6 +1719,7 @@ var sap = window.sap || {};
     UCF_KeyCodes["ALT"] = 18;
     UCF_KeyCodes["BREAK"] = 19;
     UCF_KeyCodes["CAPS_LOCK"] = 20;
+    UCF_KeyCodes["BACKSLASH"] = 22;
     UCF_KeyCodes["ESCAPE"] = 27;
     UCF_KeyCodes["SPACE"] = 32;
     UCF_KeyCodes["PAGE_UP"] = 33;
@@ -1474,7 +1813,6 @@ var sap = window.sap || {};
     UCF_KeyCodes["GREAT_ACCENT"] = 220;
     UCF_KeyCodes["EQUALS"] = 221;
     UCF_KeyCodes["SINGLE_QUOTE"] = 222;
-    UCF_KeyCodes["BACKSLASH"] = 22;
 
     /**
      * Mapping between key code and his string representation
@@ -1624,6 +1962,17 @@ var sap = window.sap || {};
         ;
         /** @type {boolean} */
         this["bIsDestroyed"] = false;
+
+        /** @type {Object<string,{fFunction: function(): void, sId: string}>|Object<string,number>} */
+        this["mTimeouts"] = {};
+        /** @type {Object<string,{fFunction: function(): void, sId: string}>|Object<string,number>} */
+        this["mIntervals"] = {};
+        /** @type {Object<string, string>} */
+        this["mImmediates"] = {};
+        /** @type {Object<string, number>} */
+        this["mAnimationFrames"] = {};
+        /** @type {Object<string, number>} */
+        this["mIdleCallbacks"] = {};
     };window["UCF_Object"] = UCF_Object;
     ;
     if (__UCF_COVERAGE__) {
@@ -1642,10 +1991,31 @@ var sap = window.sap || {};
         if (__UCF_COVERAGE__) {
             UCF_Object["_"]["destroy"]++;
         }
-        ;  // eslint-disable-line ur/no-memory-leaks
+        ;  // eslint-disable-line @ur/no-memory-leaks
         if (!this["bIsDestroyed"]) {
             if (UCF_Global["_checkLeaks"]) {
                 UCF_JsUtil["checkPossibleLeaks"](this);
+            }
+
+            if (__UCF_IE6__) {
+                UCF_JsUtil["forEach"](UCF_JsUtil["values"](this["mTimeouts"]), function (_) {
+                    UCF_JsUtil["clearDelayedCall"](_["sId"]);
+                });
+                this["mTimeouts"] = null;
+                UCF_JsUtil["forEach"](UCF_JsUtil["values"](this["mIntervals"]), function (_) {
+                    UCF_JsUtil["clearIntervalCall"](_["sId"]);
+                });
+                this["mIntervals"] = null;
+            } else {
+                if (this["cancelAllAsyncs"]) {
+                    this["cancelAllAsyncs"](window["clearTimeout"], this["mTimeouts"]);
+                    this["cancelAllAsyncs"](window["clearInterval"], this["mIntervals"]);
+                }
+            }
+            if (this["cancelAllAsyncs"]) {
+                this["cancelAllAsyncs"](UCF_JsUtil["cancelImmediate"], this["mImmediates"]);
+                this["cancelAllAsyncs"](UCF_JsUtil["cancelAnimationFrame"], this["mAnimationFrames"]);
+                this["cancelAllAsyncs"](UCF_JsUtil["cancelIdleCallback"], this["mIdleCallbacks"]);
             }
 
             this["bIsDestroyed"] = true;
@@ -1657,10 +2027,341 @@ var sap = window.sap || {};
     }
     ;
 
+// #region setTimeout =========================================================
     /**
-     * Returns an interface for the object
-     * @return {UCF_Interface} The interface for the object
+     * @protected
+     * @param {function(): void} fFunction
+     * @param {number} [iTimeoutMs=0]
+     * @param {string} [sId]
+     * @return {string}
+     */
+    UCF_Object["prototype"]["setTimeout"] = __UCF_IE6__
+        ? function (fFunction, iTimeoutMs, sId) {
+            if (typeof sId !== 'string') {
+                sId = UCF_JsUtil["sGetUID"]();
+            }
+
+            if (!(sId in this["mTimeouts"])) {
+                this["mTimeouts"][sId] = {
+                    "fFunction": fFunction,
+                    "sId": UCF_JsUtil["delayedCall"](iTimeoutMs || 0, this, 'resolveTimeout', [sId])
+                };
+            }
+
+            return sId;
+        }
+        : function (fFunction, iTimeoutMs, sId) {
+            return this["sRequestAsync"](fFunction, iTimeoutMs, sId, window["setTimeout"], this["mTimeouts"]);
+        };
+
+    if (__UCF_IE6__) {
+        /**
+         * @private
+         * @param {string} sId
+         */
+        UCF_Object["prototype"]["resolveTimeout"] = function (sId) {
+            ;
+            if (__UCF_COVERAGE__) {
+                UCF_Object["_"]["resolveTimeout"]++;
+            }
+            ;
+            if (sId in this["mTimeouts"]) {
+                this["mTimeouts"][sId]["fFunction"]();
+                delete this["mTimeouts"][sId];
+            }
+        };
+        ;
+        if (__UCF_COVERAGE__) {
+            UCF_Object["_"]["resolveTimeout"] = 0;
+        }
+        ;
+    }
+
+    /**
+     * @protected
+     * @param {string} sId
+     */
+    UCF_Object["prototype"]["clearTimeout"] = __UCF_IE6__
+        ? function (sId) {
+            if (sId in this["mTimeouts"]) {
+                UCF_JsUtil["clearDelayedCall"](this["mTimeouts"][sId]["sId"]);
+                delete this["mTimeouts"][sId];
+            }
+        }
+        : function (sId) {
+            this["cancelAsync"](sId, window["clearTimeout"], this["mTimeouts"]);
+        };
+// #endregion
+// #region setInterval ========================================================
+    /**
+     * @protected
+     * @param {function(): void} fFunction
+     * @param {number} [iIntervalMs=0]
+     * @param {string} [sId]
+     * @return {string}
+     */
+    UCF_Object["prototype"]["setInterval"] = __UCF_IE6__
+        ? function (fFunction, iIntervalMs, sId) {
+            if (typeof sId !== 'string') {
+                sId = UCF_JsUtil["sGetUID"]();
+            }
+
+            if (!(sId in this["mIntervals"])) {
+                this["mIntervals"][sId] = {
+                    "fFunction": fFunction,
+                    "sId": UCF_JsUtil["intervalCall"](iIntervalMs || 0, this, 'resolveInterval', [sId])
+                };
+            }
+
+            return sId;
+        }
+        : function (fFunction, iIntervalMs, sId) {
+            return this["sRequestAsync"](fFunction, iIntervalMs, sId, window["setInterval"], this["mIntervals"]);
+        };
+
+    if (__UCF_IE6__) {
+        /**
+         * @private
+         * @param {string} sId
+         */
+        UCF_Object["prototype"]["resolveInterval"] = function (sId) {
+            ;
+            if (__UCF_COVERAGE__) {
+                UCF_Object["_"]["resolveInterval"]++;
+            }
+            ;
+            if (sId in this["mIntervals"]) {
+                this["mIntervals"][sId]["fFunction"]();
+            }
+        };
+        ;
+        if (__UCF_COVERAGE__) {
+            UCF_Object["_"]["resolveInterval"] = 0;
+        }
+        ;
+    }
+
+    /**
+     * @protected
+     * @param {string} sId
+     */
+    UCF_Object["prototype"]["clearInterval"] = __UCF_IE6__
+        ? function (sId) {
+            if (sId in this["mIntervals"]) {
+                UCF_JsUtil["clearIntervalCall"](this["mIntervals"][sId]["sId"]);
+                delete this["mIntervals"][sId];
+            }
+        }
+        : function (sId) {
+            this["cancelAsync"](sId, window["clearInterval"], this["mIntervals"]);
+        };
+// #endregion
+// #region setImmediate =======================================================
+    /**
+     * @protected
+     * @param {function(): void} fFunction
+     * @param {string} sId
+     * @return {string}
+     */
+    UCF_Object["prototype"]["setImmediate"] = function (fFunction, sId) {
+        ;
+        if (__UCF_COVERAGE__) {
+            UCF_Object["_"]["setImmediate"]++;
+        }
+        ;
+        return this["sRequestAsync"](fFunction, null, sId, UCF_JsUtil["setImmediate"], this["mImmediates"]);
+    };
+    ;
+    if (__UCF_COVERAGE__) {
+        UCF_Object["_"]["setImmediate"] = 0;
+    }
+    ;
+
+    /**
+     * @protected
+     * @param {string} sId
+     */
+    UCF_Object["prototype"]["cancelImmediate"] = function (sId) {
+        ;
+        if (__UCF_COVERAGE__) {
+            UCF_Object["_"]["cancelImmediate"]++;
+        }
+        ;
+        this["cancelAsync"](sId, UCF_JsUtil["cancelImmediate"], this["mImmediates"]);
+    };
+    ;
+    if (__UCF_COVERAGE__) {
+        UCF_Object["_"]["cancelImmediate"] = 0;
+    }
+    ;
+// #endregion
+// #region requestAnimationFrame ==============================================
+    /**
+     * @protected
+     * @param {FrameRequestCallback} fFunction
+     * @param {string} [sId]
+     * @return {string}
+     */
+    UCF_Object["prototype"]["requestAnimationFrame"] = function (fFunction, sId) {
+        ;
+        if (__UCF_COVERAGE__) {
+            UCF_Object["_"]["requestAnimationFrame"]++;
+        }
+        ;
+        return this["sRequestAsync"](fFunction, null, sId, UCF_JsUtil["requestAnimationFrame"], this["mAnimationFrames"]);
+    };
+    ;
+    if (__UCF_COVERAGE__) {
+        UCF_Object["_"]["requestAnimationFrame"] = 0;
+    }
+    ;
+
+    /**
+     * @protected
+     * @param {string} sId
+     */
+    UCF_Object["prototype"]["cancelAnimationFrame"] = function (sId) {
+        ;
+        if (__UCF_COVERAGE__) {
+            UCF_Object["_"]["cancelAnimationFrame"]++;
+        }
+        ;
+        this["cancelAsync"](sId, UCF_JsUtil["cancelAnimationFrame"], this["mAnimationFrames"]);
+    };
+    ;
+    if (__UCF_COVERAGE__) {
+        UCF_Object["_"]["cancelAnimationFrame"] = 0;
+    }
+    ;
+// #endregion
+// #region requestIdleCallback ================================================
+    /**
+     * @protected
+     * @param {function({didTimeout: boolean, timeRemaining: function(): number}): void} fFunction
+     * @param {{timeout: number}} oOptions
+     * @param {string} [sId]
+     * @return {string}
+     */
+    UCF_Object["prototype"]["requestIdleCallback"] = function (fFunction, oOptions, sId) {
+        ;
+        if (__UCF_COVERAGE__) {
+            UCF_Object["_"]["requestIdleCallback"]++;
+        }
+        ;
+        return this["sRequestAsync"](fFunction, oOptions, sId, UCF_JsUtil["requestIdleCallback"], this["mIdleCallbacks"]);
+    };
+    ;
+    if (__UCF_COVERAGE__) {
+        UCF_Object["_"]["requestIdleCallback"] = 0;
+    }
+    ;
+
+    /**
+     * @protected
+     * @param {string} sId
+     */
+    UCF_Object["prototype"]["cancelIdleCallback"] = function (sId) {
+        ;
+        if (__UCF_COVERAGE__) {
+            UCF_Object["_"]["cancelIdleCallback"]++;
+        }
+        ;
+        this["cancelAsync"](sId, UCF_JsUtil["cancelIdleCallback"], this["mIdleCallbacks"]);
+    };
+    ;
+    if (__UCF_COVERAGE__) {
+        UCF_Object["_"]["cancelIdleCallback"] = 0;
+    }
+    ;
+// #endregion
+// #region internal utilities =================================================
+    /**
      * @private
+     * @template {function(...any): void} T
+     * @template U
+     * @template V
+     * @param {T} fFunction
+     * @param {any} oOptions
+     * @param {string} sId
+     * @param {function(T, U): V} fAsyncCreator
+     * @param {Object<string, V>} mAsyncCollector
+     * @return {string}
+     */
+    UCF_Object["prototype"]["sRequestAsync"] = function (fFunction, oOptions, sId, fAsyncCreator, mAsyncCollector) {
+        ;
+        if (__UCF_COVERAGE__) {
+            UCF_Object["_"]["sRequestAsync"]++;
+        }
+        ;
+        if (typeof sId !== 'string') {
+            sId = UCF_JsUtil["sGetUID"]();
+        }
+
+        if (!(sId in mAsyncCollector)) {
+            mAsyncCollector[sId] = fAsyncCreator(function () {
+                delete mAsyncCollector[sId];
+
+                fFunction["apply"](this, arguments);
+            }, oOptions);
+        }
+
+        return sId;
+    };
+    ;
+    if (__UCF_COVERAGE__) {
+        UCF_Object["_"]["sRequestAsync"] = 0;
+    }
+    ;
+
+    /**
+     * @private
+     * @template T
+     * @param {string} sId
+     * @param {function(T): void} fAsyncCanceller
+     * @param {Object<string, T>} mAsyncCollector
+     */
+    UCF_Object["prototype"]["cancelAsync"] = function (sId, fAsyncCanceller, mAsyncCollector) {
+        ;
+        if (__UCF_COVERAGE__) {
+            UCF_Object["_"]["cancelAsync"]++;
+        }
+        ;
+        if (sId in mAsyncCollector) {
+            fAsyncCanceller(mAsyncCollector[sId]);
+            delete mAsyncCollector[sId];
+        }
+    };
+    ;
+    if (__UCF_COVERAGE__) {
+        UCF_Object["_"]["cancelAsync"] = 0;
+    }
+    ;
+
+    /**
+     * @private
+     * @template T
+     * @param {function(T): void} fAsyncCanceller
+     * @param {Object<string, T>} mAsyncCollector
+     */
+    UCF_Object["prototype"]["cancelAllAsyncs"] = function (fAsyncCanceller, mAsyncCollector) {
+        ;
+        if (__UCF_COVERAGE__) {
+            UCF_Object["_"]["cancelAllAsyncs"]++;
+        }
+        ;
+        UCF_JsUtil["forEach"](UCF_JsUtil["values"](mAsyncCollector), fAsyncCanceller);
+        mAsyncCollector = null;
+    };
+    ;
+    if (__UCF_COVERAGE__) {
+        UCF_Object["_"]["cancelAllAsyncs"] = 0;
+    }
+    ;
+// #endregion
+// #region oGetInterface ======================================================
+    /**
+     * @protected
+     * @return {UCF_Interface} The interface for the object
      */
     UCF_Object["prototype"]["oGetInterface"] = function () {
         ;
@@ -1675,6 +2376,7 @@ var sap = window.sap || {};
         UCF_Object["_"]["oGetInterface"] = 0;
     }
     ;
+// #endregion
 
     /* global UCF_Object */
 /// <reference path="./Object.js"/>
@@ -1752,7 +2454,7 @@ var sap = window.sap || {};
         ;
 
         /** @type {number} */
-        // eslint-disable-next-line ur/no-memory-leaks
+        // eslint-disable-next-line @ur/no-memory-leaks
         this["iId"] = iId;
         /** @type {T} */
         this["mParameters"] = mParameters;
@@ -2060,7 +2762,7 @@ var sap = window.sap || {};
         // Don't null E_EVENTS in #destroy(). A control may be destroyed while firing
         // an event and accessing E_EVENTS afterwards (e.g. UCF_Button#handleClick())
         // then throws a NullPointerException.
-        // eslint-disable-next-line ur/no-memory-leaks
+        // eslint-disable-next-line @ur/no-memory-leaks
         this["E_EVENTS"] = this["E_EVENTS"] || {};
     };window["UCF_EventProvider"] = UCF_EventProvider;
     ;
@@ -2774,11 +3476,11 @@ var sap = window.sap || {};
      * on this interface
      */
     function UCF_Interface(oObject, aMethods) {
-        aMethods=undefined;
+        aMethods = undefined; // add by nlog
         if (__UCF_COVERAGE__) {
             UCF_Interface["_"]["UCF_Interface"]++;
         }
-        ;  // eslint-disable-line ur/no-memory-leaks
+        ;  // eslint-disable-line @ur/no-memory-leaks
         /** @type {string} */
         var sMethodName;
         /** @type {number} */
@@ -2788,7 +3490,7 @@ var sap = window.sap || {};
 
         if (oObject && aMethods) {
             // this function is inline to not appear as a method on the interface
-            // eslint-disable-next-line require-jsdoc, ur/no-memory-leaks
+            // eslint-disable-next-line require-jsdoc, @ur/no-memory-leaks
             fCreateDelegator = function (oObj, sMethod) {
                 return function () {
                     return oObj[sMethod]["apply"](oObj, arguments);
@@ -2798,7 +3500,7 @@ var sap = window.sap || {};
             // create functions for all delegated methods
             for (i = 0; i < aMethods["length"]; i++) {
                 sMethodName = aMethods[i];
-                // eslint-disable-next-line ur/no-memory-leaks
+                // eslint-disable-next-line @ur/no-memory-leaks
                 this[sMethodName] = fCreateDelegator(oObject, sMethodName);
             }
         } else {
@@ -2870,9 +3572,9 @@ var sap = window.sap || {};
         }
         ;
         /** @type {number} */
-        this["iTop"] = iTop; //eslint-disable-line ur/no-memory-leaks
+        this["iTop"] = iTop; //eslint-disable-line @ur/no-memory-leaks
         /** @type {number} */
-        this["iLeft"] = iLeft; //eslint-disable-line ur/no-memory-leaks
+        this["iLeft"] = iLeft; //eslint-disable-line @ur/no-memory-leaks
     };window["UCF_Position"] = UCF_Position;
     ;
     if (__UCF_COVERAGE__) {
@@ -2923,13 +3625,13 @@ var sap = window.sap || {};
         }
         ;
         /** @type {number} */
-        this["iTop"] = iTop; //eslint-disable-line ur/no-memory-leaks
+        this["iTop"] = iTop; //eslint-disable-line @ur/no-memory-leaks
         /** @type {number} */
-        this["iLeft"] = iLeft; //eslint-disable-line ur/no-memory-leaks
+        this["iLeft"] = iLeft; //eslint-disable-line @ur/no-memory-leaks
         /** @type {number} */
-        this["iWidth"] = iWidth; //eslint-disable-line ur/no-memory-leaks
+        this["iWidth"] = iWidth; //eslint-disable-line @ur/no-memory-leaks
         /** @type {number} */
-        this["iHeight"] = iHeight; //eslint-disable-line ur/no-memory-leaks
+        this["iHeight"] = iHeight; //eslint-disable-line @ur/no-memory-leaks
     };window["UCF_Rectangle"] = UCF_Rectangle;
     ;
     if (__UCF_COVERAGE__) {
@@ -2955,83 +3657,6 @@ var sap = window.sap || {};
     ;
     if (__UCF_COVERAGE__) {
         UCF_Rectangle["_"]["destroy"] = 0;
-    }
-    ;
-
-    /* global UCF_Object */
-
-/// <reference path="../Object.js"/>
-
-    /**
-     * A size is defined by the width and the height
-     *
-     *
-     *
-     * @class
-     * @param {number} iWidth the width
-     * @param {number} iHeight the height
-     */
-    function UCF_Size(iWidth, iHeight) {
-        if (__UCF_COVERAGE__) {
-            UCF_Size["_"]["UCF_Size"]++;
-        }
-        ;
-        this["iWidth"] = iWidth; //eslint-disable-line ur/no-memory-leaks
-        this["iHeight"] = iHeight; //eslint-disable-line ur/no-memory-leaks
-    };window["UCF_Size"] = UCF_Size;
-    ;
-    if (__UCF_COVERAGE__) {
-        window.UCF_classes.push("UCF_Size");
-        UCF_Size["_"] = {UCF_Size: 0};
-    }
-    ;
-    UCF_Size["prototype"] = new UCF_Object();
-    UCF_Size.prototype["sClassName"] = "UCF_Size";
-
-    /**
-     * equals
-     *
-     * @private
-     * @param {UCF_Size} oSize the size to compare
-     * @return {boolean} true if objects are equal
-     */
-    UCF_Size["prototype"]["equals"] = function (oSize) {
-        ;
-        if (__UCF_COVERAGE__) {
-            UCF_Size["_"]["equals"]++;
-        }
-        ;
-        if (oSize === this) {
-            return true;
-        }
-
-        if (oSize instanceof UCF_Size) {
-            return this["iWidth"] === oSize["iWidth"] && this["iHeight"] === oSize["iHeight"];
-        }
-
-        return false;
-    };
-    ;
-    if (__UCF_COVERAGE__) {
-        UCF_Size["_"]["equals"] = 0;
-    }
-    ;
-
-    /**
-     * Destructor
-     */
-    UCF_Size["prototype"]["destroy"] = function () {
-        ;
-        if (__UCF_COVERAGE__) {
-            UCF_Size["_"]["destroy"]++;
-        }
-        ;
-
-        UCF_Object.prototype["destroy"]["apply"](this, arguments);
-    };
-    ;
-    if (__UCF_COVERAGE__) {
-        UCF_Size["_"]["destroy"] = 0;
     }
     ;
 
@@ -3688,12 +4313,7 @@ var sap = window.sap || {};
             UCF_AriaStateHelper["_"]["setSetsize"]++;
         }
         ;
-        if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(typeof iSetSize === 'number', "typeof iSetSize === 'number'", "AriaStateHelper.js(368): setSetsize");
-        }
-        ;
-
-        UCF_AriaStateHelper["setAttribute"](oDomRef, 'aria-setsize', iSetSize);
+        UCF_AriaStateHelper["setOrRemoveAttribute"](oDomRef, 'aria-setsize', iSetSize);
     };
     ;
     if (__UCF_COVERAGE__) {
@@ -3715,16 +4335,33 @@ var sap = window.sap || {};
             UCF_AriaStateHelper["_"]["setPosinset"]++;
         }
         ;
-        if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(typeof iPos === 'number', "typeof iPos === 'number'", "AriaStateHelper.js(382): setPosinset");
-        }
-        ;
-
-        UCF_AriaStateHelper["setAttribute"](oDomRef, 'aria-posinset', iPos);
+        UCF_AriaStateHelper["setOrRemoveAttribute"](oDomRef, 'aria-posinset', iPos);
     };
     ;
     if (__UCF_COVERAGE__) {
         UCF_AriaStateHelper["_"]["setPosinset"] = 0;
+    }
+    ;
+
+    /**
+     * Sets whether the dom ref is hidden
+     *
+     * @private
+     * @static
+     * @param {HTMLElement} oDomRef The dom ref
+     * @param { boolean } bHidden The hidden state
+     */
+    UCF_AriaStateHelper["setHidden"] = function (oDomRef, bHidden) {
+        ;
+        if (__UCF_COVERAGE__) {
+            UCF_AriaStateHelper["_"]["setHidden"]++;
+        }
+        ;
+        UCF_AriaStateHelper["setOrRemoveAttribute"](oDomRef, 'aria-hidden', bHidden && 'true');
+    };
+    ;
+    if (__UCF_COVERAGE__) {
+        UCF_AriaStateHelper["_"]["setHidden"] = 0;
     }
     ;
 
@@ -3743,7 +4380,7 @@ var sap = window.sap || {};
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(typeof bState === 'boolean', "typeof bState === 'boolean'", "AriaStateHelper.js(396): setPressed");
+            UCF_Tracer.assert(typeof bState === 'boolean', "typeof bState === 'boolean'", "AriaStateHelper.js(404): setPressed");
         }
         ;
 
@@ -3768,7 +4405,7 @@ var sap = window.sap || {};
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(bState === null || bState || !bState, "bState === null || bState || !bState", "AriaStateHelper.js(408): setChecked");
+            UCF_Tracer.assert(bState === null || bState || !bState, "bState === null || bState || !bState", "AriaStateHelper.js(416): setChecked");
         }
         ;
 
@@ -3800,11 +4437,11 @@ var sap = window.sap || {};
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(oDomRef != null, "oDomRef != null", "AriaStateHelper.js(427): setTabIndex");
+            UCF_Tracer.assert(oDomRef != null, "oDomRef != null", "AriaStateHelper.js(435): setTabIndex");
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(typeof bSet === 'boolean', "typeof bSet === 'boolean'", "AriaStateHelper.js(428): setTabIndex");
+            UCF_Tracer.assert(typeof bSet === 'boolean', "typeof bSet === 'boolean'", "AriaStateHelper.js(436): setTabIndex");
         }
         ;
 
@@ -3842,6 +4479,29 @@ var sap = window.sap || {};
     ;
     if (__UCF_COVERAGE__) {
         UCF_AriaStateHelper["_"]["setRole"] = 0;
+    }
+    ;
+
+    /**
+     * Sets the aria role description of the element with the given dom ref
+     *
+     * @private
+     * @static
+     * @param {HTMLElement} oDomRef The dom ref
+     * @param {string} sText The description of the role that will be assigned to
+     * the element with the given dom ref
+     */
+    UCF_AriaStateHelper["setRoleDescription"] = function (oDomRef, sText) {
+        ;
+        if (__UCF_COVERAGE__) {
+            UCF_AriaStateHelper["_"]["setRoleDescription"]++;
+        }
+        ;
+        UCF_AriaStateHelper["setOrRemoveAttribute"](oDomRef, 'role-description', sText);
+    };
+    ;
+    if (__UCF_COVERAGE__) {
+        UCF_AriaStateHelper["_"]["setRoleDescription"] = 0;
     }
     ;
 
@@ -3918,19 +4578,19 @@ var sap = window.sap || {};
         var sLabelText;
 
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(oLS != null, "oLS != null", "AriaStateHelper.js(499): setLabelInfo");
+            UCF_Tracer.assert(oLS != null, "oLS != null", "AriaStateHelper.js(520): setLabelInfo");
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(typeof sId === 'string', "typeof sId === 'string'", "AriaStateHelper.js(500): setLabelInfo");
+            UCF_Tracer.assert(typeof sId === 'string', "typeof sId === 'string'", "AriaStateHelper.js(521): setLabelInfo");
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(oAriaDomRef != null, "oAriaDomRef != null", "AriaStateHelper.js(501): setLabelInfo");
+            UCF_Tracer.assert(oAriaDomRef != null, "oAriaDomRef != null", "AriaStateHelper.js(522): setLabelInfo");
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(typeof sAriaAttribute === 'string', "typeof sAriaAttribute === 'string'", "AriaStateHelper.js(502): setLabelInfo");
+            UCF_Tracer.assert(typeof sAriaAttribute === 'string', "typeof sAriaAttribute === 'string'", "AriaStateHelper.js(523): setLabelInfo");
         }
         ;
 
@@ -3956,7 +4616,7 @@ var sap = window.sap || {};
                     if (sLabelID) {
                         UCF_AriaStateHelper["addAriaLabelTag"](
                             oAriaDomRef,
-                            sLabelID + '-arialabel',
+                            sLabelID,
                             sAriaAttribute
                         );
                     }
@@ -4004,11 +4664,11 @@ var sap = window.sap || {};
         var i;
 
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(oLS != null, "oLS != null", "AriaStateHelper.js(563): oGetLabel");
+            UCF_Tracer.assert(oLS != null, "oLS != null", "AriaStateHelper.js(584): oGetLabel");
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(typeof sId === 'string', "typeof sId === 'string'", "AriaStateHelper.js(564): oGetLabel");
+            UCF_Tracer.assert(typeof sId === 'string', "typeof sId === 'string'", "AriaStateHelper.js(585): oGetLabel");
         }
         ;
 
@@ -4078,7 +4738,7 @@ var sap = window.sap || {};
         var sDescribedByIds;
 
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(oDomRef != null, "oDomRef != null", "AriaStateHelper.js(611): getDescriptionByElements");
+            UCF_Tracer.assert(oDomRef != null, "oDomRef != null", "AriaStateHelper.js(632): getDescriptionByElements");
         }
         ;
 
@@ -4141,7 +4801,7 @@ var sap = window.sap || {};
         var oAriaDiv;
 
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(typeof sText === 'string', "typeof sText === 'string'", "AriaStateHelper.js(659): setAlert");
+            UCF_Tracer.assert(typeof sText === 'string', "typeof sText === 'string'", "AriaStateHelper.js(680): setAlert");
         }
         ;
 
@@ -4150,7 +4810,7 @@ var sap = window.sap || {};
 
             if (oAriaDiv) {
                 UCF_AriaStateHelper["setRole"](oAriaDiv, 'alert');
-                oAriaDiv["innerHTML"] = UCF_XSSEncoder["encodeHTML"](sText);
+                UCF_DomUtil["setInnerHtml"](oAriaDiv, UCF_XSSEncoder["encodeHTML"](sText));
             }
         }
     };
@@ -4174,11 +4834,11 @@ var sap = window.sap || {};
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(oLS != null, "oLS != null", "AriaStateHelper.js(679): sGetMessageTypeString");
+            UCF_Tracer.assert(oLS != null, "oLS != null", "AriaStateHelper.js(700): sGetMessageTypeString");
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(typeof sType === 'string', "typeof sType === 'string'", "AriaStateHelper.js(680): sGetMessageTypeString");
+            UCF_Tracer.assert(typeof sType === 'string', "typeof sType === 'string'", "AriaStateHelper.js(701): sGetMessageTypeString");
         }
         ;
 
@@ -5230,12 +5890,10 @@ var sap = window.sap || {};
             UCF_Cache["_"]["UCF_Cache"]++;
         }
         ;
-        UCF_Object["apply"](this, arguments);
+        UCF_Object["apply"](this, []);
 
         /** @type {Object.<string, any>} */
         this["mEntries"] = {};
-        /** @type {Object.<string,number>} */
-        this["oAFs"] = {};
     };window["UCF_Cache"] = UCF_Cache;
     ;
     if (__UCF_COVERAGE__) {
@@ -5254,18 +5912,6 @@ var sap = window.sap || {};
             UCF_Cache["_"]["destroy"]++;
         }
         ;
-        /** @type {UCF_Cache} */
-        var self = this;
-
-        // cancel cached animationframes
-        UCF_JsUtil["forEach"](
-            UCF_JsUtil["keys"](this["oAFs"]),
-            function (sId) {
-                self["cancelAnimationFrame"](sId);
-            }
-        );
-        this["oAFs"] = null;
-
         // delete cached values. don't randomly destroy() values here, can't decide
         // if they have been created by cache owner.
         this["mEntries"] = null;
@@ -5371,66 +6017,6 @@ var sap = window.sap || {};
     ;
     if (__UCF_COVERAGE__) {
         UCF_Cache["_"]["invalidate"] = 0;
-    }
-    ;
-
-    /**
-     * Requests an animation frame if no animation frame is requested for the same
-     * sId already.
-     *
-     * @example
-     * var oCache = new UCF_Cache();
-     * oCache.requestAnimationFrame('first', function() { alert(1); });
-     * // => requests an animation frame to alert(1);
-     * oCache.requestAnimationFrame('first', function() { alert(2); });
-     * // => if the first animation frame hasn't been executed yet,
-     * // alert(2) will not be enqueued, because it is enqeueued for the same id
-     *
-     * @protected
-     * @param {string} sId the id to request the animation frame for
-     * @param {function(): void} fAnimationFrame the function to execute in the
-     * animation frame
-     */
-    UCF_Cache["prototype"]["requestAnimationFrame"] = function (sId, fAnimationFrame) {
-        ;
-        if (__UCF_COVERAGE__) {
-            UCF_Cache["_"]["requestAnimationFrame"]++;
-        }
-        ;
-        var self = this;
-
-        if (!(sId in this["oAFs"])) {
-            this["oAFs"][sId] = UCF_JsUtil["requestAnimationFrame"](function () {
-                fAnimationFrame();
-                delete self["oAFs"][sId];
-            });
-        }
-    };
-    ;
-    if (__UCF_COVERAGE__) {
-        UCF_Cache["_"]["requestAnimationFrame"] = 0;
-    }
-    ;
-
-    /**
-     * Cancels the animation frame requested for the sId
-     *
-     * @protected
-     * @param {string} sId the id of the animation frame to cancel
-     */
-    UCF_Cache["prototype"]["cancelAnimationFrame"] = function (sId) {
-        ;
-        if (__UCF_COVERAGE__) {
-            UCF_Cache["_"]["cancelAnimationFrame"]++;
-        }
-        ;
-        if (sId in this["oAFs"]) {
-            UCF_JsUtil["cancelAnimationFrame"](this["oAFs"][sId]);
-        }
-    };
-    ;
-    if (__UCF_COVERAGE__) {
-        UCF_Cache["_"]["cancelAnimationFrame"] = 0;
     }
     ;
 
@@ -5648,12 +6234,30 @@ var sap = window.sap || {};
             oDomRefContainer["innerHTML"] = "<div>No data available</div>";
         }
 
-        var oRange = oDomRefContainer["createTextRange"](),
-            oActiveElement = UCF_DomUtil["oGetActiveElement"]();
-
-        oRange["select"]();
-        oRange["execCommand"]("Copy");
-
+        var oActiveElement = UCF_DomUtil["oGetActiveElement"]();
+        if (oDomRefContainer["createTextRange"]) {
+            var oRange = oDomRefContainer["createTextRange"]();
+            oRange["select"]();
+            oRange["execCommand"]("Copy");
+        } else {
+            var oTextArea = document["createElement"]("textarea");
+            oTextArea["value"] = oDomRefContainer["innerHTML"];
+            document["body"]["appendChild"](oTextArea);
+            oTextArea["select"]();
+            try {
+                document["execCommand"]("copy");
+                if (__UCF_TRACE__) {
+                    UCF_Tracer.trace(INFO, 'Copying to clipboard was successful!', "ClipboardUtil.js(175): setHtmlToClipboard");
+                }
+                ;
+            } catch (err) {
+                if (__UCF_TRACE__) {
+                    UCF_Tracer.trace(INFO, 'Copying to clipboard was not successful!', "ClipboardUtil.js(177): setHtmlToClipboard");
+                }
+                ;
+            }
+            document["body"]["removeChild"](oTextArea);
+        }
         UCF_DomUtil["focusDomElement"](oActiveElement);
     };
     ;
@@ -5675,19 +6279,32 @@ var sap = window.sap || {};
         ;
 
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(typeof (oDomRefContent) === "object", "typeof(oDomRefContent) === \"object\"", "ClipboardUtil.js(179): convertClassToStyle");
+            UCF_Tracer.assert(typeof (oDomRefContent) === "object", "typeof(oDomRefContent) === \"object\"", "ClipboardUtil.js(191): convertClassToStyle");
         }
         ;
 
         if (oDomRefContent["tagName"] === "TABLE") {
-            oDomRefContent["style"]["borderCollapse"] = oDomRefContent["currentStyle"]["borderCollapse"];
+            oDomRefContent["style"]["borderCollapse"] = UCF_DomUtil["oGetComputedStyle"](oDomRefContent, null)["borderCollapse"];
             oDomRefContent["className"] = "";
-        } else if (oDomRefContent["className"] && oDomRefContent["currentStyle"]) {
-            oDomRefContent["style"]["backgroundColor"] = oDomRefContent["currentStyle"]["backgroundColor"];
+        } else if (oDomRefContent["className"]) {
+            oDomRefContent["style"]["backgroundColor"] = UCF_DomUtil["oGetComputedStyle"](oDomRefContent, null)["backgroundColor"];
             oDomRefContent["style"]["fontSize"] = "8pt";
-            oDomRefContent["style"]["fontFamily"] = "Arial,Helvetica,sans-serif;";
-
+            oDomRefContent["style"]["fontFamily"] = "Arial,Helvetica,sans-serif";
             oDomRefContent["className"] = "";
+        }
+
+        if (oDomRefContent["tagName"]) {
+            oDomRefContent["removeAttribute"]("lsdata");
+            oDomRefContent["removeAttribute"]("rr");
+            oDomRefContent["removeAttribute"]("rt");
+            oDomRefContent["removeAttribute"]("subct");
+            oDomRefContent["removeAttribute"]("ct");
+            oDomRefContent["removeAttribute"]("class");
+            oDomRefContent["removeAttribute"]("captionid");
+            oDomRefContent["removeAttribute"]("cc");
+            oDomRefContent["removeAttribute"]("ut");
+            oDomRefContent["removeAttribute"]("sst");
+            oDomRefContent["removeAttribute"]("headertype");
         }
 
         if (oDomRefContent["tagName"] === "TD" || oDomRefContent["tagName"] === "TH") {
@@ -6093,13 +6710,13 @@ var sap = window.sap || {};
             // https://developer.mozilla.org/en-US/docs/Web/API/Clipboard/writeText
             navigator["clipboard"]["writeText"](sText)["then"](function () {
                 if (__UCF_TRACE__) {
-                    UCF_Tracer.trace(INFO, 'Copying to clipboard was successful!', "ClipboardUtil.js(454): copyToClipboard");
+                    UCF_Tracer.trace(INFO, 'Copying to clipboard was successful!', "ClipboardUtil.js(479): copyToClipboard");
                 }
                 ;
                 fCallback(null);
             }, function (err) {
                 if (__UCF_TRACE__) {
-                    UCF_Tracer.trace(INFO, 'Could not copy text: ' + err, "ClipboardUtil.js(457): copyToClipboard");
+                    UCF_Tracer.trace(INFO, 'Could not copy text: ' + err, "ClipboardUtil.js(482): copyToClipboard");
                 }
                 ;
                 if (UCF_ClipboardUtil["oWriteToClipboard"]["bAlreadyTried"]) {
@@ -6192,20 +6809,20 @@ var sap = window.sap || {};
             UCF_ClipboardUtil["removeClipboardElement"]();
             if (bSuccess) {
                 if (__UCF_TRACE__) {
-                    UCF_Tracer.trace(INFO, 'Copying text command was successful!', "ClipboardUtil.js(537): fallbackCopyToClipboard");
+                    UCF_Tracer.trace(INFO, 'Copying text command was successful!', "ClipboardUtil.js(562): fallbackCopyToClipboard");
                 }
                 ;
                 fCallback(null);
             } else {
                 if (__UCF_TRACE__) {
-                    UCF_Tracer.trace(INFO, 'Could not copy text, try with popup', "ClipboardUtil.js(540): fallbackCopyToClipboard");
+                    UCF_Tracer.trace(INFO, 'Could not copy text, try with popup', "ClipboardUtil.js(565): fallbackCopyToClipboard");
                 }
                 ;
                 UCF_ClipboardUtil["writeToClipboardPopup"](sText, oLS, fCallback);
             }
         } catch (err) {
             if (__UCF_TRACE__) {
-                UCF_Tracer.trace(INFO, 'Could not copy text, give up', "ClipboardUtil.js(544): fallbackCopyToClipboard");
+                UCF_Tracer.trace(INFO, 'Could not copy text, give up', "ClipboardUtil.js(569): fallbackCopyToClipboard");
             }
             ;
             UCF_ClipboardUtil["removeClipboardElement"]();
@@ -6268,19 +6885,19 @@ var sap = window.sap || {};
             bSuccess = document["execCommand"]('copy');
             if (bSuccess) {
                 if (__UCF_TRACE__) {
-                    UCF_Tracer.trace(INFO, 'Copying text command was successful', "ClipboardUtil.js(594): copyToClipboard_iOS");
+                    UCF_Tracer.trace(INFO, 'Copying text command was successful', "ClipboardUtil.js(619): copyToClipboard_iOS");
                 }
                 ;
             } else {
                 if (__UCF_TRACE__) {
-                    UCF_Tracer.trace(INFO, 'Copying text command was not successful', "ClipboardUtil.js(596): copyToClipboard_iOS");
+                    UCF_Tracer.trace(INFO, 'Copying text command was not successful', "ClipboardUtil.js(621): copyToClipboard_iOS");
                 }
                 ;
                 UCF_ClipboardUtil["writeToClipboardPopup"](sText, oLS, fCallback);
             }
         } catch (err) {
             if (__UCF_TRACE__) {
-                UCF_Tracer.trace(INFO, 'Copying text command was not successful', "ClipboardUtil.js(600): copyToClipboard_iOS");
+                UCF_Tracer.trace(INFO, 'Copying text command was not successful', "ClipboardUtil.js(625): copyToClipboard_iOS");
             }
             ;
             UCF_ClipboardUtil["removeClipboardElement"]();
@@ -6309,7 +6926,7 @@ var sap = window.sap || {};
                 UCF_DomUtil["removeFromDom"](clipboardArea);
             } catch (err) {
                 if (__UCF_TRACE__) {
-                    UCF_Tracer.trace(INFO, 'Oops, unable to remove clipboardArea', "ClipboardUtil.js(616): removeClipboardElement");
+                    UCF_Tracer.trace(INFO, 'Oops, unable to remove clipboardArea', "ClipboardUtil.js(641): removeClipboardElement");
                 }
                 ;
             }
@@ -6504,7 +7121,7 @@ var sap = window.sap || {};
                 UCF_DomUtil["removeFromDom"](UCF_ClipboardUtil["oReadFromClipboard"]["oClipboardArea"]);
             } catch (err) {
                 if (__UCF_TRACE__) {
-                    UCF_Tracer.trace(INFO, 'Oops, unable to remove clipboardArea', "ClipboardUtil.js(757): readFromClipboardPopup");
+                    UCF_Tracer.trace(INFO, 'Oops, unable to remove clipboardArea', "ClipboardUtil.js(782): readFromClipboardPopup");
                 }
                 ;
             }
@@ -7197,8 +7814,6 @@ var sap = window.sap || {};
     UCF_ColorUtil.prototype["aPublicMethods"] = ["sColor", "sHex", "sFade", "sContrast", "fAlpha", "fLuma", "sMix"].concat(UCF_ColorUtil.prototype.aPublicMethods || []);
     /* global _assert, _measure, _trace, START, STOP, INFO, WARNING, ERROR */
 /// <reference path="../debug/Tracer.js"/>
-    /* global UCF_Size */
-/// <reference path="../types/Size.js"/>
     /* global UCF_JsUtil */
 /// <reference path="./JsUtil.js"/>
     /* global UCF_StringUtil */
@@ -7389,7 +8004,7 @@ var sap = window.sap || {};
         var aDottedIdRegexpResult;
 
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(typeof sSelector === 'string', "typeof sSelector === 'string'", "DomUtil.js(147): querySelectorAll");
+            UCF_Tracer.assert(typeof sSelector === 'string', "typeof sSelector === 'string'", "DomUtil.js(145): querySelectorAll");
         }
         ;
 
@@ -7401,7 +8016,7 @@ var sap = window.sap || {};
         // document.querySelectorAll => don't allow querySelectorAll if id contains .
         if (aDottedIdRegexpResult) {
             if (__UCF_TRACE__) {
-                UCF_Tracer.trace(WARNING, 'Searching for ID with "." in it (' + aDottedIdRegexpResult[0] + ') leads to unexpected results. Paraphrase with [id="' + aDottedIdRegexpResult[1] + '"] instead', "DomUtil.js(156): querySelectorAll");
+                UCF_Tracer.trace(WARNING, 'Searching for ID with "." in it (' + aDottedIdRegexpResult[0] + ') leads to unexpected results. Paraphrase with [id="' + aDottedIdRegexpResult[1] + '"] instead', "DomUtil.js(154): querySelectorAll");
             }
             ;
         }
@@ -7538,27 +8153,27 @@ var sap = window.sap || {};
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(oDomRef, "oDomRef", "DomUtil.js(260): attachEvent");
+            UCF_Tracer.assert(oDomRef, "oDomRef", "DomUtil.js(258): attachEvent");
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(typeof oDomRef === "object", "typeof oDomRef === \"object\"", "DomUtil.js(261): attachEvent");
+            UCF_Tracer.assert(typeof oDomRef === "object", "typeof oDomRef === \"object\"", "DomUtil.js(259): attachEvent");
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(sName, "sName", "DomUtil.js(262): attachEvent");
+            UCF_Tracer.assert(sName, "sName", "DomUtil.js(260): attachEvent");
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(typeof sName === "string", "typeof sName === \"string\"", "DomUtil.js(263): attachEvent");
+            UCF_Tracer.assert(typeof sName === "string", "typeof sName === \"string\"", "DomUtil.js(261): attachEvent");
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(fHandler, "fHandler", "DomUtil.js(264): attachEvent");
+            UCF_Tracer.assert(fHandler, "fHandler", "DomUtil.js(262): attachEvent");
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(typeof fHandler === "function", "typeof fHandler === \"function\"", "DomUtil.js(265): attachEvent");
+            UCF_Tracer.assert(typeof fHandler === "function", "typeof fHandler === \"function\"", "DomUtil.js(263): attachEvent");
         }
         ;
 
@@ -7577,10 +8192,7 @@ var sap = window.sap || {};
             // as of Chrome 56 (and Safari, too), touch event listeners added to the document and above default to passive==true; as
             // we need to call  preventDefault() in certain situations (e.g. to prevent the page from scrolling), we change this back
             // to passive==false; as of Chrome 73, this is also true for mousewheel listeners.
-            oDomRef["addEventListener"](sName, fHandler, sName["indexOf"]("touch") === 0 || sName["indexOf"]("mousewheel") === 0 ? {
-                "capture": bUseCapture,
-                "passive": false
-            } : bUseCapture);
+            oDomRef["addEventListener"](sName, fHandler, sName["indexOf"]("touch") === 0 || sName["indexOf"]("mousewheel") === 0 ? {"capture": bUseCapture, "passive": false} : bUseCapture);
         }
 
     };
@@ -7606,27 +8218,27 @@ var sap = window.sap || {};
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(oDomRef, "oDomRef", "DomUtil.js(297): detachEvent");
+            UCF_Tracer.assert(oDomRef, "oDomRef", "DomUtil.js(295): detachEvent");
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(typeof oDomRef === "object", "typeof oDomRef === \"object\"", "DomUtil.js(298): detachEvent");
+            UCF_Tracer.assert(typeof oDomRef === "object", "typeof oDomRef === \"object\"", "DomUtil.js(296): detachEvent");
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(sName, "sName", "DomUtil.js(299): detachEvent");
+            UCF_Tracer.assert(sName, "sName", "DomUtil.js(297): detachEvent");
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(typeof sName === "string", "typeof sName === \"string\"", "DomUtil.js(300): detachEvent");
+            UCF_Tracer.assert(typeof sName === "string", "typeof sName === \"string\"", "DomUtil.js(298): detachEvent");
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(fHandler, "fHandler", "DomUtil.js(301): detachEvent");
+            UCF_Tracer.assert(fHandler, "fHandler", "DomUtil.js(299): detachEvent");
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(typeof fHandler === "function", "typeof fHandler === \"function\"", "DomUtil.js(302): detachEvent");
+            UCF_Tracer.assert(typeof fHandler === "function", "typeof fHandler === \"function\"", "DomUtil.js(300): detachEvent");
         }
         ;
 
@@ -7643,10 +8255,7 @@ var sap = window.sap || {};
             oDomRef["detachEvent"]("on" + sName, fHandler);
         } else if (oDomRef["removeEventListener"]) {
             // cf. comment in attachEvent
-            oDomRef["removeEventListener"](sName, fHandler, sName["indexOf"]("touch") === 0 ? {
-                "capture": bUseCapture,
-                "passive": false
-            } : bUseCapture);
+            oDomRef["removeEventListener"](sName, fHandler, sName["indexOf"]("touch") === 0 ? {"capture": bUseCapture, "passive": false} : bUseCapture);
         }
 
     };
@@ -7747,15 +8356,15 @@ var sap = window.sap || {};
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(oDomRef, "oDomRef", "DomUtil.js(376): oGetParentByTagName");
+            UCF_Tracer.assert(oDomRef, "oDomRef", "DomUtil.js(374): oGetParentByTagName");
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(typeof oDomRef === "object", "typeof oDomRef === \"object\"", "DomUtil.js(377): oGetParentByTagName");
+            UCF_Tracer.assert(typeof oDomRef === "object", "typeof oDomRef === \"object\"", "DomUtil.js(375): oGetParentByTagName");
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(typeof sTagName === "string", "typeof sTagName === \"string\"", "DomUtil.js(378): oGetParentByTagName");
+            UCF_Tracer.assert(typeof sTagName === "string", "typeof sTagName === \"string\"", "DomUtil.js(376): oGetParentByTagName");
         }
         ;
 
@@ -7790,15 +8399,15 @@ var sap = window.sap || {};
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(oDomRef, "oDomRef", "DomUtil.js(400): oGetParentByAttribute");
+            UCF_Tracer.assert(oDomRef, "oDomRef", "DomUtil.js(398): oGetParentByAttribute");
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(typeof oDomRef === "object", "typeof oDomRef === \"object\"", "DomUtil.js(401): oGetParentByAttribute");
+            UCF_Tracer.assert(typeof oDomRef === "object", "typeof oDomRef === \"object\"", "DomUtil.js(399): oGetParentByAttribute");
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(typeof sAttribute === "string", "typeof sAttribute === \"string\"", "DomUtil.js(402): oGetParentByAttribute");
+            UCF_Tracer.assert(typeof sAttribute === "string", "typeof sAttribute === \"string\"", "DomUtil.js(400): oGetParentByAttribute");
         }
         ;
 
@@ -7878,15 +8487,15 @@ var sap = window.sap || {};
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(oDomRef, "oDomRef", "DomUtil.js(449): setClass");
+            UCF_Tracer.assert(oDomRef, "oDomRef", "DomUtil.js(447): setClass");
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(typeof oDomRef === "object", "typeof oDomRef === \"object\"", "DomUtil.js(450): setClass");
+            UCF_Tracer.assert(typeof oDomRef === "object", "typeof oDomRef === \"object\"", "DomUtil.js(448): setClass");
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(typeof sClassName === "string", "typeof sClassName === \"string\"", "DomUtil.js(451): setClass");
+            UCF_Tracer.assert(typeof sClassName === "string", "typeof sClassName === \"string\"", "DomUtil.js(449): setClass");
         }
         ;
 
@@ -7916,11 +8525,11 @@ var sap = window.sap || {};
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(oDomRef, "oDomRef", "DomUtil.js(468): sGetClass");
+            UCF_Tracer.assert(oDomRef, "oDomRef", "DomUtil.js(466): sGetClass");
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(typeof oDomRef === "object", "typeof oDomRef === \"object\"", "DomUtil.js(469): sGetClass");
+            UCF_Tracer.assert(typeof oDomRef === "object", "typeof oDomRef === \"object\"", "DomUtil.js(467): sGetClass");
         }
         ;
 
@@ -7950,11 +8559,11 @@ var sap = window.sap || {};
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(oDomRef, "oDomRef", "DomUtil.js(486): addClass");
+            UCF_Tracer.assert(oDomRef, "oDomRef", "DomUtil.js(484): addClass");
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(typeof oDomRef === "object", "typeof oDomRef === \"object\"", "DomUtil.js(487): addClass");
+            UCF_Tracer.assert(typeof oDomRef === "object", "typeof oDomRef === \"object\"", "DomUtil.js(485): addClass");
         }
         ;
 
@@ -8010,11 +8619,11 @@ var sap = window.sap || {};
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(oDomRef, "oDomRef", "DomUtil.js(524): removeClass");
+            UCF_Tracer.assert(oDomRef, "oDomRef", "DomUtil.js(522): removeClass");
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(typeof oDomRef === "object", "typeof oDomRef === \"object\"", "DomUtil.js(525): removeClass");
+            UCF_Tracer.assert(typeof oDomRef === "object", "typeof oDomRef === \"object\"", "DomUtil.js(523): removeClass");
         }
         ;
 
@@ -8082,15 +8691,15 @@ var sap = window.sap || {};
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(oDomRef, "oDomRef", "DomUtil.js(578): bHasClass");
+            UCF_Tracer.assert(oDomRef, "oDomRef", "DomUtil.js(576): bHasClass");
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(typeof oDomRef === "object", "typeof oDomRef === \"object\"", "DomUtil.js(579): bHasClass");
+            UCF_Tracer.assert(typeof oDomRef === "object", "typeof oDomRef === \"object\"", "DomUtil.js(577): bHasClass");
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(typeof sClassName === "string", "typeof sClassName === \"string\"", "DomUtil.js(580): bHasClass");
+            UCF_Tracer.assert(typeof sClassName === "string", "typeof sClassName === \"string\"", "DomUtil.js(578): bHasClass");
         }
         ;
 
@@ -8127,19 +8736,19 @@ var sap = window.sap || {};
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(oDomRef, "oDomRef", "DomUtil.js(604): replaceClass");
+            UCF_Tracer.assert(oDomRef, "oDomRef", "DomUtil.js(602): replaceClass");
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(typeof oDomRef === "object", "typeof oDomRef === \"object\"", "DomUtil.js(605): replaceClass");
+            UCF_Tracer.assert(typeof oDomRef === "object", "typeof oDomRef === \"object\"", "DomUtil.js(603): replaceClass");
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(typeof sReplaceClassName === "string", "typeof sReplaceClassName === \"string\"", "DomUtil.js(606): replaceClass");
+            UCF_Tracer.assert(typeof sReplaceClassName === "string", "typeof sReplaceClassName === \"string\"", "DomUtil.js(604): replaceClass");
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(typeof sClassName === "string", "typeof sClassName === \"string\"", "DomUtil.js(607): replaceClass");
+            UCF_Tracer.assert(typeof sClassName === "string", "typeof sClassName === \"string\"", "DomUtil.js(605): replaceClass");
         }
         ;
 
@@ -8177,15 +8786,15 @@ var sap = window.sap || {};
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(oDomRef != null, "oDomRef != null", "DomUtil.js(632): setBackgroundColor");
+            UCF_Tracer.assert(oDomRef != null, "oDomRef != null", "DomUtil.js(630): setBackgroundColor");
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(typeof (oDomRef) === "object", "typeof(oDomRef) === \"object\"", "DomUtil.js(633): setBackgroundColor");
+            UCF_Tracer.assert(typeof (oDomRef) === "object", "typeof(oDomRef) === \"object\"", "DomUtil.js(631): setBackgroundColor");
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(typeof (sClassName) === "string", "typeof(sClassName) === \"string\"", "DomUtil.js(634): setBackgroundColor");
+            UCF_Tracer.assert(typeof (sClassName) === "string", "typeof(sClassName) === \"string\"", "DomUtil.js(632): setBackgroundColor");
         }
         ;
 
@@ -8248,15 +8857,15 @@ var sap = window.sap || {};
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(oDomRef != null, "oDomRef != null", "DomUtil.js(684): resetBackgroundColor");
+            UCF_Tracer.assert(oDomRef != null, "oDomRef != null", "DomUtil.js(682): resetBackgroundColor");
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(typeof (oDomRef) === "object", "typeof(oDomRef) === \"object\"", "DomUtil.js(685): resetBackgroundColor");
+            UCF_Tracer.assert(typeof (oDomRef) === "object", "typeof(oDomRef) === \"object\"", "DomUtil.js(683): resetBackgroundColor");
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(typeof (sClassName) === "string", "typeof(sClassName) === \"string\"", "DomUtil.js(686): resetBackgroundColor");
+            UCF_Tracer.assert(typeof (sClassName) === "string", "typeof(sClassName) === \"string\"", "DomUtil.js(684): resetBackgroundColor");
         }
         ;
 
@@ -8321,11 +8930,11 @@ var sap = window.sap || {};
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(typeof iX === "number", "typeof iX === \"number\"", "DomUtil.js(728): oGetElementFromPoint");
+            UCF_Tracer.assert(typeof iX === "number", "typeof iX === \"number\"", "DomUtil.js(726): oGetElementFromPoint");
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(typeof iY === "number", "typeof iY === \"number\"", "DomUtil.js(729): oGetElementFromPoint");
+            UCF_Tracer.assert(typeof iY === "number", "typeof iY === \"number\"", "DomUtil.js(727): oGetElementFromPoint");
         }
         ;
 
@@ -8449,11 +9058,11 @@ var sap = window.sap || {};
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(oDomRef != null, "oDomRef != null", "DomUtil.js(810): resetTabIndex");
+            UCF_Tracer.assert(oDomRef != null, "oDomRef != null", "DomUtil.js(808): resetTabIndex");
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(typeof (oDomRef) === "object", "typeof(oDomRef) === \"object\"", "DomUtil.js(811): resetTabIndex");
+            UCF_Tracer.assert(typeof (oDomRef) === "object", "typeof(oDomRef) === \"object\"", "DomUtil.js(809): resetTabIndex");
         }
         ;
         UCF_DomUtil["setTabIndex"](oDomRef, -1);
@@ -8478,11 +9087,11 @@ var sap = window.sap || {};
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(oDomRef != null, "oDomRef != null", "DomUtil.js(823): bHasTabIndex");
+            UCF_Tracer.assert(oDomRef != null, "oDomRef != null", "DomUtil.js(821): bHasTabIndex");
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(typeof (oDomRef) === "object", "typeof(oDomRef) === \"object\"", "DomUtil.js(824): bHasTabIndex");
+            UCF_Tracer.assert(typeof (oDomRef) === "object", "typeof(oDomRef) === \"object\"", "DomUtil.js(822): bHasTabIndex");
         }
         ;
 
@@ -8509,11 +9118,11 @@ var sap = window.sap || {};
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(oDomRef != null, "oDomRef != null", "DomUtil.js(838): iGetTabIndex");
+            UCF_Tracer.assert(oDomRef != null, "oDomRef != null", "DomUtil.js(836): iGetTabIndex");
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(typeof (oDomRef) === "object", "typeof(oDomRef) === \"object\"", "DomUtil.js(839): iGetTabIndex");
+            UCF_Tracer.assert(typeof (oDomRef) === "object", "typeof(oDomRef) === \"object\"", "DomUtil.js(837): iGetTabIndex");
         }
         ;
 
@@ -8546,11 +9155,11 @@ var sap = window.sap || {};
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(oDomRef != null, "oDomRef != null", "DomUtil.js(859): setAccessKey");
+            UCF_Tracer.assert(oDomRef != null, "oDomRef != null", "DomUtil.js(857): setAccessKey");
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(typeof (oDomRef) === "object", "typeof(oDomRef) === \"object\"", "DomUtil.js(860): setAccessKey");
+            UCF_Tracer.assert(typeof (oDomRef) === "object", "typeof(oDomRef) === \"object\"", "DomUtil.js(858): setAccessKey");
         }
         ;
         if (sValue !== "d" && sValue !== "D")
@@ -8574,11 +9183,11 @@ var sap = window.sap || {};
         ;
         if (!oDomRef) return;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(oDomRef != null, "oDomRef != null", "DomUtil.js(871): focusDomElement");
+            UCF_Tracer.assert(oDomRef != null, "oDomRef != null", "DomUtil.js(869): focusDomElement");
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(typeof (oDomRef) === "object", "typeof(oDomRef) === \"object\"", "DomUtil.js(872): focusDomElement");
+            UCF_Tracer.assert(typeof (oDomRef) === "object", "typeof(oDomRef) === \"object\"", "DomUtil.js(870): focusDomElement");
         }
         ;
 
@@ -8586,7 +9195,7 @@ var sap = window.sap || {};
             oDomRef["focus"]();
         } catch (oException) {
             if (__UCF_TRACE__) {
-                UCF_Tracer.trace(ERROR, oException + " ", "DomUtil.js(877): focusDomElement");
+                UCF_Tracer.trace(ERROR, oException + " ", "DomUtil.js(875): focusDomElement");
             }
             ;
         }
@@ -8611,11 +9220,11 @@ var sap = window.sap || {};
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(oDomRef != null, "oDomRef != null", "DomUtil.js(889): moveFocusDomElement");
+            UCF_Tracer.assert(oDomRef != null, "oDomRef != null", "DomUtil.js(887): moveFocusDomElement");
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(typeof (oDomRef) === "object", "typeof(oDomRef) === \"object\"", "DomUtil.js(890): moveFocusDomElement");
+            UCF_Tracer.assert(typeof (oDomRef) === "object", "typeof(oDomRef) === \"object\"", "DomUtil.js(888): moveFocusDomElement");
         }
         ;
 
@@ -8624,7 +9233,7 @@ var sap = window.sap || {};
                 oDomRef["focus"]();
             } catch (oException) {
                 if (__UCF_TRACE__) {
-                    UCF_Tracer.trace(ERROR, oException + " ", "DomUtil.js(896): moveFocusDomElement");
+                    UCF_Tracer.trace(ERROR, oException + " ", "DomUtil.js(894): moveFocusDomElement");
                 }
                 ;
             }
@@ -8639,7 +9248,12 @@ var sap = window.sap || {};
     /**
      * Focuses a given DOM element.
      * Returns true if focusing could be performed.
-     * False if not, because the element was invisible for example.
+     * False if not, because the element was invisible, for example.
+     *
+     * Distunguishes between elements that move the focus and those which don't.
+     * Elements that during an initial focusing move their focus should habe the
+     * attribute data-movesfocusto = id the receives focus after moving so that
+     * the method can determine whether the expected element is the active
      *
      * @param {Element} oDomRef the element to focus
      * @return {boolean} `true` if focusing could be performed.
@@ -8652,13 +9266,20 @@ var sap = window.sap || {};
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(oDomRef != null, "oDomRef != null", "DomUtil.js(911): bDomElementFocused");
+            UCF_Tracer.assert(oDomRef != null, "oDomRef != null", "DomUtil.js(914): bDomElementFocused");
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(typeof (oDomRef) === "object", "typeof(oDomRef) === \"object\"", "DomUtil.js(912): bDomElementFocused");
+            UCF_Tracer.assert(typeof (oDomRef) === "object", "typeof(oDomRef) === \"object\"", "DomUtil.js(915): bDomElementFocused");
         }
         ;
+
+        /** @type {Object} */
+        var oDataSet;
+        /** @type {HTML_Element} */
+        var oActualDomRef = oDomRef;
+        /** @type {boolean} */
+        var bElementMovesFocus = false;
 
         //CSN: 772609
         // For skipping it must be possible to know whether an element is focusable or not, i.e. whether it
@@ -8666,20 +9287,38 @@ var sap = window.sap || {};
         // with diplay:none or visibility hidden are not recognized as not focusable by the skipping functionality.
         // These elements do not expose the visibility of their parent. Therefore we can not ask for their own visibility
         // to know if they can receive the focus. Skipping breaks here and the focus gets lost.
-        // Therefore the function has been enhanced by a boolean return value that tells us if focusing
+        // Therefore the function has been enhanced by a boolean that tells us if focusing
         // an element was successful.
         //
         try {
-            oDomRef["focus"]();
-            // return true;
-            if (document["activeElement"] && document["activeElement"] === oDomRef) {
-                return true;
-            } else {
-                return false;
+            oDataSet = UCF_DomUtil["dataset"](oDomRef);
+
+            if (oDataSet && oDataSet["movesfocusto"]) {
+                oDomRef = UCF_DomUtil["$"](oDataSet["movesfocusto"]);
+                bElementMovesFocus = true;
             }
+
+            oActualDomRef["focus"]();
+
+            if (bElementMovesFocus === true) {
+                return (oActualDomRef && oDomRef &&
+                    (UCF_DomUtil["oGetActiveElement"]() === oDomRef ||
+                        UCF_DomUtil["oGetActiveElement"]() === oActualDomRef));
+
+            } else {
+                if (UCF_DomUtil["bIsCTInstanceOf"](oActualDomRef, 'STCS') || UCF_DomUtil["bIsCTInstanceOf"](oActualDomRef, 'ST')) {
+                    // SapTable and SapTableCS will handle the focus themselves
+                    // focus will be moved to the element which was lastly focused
+                    return oActualDomRef;
+                } else {
+                    return (oActualDomRef &&
+                        UCF_DomUtil["oGetActiveElement"]() === oActualDomRef);
+                }
+            }
+
         } catch (oException) {
             if (__UCF_TRACE__) {
-                UCF_Tracer.trace(ERROR, oException + " ", "DomUtil.js(932): bDomElementFocused");
+                UCF_Tracer.trace(ERROR, oException + " ", "DomUtil.js(960): bDomElementFocused");
             }
             ;
             return false;
@@ -8705,11 +9344,11 @@ var sap = window.sap || {};
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(oDomRef != null, "oDomRef != null", "DomUtil.js(945): bFocusDomElement");
+            UCF_Tracer.assert(oDomRef != null, "oDomRef != null", "DomUtil.js(973): bFocusDomElement");
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(typeof (oDomRef) === "object", "typeof(oDomRef) === \"object\"", "DomUtil.js(946): bFocusDomElement");
+            UCF_Tracer.assert(typeof (oDomRef) === "object", "typeof(oDomRef) === \"object\"", "DomUtil.js(974): bFocusDomElement");
         }
         ;
 
@@ -8717,7 +9356,7 @@ var sap = window.sap || {};
             oDomRef["focus"]();
         } catch (oException) {
             if (__UCF_TRACE__) {
-                UCF_Tracer.trace(ERROR, oException + " ", "DomUtil.js(951): bFocusDomElement");
+                UCF_Tracer.trace(ERROR, oException + " ", "DomUtil.js(979): bFocusDomElement");
             }
             ;
             return false;
@@ -8745,11 +9384,11 @@ var sap = window.sap || {};
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(oDomRef != null, "oDomRef != null", "DomUtil.js(966): refocusDomElement");
+            UCF_Tracer.assert(oDomRef != null, "oDomRef != null", "DomUtil.js(994): refocusDomElement");
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(typeof (oDomRef) === "object", "typeof(oDomRef) === \"object\"", "DomUtil.js(967): refocusDomElement");
+            UCF_Tracer.assert(typeof (oDomRef) === "object", "typeof(oDomRef) === \"object\"", "DomUtil.js(995): refocusDomElement");
         }
         ;
 
@@ -8758,7 +9397,7 @@ var sap = window.sap || {};
             oDomRef["focus"]();
         } catch (oException) {
             if (__UCF_TRACE__) {
-                UCF_Tracer.trace(ERROR, oException + " ", "DomUtil.js(973): refocusDomElement");
+                UCF_Tracer.trace(ERROR, oException + " ", "DomUtil.js(1001): refocusDomElement");
             }
             ;
         }
@@ -8860,7 +9499,7 @@ var sap = window.sap || {};
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(oDomRef != null, "oDomRef != null", "DomUtil.js(1042): setActiveElement");
+            UCF_Tracer.assert(oDomRef != null, "oDomRef != null", "DomUtil.js(1070): setActiveElement");
         }
         ;
         UCF_DomUtil["oActiveElement"] = oDomRef; //will be removed in LS.destroy and UCF_LS.prototype.purgeControls
@@ -8936,7 +9575,7 @@ var sap = window.sap || {};
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(oDomRef, "oDomRef", "DomUtil.js(1093): bIsInActiveDom");
+            UCF_Tracer.assert(oDomRef, "oDomRef", "DomUtil.js(1121): bIsInActiveDom");
         }
         ;
 
@@ -9006,11 +9645,11 @@ var sap = window.sap || {};
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(typeof (oDomRefNode) === "object", "typeof(oDomRefNode) === \"object\"", "DomUtil.js(1140): oGetFirstElement");
+            UCF_Tracer.assert(typeof (oDomRefNode) === "object", "typeof(oDomRefNode) === \"object\"", "DomUtil.js(1168): oGetFirstElement");
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(oDomRefNode != null, "oDomRefNode != null", "DomUtil.js(1141): oGetFirstElement");
+            UCF_Tracer.assert(oDomRefNode != null, "oDomRefNode != null", "DomUtil.js(1169): oGetFirstElement");
         }
         ;
 
@@ -9048,11 +9687,11 @@ var sap = window.sap || {};
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(typeof (oDomRefNode) === "object", "typeof(oDomRefNode) === \"object\"", "DomUtil.js(1166): oGetFirstChild");
+            UCF_Tracer.assert(typeof (oDomRefNode) === "object", "typeof(oDomRefNode) === \"object\"", "DomUtil.js(1194): oGetFirstChild");
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(oDomRefNode != null, "oDomRefNode != null", "DomUtil.js(1167): oGetFirstChild");
+            UCF_Tracer.assert(oDomRefNode != null, "oDomRefNode != null", "DomUtil.js(1195): oGetFirstChild");
         }
         ;
 
@@ -9083,11 +9722,11 @@ var sap = window.sap || {};
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(typeof (oDomRefNode) === "object", "typeof(oDomRefNode) === \"object\"", "DomUtil.js(1185): oGetLastChild");
+            UCF_Tracer.assert(typeof (oDomRefNode) === "object", "typeof(oDomRefNode) === \"object\"", "DomUtil.js(1213): oGetLastChild");
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(oDomRefNode != null, "oDomRefNode != null", "DomUtil.js(1186): oGetLastChild");
+            UCF_Tracer.assert(oDomRefNode != null, "oDomRefNode != null", "DomUtil.js(1214): oGetLastChild");
         }
         ;
 
@@ -9124,15 +9763,15 @@ var sap = window.sap || {};
         ;
 
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(typeof (oDomRefNode) === "object", "typeof(oDomRefNode) === \"object\"", "DomUtil.js(1210): oGetFirstChildByAttribute");
+            UCF_Tracer.assert(typeof (oDomRefNode) === "object", "typeof(oDomRefNode) === \"object\"", "DomUtil.js(1238): oGetFirstChildByAttribute");
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(oDomRefNode != null, "oDomRefNode != null", "DomUtil.js(1211): oGetFirstChildByAttribute");
+            UCF_Tracer.assert(oDomRefNode != null, "oDomRefNode != null", "DomUtil.js(1239): oGetFirstChildByAttribute");
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(typeof (sAttribute) === "string", "typeof(sAttribute) === \"string\"", "DomUtil.js(1212): oGetFirstChildByAttribute");
+            UCF_Tracer.assert(typeof (sAttribute) === "string", "typeof(sAttribute) === \"string\"", "DomUtil.js(1240): oGetFirstChildByAttribute");
         }
         ;
 
@@ -9180,11 +9819,11 @@ var sap = window.sap || {};
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(typeof (oDomRefNode) === "object", "typeof(oDomRefNode) === \"object\"", "DomUtil.js(1247): oGetLastChildByAttribute");
+            UCF_Tracer.assert(typeof (oDomRefNode) === "object", "typeof(oDomRefNode) === \"object\"", "DomUtil.js(1275): oGetLastChildByAttribute");
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(typeof (sAttribute) === "string", "typeof(sAttribute) === \"string\"", "DomUtil.js(1248): oGetLastChildByAttribute");
+            UCF_Tracer.assert(typeof (sAttribute) === "string", "typeof(sAttribute) === \"string\"", "DomUtil.js(1276): oGetLastChildByAttribute");
         }
         ;
 
@@ -9231,13 +9870,13 @@ var sap = window.sap || {};
         if (__UCF_COVERAGE__) {
             UCF_DomUtil["_"]["oGetObjectRect"]++;
         }
-        ;
+        ;  // eslint-disable-line complexity
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(typeof (oDomRef) === "object", "typeof(oDomRef) === \"object\"", "DomUtil.js(1284): oGetObjectRect");
+            UCF_Tracer.assert(typeof (oDomRef) === "object", "typeof(oDomRef) === \"object\"", "DomUtil.js(1312): oGetObjectRect");
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(oDomRef != null, "oDomRef != null", "DomUtil.js(1285): oGetObjectRect");
+            UCF_Tracer.assert(oDomRef != null, "oDomRef != null", "DomUtil.js(1313): oGetObjectRect");
         }
         ;
 
@@ -9264,12 +9903,41 @@ var sap = window.sap || {};
 
         bAbort = oOffsetParent ? false : true;
 
+        var iDomRefOffsetTop = oDomRef["offsetTop"];
+        var iDomRefOffsetLeft = oDomRef["offsetLeft"];
+        var iWorkaroundLeftCorrectionRtl = 0;
+        // Workaround: The new PopupWindow standards implementation uses "transform: translate(-50%)"
+        // in one or both directions to perform positioning in the center of the page.
+        // Theoretically the offsetTop/Left values are correct but NOT visually...
+        if (oDomRef["getAttribute"]('ct') === 'PW_standards') {
+            var sTransformValue = UCF_DomUtil["sGetCurrentStyle"](oDomRef, 'transform');
+            if (sTransformValue["indexOf"]('matrix(') === 0) {
+                var s = sTransformValue["split"](',');
+                if (s[4] && UCF_StringUtil["sTrim"](s[4])["indexOf"]('-') === 0) {
+                    // Parse the two negative px values representing the translation of -50%
+                    if (window["UCF_System"]["bIsRTL"]) {
+                        iDomRefOffsetLeft = iDomRefOffsetLeft + parseInt(s[4]); //Math.round(oDomRef.offsetWidth / 2);
+                        iWorkaroundLeftCorrectionRtl = parseInt(s[4]); // Need this later...
+                    } else {
+                        iDomRefOffsetLeft = iDomRefOffsetLeft + parseInt(s[4]); // Math.round(oDomRef.offsetWidth / 2);
+                    }
+                }
+                if (s[5] && UCF_StringUtil["sTrim"](s[5])["indexOf"]('-') === 0) {
+                    iDomRefOffsetTop = iDomRefOffsetTop + parseInt(s[5]); // Math.round(oDomRef.offsetHeight / 2);
+                }
+            }
+        }
+
         oRect = {
-            "top": oDomRef["offsetTop"],
-            "left": oDomRef["offsetLeft"],
+            "top": iDomRefOffsetTop,
+            "left": iDomRefOffsetLeft,
             "width": oDomRef["offsetWidth"],
             "height": oDomRef["offsetHeight"]
         };
+
+        //console.log(">>>>> " + oDomRef.id + " t=" + oRect.top + " l=" + oRect.left);
+
+        //if (oDomRef.id.indexOf("btn") > -1) console.log(">>> RECT: " + oDomRef.id + " - " + JSON.stringify(oRect));
 
         // border-correction (see also comment below in the if (!bAbort) section...)
         var bBorderCorr = (oDomRef["clientTop"] || oDomRef["clientLeft"]) && (oDomRef["tagName"] === "DIV" || oDomRef["tagName"] === "TD");
@@ -9290,8 +9958,8 @@ var sap = window.sap || {};
                 } else if (oOffsetParent["firstChild"] === oContainerRef) {
                     //Jumped over oContainerRef
                     //TODO: better check of missed/passed container. This one is too specific
-                    oRect["top"] = oDomRef["offsetTop"] - oContainerRef["offsetTop"];
-                    oRect["left"] = oDomRef["offsetLeft"] - oContainerRef["offsetLeft"];
+                    oRect["top"] = iDomRefOffsetTop - oContainerRef["offsetTop"];
+                    oRect["left"] = iDomRefOffsetLeft - oContainerRef["offsetLeft"];
 
                     bAbort = true;
                 }
@@ -9307,6 +9975,11 @@ var sap = window.sap || {};
             if (oDomRef["tagName"] === "BODY" && oContainerRef["tagName"] !== "BODY") {
                 //Fall back: Calculate container rect and subtract it (take its scroll position into account)
                 var oContainerRect = UCF_DomUtil["oGetObjectRect"](oContainerRef);
+
+                var pl = parseInt(UCF_DomUtil["sGetCurrentStyle"](oContainerRef, 'paddingLeft'));
+                var pt = parseInt(UCF_DomUtil["sGetCurrentStyle"](oContainerRef, 'paddingTop'));
+                if (!isNaN(pl)) oContainerRect["left"] += pl;
+                if (!isNaN(pt)) oContainerRect["top"] += pt;
 
                 oRect["top"] = -oContainerRect["top"] + oContainerRef["scrollTop"];
                 oRect["left"] = -oContainerRect["left"] + UCF_DomUtil["iGetScrollLeft"](oContainerRef);
@@ -9333,8 +10006,8 @@ var sap = window.sap || {};
             var oParentRect = UCF_DomUtil["oGetObjectRect"](oOffsetParent, oContainerRef),
                 oCurDomRef = null;
 
-            oRect["top"] = oParentRect["top"] + oDomRef["offsetTop"];
-            oRect["left"] = oParentRect["left"] + oDomRef["offsetLeft"];
+            oRect["top"] = oParentRect["top"] + iDomRefOffsetTop;
+            oRect["left"] = oParentRect["left"] + iDomRefOffsetLeft;
 
             //When the current offsetParent node has borders set, the offset is not reflected in offsetLeft/Top but in
             //clientLeft/Top. Unfortunatelly this is only for some tags correct.
@@ -9348,6 +10021,19 @@ var sap = window.sap || {};
                 if (oOffsetParent["clientTop"]) oRect["top"] += oOffsetParent["clientTop"];
                 if (!UCF_DomUtil["bIsRTL"] && oOffsetParent["clientLeft"]) oRect["left"] += oOffsetParent["clientLeft"];
             }
+            // In Firefox, borders of TABLE element must also be considered, but here, clientTop and clientLeft are not set
+            var bTableBorderCorrFirefox = UCF_UserAgent["bIsFirefox"]() && oOffsetParent["tagName"] === "TABLE";
+            if (bTableBorderCorrFirefox) {
+                var iBorderLeftWidth = parseInt(UCF_DomUtil["sGetCurrentStyle"](oOffsetParent, 'borderLeftWidth'));
+                var iBorderTopWidth = parseInt(UCF_DomUtil["sGetCurrentStyle"](oOffsetParent, 'borderTopWidth'));
+                if (iBorderTopWidth > 0) {
+                    oRect["top"] += iBorderTopWidth;
+                }
+                if (!UCF_DomUtil["bIsRTL"] && iBorderLeftWidth > 0) {
+                    oRect["left"] += iBorderLeftWidth;
+                }
+            }
+
             // also get scroll positions of elements which are not offsetparent
             // but not for the body
             oCurDomRef = oDomRef;
@@ -9360,6 +10046,7 @@ var sap = window.sap || {};
 
             if (UCF_DomUtil["bIsRTL"]) {
                 oRect["left"] = oParentRect["left"] + UCF_DomUtil["iCalculateRtlOffsetLeft"](oDomRef, oOffsetParent);
+                oRect["left"] = oRect["left"] + iWorkaroundLeftCorrectionRtl;
             }
 
         }
@@ -9651,12 +10338,7 @@ var sap = window.sap || {};
             return oRect;
         } else {
             oRect = UCF_DomUtil["oGetObjectRect"](oDomRef, oContainerRef);
-            oOriginalRect = {
-                "top": oRect["top"],
-                "left": oRect["left"],
-                "width": oRect["width"],
-                "height": oRect["height"]
-            };
+            oOriginalRect = {"top": oRect["top"], "left": oRect["left"], "width": oRect["width"], "height": oRect["height"]};
             oScrollRef = UCF_DomUtil["oGetParentScrollContainer"](oDomRef["parentNode"]);
 
             var checkContainer = function (oScrollRef) {
@@ -9740,7 +10422,7 @@ var sap = window.sap || {};
         var iBorders;
 
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(typeof oDomRef === "object", "typeof oDomRef === \"object\"", "DomUtil.js(1719): iGetVerticalScrollbarOffset");
+            UCF_Tracer.assert(typeof oDomRef === "object", "typeof oDomRef === \"object\"", "DomUtil.js(1795): iGetVerticalScrollbarOffset");
         }
         ;
 
@@ -9795,11 +10477,11 @@ var sap = window.sap || {};
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(oNewParent, "oNewParent", "DomUtil.js(1761): prepend");
+            UCF_Tracer.assert(oNewParent, "oNewParent", "DomUtil.js(1837): prepend");
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(oChild, "oChild", "DomUtil.js(1762): prepend");
+            UCF_Tracer.assert(oChild, "oChild", "DomUtil.js(1838): prepend");
         }
         ;
 
@@ -9830,11 +10512,11 @@ var sap = window.sap || {};
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(oNewParent, "oNewParent", "DomUtil.js(1780): append");
+            UCF_Tracer.assert(oNewParent, "oNewParent", "DomUtil.js(1856): append");
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(oChild, "oChild", "DomUtil.js(1781): append");
+            UCF_Tracer.assert(oChild, "oChild", "DomUtil.js(1857): append");
         }
         ;
 
@@ -9887,37 +10569,6 @@ var sap = window.sap || {};
     ;
 
     /**
-     * Returns the size of the given DOM object
-     *
-     * @param {Element} oDomRef the element to get the object size from
-     * @return {UCF_Size} The size of the given DOM object
-     * @private
-     */
-    UCF_DomUtil["oGetObjectSize"] = function (oDomRef) {
-        ;
-        if (__UCF_COVERAGE__) {
-            UCF_DomUtil["_"]["oGetObjectSize"]++;
-        }
-        ;
-
-        if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(typeof (oDomRef) === "object", "typeof(oDomRef) === \"object\"", "DomUtil.js(1825): oGetObjectSize");
-        }
-        ;
-        if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(oDomRef != null, "oDomRef != null", "DomUtil.js(1826): oGetObjectSize");
-        }
-        ;
-
-        return new UCF_Size(oDomRef["offsetWidth"], oDomRef["offsetHeight"]);
-    };
-    ;
-    if (__UCF_COVERAGE__) {
-        UCF_DomUtil["_"]["oGetObjectSize"] = 0;
-    }
-    ;
-
-    /**
      * Checks if X and Y is in a given rect
      *
      * @param {UCF_Rectangle} oRect the bounding rectangle
@@ -9933,15 +10584,15 @@ var sap = window.sap || {};
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(oRect != null, "oRect != null", "DomUtil.js(1841): bIsInRect");
+            UCF_Tracer.assert(oRect != null, "oRect != null", "DomUtil.js(1902): bIsInRect");
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(!isNaN(iPosX), "!isNaN(iPosX)", "DomUtil.js(1842): bIsInRect");
+            UCF_Tracer.assert(!isNaN(iPosX), "!isNaN(iPosX)", "DomUtil.js(1903): bIsInRect");
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(!isNaN(iPosY), "!isNaN(iPosY)", "DomUtil.js(1843): bIsInRect");
+            UCF_Tracer.assert(!isNaN(iPosY), "!isNaN(iPosY)", "DomUtil.js(1904): bIsInRect");
         }
         ;
 
@@ -9974,7 +10625,7 @@ var sap = window.sap || {};
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(oDomRef != null, "oDomRef != null", "DomUtil.js(1863): oGetParentScrollContainer");
+            UCF_Tracer.assert(oDomRef != null, "oDomRef != null", "DomUtil.js(1924): oGetParentScrollContainer");
         }
         ;
 
@@ -10029,7 +10680,7 @@ var sap = window.sap || {};
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(oDomRef != null, "oDomRef != null", "DomUtil.js(1905): oGetParentPositionReferenceContainer");
+            UCF_Tracer.assert(oDomRef != null, "oDomRef != null", "DomUtil.js(1966): oGetParentPositionReferenceContainer");
         }
         ;
         var bHiddenHasEffect = (UCF_UserAgent["bIsIE"]() || UCF_UserAgent["bIsMSEdge"]());
@@ -10250,6 +10901,34 @@ var sap = window.sap || {};
     ;
 
     /**
+     * Returns the sub-ct element the oDomRef belongs to
+     *
+     * @param {Element} oDomRef DOMElement
+     * @return {Element} the element with the sub-ct attribute
+     * @private
+     */
+    UCF_DomUtil["oGetSubCTElement"] = function (oDomRef) {
+        ;
+        if (__UCF_COVERAGE__) {
+            UCF_DomUtil["_"]["oGetSubCTElement"]++;
+        }
+        ;
+        var element = oDomRef;
+        while (element != null && element["nodeType"] === 1 && !(element["getAttribute"]("sub-ct"))) {
+            element = element["parentNode"];
+        }
+        if (element == null || element["nodeType"] !== 1) {
+            return null;
+        }
+        return element;
+    };
+    ;
+    if (__UCF_COVERAGE__) {
+        UCF_DomUtil["_"]["oGetSubCTElement"] = 0;
+    }
+    ;
+
+    /**
      * Rerieves the first child DOM reference with ct attribute
      * @param {HTMLElement} oDomRef The DOM reference
      * @return {HTMLElement} - the DOM Reference with ct attribute
@@ -10364,11 +11043,11 @@ var sap = window.sap || {};
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(oDomRef != null, "oDomRef != null", "DomUtil.js(2137): setCursorPos");
+            UCF_Tracer.assert(oDomRef != null, "oDomRef != null", "DomUtil.js(2216): setCursorPos");
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(!isNaN(iPos), "!isNaN(iPos)", "DomUtil.js(2138): setCursorPos");
+            UCF_Tracer.assert(!isNaN(iPos), "!isNaN(iPos)", "DomUtil.js(2217): setCursorPos");
         }
         ;
 
@@ -10397,7 +11076,7 @@ var sap = window.sap || {};
 
         } catch (oException) {
             if (__UCF_TRACE__) {
-                UCF_Tracer.trace(ERROR, oException + " ", "DomUtil.js(2164): setCursorPos");
+                UCF_Tracer.trace(ERROR, oException + " ", "DomUtil.js(2243): setCursorPos");
             }
             ;
         }
@@ -10424,7 +11103,7 @@ var sap = window.sap || {};
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(oDomRef != null, "oDomRef != null", "DomUtil.js(2178): iGetCursorPos");
+            UCF_Tracer.assert(oDomRef != null, "oDomRef != null", "DomUtil.js(2257): iGetCursorPos");
         }
         ;
 
@@ -10441,9 +11120,11 @@ var sap = window.sap || {};
 
                 if (document["selection"] && !UCF_UserAgent["bIsStandardsMode"]()) {
                     //CSN 132688 2013: IMEMode may be changed as soon as inputfield is refocused
-                    if (UCF_DomUtil["oGetActiveElement"]() !== oDomRef) {
-                        oDomRef["focus"]();
-                    }
+                    //CSN 2170052138: IE11 Quirks in ITS becomes unresponsive
+                    //-> as a solution we try to do without the extra .focus()
+                    // if (UCF_DomUtil.oGetActiveElement() !== oDomRef) {
+                    // 	oDomRef.focus();
+                    // }
                     var oSel = document["selection"]["createRange"]();
                     if (oSel) {
                         oSel["moveStart"]('character', -oDomRef["value"]["length"]);
@@ -10455,7 +11136,7 @@ var sap = window.sap || {};
             } catch (e) {
             }
             if (__UCF_TRACE__) {
-                UCF_Tracer.trace(INFO, "curPos=" + curPos, "DomUtil.js(2205): iGetCursorPos");
+                UCF_Tracer.trace(INFO, "curPos=" + curPos, "DomUtil.js(2286): iGetCursorPos");
             }
             ;
             return curPos;
@@ -10483,7 +11164,7 @@ var sap = window.sap || {};
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(oDomRef != null, "oDomRef != null", "DomUtil.js(2220): sGetSelectionText");
+            UCF_Tracer.assert(oDomRef != null, "oDomRef != null", "DomUtil.js(2301): sGetSelectionText");
         }
         ;
 
@@ -10524,6 +11205,101 @@ var sap = window.sap || {};
     ;
 
     /**
+     * @static
+     * @return {string}
+     */
+    UCF_DomUtil["sGetCurrentSelectionText"] = function () {
+        ;
+        if (__UCF_COVERAGE__) {
+            UCF_DomUtil["_"]["sGetCurrentSelectionText"]++;
+        }
+        ;
+        /** @type {HTMLElement} */
+        var oAE = UCF_DomUtil["oGetActiveElement"]();
+
+        return (
+            UCF_DomUtil["bIsInputlike"](oAE) &&
+            UCF_DomUtil["sGetSelectionTextFromInputlike"](oAE)
+        ) || UCF_DomUtil["sGetSelectionTextFromWindow"]();
+    };
+    ;
+    if (__UCF_COVERAGE__) {
+        UCF_DomUtil["_"]["sGetCurrentSelectionText"] = 0;
+    }
+    ;
+
+    /**
+     * @private
+     * @static
+     * @param {HTLMInputElement|HTMLTextAreaElement} oDomRef
+     * @return {boolean}
+     */
+    UCF_DomUtil["bIsInputlike"] = function (oDomRef) {
+        ;
+        if (__UCF_COVERAGE__) {
+            UCF_DomUtil["_"]["bIsInputlike"]++;
+        }
+        ;
+        return oDomRef &&
+            typeof oDomRef["selectionStart"] === 'number' &&
+            oDomRef["selectionStart"] >= 0 &&
+            typeof oDomRef["selectionEnd"] === 'number' &&
+            oDomRef["selectionEnd"] >= oDomRef["selectionStart"] &&
+            typeof oDomRef["value"] === 'string' &&
+            oDomRef["value"]["length"] >= oDomRef["selectionEnd"];
+    };
+    ;
+    if (__UCF_COVERAGE__) {
+        UCF_DomUtil["_"]["bIsInputlike"] = 0;
+    }
+    ;
+
+    /**
+     * @private
+     * @static
+     * @param {HTMLInputElement|HTMLTextAreaElement} oDomRef
+     * @return {string}
+     */
+    UCF_DomUtil["sGetSelectionTextFromInputlike"] = function (oDomRef) {
+        ;
+        if (__UCF_COVERAGE__) {
+            UCF_DomUtil["_"]["sGetSelectionTextFromInputlike"]++;
+        }
+        ;
+        if (__UCF_ASSERT__) {
+            UCF_Tracer.assert(UCF_DomUtil["bIsInputlike"](oDomRef), "UCF_DomUtil.bIsInputlike(oDomRef)", "DomUtil.js(2370): sGetSelectionTextFromInputlike");
+        }
+        ;
+
+        return oDomRef["value"]["substring"](oDomRef["selectionStart"], oDomRef["selectionEnd"]);
+    };
+    ;
+    if (__UCF_COVERAGE__) {
+        UCF_DomUtil["_"]["sGetSelectionTextFromInputlike"] = 0;
+    }
+    ;
+
+    /**
+     * @private
+     * @static
+     * @return {string}
+     */
+    UCF_DomUtil["sGetSelectionTextFromWindow"] = function () {
+        ;
+        if (__UCF_COVERAGE__) {
+            UCF_DomUtil["_"]["sGetSelectionTextFromWindow"]++;
+        }
+        ;
+        return (document["selection"] && document["selection"]["createRange"]()["duplicate"]()["text"]) ||
+            window["getSelection"]()["toString"]();
+    };
+    ;
+    if (__UCF_COVERAGE__) {
+        UCF_DomUtil["_"]["sGetSelectionTextFromWindow"] = 0;
+    }
+    ;
+
+    /**
      * Get start of selection
      *
      * @param {Element} oDomRef  the domRef of an HTML element which has caret data
@@ -10537,7 +11313,7 @@ var sap = window.sap || {};
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(oDomRef != null, "oDomRef != null", "DomUtil.js(2260): iGetSelectionStart");
+            UCF_Tracer.assert(oDomRef != null, "oDomRef != null", "DomUtil.js(2393): iGetSelectionStart");
         }
         ;
 
@@ -10586,7 +11362,7 @@ var sap = window.sap || {};
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(oDomRef != null, "oDomRef != null", "DomUtil.js(2295): iGetSelectionEnd");
+            UCF_Tracer.assert(oDomRef != null, "oDomRef != null", "DomUtil.js(2428): iGetSelectionEnd");
         }
         ;
 
@@ -10639,7 +11415,7 @@ var sap = window.sap || {};
         var oTextRange;
 
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(oDomRef != null, "oDomRef != null", "DomUtil.js(2334): setSelection");
+            UCF_Tracer.assert(oDomRef != null, "oDomRef != null", "DomUtil.js(2467): setSelection");
         }
         ;
 
@@ -10714,7 +11490,7 @@ var sap = window.sap || {};
                 oSelection["removeAllRanges"]();
             } catch (e) {
                 if (__UCF_TRACE__) {
-                    UCF_Tracer.trace(INFO, "Caught error from removeAllRanges():" + e["message"], "DomUtil.js(2385): removeSelectionFrom");
+                    UCF_Tracer.trace(INFO, "Caught error from removeAllRanges():" + e["message"], "DomUtil.js(2518): removeSelectionFrom");
                 }
                 ;
             }
@@ -10813,7 +11589,7 @@ var sap = window.sap || {};
         var oCurrentStyle;
 
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(oDomRef, "oDomRef", "DomUtil.js(2451): oGetComputedStyle");
+            UCF_Tracer.assert(oDomRef, "oDomRef", "DomUtil.js(2584): oGetComputedStyle");
         }
         ;
 
@@ -10868,15 +11644,15 @@ var sap = window.sap || {};
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(oDomRef, "oDomRef", "DomUtil.js(2493): sGetCurrentStyle");
+            UCF_Tracer.assert(oDomRef, "oDomRef", "DomUtil.js(2626): sGetCurrentStyle");
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(typeof sStyleAttribute === "string", "typeof sStyleAttribute === \"string\"", "DomUtil.js(2494): sGetCurrentStyle");
+            UCF_Tracer.assert(typeof sStyleAttribute === "string", "typeof sStyleAttribute === \"string\"", "DomUtil.js(2627): sGetCurrentStyle");
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(sStyleAttribute !== "", "sStyleAttribute !== \"\"", "DomUtil.js(2495): sGetCurrentStyle");
+            UCF_Tracer.assert(sStyleAttribute !== "", "sStyleAttribute !== \"\"", "DomUtil.js(2628): sGetCurrentStyle");
         }
         ;
 
@@ -10902,11 +11678,11 @@ var sap = window.sap || {};
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(oDomRef != null, "oDomRef != null", "DomUtil.js(2508): setOpacityStyle");
+            UCF_Tracer.assert(oDomRef != null, "oDomRef != null", "DomUtil.js(2641): setOpacityStyle");
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(typeof (iOpacity) === "number", "typeof(iOpacity) === \"number\"", "DomUtil.js(2509): setOpacityStyle");
+            UCF_Tracer.assert(typeof (iOpacity) === "number", "typeof(iOpacity) === \"number\"", "DomUtil.js(2642): setOpacityStyle");
         }
         ;
 
@@ -10937,7 +11713,7 @@ var sap = window.sap || {};
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(oDomRef != null, "oDomRef != null", "DomUtil.js(2527): removeOpacityStyle");
+            UCF_Tracer.assert(oDomRef != null, "oDomRef != null", "DomUtil.js(2660): removeOpacityStyle");
         }
         ;
         if (UCF_UserAgent["bIsIE"]() && !UCF_UserAgent["bIsStandardsMode"]()) {
@@ -11013,11 +11789,11 @@ var sap = window.sap || {};
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(oDomRef != null, "oDomRef != null", "DomUtil.js(2580): sGetInnerText");
+            UCF_Tracer.assert(oDomRef != null, "oDomRef != null", "DomUtil.js(2713): sGetInnerText");
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(typeof (oDomRef) === "object", "typeof(oDomRef) === \"object\"", "DomUtil.js(2581): sGetInnerText");
+            UCF_Tracer.assert(typeof (oDomRef) === "object", "typeof(oDomRef) === \"object\"", "DomUtil.js(2714): sGetInnerText");
         }
         ;
 
@@ -11045,15 +11821,15 @@ var sap = window.sap || {};
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(oDomRef != null, "oDomRef != null", "DomUtil.js(2596): setInnerText");
+            UCF_Tracer.assert(oDomRef != null, "oDomRef != null", "DomUtil.js(2729): setInnerText");
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(typeof (oDomRef) === "object", "typeof(oDomRef) === \"object\"", "DomUtil.js(2597): setInnerText");
+            UCF_Tracer.assert(typeof (oDomRef) === "object", "typeof(oDomRef) === \"object\"", "DomUtil.js(2730): setInnerText");
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(typeof (sText) === "string", "typeof(sText) === \"string\"", "DomUtil.js(2598): setInnerText");
+            UCF_Tracer.assert(typeof (sText) === "string", "typeof(sText) === \"string\"", "DomUtil.js(2731): setInnerText");
         }
         ;
 
@@ -11083,7 +11859,7 @@ var sap = window.sap || {};
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(oDomRef != null, "oDomRef != null", "DomUtil.js(2615): bIsVisible");
+            UCF_Tracer.assert(oDomRef != null, "oDomRef != null", "DomUtil.js(2748): bIsVisible");
         }
         ;
 
@@ -11128,7 +11904,7 @@ var sap = window.sap || {};
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(oDomRef != null, "oDomRef != null", "DomUtil.js(2647): setVisibility");
+            UCF_Tracer.assert(oDomRef != null, "oDomRef != null", "DomUtil.js(2780): setVisibility");
         }
         ;
 
@@ -11137,19 +11913,25 @@ var sap = window.sap || {};
             case "NONE":
                 oStyle["display"] = "none";
                 oStyle["visibility"] = "";
+                UCF_DomUtil["removeClass"](oDomRef, 'lsControl--hidden');
+                UCF_DomUtil["addClass"](oDomRef, 'lsControl--invisible');
                 break;
             case "VISIBLE":
                 oStyle["display"] = "";
                 oStyle["visibility"] = "";
+                UCF_DomUtil["removeClass"](oDomRef, 'lsControl--hidden');
+                UCF_DomUtil["removeClass"](oDomRef, 'lsControl--invisible');
                 break;
             case "BLANK":
                 oStyle["display"] = "";
                 oStyle["visibility"] = "hidden";
+                UCF_DomUtil["addClass"](oDomRef, 'lsControl--hidden');
+                UCF_DomUtil["removeClass"](oDomRef, 'lsControl--invisible');
                 break;
             default:
                 var sId = oDomRef["id"];
                 if (__UCF_TRACE__) {
-                    UCF_Tracer.trace(ERROR, "The value " + sVisibility + " cannot applied to the DomRef " + sId, "DomUtil.js(2665): setVisibility");
+                    UCF_Tracer.trace(ERROR, "The value " + sVisibility + " cannot applied to the DomRef " + sId, "DomUtil.js(2804): setVisibility");
                 }
                 ;
         }
@@ -11267,7 +12049,7 @@ var sap = window.sap || {};
             }
         } catch (oError) {
             if (__UCF_TRACE__) {
-                UCF_Tracer.trace(WARNING, oError["message"], "DomUtil.js(2760): setStyle");
+                UCF_Tracer.trace(WARNING, oError["message"], "DomUtil.js(2899): setStyle");
             }
             ;
         }
@@ -11363,6 +12145,38 @@ var sap = window.sap || {};
     ;
 
     /**
+     * @static
+     * @param {string} sCss
+     * @param {Document} [oDocument=document]
+     * @return {HTMLStyleElement}
+     */
+    UCF_DomUtil["oAddStyle"] = __UCF_IE6__
+        ? function (sCss, oDocument) {
+            /** @type {string} */
+            var sId = UCF_JsUtil["sGetUID"]();
+
+            // eslint-disable-next-line no-unsanitized/property
+            (oDocument || document)["body"]["innerHTML"] += '<style id="' + sId + '">' + sCss + '</style>';
+
+            return UCF_DomUtil["$"](sId);
+        }
+        : function (sCss, oDocument) {
+            /** @type {Document} */
+            var oDoc = oDocument || document;
+            /** @type {HTMLStyleElement} */
+            var oStyleRef = oDoc["createElement"]('style');
+
+            oStyleRef["textContent"] = sCss;
+
+            UCF_DomUtil["append"](
+                oDoc["head"] || oDoc["getElementsByTagName"]('HEAD')[0] || oDoc["body"],
+                oStyleRef
+            );
+
+            return oStyleRef;
+        };
+
+    /**
      * Returns the first focusable DOM element in a given container
      *
      * @param {Element} oContainerDomRef the parent
@@ -11377,7 +12191,7 @@ var sap = window.sap || {};
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(oContainerDomRef != null, "oContainerDomRef != null", "DomUtil.js(2837): oGetFirstFocusableDomRef");
+            UCF_Tracer.assert(oContainerDomRef != null, "oContainerDomRef != null", "DomUtil.js(3008): oGetFirstFocusableDomRef");
         }
         ;
 
@@ -11424,7 +12238,7 @@ var sap = window.sap || {};
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(oContainerDomRef != null, "oContainerDomRef != null", "DomUtil.js(2871): oGetLastFocusableDomRef");
+            UCF_Tracer.assert(oContainerDomRef != null, "oContainerDomRef != null", "DomUtil.js(3042): oGetLastFocusableDomRef");
         }
         ;
 
@@ -11495,7 +12309,7 @@ var sap = window.sap || {};
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(oDomRef != null, "oDomRef != null", "DomUtil.js(2919): removePreviousIdDuplicates");
+            UCF_Tracer.assert(oDomRef != null, "oDomRef != null", "DomUtil.js(3090): removePreviousIdDuplicates");
         }
         ;
 
@@ -11536,7 +12350,7 @@ var sap = window.sap || {};
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(oDomRef, "oDomRef", "DomUtil.js(2947): oGetTabbableElementForward");
+            UCF_Tracer.assert(oDomRef, "oDomRef", "DomUtil.js(3118): oGetTabbableElementForward");
         }
         ;
 
@@ -11582,7 +12396,7 @@ var sap = window.sap || {};
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(oDomRef, "oDomRef", "DomUtil.js(2980): oGetTabbableElementBackward");
+            UCF_Tracer.assert(oDomRef, "oDomRef", "DomUtil.js(3151): oGetTabbableElementBackward");
         }
         ;
 
@@ -11650,7 +12464,7 @@ var sap = window.sap || {};
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(oDomRef != null, "oDomRef != null", "DomUtil.js(3035): oGetNextSibling");
+            UCF_Tracer.assert(oDomRef != null, "oDomRef != null", "DomUtil.js(3206): oGetNextSibling");
         }
         ;
 
@@ -11683,7 +12497,7 @@ var sap = window.sap || {};
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(oDomRef != null, "oDomRef != null", "DomUtil.js(3055): oGetPreviousSibling");
+            UCF_Tracer.assert(oDomRef != null, "oDomRef != null", "DomUtil.js(3226): oGetPreviousSibling");
         }
         ;
 
@@ -11715,7 +12529,7 @@ var sap = window.sap || {};
         ;
         if (!oDomRef) return;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(oDomRef != null, "oDomRef != null", "DomUtil.js(3074): removeCaret");
+            UCF_Tracer.assert(oDomRef != null, "oDomRef != null", "DomUtil.js(3245): removeCaret");
         }
         ;
         try {
@@ -11835,7 +12649,7 @@ var sap = window.sap || {};
         var SEP = " - ";
 
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(oDomRef != null, "oDomRef != null", "DomUtil.js(3160): sGetARIAInfo");
+            UCF_Tracer.assert(oDomRef != null, "oDomRef != null", "DomUtil.js(3331): sGetARIAInfo");
         }
         ;
 
@@ -12528,7 +13342,7 @@ var sap = window.sap || {};
 
         if (!iTableHeight && !UCF_DomUtil["bIsVisible"](oTable, true)) {
             if (__UCF_TRACE__) {
-                UCF_Tracer.trace(WARNING, "HTML table correction algorithm for IE bug does not support \"display=none\" content. Skipping correction.", "DomUtil.js(3699): updateHtmlTableCorrection");
+                UCF_Tracer.trace(WARNING, "HTML table correction algorithm for IE bug does not support \"display=none\" content. Skipping correction.", "DomUtil.js(3870): updateHtmlTableCorrection");
             }
             ;
             return;
@@ -12712,7 +13526,7 @@ var sap = window.sap || {};
                 // oDomRef.clientWidth returns always 0 in FF, so I'm using offsetwidth
                 //if (oDomRefOvfl.scrollWidth > oDomRefOvfl.clientWidth ||  oDomRef.scrollWidth > oDomRef.offsetWidth) {
                 // IE has sometimes the difference from 1px
-                if (oDomRefOvfl["offsetWidth"] > oDomRef["offsetWidth"]
+                if (Math["floor"](oDomRefOvfl["offsetWidth"] - oDomRef["offsetWidth"]) > 1
                     || Math["floor"](oDomRef["scrollWidth"] - oDomRef["offsetWidth"]) > 1
                     || Math["floor"](oDomRefOvfl["scrollWidth"] - oDomRefOvfl["offsetWidth"]) > 1) {
                     sText = (!sControlText ? UCF_DomUtil["removeColon"](UCF_DomUtil["sGetInnerText"](oDomRefOvfl)) : sControlText);
@@ -12805,8 +13619,9 @@ var sap = window.sap || {};
             if (oDomRefOvfl) {
                 // oDomRef.clientWidth returns always 0 in FF, so I'm using offsetwidth
                 //if (oDomRefOvfl.scrollWidth > oDomRefOvfl.clientWidth ||  oDomRef.scrollWidth > oDomRef.offsetWidth) {
-                if (oDomRefOvfl["offsetWidth"] > oDomRef["offsetWidth"]
-                    || oDomRef["scrollWidth"] > oDomRef["offsetWidth"]
+                // Chrome works with decimal in px
+                if (Math["floor"](oDomRefOvfl["offsetWidth"] - oDomRef["offsetWidth"]) > 1
+                    || Math["floor"](oDomRef["scrollWidth"] - oDomRef["offsetWidth"]) > 1
                     || Math["floor"](oDomRefOvfl["scrollWidth"] - oDomRefOvfl["offsetWidth"]) > 1) {
                     bHasTextEllipsis = true;
                 } else {
@@ -12905,37 +13720,13 @@ var sap = window.sap || {};
 
             },
             mTextAlignStates = {
-                "FORCEDLEFT": [{"LTR": "left", "RTL": "left", "INHERIT": "left"}, {
-                    "LTR": "left",
-                    "RTL": "left",
-                    "INHERIT": "left"
-                }],
+                "FORCEDLEFT": [{"LTR": "left", "RTL": "left", "INHERIT": "left"}, {"LTR": "left", "RTL": "left", "INHERIT": "left"}],
                 "LEFT": [{"LTR": "left", "RTL": "right", "INHERIT": ""}, {"LTR": "", "RTL": "", "INHERIT": ""}],
-                "CENTER": [{"LTR": "center", "RTL": "center", "INHERIT": "center"}, {
-                    "LTR": "center",
-                    "RTL": "center",
-                    "INHERIT": "center"
-                }],
-                "RIGHT": [{"LTR": "right", "RTL": "right", "INHERIT": "right"}, {
-                    "LTR": "right",
-                    "RTL": "",
-                    "INHERIT": ""
-                }],
-                "ENDOFLINE": [{"LTR": "right", "RTL": "left", "INHERIT": "right"}, {
-                    "LTR": "right",
-                    "RTL": "left",
-                    "INHERIT": "left"
-                }],
-                "FORCEDRIGHT": [{"LTR": "right", "RTL": "right", "INHERIT": "right"}, {
-                    "LTR": "right",
-                    "RTL": "right",
-                    "INHERIT": "right"
-                }],
-                "BEGINOFLINE": [{"LTR": "left", "RTL": "right", "INHERIT": "left"}, {
-                    "LTR": "left",
-                    "RTL": "right",
-                    "INHERIT": "right"
-                }]
+                "CENTER": [{"LTR": "center", "RTL": "center", "INHERIT": "center"}, {"LTR": "center", "RTL": "center", "INHERIT": "center"}],
+                "RIGHT": [{"LTR": "right", "RTL": "right", "INHERIT": "right"}, {"LTR": "right", "RTL": "", "INHERIT": ""}],
+                "ENDOFLINE": [{"LTR": "right", "RTL": "left", "INHERIT": "right"}, {"LTR": "right", "RTL": "left", "INHERIT": "left"}],
+                "FORCEDRIGHT": [{"LTR": "right", "RTL": "right", "INHERIT": "right"}, {"LTR": "right", "RTL": "right", "INHERIT": "right"}],
+                "BEGINOFLINE": [{"LTR": "left", "RTL": "right", "INHERIT": "left"}, {"LTR": "left", "RTL": "right", "INHERIT": "right"}]
             },
             oTextAlignState = mTextAlignStates[sTextAlign],
             iLayoutDirection = UCF_DomUtil["bIsRTL"] ? mSystemDirection["RTL"] : mSystemDirection["LTR"],
@@ -13073,14 +13864,14 @@ var sap = window.sap || {};
 
                 } else {
                     if (__UCF_TRACE__) {
-                        UCF_Tracer.trace(WARNING, "Applying IECursorRule failed. Did not find CSS rule: " + sRuleName, "DomUtil.js(4122): applyIECssCursorRule");
+                        UCF_Tracer.trace(WARNING, "Applying IECursorRule failed. Did not find CSS rule: " + sRuleName, "DomUtil.js(4294): applyIECssCursorRule");
                     }
                     ;
                 }
 
             } catch (oException) {
                 if (__UCF_TRACE__) {
-                    UCF_Tracer.trace(WARNING, "Applying IECursorRule failed. " + oException, "DomUtil.js(4126): applyIECssCursorRule");
+                    UCF_Tracer.trace(WARNING, "Applying IECursorRule failed. " + oException, "DomUtil.js(4298): applyIECssCursorRule");
                 }
                 ;
             }
@@ -13152,7 +13943,7 @@ var sap = window.sap || {};
             ], {"type": 'text/html'}));
         } catch (e) {
             if (__UCF_TRACE__) {
-                UCF_Tracer.trace(WARNING, e, "DomUtil.js(4182): sGetIframeJSSource");
+                UCF_Tracer.trace(WARNING, e, "DomUtil.js(4354): sGetIframeJSSource");
             }
             ;
             return fallback();
@@ -13315,7 +14106,7 @@ var sap = window.sap || {};
         var oResultRef;
 
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(typeof sHtml === 'string', "typeof sHtml === 'string'", "DomUtil.js(4292): oHtmlToElement");
+            UCF_Tracer.assert(typeof sHtml === 'string', "typeof sHtml === 'string'", "DomUtil.js(4464): oHtmlToElement");
         }
         ;
 
@@ -13323,9 +14114,7 @@ var sap = window.sap || {};
 
         if ('HTMLTemplateElement' in window) {
             oRef = document["createElement"]('template');
-            // Fortify ignore this line
-            // eslint-disable-next-line no-unsanitized/property
-            oRef["innerHTML"] = sTrimmedHtml;
+            UCF_DomUtil["setInnerHtml"](oRef, sTrimmedHtml);
 
             return oRef["content"]["childNodes"]["length"] > 1
                 ? UCF_JsUtil["arrayFrom"](oRef["content"]["childNodes"])
@@ -13337,9 +14126,7 @@ var sap = window.sap || {};
             if (bTd) {
                 sTrimmedHtml = '<table><tbody><tr>' + sTrimmedHtml + '</tr></tbody></table>';
             }
-            // Fortify ignore this line
-            // eslint-disable-next-line no-unsanitized/property
-            oRef["innerHTML"] = sTrimmedHtml;
+            UCF_DomUtil["setInnerHtml"](oRef, sTrimmedHtml);
 
             oResultRef = bTd ? oRef["firstChild"]["firstChild"]["firstChild"] : oRef;
 
@@ -13444,6 +14231,125 @@ var sap = window.sap || {};
         };
 // #endregion
 
+    /**
+     * @static
+     */
+    UCF_DomUtil["sDataStyleAttribute"] = "data-sap-ls-style";
+
+    /**
+     * @static
+     * @param {Element} oDomElement
+     * @return null
+     */
+    UCF_DomUtil["moveDataStylesToDomStyles"] = __UCF_IE6__
+        ? function (oRootElement) {
+            UCF_JsUtil["forEach"](oRootElement["childNodes"], function (oElement) {
+                if (oElement["nodeType"] !== 1)
+                    return;
+
+                var sDataStyle = oElement["getAttribute"](UCF_DomUtil["sDataStyleAttribute"]);
+                if (sDataStyle) {
+                    UCF_JsUtil["forEach"](UCF_StringUtil["sTrim"](sDataStyle)["split"](/ *; */), function (sStyle) {
+                        var aKeyValue = sStyle["split"](/ *: */);
+                        if (aKeyValue[0])
+                            try { // TODO: what about "!important"?
+                                oElement["style"][aKeyValue[0]] = aKeyValue[1];
+                            } catch (ex) { /* ignore */
+                            }
+                    });
+
+                    // oElement.removeAttribute(UCF_DomUtil.sDataStyleAttribute);
+                }
+
+                UCF_DomUtil["moveDataStylesToDomStyles"](oElement);
+            });
+        }
+        : function (oRootElement) {
+            // alternatively, using oElement's style object:
+            //
+            // UCF_JsUtil.forEach(UCF_StringUtil.sTrim(oElement.getAttribute(UCF_DomUtil.sDataStyleAttribute)).split(/ *; */), function(sStyle) {
+            // 	var aKeyValue = sStyle["split"](/ *: */);
+            // 	if (aKeyValue[1]) {
+            // 		var sValue = aKeyValue[1].match(/(.+) *(\!important)/);
+            // 		if (sValue)
+            // 			oElement["style"]["setProperty"](aKeyValue[0], sValue[1], "important");
+            // 		else
+            // 			oElement["style"][aKeyValue[0]] = aKeyValue[1];
+            // 	}
+            // });
+
+            switch (oRootElement["tagName"]) {
+                case "TEMPLATE":
+                    UCF_JsUtil["forEach"](oRootElement["content"]["childNodes"], function (oChild) {
+                        UCF_DomUtil["moveDataStylesToDomStyles"](oChild);
+                    });
+                    break;
+                default:
+                    if (typeof oRootElement["querySelectorAll"] !== 'function')
+                        return;
+
+                    UCF_JsUtil["forEach"](oRootElement["querySelectorAll"]("[" + UCF_DomUtil["sDataStyleAttribute"] + "]"), function (oElement) {
+                        oElement["style"]["cssText"] += oElement["getAttribute"](UCF_DomUtil["sDataStyleAttribute"]);
+
+                        // oElement.removeAttribute(UCF_DomUtil.sDataStyleAttribute);
+                    });
+                    break;
+            }
+        };
+
+    /**
+     * @static
+     * @param {Element} oDomElement
+     * @param {string} sInnerHtml
+     * @return null
+     */
+    UCF_DomUtil["setInnerHtml"] = function (oDomElement, sInnerHtml) {
+        ;
+        if (__UCF_COVERAGE__) {
+            UCF_DomUtil["_"]["setInnerHtml"]++;
+        }
+        ;
+        if (__UCF_IE6__) {
+            // eslint-disable-next-line no-unsanitized/property
+            oDomElement["innerHTML"] = "_" + sInnerHtml;
+            oDomElement["removeChild"](oDomElement["firstChild"]);
+        } else {
+            // eslint-disable-next-line no-unsanitized/property
+            oDomElement["innerHTML"] = sInnerHtml;
+        }
+
+        UCF_DomUtil["moveDataStylesToDomStyles"](oDomElement);
+    };
+    ;
+    if (__UCF_COVERAGE__) {
+        UCF_DomUtil["_"]["setInnerHtml"] = 0;
+    }
+    ;
+
+    /**
+     * @static
+     * @param {Element} oDomElement
+     * @param {string} sOuterHtml
+     * @return null
+     */
+    UCF_DomUtil["setOuterHtml"] = function (oDomElement, sOuterHtml) {
+        ;
+        if (__UCF_COVERAGE__) {
+            UCF_DomUtil["_"]["setOuterHtml"]++;
+        }
+        ;
+        // eslint-disable-next-line no-unsanitized/property
+        oDomElement["outerHTML"] = sOuterHtml;
+
+        UCF_DomUtil["moveDataStylesToDomStyles"](oDomElement["parentNode"]);
+    };
+    ;
+    if (__UCF_COVERAGE__) {
+        UCF_DomUtil["_"]["setOuterHtml"] = 0;
+    }
+    ;
+
+
     UCF_DomUtil.prototype["aPublicMethods"] = ["destroyStatic", "cancelEvent"].concat(UCF_DomUtil.prototype.aPublicMethods || []);
     /* global _trace, ERROR */
 /// <reference path="../debug/Tracer.js"/>
@@ -13484,37 +14390,33 @@ var sap = window.sap || {};
         "UNAUTHORIZED": 2
     };
 
-    UCF_ErrorMessage[UCF_ErrorMessage["E_TYPE"]["FATAL"]] = {
+    UCF_ErrorMessage["MESSAGES"] = [{
         "sTitle": "Fatal Error",
         "aItems": ["The browser failed to download files.", "The server is not responding", "The server was temporary not available."],
         "aIssues": ["Internet connectivity has been lost.", "The website is temporarily unavailable.", "The Domain Name Server (DNS) is not reachable.", "The Domain Name Server (DNS) does not have a listing for the website's domain.", "If this is an HTTPS (secure) address, click tools, click Internet Options, click Advanced, and check the protocols setting under the security section."],
         "aTryTo": ["Retype the address.", "Try visiting another website to make sure you are connected.", "Restart the application."],
         "bDestroy": true,
         "sInternalMessage": "SAP HTML Rendering: Error 0"
-    };
-
-    UCF_ErrorMessage[UCF_ErrorMessage["E_TYPE"]["NETWORK"]] = {
+    }, {
         "sTitle": "Server connection not available",
         "aItems": ["You are not connected to the Internet.", "The server is not responding", "The server was temporary not available."],
         "aIssues": ["Internet connectivity has been lost.", "The website is temporarily unavailable.", "The Domain Name Server (DNS) is not reachable.", "The Domain Name Server (DNS) does not have a listing for the website's domain.", "If this is an HTTPS (secure) address, click tools, click Internet Options, click Advanced, and check the protocols setting under the security section."],
         "aTryTo": ["Reconnect to the server.", "Retype the address.", "Try visiting another website to make sure you are connected.", "Restart the application."],
         "bDestroy": true,
         "sInternalMessage": "SAP HTML Rendering: Error 1"
-    };
-
-    UCF_ErrorMessage[UCF_ErrorMessage["E_TYPE"]["UNAUTHORIZED"]] = {
+    }, {
         "sTitle": "Unauthorized Error ",
         "aItems": ["Your session has expired.", "Your session has been deleted.", "Your session could not be assigned."],
         "aIssues": ["Your session has expired.", "Your session has been deleted.", "Your session could not be assigned."],
         "aTryTo": ["Restart the application."],
         "bDestroy": true,
         "sInternalMessage": "SAP HTML Rendering: Error 2"
-    };
+    }];
 
     /**
      * List of objects to be informed is a message is shown
      */
-//eslint-disable-next-line ur/no-memory-leaks
+//eslint-disable-next-line @ur/no-memory-leaks
     UCF_ErrorMessage["aDestroyObjects"] = []; //used only in attachDestroyHandler - ensure to call destroyAttachHandler (used only in LS)
 
     /**
@@ -13598,7 +14500,7 @@ var sap = window.sap || {};
         var i;
 
         if (!iErrorNumber) iErrorNumber = 0;
-        var oError = UCF_ErrorMessage[iErrorNumber];
+        var oError = UCF_ErrorMessage["MESSAGES"][iErrorNumber];
 
         if (oError["bDestroy"]) {
             for (i = 0; i < UCF_ErrorMessage["aDestroyObjects"]["length"]; i++) {
@@ -13621,7 +14523,7 @@ var sap = window.sap || {};
 
         if (!UCF_ErrorMessage["oSystemPopup"]) {
             //this could be a memeory leak but in an error case we destroy lightspeed but still show the error popup delayed
-            //eslint-disable-next-line ur/no-memory-leaks
+            //eslint-disable-next-line @ur/no-memory-leaks
             UCF_ErrorMessage["oSystemPopup"] = new UCF_SystemPopup();
         }
 
@@ -13655,7 +14557,7 @@ var sap = window.sap || {};
         }
         ;
         if (__UCF_TRACE__) {
-            UCF_Tracer.trace(ERROR, "JavaScript: Message:" + sMsg + " , Url:" + sUrl + ", Linenumber:" + iLineNumber, "ErrorMessage.js(162): handleError");
+            UCF_Tracer.trace(ERROR, "JavaScript: Message:" + sMsg + " , Url:" + sUrl + ", Linenumber:" + iLineNumber, "ErrorMessage.js(158): handleError");
         }
         ;
         return true;
@@ -13731,27 +14633,27 @@ var sap = window.sap || {};
         }
         ;
         /** @type {string} */
-        this["sAppName"] = sAppName; //eslint-disable-line ur/no-memory-leaks
+        this["sAppName"] = sAppName; //eslint-disable-line @ur/no-memory-leaks
         /** @type {string} */
-        this["sCompName"] = sCompName; //eslint-disable-line ur/no-memory-leaks
+        this["sCompName"] = sCompName; //eslint-disable-line @ur/no-memory-leaks
         //component name used for passport generation e.g. ITS transaction + dynpro name name
         /** @type {string} */
-        this["sStepName"] = sStepName; //eslint-disable-line ur/no-memory-leaks
+        this["sStepName"] = sStepName; //eslint-disable-line @ur/no-memory-leaks
         /** @type {string} */
-        this["sAction"] = sAction; //eslint-disable-line ur/no-memory-leaks
+        this["sAction"] = sAction; //eslint-disable-line @ur/no-memory-leaks
         /** @type {string} */
-        this["sTransID"] = sTransID; //eslint-disable-line ur/no-memory-leaks
+        this["sTransID"] = sTransID; //eslint-disable-line @ur/no-memory-leaks
         /** @type {boolean} */
         if (oFrameWorkStart) {
-            this["oFrameWorkStart"] = oFrameWorkStart; //eslint-disable-line ur/no-memory-leaks
+            this["oFrameWorkStart"] = oFrameWorkStart; //eslint-disable-line @ur/no-memory-leaks
         } else {
             this["oFrameWorkStart"] = UCF_FesrUtil["oFrameWorkStartType"]["No"]; //no start request as default setting
         }
         /** @type {number} */
-        this["iStepCounter"] = iStepCounter; //eslint-disable-line ur/no-memory-leaks
+        this["iStepCounter"] = iStepCounter; //eslint-disable-line @ur/no-memory-leaks
 
         /** @type {Array<UCF_FesrData_Roundtrip>} */
-        this["aRoundtrips"] = []; //eslint-disable-line ur/no-memory-leaks
+        this["aRoundtrips"] = []; //eslint-disable-line @ur/no-memory-leaks
         /** @type {boolean} */
         this["bIsDialogStepEnd"] = false;
         /** @type {number} */
@@ -13761,7 +14663,7 @@ var sap = window.sap || {};
         /** @type {string} */
         this["logFrameworkInfo"] = ""; //used to trace extra information given by framework at time T1 until T4.
         /** @type {number} */
-        this["iInteractionType"] = iInteractionType || 2; //eslint-disable-line ur/no-memory-leaks
+        this["iInteractionType"] = iInteractionType || 2; //eslint-disable-line @ur/no-memory-leaks
     };window["UCF_FesrData"] = UCF_FesrData;
     ;
     if (__UCF_COVERAGE__) {
@@ -14076,6 +14978,8 @@ var sap = window.sap || {};
             sPlatformVersion = UCF_UserAgent["sGetPlatformVersion"](),
             oFrameWorkStart = UCF_FesrUtil["oFrameWorkStartType"]["TwoRoundtrip"];
 
+        UCF_FesrUtil["sTransIDInitial"] = sTransID;
+
         UCF_FesrUtil["bFESRDebugOnly"] = bDebugOnly ? true : false; //init is only called by a framework once they want FESR --> debug mode not necessary
 
         if (UCF_FesrUtil["bFESREnabled"] == null) {
@@ -14131,7 +15035,7 @@ var sap = window.sap || {};
 
         if (!UCF_FesrUtil["bNavTimeSupp"]) {
             if (__UCF_TRACE__) {
-                UCF_Tracer.trace(INFO, 'Performance: no Navigation Time support - disable FESR', "FesrUtil.js(144): initFESR");
+                UCF_Tracer.trace(INFO, 'Performance: no Navigation Time support - disable FESR', "FesrUtil.js(146): initFESR");
             }
             ;
             UCF_FesrUtil["bFESREnabled"] = false;
@@ -14141,7 +15045,7 @@ var sap = window.sap || {};
 
         if (!UCF_FesrUtil["bFESREnabled"]) {
             if (__UCF_TRACE__) {
-                UCF_Tracer.trace(INFO, 'Performance: FESR is disabled - enable FESR to get FESR figures', "FesrUtil.js(151): initFESR");
+                UCF_Tracer.trace(INFO, 'Performance: FESR is disabled - enable FESR to get FESR figures', "FesrUtil.js(153): initFESR");
             }
             ;
 
@@ -14180,7 +15084,7 @@ var sap = window.sap || {};
         UCF_FesrUtil["sRootCtxtID"] = UCF_FesrUtil["createGUID"]();
 
         if (__UCF_TRACE__) {
-            UCF_Tracer.trace(INFO, 'Performance: FESR enabled: Debug Only:' + UCF_FesrUtil["bFESRDebugOnly"], "FesrUtil.js(187): initFESR");
+            UCF_Tracer.trace(INFO, 'Performance: FESR enabled: Debug Only:' + UCF_FesrUtil["bFESRDebugOnly"], "FesrUtil.js(189): initFESR");
         }
         ;
 
@@ -14231,7 +15135,7 @@ var sap = window.sap || {};
         }
         ;
         if (__UCF_TRACE__) {
-            UCF_Tracer.trace(DEBUG, 'FESR: set beacon request object ', "FesrUtil.js(215): setBeacon");
+            UCF_Tracer.trace(DEBUG, 'FESR: set beacon request object ', "FesrUtil.js(217): setBeacon");
         }
         ;
 
@@ -14319,13 +15223,13 @@ var sap = window.sap || {};
 
             UCF_FesrUtil["bBeaconInitialized"] = true;
             if (__UCF_TRACE__) {
-                UCF_Tracer.trace(DEBUG, 'FESR: Use BeaconRequest and initialization', "FesrUtil.js(290): bUseBeaconRequest");
+                UCF_Tracer.trace(DEBUG, 'FESR: Use BeaconRequest and initialization', "FesrUtil.js(292): bUseBeaconRequest");
             }
             ;
         } else {
             UCF_FesrUtil["bUseBeacon"] = false;
             if (__UCF_TRACE__) {
-                UCF_Tracer.trace(ERROR, 'FESR: Beacon request missing - fallback to PiggyBack', "FesrUtil.js(293): bUseBeaconRequest");
+                UCF_Tracer.trace(ERROR, 'FESR: Beacon request missing - fallback to PiggyBack', "FesrUtil.js(295): bUseBeaconRequest");
             }
             ;
             return false;
@@ -14353,7 +15257,7 @@ var sap = window.sap || {};
 
         if (UCF_FesrUtil["bUseBeacon"] && UCF_FesrUtil["oBeacon"]) {
             if (__UCF_TRACE__) {
-                UCF_Tracer.trace(DEBUG, 'FESR: flush beacon request by FESR ', "FesrUtil.js(308): flushBeacon");
+                UCF_Tracer.trace(DEBUG, 'FESR: flush beacon request by FESR ', "FesrUtil.js(310): flushBeacon");
             }
             ;
             UCF_FesrUtil["oBeacon"]["flush"]();
@@ -14406,7 +15310,7 @@ var sap = window.sap || {};
 
         if (!UCF_FesrUtil["bFESREnabled"] || !UCF_FesrUtil["oCurrentDialogStep"] || !UCF_FesrUtil["bValidRoundtrip"]) {
             if (__UCF_TRACE__) {
-                UCF_Tracer.trace(UCF_FesrUtil["sDebugMode"], 'FESR: Notify Request not processed as either bValidRoundtrip is false or FESR not eanbled:  bValidRoundtrip is:' + UCF_FesrUtil["bValidRoundtrip"], "FesrUtil.js(338): notifyRequest");
+                UCF_Tracer.trace(UCF_FesrUtil["sDebugMode"], 'FESR: Notify Request not processed as either bValidRoundtrip is false or FESR not eanbled:  bValidRoundtrip is:' + UCF_FesrUtil["bValidRoundtrip"], "FesrUtil.js(340): notifyRequest");
             }
             ;
             return;
@@ -14424,7 +15328,7 @@ var sap = window.sap || {};
         }
 
         if (__UCF_TRACE__) {
-            UCF_Tracer.trace(UCF_FesrUtil["sDebugMode"], 'FESR: Set HTTP request header; Content length request: ' + iRequestHeaderLength, "FesrUtil.js(353): notifyRequest");
+            UCF_Tracer.trace(UCF_FesrUtil["sDebugMode"], 'FESR: Set HTTP request header; Content length request: ' + iRequestHeaderLength, "FesrUtil.js(355): notifyRequest");
         }
         ;
 
@@ -14468,8 +15372,11 @@ var sap = window.sap || {};
             passport = UCF_FesrUtil["sGetPassport"](
                 lvl,
                 UCF_FesrUtil["sRootCtxtID"],
-                UCF_FesrUtil["oCurrentDialogStep"]["sTransID"],
+                // 	Internal Incident: 2080376229, Web Dynpro ABAP framework violates semantics of EPP key fields
+                // UCF_FesrUtil.oCurrentDialogStep.sTransID,
+                UCF_FesrUtil["sTransIDInitial"],
                 UCF_FesrUtil["sReplaceReservedCharacters"](sCompName),
+                // 	Internal Incident: 2080376229, Web Dynpro ABAP framework violates semantics of EPP key fields
                 UCF_FesrUtil["sGetUISID"](
                     UCF_FesrUtil["sReplaceReservedCharacters"](UCF_FesrUtil["oCurrentDialogStep"]["sGetStepName"]()),
                     UCF_FesrUtil["oCurrentDialogStep"]["iGetStepCounter"]()),
@@ -14520,7 +15427,7 @@ var sap = window.sap || {};
 
         if (!UCF_FesrUtil["bFESREnabled"] || !UCF_FesrUtil["oCurrentDialogStep"] || !UCF_FesrUtil["bValidRoundtrip"]) {
             if (__UCF_TRACE__) {
-                UCF_Tracer.trace(UCF_FesrUtil["sDebugMode"], 'FESR: Notify Response not processed as either bValidRoundtrip is false or FESR not eanbled:  bValidRoundtrip is:' + UCF_FesrUtil["bValidRoundtrip"], "FesrUtil.js(426): notifyResponse");
+                UCF_Tracer.trace(UCF_FesrUtil["sDebugMode"], 'FESR: Notify Response not processed as either bValidRoundtrip is false or FESR not eanbled:  bValidRoundtrip is:' + UCF_FesrUtil["bValidRoundtrip"], "FesrUtil.js(431): notifyResponse");
             }
             ;
             return;
@@ -14548,7 +15455,7 @@ var sap = window.sap || {};
         }
 
         if (__UCF_TRACE__) {
-            UCF_Tracer.trace(UCF_FesrUtil["sDebugMode"], 'FESR: Receive HTTP response; server time: ' + iServerTime + '; Content length response: ' + iContentLengthResponse, "FesrUtil.js(451): notifyResponse");
+            UCF_Tracer.trace(UCF_FesrUtil["sDebugMode"], 'FESR: Receive HTTP response; server time: ' + iServerTime + '; Content length response: ' + iContentLengthResponse, "FesrUtil.js(456): notifyResponse");
         }
         ;
     };
@@ -14638,7 +15545,7 @@ var sap = window.sap || {};
 
         if (!UCF_FesrUtil["bFESREnabled"] || !UCF_FesrUtil["oCurrentDialogStep"]) {
             if (__UCF_TRACE__) {
-                UCF_Tracer.trace(UCF_FesrUtil["sDebugMode"], 'FESR: LogEvent not processed as FESR not eanbled', "FesrUtil.js(516): logEvent");
+                UCF_Tracer.trace(UCF_FesrUtil["sDebugMode"], 'FESR: LogEvent not processed as FESR not eanbled', "FesrUtil.js(521): logEvent");
             }
             ;
             return;
@@ -14646,7 +15553,7 @@ var sap = window.sap || {};
 
         if (!UCF_FesrUtil["bValidRoundtrip"] && !(oMetadata && oMetadata["bIsDialogStepEnd"] && sType === 'DialogStepEnd')) {
             if (__UCF_TRACE__) {
-                UCF_Tracer.trace(UCF_FesrUtil["sDebugMode"], 'FESR: logEvent not processed as bValidRoundtrip is false and it is not a DialogEndStep', "FesrUtil.js(521): logEvent");
+                UCF_Tracer.trace(UCF_FesrUtil["sDebugMode"], 'FESR: logEvent not processed as bValidRoundtrip is false and it is not a DialogEndStep', "FesrUtil.js(526): logEvent");
             }
             ;
             // special handling - record the dialog step end (=unlock) even a async request occurs and therefore bValidRoundtrip is false. E.G SAP TableCS sends a async during page update
@@ -14725,7 +15632,7 @@ var sap = window.sap || {};
                         ': AfterRequestTime=' + UCF_FesrUtil["oCurrentDialogStep"]["oCalculated"]["iAfterRequestTime"] +
                         ': Roundtrip=' + UCF_FesrUtil["oCurrentDialogStep"]["oCalculated"]["iRoundtrips"] +
                         ': DataSent=' + UCF_FesrUtil["oCurrentDialogStep"]["oCalculated"]["iClientDataSent"] +
-                        ': DataReceive=' + UCF_FesrUtil["oCurrentDialogStep"]["oCalculated"]["iClientDataReceived"], "FesrUtil.js(583): logEvent");
+                        ': DataReceive=' + UCF_FesrUtil["oCurrentDialogStep"]["oCalculated"]["iClientDataReceived"], "FesrUtil.js(588): logEvent");
                 }
                 ;
 
@@ -14804,18 +15711,9 @@ var sap = window.sap || {};
             // initial request is not recorded therefore record and create aRoundtrips here
             // ensure to write the inital request only once in case of method is called several times
             UCF_FesrUtil["oCurrentDialogStep"]["iRoundtrips"]++;
-            aRoundtrips["push"]({
-                "T0": iNavigationStart,
-                "T1": iRequestStart,
-                "T2": iRequestStart,
-                "T3": iResponseEnd,
-                "T4": 0,
-                "iServerTime": 0,
-                "iCntLngReq": 0,
-                "iCntLngResp": 0
-            });
+            aRoundtrips["push"]({"T0": iNavigationStart, "T1": iRequestStart, "T2": iRequestStart, "T3": iResponseEnd, "T4": 0, "iServerTime": 0, "iCntLngReq": 0, "iCntLngResp": 0});
             if (__UCF_TRACE__) {
-                UCF_Tracer.trace(UCF_FesrUtil["sDebugMode"], 'FESR: Start: Log trigger request framework initial request time (Start request); NavigationStart T0:' + iNavigationStart + '; RequestStart T1: ' + iRequestStart + '; ResponseEnd T3: ' + iResponseEnd, "FesrUtil.js(665): logTriggerReq");
+                UCF_Tracer.trace(UCF_FesrUtil["sDebugMode"], 'FESR: Start: Log trigger request framework initial request time (Start request); NavigationStart T0:' + iNavigationStart + '; RequestStart T1: ' + iRequestStart + '; ResponseEnd T3: ' + iResponseEnd, "FesrUtil.js(670): logTriggerReq");
             }
             ;
         }
@@ -14825,7 +15723,7 @@ var sap = window.sap || {};
         UCF_FesrUtil["oCurrentDialogStep"]["iInitialTriggerTime"] = iCurTime;
 
         if (__UCF_TRACE__) {
-            UCF_Tracer.trace(UCF_FesrUtil["sDebugMode"], 'FESR: T1: Log trigger request event time T1:' + iCurTime + ((UCF_FesrUtil["oCurrentDialogStep"]["logFrameworkInfo"] && UCF_FesrUtil["oCurrentDialogStep"]["logFrameworkInfo"] !== "") ? " Framework Info: " + UCF_FesrUtil["oCurrentDialogStep"]["logFrameworkInfo"] : ""), "FesrUtil.js(672): logTriggerReq");
+            UCF_Tracer.trace(UCF_FesrUtil["sDebugMode"], 'FESR: T1: Log trigger request event time T1:' + iCurTime + ((UCF_FesrUtil["oCurrentDialogStep"]["logFrameworkInfo"] && UCF_FesrUtil["oCurrentDialogStep"]["logFrameworkInfo"] !== "") ? " Framework Info: " + UCF_FesrUtil["oCurrentDialogStep"]["logFrameworkInfo"] : ""), "FesrUtil.js(677): logTriggerReq");
         }
         ;
     };
@@ -14855,33 +15753,15 @@ var sap = window.sap || {};
         if (UCF_FesrUtil["oCurrentDialogStep"]["iInitialTriggerTime"] > 0) {
             //assume this is the first SendRequest --> create a new aRoundtrip entry with this values
             //or assume it is the initial framework start and create a new aRoundtrip entry with this values for the second start rountrip
-            aRoundtrips["push"]({
-                "T0": 0,
-                "T1": UCF_FesrUtil["oCurrentDialogStep"]["iInitialTriggerTime"],
-                "T2": iCurTime,
-                "T3": 0,
-                "T4": 0,
-                "iServerTime": 0,
-                "iCntLngReq": 0,
-                "iCntLngResp": 0
-            });
+            aRoundtrips["push"]({"T0": 0, "T1": UCF_FesrUtil["oCurrentDialogStep"]["iInitialTriggerTime"], "T2": iCurTime, "T3": 0, "T4": 0, "iServerTime": 0, "iCntLngReq": 0, "iCntLngResp": 0});
             UCF_FesrUtil["oCurrentDialogStep"]["iInitialTriggerTime"] = 0; //reset variable
         } else {
             //assume this is a follow up request of a user interaction step (more roundtrips for one user interaction)
-            aRoundtrips["push"]({
-                "T0": 0,
-                "T1": 0,
-                "T2": iCurTime,
-                "T3": 0,
-                "T4": 0,
-                "iServerTime": 0,
-                "iCntLngReq": 0,
-                "iCntLngResp": 0
-            });
+            aRoundtrips["push"]({"T0": 0, "T1": 0, "T2": iCurTime, "T3": 0, "T4": 0, "iServerTime": 0, "iCntLngReq": 0, "iCntLngResp": 0});
         }
 
         if (__UCF_TRACE__) {
-            UCF_Tracer.trace(UCF_FesrUtil["sDebugMode"], 'FESR: T2: Log send request time T2:' + iCurTime + ((UCF_FesrUtil["oCurrentDialogStep"]["logFrameworkInfo"] && UCF_FesrUtil["oCurrentDialogStep"]["logFrameworkInfo"] !== "") ? " Framework Info: " + UCF_FesrUtil["oCurrentDialogStep"]["logFrameworkInfo"] : ""), "FesrUtil.js(697): logSendReq");
+            UCF_Tracer.trace(UCF_FesrUtil["sDebugMode"], 'FESR: T2: Log send request time T2:' + iCurTime + ((UCF_FesrUtil["oCurrentDialogStep"]["logFrameworkInfo"] && UCF_FesrUtil["oCurrentDialogStep"]["logFrameworkInfo"] !== "") ? " Framework Info: " + UCF_FesrUtil["oCurrentDialogStep"]["logFrameworkInfo"] : ""), "FesrUtil.js(702): logSendReq");
         }
         ;
     };
@@ -14910,7 +15790,7 @@ var sap = window.sap || {};
             UCF_FesrUtil["oCurrentDialogStep"]["aRoundtrips"][UCF_FesrUtil["oCurrentDialogStep"]["aRoundtrips"]["length"] - 1]["T3"] = iCurTime;
 
             if (__UCF_TRACE__) {
-                UCF_Tracer.trace(UCF_FesrUtil["sDebugMode"], 'FESR: T3: Log receive time T3: ' + iCurTime + ((UCF_FesrUtil["oCurrentDialogStep"]["logFrameworkInfo"] && UCF_FesrUtil["oCurrentDialogStep"]["logFrameworkInfo"] !== "") ? " Framework Info: " + UCF_FesrUtil["oCurrentDialogStep"]["logFrameworkInfo"] : ""), "FesrUtil.js(713): logGetResp");
+                UCF_Tracer.trace(UCF_FesrUtil["sDebugMode"], 'FESR: T3: Log receive time T3: ' + iCurTime + ((UCF_FesrUtil["oCurrentDialogStep"]["logFrameworkInfo"] && UCF_FesrUtil["oCurrentDialogStep"]["logFrameworkInfo"] !== "") ? " Framework Info: " + UCF_FesrUtil["oCurrentDialogStep"]["logFrameworkInfo"] : ""), "FesrUtil.js(718): logGetResp");
             }
             ;
         }
@@ -14939,7 +15819,7 @@ var sap = window.sap || {};
             UCF_FesrUtil["oCurrentDialogStep"]["aRoundtrips"][UCF_FesrUtil["oCurrentDialogStep"]["aRoundtrips"]["length"] - 1]["T4"] = iCurTime;
 
             if (__UCF_TRACE__) {
-                UCF_Tracer.trace(UCF_FesrUtil["sDebugMode"], 'FESR: T4: Log unlock time (ready to interact) T4:' + iCurTime + ((UCF_FesrUtil["oCurrentDialogStep"]["logFrameworkInfo"] && UCF_FesrUtil["oCurrentDialogStep"]["logFrameworkInfo"] !== "") ? " Framework Info: " + UCF_FesrUtil["oCurrentDialogStep"]["logFrameworkInfo"] : ""), "FesrUtil.js(729): logInpReady");
+                UCF_Tracer.trace(UCF_FesrUtil["sDebugMode"], 'FESR: T4: Log unlock time (ready to interact) T4:' + iCurTime + ((UCF_FesrUtil["oCurrentDialogStep"]["logFrameworkInfo"] && UCF_FesrUtil["oCurrentDialogStep"]["logFrameworkInfo"] !== "") ? " Framework Info: " + UCF_FesrUtil["oCurrentDialogStep"]["logFrameworkInfo"] : ""), "FesrUtil.js(734): logInpReady");
             }
             ;
         }
@@ -15264,7 +16144,7 @@ var sap = window.sap || {};
         }
         ;
         // eslint-disable-next-line no-magic-numbers
-        return sServerTime ? Math["round"](parseInt(sServerTime) / 1000) : 0;
+        return sServerTime ? Math["ceil"](parseInt(sServerTime) / 1000) : 0;
     };
     ;
     if (__UCF_COVERAGE__) {
@@ -19833,7 +20713,7 @@ var sap = window.sap || {};
      * fMyPromiseFunction(oParam)
      *    .then(
      *        fMyCallback; //function called once Promise is resolved
-     *    ).catch(function (err) {
+     *    )['catch'](function (err) {
      *        console.warn(err);
      *    });
      * ```
@@ -19844,7 +20724,7 @@ var sap = window.sap || {};
      *    aPromises //array of UCF_promises
      * ).then(
      *    fMyCallback; //function called once all UCF_Promise are resolved
-     * ).catch(function (err) {
+     * )['catch'](function (err) {
      *    console.warn(err);
      * });
      * ```
@@ -19883,7 +20763,7 @@ var sap = window.sap || {};
         /** @type {boolean} */
         this["bHandled"] = false;
         /** @type {UCF_Promise} */
-        this["oValue"] = undefined; // eslint-disable-line ur/no-memory-leaks
+        this["oValue"] = undefined; // eslint-disable-line @ur/no-memory-leaks
         /** @type {UCF_Promise_Deferred[]} */
         this["aDeferreds"] = [];
 
@@ -20133,7 +21013,7 @@ var sap = window.sap || {};
      * "SCRIPT1010: Expected identifier":
      *
      * ```javascript
-     * UCF_Promise.reject('wat').catch(function(err){})
+     * UCF_Promise.reject('wat')['catch'](function(err){})
      * ```
      *
      * You have to property-access the 'catch' in order to make IE Quirks happy:
@@ -21071,11 +21951,7 @@ var sap = window.sap || {};
                 if (sSessionHandling === "SYNC" || sSessionHandling === "SYNCREFRESH") {
 
                     aLogoffQueue = UCF_JsUtil["oJsonParse"](window["sessionStorage"]["getItem"]("sap-logoff-queue"));
-                    oSessionInformation = {
-                        "url": sUrl,
-                        "timestamp": UCF_JsUtil["iGetTimeStamp"](),
-                        "postBody": sPostBody
-                    };
+                    oSessionInformation = {"url": sUrl, "timestamp": UCF_JsUtil["iGetTimeStamp"](), "postBody": sPostBody};
 
                     if (!aLogoffQueue) {
                         aLogoffQueue = [];
@@ -21946,7 +22822,7 @@ var sap = window.sap || {};
         }
 
         if (__UCF_IE6__)
-            return sValue["replace"](/(^[\s\xA0]+|[\s\xA0]+$)/gm, "");
+            return sValue["replace"](/(^[\s\xA0]+|[\s\xA0]+$)/g, "");
         else
             return sValue["trim"]();
     };
@@ -22130,13 +23006,13 @@ var sap = window.sap || {};
         UCF_EventProvider["apply"](this);
 
         /** @type {string} */
-        this["sId"] = UCF_JsUtil["sGetUID"](); 	// eslint-disable-line ur/no-memory-leaks
+        this["sId"] = UCF_JsUtil["sGetUID"](); 	// eslint-disable-line @ur/no-memory-leaks
         /** @type {boolean} */
         this["bIsOpen"] = false;
         /** @type {Array<{sId: string, sText: string}>} */
         this["aButtons"] = [];
 
-        this["fClickHandler"] = null; // eslint-disable-line ur/no-memory-leaks
+        this["fClickHandler"] = null; // eslint-disable-line @ur/no-memory-leaks
     };window["UCF_SystemPopup"] = UCF_SystemPopup;
     ;
     if (__UCF_COVERAGE__) {
@@ -22190,7 +23066,7 @@ var sap = window.sap || {};
         /** @type {HTMLDivElement} */
         var oTitleRef;
 
-        // eslint-disable-next-line ur/no-memory-leaks
+        // eslint-disable-next-line @ur/no-memory-leaks
         this["sTitle"] = sTitle;
 
         if (this["bIsOpen"]) {
@@ -22553,6 +23429,7 @@ var sap = window.sap || {};
     UCF_UserAgent["BROWSER_ABBREVIATION"][UCF_UserAgent["BROWSER"]["Chrome"]] = "cr";
     UCF_UserAgent["BROWSER_ABBREVIATION"][UCF_UserAgent["BROWSER"]["Opera"]] = "op";
     UCF_UserAgent["BROWSER_ABBREVIATION"][UCF_UserAgent["BROWSER"]["MSEdge"]] = "ed";
+    UCF_UserAgent["BROWSER_ABBREVIATION"][UCF_UserAgent["BROWSER"]["Edge"]] = "ed";
     UCF_UserAgent["BROWSER_ABBREVIATION"][UCF_UserAgent["BROWSER"]["PhantomJS"]] = "pj";
     UCF_UserAgent["BROWSER_ABBREVIATION"][UCF_UserAgent["BROWSER"]["Android"]] = "an";
 
@@ -22607,7 +23484,14 @@ var sap = window.sap || {};
     /** @typedef {1025} UCF_UserAgent_ResponsiveBreakpoint_L */
     /** @typedef {1441} UCF_UserAgent_ResponsiveBreakpoint_XL */
     /** @typedef {UCF_UserAgent_ResponsiveBreakpoint_S|UCF_UserAgent_ResponsiveBreakpoint_M|UCF_UserAgent_ResponsiveBreakpoint_L|UCF_UserAgent_ResponsiveBreakpoint_XL} UCF_UserAgent_ResponsiveBreakpoint */
-    /** @type {Object<string,UCF_UserAgent_ResponsiveBreakpoint>} */
+    /**
+     * @typedef {Object} UCF_UserAgent_ResponsiveBreakpointEnum
+     * @property {UCF_UserAgent_ResponsiveBreakpoint_S} S
+     * @property {UCF_UserAgent_ResponsiveBreakpoint_M} M
+     * @property {UCF_UserAgent_ResponsiveBreakpoint_L} L
+     * @property {UCF_UserAgent_ResponsiveBreakpoint_XL} XL
+     */
+    /** @type {UCF_UserAgent_ResponsiveBreakpointEnum} */
     UCF_UserAgent["RESPONSIVE_BREAKPOINT"] = {
         "S": 0,
         "M": 601,
@@ -22658,6 +23542,14 @@ var sap = window.sap || {};
             sSearchUA = /WebKit\/(\d+.\d+)/;
             UCF_UserAgent["sB"] = UCF_UserAgent["BROWSER"]["Edge"];
             sSearchB["push"](/Edg\/(\d+\.\d+)/);
+        }
+            // Check for Velocity  - treated as Chrome on iOS
+        // Mozilla / 5.0(iPhone; CPU iPhone OS 14 _4_2 like Mac OS X) AppleWebKit / 605.1 .15(KHTML, like Gecko) Velocity
+        else if (sUserAgent["indexOf"]("Velocity") > -1) {
+            UCF_UserAgent["sUA"] = UCF_UserAgent["BROWSER"]["Chrome"];
+            UCF_UserAgent["sB"] = UCF_UserAgent["BROWSER"]["Chrome"];
+            sSearchUA = /AppleWebKit \/ (\d+\.\d+)/;
+            sSearchB["push"](/AppleWebKit \/ (\d+\.\d+)/);
         }
 
         // Check for Gecko
@@ -22852,7 +23744,7 @@ var sap = window.sap || {};
         if (oClientHints["platform"]) {
             if (oClientHints["platform"] === 'Windows')
                 UCF_UserAgent["sOs"] = UCF_UserAgent["PLATFORM"]["Windows"];
-            else if (oClientHints["platform"] === 'Mac OS X')
+            else if (UCF_StringUtil["bStartsWith"](oClientHints["platform"], 'mac', true))
                 UCF_UserAgent["sOs"] = UCF_UserAgent["PLATFORM"]["MacOs"];
         }
         if (oClientHints["platformVersion"])
@@ -23944,7 +24836,7 @@ var sap = window.sap || {};
         var iWidth;
 
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(UCF_JsUtil["contains"](UCF_JsUtil["values"](UCF_UserAgent["RESPONSIVE_BREAKPOINT"]), eResponsiveBreakpoint), "UCF_JsUtil.contains(UCF_JsUtil.values(UCF_UserAgent.RESPONSIVE_BREAKPOINT), eResponsiveBreakpoint)", "UserAgent.js(1055): bMatchesResponsiveBreakpoint");
+            UCF_Tracer.assert(UCF_JsUtil["contains"](UCF_JsUtil["values"](UCF_UserAgent["RESPONSIVE_BREAKPOINT"]), eResponsiveBreakpoint), "UCF_JsUtil.contains(UCF_JsUtil.values(UCF_UserAgent.RESPONSIVE_BREAKPOINT), eResponsiveBreakpoint)", "UserAgent.js(1071): bMatchesResponsiveBreakpoint");
         }
         ;
 
@@ -23978,26 +24870,43 @@ var sap = window.sap || {};
             UCF_UserAgent["_"]["setResponsiveBreakpointScope"]++;
         }
         ;
-        // removes all resonsive breakpoint classes from oRef
-        UCF_DomUtil["removeClass"](oRef, UCF_JsUtil["map"](
+        /** @type {string[]} */
+        var aResponsiveBreakpointScopes = UCF_JsUtil["map"](
             UCF_JsUtil["keys"](UCF_UserAgent["RESPONSIVE_BREAKPOINT"]),
             function (sRB) {
                 return 'lsScope--' + sRB["toLowerCase"]();
             }
-        )["join"](' '));
-        // adds the class of the largest smaller responsive breakpoint to oRef
-        UCF_DomUtil["addClass"](oRef, 'lsScope--' + UCF_JsUtil["reduce"](
-            UCF_JsUtil["filter"](
-                UCF_JsUtil["entries"](UCF_UserAgent["RESPONSIVE_BREAKPOINT"]),
-                function (aEntry) {
-                    return aEntry[1] <= iWidthPx;
-                }
-            ),
-            function (aLargest, aEntry) {
-                return aEntry[1] > aLargest[1] ? aEntry : aLargest;
-            },
-            ['NaN', Number["NEGATIVE_INFINITY"]]
-        )[0]["toLowerCase"]());
+        );
+        /** @type {Element} */
+        var oParentRef;
+        /** @type {boolean} */
+        var bResponsive = true;
+
+        UCF_DomUtil["removeClass"](oRef, aResponsiveBreakpointScopes["join"](' '));
+
+        for (oParentRef = oRef; oParentRef["parentNode"]; oParentRef = oParentRef["parentNode"]) {
+            if (UCF_JsUtil["some"](aResponsiveBreakpointScopes, function (sScope) {
+                return UCF_DomUtil["bHasClass"](oParentRef, sScope);
+            })) {
+                bResponsive = false;
+                break;
+            }
+        }
+
+        if (bResponsive) {
+            UCF_DomUtil["addClass"](oRef, 'lsScope--' + UCF_JsUtil["reduce"](
+                UCF_JsUtil["filter"](
+                    UCF_JsUtil["entries"](UCF_UserAgent["RESPONSIVE_BREAKPOINT"]),
+                    function (aEntry) {
+                        return aEntry[1] <= iWidthPx;
+                    }
+                ),
+                function (aLargest, aEntry) {
+                    return aEntry[1] > aLargest[1] ? aEntry : aLargest;
+                },
+                ['NaN', Number["NEGATIVE_INFINITY"]]
+            )[0]["toLowerCase"]());
+        }
     };
     ;
     if (__UCF_COVERAGE__) {
@@ -24129,8 +25038,7 @@ var sap = window.sap || {};
         oDiv["style"]["lineHeight"] = "1.2em";
 
         UCF_DomUtil["setOpacityStyle"](oDiv, 80);
-        // eslint-disable-next-line no-unsanitized/property
-        oDiv["innerHTML"] = this["sGetText"]();
+        UCF_DomUtil["setInnerHtml"](oDiv, this["sGetText"]());
         oDoc["body"]["appendChild"](oDiv);
         var oHelper = this;
         this["sOut"] = oDiv["innerText"];
@@ -24143,12 +25051,12 @@ var sap = window.sap || {};
             if (navigator["clipboard"]) {
                 navigator["clipboard"]["writeText"](oHelper["sOut"])["then"](function () {
                     if (__UCF_TRACE__) {
-                        UCF_Tracer.trace(DEBUG, 'Copying to clipboard was successful!', "VersionInfo.js(94): clickHandler");
+                        UCF_Tracer.trace(DEBUG, 'Copying to clipboard was successful!', "VersionInfo.js(93): clickHandler");
                     }
                     ;
                 }, function (err) {
                     if (__UCF_TRACE__) {
-                        UCF_Tracer.trace(DEBUG, 'Could not copy to clipboard: ', "VersionInfo.js(96): clickHandler", err);
+                        UCF_Tracer.trace(DEBUG, 'Could not copy to clipboard: ', "VersionInfo.js(95): clickHandler", err);
                     }
                     ;
                 });
@@ -24156,7 +25064,7 @@ var sap = window.sap || {};
                 window["clipboardData"]["setData"]("Text", oHelper["sOut"]);
             } else {
                 if (__UCF_TRACE__) {
-                    UCF_Tracer.trace(DEBUG, ' Try document.execCommand ', "VersionInfo.js(101): clickHandler");
+                    UCF_Tracer.trace(DEBUG, ' Try document.execCommand ', "VersionInfo.js(100): clickHandler");
                 }
                 ;
                 var textArea = document["createElement"]("textarea");
@@ -24170,7 +25078,7 @@ var sap = window.sap || {};
                     document["execCommand"]('copy');
                 } catch (err) {
                     if (__UCF_TRACE__) {
-                        UCF_Tracer.trace(DEBUG, '	Was not possible to copy te text: ', "VersionInfo.js(112): clickHandler", err);
+                        UCF_Tracer.trace(DEBUG, '	Was not possible to copy te text: ', "VersionInfo.js(111): clickHandler", err);
                     }
                     ;
                 }
@@ -24208,7 +25116,7 @@ var sap = window.sap || {};
         }
         ;
         if (__UCF_TRACE__) {
-            UCF_Tracer.trace(DEBUG, "Hide Size Info", "VersionInfo.js(137): stop");
+            UCF_Tracer.trace(DEBUG, "Hide Size Info", "VersionInfo.js(136): stop");
         }
         ;
         this["bRunning"] = false;
@@ -24480,7 +25388,7 @@ var sap = window.sap || {};
 
         if (!window["UCF_System"]["bUseXHR"]) {
             if (__UCF_TRACE__) {
-                UCF_Tracer.trace(ERROR, "Version Info is is loaded over XHR while XHR is deactivated.", "VersionInfo.js(306): loadURL");
+                UCF_Tracer.trace(ERROR, "Version Info is is loaded over XHR while XHR is deactivated.", "VersionInfo.js(305): loadURL");
             }
             ;
         }
@@ -24524,29 +25432,30 @@ var sap = window.sap || {};
      */
     UCF_VersionInfo["mVersionProperties"] = {
         "mLightspeed": {
-            "urreleaseversion": "2102",
+            "urreleaseversion": "2202",
             "urrelease": "UnifiedR_03_REL",
             "urproject": "lightspeed",
-            "urchangelist": "331831",
-            "urtimestamp": "202102211111",
-            "urimplementationversion": "03.000.20210219202242.0000",
+            "urchangelist": "341698",
+            "urtimestamp": "202202171335",
+            "urimplementationversion": "03.000.20220217121325.0000",
             "codeline": "$File: //tc1/lightspeed/UnifiedR_03_REL/src/_version/version/version.properties $",
             "uicoreproject": "uicore",
-            "uicoreversion": "10.30.7.331835.0",
-            "uicorechangelist": "331835",
-            "uicoretimestamp": "202102211019",
-            "uicoreimplementationversion": "03.000.20210219202242.0000"
+            "uicoreversion": "10.30.7.341696.0",
+            "uicorechangelist": "341696",
+            "uicoretimestamp": "202202171220",
+            "uicoreimplementationversion": "03.000.20220217121308.0000"
         },
         "mUICore": {
-            "urversion": "10.30.7.331835.0",
+            "urversion": "10.30.7.341696.0",
             "urrelease": "UnifiedR_03_REL",
-            "urchangelist": "331835",
-            "urtimestamp": "202102211019",
-            "urimplementationversion": "03.000.20210219202242.0000",
+            "urchangelist": "341696",
+            "urtimestamp": "202202171220",
+            "urimplementationversion": "03.000.20220217121308.0000",
             "urproject": "uicore",
             "codeline": "$File: //tc1/uicore/UnifiedR_03_REL/src/_version/version/version.properties $"
         }
     };
+
 
     UCF_VersionInfo.prototype["aPublicMethods"] = ["UCF_VersionInfo"].concat(UCF_VersionInfo.prototype.aPublicMethods || []);
 
@@ -24972,6 +25881,7 @@ var sap = window.sap || {};
         this["_bAlt"] = oDomEvent["altKey"];
         this["_bCtrl"] = (UCF_UserAgent["bIsMacOs"]() || UCF_UserAgent["bIsIOS"]()) ? oDomEvent["metaKey"] : oDomEvent["ctrlKey"];
         this["_bRepeat"] = oDomEvent["repeat"];
+        /** @type {UCF_KeyCode} */
         this["_iKeyCode"] = oDomEvent["keyCode"] || oDomEvent["charCode"];
         this["_iClientX"] = Math["round"](typeof oDomEvent["clientX"] === "number" ? oDomEvent["clientX"] : (touch0 ? touch0["clientX"] : undefined));
         this["_iClientY"] = Math["round"](typeof oDomEvent["clientY"] === "number" ? oDomEvent["clientY"] : (touch0 ? touch0["clientY"] : undefined));
@@ -25361,7 +26271,7 @@ var sap = window.sap || {};
         // if source does not have a valid document return null and write a DEBUG trace (IE problem)
         if ((oSourceRoot["document"] && oSourceRoot["document"] != document) || oSourceRoot["parentNode"] == null) {
             if (__UCF_TRACE__) {
-                UCF_Tracer.trace(DEBUG, "Browser event " + this["sGetName"]() + " was fired, but source element is not valid", "BrowserEvent.js(358): oGetSourceRoot");
+                UCF_Tracer.trace(DEBUG, "Browser event " + this["sGetName"]() + " was fired, but source element is not valid", "BrowserEvent.js(359): oGetSourceRoot");
             }
             ;
             return null;
@@ -25386,7 +26296,7 @@ var sap = window.sap || {};
                     oRealRoot = UCF_DomUtil["$"](sId["substr"](0, sId["lastIndexOf"]("-")));
                     // if id with "-r" exists, id without "-r" must also exist!
                     if (__UCF_ASSERT__) {
-                        UCF_Tracer.assert(oRealRoot != null, "oRealRoot != null", "BrowserEvent.js(380): oGetSourceRoot");
+                        UCF_Tracer.assert(oRealRoot != null, "oRealRoot != null", "BrowserEvent.js(381): oGetSourceRoot");
                     }
                     ;
                     // if element exists, and has a ct attribute return it,
@@ -25491,7 +26401,7 @@ var sap = window.sap || {};
     /**
      * Returns the key code of the event
      *
-     * @return {number}
+     * @return {UCF_KeyCode}
      */
     UCF_BrowserEvent["prototype"]["iKeyCode"] = function () {
         ;
@@ -26047,11 +26957,7 @@ var sap = window.sap || {};
 
             // IE11 implements only event.changedTouches but not event.touches
             return oDomEvent["changedTouches"] ?
-                oDomEvent["changedTouches"] : [{
-                    "pageX": oDomEvent["pageX"],
-                    "pageY": oDomEvent["pageY"],
-                    "identifier": oDomEvent["pointerId"]
-                }];
+                oDomEvent["changedTouches"] : [{"pageX": oDomEvent["pageX"], "pageY": oDomEvent["pageY"], "identifier": oDomEvent["pointerId"]}];
         }
 
         return null;
@@ -26189,6 +27095,17 @@ var sap = window.sap || {};
 /// <reference path="./TapDetector.js"/>
     /* global UCF_ZoomDetector */
 /// <reference path="./ZoomDetector.js"/>
+
+    /** @typedef {0} UCF_BrowserWindow_DownEventPhase */
+    /** @typedef {1} UCF_BrowserWindow_PressEventPhase */
+    /** @typedef {2} UCF_BrowserWindow_UpEventPhase */
+    /** @typedef {UCF_BrowserWindow_DownEventPhase|UCF_BrowserWindow_PressEventPhase|UCF_BrowserWindow_UpEventPhase} UCF_BrowserWindow_EventPhase */
+    /**
+     * @typedef {Object} UCF_BrowserWindow_EventPhaseEnum
+     * @property {UCF_BrowserWindow_DownEventPhase} DOWN
+     * @property {UCF_BrowserWindow_PressEventPhase} PRESS
+     * @property {UCF_BrowserWindow_UpEventPhase} UP
+     */
 
     /** @typedef {'ROUNDTRIP'|'DRAGDROP'|'PENDINGNAVIGATION'|'POPUP'|'FRAMEPROTECT'|'DESIGNTIME'|'POSTMESSAGE'} UCF_BrowserWindow_Locktype */
     /** @typedef {'lsup'|'lsdown'|'lsleft'|'lsright'|'lsnext'|'lsprevious'|'lspageup'|'lspagedown'|'lstop'|'lsbottom'|'lshome'|'lsend'|'lsselect'|'lsspace'|'lsenter'|'lsescape'|'lsexpand'|'lscollapse'|'lscollapseall'|'lsshow'|'lshide'|'lsdragstart'|'lsdrag'|'lsdragover'|'lsdraghover'|'lsdragscroll'|'lsdrop'|'lsdragend'|'lsdragenter'|'lsdragleave'|'lsfocusin'|'lsfocusout'|'lsfocus'|'lsblur'|'lstabnext'|'lstabprevious'|'lstabsequencenext'|'lstabsequenceprevious'|'lsskipforward'|'lsskipback'|'lscontainerfocus'|'lscontainerblur'|'lsaccessibility'|'lshotkey'|'lsacchierarchy'|'lsfocuslost'|'lsdelayeddoubleclick'|'lsmousewheel'|'lstouchstart'|'lstouchmove'|'lstouchend'|'lsgesturestart'|'lsgesturechange'|'lsgestureend'|'lslongtap'|'lslongtapend'|'lsextralongtap'|'lsextralongtapend'|'lsswipeleft'|'lsswiperight'} UCF_BrowserWindow_LsEvent * /
@@ -26349,7 +27266,7 @@ var sap = window.sap || {};
          * forwarder function for events
          * @param {Event} oDomEvent
          */
-        this["forwardBrowserEvent"] = function (oDomEvent) { // eslint-disable-line ur/no-memory-leaks
+        this["forwardBrowserEvent"] = function (oDomEvent) { // eslint-disable-line @ur/no-memory-leaks
             self["handleBrowserEvent"](oDomEvent);
         };
 
@@ -26413,7 +27330,7 @@ var sap = window.sap || {};
         this["bPreventBlur"] = false;
 
         if (__UCF_TRACE__) {
-            UCF_Tracer.trace(INFO, 'BrowserWindow created', "BrowserWindow.js(253): UCF_BrowserWindow");
+            UCF_Tracer.trace(INFO, 'BrowserWindow created', "BrowserWindow.js(264): UCF_BrowserWindow");
         }
         ;
     };window["UCF_BrowserWindow"] = UCF_BrowserWindow;
@@ -26439,6 +27356,13 @@ var sap = window.sap || {};
         "FRAMEPROTECT": 'FRAMEPROTECT',
         "DESIGNTIME": 'DESIGNTIME',
         "POSTMESSAGE": 'POSTMESSAGE'
+    };
+
+    /** @type {UCF_BrowserWindow_EventPhaseEnum} */
+    UCF_BrowserWindow["EVENT_PHASE"] = {
+        "DOWN": 0,
+        "PRESS": 1,
+        "UP": 2
     };
 
     /**
@@ -26592,7 +27516,7 @@ var sap = window.sap || {};
         'blur',
         // Mousewheel support for FireFox by DOMMouseScroll. Attaching both will lead
         // to mem leak in IE when loaded in IFrame
-        (UCF_UserAgent["bIsGecko"]() ? 'DOMMouseScroll' : 'mousewheel'),
+        (/Gecko\/\d+ /["test"](navigator["userAgent"]) ? 'DOMMouseScroll' : 'mousewheel'),
         'help'
     ];
 
@@ -26750,23 +27674,23 @@ var sap = window.sap || {};
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(typeof sName === 'string', "typeof sName === 'string'", "BrowserWindow.js(564): attachBrowserEvent");
+            UCF_Tracer.assert(typeof sName === 'string', "typeof sName === 'string'", "BrowserWindow.js(582): attachBrowserEvent");
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(sName !== '', "sName !== ''", "BrowserWindow.js(565): attachBrowserEvent");
+            UCF_Tracer.assert(sName !== '', "sName !== ''", "BrowserWindow.js(583): attachBrowserEvent");
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(sName === 'online' || sName["substr"](0, 'on'["length"]) !== 'on', "sName === 'online' || sName.substr(0, 'on'.length) !== 'on'", "BrowserWindow.js(566): attachBrowserEvent");
+            UCF_Tracer.assert(sName === 'online' || sName["substr"](0, 'on'["length"]) !== 'on', "sName === 'online' || sName.substr(0, 'on'.length) !== 'on'", "BrowserWindow.js(584): attachBrowserEvent");
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(typeof oDomRef === 'object', "typeof oDomRef === 'object'", "BrowserWindow.js(567): attachBrowserEvent");
+            UCF_Tracer.assert(typeof oDomRef === 'object', "typeof oDomRef === 'object'", "BrowserWindow.js(585): attachBrowserEvent");
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(oDomRef != null, "oDomRef != null", "BrowserWindow.js(568): attachBrowserEvent");
+            UCF_Tracer.assert(oDomRef != null, "oDomRef != null", "BrowserWindow.js(586): attachBrowserEvent");
         }
         ;
 
@@ -26817,15 +27741,15 @@ var sap = window.sap || {};
         var self = this;
 
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(typeof (aEventList) === 'object', "typeof(aEventList) === 'object'", "BrowserWindow.js(606): attachBrowserEvents");
+            UCF_Tracer.assert(typeof (aEventList) === 'object', "typeof(aEventList) === 'object'", "BrowserWindow.js(624): attachBrowserEvents");
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(typeof (oDomRef) === 'object', "typeof(oDomRef) === 'object'", "BrowserWindow.js(607): attachBrowserEvents");
+            UCF_Tracer.assert(typeof (oDomRef) === 'object', "typeof(oDomRef) === 'object'", "BrowserWindow.js(625): attachBrowserEvents");
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(oDomRef != null, "oDomRef != null", "BrowserWindow.js(608): attachBrowserEvents");
+            UCF_Tracer.assert(oDomRef != null, "oDomRef != null", "BrowserWindow.js(626): attachBrowserEvents");
         }
         ;
 
@@ -26853,23 +27777,23 @@ var sap = window.sap || {};
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(typeof (sName) === 'string', "typeof(sName) === 'string'", "BrowserWindow.js(623): detachBrowserEvent");
+            UCF_Tracer.assert(typeof (sName) === 'string', "typeof(sName) === 'string'", "BrowserWindow.js(641): detachBrowserEvent");
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(sName !== '', "sName !== ''", "BrowserWindow.js(624): detachBrowserEvent");
+            UCF_Tracer.assert(sName !== '', "sName !== ''", "BrowserWindow.js(642): detachBrowserEvent");
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(sName === 'online' || sName["substr"](0, 'on'["length"]) !== 'on', "sName === 'online' || sName.substr(0, 'on'.length) !== 'on'", "BrowserWindow.js(625): detachBrowserEvent");
+            UCF_Tracer.assert(sName === 'online' || sName["substr"](0, 'on'["length"]) !== 'on', "sName === 'online' || sName.substr(0, 'on'.length) !== 'on'", "BrowserWindow.js(643): detachBrowserEvent");
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(typeof (oDomRef) === 'object', "typeof(oDomRef) === 'object'", "BrowserWindow.js(626): detachBrowserEvent");
+            UCF_Tracer.assert(typeof (oDomRef) === 'object', "typeof(oDomRef) === 'object'", "BrowserWindow.js(644): detachBrowserEvent");
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(oDomRef != null, "oDomRef != null", "BrowserWindow.js(627): detachBrowserEvent");
+            UCF_Tracer.assert(oDomRef != null, "oDomRef != null", "BrowserWindow.js(645): detachBrowserEvent");
         }
         ;
 
@@ -26905,15 +27829,15 @@ var sap = window.sap || {};
         var self = this;
 
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(typeof (aEventList) === 'object', "typeof(aEventList) === 'object'", "BrowserWindow.js(650): detachBrowserEvents");
+            UCF_Tracer.assert(typeof (aEventList) === 'object', "typeof(aEventList) === 'object'", "BrowserWindow.js(668): detachBrowserEvents");
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(typeof (oDomRef) === 'object', "typeof(oDomRef) === 'object'", "BrowserWindow.js(651): detachBrowserEvents");
+            UCF_Tracer.assert(typeof (oDomRef) === 'object', "typeof(oDomRef) === 'object'", "BrowserWindow.js(669): detachBrowserEvents");
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(oDomRef != null, "oDomRef != null", "BrowserWindow.js(652): detachBrowserEvents");
+            UCF_Tracer.assert(oDomRef != null, "oDomRef != null", "BrowserWindow.js(670): detachBrowserEvents");
         }
         ;
 
@@ -27130,11 +28054,11 @@ var sap = window.sap || {};
         var mEventParams;
 
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(typeof (oDomEvent) === 'object', "typeof(oDomEvent) === 'object'", "BrowserWindow.js(786): handleBrowserEvent");
+            UCF_Tracer.assert(typeof (oDomEvent) === 'object', "typeof(oDomEvent) === 'object'", "BrowserWindow.js(804): handleBrowserEvent");
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(oDomEvent != null, "oDomEvent != null", "BrowserWindow.js(787): handleBrowserEvent");
+            UCF_Tracer.assert(oDomEvent != null, "oDomEvent != null", "BrowserWindow.js(805): handleBrowserEvent");
         }
         ;
 
@@ -27152,7 +28076,7 @@ var sap = window.sap || {};
         }
 
         if (__UCF_TRACE__) {
-            UCF_Tracer.trace(DEBUG, 'Handle browser event: ' + oDomEvent["type"], "BrowserWindow.js(802): handleBrowserEvent");
+            UCF_Tracer.trace(DEBUG, 'Handle browser event: ' + oDomEvent["type"], "BrowserWindow.js(820): handleBrowserEvent");
         }
         ;
 
@@ -27253,7 +28177,7 @@ var sap = window.sap || {};
         // Swipe: Not yet supported: Need to change detection of pinch because
         //        Android/Chrome has no gesturestart event
         // Zoom: Not yet supported on Android/Chrome
-        //	if (UCF_System.sInteractionType === 'TOUCH' /*&& !UCF_UserAgent.bIsAndroid()*/ ) {
+        //	if (window.UCF_System.sInteractionType === 'TOUCH' /*&& !UCF_UserAgent.bIsAndroid()*/ ) {
         if (bIsTouchEvent) {
             oLongTapDetector = this["oGetLongTapDetector"]();
             if (sHandlerName in oLongTapDetector) {
@@ -27324,7 +28248,7 @@ var sap = window.sap || {};
         }
         ;
         if (__UCF_TRACE__) {
-            UCF_Tracer.trace(INFO, 'TOUCH: longtap', "BrowserWindow.js(941): onLongTap");
+            UCF_Tracer.trace(INFO, 'TOUCH: longtap', "BrowserWindow.js(959): onLongTap");
         }
         ;
         this["fireLSEvent"](this["E_LS_EVENTS"]["longtap"], oEvent["mGetParameters"]()["oBrowserEvent"]);
@@ -27346,7 +28270,7 @@ var sap = window.sap || {};
         }
         ;
         if (__UCF_TRACE__) {
-            UCF_Tracer.trace(INFO, 'TOUCH: longtapend', "BrowserWindow.js(950): onLongTapEnd");
+            UCF_Tracer.trace(INFO, 'TOUCH: longtapend', "BrowserWindow.js(968): onLongTapEnd");
         }
         ;
         this["fireLSEvent"](this["E_LS_EVENTS"]["longtapend"], oEvent["mGetParameters"]()["oBrowserEvent"]);
@@ -27368,7 +28292,7 @@ var sap = window.sap || {};
         }
         ;
         if (__UCF_TRACE__) {
-            UCF_Tracer.trace(INFO, 'TOUCH: extralongtap', "BrowserWindow.js(959): onExtraLongTap");
+            UCF_Tracer.trace(INFO, 'TOUCH: extralongtap', "BrowserWindow.js(977): onExtraLongTap");
         }
         ;
         this["fireLSEvent"](this["E_LS_EVENTS"]["extralongtap"], oEvent["mGetParameters"]()["oBrowserEvent"]);
@@ -27390,7 +28314,7 @@ var sap = window.sap || {};
         }
         ;
         if (__UCF_TRACE__) {
-            UCF_Tracer.trace(INFO, 'TOUCH: extralongtapend', "BrowserWindow.js(968): onExtraLongTapEnd");
+            UCF_Tracer.trace(INFO, 'TOUCH: extralongtapend', "BrowserWindow.js(986): onExtraLongTapEnd");
         }
         ;
         this["fireLSEvent"](this["E_LS_EVENTS"]["extralongtapend"], oEvent["mGetParameters"]()["oBrowserEvent"]);
@@ -27442,7 +28366,7 @@ var sap = window.sap || {};
         var mParameters = oEvent["mGetParameters"]();
 
         if (__UCF_TRACE__) {
-            UCF_Tracer.trace(INFO, 'TOUCH: swipe' + mParameters["sDirection"], "BrowserWindow.js(997): onSwipe");
+            UCF_Tracer.trace(INFO, 'TOUCH: swipe' + mParameters["sDirection"], "BrowserWindow.js(1015): onSwipe");
         }
         ;
 
@@ -27473,7 +28397,7 @@ var sap = window.sap || {};
         var mParameters = oEvent["mGetParameters"]();
 
         if (__UCF_TRACE__) {
-            UCF_Tracer.trace(INFO, 'TOUCH: moveinfo', "BrowserWindow.js(1015): onMoveInfo");
+            UCF_Tracer.trace(INFO, 'TOUCH: moveinfo', "BrowserWindow.js(1033): onMoveInfo");
         }
         ;
 
@@ -27530,7 +28454,7 @@ var sap = window.sap || {};
         }
         ;
         if (__UCF_TRACE__) {
-            UCF_Tracer.trace(INFO, 'TOUCH: zoomchange', "BrowserWindow.js(1049): onZoomChange");
+            UCF_Tracer.trace(INFO, 'TOUCH: zoomchange', "BrowserWindow.js(1067): onZoomChange");
         }
         ;
         this["fireEvent"](this["E_EVENTS"]["ZoomChange"], {
@@ -27580,7 +28504,7 @@ var sap = window.sap || {};
         }
         ;
         if (__UCF_TRACE__) {
-            UCF_Tracer.trace(INFO, 'TOUCH: tap', "BrowserWindow.js(1076): onTap");
+            UCF_Tracer.trace(INFO, 'TOUCH: tap', "BrowserWindow.js(1094): onTap");
         }
         ;
         this["fireEvent"](this["E_EVENTS"]["Tap"], oEvent["mGetParameters"]());
@@ -27615,16 +28539,16 @@ var sap = window.sap || {};
         var mEventParams;
 
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(oBrowserEvent != null, "oBrowserEvent != null", "BrowserWindow.js(1098): processBrowserEvent");
+            UCF_Tracer.assert(oBrowserEvent != null, "oBrowserEvent != null", "BrowserWindow.js(1116): processBrowserEvent");
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(oBrowserEvent instanceof UCF_BrowserEvent, "oBrowserEvent instanceof UCF_BrowserEvent", "BrowserWindow.js(1099): processBrowserEvent");
+            UCF_Tracer.assert(oBrowserEvent instanceof UCF_BrowserEvent, "oBrowserEvent instanceof UCF_BrowserEvent", "BrowserWindow.js(1117): processBrowserEvent");
         }
         ;
 
         if (__UCF_TRACE__) {
-            UCF_Tracer.trace(DEBUG, '->(' + oBrowserEvent["sGetName"]() + ')', "BrowserWindow.js(1101): processBrowserEvent");
+            UCF_Tracer.trace(DEBUG, '->(' + oBrowserEvent["sGetName"]() + ')', "BrowserWindow.js(1119): processBrowserEvent");
         }
         ;
 
@@ -27788,7 +28712,7 @@ var sap = window.sap || {};
         }
         ;
         if (__UCF_TRACE__) {
-            UCF_Tracer.trace(DEBUG, 'oncontextmenu', "BrowserWindow.js(1232): oncontextmenu");
+            UCF_Tracer.trace(DEBUG, 'oncontextmenu', "BrowserWindow.js(1250): oncontextmenu");
         }
         ;
 
@@ -27817,7 +28741,7 @@ var sap = window.sap || {};
         }
         ;
         if (__UCF_TRACE__) {
-            UCF_Tracer.trace(DEBUG, 'onvisivibilitychange', "BrowserWindow.js(1248): onvisibilitychange");
+            UCF_Tracer.trace(DEBUG, 'onvisivibilitychange', "BrowserWindow.js(1266): onvisibilitychange");
         }
         ;
         this["fireEvent"](this["E_EVENTS"]["VisibilityChange"], oBrowserEvent);
@@ -27846,7 +28770,7 @@ var sap = window.sap || {};
         }
         ;
         if (__UCF_TRACE__) {
-            UCF_Tracer.trace(DEBUG, 'onBeforeUnload', "BrowserWindow.js(1264): onbeforeunload");
+            UCF_Tracer.trace(DEBUG, 'onBeforeUnload', "BrowserWindow.js(1282): onbeforeunload");
         }
         ;
         this["fireEvent"](this["E_EVENTS"]["BeforeUnload"], oBrowserEvent);
@@ -27877,7 +28801,7 @@ var sap = window.sap || {};
         }
         ;
         if (__UCF_TRACE__) {
-            UCF_Tracer.trace(DEBUG, 'onmousewheel', "BrowserWindow.js(1282): onmousewheel");
+            UCF_Tracer.trace(DEBUG, 'onmousewheel', "BrowserWindow.js(1300): onmousewheel");
         }
         ;
         this["fireLSEvent"](this["E_LS_EVENTS"]["mousewheel"], oBrowserEvent);
@@ -27903,7 +28827,7 @@ var sap = window.sap || {};
         }
         ;
         if (__UCF_TRACE__) {
-            UCF_Tracer.trace(DEBUG, 'DOMMouseScroll', "BrowserWindow.js(1295): onDOMMouseScroll");
+            UCF_Tracer.trace(DEBUG, 'DOMMouseScroll', "BrowserWindow.js(1313): onDOMMouseScroll");
         }
         ;
         this["fireLSEvent"](this["E_LS_EVENTS"]["mousewheel"], oBrowserEvent);
@@ -27925,7 +28849,7 @@ var sap = window.sap || {};
         }
         ;
         if (__UCF_TRACE__) {
-            UCF_Tracer.trace(INFO, 'TOUCH: fire orientationchange', "BrowserWindow.js(1304): onorientationchange");
+            UCF_Tracer.trace(INFO, 'TOUCH: fire orientationchange', "BrowserWindow.js(1322): onorientationchange");
         }
         ;
         this["fireEvent"](this["E_EVENTS"]["OrientationChange"]);
@@ -27950,7 +28874,7 @@ var sap = window.sap || {};
         }
         ;
         if (__UCF_TRACE__) {
-            UCF_Tracer.trace(DEBUG, 'onselect', "BrowserWindow.js(1316): onselect");
+            UCF_Tracer.trace(DEBUG, 'onselect', "BrowserWindow.js(1334): onselect");
         }
         ;
         // oBrowserEvent.cancel();
@@ -28003,7 +28927,7 @@ var sap = window.sap || {};
                     oSource["getAttribute"]('ct') === 'FLC'
                 ) {
                     if (__UCF_TRACE__) {
-                        UCF_Tracer.trace(INFO, 'Ignoring focus on flash during pending navigation (open external window)', "BrowserWindow.js(1356): preProcessLostFocus");
+                        UCF_Tracer.trace(INFO, 'Ignoring focus on flash during pending navigation (open external window)', "BrowserWindow.js(1374): preProcessLostFocus");
                     }
                     ;
 
@@ -28016,7 +28940,7 @@ var sap = window.sap || {};
             if (!this["bFocussed"]) {
                 this["bFocussed"] = true;
                 if (__UCF_TRACE__) {
-                    UCF_Tracer.trace(DEBUG, 'Focus', "BrowserWindow.js(1366): preProcessLostFocus");
+                    UCF_Tracer.trace(DEBUG, 'Focus', "BrowserWindow.js(1384): preProcessLostFocus");
                 }
                 ;
                 this["fireEvent"](this["E_EVENTS"]["Focus"]);
@@ -28110,7 +29034,7 @@ var sap = window.sap || {};
                 if (this["bFocussed"]) {
                     this["bFocussed"] = false;
                     if (__UCF_TRACE__) {
-                        UCF_Tracer.trace(DEBUG, 'Blur', "BrowserWindow.js(1437): checkForLostFocus");
+                        UCF_Tracer.trace(DEBUG, 'Blur', "BrowserWindow.js(1455): checkForLostFocus");
                     }
                     ;
                     this["fireEvent"](this["E_EVENTS"]["Blur"]);
@@ -28127,13 +29051,13 @@ var sap = window.sap || {};
                 };
                 if (UCF_UserAgent["bIsDesktop"]()) {
                     if (__UCF_TRACE__) {
-                        UCF_Tracer.trace(DEBUG, 'fire lsfocuslost', "BrowserWindow.js(1451): checkForLostFocus");
+                        UCF_Tracer.trace(DEBUG, 'fire lsfocuslost', "BrowserWindow.js(1469): checkForLostFocus");
                     }
                     ;
                     this["fireLSEvent"](this["E_LS_EVENTS"]["focuslost"], oBrowserEvent);
                 } else {
                     if (__UCF_TRACE__) {
-                        UCF_Tracer.trace(DEBUG, 'lsfocuslost suppressed for tablet and phone', "BrowserWindow.js(1454): checkForLostFocus");
+                        UCF_Tracer.trace(DEBUG, 'lsfocuslost suppressed for tablet and phone', "BrowserWindow.js(1472): checkForLostFocus");
                     }
                     ;
                 }
@@ -28264,6 +29188,8 @@ var sap = window.sap || {};
         /** @type {number} */
         var iKey = oBrowserEvent["iKeyCode"]();
 
+        this["findMatchingLSEvents"](oBrowserEvent, UCF_BrowserWindow["EVENT_PHASE"]["UP"]);
+
         if (iKey === UCF_KeyCodes["ALT"]) {
             UCF_KeyboardHelper["hideAccessKeys"]();
         }
@@ -28361,7 +29287,7 @@ var sap = window.sap || {};
             }
         }
 
-        this["findMatchingLSEvents"](oBrowserEvent);
+        this["findMatchingLSEvents"](oBrowserEvent, UCF_BrowserWindow["EVENT_PHASE"]["DOWN"]);
 
         if (this["oDragAndDropManager"]) {
             this["oDragAndDropManager"]["notifyKeyDown"](oBrowserEvent);
@@ -28413,22 +29339,15 @@ var sap = window.sap || {};
             UCF_BrowserWindow["_"]["oGetBrowserEventInfo"]++;
         }
         ;
-        /** @type {boolean} */
-        var bCtrl = oBrowserEvent["bCtrl"]();
-        /** @type {boolean} */
-        var bShift = oBrowserEvent["bShift"]();
-        /** @type {boolean} */
-        var bAlt = oBrowserEvent["bAlt"]();
-
         return {
-            "bCtrl": bCtrl,
-            "bShift": bShift,
-            "bAlt": bAlt,
-            "bCtrlOnly": bCtrl && !bShift && !bAlt,
-            "bAltOnly": bAlt && !bCtrl && !bShift,
-            "bShiftOnly": bShift && !bCtrl && !bAlt,
+            "bCtrl": oBrowserEvent["bCtrl"](),
+            "bShift": oBrowserEvent["bShift"](),
+            "bAlt": oBrowserEvent["bAlt"](),
+            "bCtrlOnly": UCF_KeyboardHelper["bHasModifiers"](oBrowserEvent, 'C'),
+            "bAltOnly": UCF_KeyboardHelper["bHasModifiers"](oBrowserEvent, 'A'),
+            "bShiftOnly": UCF_KeyboardHelper["bHasModifiers"](oBrowserEvent, 'S'),
             //bCtrlAlt : bCtrl && bAlt && !bShift,
-            "bNoModifiers": !bCtrl && !bAlt && !bShift
+            "bNoModifiers": UCF_KeyboardHelper["bHasModifiers"](oBrowserEvent, '')
         };
     };
     ;
@@ -28442,8 +29361,9 @@ var sap = window.sap || {};
      *
      * @private
      * @param {UCF_BrowserEvent} oBrowserEvent
+     * @param {UCF_BrowserWindow_EventPhase} ePhase
      */
-    UCF_BrowserWindow["prototype"]["findMatchingLSEvents"] = function (oBrowserEvent) {
+    UCF_BrowserWindow["prototype"]["findMatchingLSEvents"] = function (oBrowserEvent, ePhase) {
         ;
         if (__UCF_COVERAGE__) {
             UCF_BrowserWindow["_"]["findMatchingLSEvents"]++;
@@ -28459,77 +29379,77 @@ var sap = window.sap || {};
         /* beautify preserve:start */
         // home
         if (iKey === UCF_KeyCodes["HOME"]) {
-            this["fireLSEvent"](this["E_LS_EVENTS"]["home"], oBrowserEvent, true);
+            this["fireLSEvent"](this["E_LS_EVENTS"]["home"], oBrowserEvent, ePhase, true);
             if (oEventInfo["bCtrlOnly"]) {
-                this["fireLSEvent"](this["E_LS_EVENTS"]["top"], oBrowserEvent);
+                this["fireLSEvent"](this["E_LS_EVENTS"]["top"], oBrowserEvent, ePhase);
             }
         } else
             // end
         if (iKey === UCF_KeyCodes["END"]) {
-            this["fireLSEvent"](this["E_LS_EVENTS"]["end"], oBrowserEvent, true);
+            this["fireLSEvent"](this["E_LS_EVENTS"]["end"], oBrowserEvent, ePhase, true);
             if (oEventInfo["bCtrlOnly"]) {
-                this["fireLSEvent"](this["E_LS_EVENTS"]["bottom"], oBrowserEvent);
+                this["fireLSEvent"](this["E_LS_EVENTS"]["bottom"], oBrowserEvent, ePhase);
             }
         } else
             // pageup
         if (iKey === UCF_KeyCodes["PAGE_UP"]) {
-            this["fireLSEvent"](this["E_LS_EVENTS"]["pageup"], oBrowserEvent, true);
+            this["fireLSEvent"](this["E_LS_EVENTS"]["pageup"], oBrowserEvent, ePhase, true);
         } else
             // pagedown
         if (iKey === UCF_KeyCodes["PAGE_DOWN"]) {
-            this["fireLSEvent"](this["E_LS_EVENTS"]["pagedown"], oBrowserEvent, true);
+            this["fireLSEvent"](this["E_LS_EVENTS"]["pagedown"], oBrowserEvent, ePhase, true);
         } else
             // space and select
         if (iKey === UCF_KeyCodes["SPACE"]) {
-            this["fireLSEvent"](this["E_LS_EVENTS"]["select"], oBrowserEvent, true);
-            this["fireLSEvent"](this["E_LS_EVENTS"]["space"], oBrowserEvent, true);
+            this["fireLSEvent"](this["E_LS_EVENTS"]["select"], oBrowserEvent, ePhase, true);
+            this["fireLSEvent"](this["E_LS_EVENTS"]["space"], oBrowserEvent, ePhase, true);
         } else
             // enter and select
         if (iKey === UCF_KeyCodes["ENTER"]) {
-            this["fireLSEvent"](this["E_LS_EVENTS"]["select"], oBrowserEvent, true);
-            this["fireLSEvent"](this["E_LS_EVENTS"]["enter"], oBrowserEvent, true);
+            this["fireLSEvent"](this["E_LS_EVENTS"]["select"], oBrowserEvent, ePhase, true);
+            this["fireLSEvent"](this["E_LS_EVENTS"]["enter"], oBrowserEvent, ePhase, true);
         } else
             // collapseall
         if (
             (iKey === UCF_KeyCodes["NUMPAD_ASTERISK"] && oEventInfo["bNoModifiers"]) ||
             (iKey === UCF_KeyCodes["PLUS"] && oEventInfo["bShift"])
         ) {
-            this["fireLSEvent"](this["E_LS_EVENTS"]["collapseall"], oBrowserEvent);
+            this["fireLSEvent"](this["E_LS_EVENTS"]["collapseall"], oBrowserEvent, ePhase);
         } else
             // expand
         if (UCF_KeyboardHelper["bIsPlusKey"](iKey)) {
-            this["fireLSEvent"](this["E_LS_EVENTS"]["expand"], oBrowserEvent, true);
+            this["fireLSEvent"](this["E_LS_EVENTS"]["expand"], oBrowserEvent, ePhase, true);
         } else
             // collapse
         if (UCF_KeyboardHelper["bIsMinusKey"](iKey)) {
-            this["fireLSEvent"](this["E_LS_EVENTS"]["collapse"], oBrowserEvent, true);
+            this["fireLSEvent"](this["E_LS_EVENTS"]["collapse"], oBrowserEvent, ePhase, true);
         } else
             // escape
         if (iKey === UCF_KeyCodes["ESCAPE"] && oEventInfo["bNoModifiers"]) {
             if (this["oDragAndDropManager"]) {
                 this["oDragAndDropManager"]["notifyEscapePressed"](oBrowserEvent);
             }
-            this["fireLSEvent"](this["E_LS_EVENTS"]["escape"], oBrowserEvent);
+            this["fireLSEvent"](this["E_LS_EVENTS"]["escape"], oBrowserEvent, ePhase);
         } else
             // show
         if (iKey === UCF_KeyCodes["F4"] && oEventInfo["bNoModifiers"]) {
             // alt+arrow down fires show too
-            this["fireLSEvent"](this["E_LS_EVENTS"]["show"], oBrowserEvent);
+            this["fireLSEvent"](this["E_LS_EVENTS"]["show"], oBrowserEvent, ePhase);
         } else
             // tab
         if (iKey === UCF_KeyCodes["TAB"] && !oEventInfo["bAlt"] && !oEventInfo["bCtrl"]) {
-            this["tabKeyToLSEvent"](oBrowserEvent);
+            this["tabKeyToLSEvent"](oBrowserEvent, ePhase);
         } else
             // skipping (standard and alternative mode)
         if (UCF_KeyboardHelper["bIsSkippingShortcut"](oBrowserEvent, this["bAlternativeKeyboardHandling"])) {
             sEventName = (iKey === UCF_KeyCodes["ARROW_UP"] || (iKey === UCF_KeyCodes["F6"] && oEventInfo["bShift"]))
                 ? this["E_LS_EVENTS"]["skipback"]
                 : this["E_LS_EVENTS"]["skipforward"];
-            this["fireLSEvent"](sEventName, oBrowserEvent);
+            this["fireLSEvent"](sEventName, oBrowserEvent, ePhase);
         } else
             // contextmenu Shift-F10 hack
         if (iKey === UCF_KeyCodes["F10"] && oEventInfo["bShiftOnly"]) {
-            this["fireLSEvent"]('contextmenu', oBrowserEvent);
+            this["fireLSEvent"]('contextmenu', oBrowserEvent, ePhase);
         } else
             // announce accessibility container
         if (
@@ -28539,23 +29459,23 @@ var sap = window.sap || {};
             oEventInfo["bAlt"] &&
             oEventInfo["bShift"]
         ) {
-            this["fireLSEvent"](this["E_LS_EVENTS"]["acchierarchy"], oBrowserEvent);
+            this["fireLSEvent"](this["E_LS_EVENTS"]["acchierarchy"], oBrowserEvent, ePhase);
         } else if (UCF_UserAgent["bIsMacOs"]() && oEventInfo["bCtrlOnly"]) {
             // [CMD][UP] (on MacOS) == [HOME]
             if (iKey === UCF_KeyCodes["ARROW_UP"]) {
-                this["fireLSEvent"](this["E_LS_EVENTS"]["home"], oBrowserEvent);
+                this["fireLSEvent"](this["E_LS_EVENTS"]["home"], oBrowserEvent, ePhase);
             } else
                 // [CMD][DOWN] (on MacOS) == [END]
             if (iKey === UCF_KeyCodes["ARROW_DOWN"]) {
-                this["fireLSEvent"](this["E_LS_EVENTS"]["end"], oBrowserEvent);
+                this["fireLSEvent"](this["E_LS_EVENTS"]["end"], oBrowserEvent, ePhase);
             }
         }
         // beautify preserve:end
 
-        this["arrowKeyToLSEvent"](oBrowserEvent);
+        this["arrowKeyToLSEvent"](oBrowserEvent, ePhase);
 
         // hotkeys: all other events could be hotkeys
-        this["fireHotkeys"](oBrowserEvent);
+        this["fireHotkeys"](oBrowserEvent, ePhase);
     };
     ;
     if (__UCF_COVERAGE__) {
@@ -28568,8 +29488,9 @@ var sap = window.sap || {};
      *
      * @private
      * @param {UCF_BrowserEvent} oBrowserEvent
+     * @param {UCF_BrowserWindow_EventPhase} ePhase
      */
-    UCF_BrowserWindow["prototype"]["tabKeyToLSEvent"] = function (oBrowserEvent) {
+    UCF_BrowserWindow["prototype"]["tabKeyToLSEvent"] = function (oBrowserEvent, ePhase) {
         ;
         if (__UCF_COVERAGE__) {
             UCF_BrowserWindow["_"]["tabKeyToLSEvent"]++;
@@ -28585,7 +29506,7 @@ var sap = window.sap || {};
             : this["E_LS_EVENTS"]["tabnext"];
 
         if (iKey === UCF_KeyCodes["TAB"] && !oEventInfo["bAlt"] && !oEventInfo["bCtrl"]) {
-            this["fireLSEvent"](sEventName, oBrowserEvent);
+            this["fireLSEvent"](sEventName, oBrowserEvent, ePhase);
             // TabSequence:
             // See Control.onlstabsequencenext()
             // It will overrule tab-chain for Control that implement lstabnext() and
@@ -28602,7 +29523,7 @@ var sap = window.sap || {};
                 sEventName = oEventInfo["bShift"]
                     ? this["E_LS_EVENTS"]["tabsequenceprevious"]
                     : this["E_LS_EVENTS"]["tabsequencenext"];
-                this["fireLSEvent"](sEventName, oBrowserEvent);
+                this["fireLSEvent"](sEventName, oBrowserEvent, ePhase);
             }
         }
     };
@@ -28617,8 +29538,9 @@ var sap = window.sap || {};
      *
      * @private
      * @param {UCF_BrowserEvent} oBrowserEvent
+     * @param {UCF_BrowserWindow_EventPhase} ePhase
      */
-    UCF_BrowserWindow["prototype"]["fireHotkeys"] = function (oBrowserEvent) {
+    UCF_BrowserWindow["prototype"]["fireHotkeys"] = function (oBrowserEvent, ePhase) {
         ;
         if (__UCF_COVERAGE__) {
             UCF_BrowserWindow["_"]["fireHotkeys"]++;
@@ -28629,13 +29551,15 @@ var sap = window.sap || {};
         /** @type {UCF_BrowserWindow_EventInfo} */
         var oEventInfo = this["oGetBrowserEventInfo"](oBrowserEvent);
 
-        //Check if browser event was canceled
-        //Shift+F10 is context menu and the event is always canceled!!
+        // Check if browser event was canceled
+        // [SHIFT][F10] is context menu and the event is always canceled!!
         if (!oBrowserEvent["bIsDomEventCanceled"]()) {
 
             if (iKey === 13 && oBrowserEvent["bIsTouchInteraction"]()) {
-                //IOS enables shift automatically for the first character in an InputField. (tested with onscreen keyboard and attached keyboard and in both cases was bIsTouchInteraction = true)
-                //Ignore shift for enter (iKey==13)
+                // IOS enables shift automatically for the first character in an
+                // InputField. (tested with onscreen keyboard and attached keyboard and
+                // in both cases was bIsTouchInteraction = true)
+                // Ignore shift for enter (iKey==13)
                 oEventInfo["bShift"] = false;
                 if (oEventInfo["bShiftOnly"]) {
                     oEventInfo["bShiftOnly"] = false;
@@ -28657,7 +29581,7 @@ var sap = window.sap || {};
                 ) {
                     // Do nothing because it is a copy of selected text
                 } else {
-                    this["fireLSEvent"](this["E_LS_EVENTS"]["hotkey"], oBrowserEvent);
+                    this["fireLSEvent"](this["E_LS_EVENTS"]["hotkey"], oBrowserEvent, ePhase);
                 }
             }
         }
@@ -28673,8 +29597,9 @@ var sap = window.sap || {};
      *
      * @private
      * @param {UCF_BrowserEvent} oBrowserEvent
+     * @param {UCF_BrowserWindow_EventPhase} ePhase
      */
-    UCF_BrowserWindow["prototype"]["arrowKeyToLSEvent"] = function (oBrowserEvent) {
+    UCF_BrowserWindow["prototype"]["arrowKeyToLSEvent"] = function (oBrowserEvent, ePhase) {
         ;
         if (__UCF_COVERAGE__) {
             UCF_BrowserWindow["_"]["arrowKeyToLSEvent"]++;
@@ -28692,22 +29617,22 @@ var sap = window.sap || {};
         /* beautify preserve:start */
         // down && show
         if (iKey === UCF_KeyCodes["ARROW_DOWN"]) {
-            this["fireLSEvent"](this["E_LS_EVENTS"]["down"], oBrowserEvent, true);
+            this["fireLSEvent"](this["E_LS_EVENTS"]["down"], oBrowserEvent, ePhase, true);
             if (oEventInfo["bAltOnly"]) {
-                this["fireLSEvent"](this["E_LS_EVENTS"]["show"], oBrowserEvent);
+                this["fireLSEvent"](this["E_LS_EVENTS"]["show"], oBrowserEvent, ePhase);
             }
         } else
             // up
         if (iKey === UCF_KeyCodes["ARROW_UP"]) {
-            this["fireLSEvent"](this["E_LS_EVENTS"]["up"], oBrowserEvent, true);
+            this["fireLSEvent"](this["E_LS_EVENTS"]["up"], oBrowserEvent, ePhase, true);
         } else
             // left
         if (iKey === UCF_KeyCodes["ARROW_LEFT"]) {
-            this["fireLSEvent"](this["E_LS_EVENTS"]["left"], oBrowserEvent, true);
+            this["fireLSEvent"](this["E_LS_EVENTS"]["left"], oBrowserEvent, ePhase, true);
         } else
             // right
         if (iKey === UCF_KeyCodes["ARROW_RIGHT"]) {
-            this["fireLSEvent"](this["E_LS_EVENTS"]["right"], oBrowserEvent, true);
+            this["fireLSEvent"](this["E_LS_EVENTS"]["right"], oBrowserEvent, ePhase, true);
         }
         /* beautify preserve:end */
 
@@ -28722,12 +29647,12 @@ var sap = window.sap || {};
 
             // previous
             if (iKey === iPreviousKey || iKey === UCF_KeyCodes["ARROW_UP"]) {
-                this["fireLSEvent"](this["E_LS_EVENTS"]["previous"], oBrowserEvent, true);
+                this["fireLSEvent"](this["E_LS_EVENTS"]["previous"], oBrowserEvent, ePhase, true);
             }
 
             // next
             if (iKey === iNextKey || iKey === UCF_KeyCodes["ARROW_DOWN"]) {
-                this["fireLSEvent"](this["E_LS_EVENTS"]["next"], oBrowserEvent, true);
+                this["fireLSEvent"](this["E_LS_EVENTS"]["next"], oBrowserEvent, ePhase, true);
             }
         }
     };
@@ -28743,11 +29668,12 @@ var sap = window.sap || {};
      * @private
      * @param {string} sName the name of the new event
      * @param {UCF_BrowserEvent} oBrowserEvent the original browser event
-     * @param {boolean} bCheckModifier whether 'modifier' should be added to the
+     * @param {UCF_BrowserWindow_EventPhase} [ePhase]
+     * @param {boolean} [bCheckModifier=false] whether 'modifier' should be added to the
      * event name if modifiers are used
      * @return {boolean} `true` if event was canceled during handler processing
      */
-    UCF_BrowserWindow["prototype"]["fireLSEvent"] = function (sName, oBrowserEvent, bCheckModifier) {
+    UCF_BrowserWindow["prototype"]["fireLSEvent"] = function (sName, oBrowserEvent, ePhase, bCheckModifier) {
         ;
         if (__UCF_COVERAGE__) {
             UCF_BrowserWindow["_"]["fireLSEvent"]++;
@@ -28758,42 +29684,48 @@ var sap = window.sap || {};
         /** @type {UCF_BrowserEvent} */
         var oNewBrowserEvent;
 
-        if (this["bDestroyed"]) return;
+        if (this["bDestroyed"]) {
+            return false;
+        } else {
+            if (__UCF_ASSERT__) {
+                UCF_Tracer.assert(oBrowserEvent instanceof UCF_BrowserEvent, "oBrowserEvent instanceof UCF_BrowserEvent", "BrowserWindow.js(1970): fireLSEvent");
+            }
+            ;
+            if (__UCF_ASSERT__) {
+                UCF_Tracer.assert(typeof (sName) === 'string', "typeof(sName) === 'string'", "BrowserWindow.js(1971): fireLSEvent");
+            }
+            ;
 
-        if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(oBrowserEvent instanceof UCF_BrowserEvent, "oBrowserEvent instanceof UCF_BrowserEvent", "BrowserWindow.js(1949): fireLSEvent");
+            bAnyModifier = oBrowserEvent && (oBrowserEvent["bCtrl"]() ||
+                oBrowserEvent["bShift"]() ||
+                oBrowserEvent["bAlt"]());
+            oNewBrowserEvent = this["oBrowserEventPool"]["oBorrowObject"](
+                oBrowserEvent["oDomEvent"]
+            );
+
+            if (bCheckModifier && bAnyModifier) {
+                sName += 'modifier';
+            }
+
+            if (ePhase === UCF_BrowserWindow["EVENT_PHASE"]["UP"]) {
+                sName += 'up';
+            }
+
+            oNewBrowserEvent["setName"](sName);
+            oNewBrowserEvent["setSource"](oBrowserEvent["oGetSource"]());
+            oNewBrowserEvent["oFromElement"] = oBrowserEvent["oFromElement"];
+            oNewBrowserEvent["oSourceControl"] = oBrowserEvent["oSourceControl"];
+
+            if (__UCF_TRACE__) {
+                UCF_Tracer.trace(INFO, 'Lightspeed event ' + sName + ' fired', "BrowserWindow.js(1993): fireLSEvent");
+            }
+            ;
+            this["processBrowserEvent"](oNewBrowserEvent);
+
+            this["oBrowserEventPool"]["returnObject"](oNewBrowserEvent);
+
+            return oNewBrowserEvent["bCancel"];
         }
-        ;
-        if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(typeof (sName) === 'string', "typeof(sName) === 'string'", "BrowserWindow.js(1950): fireLSEvent");
-        }
-        ;
-
-        bAnyModifier = oBrowserEvent && (oBrowserEvent["bCtrl"]() ||
-            oBrowserEvent["bShift"]() ||
-            oBrowserEvent["bAlt"]());
-        oNewBrowserEvent = this["oBrowserEventPool"]["oBorrowObject"](
-            oBrowserEvent["oDomEvent"]
-        );
-
-        if (bCheckModifier && bAnyModifier) {
-            sName += 'modifier';
-        }
-
-        oNewBrowserEvent["setName"](sName);
-        oNewBrowserEvent["setSource"](oBrowserEvent["oGetSource"]());
-        oNewBrowserEvent["oFromElement"] = oBrowserEvent["oFromElement"];
-        oNewBrowserEvent["oSourceControl"] = oBrowserEvent["oSourceControl"];
-
-        if (__UCF_TRACE__) {
-            UCF_Tracer.trace(INFO, 'Lightspeed event ' + sName + ' fired', "BrowserWindow.js(1968): fireLSEvent");
-        }
-        ;
-        this["processBrowserEvent"](oNewBrowserEvent);
-
-        this["oBrowserEventPool"]["returnObject"](oNewBrowserEvent);
-
-        return oNewBrowserEvent["bCancel"];
     };
     ;
     if (__UCF_COVERAGE__) {
@@ -28817,7 +29749,7 @@ var sap = window.sap || {};
         var mEventParams;
 
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(oBrowserEvent instanceof UCF_BrowserEvent, "oBrowserEvent instanceof UCF_BrowserEvent", "BrowserWindow.js(1986): onmousedown");
+            UCF_Tracer.assert(oBrowserEvent instanceof UCF_BrowserEvent, "oBrowserEvent instanceof UCF_BrowserEvent", "BrowserWindow.js(2012): onmousedown");
         }
         ;
         if (!this["oDragAndDropManager"]) {
@@ -28851,7 +29783,7 @@ var sap = window.sap || {};
         var mEventParams;
 
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(oBrowserEvent instanceof UCF_BrowserEvent, "oBrowserEvent instanceof UCF_BrowserEvent", "BrowserWindow.js(2007): onmouseover");
+            UCF_Tracer.assert(oBrowserEvent instanceof UCF_BrowserEvent, "oBrowserEvent instanceof UCF_BrowserEvent", "BrowserWindow.js(2033): onmouseover");
         }
         ;
 
@@ -28884,7 +29816,7 @@ var sap = window.sap || {};
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(oBrowserEvent instanceof UCF_BrowserEvent, "oBrowserEvent instanceof UCF_BrowserEvent", "BrowserWindow.js(2027): onmouseout");
+            UCF_Tracer.assert(oBrowserEvent instanceof UCF_BrowserEvent, "oBrowserEvent instanceof UCF_BrowserEvent", "BrowserWindow.js(2053): onmouseout");
         }
         ;
 
@@ -28911,7 +29843,7 @@ var sap = window.sap || {};
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(oBrowserEvent instanceof UCF_BrowserEvent, "oBrowserEvent instanceof UCF_BrowserEvent", "BrowserWindow.js(2041): onmousemove");
+            UCF_Tracer.assert(oBrowserEvent instanceof UCF_BrowserEvent, "oBrowserEvent instanceof UCF_BrowserEvent", "BrowserWindow.js(2067): onmousemove");
         }
         ;
 
@@ -28938,7 +29870,7 @@ var sap = window.sap || {};
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(oBrowserEvent instanceof UCF_BrowserEvent, "oBrowserEvent instanceof UCF_BrowserEvent", "BrowserWindow.js(2055): ondragstart");
+            UCF_Tracer.assert(oBrowserEvent instanceof UCF_BrowserEvent, "oBrowserEvent instanceof UCF_BrowserEvent", "BrowserWindow.js(2081): ondragstart");
         }
         ;
 
@@ -28968,7 +29900,7 @@ var sap = window.sap || {};
         var mEventParams;
 
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(oBrowserEvent instanceof UCF_BrowserEvent, "oBrowserEvent instanceof UCF_BrowserEvent", "BrowserWindow.js(2072): ondragover");
+            UCF_Tracer.assert(oBrowserEvent instanceof UCF_BrowserEvent, "oBrowserEvent instanceof UCF_BrowserEvent", "BrowserWindow.js(2098): ondragover");
         }
         ;
 
@@ -29002,7 +29934,7 @@ var sap = window.sap || {};
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(oBrowserEvent instanceof UCF_BrowserEvent, "oBrowserEvent instanceof UCF_BrowserEvent", "BrowserWindow.js(2093): ondragend");
+            UCF_Tracer.assert(oBrowserEvent instanceof UCF_BrowserEvent, "oBrowserEvent instanceof UCF_BrowserEvent", "BrowserWindow.js(2119): ondragend");
         }
         ;
 
@@ -29029,7 +29961,7 @@ var sap = window.sap || {};
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(oBrowserEvent instanceof UCF_BrowserEvent, "oBrowserEvent instanceof UCF_BrowserEvent", "BrowserWindow.js(2107): ondrop");
+            UCF_Tracer.assert(oBrowserEvent instanceof UCF_BrowserEvent, "oBrowserEvent instanceof UCF_BrowserEvent", "BrowserWindow.js(2133): ondrop");
         }
         ;
 
@@ -29056,7 +29988,7 @@ var sap = window.sap || {};
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(oBrowserEvent instanceof UCF_BrowserEvent, "oBrowserEvent instanceof UCF_BrowserEvent", "BrowserWindow.js(2121): onmouseup");
+            UCF_Tracer.assert(oBrowserEvent instanceof UCF_BrowserEvent, "oBrowserEvent instanceof UCF_BrowserEvent", "BrowserWindow.js(2147): onmouseup");
         }
         ;
 
@@ -29083,7 +30015,7 @@ var sap = window.sap || {};
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(oBrowserEvent instanceof UCF_BrowserEvent, "oBrowserEvent instanceof UCF_BrowserEvent", "BrowserWindow.js(2135): onoffline");
+            UCF_Tracer.assert(oBrowserEvent instanceof UCF_BrowserEvent, "oBrowserEvent instanceof UCF_BrowserEvent", "BrowserWindow.js(2161): onoffline");
         }
         ;
 
@@ -29108,7 +30040,7 @@ var sap = window.sap || {};
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(oBrowserEvent instanceof UCF_BrowserEvent, "oBrowserEvent instanceof UCF_BrowserEvent", "BrowserWindow.js(2147): ononline");
+            UCF_Tracer.assert(oBrowserEvent instanceof UCF_BrowserEvent, "oBrowserEvent instanceof UCF_BrowserEvent", "BrowserWindow.js(2173): ononline");
         }
         ;
 
@@ -29133,7 +30065,7 @@ var sap = window.sap || {};
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(oBrowserEvent instanceof UCF_BrowserEvent, "oBrowserEvent instanceof UCF_BrowserEvent", "BrowserWindow.js(2159): onclick");
+            UCF_Tracer.assert(oBrowserEvent instanceof UCF_BrowserEvent, "oBrowserEvent instanceof UCF_BrowserEvent", "BrowserWindow.js(2185): onclick");
         }
         ;
 
@@ -29309,14 +30241,14 @@ var sap = window.sap || {};
         ;
         if (this["iVisibleLayers"] === 0) {
             if (__UCF_TRACE__) {
-                UCF_Tracer.trace(DEBUG, 'Fire LayersVisible event', "BrowserWindow.js(2272): notifyLayerVisible");
+                UCF_Tracer.trace(DEBUG, 'Fire LayersVisible event', "BrowserWindow.js(2298): notifyLayerVisible");
             }
             ;
             this["fireEvent"](this["E_EVENTS"]["LayersVisible"]);
         }
         this["iVisibleLayers"]++;
         if (__UCF_TRACE__) {
-            UCF_Tracer.trace(DEBUG, 'Currently visible layers: ' + this["iVisibleLayers"], "BrowserWindow.js(2276): notifyLayerVisible");
+            UCF_Tracer.trace(DEBUG, 'Currently visible layers: ' + this["iVisibleLayers"], "BrowserWindow.js(2302): notifyLayerVisible");
         }
         ;
     };
@@ -29348,12 +30280,12 @@ var sap = window.sap || {};
         ;
         this["iVisibleLayers"]--;
         if (__UCF_TRACE__) {
-            UCF_Tracer.trace(DEBUG, 'Currently visible layers: ' + this["iVisibleLayers"], "BrowserWindow.js(2295): notifyLayerHidden");
+            UCF_Tracer.trace(DEBUG, 'Currently visible layers: ' + this["iVisibleLayers"], "BrowserWindow.js(2321): notifyLayerHidden");
         }
         ;
         if (this["iVisibleLayers"] === 0) {
             if (__UCF_TRACE__) {
-                UCF_Tracer.trace(DEBUG, 'Fire LayersHidden event', "BrowserWindow.js(2297): notifyLayerHidden");
+                UCF_Tracer.trace(DEBUG, 'Fire LayersHidden event', "BrowserWindow.js(2323): notifyLayerHidden");
             }
             ;
             this["fireEvent"](this["E_EVENTS"]["LayersHidden"]);
@@ -29400,11 +30332,11 @@ var sap = window.sap || {};
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(oBrowserEvent instanceof UCF_BrowserEvent, "oBrowserEvent instanceof UCF_BrowserEvent", "BrowserWindow.js(2321): onhelp");
+            UCF_Tracer.assert(oBrowserEvent instanceof UCF_BrowserEvent, "oBrowserEvent instanceof UCF_BrowserEvent", "BrowserWindow.js(2347): onhelp");
         }
         ;
         if (__UCF_TRACE__) {
-            UCF_Tracer.trace(DEBUG, 'onhelp', "BrowserWindow.js(2322): onhelp");
+            UCF_Tracer.trace(DEBUG, 'onhelp', "BrowserWindow.js(2348): onhelp");
         }
         ;
 
@@ -29432,7 +30364,7 @@ var sap = window.sap || {};
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(typeof (sName) === 'string', "typeof(sName) === 'string'", "BrowserWindow.js(2337): bIsDragDropEvent");
+            UCF_Tracer.assert(typeof (sName) === 'string', "typeof(sName) === 'string'", "BrowserWindow.js(2363): bIsDragDropEvent");
         }
         ;
 
@@ -29490,7 +30422,7 @@ var sap = window.sap || {};
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(oBrowserEvent instanceof UCF_BrowserEvent, "oBrowserEvent instanceof UCF_BrowserEvent", "BrowserWindow.js(2382): ontouchstart");
+            UCF_Tracer.assert(oBrowserEvent instanceof UCF_BrowserEvent, "oBrowserEvent instanceof UCF_BrowserEvent", "BrowserWindow.js(2408): ontouchstart");
         }
         ;
         if (!this["oDragAndDropManager"]) {
@@ -29511,7 +30443,7 @@ var sap = window.sap || {};
             ) &&
             UCF_DomUtil["bContains"](oSourceControl["oRootRef"], UCF_DomUtil["oGetActiveElement"]());
         if (__UCF_TRACE__) {
-            UCF_Tracer.trace(INFO, 'TOUCH: ontouchstart: bSourceIsActiveTextInput=' + bSourceIsActiveTextInput, "BrowserWindow.js(2400): ontouchstart");
+            UCF_Tracer.trace(INFO, 'TOUCH: ontouchstart: bSourceIsActiveTextInput=' + bSourceIsActiveTextInput, "BrowserWindow.js(2426): ontouchstart");
         }
         ;
         this["bTouchStartOnActiveTextInput"] = bSourceIsActiveTextInput;
@@ -29539,7 +30471,7 @@ var sap = window.sap || {};
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(oBrowserEvent instanceof UCF_BrowserEvent, "oBrowserEvent instanceof UCF_BrowserEvent", "BrowserWindow.js(2415): ontouchmove");
+            UCF_Tracer.assert(oBrowserEvent instanceof UCF_BrowserEvent, "oBrowserEvent instanceof UCF_BrowserEvent", "BrowserWindow.js(2441): ontouchmove");
         }
         ;
 
@@ -29569,7 +30501,7 @@ var sap = window.sap || {};
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(oBrowserEvent instanceof UCF_BrowserEvent, "oBrowserEvent instanceof UCF_BrowserEvent", "BrowserWindow.js(2432): ontouchend");
+            UCF_Tracer.assert(oBrowserEvent instanceof UCF_BrowserEvent, "oBrowserEvent instanceof UCF_BrowserEvent", "BrowserWindow.js(2458): ontouchend");
         }
         ;
 
@@ -29599,7 +30531,7 @@ var sap = window.sap || {};
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(oBrowserEvent instanceof UCF_BrowserEvent, "oBrowserEvent instanceof UCF_BrowserEvent", "BrowserWindow.js(2449): ontouchcancel");
+            UCF_Tracer.assert(oBrowserEvent instanceof UCF_BrowserEvent, "oBrowserEvent instanceof UCF_BrowserEvent", "BrowserWindow.js(2475): ontouchcancel");
         }
         ;
         this["ontouchend"](oBrowserEvent);
@@ -29623,7 +30555,7 @@ var sap = window.sap || {};
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(oBrowserEvent instanceof UCF_BrowserEvent, "oBrowserEvent instanceof UCF_BrowserEvent", "BrowserWindow.js(2460): ongesturestart");
+            UCF_Tracer.assert(oBrowserEvent instanceof UCF_BrowserEvent, "oBrowserEvent instanceof UCF_BrowserEvent", "BrowserWindow.js(2486): ongesturestart");
         }
         ;
         this["fireLSEvent"](this["E_LS_EVENTS"]["gesturestart"], oBrowserEvent);
@@ -29647,7 +30579,7 @@ var sap = window.sap || {};
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(oBrowserEvent instanceof UCF_BrowserEvent, "oBrowserEvent instanceof UCF_BrowserEvent", "BrowserWindow.js(2471): ongesturechange");
+            UCF_Tracer.assert(oBrowserEvent instanceof UCF_BrowserEvent, "oBrowserEvent instanceof UCF_BrowserEvent", "BrowserWindow.js(2497): ongesturechange");
         }
         ;
         this["fireLSEvent"](this["E_LS_EVENTS"]["gesturechange"], oBrowserEvent);
@@ -29671,7 +30603,7 @@ var sap = window.sap || {};
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(oBrowserEvent instanceof UCF_BrowserEvent, "oBrowserEvent instanceof UCF_BrowserEvent", "BrowserWindow.js(2482): ongestureend");
+            UCF_Tracer.assert(oBrowserEvent instanceof UCF_BrowserEvent, "oBrowserEvent instanceof UCF_BrowserEvent", "BrowserWindow.js(2508): ongestureend");
         }
         ;
         this["fireLSEvent"](this["E_LS_EVENTS"]["gestureend"], oBrowserEvent);
@@ -30005,7 +30937,7 @@ var sap = window.sap || {};
             };
 
             // need to copy because of event-pool
-            // eslint-disable-next-line ur/no-memory-leaks
+            // eslint-disable-next-line @ur/no-memory-leaks
             this["oTabAndHoldEvent"] = new (UCF_ClassLoader["oGetClass"]("UCF_BrowserEvent"))(oBrowserEvent["oDomEvent"]);
             this["sTabAndHoldTimeout"] = UCF_JsUtil["delayedCall"](
                 UCF_LongTapDetector["DELAY_MS"],
@@ -30015,7 +30947,7 @@ var sap = window.sap || {};
             );
 
             // need to copy because of event-pool
-            // eslint-disable-next-line ur/no-memory-leaks
+            // eslint-disable-next-line @ur/no-memory-leaks
             this["oTabAndHoldExtraLongEvent"] = new (UCF_ClassLoader["oGetClass"]("UCF_BrowserEvent"))(oBrowserEvent["oDomEvent"]);
             this["sTabAndHoldExtraLongTimeout"] = UCF_JsUtil["delayedCall"](
                 UCF_LongTapDetector["DELAY_EXTRA_MS"],
@@ -30560,7 +31492,7 @@ var sap = window.sap || {};
                 Math["abs"](this["iScreenX"] - oTouch["screenX"]) < UCF_TapDetector["DISTANCE_THRESHOLD_PX"] &&
                 Math["abs"](this["iScreenY"] - oTouch["screenY"]) < UCF_TapDetector["DISTANCE_THRESHOLD_PX"]
             ) {
-                // eslint-disable-next-line ur/no-memory-leaks
+                // eslint-disable-next-line @ur/no-memory-leaks
                 oBrowserEventClone = new (UCF_ClassLoader["oGetClass"]("UCF_BrowserEvent"))(oBrowserEvent["oDomEvent"]);
                 this["fireEvent"](this["E_EVENTS"]["Tap"], {
                     // need to clone the event because of the object pool
@@ -30913,7 +31845,7 @@ var sap = window.sap || {};
             }
 
             /** @type {string} */
-            this["sId"] = sId || UCF_ClientElement["createId"]('ls.id.'); // eslint-disable-line ur/no-memory-leaks
+            this["sId"] = sId || UCF_ClientElement["createId"]('ls.id.'); // eslint-disable-line @ur/no-memory-leaks
             /** @type {UCF_LS} */
             this["oLS"] = oLS;
             /** @type {UCF_ClientElement_RenderInfo} */
@@ -30962,6 +31894,8 @@ var sap = window.sap || {};
             this["sCustomStyleCheckName"] = null;
             /** @type {Object<string,string>} timers for virtualized aggregations */
             this["mUpdateAggregationTimers"] = {};
+            /** @type {boolean} */
+            this["bForceUpdate"] = false;
 
             this["initialize"]();
         }
@@ -31684,7 +32618,7 @@ var sap = window.sap || {};
             self = this;
             this["mDebugInfos"][sMethodName] = this[sMethodName];
 
-            this[sMethodName] = (function () { // eslint-disable-line ur/no-memory-leaks
+            this[sMethodName] = (function () { // eslint-disable-line @ur/no-memory-leaks
                 return function () {
                     /** @type {number} */
                     var iTS = (new Date())["getTime"]();
@@ -31802,7 +32736,7 @@ var sap = window.sap || {};
 
         if (!oMetadata["properties"][sPropertyName]) {
             if (__UCF_TRACE__) {
-                UCF_Tracer.trace(ERROR, 'Property ' + sPropertyName + ' not defined.', "ClientElement.js(762): setProperty");
+                UCF_Tracer.trace(ERROR, 'Property ' + sPropertyName + ' not defined.', "ClientElement.js(764): setProperty");
             }
             ;
 
@@ -31811,7 +32745,7 @@ var sap = window.sap || {};
         oOldValue = this["getProperty"](sPropertyName);
 
         // exit if the property value was not even changed
-        if (oOldValue === oValue) {
+        if (oOldValue === oValue && !this["bForceUpdate"]) {
             return this;
         }
 
@@ -31843,7 +32777,7 @@ var sap = window.sap || {};
         }
 
         // check if the value changed
-        if (oOldValue !== oValue) {
+        if (oOldValue !== oValue || this["bForceUpdate"]) {
             // now set the new value
             this["mProperties"][sPropertyName] = oValue;
 
@@ -31870,7 +32804,7 @@ var sap = window.sap || {};
             // suppress rerendering
             if (!bSuppressRerendering) {
                 if (__UCF_TRACE__) {
-                    UCF_Tracer.trace(DEBUG, 'Setting property: ' + sPropertyName + ' invalidated the control: ' + this["sClassName"] + '#' + this["getId"](), "ClientElement.js(827): setProperty");
+                    UCF_Tracer.trace(DEBUG, 'Setting property: ' + sPropertyName + ' invalidated the control: ' + this["sClassName"] + '#' + this["getId"](), "ClientElement.js(829): setProperty");
                 }
                 ;
                 this["invalidate"]();
@@ -32011,7 +32945,7 @@ var sap = window.sap || {};
         var oTmpValue;
 
         if (__UCF_TRACE__) {
-            UCF_Tracer.trace(WARNING, 'Property ' + sPropertyName + ' must be of type ' + sType, "ClientElement.js(915): oGetPrimitiveValue");
+            UCF_Tracer.trace(WARNING, 'Property ' + sPropertyName + ' must be of type ' + sType, "ClientElement.js(917): oGetPrimitiveValue");
         }
         ;
 
@@ -32098,7 +33032,7 @@ var sap = window.sap || {};
             return oEnum[oValue];
         } else {
             if (__UCF_TRACE__) {
-                UCF_Tracer.trace(WARNING, 'Property ' + sPropertyName + ' must be of type ' + sType + ', ' + oValue + ' is not a valid enum value for' + sType, "ClientElement.js(979): oGetEnumValue");
+                UCF_Tracer.trace(WARNING, 'Property ' + sPropertyName + ' must be of type ' + sType + ', ' + oValue + ' is not a valid enum value for' + sType, "ClientElement.js(981): oGetEnumValue");
             }
             ;
 
@@ -32160,7 +33094,7 @@ var sap = window.sap || {};
             return this["mProperties"][sPropertyName];
         } else {
             if (__UCF_TRACE__) {
-                UCF_Tracer.trace(WARNING, 'Property ' + sPropertyName + ' not defined.', "ClientElement.js(1018): getProperty");
+                UCF_Tracer.trace(WARNING, 'Property ' + sPropertyName + ' not defined.', "ClientElement.js(1020): getProperty");
             }
             ;
 
@@ -32197,7 +33131,7 @@ var sap = window.sap || {};
 
         if (!oMetadata["associations"][sName]) {
             if (__UCF_TRACE__) {
-                UCF_Tracer.trace(ERROR, 'Association ' + sName + ' not defined.', "ClientElement.js(1042): setAssociation");
+                UCF_Tracer.trace(ERROR, 'Association ' + sName + ' not defined.', "ClientElement.js(1044): setAssociation");
             }
             ;
 
@@ -32231,7 +33165,7 @@ var sap = window.sap || {};
                 // suppress rerendering
                 if (!bSuppressRerendering) {
                     if (__UCF_TRACE__) {
-                        UCF_Tracer.trace(DEBUG, 'Setting Association:' + sName + ' invalidated the control:' + this["sClassName"] + '-' + this["getId"](), "ClientElement.js(1073): setAssociation");
+                        UCF_Tracer.trace(DEBUG, 'Setting Association:' + sName + ' invalidated the control:' + this["sClassName"] + '-' + this["getId"](), "ClientElement.js(1075): setAssociation");
                     }
                     ;
                     this["invalidate"]();
@@ -32264,7 +33198,7 @@ var sap = window.sap || {};
 
         if (!oMetadata["associations"][sName]) {
             if (__UCF_TRACE__) {
-                UCF_Tracer.trace(WARNING, 'Association ' + sName + ' not defined.', "ClientElement.js(1093): getAssociation");
+                UCF_Tracer.trace(WARNING, 'Association ' + sName + ' not defined.', "ClientElement.js(1095): getAssociation");
             }
             ;
 
@@ -32305,7 +33239,7 @@ var sap = window.sap || {};
 
         if (!oMetadata["aggregations"][sAggregationName]) {
             if (__UCF_TRACE__) {
-                UCF_Tracer.trace(ERROR, 'Aggregation ' + sAggregationName + ' not defined.', "ClientElement.js(1121): getAggregation");
+                UCF_Tracer.trace(ERROR, 'Aggregation ' + sAggregationName + ' not defined.', "ClientElement.js(1123): getAggregation");
             }
             ;
 
@@ -32354,7 +33288,7 @@ var sap = window.sap || {};
 
         if (!oMetadata["aggregations"][sAggregationName]) {
             if (__UCF_TRACE__) {
-                UCF_Tracer.trace(ERROR, 'Aggregation ' + sAggregationName + ' not defined.', "ClientElement.js(1157): setAggregation");
+                UCF_Tracer.trace(ERROR, 'Aggregation ' + sAggregationName + ' not defined.', "ClientElement.js(1159): setAggregation");
             }
             ;
 
@@ -32363,7 +33297,7 @@ var sap = window.sap || {};
 
         if (oMetadata["aggregations"][sAggregationName]["multiple"]) {
             if (__UCF_TRACE__) {
-                UCF_Tracer.trace(ERROR, 'Setter for ' + sAggregationName + ' not supported. Please use add' + sAggregationName, "ClientElement.js(1163): setAggregation");
+                UCF_Tracer.trace(ERROR, 'Setter for ' + sAggregationName + ' not supported. Please use add' + sAggregationName, "ClientElement.js(1165): setAggregation");
             }
             ;
         } else {
@@ -32412,7 +33346,7 @@ var sap = window.sap || {};
 
         if (!oMetadata["aggregations"][sAggregationName]) {
             if (__UCF_TRACE__) {
-                UCF_Tracer.trace(ERROR, 'Aggregation ' + sAggregationName + ' not defined.', "ClientElement.js(1199): addAggregation");
+                UCF_Tracer.trace(ERROR, 'Aggregation ' + sAggregationName + ' not defined.', "ClientElement.js(1201): addAggregation");
             }
             ;
         } else if (oMetadata["aggregations"][sAggregationName]["multiple"]) {
@@ -32426,7 +33360,7 @@ var sap = window.sap || {};
             }
         } else {
             if (__UCF_TRACE__) {
-                UCF_Tracer.trace(ERROR, 'Adding for ' + sAggregationName + ' not supported. Please use set' + sAggregationName, "ClientElement.js(1210): addAggregation");
+                UCF_Tracer.trace(ERROR, 'Adding for ' + sAggregationName + ' not supported. Please use set' + sAggregationName, "ClientElement.js(1212): addAggregation");
             }
             ;
         }
@@ -32460,7 +33394,7 @@ var sap = window.sap || {};
 
         if (!oMetadata["aggregations"][sAggregationName]) {
             if (__UCF_TRACE__) {
-                UCF_Tracer.trace(ERROR, 'Aggregation ' + sAggregationName + ' not defined.', "ClientElement.js(1231): insertAggregation");
+                UCF_Tracer.trace(ERROR, 'Aggregation ' + sAggregationName + ' not defined.', "ClientElement.js(1233): insertAggregation");
             }
             ;
         } else if (oMetadata["aggregations"][sAggregationName]["multiple"]) {
@@ -32483,7 +33417,7 @@ var sap = window.sap || {};
             }
         } else {
             if (__UCF_TRACE__) {
-                UCF_Tracer.trace(ERROR, 'Adding for ' + sAggregationName + ' not supported. Please use set' + sAggregationName, "ClientElement.js(1251): insertAggregation");
+                UCF_Tracer.trace(ERROR, 'Adding for ' + sAggregationName + ' not supported. Please use set' + sAggregationName, "ClientElement.js(1253): insertAggregation");
             }
             ;
         }
@@ -32606,7 +33540,7 @@ var sap = window.sap || {};
 
         if (!this["hasAggregation"](sName)) {
             if (__UCF_TRACE__) {
-                UCF_Tracer.trace(ERROR, 'Aggregation ' + sName + ' not defined.', "ClientElement.js(1351): removeAggregation");
+                UCF_Tracer.trace(ERROR, 'Aggregation ' + sName + ' not defined.', "ClientElement.js(1353): removeAggregation");
             }
             ;
 
@@ -32614,7 +33548,7 @@ var sap = window.sap || {};
         }
         if (typeof (vElement) !== 'number' && !vElement) {
             if (__UCF_TRACE__) {
-                UCF_Tracer.trace(ERROR, 'No element specified for removal in aggregation ' + sName + '.', "ClientElement.js(1356): removeAggregation");
+                UCF_Tracer.trace(ERROR, 'No element specified for removal in aggregation ' + sName + '.', "ClientElement.js(1358): removeAggregation");
             }
             ;
 
@@ -32648,7 +33582,13 @@ var sap = window.sap || {};
                 oRemovedElement = oAggregation[vElement];
 
                 oAggregation[vElement]["destroy"](bSuppressRerendering);
-                oAggregation["splice"](vElement, 1);
+                // splice(vElement, 1) already done via stack:
+                // destroy -> removeAggregation (this time via object instead of index)
+                // -> setParent -> removeFromParent
+                // the splice underneath therefore removed aggregation with index vElement+1
+                // additionally to aggregation with index vElement
+                //
+                // oAggregation.splice(vElement, 1);
                 if (!bSuppressRerendering) {
                     this["invalidate"]();
                 }
@@ -32656,7 +33596,7 @@ var sap = window.sap || {};
                 return oRemovedElement;
             } else {
                 if (__UCF_TRACE__) {
-                    UCF_Tracer.trace(DEBUG, 'Nothing to remove for ' + sName + ' at index ' + vElement, "ClientElement.js(1395): removeAggregation");
+                    UCF_Tracer.trace(DEBUG, 'Nothing to remove for ' + sName + ' at index ' + vElement, "ClientElement.js(1403): removeAggregation");
                 }
                 ;
 
@@ -32664,7 +33604,7 @@ var sap = window.sap || {};
             }
         } else {
             if (__UCF_TRACE__) {
-                UCF_Tracer.trace(ERROR, 'Remove for ' + sName + ' not supported. Please use clear' + sName, "ClientElement.js(1400): removeAggregation");
+                UCF_Tracer.trace(ERROR, 'Remove for ' + sName + ' not supported. Please use clear' + sName, "ClientElement.js(1408): removeAggregation");
             }
             ;
 
@@ -32708,7 +33648,7 @@ var sap = window.sap || {};
 
         if (!this["hasAggregation"](sName)) {
             if (__UCF_TRACE__) {
-                UCF_Tracer.trace(ERROR, 'Aggregation ' + sName + ' not defined.', "ClientElement.js(1431): replaceAggregation");
+                UCF_Tracer.trace(ERROR, 'Aggregation ' + sName + ' not defined.', "ClientElement.js(1439): replaceAggregation");
             }
             ;
 
@@ -32716,7 +33656,7 @@ var sap = window.sap || {};
         }
         if (typeof oOldInstance !== 'number' && !oOldInstance) {
             if (__UCF_TRACE__) {
-                UCF_Tracer.trace(ERROR, 'No element specified for replacing in aggregation ' + sName + '.', "ClientElement.js(1436): replaceAggregation");
+                UCF_Tracer.trace(ERROR, 'No element specified for replacing in aggregation ' + sName + '.', "ClientElement.js(1444): replaceAggregation");
             }
             ;
 
@@ -32786,7 +33726,7 @@ var sap = window.sap || {};
 
         if (!this["hasAggregation"](sName)) {
             if (__UCF_TRACE__) {
-                UCF_Tracer.trace(ERROR, 'Aggregation ' + sName + ' not defined for ' + this["sClassName"], "ClientElement.js(1491): clearAggregation");
+                UCF_Tracer.trace(ERROR, 'Aggregation ' + sName + ' not defined for ' + this["sClassName"], "ClientElement.js(1499): clearAggregation");
             }
             ;
 
@@ -33072,7 +34012,7 @@ var sap = window.sap || {};
                 this["bindAggregation"](oMetadata["defaultAggregation"], oBindingInfo);
             } else {
                 if (__UCF_TRACE__) {
-                    UCF_Tracer.trace(DEBUG, 'No default aggregation found', "ClientElement.js(1692): bind");
+                    UCF_Tracer.trace(DEBUG, 'No default aggregation found', "ClientElement.js(1700): bind");
                 }
                 ;
             }
@@ -33080,7 +34020,7 @@ var sap = window.sap || {};
                 this["bindAggregation"](oMetadata["defaultAggregation"], oBindingInfo);
             } else {
                 if (__UCF_TRACE__) {
-                    UCF_Tracer.trace(DEBUG, 'No default property found', "ClientElement.js(1697): bind");
+                    UCF_Tracer.trace(DEBUG, 'No default property found', "ClientElement.js(1705): bind");
                 }
                 ;
             }
@@ -33507,7 +34447,7 @@ var sap = window.sap || {};
 
                         if (self["mVirtualizedBindings"][sName]) {
                             if (__UCF_TRACE__) {
-                                UCF_Tracer.trace(DEBUG, 'Inform clone about NEW context: ' + oClone["getId"](), "ClientElement.js(2030): updateGridAggregation");
+                                UCF_Tracer.trace(DEBUG, 'Inform clone about NEW context: ' + oClone["getId"](), "ClientElement.js(2038): updateGridAggregation");
                             }
                             ;
                             aInformClones["push"]({"oClone": oClone, "oContext": oContext});
@@ -33944,7 +34884,7 @@ var sap = window.sap || {};
                 return oAggregation["bindingType"] === 'grid';
             } else {
                 if (__UCF_TRACE__) {
-                    UCF_Tracer.trace(ERROR, 'Aggregation ' + sName + ' not defined.', "ClientElement.js(2391): isGridBinding");
+                    UCF_Tracer.trace(ERROR, 'Aggregation ' + sName + ' not defined.', "ClientElement.js(2399): isGridBinding");
                 }
                 ;
 
@@ -33985,7 +34925,7 @@ var sap = window.sap || {};
                     oAggregation["bindingType"] !== 'tree';
             } else {
                 if (__UCF_TRACE__) {
-                    UCF_Tracer.trace(ERROR, 'Aggregation ' + sName + ' not defined.', "ClientElement.js(2419): isListBinding");
+                    UCF_Tracer.trace(ERROR, 'Aggregation ' + sName + ' not defined.', "ClientElement.js(2427): isListBinding");
                 }
                 ;
 
@@ -34025,7 +34965,7 @@ var sap = window.sap || {};
                 return oAggregation["bindingType"] === 'tree';
             } else {
                 if (__UCF_TRACE__) {
-                    UCF_Tracer.trace(ERROR, 'Aggregation ' + sName + ' not defined.', "ClientElement.js(2446): isTreeBinding");
+                    UCF_Tracer.trace(ERROR, 'Aggregation ' + sName + ' not defined.', "ClientElement.js(2454): isTreeBinding");
                 }
                 ;
 
@@ -34575,7 +35515,7 @@ var sap = window.sap || {};
             }
         } else {
             if (__UCF_TRACE__) {
-                UCF_Tracer.trace(DEBUG, 'No aggregation ' + sName, "ClientElement.js(2903): setVirtualize");
+                UCF_Tracer.trace(DEBUG, 'No aggregation ' + sName, "ClientElement.js(2911): setVirtualize");
             }
             ;
         }
@@ -34935,6 +35875,7 @@ var sap = window.sap || {};
             this["_oCurrentModel"] = null;
             this["oBindingContext"] = null;
             this["_bInvisibility"] = false;
+            this["bForceUpdate"] = false;
 
             UCF_EventProvider.prototype["destroy"]["apply"](this, arguments);
         }
@@ -36065,7 +37006,7 @@ var sap = window.sap || {};
             }
         } else {
             if (__UCF_TRACE__) {
-                UCF_Tracer.trace(WARNING, 'Aggregation ' + sAggregationName + ' does not exist', "ClientElement.js(3978): attachChildrenChanged");
+                UCF_Tracer.trace(WARNING, 'Aggregation ' + sAggregationName + ' does not exist', "ClientElement.js(3987): attachChildrenChanged");
             }
             ;
         }
@@ -36850,7 +37791,7 @@ var sap = window.sap || {};
 
         if (!oInterface || !oInterface["name"]) {
             if (__UCF_TRACE__) {
-                UCF_Tracer.trace(ERROR, 'No client interface found for ' + sClassName, "ClientElement.js(4613): sClientClassName");
+                UCF_Tracer.trace(ERROR, 'No client interface found for ' + sClassName, "ClientElement.js(4622): sClientClassName");
             }
             ;
 
@@ -38333,7 +39274,7 @@ var sap = window.sap || {};
      * @property {string} match
      * @property {function(string):boolean} func
      * @property {Object<string,string>} variables
-     * @param {Object<string,UCF_Control_ConditionalStyle>} mStyles
+     * @property {Object<string,UCF_Control_ConditionalStyle>} mStyles
      */
 
     /**
@@ -38377,7 +39318,7 @@ var sap = window.sap || {};
              *
              * @type {string} The id of the control
              */
-            // eslint-disable-next-line ur/no-missing-setClientProperty, ur/no-memory-leaks
+            // eslint-disable-next-line @ur/no-missing-setClientProperty, @ur/no-memory-leaks
             this["sId"] = sId;
 
             /** @type {UCF_LS} The reference to the main LightSpeed object */
@@ -38404,7 +39345,7 @@ var sap = window.sap || {};
             // Don't null mEvents in #destroy(). A control may be destroyed while
             // firing an event from the ClientControl. It then throws a
             // NullPointerException when accessing this.mEvents[sName].
-            // eslint-disable-next-line ur/no-memory-leaks
+            // eslint-disable-next-line @ur/no-memory-leaks
             this["mEvents"] = {};
 
             /**
@@ -38423,8 +39364,16 @@ var sap = window.sap || {};
              * @type {boolean} Whether the control should allow text selection within
              * this control
              */
-            this["bAllowTextSelection"] = false;
+            var bIsTextSelectionAllowed = this["oLS"]["oGetRenderManager"]()["callFragment"](
+                'IsEnabled',
+                'FeatureFlags', {"Feature": 'Control.AllowTextSelection'}
+            );
 
+            if (bIsTextSelectionAllowed && !UCF_UserAgent["bIsIE"]()) {
+                this["bAllowTextSelection"] = true;
+            } else {
+                this["bAllowTextSelection"] = false;
+            }
             /**
              * If a pending request is defined, semantic events will be added to
              * the pending request instead of being fired
@@ -38560,11 +39509,11 @@ var sap = window.sap || {};
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(typeof oDomRef === 'object', "typeof oDomRef === 'object'", "Control.js(264): connectToDom");
+            UCF_Tracer.assert(typeof oDomRef === 'object', "typeof oDomRef === 'object'", "Control.js(272): connectToDom");
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(oDomRef != null, "oDomRef != null", "Control.js(265): connectToDom");
+            UCF_Tracer.assert(oDomRef != null, "oDomRef != null", "Control.js(273): connectToDom");
         }
         ;
 
@@ -38572,7 +39521,7 @@ var sap = window.sap || {};
          * The id of the control
          * @type {string}
          */
-        this["sId"] = oDomRef["getAttribute"]('id'); // eslint-disable-line ur/no-missing-setClientProperty
+        this["sId"] = oDomRef["getAttribute"]('id'); // eslint-disable-line @ur/no-missing-setClientProperty
 
         /**
          * The DOM reference of the control in the HTML
@@ -39301,7 +40250,7 @@ var sap = window.sap || {};
         var oDataTipRef;
 
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(typeof sId === 'string', "typeof sId === 'string'", "Control.js(769): oGetDataTipById");
+            UCF_Tracer.assert(typeof sId === 'string', "typeof sId === 'string'", "Control.js(777): oGetDataTipById");
         }
         ;
 
@@ -39469,29 +40418,29 @@ var sap = window.sap || {};
         var oControl;
 
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(typeof sControl === 'string', "typeof sControl === 'string'", "Control.js(864): fireSemanticEvent");
+            UCF_Tracer.assert(typeof sControl === 'string', "typeof sControl === 'string'", "Control.js(872): fireSemanticEvent");
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(sControl !== '', "sControl !== ''", "Control.js(865): fireSemanticEvent");
+            UCF_Tracer.assert(sControl !== '', "sControl !== ''", "Control.js(873): fireSemanticEvent");
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(typeof sName === 'string', "typeof sName === 'string'", "Control.js(866): fireSemanticEvent");
+            UCF_Tracer.assert(typeof sName === 'string', "typeof sName === 'string'", "Control.js(874): fireSemanticEvent");
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(sName !== '', "sName !== ''", "Control.js(867): fireSemanticEvent");
+            UCF_Tracer.assert(sName !== '', "sName !== ''", "Control.js(875): fireSemanticEvent");
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(mParameters instanceof Object, "mParameters instanceof Object", "Control.js(868): fireSemanticEvent");
+            UCF_Tracer.assert(mParameters instanceof Object, "mParameters instanceof Object", "Control.js(876): fireSemanticEvent");
         }
         ;
 
         if (this["bAncestorInvisible"] || this["bInvisibility"] || this["bIsDestroyed"]) {
             if (__UCF_TRACE__) {
-                UCF_Tracer.trace(INFO, this["sClassName"] + ' "' + this["sId"] + '" is invisible or already destroyed. Semantic event "' + sName + '" is not fired', "Control.js(871): fireSemanticEvent");
+                UCF_Tracer.trace(INFO, this["sClassName"] + ' "' + this["sId"] + '" is invisible or already destroyed. Semantic event "' + sName + '" is not fired', "Control.js(879): fireSemanticEvent");
             }
             ;
 
@@ -39514,7 +40463,7 @@ var sap = window.sap || {};
             this["fireEvent"]('SemanticEvent.' + sName, mParameters);
             if (mParameters["CancelEvent"] === true) { //return if canceled
                 if (__UCF_TRACE__) {
-                    UCF_Tracer.trace(DEBUG, this["sClassName"] + ' "' + this["sId"] + '" fired "' + sName + '" internally and was flagged as cancel, therefore no event is not propagated for further handling', "Control.js(891): fireSemanticEvent");
+                    UCF_Tracer.trace(DEBUG, this["sClassName"] + ' "' + this["sId"] + '" fired "' + sName + '" internally and was flagged as cancel, therefore no event is not propagated for further handling', "Control.js(899): fireSemanticEvent");
                 }
                 ;
 
@@ -39524,6 +40473,7 @@ var sap = window.sap || {};
             bMarkDirty = mParameters["SemanticEventConfig"]["MarkDirty"];
             bSyncExecution = mParameters["SemanticEventConfig"]["SyncExecution"];
             delete mParameters["CancelEvent"];
+            delete mParameters["SemanticEventConfig"];
         }
         if (this["getClientControl"]() && !this["bIsDestroyed"]) {
             oSemanticEvent = new (UCF_ClassLoader["oGetClass"]("UCF_SemanticEvent"))(
@@ -39538,7 +40488,7 @@ var sap = window.sap || {};
             }
             mParameters["oSemanticEvent"] = oSemanticEvent;
             if (__UCF_TRACE__) {
-                UCF_Tracer.trace(INFO, this["sClassName"] + ' "' + this["sId"] + '" fired "' + sName + '" to client side handler', "Control.js(912): fireSemanticEvent");
+                UCF_Tracer.trace(INFO, this["sClassName"] + ' "' + this["sId"] + '" fired "' + sName + '" to client side handler', "Control.js(921): fireSemanticEvent");
             }
             ;
             this["getClientControl"]()['fire' + sName](mParameters);
@@ -39586,7 +40536,7 @@ var sap = window.sap || {};
             }
         } else {
             if (__UCF_TRACE__) {
-                UCF_Tracer.trace(DEBUG, this["sClassName"] + ' "' + this["sId"] + '" fired "' + sName + '" but event is not registered by the framework', "Control.js(957): fireSemanticEvent");
+                UCF_Tracer.trace(DEBUG, this["sClassName"] + ' "' + this["sId"] + '" fired "' + sName + '" but event is not registered by the framework', "Control.js(966): fireSemanticEvent");
             }
             ;
         }
@@ -39800,6 +40750,29 @@ var sap = window.sap || {};
         UCF_Control["_"]["oGetFocusDomRef"] = 0;
     }
     ;
+
+    /**
+     * Returns the DOM element that should be focussed if the controls focus method
+     * is called. Please do overide if the DOM element is other than the oRootRef
+     * or the oDomRef.
+     *
+     * @return {HTMLElement} the DOM element that should be focussed if the
+     * controls focus method is called.
+     */
+    UCF_Control["prototype"]["oGetForcedFocusDomRef"] = function () {
+        ;
+        if (__UCF_COVERAGE__) {
+            UCF_Control["_"]["oGetForcedFocusDomRef"]++;
+        }
+        ;
+        return null;
+    };
+    ;
+    if (__UCF_COVERAGE__) {
+        UCF_Control["_"]["oGetForcedFocusDomRef"] = 0;
+    }
+    ;
+
 
     /**
      * Returns the DOM element that should be focussed if the controls focus method
@@ -40315,7 +41288,7 @@ var sap = window.sap || {};
         var oControl;
 
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(oDomRef != null, "oDomRef != null", "Control.js(1433): oGetNextControlRecursive");
+            UCF_Tracer.assert(oDomRef != null, "oDomRef != null", "Control.js(1455): oGetNextControlRecursive");
         }
         ;
 
@@ -40456,7 +41429,7 @@ var sap = window.sap || {};
         var oControl;
 
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(oDomRef != null, "oDomRef != null", "Control.js(1531): oGetPreviousControlRecursive");
+            UCF_Tracer.assert(oDomRef != null, "oDomRef != null", "Control.js(1553): oGetPreviousControlRecursive");
         }
         ;
 
@@ -40776,7 +41749,7 @@ var sap = window.sap || {};
         var oDomRef;
 
         if (__UCF_TRACE__) {
-            UCF_Tracer.trace(DEBUG, 'Focus ' + this["sClassName"] + ' "' + this["sId"] + '"', "Control.js(1748): focus");
+            UCF_Tracer.trace(DEBUG, 'Focus ' + this["sClassName"] + ' "' + this["sId"] + '"', "Control.js(1770): focus");
         }
         ;
 
@@ -40886,7 +41859,7 @@ var sap = window.sap || {};
                 this["focus"](bBackNavigation, bIsExternalTabSequence);
             } else {
                 if (__UCF_TRACE__) {
-                    UCF_Tracer.trace(WARNING, 'Focus ' + this["sClassName"] + ' "' + this["sId"] + '" failed because control is in the meantime destroyed', "Control.js(1825): moveFocus");
+                    UCF_Tracer.trace(WARNING, 'Focus ' + this["sClassName"] + ' "' + this["sId"] + '" failed because control is in the meantime destroyed', "Control.js(1847): moveFocus");
                 }
                 ;
             }
@@ -40987,7 +41960,7 @@ var sap = window.sap || {};
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(oFocusInfo instanceof UCF_FocusInfo, "oFocusInfo instanceof UCF_FocusInfo", "Control.js(1893): collectFocusInfo");
+            UCF_Tracer.assert(oFocusInfo instanceof UCF_FocusInfo, "oFocusInfo instanceof UCF_FocusInfo", "Control.js(1915): collectFocusInfo");
         }
         ;
     };
@@ -41017,7 +41990,7 @@ var sap = window.sap || {};
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(oFocusInfo instanceof UCF_FocusInfo, "oFocusInfo instanceof UCF_FocusInfo", "Control.js(1910): applyFocusInfo");
+            UCF_Tracer.assert(oFocusInfo instanceof UCF_FocusInfo, "oFocusInfo instanceof UCF_FocusInfo", "Control.js(1932): applyFocusInfo");
         }
         ;
     };
@@ -41028,13 +42001,60 @@ var sap = window.sap || {};
     ;
 
     /**
+     * A list of containers that have to be ignored while skipping
+     *
+     * @param {UCF_BrowserEvent} oData
+     * @return {boolean}
+     */
+    UCF_Control["prototype"]["bIgnoreDuringSkipping"] = function (oData) {
+        ;
+        if (__UCF_COVERAGE__) {
+            UCF_Control["_"]["bIgnoreDuringSkipping"]++;
+        }
+        ;
+        /** @type {HTMLDivElement} */
+        var oAssoAreaRef = this["oLS"]["oGetAssociatedAreaRef"]();
+        /** @type {HTMLDivElement} */
+        var oStaticAreaRef = this["oLS"]["oGetStaticAreaRef"]();
+
+        return (this["bIsEndContainerDomRef"](oData["oResult"]) ||
+            // ignore all controls in the -static or -asso area
+            oData["oResult"] && UCF_DomUtil["bContains"](oAssoAreaRef, oData["oResult"]) && !this["oGetParentPopupWindow"]() ||
+            oData["oResult"] && UCF_DomUtil["bContains"](oStaticAreaRef, oData["oResult"]) ||
+
+            // ignore unpinned message area items
+            oData["oResult"] && oData["oResult"]["id"] &&
+            UCF_StringUtil["bEndsWith"](oData["oResult"]["id"], '-msgContainer') &&
+            oData["oResult"]["childElementCount"] === 0 ||
+
+            // ignore unpinned message area
+            UCF_DomUtil["bIsCTInstanceOf"](oData["oResult"], 'MA') && oData["oDomRef"] &&
+            UCF_DomUtil["oGetCTElement"](oData["oDomRef"]) &&
+            !this["oLS"]["oGetControlByDomRef"](UCF_DomUtil["oGetCTElement"](oData["oDomRef"]))["bIsPinned"] ||
+
+            UCF_DomUtil["bIsCTInstanceOf"](oData["oResult"], 'TSW') ||
+            UCF_DomUtil["bIsCTInstanceOf"](oData["oResult"], 'HI') ||
+            UCF_DomUtil["bIsCTInstanceOf"](oData["oResult"], 'IF') ||
+
+            // ignore RichTextEdit iFrame
+            oData["oResult"] && oData["oResult"]["nodeName"] === 'IFRAME');
+    };
+    ;
+    if (__UCF_COVERAGE__) {
+        UCF_Control["_"]["bIgnoreDuringSkipping"] = 0;
+    }
+    ;
+
+    /**
      * Handles the skip forward event for the control
      * This function should be used in the onlsskipforward handler of the
      * specialized class
      *
      * @param {UCF_BrowserEvent} oBrowserEvent
+     * @param {boolean} bReturnResult
+     * @return {HTMLElement} oResult
      */
-    UCF_Control["prototype"]["handleSkipForward"] = function (oBrowserEvent) {
+    UCF_Control["prototype"]["handleSkipForward"] = function (oBrowserEvent, bReturnResult) {
         ;
         if (__UCF_COVERAGE__) {
             UCF_Control["_"]["handleSkipForward"]++;
@@ -41046,13 +42066,13 @@ var sap = window.sap || {};
         var oResult;
         /** @type {UCF_Control} */
         var oParent;
-        /** @type {HTMLDivElement} */
-        var oAssoAreaRef = this["oLS"]["oGetAssociatedAreaRef"]();
-        /** @type {HTMLDivElement} */
-        var oStaticAreaRef = this["oLS"]["oGetStaticAreaRef"]();
+        /** @type {boolean} */
+        var bHandleFocus = (!bReturnResult && bReturnResult !== false) ? true : false;
+        /** @type {HTMLElement} */
+        var oFirstTabbableDomRef = UCF_DomUtil["oGetTabbableElementForward"](document["body"]);
 
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(oBrowserEvent instanceof UCF_BrowserEvent, "oBrowserEvent instanceof UCF_BrowserEvent", "Control.js(1932): handleSkipForward");
+            UCF_Tracer.assert(oBrowserEvent instanceof UCF_BrowserEvent, "oBrowserEvent instanceof UCF_BrowserEvent", "Control.js(1991): handleSkipForward");
         }
         ;
 
@@ -41064,28 +42084,41 @@ var sap = window.sap || {};
         } else {
             // End of parent containers have to be skipped as well
             while (oDomRef != null) {
-                oResult = UCF_DomUtil["oGetTabbableElementForward"](oDomRef, true);
+                if (oDomRef["id"] && UCF_StringUtil["bEndsWith"](oDomRef["id"], '-asso')) {
+                    oResult = oFirstTabbableDomRef;
+                } else {
+                    oResult = UCF_DomUtil["oGetTabbableElementForward"](oDomRef, true);
+                }
 
-                if (oDomRef !== oAssoAreaRef && oDomRef !== oStaticAreaRef &&
-                    !UCF_DomUtil["bIsCTInstanceOf"](oResult, 'TSW') &&
-                    !UCF_DomUtil["bIsCTInstanceOf"](oResult, 'HI')) {
-                    if (!this["bIsEndContainerDomRef"](oResult) &&
-                        oResult &&
-                        UCF_DomUtil["bDomElementFocused"](oResult)
-                    ) {
+                if (oResult && !this["bIgnoreDuringSkipping"]({"oDomRef": oDomRef, "oResult": oResult})) {
+                    if (bHandleFocus === true && UCF_DomUtil["bDomElementFocused"](oResult)) {
                         oBrowserEvent["cancelBubble"]();
                         oBrowserEvent["cancel"]();
                         break;
+                    } else if (bHandleFocus === false) {
+                        oBrowserEvent["cancelBubble"]();
+                        oBrowserEvent["cancel"]();
+                        return oResult;
                     }
                 }
-
                 if (oResult) {
                     oDomRef = UCF_DomUtil["oGetNextSibling"](oResult, true);
                 } else {
-                    break;
+                    if (bHandleFocus) {
+                        // focus first tabbable element
+                        UCF_DomUtil["bDomElementFocused"](oFirstTabbableDomRef);
+                        oBrowserEvent["cancelBubble"]();
+                        oBrowserEvent["cancel"]();
+                        break;
+                    } else {
+                        oBrowserEvent["cancelBubble"]();
+                        oBrowserEvent["cancel"]();
+                        return oFirstTabbableDomRef;
+                    }
                 }
             }
         }
+        return null;
     };
     ;
     if (__UCF_COVERAGE__) {
@@ -41099,8 +42132,10 @@ var sap = window.sap || {};
      * specialized class
      *
      * @param {UCF_BrowserEvent} oBrowserEvent
+     * @param {boolean} bReturnResult
+     * @return {HTMLElement} oResult
      */
-    UCF_Control["prototype"]["handleSkipBack"] = function (oBrowserEvent) {
+    UCF_Control["prototype"]["handleSkipBack"] = function (oBrowserEvent, bReturnResult) {
         ;
         if (__UCF_COVERAGE__) {
             UCF_Control["_"]["handleSkipBack"]++;
@@ -41112,13 +42147,11 @@ var sap = window.sap || {};
         var oResult;
         /** @type {UCF_Control} */
         var oParent;
-        /** @type {HTMLDivElement} */
-        var oAssoAreaRef = this["oLS"]["oGetAssociatedAreaRef"]();
-        /** @type {HTMLDivElement} */
-        var oStaticAreaRef = this["oLS"]["oGetStaticAreaRef"]();
+        /** @type {boolean} */
+        var bHandleFocus = (!bReturnResult && bReturnResult !== false) ? true : false;
 
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(oBrowserEvent instanceof UCF_BrowserEvent, "oBrowserEvent instanceof UCF_BrowserEvent", "Control.js(1985): handleSkipBack");
+            UCF_Tracer.assert(oBrowserEvent instanceof UCF_BrowserEvent, "oBrowserEvent instanceof UCF_BrowserEvent", "Control.js(2057): handleSkipBack");
         }
         ;
 
@@ -41145,15 +42178,19 @@ var sap = window.sap || {};
             while (oDomRef != null) {
                 oResult = UCF_DomUtil["oGetTabbableElementBackward"](oDomRef, true);
 
-                if (oDomRef !== oAssoAreaRef && oDomRef !== oStaticAreaRef &&
-                    !UCF_DomUtil["bIsCTInstanceOf"](oResult, 'TSW') &&
-                    !UCF_DomUtil["bIsCTInstanceOf"](oResult, 'HI')) {
-                    if (!this["bIsEndContainerDomRef"](oResult)) {
-                        if (oResult && UCF_DomUtil["bDomElementFocused"](oResult)) {
-                            oBrowserEvent["cancelBubble"]();
-                            oBrowserEvent["cancel"]();
-                            break;
-                        }
+                if (!oResult) {
+                    oResult = UCF_DomUtil["oGetTabbableElementBackward"](document["body"]);
+                }
+                if (!this["bIgnoreDuringSkipping"]({"oDomRef": oDomRef, "oResult": oResult})) {
+                    if (bHandleFocus === true && oResult &&
+                        UCF_DomUtil["bDomElementFocused"](oResult)) {
+                        oBrowserEvent["cancelBubble"]();
+                        oBrowserEvent["cancel"]();
+                        break;
+                    } else if (bHandleFocus === false) {
+                        oBrowserEvent["cancelBubble"]();
+                        oBrowserEvent["cancel"]();
+                        return oResult;
                     }
                 }
 
@@ -41164,6 +42201,7 @@ var sap = window.sap || {};
                 }
             }
         }
+        return null;
     };
     ;
     if (__UCF_COVERAGE__) {
@@ -41329,7 +42367,7 @@ var sap = window.sap || {};
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(oBrowserEvent instanceof UCF_BrowserEvent, "oBrowserEvent instanceof UCF_BrowserEvent", "Control.js(2133): onlscontainerfocus");
+            UCF_Tracer.assert(oBrowserEvent instanceof UCF_BrowserEvent, "oBrowserEvent instanceof UCF_BrowserEvent", "Control.js(2210): onlscontainerfocus");
         }
         ;
 
@@ -41400,7 +42438,7 @@ var sap = window.sap || {};
         var oParent;
 
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(oBrowserEvent instanceof UCF_BrowserEvent, "oBrowserEvent instanceof UCF_BrowserEvent", "Control.js(2181): onlsacchierarchy");
+            UCF_Tracer.assert(oBrowserEvent instanceof UCF_BrowserEvent, "oBrowserEvent instanceof UCF_BrowserEvent", "Control.js(2258): onlsacchierarchy");
         }
         ;
 
@@ -41585,7 +42623,7 @@ var sap = window.sap || {};
         var oDefaultButton;
 
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(oBrowserEvent instanceof UCF_BrowserEvent, "oBrowserEvent instanceof UCF_BrowserEvent", "Control.js(2321): onlsenter");
+            UCF_Tracer.assert(oBrowserEvent instanceof UCF_BrowserEvent, "oBrowserEvent instanceof UCF_BrowserEvent", "Control.js(2398): onlsenter");
         }
         ;
 
@@ -41623,7 +42661,7 @@ var sap = window.sap || {};
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(oBrowserEvent instanceof UCF_BrowserEvent, "oBrowserEvent instanceof UCF_BrowserEvent", "Control.js(2346): onselect");
+            UCF_Tracer.assert(oBrowserEvent instanceof UCF_BrowserEvent, "oBrowserEvent instanceof UCF_BrowserEvent", "Control.js(2423): onselect");
         }
         ;
 
@@ -41652,7 +42690,7 @@ var sap = window.sap || {};
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(oBrowserEvent instanceof UCF_BrowserEvent, "oBrowserEvent instanceof UCF_BrowserEvent", "Control.js(2362): onselectstart");
+            UCF_Tracer.assert(oBrowserEvent instanceof UCF_BrowserEvent, "oBrowserEvent instanceof UCF_BrowserEvent", "Control.js(2439): onselectstart");
         }
         ;
 
@@ -42173,8 +43211,7 @@ var sap = window.sap || {};
 
                 oCloneDomRef["style"]["position"] = 'absolute';
                 oCloneDomRef["style"]["top"] = '-1000px';
-                // eslint-disable-next-line no-unsanitized/property
-                oCloneDomRef["innerHTML"] = this["oRootRef"]["innerHTML"];
+                UCF_DomUtil["setInnerHtml"](oCloneDomRef, this["oRootRef"]["innerHTML"]);
 
                 UCF_DomUtil["prepend"](document["body"], oCloneDomRef);
 
@@ -42550,7 +43587,7 @@ var sap = window.sap || {};
                 }
             } else {
                 if (__UCF_TRACE__) {
-                    UCF_Tracer.trace(DEBUG, 'Client property ' + sName + ' does not exist in ' + oClientControl["sClassName"], "Control.js(2946): setClientProperty");
+                    UCF_Tracer.trace(DEBUG, 'Client property ' + sName + ' does not exist in ' + oClientControl["sClassName"], "Control.js(3022): setClientProperty");
                 }
                 ;
             }
@@ -42679,7 +43716,7 @@ var sap = window.sap || {};
                             oValue = this[sName]();
                         } catch (oEx) {
                             if (__UCF_TRACE__) {
-                                UCF_Tracer.trace(DEBUG, 'Execution of method:' + sName + ' on ' + this["sClassName"] + ' caused an exception: ' + oEx["message"], "Control.js(3052): oGetTestData");
+                                UCF_Tracer.trace(DEBUG, 'Execution of method:' + sName + ' on ' + this["sClassName"] + ' caused an exception: ' + oEx["message"], "Control.js(3128): oGetTestData");
                             }
                             ;
                             continue;
@@ -42955,7 +43992,7 @@ var sap = window.sap || {};
         var oNextFocusable;
 
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(oBrowserEvent instanceof UCF_BrowserEvent, "oBrowserEvent instanceof UCF_BrowserEvent", "Control.js(3255): onlstabsequencenext");
+            UCF_Tracer.assert(oBrowserEvent instanceof UCF_BrowserEvent, "oBrowserEvent instanceof UCF_BrowserEvent", "Control.js(3331): onlstabsequencenext");
         }
         ;
 
@@ -43026,7 +44063,7 @@ var sap = window.sap || {};
         var oPreviousFocusable;
 
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(oBrowserEvent instanceof UCF_BrowserEvent, "oBrowserEvent instanceof UCF_BrowserEvent", "Control.js(3303): onlstabsequenceprevious");
+            UCF_Tracer.assert(oBrowserEvent instanceof UCF_BrowserEvent, "oBrowserEvent instanceof UCF_BrowserEvent", "Control.js(3379): onlstabsequenceprevious");
         }
         ;
 
@@ -43492,13 +44529,11 @@ var sap = window.sap || {};
 
         this["changeVisibility"](sVisibility);
         UCF_DomUtil["setVisibility"](this["oRootRef"], sVisibility);
+
         this["sVisibility"] = sVisibility;
         this["setClientProperty"]('Visibility', sVisibility, true);
 
-        this["oLS"]["fireEvent"](this["oLS"]["E_EVENTS"]["ControlVisibilityChange"], {
-            "sId": this["sId"],
-            "sVisibility": sVisibility
-        });
+        this["oLS"]["fireEvent"](this["oLS"]["E_EVENTS"]["ControlVisibilityChange"], {"sId": this["sId"], "sVisibility": sVisibility});
     };
     ;
     if (__UCF_COVERAGE__) {
@@ -43556,7 +44591,7 @@ var sap = window.sap || {};
 
         if (bSwitch && this["bAncestorInvisible"]) {
             if (__UCF_TRACE__) {
-                UCF_Tracer.trace(DEBUG, 'Ancestor control is already in invisibility mode, id=' + this["sId"], "Control.js(3687): setInvisibility");
+                UCF_Tracer.trace(DEBUG, 'Ancestor control is already in invisibility mode, id=' + this["sId"], "Control.js(3764): setInvisibility");
             }
             ;
         }
@@ -43946,6 +44981,13 @@ var sap = window.sap || {};
                 'PW'
             );
             if (!oPopupWindowDomRef) {
+                oPopupWindowDomRef = UCF_DomUtil["oGetParentByAttribute"](
+                    oDomRef || this["oRootRef"],
+                    'ct',
+                    'PW_standards'
+                );
+            }
+            if (!oPopupWindowDomRef) {
                 oPage = this["oLS"]["oGetPageInternal"]();
 
                 if (oPage) {
@@ -43955,7 +44997,7 @@ var sap = window.sap || {};
                         oPopupWindowDomRef = UCF_DomUtil["oGetFirstElement"](oPageDomRef);
 
                         // eslint-disable-next-line max-depth
-                        if (oPopupWindowDomRef["getAttribute"]('ct') !== 'PW') {
+                        if (oPopupWindowDomRef["getAttribute"]('ct') !== 'PW' && oPopupWindowDomRef["getAttribute"]('ct') !== 'PW_standards') {
                             return null;
                         }
                     }
@@ -44008,7 +45050,13 @@ var sap = window.sap || {};
                 'ct',
                 'PW'
             );
-
+            if (!oPopupWindowDomRef) {
+                oPopupWindowDomRef = UCF_DomUtil["oGetParentByAttribute"](
+                    oDomRef || this["oRootRef"],
+                    'ct',
+                    'PW_standards'
+                );
+            }
             if (oPopupWindowDomRef) {
                 return true;
             } else {
@@ -44021,7 +45069,7 @@ var sap = window.sap || {};
                         oPopupWindowDomRef = UCF_DomUtil["oGetFirstElement"](oPageDomRef);
 
                         // eslint-disable-next-line max-depth
-                        if (oPopupWindowDomRef["getAttribute"]('ct') !== 'PW') {
+                        if (oPopupWindowDomRef["getAttribute"]('ct') !== 'PW' && oPopupWindowDomRef["getAttribute"]('ct') !== 'PW_standards') {
                             return false;
                         }
                     }
@@ -44290,7 +45338,7 @@ var sap = window.sap || {};
                 ) {
 
                     if (__UCF_TRACE__) {
-                        UCF_Tracer.trace(INFO, this["sClassName"] + ' "' + this["sId"] + '" does not implement bPrepareAria.', "Control.js(4228): bPrepareAria");
+                        UCF_Tracer.trace(INFO, this["sClassName"] + ' "' + this["sId"] + '" does not implement bPrepareAria.', "Control.js(4318): bPrepareAria");
                     }
                     ;
 
@@ -44452,7 +45500,7 @@ var sap = window.sap || {};
         ;
         var oParent = this; // eslint-disable-line consistent-this
 
-        if (UCF_StringUtil["bStartsWith"](oParent["sClassName"], 'UCF_SapTable') ||
+        if ((UCF_StringUtil["bStartsWith"](oParent["sClassName"], 'UCF_SapTable') && window["UCF_System"]["sAccessibility"] !== 'ARIA1.1') ||
             UCF_StringUtil["bStartsWith"](oParent["sClassName"], 'UCF_DataGrid')) {
             return {"bValidIndexes": false};
         }
@@ -44464,7 +45512,7 @@ var sap = window.sap || {};
         }
 
         while ((oParent = oParent["oGetParent"]()) != null) {
-            if (UCF_StringUtil["bStartsWith"](oParent["sClassName"], 'UCF_SapTable')) {
+            if (UCF_StringUtil["bStartsWith"](oParent["sClassName"], 'UCF_SapTable') && window["UCF_System"]["sAccessibility"] !== 'ARIA1.1') {
                 //adjust rowIndex to native JAWS calculation
                 if (window["UCF_System"]["sAccessibility"] === 'ARIA1.1') {
                     var iColOffset = oParent["bHasLeadingSelectionColumn"]() ? 1 : 0;
@@ -44538,7 +45586,7 @@ var sap = window.sap || {};
             UCF_Control["_"]["aGetTouchContextMenuEntries"]++;
         }
         ;
-        /** @type {Array} */
+        /** @type {UCF_Control_TouchContextMenuEntry[]} */
         var aResult = [];
         /** @type {UCF_Control} */
         var self;
@@ -44731,6 +45779,7 @@ var sap = window.sap || {};
     }
     ;
 
+
     UCF_Control.prototype["aPublicMethods"] = ["sGetId", "addClientListener", "removeClientListener", "updateEvent", "focus", "playAnimation", "sGetCustomData", "getCustomData", "oGetParentControl", "setVisibility", "showBoundaries"].concat(UCF_Control.prototype.aPublicMethods || []);
     /* global UCF_Object */
 /// <reference path="../../core/Object.js"/>
@@ -44907,6 +45956,17 @@ var sap = window.sap || {};
         "SPC": 'UCF_SplitterCol',
         "SPR": 'UCF_SplitterRow',
         "SPCE": 'UCF_SplitterCell',
+
+        "SP_standards": 'UCF_Splitter_standards',
+        "SPC_standards": 'UCF_SplitterCol_standards',
+        "SPR_standards": 'UCF_SplitterRow_standards',
+        "SPCE_standards": 'UCF_SplitterCell_standards',
+
+        "SP_ie6": 'UCF_Splitter_ie6',
+        "SPC_ie6": 'UCF_SplitterCol_ie6',
+        "SPR_ie6": 'UCF_SplitterRow_ie6',
+        "SPCE_ie6": 'UCF_SplitterCell_ie6',
+
         "SY": 'UCF_System',
         "DatePicker": 'UCF_DatePicker',
         "DatePickerSlider": 'UCF_DatePickerSlider',
@@ -44934,12 +45994,14 @@ var sap = window.sap || {};
         "PCSEQITM": 'UCF_PatternContainerSequenceItem',
         "PCI": 'UCF_PatternContainerIconButton',
         "PL": 'UCF_PageLayout',
+        "PLP": 'UCF_PageLayoutPanel',
         "PI": 'UCF_PopIn',
         "DN": 'UCF_DateNavigator',
         "TE": 'UCF_TextEdit',
         "TEI": 'UCF_TextEditInplaceEdit',
         "TGL": 'UCF_ToggleLink',
-        "PW": 'UCF_PopupWindow',
+        "PW": 'UCF_PopupWindow_ie6',
+        "PW_standards": 'UCF_PopupWindow_standards',
         "TR": 'UCF_Tree',
         "TRN": 'UCF_TreeNode',
         "G": 'UCF_Group',
@@ -45064,6 +46126,7 @@ var sap = window.sap || {};
         "PMSTHEMECHANGE": 'UCF_PMServiceThemeChange',
         "PMSUSHELLSESSION": 'UCF_PMServiceUShellSessionHandler',
         "PMSWEBASSIST": 'UCF_PMServiceWebAssistant',
+        "PMSSTCONTAINER": 'UCF_PMServiceStatefulContainer',
         "LIB_S": 'UCF_Listbox_SingleSelect',
         "LIB_M": 'UCF_Listbox_MultiSelect',
         "LIB_P": 'UCF_Listbox_Popup',
@@ -45215,15 +46278,15 @@ var sap = window.sap || {};
         var oControl;
 
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(typeof oDomRef === 'object', "typeof oDomRef === 'object'", "ControlFactory.js(439): oGetControlByDomRef");
+            UCF_Tracer.assert(typeof oDomRef === 'object', "typeof oDomRef === 'object'", "ControlFactory.js(453): oGetControlByDomRef");
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(oDomRef != null, "oDomRef != null", "ControlFactory.js(440): oGetControlByDomRef");
+            UCF_Tracer.assert(oDomRef != null, "oDomRef != null", "ControlFactory.js(454): oGetControlByDomRef");
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(typeof bCreate === 'boolean', "typeof bCreate === 'boolean'", "ControlFactory.js(441): oGetControlByDomRef");
+            UCF_Tracer.assert(typeof bCreate === 'boolean', "typeof bCreate === 'boolean'", "ControlFactory.js(455): oGetControlByDomRef");
         }
         ;
 
@@ -45232,7 +46295,7 @@ var sap = window.sap || {};
         // eslint-disable-next-line eqeqeq
         if (sId == '' || sId == null || sCt == '' || sCt == null) {
             if (__UCF_TRACE__) {
-                UCF_Tracer.trace(DEBUG, 'Can\'t create control from DomRef with ct ' + sCt + ' and id ' + sId + '.', "ControlFactory.js(447): oGetControlByDomRef");
+                UCF_Tracer.trace(DEBUG, 'Can\'t create control from DomRef with ct ' + sCt + ' and id ' + sId + '.', "ControlFactory.js(461): oGetControlByDomRef");
             }
             ;
 
@@ -45286,11 +46349,11 @@ var sap = window.sap || {};
         var oControl;
 
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(typeof sId === 'string', "typeof sId === 'string'", "ControlFactory.js(488): oGetControlById");
+            UCF_Tracer.assert(typeof sId === 'string', "typeof sId === 'string'", "ControlFactory.js(502): oGetControlById");
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(sId !== '', "sId !== ''", "ControlFactory.js(489): oGetControlById");
+            UCF_Tracer.assert(sId !== '', "sId !== ''", "ControlFactory.js(503): oGetControlById");
         }
         ;
 
@@ -45338,11 +46401,11 @@ var sap = window.sap || {};
         var oControl;
 
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(typeof sId === 'string', "typeof sId === 'string'", "ControlFactory.js(524): oGetControl");
+            UCF_Tracer.assert(typeof sId === 'string', "typeof sId === 'string'", "ControlFactory.js(538): oGetControl");
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(sId !== '', "sId !== ''", "ControlFactory.js(525): oGetControl");
+            UCF_Tracer.assert(sId !== '', "sId !== ''", "ControlFactory.js(539): oGetControl");
         }
         ;
 
@@ -45382,11 +46445,11 @@ var sap = window.sap || {};
         var oControl;
 
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(typeof sClassName === 'string', "typeof sClassName === 'string'", "ControlFactory.js(552): oGetCurrentControlsByClassName");
+            UCF_Tracer.assert(typeof sClassName === 'string', "typeof sClassName === 'string'", "ControlFactory.js(566): oGetCurrentControlsByClassName");
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(sClassName !== '', "sClassName !== ''", "ControlFactory.js(553): oGetCurrentControlsByClassName");
+            UCF_Tracer.assert(sClassName !== '', "sClassName !== ''", "ControlFactory.js(567): oGetCurrentControlsByClassName");
         }
         ;
 
@@ -45439,11 +46502,11 @@ var sap = window.sap || {};
         var iClassStart;
 
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(typeof oDomRef === 'object', "typeof oDomRef === 'object'", "ControlFactory.js(593): oCreateControlByDomRef");
+            UCF_Tracer.assert(typeof oDomRef === 'object', "typeof oDomRef === 'object'", "ControlFactory.js(607): oCreateControlByDomRef");
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(oDomRef != null, "oDomRef != null", "ControlFactory.js(594): oCreateControlByDomRef");
+            UCF_Tracer.assert(oDomRef != null, "oDomRef != null", "ControlFactory.js(608): oCreateControlByDomRef");
         }
         ;
 
@@ -45453,7 +46516,7 @@ var sap = window.sap || {};
         // eslint-disable-next-line eqeqeq
         if (sId == '' || sId == null || sCt == '' || sCt == null) {
             if (__UCF_TRACE__) {
-                UCF_Tracer.trace(DEBUG, 'Can\'t create control from DomRef with ct ' + sCt + ' and id ' + sId + '.', "ControlFactory.js(601): oCreateControlByDomRef");
+                UCF_Tracer.trace(DEBUG, 'Can\'t create control from DomRef with ct ' + sCt + ' and id ' + sId + '.', "ControlFactory.js(615): oCreateControlByDomRef");
             }
             ;
 
@@ -45462,7 +46525,7 @@ var sap = window.sap || {};
         //check whether constructor recursion is implemented
         if (this["mCreateControls"][sId] && __UCF_DEBUG__) {
             if (__UCF_TRACE__) {
-                UCF_Tracer.trace(INFO, 'Recursion of control constructor. Please correct this issue. Never call a method that accesses the parent controls in the constructor. Use initialize', "ControlFactory.js(607): oCreateControlByDomRef");
+                UCF_Tracer.trace(INFO, 'Recursion of control constructor. Please correct this issue. Never call a method that accesses the parent controls in the constructor. Use initialize', "ControlFactory.js(621): oCreateControlByDomRef");
             }
             ;
         }
@@ -45474,7 +46537,7 @@ var sap = window.sap || {};
                 sType = sCt;
             } else {
                 if (__UCF_TRACE__) {
-                    UCF_Tracer.trace(DEBUG, 'No control mapping found for CT "' + sCt + '"!', "ControlFactory.js(616): oCreateControlByDomRef");
+                    UCF_Tracer.trace(DEBUG, 'No control mapping found for CT "' + sCt + '"!', "ControlFactory.js(630): oCreateControlByDomRef");
                 }
                 ;
                 sType = 'UCF_Control';
@@ -45483,12 +46546,12 @@ var sap = window.sap || {};
 
         oClass = UCF_ClassLoader["oGetClass"](sType);
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(oClass != null, "oClass != null", "ControlFactory.js(622): oCreateControlByDomRef");
+            UCF_Tracer.assert(oClass != null, "oClass != null", "ControlFactory.js(636): oCreateControlByDomRef");
         }
         ;
 
         if (__UCF_TRACE__) {
-            UCF_Tracer.trace(DEBUG, 'Create instance of ' + sType + ' with id "' + sId + '".', "ControlFactory.js(624): oCreateControlByDomRef");
+            UCF_Tracer.trace(DEBUG, 'Create instance of ' + sType + ' with id "' + sId + '".', "ControlFactory.js(638): oCreateControlByDomRef");
         }
         ;
 
@@ -45544,11 +46607,11 @@ var sap = window.sap || {};
         var iRootIndex;
 
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(typeof sId === 'string', "typeof sId === 'string'", "ControlFactory.js(667): oCreateControlById");
+            UCF_Tracer.assert(typeof sId === 'string', "typeof sId === 'string'", "ControlFactory.js(681): oCreateControlById");
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(sId !== '', "sId !== ''", "ControlFactory.js(668): oCreateControlById");
+            UCF_Tracer.assert(sId !== '', "sId !== ''", "ControlFactory.js(682): oCreateControlById");
         }
         ;
 
@@ -45598,12 +46661,12 @@ var sap = window.sap || {};
         var oControl;
 
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(oClass != null, "oClass != null", "ControlFactory.js(705): oCreateControl");
+            UCF_Tracer.assert(oClass != null, "oClass != null", "ControlFactory.js(719): oCreateControl");
         }
         ;
 
         if (__UCF_TRACE__) {
-            UCF_Tracer.trace(DEBUG, 'Create instance of ' + sClassName + ' with id "' + sId + '".', "ControlFactory.js(707): oCreateControl");
+            UCF_Tracer.trace(DEBUG, 'Create instance of ' + sClassName + ' with id "' + sId + '".', "ControlFactory.js(721): oCreateControl");
         }
         ;
 
@@ -45668,12 +46731,10 @@ var sap = window.sap || {};
                 } else if (oDomRef["childNodes"]["length"] === 1) { //only one child
                     // for controls that have an adapter we need to check if there are more
                     // children
-                    // eslint-disable-next-line no-unsanitized/property
-                    oDomRef["innerHTML"] = oXMPRef["innerHTML"];
+                    UCF_DomUtil["setInnerHtml"](oDomRef, oXMPRef["innerHTML"]);
                 } else { //more children
                     oTemp = document["createElement"]('div');
-                    // eslint-disable-next-line no-unsanitized/property
-                    oTemp["innerHTML"] = oXMPRef["innerHTML"];
+                    UCF_DomUtil["setInnerHtml"](oTemp, oXMPRef["innerHTML"]);
                     // Create a documentfragment containing all nodes
                     oFragment = document["createDocumentFragment"]();
                     while (oTemp["firstChild"]) {
@@ -45779,7 +46840,7 @@ var sap = window.sap || {};
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(oControl instanceof UCF_Control, "oControl instanceof UCF_Control", "ControlFactory.js(844): purgeControl");
+            UCF_Tracer.assert(oControl instanceof UCF_Control, "oControl instanceof UCF_Control", "ControlFactory.js(856): purgeControl");
         }
         ;
 
@@ -45789,14 +46850,14 @@ var sap = window.sap || {};
             // call connectToDom if there is a new DOM element with the same id
             if (oControl["bDoKeepAlive"]()) {
                 if (__UCF_TRACE__) {
-                    UCF_Tracer.trace(DEBUG, 'Keeping control "' + oControl["sId"] + '"alive.', "ControlFactory.js(851): purgeControl");
+                    UCF_Tracer.trace(DEBUG, 'Keeping control "' + oControl["sId"] + '"alive.', "ControlFactory.js(863): purgeControl");
                 }
                 ;
                 oControl["reconnectToDom"]();
             } else {
                 // Otherwise destroy control and remove it from the collection
                 if (__UCF_TRACE__) {
-                    UCF_Tracer.trace(DEBUG, 'Destroying control "' + oControl["sId"] + '".', "ControlFactory.js(855): purgeControl");
+                    UCF_Tracer.trace(DEBUG, 'Destroying control "' + oControl["sId"] + '".', "ControlFactory.js(867): purgeControl");
                 }
                 ;
                 if (oControl["getClientControl"]()) {
@@ -45921,29 +46982,29 @@ var sap = window.sap || {};
         var sValue;
 
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(typeof sPrefix === 'string', "typeof sPrefix === 'string'", "ControlFactory.js(947): registerControlType");
+            UCF_Tracer.assert(typeof sPrefix === 'string', "typeof sPrefix === 'string'", "ControlFactory.js(959): registerControlType");
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(sPrefix != null && sPrefix !== '', "sPrefix != null && sPrefix !== ''", "ControlFactory.js(948): registerControlType");
-        }
-        ;
-
-        if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(typeof sCT === 'string', "typeof sCT === 'string'", "ControlFactory.js(950): registerControlType");
-        }
-        ;
-        if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(sCT != null && sCT !== '', "sCT != null && sCT !== ''", "ControlFactory.js(951): registerControlType");
+            UCF_Tracer.assert(sPrefix != null && sPrefix !== '', "sPrefix != null && sPrefix !== ''", "ControlFactory.js(960): registerControlType");
         }
         ;
 
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(typeof sType === 'string', "typeof sType === 'string'", "ControlFactory.js(953): registerControlType");
+            UCF_Tracer.assert(typeof sCT === 'string', "typeof sCT === 'string'", "ControlFactory.js(962): registerControlType");
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(sType != null && sType !== '', "sType != null && sType !== ''", "ControlFactory.js(954): registerControlType");
+            UCF_Tracer.assert(sCT != null && sCT !== '', "sCT != null && sCT !== ''", "ControlFactory.js(963): registerControlType");
+        }
+        ;
+
+        if (__UCF_ASSERT__) {
+            UCF_Tracer.assert(typeof sType === 'string', "typeof sType === 'string'", "ControlFactory.js(965): registerControlType");
+        }
+        ;
+        if (__UCF_ASSERT__) {
+            UCF_Tracer.assert(sType != null && sType !== '', "sType != null && sType !== ''", "ControlFactory.js(966): registerControlType");
         }
         ;
 
@@ -45951,7 +47012,7 @@ var sap = window.sap || {};
         sValue = sPrefix + sType;
         if (this["M_TYPES"][sKey]) {
             if (__UCF_TRACE__) {
-                UCF_Tracer.trace(ERROR, sPrefix + ' was already registered! A change is not allowed', "ControlFactory.js(959): registerControlType");
+                UCF_Tracer.trace(ERROR, sPrefix + ' was already registered! A change is not allowed', "ControlFactory.js(971): registerControlType");
             }
             ;
 
@@ -49263,6 +50324,8 @@ var sap = window.sap || {};
 
             this["addDebugHandlerClass"](UCF_KeyCodes["R"], "UCF_SeleniumRecorder", "Starts/stops the Selenium Test script recording.");
 
+            this["addDebugHandlerClass"](UCF_KeyCodes["K"], "UCF_Keycaster", "Shows currently pressed keys");
+
             UCF_DebugHelper["oWindow"] = window;
         }
         if (__UCF_DEBUG__ && !UCF_UserAgent["bIsDesktop"]()) {
@@ -49281,7 +50344,7 @@ var sap = window.sap || {};
             this["oElement"]["style"]["lineHeight"] = "35px";
             this["oElement"]["style"]["border"] = "1px solid #185779";
             this["oElement"]["setAttribute"]("closed", "true");
-            this["oElement"]["innerHTML"] = "<div style=\"text-align:right;\">+</div>";
+            UCF_DomUtil["setInnerHtml"](this["oElement"], "<div style=\"text-align:right;\">+</div>");
             var that = this;
             UCF_DomUtil["attachEvent"](this["oElement"], "click", function (oEvent) {
                 if (oEvent["target"] && oEvent["target"]["getAttribute"]("helper")) {
@@ -49297,11 +50360,11 @@ var sap = window.sap || {};
                     if (that["oElement"]["getAttribute"]("closed") == "false") {
                         that["oElement"]["style"]["width"] = "35px";
                         that["oElement"]["style"]["height"] = "35px";
-                        that["oElement"]["innerHTML"] = "<div style=\"text-align:right\">+</div>";
+                        UCF_DomUtil["setInnerHtml"](that["oElement"], "<div style=\"text-align:right\">+</div>");
                         that["oElement"]["setAttribute"]("closed", "true");
 
                     } else {
-                        that["oElement"]["innerHTML"] = "<div style=\"text-align:right\">-</div>";
+                        UCF_DomUtil["setInnerHtml"](that["oElement"], "<div style=\"text-align:right\">-</div>");
                         that["oElement"]["setAttribute"]("closed", "false");
                         that["oElement"]["style"]["width"] = "300px";
                         that["oElement"]["style"]["height"] = "500px";
@@ -49315,8 +50378,7 @@ var sap = window.sap || {};
                             oDiv["style"]["overflow"] = "hidden";
                             oDiv["style"]["textOverflow"] = "ellipsis";
                             oDiv["style"]["whiteSpace"] = "nowrap";
-                            // eslint-disable-next-line no-unsanitized/property
-                            oDiv["innerHTML"] = oDebugHandler["sDescription"];
+                            UCF_DomUtil["setInnerHtml"](oDiv, oDebugHandler["sDescription"]);
                             that["oElement"]["appendChild"](oDiv);
                         }
                     }
@@ -49536,7 +50598,7 @@ var sap = window.sap || {};
             oParagraph["id"] = id;
             oParagraph["style"]["position"] = 'relative';
             oParagraph["style"]["top"] = '2px';
-            oParagraph["innerHTML"] = UCF_XSSEncoder["encodeHTML"](text);
+            UCF_DomUtil["setInnerHtml"](oParagraph, UCF_XSSEncoder["encodeHTML"](text));
             oParagraph["style"]["fontSize"] = 'small';
             oParagraph["style"]["fontWeight"] = 'bold';
             oParagraph["style"]["backgroundColor"] = color;
@@ -49615,6 +50677,7 @@ var sap = window.sap || {};
         ;
     }
 
+
     /**
      *
      * Exception class
@@ -49645,8 +50708,8 @@ var sap = window.sap || {};
             UCF_Exception["_"]["UCF_Exception"]++;
         }
         ;
-        this["name"] = "Exception"; // eslint-disable-line ur/no-memory-leaks
-        this["message"] = message; // eslint-disable-line ur/no-memory-leaks
+        this["name"] = "Exception"; // eslint-disable-line @ur/no-memory-leaks
+        this["message"] = message; // eslint-disable-line @ur/no-memory-leaks
     };window["UCF_Exception"] = UCF_Exception;
     ;
     if (__UCF_COVERAGE__) {
@@ -49657,7 +50720,7 @@ var sap = window.sap || {};
     ;
 
 
-// eslint-disable-next-line ur/no-memory-leaks
+// eslint-disable-next-line @ur/no-memory-leaks
     UCF_Exception["prototype"]["destroy"] = function () {
         ;
         if (__UCF_COVERAGE__) {
@@ -50121,7 +51184,7 @@ var sap = window.sap || {};
             oControl = this["oLS"]["oControlFactory"]["oGetControlById"](this["sFocussedId"]);
 
             // handle focus for popup window (focus its title)
-            if (oControl && UCF_JsUtil["bInstanceOf"](oControl, 'UCF_PopupWindow')) {
+            if (oControl && (UCF_JsUtil["bInstanceOf"](oControl, 'UCF_PopupWindow') || UCF_JsUtil["bInstanceOf"](oControl, 'UCF_PopupWindow_standards') || UCF_JsUtil["bInstanceOf"](oControl, 'UCF_PopupWindow_ie6'))) {
                 oControl["focus"]();
             } else if (oControl && oControl["bIsVisible"]()) {
                 if (bForce) {
@@ -50220,7 +51283,7 @@ var sap = window.sap || {};
                 for (i in UCF_FocusInfo["PARAMS_TO_SERIALIZE"]) {
                     oCurrValue = this["oGetParam"](UCF_FocusInfo["PARAMS_TO_SERIALIZE"][i]);
                     if (oCurrValue) {
-                        this[i] = oCurrValue; // eslint-disable-line ur/no-memory-leaks
+                        this[i] = oCurrValue; // eslint-disable-line @ur/no-memory-leaks
                         this["deleteParam"](UCF_FocusInfo["PARAMS_TO_SERIALIZE"][i]);
                     }
                 }
@@ -50255,8 +51318,8 @@ var sap = window.sap || {};
         ;
         if (arguments["length"] === 0) return;
 
-        this["name"] = 'FormatException'; // eslint-disable-line ur/no-memory-leaks
-        this["message"] = message;	       // eslint-disable-line ur/no-memory-leaks
+        this["name"] = 'FormatException'; // eslint-disable-line @ur/no-memory-leaks
+        this["message"] = message;	       // eslint-disable-line @ur/no-memory-leaks
     };window["UCF_FormatException"] = UCF_FormatException;
     ;
     if (__UCF_COVERAGE__) {
@@ -50623,6 +51686,8 @@ UCF_System is not available yet
 /// <reference path="../../core/util/StringUtil.js"/>
     /* global UCF_UserAgent */
 /// <reference path="../../core/util/UserAgent.js"/>
+    /* global UCF_BrowserEvent */
+/// <reference path="../browser/BrowserEvent.js"/>
     /* global UCF_System */
 
 /// <reference path="./System.js"/>
@@ -50922,7 +51987,7 @@ UCF_System is not available yet
             UCF_KeyboardHelper["_"]["bIsValidHotkey"]++;
         }
         ;
-        return this["bIsValidHotkeyByString"](this["sHotkeyValue"](iKey, bCtrl, bAlt, bShift, bAlternativeKeyboardHandling));
+        return this["bIsValidHotkeyByString"](this["sHotkeyValue"](iKey, bCtrl, bAlt, bShift), bAlternativeKeyboardHandling);
     };
     ;
     if (__UCF_COVERAGE__) {
@@ -50969,16 +52034,11 @@ UCF_System is not available yet
         // 2014/09/05 D030999
         // Switching off the Access Key feature visualization for RTL due to a Microsoft bug [REG:114090111757998].
         // See Note 2059993. Remove that workaround when MS fixed the bug
-        if (window["UCF_System"]["bIsRTL"] && UCF_UserAgent["bIsTrident"](6) && window["UCF_System"]["sDevice"] === 'ie6') { // eslint-disable-line no-magic-numbers
+        if (window["UCF_System"]["bIsRTL"] && UCF_UserAgent["bIsTrident"](6) && __UCF_IE6__) { // eslint-disable-line no-magic-numbers
             return;
         }
 
-        if (UCF_Page["bIsPageVisualizeAccesskeysEnabled"]) {
-            // don't visualize accesskeys at the label and via overlay at the same time
-            return;
-        }
-
-        if (window["UCF_System"]["sInteractionType"] == "TOUCH") {
+        if (UCF_BrowserEvent["bTouchInteraction"]) {
             //We do not support access keys for any touch devices independend from browser type
             return;
         }
@@ -51086,15 +52146,7 @@ UCF_System is not available yet
             UCF_KeyboardHelper["_"]["bIsEventForKey"]++;
         }
         ;
-        var bAlt = oBrowserEvent["bAlt"](),
-            bCtrl = oBrowserEvent["bCtrl"](),
-            bShift = oBrowserEvent["bShift"](),
-            sUppercaseModifiers = (sModifiers || '')["toUpperCase"]();
-
-        return (oBrowserEvent["iKeyCode"]() === iKeyCode)
-            && (UCF_StringUtil["bContains"](sUppercaseModifiers, 'A') ? bAlt : !bAlt)
-            && (UCF_StringUtil["bContains"](sUppercaseModifiers, 'C') ? bCtrl : !bCtrl)
-            && (UCF_StringUtil["bContains"](sUppercaseModifiers, 'S') ? bShift : !bShift);
+        return oBrowserEvent["iKeyCode"]() === iKeyCode && UCF_KeyboardHelper["bHasModifiers"](oBrowserEvent, sModifiers);
     };
     ;
     if (__UCF_COVERAGE__) {
@@ -51104,8 +52156,150 @@ UCF_System is not available yet
 
     /**
      * @param {UCF_BrowserEvent} oBrowserEvent the key event
+     * @param {string} [sModifiers=] modifiers that should be pressed ('A' for alt, 'C' for ctrl, 'S' for shift)
+     * @return {boolean} `true` if only the given modifiers are pressed
+     */
+    UCF_KeyboardHelper["bHasModifiers"] = function (oBrowserEvent, sModifiers) {
+        ;
+        if (__UCF_COVERAGE__) {
+            UCF_KeyboardHelper["_"]["bHasModifiers"]++;
+        }
+        ;
+        var bAlt = oBrowserEvent["bAlt"](),
+            bCtrl = oBrowserEvent["bCtrl"](), // META on MacOS
+            bNativeCtrl = oBrowserEvent["oDomEvent"]["ctrlKey"], // CTRL also on MacOS
+            bShift = oBrowserEvent["bShift"]();
+        var sNormalizedModifiers = (sModifiers || '')["toLowerCase"]();
+
+        return (UCF_StringUtil["bContains"](sNormalizedModifiers, 'c') ? (bCtrl || bNativeCtrl) : !bCtrl && !bNativeCtrl)
+            && (UCF_StringUtil["bContains"](sNormalizedModifiers, 'a') ? bAlt : !bAlt)
+            && (UCF_StringUtil["bContains"](sNormalizedModifiers, 's') ? bShift : !bShift);
+    };
+    ;
+    if (__UCF_COVERAGE__) {
+        UCF_KeyboardHelper["_"]["bHasModifiers"] = 0;
+    }
+    ;
+
+    /**
+     * Checks if the BrowserEvent has only the SHIFT as modifier
+     * @param {UCF_BrowserEvent} oBrowserEvent the key event
+     * @return {boolean} `true` if only the given modifiers are pressed
+     */
+    UCF_KeyboardHelper["bHasOnlyShiftAsModifier"] = function (oBrowserEvent) {
+        ;
+        if (__UCF_COVERAGE__) {
+            UCF_KeyboardHelper["_"]["bHasOnlyShiftAsModifier"]++;
+        }
+        ;
+        return this["bHasModifiers"](oBrowserEvent, 's');
+    };
+    ;
+    if (__UCF_COVERAGE__) {
+        UCF_KeyboardHelper["_"]["bHasOnlyShiftAsModifier"] = 0;
+    }
+    ;
+
+    /**
+     * Checks if the BrowserEvent has only the CTRL as modifier
+     * @param {UCF_BrowserEvent} oBrowserEvent the key event
+     * @return {boolean} `true` if only the given modifiers are pressed
+     */
+    UCF_KeyboardHelper["bHasOnlyCtrlAsModifier"] = function (oBrowserEvent) {
+        ;
+        if (__UCF_COVERAGE__) {
+            UCF_KeyboardHelper["_"]["bHasOnlyCtrlAsModifier"]++;
+        }
+        ;
+        return this["bHasModifiers"](oBrowserEvent, 'c');
+    };
+    ;
+    if (__UCF_COVERAGE__) {
+        UCF_KeyboardHelper["_"]["bHasOnlyCtrlAsModifier"] = 0;
+    }
+    ;
+
+    /**
+     * Checks if the BrowserEvent has only the ALT + CTRL as modifier
+     * @param {UCF_BrowserEvent} oBrowserEvent the key event
+     * @return {boolean} `true` if only the given modifiers are pressed
+     */
+    UCF_KeyboardHelper["bHasOnlyAltCtrlAsModifiers"] = function (oBrowserEvent) {
+        ;
+        if (__UCF_COVERAGE__) {
+            UCF_KeyboardHelper["_"]["bHasOnlyAltCtrlAsModifiers"]++;
+        }
+        ;
+        return oBrowserEvent["bAlt"]() && oBrowserEvent["bCtrl"]() && !oBrowserEvent["bShift"]();
+    };
+    ;
+    if (__UCF_COVERAGE__) {
+        UCF_KeyboardHelper["_"]["bHasOnlyAltCtrlAsModifiers"] = 0;
+    }
+    ;
+
+    /**
+     * Checks if the BrowserEvent has only the SHIFT + CTRL as modifier
+     * @param {UCF_BrowserEvent} oBrowserEvent the key event
+     * @return {boolean} `true` if only the given modifiers are pressed
+     */
+    UCF_KeyboardHelper["bHasOnlyShiftCtrlAsModifiers"] = function (oBrowserEvent) {
+        ;
+        if (__UCF_COVERAGE__) {
+            UCF_KeyboardHelper["_"]["bHasOnlyShiftCtrlAsModifiers"]++;
+        }
+        ;
+        return oBrowserEvent["bCtrl"]() && oBrowserEvent["bShift"]() && !oBrowserEvent["bAlt"]();
+    };
+    ;
+    if (__UCF_COVERAGE__) {
+        UCF_KeyboardHelper["_"]["bHasOnlyShiftCtrlAsModifiers"] = 0;
+    }
+    ;
+
+    /**
+     * Checks if the BrowserEvent has only the [ALT] + [SHIFT] as modifier
+     * @param {UCF_BrowserEvent} oBrowserEvent the key event
+     * @return {boolean} `true` if only the given modifiers are pressed
+     */
+    UCF_KeyboardHelper["bHasOnlyAltShiftAsModifiers"] = function (oBrowserEvent) {
+        ;
+        if (__UCF_COVERAGE__) {
+            UCF_KeyboardHelper["_"]["bHasOnlyAltShiftAsModifiers"]++;
+        }
+        ;
+        return oBrowserEvent["bAlt"]() && oBrowserEvent["bShift"]() && !oBrowserEvent["bCtrl"]();
+    };
+    ;
+    if (__UCF_COVERAGE__) {
+        UCF_KeyboardHelper["_"]["bHasOnlyAltShiftAsModifiers"] = 0;
+    }
+    ;
+
+    /**
+     * Checks if the BrowserEvent has only the ALT as modifier
+     * @param {UCF_BrowserEvent} oBrowserEvent the key event
+     * @return {boolean} `true` if only the given modifiers are pressed
+     */
+    UCF_KeyboardHelper["bHasOnlyAltAsModifier"] = function (oBrowserEvent) {
+        ;
+        if (__UCF_COVERAGE__) {
+            UCF_KeyboardHelper["_"]["bHasOnlyAltAsModifier"]++;
+        }
+        ;
+        return this["bHasModifiers"](oBrowserEvent, 'a');
+    };
+    ;
+    if (__UCF_COVERAGE__) {
+        UCF_KeyboardHelper["_"]["bHasOnlyAltAsModifier"] = 0;
+    }
+    ;
+
+    /**
+     * @param {UCF_BrowserEvent} oBrowserEvent the key event
      * @param {number} iKeyCode the keycode that should be checked
-     * @return {boolean} `true` if the key code should be handled as accesskey
+     * @return {boolean} `true` if the key code should be handled as accesskey for
+     * forward cycling through the access keys
      */
     UCF_KeyboardHelper["bShouldHandleAccessKey"] = function (oBrowserEvent, iKeyCode) {
         ;
@@ -51114,15 +52308,40 @@ UCF_System is not available yet
         }
         ;
         //See https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/accesskey
-        //Chromium Edge & Chrome: [ALT] + [Accesskey]
-        //Firefox: [ALT] + [SHIFT] + [Accesskey]
-        //IE: [ALT] + [Accesskey] or [ALT] + [SHIFT] + [Accesskey] -> let IE handle the accesskeys itself as it works fine
+        //BLI https://sapjira.wdf.sap.corp/browse/WDAUIUR1-3185
+        //cycling forward [ALT]+[Accesskey] or backward [ALT]+[SHIFT]+[Accesskey]
+        //across all browsers -> Chrome, Edge, IE11, Firefox
         //Opera: [ALT] + [Accesskey] -> not included
         return this["bIsEditKey"](iKeyCode) && this["bIsValidAccessKeyShortcut"](oBrowserEvent);
     };
     ;
     if (__UCF_COVERAGE__) {
         UCF_KeyboardHelper["_"]["bShouldHandleAccessKey"] = 0;
+    }
+    ;
+
+    /**
+     * @param {UCF_BrowserEvent} oBrowserEvent the key event
+     * @param {number} iKeyCode the keycode that should be checked
+     * @return {boolean} `true` if the key code should be handled as accesskey for
+     * backward cycling through the accesskeys
+     */
+    UCF_KeyboardHelper["bShouldHandleAccessKeyBack"] = function (oBrowserEvent, iKeyCode) {
+        ;
+        if (__UCF_COVERAGE__) {
+            UCF_KeyboardHelper["_"]["bShouldHandleAccessKeyBack"]++;
+        }
+        ;
+        //See https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/accesskey
+        //BLI https://sapjira.wdf.sap.corp/browse/WDAUIUR1-3185
+        //cycling forward [ALT]+[Accesskey] or backward [ALT]+[SHIFT]+[Accesskey]
+        //across all browsers -> Chrome, Edge, IE11, Firefox
+        //Opera: [ALT] + [Accesskey] -> not included
+        return this["bIsEditKey"](iKeyCode) && this["bIsValidAccessKeyShortcutBack"](oBrowserEvent);
+    };
+    ;
+    if (__UCF_COVERAGE__) {
+        UCF_KeyboardHelper["_"]["bShouldHandleAccessKeyBack"] = 0;
     }
     ;
 
@@ -51136,21 +52355,55 @@ UCF_System is not available yet
             UCF_KeyboardHelper["_"]["bIsValidAccessKeyShortcut"]++;
         }
         ;
+        // forward cycling through the accesskeys
+        // accesskeys triggered by
+        // Windows: [ALT]+key forward and [SHIFT]+[ALT]+key back
+        // MacOS:   [CMD]+[ALT]+key forward and [SHIFT]+[CMD]+[ALT]+key back
         return ((UCF_UserAgent["bIsLinux"]() ||
                     UCF_UserAgent["bIsWindows"]() ||
                     UCF_UserAgent["bIsChromeOS"]()
                 ) &&
                 (UCF_UserAgent["bIsWebKit"]() && oBrowserEvent["bAlt"]() && !oBrowserEvent["bShift"]() ||
-                    UCF_UserAgent["bIsGecko"]() && oBrowserEvent["bAlt"]() && oBrowserEvent["bShift"]()
+                    UCF_UserAgent["bIsGecko"]() && oBrowserEvent["bAlt"]() && !oBrowserEvent["bShift"]()
                 )) ||
             (UCF_UserAgent["bIsMacOs"]() &&
-                (UCF_UserAgent["bIsWebKit"]() && oBrowserEvent["bAlt"]() && !oBrowserEvent["bShift"]() ||
+                (UCF_UserAgent["bIsWebKit"]() && oBrowserEvent["bAlt"]() && oBrowserEvent["bCtrl"]() ||
                     UCF_UserAgent["bIsGecko"]() && oBrowserEvent["bAlt"]() && oBrowserEvent["bCtrl"]()
-                ));
+                )
+            );
     };
     ;
     if (__UCF_COVERAGE__) {
         UCF_KeyboardHelper["_"]["bIsValidAccessKeyShortcut"] = 0;
+    }
+    ;
+
+    /**
+     * @param {UCF_BrowserEvent} oBrowserEvent the key event
+     * @return {boolean} `true` if the key combination should trigger the accesskey
+     */
+    UCF_KeyboardHelper["bIsValidAccessKeyShortcutBack"] = function (oBrowserEvent) {
+        ;
+        if (__UCF_COVERAGE__) {
+            UCF_KeyboardHelper["_"]["bIsValidAccessKeyShortcutBack"]++;
+        }
+        ;
+        // backward cycling through the accesskeys
+        return ((UCF_UserAgent["bIsLinux"]() ||
+                    UCF_UserAgent["bIsWindows"]() ||
+                    UCF_UserAgent["bIsChromeOS"]()
+                ) &&
+                (UCF_UserAgent["bIsWebKit"]() && oBrowserEvent["bAlt"]() && oBrowserEvent["bShift"]() ||
+                    UCF_UserAgent["bIsGecko"]() && oBrowserEvent["bAlt"]() && oBrowserEvent["bShift"]()
+                )) ||
+            (UCF_UserAgent["bIsMacOs"]() &&
+                (UCF_UserAgent["bIsWebKit"]() && oBrowserEvent["bAlt"]() && oBrowserEvent["bShift"]() && oBrowserEvent["bCtrl"]() ||
+                    UCF_UserAgent["bIsGecko"]() && oBrowserEvent["bAlt"]() && oBrowserEvent["bShift"]() && oBrowserEvent["bCtrl"]()
+                ));
+    };
+    ;
+    if (__UCF_COVERAGE__) {
+        UCF_KeyboardHelper["_"]["bIsValidAccessKeyShortcutBack"] = 0;
     }
     ;
 
@@ -51889,6 +53142,10 @@ UCF_System is not available yet
                 UCF_Promise["allSettled"](aPromises)["then"](function (results) {
                     // Start initialization only when CSS is loaded to ensure correct
                     // metric calculations in the controls
+
+                    // is this the proper place to go?
+                    UCF_DomUtil["moveDataStylesToDomStyles"](document["body"]);
+
                     self["processInitializeIDs"]();
                     // CSN 1980172555: the semanticEventBootingBuffer has to be disabled
                     // after (!) processInitializeIDs. Otherwise the thing is meaningless.
@@ -51975,12 +53232,12 @@ UCF_System is not available yet
 
         // Destroy should not be called twice...
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(!this["bIsDestroyed"], "!this.bIsDestroyed", "LS.js(675): destroy");
+            UCF_Tracer.assert(!this["bIsDestroyed"], "!this.bIsDestroyed", "LS.js(679): destroy");
         }
         ;
 
         if (__UCF_TRACE__) {
-            UCF_Tracer.trace(INFO, 'Lightspeed will be destroyed now', "LS.js(677): destroy");
+            UCF_Tracer.trace(INFO, 'Lightspeed will be destroyed now', "LS.js(681): destroy");
         }
         ;
 
@@ -52088,7 +53345,7 @@ UCF_System is not available yet
                     // Error page: inject HTML so that reload-button and F5 will work
                     document["body"]["className"] = '';
                     // eslint-disable-next-line no-unsanitized/property
-                    document["body"]["innerHTML"] = '<input type="hidden">' + sErrorHTML;
+                    UCF_DomUtil["setInnerHtml"](document["body"], '<input type="hidden">' + sErrorHTML);
 
                     // remove "unsupported theme" image on body see note 1892457
                     UCF_LS["applySupportedThemes"](document["body"]);
@@ -52165,7 +53422,7 @@ UCF_System is not available yet
                 }
             } catch (e) {
                 if (__UCF_TRACE__) {
-                    UCF_Tracer.trace(ERROR, 'Error in ' + n + '.destroyStatic(): ' + e["message"], "LS.js(855): destroy");
+                    UCF_Tracer.trace(ERROR, 'Error in ' + n + '.destroyStatic(): ' + e["message"], "LS.js(859): destroy");
                 }
                 ;
             }
@@ -52217,7 +53474,7 @@ UCF_System is not available yet
         }
 
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(iFilePos >= 0, "iFilePos >= 0", "LS.js(894): registerLibrary");
+            UCF_Tracer.assert(iFilePos >= 0, "iFilePos >= 0", "LS.js(898): registerLibrary");
         }
         ;
 
@@ -52357,7 +53614,7 @@ UCF_System is not available yet
             // enforce that no sync request is fired and therefore the Network lost
             // popup occurs
             if (__UCF_TRACE__) {
-                UCF_Tracer.trace(ERROR, 'Network is offline - ignore event so that no request is triggered: ' + '"' + oBrowserEvent["sGetName"]() + '" occurred' + (oSourceRef ? ' at ' + oSourceRef["tagName"] + ' "' + oSourceRef["id"] + '"' : ''), "LS.js(991): onControlEvent");
+                UCF_Tracer.trace(ERROR, 'Network is offline - ignore event so that no request is triggered: ' + '"' + oBrowserEvent["sGetName"]() + '" occurred' + (oSourceRef ? ' at ' + oSourceRef["tagName"] + ' "' + oSourceRef["id"] + '"' : ''), "LS.js(995): onControlEvent");
             }
             ;
         } else {
@@ -52368,7 +53625,7 @@ UCF_System is not available yet
                 )
                 : this["oGetPageInternal"]();
             if (__UCF_TRACE__) {
-                UCF_Tracer.trace(DEBUG, '"' + oBrowserEvent["sGetName"]() + '" occurred' + (oSourceRef ? ' at ' + oSourceRef["tagName"] + ' "' + oSourceRef["id"] + '"' : '') + (oControl ? (' in control ' + oControl["sClassName"] + ' "' + oControl["sId"] + '"') : ''), "LS.js(999): onControlEvent");
+                UCF_Tracer.trace(DEBUG, '"' + oBrowserEvent["sGetName"]() + '" occurred' + (oSourceRef ? ' at ' + oSourceRef["tagName"] + ' "' + oSourceRef["id"] + '"' : '') + (oControl ? (' in control ' + oControl["sClassName"] + ' "' + oControl["sId"] + '"') : ''), "LS.js(1003): onControlEvent");
             }
             ;
 
@@ -52425,13 +53682,13 @@ UCF_System is not available yet
                                     oAriaGeneric["setAttribute"]('oldAriaInfoRow', '');
                                     oAriaGeneric["setAttribute"]('oldAriaInfoCol', aRowCol[1]);
                                     // eslint-disable-next-line no-unsanitized/property
-                                    oAriaGeneric["innerHTML"] = aRowCol[0];
+                                    UCF_DomUtil["setInnerHtml"](oAriaGeneric, aRowCol[0]);
                                 } else {
                                     // eslint-disable-next-line no-magic-numbers
                                     s = aRowCol[1] + ' ' + aRowCol[2];
 
                                     // eslint-disable-next-line no-unsanitized/property
-                                    oAriaGeneric["innerHTML"] = s;
+                                    UCF_DomUtil["setInnerHtml"](oAriaGeneric, s);
                                 }
                             }
                         }
@@ -52443,7 +53700,7 @@ UCF_System is not available yet
 
             if (oBrowserEvent["bCancelBubble"]) {
                 if (__UCF_TRACE__) {
-                    UCF_Tracer.trace(DEBUG, '"' + oBrowserEvent["sGetName"]() + '" has been canceled', "LS.js(1071): onControlEvent");
+                    UCF_Tracer.trace(DEBUG, '"' + oBrowserEvent["sGetName"]() + '" has been canceled', "LS.js(1075): onControlEvent");
                 }
                 ;
             }
@@ -52562,7 +53819,7 @@ UCF_System is not available yet
         var oLoadingAnim;
 
         if (__UCF_TRACE__) {
-            UCF_Tracer.trace(ERROR, 'Network is lost', "LS.js(1147): onOffline");
+            UCF_Tracer.trace(ERROR, 'Network is lost', "LS.js(1151): onOffline");
         }
         ;
         this["lock"]();
@@ -52593,7 +53850,7 @@ UCF_System is not available yet
         this["unlock"]();
         if (this["oOfflinePopup"] != null && this["oOfflinePopup"]["bIsOpen"]) {
             if (__UCF_TRACE__) {
-                UCF_Tracer.trace(WARNING, 'Network is online', "LS.js(1165): onOnline");
+                UCF_Tracer.trace(WARNING, 'Network is online', "LS.js(1169): onOnline");
             }
             ;
         }
@@ -52630,11 +53887,11 @@ UCF_System is not available yet
         var i;
 
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(oHandler, "oHandler", "LS.js(1189): dispatchBrowserEvent");
+            UCF_Tracer.assert(oHandler, "oHandler", "LS.js(1193): dispatchBrowserEvent");
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(oHandler instanceof UCF_Object, "oHandler instanceof UCF_Object", "LS.js(1190): dispatchBrowserEvent");
+            UCF_Tracer.assert(oHandler instanceof UCF_Object, "oHandler instanceof UCF_Object", "LS.js(1194): dispatchBrowserEvent");
         }
         ;
 
@@ -52653,7 +53910,7 @@ UCF_System is not available yet
         if (!aDelegates || bCancelByBrowserWindow || !oBrowserEvent["bCancel"]) {
             if (oHandler[sHandlerName]) {
                 if (__UCF_TRACE__) {
-                    UCF_Tracer.trace(DEBUG, '"' + oBrowserEvent["sGetName"]() + '" handled by ' + oHandler["sClassName"] + ' "' + oHandler["sId"] + '"', "LS.js(1206): dispatchBrowserEvent");
+                    UCF_Tracer.trace(DEBUG, '"' + oBrowserEvent["sGetName"]() + '" handled by ' + oHandler["sClassName"] + ' "' + oHandler["sId"] + '"', "LS.js(1210): dispatchBrowserEvent");
                 }
                 ;
                 oHandler[sHandlerName](oBrowserEvent);
@@ -52699,11 +53956,11 @@ UCF_System is not available yet
         var i;
 
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(oControl, "oControl", "LS.js(1239): dispatchCapturedEvent");
+            UCF_Tracer.assert(oControl, "oControl", "LS.js(1243): dispatchCapturedEvent");
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(oControl instanceof UCF_Object, "oControl instanceof UCF_Object", "LS.js(1240): dispatchCapturedEvent");
+            UCF_Tracer.assert(oControl instanceof UCF_Object, "oControl instanceof UCF_Object", "LS.js(1244): dispatchCapturedEvent");
         }
         ;
 
@@ -52748,19 +54005,19 @@ UCF_System is not available yet
         var aHandlers = this["mCapturedEvents"][sName];
 
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(typeof sName === 'string', "typeof sName === 'string'", "LS.js(1272): attachCaptureEvent");
+            UCF_Tracer.assert(typeof sName === 'string', "typeof sName === 'string'", "LS.js(1276): attachCaptureEvent");
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(oControl instanceof UCF_Control, "oControl instanceof UCF_Control", "LS.js(1273): attachCaptureEvent");
+            UCF_Tracer.assert(oControl instanceof UCF_Control, "oControl instanceof UCF_Control", "LS.js(1277): attachCaptureEvent");
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(typeof sFunction === 'string', "typeof sFunction === 'string'", "LS.js(1274): attachCaptureEvent");
+            UCF_Tracer.assert(typeof sFunction === 'string', "typeof sFunction === 'string'", "LS.js(1278): attachCaptureEvent");
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(oControl[sFunction], "oControl[sFunction]", "LS.js(1275): attachCaptureEvent");
+            UCF_Tracer.assert(oControl[sFunction], "oControl[sFunction]", "LS.js(1279): attachCaptureEvent");
         }
         ;
 
@@ -52794,11 +54051,11 @@ UCF_System is not available yet
         var i;
 
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(typeof sName === 'string', "typeof sName === 'string'", "LS.js(1296): detachCaptureEvent");
+            UCF_Tracer.assert(typeof sName === 'string', "typeof sName === 'string'", "LS.js(1300): detachCaptureEvent");
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(oControl instanceof UCF_Control, "oControl instanceof UCF_Control", "LS.js(1297): detachCaptureEvent");
+            UCF_Tracer.assert(oControl instanceof UCF_Control, "oControl instanceof UCF_Control", "LS.js(1301): detachCaptureEvent");
         }
         ;
 
@@ -52864,12 +54121,12 @@ UCF_System is not available yet
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(oSemanticEvent instanceof UCF_SemanticEvent, "oSemanticEvent instanceof UCF_SemanticEvent", "LS.js(1340): fireSemanticEvent");
+            UCF_Tracer.assert(oSemanticEvent instanceof UCF_SemanticEvent, "oSemanticEvent instanceof UCF_SemanticEvent", "LS.js(1344): fireSemanticEvent");
         }
         ;
 
         if (__UCF_TRACE__) {
-            UCF_Tracer.trace(INFO, 'Custom semantic event ' + oSemanticEvent["sGetControl"]() + ':' + oSemanticEvent["sGetName"]() + ' fired.', "LS.js(1342): fireSemanticEvent");
+            UCF_Tracer.trace(INFO, 'Custom semantic event ' + oSemanticEvent["sGetControl"]() + ':' + oSemanticEvent["sGetName"]() + ' fired.', "LS.js(1346): fireSemanticEvent");
         }
         ;
 
@@ -52962,15 +54219,15 @@ UCF_System is not available yet
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(oSemanticEvent != null, "oSemanticEvent != null", "LS.js(1392): processSemanticEvent");
+            UCF_Tracer.assert(oSemanticEvent != null, "oSemanticEvent != null", "LS.js(1396): processSemanticEvent");
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(typeof oSemanticEvent === 'object', "typeof oSemanticEvent === 'object'", "LS.js(1393): processSemanticEvent");
+            UCF_Tracer.assert(typeof oSemanticEvent === 'object', "typeof oSemanticEvent === 'object'", "LS.js(1397): processSemanticEvent");
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(oSemanticEvent instanceof UCF_SemanticEvent, "oSemanticEvent instanceof UCF_SemanticEvent", "LS.js(1394): processSemanticEvent");
+            UCF_Tracer.assert(oSemanticEvent instanceof UCF_SemanticEvent, "oSemanticEvent instanceof UCF_SemanticEvent", "LS.js(1398): processSemanticEvent");
         }
         ;
 
@@ -52979,7 +54236,7 @@ UCF_System is not available yet
         );
 
         if (__UCF_TRACE__) {
-            UCF_Tracer.trace(INFO, 'Semantic event "' + oSemanticEvent["sGetControl"]() + ':' + oSemanticEvent["sGetName"]() + '" occurred, ' + UCF_JsUtil["sJsonStringify"](oSemanticEvent["mGetParameters"]()) + ' ' + UCF_JsUtil["sJsonStringify"](oSemanticEvent["mGetCustomParameters"]()), "LS.js(1400): processSemanticEvent");
+            UCF_Tracer.trace(INFO, 'Semantic event "' + oSemanticEvent["sGetControl"]() + ':' + oSemanticEvent["sGetName"]() + '" occurred, ' + UCF_JsUtil["sJsonStringify"](oSemanticEvent["mGetParameters"]()) + ' ' + UCF_JsUtil["sJsonStringify"](oSemanticEvent["mGetCustomParameters"]()), "LS.js(1404): processSemanticEvent");
         }
         ;
 
@@ -53363,7 +54620,7 @@ UCF_System is not available yet
             }
             if (bError) {
                 if (__UCF_TRACE__) {
-                    UCF_Tracer.trace(WARNING, 'Framework needs to correct duplicate ids for the following controls:\n' + aMessage["join"]('\n'), "LS.js(1650): bHasDuplicateControlIds");
+                    UCF_Tracer.trace(WARNING, 'Framework needs to correct duplicate ids for the following controls:\n' + aMessage["join"]('\n'), "LS.js(1654): bHasDuplicateControlIds");
                 }
                 ;
 
@@ -53499,6 +54756,8 @@ UCF_System is not available yet
         var i;
         /** @type {Object} */
         var oHandler;
+
+        if (!this["aSemanticEventHandlers"]) return;
 
         for (i = 0; i < this["aSemanticEventHandlers"]["length"]; i++) {
             oHandler = this["aSemanticEventHandlers"][i];
@@ -53672,7 +54931,7 @@ UCF_System is not available yet
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(typeof sMainWindowId === 'string', "typeof sMainWindowId === 'string'", "LS.js(1836): setMainWindowId");
+            UCF_Tracer.assert(typeof sMainWindowId === 'string', "typeof sMainWindowId === 'string'", "LS.js(1842): setMainWindowId");
         }
         ;
 
@@ -54156,7 +55415,7 @@ UCF_System is not available yet
         }
 
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(this["oPage"] == null || this["oPage"] instanceof UCF_Page, "this.oPage == null || this.oPage instanceof UCF_Page", "LS.js(2157): oGetPageInternal");
+            UCF_Tracer.assert(this["oPage"] == null || this["oPage"] instanceof UCF_Page, "this.oPage == null || this.oPage instanceof UCF_Page", "LS.js(2163): oGetPageInternal");
         }
         ;
 
@@ -54245,7 +55504,7 @@ UCF_System is not available yet
         if (oIdRef) {
             aDomIds = UCF_JsUtil["oJsonParse"](oIdRef["innerHTML"]);
             if (__UCF_ASSERT__) {
-                UCF_Tracer.assert(UCF_JsUtil["bIsArray"](aDomIds), "UCF_JsUtil.bIsArray(aDomIds)", "LS.js(2213): processInitializeIDs");
+                UCF_Tracer.assert(UCF_JsUtil["bIsArray"](aDomIds), "UCF_JsUtil.bIsArray(aDomIds)", "LS.js(2219): processInitializeIDs");
             }
             ;
 
@@ -54286,13 +55545,13 @@ UCF_System is not available yet
                     // unfortunately, SapTable and AbapList renderers use such an id for
                     // the scrollbar, changes  would be incompatible
                     if (__UCF_TRACE__) {
-                        UCF_Tracer.trace(ERROR, 'Framework Error. Id (' + sId + ') should not contain - (minus)', "LS.js(2248): processInitializeIDs");
+                        UCF_Tracer.trace(ERROR, 'Framework Error. Id (' + sId + ') should not contain - (minus)', "LS.js(2254): processInitializeIDs");
                     }
                     ;
                 }
             }
             if (__UCF_ASSERT__) {
-                UCF_Tracer.assert(oControl != null && oControl["initialize"] != null, "oControl != null && oControl.initialize != null", "LS.js(2251): processInitializeIDs");
+                UCF_Tracer.assert(oControl != null && oControl["initialize"] != null, "oControl != null && oControl.initialize != null", "LS.js(2257): processInitializeIDs");
             }
             ;
 
@@ -54444,7 +55703,7 @@ UCF_System is not available yet
         ;
         if (oObject instanceof UCF_Object) {
             if (__UCF_TRACE__) {
-                UCF_Tracer.trace(INFO, 'Access granted to internal lightspeed instance for UCF_Object instance', "LS.js(2351): oGetInternal");
+                UCF_Tracer.trace(INFO, 'Access granted to internal lightspeed instance for UCF_Object instance', "LS.js(2357): oGetInternal");
             }
             ;
 
@@ -54464,14 +55723,14 @@ UCF_System is not available yet
             )
         ) {
             if (__UCF_TRACE__) {
-                UCF_Tracer.trace(INFO, 'Access granted to internal lightspeed instance for ' + oObject["toString"](), "LS.js(2368): oGetInternal");
+                UCF_Tracer.trace(INFO, 'Access granted to internal lightspeed instance for ' + oObject["toString"](), "LS.js(2374): oGetInternal");
             }
             ;
 
             return this;
         }
         if (__UCF_TRACE__) {
-            UCF_Tracer.trace(ERROR, 'No access granted to internal lightspeed instance', "LS.js(2372): oGetInternal");
+            UCF_Tracer.trace(ERROR, 'No access granted to internal lightspeed instance', "LS.js(2378): oGetInternal");
         }
         ;
 
@@ -54684,11 +55943,11 @@ UCF_System is not available yet
         var oControl;
 
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(typeof sId === 'string', "typeof sId === 'string'", "LS.js(2492): oGetControlById");
+            UCF_Tracer.assert(typeof sId === 'string', "typeof sId === 'string'", "LS.js(2498): oGetControlById");
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(sId !== '', "sId !== ''", "LS.js(2493): oGetControlById");
+            UCF_Tracer.assert(sId !== '', "sId !== ''", "LS.js(2499): oGetControlById");
         }
         ;
 
@@ -54758,11 +56017,11 @@ UCF_System is not available yet
         var aQTPInterface;
 
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(typeof sId === 'string', "typeof sId === 'string'", "LS.js(2540): oGetQTPControl");
+            UCF_Tracer.assert(typeof sId === 'string', "typeof sId === 'string'", "LS.js(2546): oGetQTPControl");
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(sId !== '', "sId !== ''", "LS.js(2541): oGetQTPControl");
+            UCF_Tracer.assert(sId !== '', "sId !== ''", "LS.js(2547): oGetQTPControl");
         }
         ;
 
@@ -55073,7 +56332,7 @@ UCF_System is not available yet
         // Use outerHTML for IE and DOM operations for Firefox
         if (UCF_UserAgent["bIsIE"]() || UCF_UserAgent["bIsMSEdge"]()) {
             // eslint-disable-next-line no-unsanitized/property
-            oRootRef["outerHTML"] = sHTML;
+            UCF_DomUtil["setOuterHtml"](oRootRef, sHTML);
         } else {
             oRef = UCF_DomUtil["oHtmlToElement"](sHTML);
             if (UCF_JsUtil["bIsArray"](oRef)) {
@@ -55118,7 +56377,7 @@ UCF_System is not available yet
             document["getElementsByTagName"]('HEAD')[0]["appendChild"](oStyle);
         }
         // eslint-disable-next-line no-unsanitized/property
-        oRoot["innerHTML"] = sHTML;
+        UCF_DomUtil["setInnerHtml"](oRoot, sHTML);
         this["purgeControls"]();
         this["processInitializeIDs"]();
     };
@@ -55311,11 +56570,11 @@ UCF_System is not available yet
         var oPWLsToDelegate;
 
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(typeof sId === 'string', "typeof sId === 'string'", "LS.js(2927): focusElement");
+            UCF_Tracer.assert(typeof sId === 'string', "typeof sId === 'string'", "LS.js(2933): focusElement");
         }
         ;
         if (__UCF_TRACE__) {
-            UCF_Tracer.trace(DEBUG, 'Trying to apply focus with data "' + sId + '"', "LS.js(2928): focusElement");
+            UCF_Tracer.trace(DEBUG, 'Trying to apply focus with data "' + sId + '"', "LS.js(2934): focusElement");
         }
         ;
 
@@ -55367,7 +56626,7 @@ UCF_System is not available yet
 
             if (!this["oBrowserWindow"]["bFocussed"]) {
                 if (__UCF_TRACE__) {
-                    UCF_Tracer.trace(DEBUG, 'BrowserWindow is not focussed - waiting for focus', "LS.js(2977): focusElement");
+                    UCF_Tracer.trace(DEBUG, 'BrowserWindow is not focussed - waiting for focus', "LS.js(2983): focusElement");
                 }
                 ;
                 this["oBrowserWindow"]["attachEvent"](
@@ -55395,7 +56654,7 @@ UCF_System is not available yet
 
             if (this["oBrowserWindow"]["bIsLocked"]()) {
                 if (__UCF_TRACE__) {
-                    UCF_Tracer.trace(DEBUG, 'BrowserWindow is currently locked - waiting for unlock', "LS.js(3002): focusElement");
+                    UCF_Tracer.trace(DEBUG, 'BrowserWindow is currently locked - waiting for unlock', "LS.js(3008): focusElement");
                 }
                 ;
                 this["oBrowserWindow"]["attachEvent"](
@@ -55419,7 +56678,7 @@ UCF_System is not available yet
                 );
             }
             if (__UCF_TRACE__) {
-                UCF_Tracer.trace(DEBUG, 'Applied focus', "LS.js(3023): focusElement");
+                UCF_Tracer.trace(DEBUG, 'Applied focus', "LS.js(3029): focusElement");
             }
             ;
         }
@@ -55556,7 +56815,7 @@ UCF_System is not available yet
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(oEvent instanceof UCF_Event, "oEvent instanceof UCF_Event", "LS.js(3097): onWindowUnlock");
+            UCF_Tracer.assert(oEvent instanceof UCF_Event, "oEvent instanceof UCF_Event", "LS.js(3103): onWindowUnlock");
         }
         ;
 
@@ -55583,7 +56842,7 @@ UCF_System is not available yet
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(oEvent instanceof UCF_Event, "oEvent instanceof UCF_Event", "LS.js(3111): onWindowFocus");
+            UCF_Tracer.assert(oEvent instanceof UCF_Event, "oEvent instanceof UCF_Event", "LS.js(3117): onWindowFocus");
         }
         ;
 
@@ -55620,6 +56879,8 @@ UCF_System is not available yet
                 oEnd["setAttribute"]('id', 'ls-endofpage');
                 if (this["oSystem"]["bIs508"]) {
                     oEnd["setAttribute"]('title', this["sGetText"]('SAPUR_PAGE_END'));
+                } else if (this["oSystem"]["bIsAria"]) {
+                    oEnd["setAttribute"]('aria-label', this["sGetText"]('SAPUR_PAGE_END'));
                 }
                 oEnd["tabIndex"] = '0';
                 oEnd = oContainer["appendChild"](oEnd);
@@ -55674,13 +56935,13 @@ UCF_System is not available yet
         var oDomRef;
 
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(typeof sId === 'string', "typeof sId === 'string'", "LS.js(3179): scrollIntoView");
+            UCF_Tracer.assert(typeof sId === 'string', "typeof sId === 'string'", "LS.js(3187): scrollIntoView");
         }
         ;
 
         if (this["sGetStoredFocus"]() === '') {
             if (__UCF_TRACE__) {
-                UCF_Tracer.trace(DEBUG, 'scrollIntoView called with id "' + sId + '"', "LS.js(3182): scrollIntoView");
+                UCF_Tracer.trace(DEBUG, 'scrollIntoView called with id "' + sId + '"', "LS.js(3190): scrollIntoView");
             }
             ;
 
@@ -55691,7 +56952,7 @@ UCF_System is not available yet
             this["oScrollIntoViewInfo"] = null;
         } else {
             if (__UCF_TRACE__) {
-                UCF_Tracer.trace(DEBUG, 'scrollIntoView currently not possible, wait until focus is applied', "LS.js(3190): scrollIntoView");
+                UCF_Tracer.trace(DEBUG, 'scrollIntoView currently not possible, wait until focus is applied', "LS.js(3198): scrollIntoView");
             }
             ;
             this["oScrollIntoViewInfo"] = {"sId": sId, "bAlignToTop": bAlignToTop};
@@ -55794,7 +57055,7 @@ UCF_System is not available yet
         }
         if (!this["bIsLocked"]) {
             if (__UCF_TRACE__) {
-                UCF_Tracer.trace(INFO, 'Locking LightSpeed...', "LS.js(3250): lock");
+                UCF_Tracer.trace(INFO, 'Locking LightSpeed...', "LS.js(3258): lock");
             }
             ;
 
@@ -55845,7 +57106,7 @@ UCF_System is not available yet
             this["bUnlockRequested"] = true;
         } else if (this["bIsLocked"]) {
             if (__UCF_TRACE__) {
-                UCF_Tracer.trace(INFO, 'Unlocking LightSpeed...', "LS.js(3288): unlock");
+                UCF_Tracer.trace(INFO, 'Unlocking LightSpeed...', "LS.js(3296): unlock");
             }
             ;
             this["oBrowserWindow"]["unlock"](UCF_BrowserWindow["LOCKTYPES"]["ROUNDTRIP"]);
@@ -56043,6 +57304,8 @@ UCF_System is not available yet
             // oDomRef.allowTransparency = "true";
 
             UCF_DomUtil["setOpacityStyle"](oDomRef, 1);
+            // ARIA1.1
+            oDomRef["setAttribute"]('role', 'presentation');
         }
 
         return {
@@ -56068,7 +57331,7 @@ UCF_System is not available yet
             UCF_LS["_"]["oGetBlindLayer"]++;
         }
         ;
-        /** @type {{oDomRef: HTMLIFrameElement, bUsed: boolea}} */
+        /** @type {{oDomRef: HTMLIFrameElement, bUsed: boolean}} */
         var oBlindLayer = null;
         /** @type {number} */
         var i;
@@ -56078,7 +57341,7 @@ UCF_System is not available yet
         }
 
         if (__UCF_TRACE__) {
-            UCF_Tracer.trace(DEBUG, 'Blindlayer Layer Pool has ' + this["oBlindLayers"]["length"] + ' items.', "LS.js(3448): oGetBlindLayer");
+            UCF_Tracer.trace(DEBUG, 'Blindlayer Layer Pool has ' + this["oBlindLayers"]["length"] + ' items.', "LS.js(3458): oGetBlindLayer");
         }
         ;
 
@@ -56268,7 +57531,7 @@ UCF_System is not available yet
                     this["sDirtyMode"] === 'CLIENTSERVER'
                 ) {
                     if (__UCF_TRACE__) {
-                        UCF_Tracer.trace(INFO, 'Application is now set dirty by an event.', "LS.js(3565): markDirty");
+                        UCF_Tracer.trace(INFO, 'Application is now set dirty by an event.', "LS.js(3575): markDirty");
                     }
                     ;
                     this["setDirty"](true);
@@ -56302,7 +57565,7 @@ UCF_System is not available yet
                 this["bDirty"] = bDirty;
                 this["fireEvent"](this["E_EVENTS"]["DirtyFlagChanged"], {"bDirty": bDirty});
                 if (__UCF_TRACE__) {
-                    UCF_Tracer.trace(INFO, 'Application is now set dirty by the server.', "LS.js(3586): setDirty");
+                    UCF_Tracer.trace(INFO, 'Application is now set dirty by the server.', "LS.js(3596): setDirty");
                 }
                 ;
             }
@@ -56354,7 +57617,7 @@ UCF_System is not available yet
             this["oGetMainLS"]()["setPendingChange"](bPending);
         }
         if (__UCF_TRACE__) {
-            UCF_Tracer.trace(INFO, 'Pending Changes set to ' + bPending, "LS.js(3615): setPendingChange");
+            UCF_Tracer.trace(INFO, 'Pending Changes set to ' + bPending, "LS.js(3625): setPendingChange");
         }
         ;
     };
@@ -57182,7 +58445,7 @@ UCF_System is not available yet
         ;
         if (typeof oJsonMap === 'string') {
             if (__UCF_TRACE__) {
-                UCF_Tracer.trace(WARNING, 'Transform string to map not supported any more', "LS.js(4157): registerMapDataType");
+                UCF_Tracer.trace(WARNING, 'Transform string to map not supported any more', "LS.js(4167): registerMapDataType");
             }
             ;
             oJsonMap = UCF_JsUtil["oJsonParse"](oJsonMap);
@@ -57239,7 +58502,7 @@ UCF_System is not available yet
 
             if (typeof oJsonMap === 'string') {
                 if (__UCF_TRACE__) {
-                    UCF_Tracer.trace(WARNING, 'Transform string to map not supported any more', "LS.js(4201): registerMapDataTypes");
+                    UCF_Tracer.trace(WARNING, 'Transform string to map not supported any more', "LS.js(4211): registerMapDataTypes");
                 }
                 ;
                 return;
@@ -57639,7 +58902,7 @@ UCF_System is not available yet
         var bThemeUrlChanged;
 
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(typeof oValues === 'object', "typeof oValues === 'object'", "LS.js(4488): setSystemParameters");
+            UCF_Tracer.assert(typeof oValues === 'object', "typeof oValues === 'object'", "LS.js(4498): setSystemParameters");
         }
         ;
 
@@ -57654,13 +58917,13 @@ UCF_System is not available yet
             try {
                 self["oSystem"]['set' + k](v);
                 if (__UCF_TRACE__) {
-                    UCF_Tracer.trace(INFO, 'Set "' + k + '" = ' + (typeof v === 'object' ? UCF_JsUtil["sJsonStringify"](v) : typeof v === 'string' ? '"' + v + '"' : v) + ' successfully.', "LS.js(4500): setSystemParameters");
+                    UCF_Tracer.trace(INFO, 'Set "' + k + '" = ' + (typeof v === 'object' ? UCF_JsUtil["sJsonStringify"](v) : typeof v === 'string' ? '"' + v + '"' : v) + ' successfully.', "LS.js(4510): setSystemParameters");
                 }
                 ;
                 aAll["push"]({"sParameter": k, "oValue": v});
             } catch (e) {
                 if (__UCF_TRACE__) {
-                    UCF_Tracer.trace(WARNING, e["message"], "LS.js(4503): setSystemParameters");
+                    UCF_Tracer.trace(WARNING, e["message"], "LS.js(4513): setSystemParameters");
                 }
                 ;
             }
@@ -57787,12 +59050,14 @@ UCF_System is not available yet
 
     /**
      * @typedef {Object} UCF_LS_VisualViewport Result of oGetVisualViewport()
-     * @property {number} width
-     * @property {number} height
-     * @property {number} offsetLeft
-     * @property {number} offsetTop
-     * @property {number} margin
-     * @property {number} scale
+     * @property {number} width Available/visible width of the window
+     * @property {number} height Available/visible height of the window
+     * @property {number} pageLeft Horizontal scroll offset
+     * @property {number} pageTop  Vertical scroll offset
+     * @property {number} offsetLeft 0 (not implemented)
+     * @property {number} offsetTop 0 (not implemented)
+     * @property {number} margin Value of the iMArgin argument
+     * @property {number} scale 1
      */
     /**
      * Returns the visual viewport of the window
@@ -57813,10 +59078,7 @@ UCF_System is not available yet
         // var oActiveElement;
 
         if (UCF_UserAgent["bIsAndroid"]()) {
-            oVisualViewport = UCF_JsUtil["extend"]({}, window["visualViewport"], {
-                "onresize": undefined,
-                "onscroll": undefined
-            });
+            oVisualViewport = UCF_JsUtil["extend"]({}, window["visualViewport"], {"onresize": undefined, "onscroll": undefined});
         } else {
             oVisualViewport = {
                 "height": document["documentElement"]["clientHeight"] || document["body"]["clientHeight"] || window["innerHeight"],
@@ -57875,11 +59137,7 @@ UCF_System is not available yet
             oVisualViewport = this["oGetVisualViewport"]();
         }
         if (window["UCF_System"]["sDevice"] === 'standards') {
-            oViewportRect = UCF_JsUtil["extend"]({}, oDomRef["getBoundingClientRect"](), {
-                "x": undefined,
-                "y": undefined,
-                "toJSON": undefined
-            });
+            oViewportRect = UCF_JsUtil["extend"]({}, oDomRef["getBoundingClientRect"](), {"x": undefined, "y": undefined, "toJSON": undefined});
             if (UCF_UserAgent["bIsAndroid"]()) {
                 // Note: The margin is already contained in pageTop/pageLeft!
                 oViewportRect["top"] -= oVisualViewport["pageTop"];
@@ -57976,7 +59234,7 @@ UCF_System is not available yet
         function onError(oImgRef) {
             return function f() {
                 if (__UCF_TRACE__) {
-                    UCF_Tracer.trace(WARNING, 'image "' + oImgRef["id"] + '" loaded with error', "LS.js(4748): bIsReady");
+                    UCF_Tracer.trace(WARNING, 'image "' + oImgRef["id"] + '" loaded with error', "LS.js(4760): bIsReady");
                 }
                 ;
                 oImgRef["qunitHelperLoadingErrorOccurred"] = true;
@@ -58097,7 +59355,52 @@ UCF_System is not available yet
     }
     ;
 
-    UCF_LS.prototype["aPublicMethods"] = ["destroy", "prepareLsClassCache", "prepareClientSideRendering", "addDebugHandler", "oCreateSemanticEvent", "fireSemanticEvent", "fireControlCreate", "fireControlDestroy", "flushSemanticEventBootingBuffer", "registerUpdateDocumentCompleteCallback", "enableLifecycleEvents", "setSemanticEventHandler", "attachSemanticEvent", "detachSemanticEvent", "setUpdateCompleteHandler", "attachUpdateComplete", "detachUpdateComplete", "removeUpdateCompleteHandler", "setApplicationExitHandler", "setPendingRequestHandler", "setMainWindowId", "setMessageFocusToggleInfo", "oGetPage", "oGetPopupManager", "processInitializeIDs", "oGetInternal", "attachRenderClientControl", "detachRenderClientControl", "oCreateControl", "oGetClientControlById", "oCreateClientControl", "oGetClientControlTree", "mGetClientControlTrees", "oGetControlById", "oGetControlFromPoint", "oGetQTPControl", "registerControlType", "purgeControls", "updateControl", "updatePage", "sGetFocusedElementId", "focusWindow", "focusElement", "scrollIntoView", "lock", "unlock", "bLocked", "oGetLoadingAnim", "highlightDefaultButton", "oGetDefaultButton", "setDragData", "sCreateDragSession", "oGetDragSession", "sGetDragSession", "destroyDragSession", "markDirty", "bIsDirty", "oGetWindow", "bHasDomChanged", "setDomChanged", "oGetRenderManager", "setAlternativeKeyboardHandling", "registerInputAssistant", "unregisterInputAssistant", "getModel", "getBoundControls", "createBoundDataTip", "updateModel", "getClientControlByCustomData", "getClientControlsByCustomData", "getClientControlsByClassName", "oGetControlByCustomData", "aGetControlsByCustomData", "registerMapDataType", "registerMapDataTypes", "registerCustomDataType", "getSeleniumRecorder", "registerCustomInstance", "addTabSequence", "removeTabSequence", "addIsolatedArea", "removeIsolatedArea", "processUpdate", "highlightBoundaries", "bDestroyed", "setSystemParameters", "addFeatureFlag", "removeFeatureFlag", "bIsReady"].concat(UCF_LS.prototype.aPublicMethods || []);
+    /**
+     * set the sleeping state (for the stateful container f.i.)
+     * @public
+     * @param { boolean } [bSleep = true]
+     */
+    UCF_LS["prototype"]["sleep"] = function (bSleep) {
+        ;
+        if (__UCF_COVERAGE__) {
+            UCF_LS["_"]["sleep"]++;
+        }
+        ;
+        if (bSleep === undefined)
+            // eslint-disable-next-line @ur/no-memory-leaks
+            this["bSleeping"] = true;
+        else
+            this["bSleeping"] = bSleep;
+    };
+    ;
+    if (__UCF_COVERAGE__) {
+        UCF_LS["_"]["sleep"] = 0;
+    }
+    ;
+
+    /**
+     * retrieve the sleeping state (for the stateful container f.i.)
+     * @public
+     * @return { boolean }
+     */
+    UCF_LS["prototype"]["bIsSleeping"] = function () {
+        ;
+        if (__UCF_COVERAGE__) {
+            UCF_LS["_"]["bIsSleeping"]++;
+        }
+        ;
+        if (this["bSleeping"] === undefined)
+            return false;
+        return this["bSleeping"];
+    };
+    ;
+    if (__UCF_COVERAGE__) {
+        UCF_LS["_"]["bIsSleeping"] = 0;
+    }
+    ;
+
+
+    UCF_LS.prototype["aPublicMethods"] = ["destroy", "prepareLsClassCache", "prepareClientSideRendering", "addDebugHandler", "oCreateSemanticEvent", "fireSemanticEvent", "fireControlCreate", "fireControlDestroy", "flushSemanticEventBootingBuffer", "registerUpdateDocumentCompleteCallback", "enableLifecycleEvents", "setSemanticEventHandler", "attachSemanticEvent", "detachSemanticEvent", "setUpdateCompleteHandler", "attachUpdateComplete", "detachUpdateComplete", "removeUpdateCompleteHandler", "setApplicationExitHandler", "setPendingRequestHandler", "setMainWindowId", "setMessageFocusToggleInfo", "oGetPage", "oGetPopupManager", "processInitializeIDs", "oGetInternal", "attachRenderClientControl", "detachRenderClientControl", "oCreateControl", "oGetClientControlById", "oCreateClientControl", "oGetClientControlTree", "mGetClientControlTrees", "oGetControlById", "oGetControlFromPoint", "oGetQTPControl", "registerControlType", "purgeControls", "updateControl", "updatePage", "sGetFocusedElementId", "focusWindow", "focusElement", "scrollIntoView", "lock", "unlock", "bLocked", "oGetLoadingAnim", "highlightDefaultButton", "oGetDefaultButton", "setDragData", "sCreateDragSession", "oGetDragSession", "sGetDragSession", "destroyDragSession", "markDirty", "bIsDirty", "oGetWindow", "bHasDomChanged", "setDomChanged", "oGetRenderManager", "setAlternativeKeyboardHandling", "registerInputAssistant", "unregisterInputAssistant", "getModel", "getBoundControls", "createBoundDataTip", "updateModel", "getClientControlByCustomData", "getClientControlsByCustomData", "getClientControlsByClassName", "oGetControlByCustomData", "aGetControlsByCustomData", "registerMapDataType", "registerMapDataTypes", "registerCustomDataType", "getSeleniumRecorder", "registerCustomInstance", "addTabSequence", "removeTabSequence", "addIsolatedArea", "removeIsolatedArea", "processUpdate", "highlightBoundaries", "bDestroyed", "setSystemParameters", "addFeatureFlag", "removeFeatureFlag", "bIsReady", "sleep", "bIsSleeping"].concat(UCF_LS.prototype.aPublicMethods || []);
     /* global _assert, _trace, DEBUG, INFO, WARNING, ERROR */
 /// <reference path="../../core/debug/Tracer.js"/>
     /* global UCF_KeyCodes */
@@ -58218,17 +59521,17 @@ UCF_System is not available yet
             this["setDirty"](this["bDirty"]);
         }
 
-        this["bResizeNotification"] = this["mEvents"]["Resize"] ? true : false; // eslint-disable-line ur/no-memory-leaks
+        this["bResizeNotification"] = this["mEvents"]["Resize"] ? true : false; // eslint-disable-line @ur/no-memory-leaks
 
         if (this["mEvents"]["Scroll"]) {
-            // eslint-disable-next-line ur/no-memory-leaks
+            // eslint-disable-next-line @ur/no-memory-leaks
             this["oScrollArea"] = new (UCF_ClassLoader["oGetClass"]("UCF_ScrollArea"))(document["body"]);
             this["oScrollArea"]["attachEvent"](this["oScrollArea"]["E_EVENTS"]["Scroll"], this, "onAreaScroll");
             this["addDelegate"](this["oScrollArea"]);
         }
         if (this["bResizeNotification"]) {
-            this["iWidth"] = document["body"]["offsetWidth"]; // eslint-disable-line ur/no-memory-leaks
-            this["iHeight"] = document["body"]["offsetHeight"]; // eslint-disable-line ur/no-memory-leaks
+            this["iWidth"] = document["body"]["offsetWidth"]; // eslint-disable-line @ur/no-memory-leaks
+            this["iHeight"] = document["body"]["offsetHeight"]; // eslint-disable-line @ur/no-memory-leaks
         }
 
         //initialize the default button for this control
@@ -58254,7 +59557,7 @@ UCF_System is not available yet
 
         //DataModels
         this["mModels"] = {};
-        this["sDefaultModelId"] = null; // eslint-disable-line ur/no-memory-leaks
+        this["sDefaultModelId"] = null; // eslint-disable-line @ur/no-memory-leaks
 
         //Script Loading Queue
         this["aScriptQueue"] = [];
@@ -58278,20 +59581,14 @@ UCF_System is not available yet
         //Toggle Message Area Focus
         this["oMessageFocusToggleInfo"] = null;
 
-        /** @type {UCF_TouchContextMenu} */
-        this["oTouchCM"] = null;
         /** @type {Object} */
         this["oContextMenuEventData"] = null;
 
         /** @type {UCF_Cache} */
         this["oCache"] = new (UCF_ClassLoader["oGetClass"]("UCF_Cache"))();
 
-        this["attachLSEvent"](this["oLS"]["E_EVENTS"]["PendingRequest"], 'onPendingRequest');
-
-        if (this["bIsPageVisualizeAccesskeysEnabled"]()) {
-            /** @type {bool} */
-            this["bAccessKeyIsHighlighted"] = false;
-        }
+        //Accesskey handling
+        this["oLS"]["attachAfterEvent"](this["oLS"]["E_EVENTS"]["UpdateDocumentComplete"], this, 'onUpdateDocumentComplete');
 
         this["oLS"]["attachEvent"](this["oLS"]["E_EVENTS"]["SystemParameterChange"], this, 'onSystemParameterChange');
 
@@ -58322,14 +59619,14 @@ UCF_System is not available yet
                 }
                 if (this["oTestWindow"]) {
                     s = this["oTestWindow"]["document"]["location"]["search"]["replace"]("?", "&");
-                    this["bQUnitTest"] = UCF_JsUtil["contains"](s, "&qunit="); // eslint-disable-line ur/no-memory-leaks
-                    this["bQUnitSuite"] = UCF_JsUtil["contains"](s, "&qunit-suite="); // eslint-disable-line ur/no-memory-leaks
-                    this["bQUnitTestMode"] = this["bQUnitTest"] || this["bQUnitSuite"]; // eslint-disable-line ur/no-memory-leaks
+                    this["bQUnitTest"] = UCF_JsUtil["contains"](s, "&qunit="); // eslint-disable-line @ur/no-memory-leaks
+                    this["bQUnitSuite"] = UCF_JsUtil["contains"](s, "&qunit-suite="); // eslint-disable-line @ur/no-memory-leaks
+                    this["bQUnitTestMode"] = this["bQUnitTest"] || this["bQUnitSuite"]; // eslint-disable-line @ur/no-memory-leaks
                 }
             } catch (e) {
                 // catch cross-domain access violation!
                 if (__UCF_TRACE__) {
-                    UCF_Tracer.trace(INFO, "Caught error during check for unit-tests in page: " + e["message"], "Page.js(217): UCF_Page");
+                    UCF_Tracer.trace(INFO, "Caught error during check for unit-tests in page: " + e["message"], "Page.js(211): UCF_Page");
                 }
                 ;
             }
@@ -58370,7 +59667,7 @@ UCF_System is not available yet
                 return (window["frameElement"] != null || window !== window["top"]);
             } catch (e) {
                 if (__UCF_TRACE__) {
-                    UCF_Tracer.trace(INFO, "TOUCH: caught error accessing window.frameElement or window.top: " + e["message"], "Page.js(242): bInsideShellIFrameOnIOS");
+                    UCF_Tracer.trace(INFO, "TOUCH: caught error accessing window.frameElement or window.top: " + e["message"], "Page.js(236): bInsideShellIFrameOnIOS");
                 }
                 ;
                 return true;
@@ -58424,10 +59721,11 @@ UCF_System is not available yet
         }
 
         if (this["iSessionTimeout"]) {
-            // eslint-disable-next-line ur/no-memory-leaks
+            // eslint-disable-next-line @ur/no-memory-leaks
             this["oSessionMonitor"] = new (UCF_ClassLoader["oGetClass"]("UCF_SessionMonitor"))(this["oLS"], this["iSessionTimeout"], this["sSessionKeepAliveUrl"],
                 this["sSessionTimeoutActionUrl"], this["sSessionTimeoutActionTarget"], this["sSessionTimeoutActionText"],
-                this["sSessionTimeoutBehavior"], this["sUnloadUrl"], this["sSessionLogoutServiceName"], this["sSessionExtendServiceName"]);
+                this["sSessionTimeoutBehavior"], this["sUnloadUrl"], this["sSessionLogoutServiceName"], this["sSessionExtendServiceName"],
+                this["iSessionTimeoutWarning"]);
         }
 
         this["initBrowserHistory"](true);
@@ -58551,15 +59849,12 @@ UCF_System is not available yet
         this["oStaticAreaRef"] = null;
         this["oCurrentAnimation"] = null;
         this["handleScriptChangeEvent"] = null;
+        this["handleScriptErrorEvent"] = null;
 
         this["oCache"]["destroy"]();
         this["oCache"] = null;
 
-        this["detachLSEvent"](this["oLS"]["E_EVENTS"]["PendingRequest"], 'onPendingRequest');
-
-        if (this["bIsPageVisualizeAccesskeysEnabled"]()) {
-            this["bAccessKeyIsHighlighted"] = null;
-        }
+        this["oLS"]["detachAfterEvent"](this["oLS"]["E_EVENTS"]["UpdateDocumentComplete"], this, 'onUpdateDocumentComplete');
 
         if (this["fForwardMouseMoveEvent"]) {
             UCF_DomUtil["detachEvent"](document["body"], "mousemove", this["fForwardMouseMoveEvent"]);
@@ -58717,7 +60012,7 @@ UCF_System is not available yet
         var oSource, oControl, sControlId, sLastFocusId, oFocusedControl, sFocusInfo;
 
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(UCF_JsUtil["bInstanceOf"](oBrowserEvent, 'UCF_BrowserEvent'), "UCF_JsUtil.bInstanceOf(oBrowserEvent, 'UCF_BrowserEvent')", "Page.js(496): onlscontainerfocus");
+            UCF_Tracer.assert(UCF_JsUtil["bInstanceOf"](oBrowserEvent, 'UCF_BrowserEvent'), "UCF_JsUtil.bInstanceOf(oBrowserEvent, 'UCF_BrowserEvent')", "Page.js(488): onlscontainerfocus");
         }
         ;
 
@@ -58800,7 +60095,7 @@ UCF_System is not available yet
         }
         ;
         if (__UCF_TRACE__) {
-            UCF_Tracer.trace(INFO, 'TOUCH: onlslongtap...', "Page.js(546): onlslongtap");
+            UCF_Tracer.trace(INFO, 'TOUCH: onlslongtap...', "Page.js(538): onlslongtap");
         }
         ;
         if (this["bProcessContextMenuEvent"] !== false && oBrowserEvent["bIsTouchInteraction"]()) {
@@ -58828,7 +60123,7 @@ UCF_System is not available yet
         }
         ;
         if (__UCF_TRACE__) {
-            UCF_Tracer.trace(INFO, 'TOUCH: onlslongtapend...', "Page.js(561): onlslongtapend");
+            UCF_Tracer.trace(INFO, 'TOUCH: onlslongtapend...', "Page.js(553): onlslongtapend");
         }
         ;
         if (this["bProcessContextMenuEvent"] !== false && oBrowserEvent["bIsTouchInteraction"]()) {
@@ -58836,13 +60131,13 @@ UCF_System is not available yet
             // created by Safari if the long-tap last ~ 500ms
             if (UCF_DomUtil["bHasSelection"](oBrowserEvent["oGetSourceControl"]()["oRootRef"])) {
                 if (__UCF_TRACE__) {
-                    UCF_Tracer.trace(INFO, 'TOUCH: ignore lslongtapend because of text-selection', "Page.js(566): onlslongtapend");
+                    UCF_Tracer.trace(INFO, 'TOUCH: ignore lslongtapend because of text-selection', "Page.js(558): onlslongtapend");
                 }
                 ;
                 oBrowserEvent["cancel"]();
             } else {
                 if (__UCF_TRACE__) {
-                    UCF_Tracer.trace(INFO, 'TOUCH: onlslongtapend: Open TCM', "Page.js(569): onlslongtapend");
+                    UCF_Tracer.trace(INFO, 'TOUCH: onlslongtapend: Open TCM', "Page.js(561): onlslongtapend");
                 }
                 ;
                 this["handleTouchContextMenu"](oBrowserEvent, false);
@@ -58868,13 +60163,13 @@ UCF_System is not available yet
         ;
         // Only process this event if TCM was not already opened during onlslongtapend
         if (__UCF_TRACE__) {
-            UCF_Tracer.trace(INFO, 'TOUCH: onlsextralongtap', "Page.js(582): onlsextralongtap");
+            UCF_Tracer.trace(INFO, 'TOUCH: onlsextralongtap', "Page.js(574): onlsextralongtap");
         }
         ;
         if (this["oContextMenuEventData"] && this["oContextMenuEventData"]["bOpenedByLongTabEnd"] === false &&
             this["bProcessContextMenuEvent"] !== false && oBrowserEvent["bIsTouchInteraction"]()) {
             if (__UCF_TRACE__) {
-                UCF_Tracer.trace(INFO, 'TOUCH: onlsextralongtap: Open TCM', "Page.js(585): onlsextralongtap");
+                UCF_Tracer.trace(INFO, 'TOUCH: onlsextralongtap: Open TCM', "Page.js(577): onlsextralongtap");
             }
             ;
             this["handleTouchContextMenu"](oBrowserEvent, true);
@@ -58898,7 +60193,7 @@ UCF_System is not available yet
         }
         ;
         if (__UCF_TRACE__) {
-            UCF_Tracer.trace(INFO, 'TOUCH: onlsextralongtapend', "Page.js(596): onlsextralongtapend");
+            UCF_Tracer.trace(INFO, 'TOUCH: onlsextralongtapend', "Page.js(588): onlsextralongtapend");
         }
         ;
         // Only process this event if TCM was not already opened during onlslongtapend
@@ -58937,7 +60232,7 @@ UCF_System is not available yet
         var oSourceControl = oBrowserEvent["oGetSourceControl"]();
 
         if (!this["oLS"]["oBrowserWindow"]["bTouchStartOnActiveTextInput"]) {
-            this["sContextMenuOpenerId"] = oSourceControl["sGetId"](oBrowserEvent["oGetSource"]()); // eslint-disable-line ur/no-memory-leaks
+            this["sContextMenuOpenerId"] = oSourceControl["sGetId"](oBrowserEvent["oGetSource"]()); // eslint-disable-line @ur/no-memory-leaks
             // Provide position properties from browser event that may be needed later when controls
             // need to trigger the DoubleClick on sub-controls/items (e.g. AbapList/Item)
             this["oContextMenuEventData"] = {};
@@ -58978,7 +60273,7 @@ UCF_System is not available yet
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(oBrowserEvent instanceof UCF_BrowserEvent, "oBrowserEvent instanceof UCF_BrowserEvent", "Page.js(653): oncontextmenu");
+            UCF_Tracer.assert(oBrowserEvent instanceof UCF_BrowserEvent, "oBrowserEvent instanceof UCF_BrowserEvent", "Page.js(645): oncontextmenu");
         }
         ;
         /** @type {HTMLElement} */
@@ -59008,7 +60303,7 @@ UCF_System is not available yet
             iPosX = oRectangle["left"] + Math["floor"](oRectangle["width"] / 2);
             iPosY = oRectangle["top"] + Math["floor"](oRectangle["height"] / 2);
             if (__UCF_TRACE__) {
-                UCF_Tracer.trace(INFO, "menu position on Shift-F10 adjusted to X=" + iPosX + " Y=" + iPosY, "Page.js(680): oncontextmenu");
+                UCF_Tracer.trace(INFO, "menu position on Shift-F10 adjusted to X=" + iPosX + " Y=" + iPosY, "Page.js(672): oncontextmenu");
             }
             ;
         }
@@ -59023,7 +60318,7 @@ UCF_System is not available yet
         if (!bShowBrowserMenu) {
             if (this["bProcessContextMenuEvent"] !== false) {
                 this["sContextMenuOpenerId"] = sControlId;
-                this["bContextMenuEventByKeyBoard"] = oBrowserEvent["bIsKeyboardTriggered"](); // eslint-disable-line ur/no-memory-leaks
+                this["bContextMenuEventByKeyBoard"] = oBrowserEvent["bIsKeyboardTriggered"](); // eslint-disable-line @ur/no-memory-leaks
                 this["fireContextMenu"](
                     this["sId"],
                     sControlId,
@@ -59120,7 +60415,7 @@ UCF_System is not available yet
             oHotkey = null;
 
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(oBrowserEvent instanceof UCF_BrowserEvent, "oBrowserEvent instanceof UCF_BrowserEvent", "Page.js(749): onlshotkey");
+            UCF_Tracer.assert(oBrowserEvent instanceof UCF_BrowserEvent, "oBrowserEvent instanceof UCF_BrowserEvent", "Page.js(741): onlshotkey");
         }
         ;
 
@@ -59243,7 +60538,7 @@ UCF_System is not available yet
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(UCF_JsUtil["bInstanceOf"](oBrowserEvent, 'UCF_BrowserEvent'), "UCF_JsUtil.bInstanceOf(oBrowserEvent, 'UCF_BrowserEvent')", "Page.js(829): onresize");
+            UCF_Tracer.assert(UCF_JsUtil["bInstanceOf"](oBrowserEvent, 'UCF_BrowserEvent'), "UCF_JsUtil.bInstanceOf(oBrowserEvent, 'UCF_BrowserEvent')", "Page.js(821): onresize");
         }
         ;
 
@@ -59289,7 +60584,7 @@ UCF_System is not available yet
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(UCF_JsUtil["bInstanceOf"](oBrowserEvent, 'UCF_BrowserEvent'), "UCF_JsUtil.bInstanceOf(oBrowserEvent, 'UCF_BrowserEvent')", "Page.js(852): ondragover");
+            UCF_Tracer.assert(UCF_JsUtil["bInstanceOf"](oBrowserEvent, 'UCF_BrowserEvent'), "UCF_JsUtil.bInstanceOf(oBrowserEvent, 'UCF_BrowserEvent')", "Page.js(844): ondragover");
         }
         ;
 
@@ -59440,13 +60735,17 @@ UCF_System is not available yet
         var oPopupManager, sPopupId;
 
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(typeof sTitle === "string", "typeof sTitle === \"string\"", "Page.js(930): setTitle");
+            UCF_Tracer.assert(typeof sTitle === "string", "typeof sTitle === \"string\"", "Page.js(922): setTitle");
         }
         ;
 
         //set title for main window
         if (this["oLS"]["bIsMainLS"]()) {
             document["title"] = sTitle["replace"](/ /g, "\xa0");
+
+            if (window["UCF_System"]["bIsAria"]) {
+                UCF_AriaStateHelper["setLabel"](this["oDomRef"], sTitle);
+            }
         } else {
             //set title for popup window
             oPopupManager = this["oLS"]["oGetPopupManager"]();
@@ -59460,6 +60759,33 @@ UCF_System is not available yet
     ;
     if (__UCF_COVERAGE__) {
         UCF_Page["_"]["setTitle"] = 0;
+    }
+    ;
+
+    /**
+     * Set the ARIA role of a page
+     * @param {string} sRole the ARIA role of the page
+     * @public
+     * @see ARIALandmark parameter of the page interface
+     */
+    UCF_Page["prototype"]["setRole"] = function (sRole) {
+        ;
+        if (__UCF_COVERAGE__) {
+            UCF_Page["_"]["setRole"]++;
+        }
+        ;
+        if (__UCF_ASSERT__) {
+            UCF_Tracer.assert(typeof sRole === "string", "typeof sRole === \"string\"", "Page.js(949): setRole");
+        }
+        ;
+
+        if (window["UCF_System"]["bIsAria"]) {
+            UCF_AriaStateHelper["setRole"](this["oDomRef"], sRole);
+        }
+    };
+    ;
+    if (__UCF_COVERAGE__) {
+        UCF_Page["_"]["setRole"] = 0;
     }
     ;
 
@@ -59808,7 +61134,7 @@ UCF_System is not available yet
         var oControl;
 
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(typeof sId === "string", "typeof sId === \"string\"", "Page.js(1172): setKeepAlive");
+            UCF_Tracer.assert(typeof sId === "string", "typeof sId === \"string\"", "Page.js(1182): setKeepAlive");
         }
         ;
 
@@ -59840,8 +61166,6 @@ UCF_System is not available yet
         var oHead;
         /** @type {HTMLLinkElement} */
         var oLink;
-        /** @type {HTMLStyleElement} */
-        var oStyle;
 
         if (sUrl || sContent) {
             oHead = document["head"] || document["getElementsByTagName"]('HEAD')[0];
@@ -59861,16 +61185,7 @@ UCF_System is not available yet
                 }
 
                 if (sContent) {
-                    if (__UCF_IE6__) {
-                        // the only way to add a style to the document in IE Quirks seems to
-                        // to be to append it to the innerHTML of the body.
-                        // eslint-disable-next-line no-unsanitized/property
-                        document["body"]["innerHTML"] += '<style>' + sContent + '</style>';
-                    } else {
-                        oStyle = document["createElement"]('style');
-                        oStyle["textContent"] = sContent;
-                        UCF_DomUtil["append"](document["head"], oStyle);
-                    }
+                    UCF_DomUtil["oAddStyle"](sContent);
                 }
             }
         }
@@ -59891,10 +61206,10 @@ UCF_System is not available yet
      * @param {string} [sMethod] the name of the method to call on the given oObject after the script was loaded or executed
      * @param {any[]} [aParameters] the array of parameters to pass to the given sMethod.
      * @param {function(): boolean} [fCondition] Anonymous function that returns true or false, which can be used to check if global objects added by the script already exists. The function will be executed at the time before the actual script tag would be created and inserted in the DOM. It will be created if the function returns true.
-     *
+     * @param {boolean} [bOptional=false] True: script loading errors will be ignored. Will continue to process the queue with other scripts after the one that failed to load.
      * @public
      */
-    UCF_Page["prototype"]["addScript"] = function (sUrl, sContent, mCustomAttributes, oObject, sMethod, aParameters, fCondition) {
+    UCF_Page["prototype"]["addScript"] = function (sUrl, sContent, mCustomAttributes, oObject, sMethod, aParameters, fCondition, bOptional) {
         ;
         if (__UCF_COVERAGE__) {
             UCF_Page["_"]["addScript"]++;
@@ -59917,7 +61232,8 @@ UCF_System is not available yet
             "method": sMethod,
             "parameters": aParameters || [],
             "requested": false,
-            "fCondition": fCondition
+            "fCondition": fCondition,
+            "bOptional": bOptional
         });
 
         if (this["aScriptQueue"]["length"] === 1) {
@@ -59965,6 +61281,7 @@ UCF_System is not available yet
 
         if (this["aScriptQueue"]["length"] === 0) {
             UCF_DomUtil["detachEvent"](window["oScript"], "load", this["handleScriptChangeEvent"]);
+            UCF_DomUtil["detachEvent"](window["oScript"], "error", this["handleScriptErrorEvent"]);
             UCF_DomUtil["detachEvent"](window["oScript"], "readystatechange", this["handleScriptChangeEvent"]);
             this["fireEvent"](this["E_EVENTS"]["FinishedScriptLoading"]);
             return;
@@ -59987,7 +61304,7 @@ UCF_System is not available yet
                 if (aScripts[i]["getAttribute"]("src") === oScriptProperties["src"]) {
                     bFound = true;
                     if (__UCF_TRACE__) {
-                        UCF_Tracer.trace(INFO, 'Script "' + oScriptProperties["src"] + '" is already added. Not adding it again.', "Page.js(1306): handleScriptChangeEvent");
+                        UCF_Tracer.trace(INFO, 'Script "' + oScriptProperties["src"] + '" is already added. Not adding it again.', "Page.js(1307): handleScriptChangeEvent");
                     }
                     ;
                     break;
@@ -59995,13 +61312,15 @@ UCF_System is not available yet
             }
 
             if (bFound) {
-                this["handleSapui5RuntimeConfigurationIfNecessary"](oScriptProperties["attributes"]);
-                this["shiftScriptQueue"]();
-                if (this["aScriptQueue"]["length"] > 0) {
-                    this["loadAndExecScript"]();
-                } else {
-                    this["fireEvent"](this["E_EVENTS"]["FinishedScriptLoading"]);
-                }
+                var _this = this;
+                this["handleSapui5RuntimeConfigurationIfNecessary"](oScriptProperties["attributes"])["then"](function () {
+                    _this["shiftScriptQueue"]();
+                    if (_this["aScriptQueue"]["length"] > 0) {
+                        _this["loadAndExecScript"]();
+                    } else {
+                        _this["fireEvent"](_this["E_EVENTS"]["FinishedScriptLoading"]);
+                    }
+                });
                 return;
             }
 
@@ -60012,7 +61331,7 @@ UCF_System is not available yet
                     bCreateIt = oScriptProperties["fCondition"]();
                 } catch (e) {
                     if (__UCF_TRACE__) {
-                        UCF_Tracer.trace(ERROR, "Condition for script " + oScriptProperties["src"] + " has thrown error (script will be added): " + e["message"], "Page.js(1328): handleScriptChangeEvent");
+                        UCF_Tracer.trace(ERROR, "Condition for script " + oScriptProperties["src"] + " has thrown error (script will be added): " + e["message"], "Page.js(1331): handleScriptChangeEvent");
                     }
                     ;
                 }
@@ -60032,13 +61351,28 @@ UCF_System is not available yet
                 this["handleScriptChangeEvent"] = function (oDomEvent) {
                     self["onScriptReadyStateChange"](oDomEvent);
                 };
+                this["handleScriptErrorEvent"] = function (oDomEvent) {
+                    self["onScriptLoadError"](oDomEvent, oScriptProperties["bOptional"]);
+                };
                 UCF_DomUtil["attachEvent"](window["oScript"], "load", this["handleScriptChangeEvent"]);
+                UCF_DomUtil["attachEvent"](window["oScript"], "error", this["handleScriptErrorEvent"]);
                 UCF_DomUtil["attachEvent"](window["oScript"], "readystatechange", this["handleScriptChangeEvent"]);
                 oHead["appendChild"](window["oScript"]);
-                window["oScript"]["src"] = oScriptProperties["src"];
+                try {
+                    window["oScript"]["src"] = oScriptProperties["src"];
+                } catch (e) {
+                    if (oScriptProperties["bOptional"] === true) {
+                        if (__UCF_TRACE__) {
+                            UCF_Tracer.trace(ERROR, 'Error loading script ' + oScriptProperties["src"] + ': ' + e["message"], "Page.js(1361): loadAndExecScript");
+                        }
+                        ;
+                    } else {
+                        throw e;
+                    }
+                }
             } else {
                 if (__UCF_TRACE__) {
-                    UCF_Tracer.trace(INFO, "Script not loaded because condition was not true: " + oScriptProperties["src"], "Page.js(1351): loadAndExecScript");
+                    UCF_Tracer.trace(INFO, "Script not loaded because condition was not true: " + oScriptProperties["src"], "Page.js(1368): loadAndExecScript");
                 }
                 ;
                 this["shiftScriptQueue"]();
@@ -60066,6 +61400,7 @@ UCF_System is not available yet
      *
      * @private
      * @param {{string: string}} oCustomAttributes a map of attribute->value mappings
+     * @return {UCF_Promise}
      */
     UCF_Page["prototype"]["handleSapui5RuntimeConfigurationIfNecessary"] = function (oCustomAttributes) {
         ;
@@ -60075,8 +61410,10 @@ UCF_System is not available yet
         ;
         var sapui5Configuration = this["oFilterSapui5Attributes"](oCustomAttributes);
         if (!UCF_JsUtil["bIsEmpty"](sapui5Configuration)) {
-            this["runtimeConfigureSapui5IfNecessary"](sapui5Configuration);
+            var oPromiseAll = this["runtimeConfigureSapui5IfNecessary"](sapui5Configuration);
+            return (oPromiseAll ? oPromiseAll : UCF_Promise["resolve"](true));
         }
+        return UCF_Promise["resolve"](true);
     };
     ;
     if (__UCF_COVERAGE__) {
@@ -60121,6 +61458,7 @@ UCF_System is not available yet
      *
      * @private
      * @param {{'data-sap-ui-*': string}} oSapui5Attributes the parameters to configure
+     * @return {UCF_Promise|null}
      */
     UCF_Page["prototype"]["runtimeConfigureSapui5IfNecessary"] = function (oSapui5Attributes) {
         ;
@@ -60130,24 +61468,24 @@ UCF_System is not available yet
         ;
         /* global sap */
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(sap, "sap", "Page.js(1410): runtimeConfigureSapui5IfNecessary");
+            UCF_Tracer.assert(sap, "sap", "Page.js(1431): runtimeConfigureSapui5IfNecessary");
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(sap["ui"], "sap.ui", "Page.js(1411): runtimeConfigureSapui5IfNecessary");
+            UCF_Tracer.assert(sap["ui"], "sap.ui", "Page.js(1432): runtimeConfigureSapui5IfNecessary");
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(typeof sap["ui"]["getCore"] === 'function', "typeof sap.ui.getCore === 'function'", "Page.js(1412): runtimeConfigureSapui5IfNecessary");
+            UCF_Tracer.assert(typeof sap["ui"]["getCore"] === 'function', "typeof sap.ui.getCore === 'function'", "Page.js(1433): runtimeConfigureSapui5IfNecessary");
         }
         ;
         /* global jQuery */
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(window["jQuery"], "window.jQuery", "Page.js(1414): runtimeConfigureSapui5IfNecessary");
+            UCF_Tracer.assert(window["jQuery"], "window.jQuery", "Page.js(1435): runtimeConfigureSapui5IfNecessary");
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(window["jQuery"]["sap"], "window.jQuery.sap", "Page.js(1415): runtimeConfigureSapui5IfNecessary");
+            UCF_Tracer.assert(window["jQuery"]["sap"], "window.jQuery.sap", "Page.js(1436): runtimeConfigureSapui5IfNecessary");
         }
         ;
 
@@ -60160,7 +61498,7 @@ UCF_System is not available yet
         if ('data-sap-ui-areas' in oSapui5Attributes) {
             UCF_JsUtil["forEach"](oSapui5Attributes['data-sap-ui-areas']["split"](','), function (sArea) {
                 if (__UCF_TRACE__) {
-                    UCF_Tracer.trace(INFO, 'creating area "' + sArea + '"', "Page.js(1423): runtimeConfigureSapui5IfNecessary");
+                    UCF_Tracer.trace(INFO, 'creating area "' + sArea + '"', "Page.js(1444): runtimeConfigureSapui5IfNecessary");
                 }
                 ;
                 sapui5["createUIArea"](sArea);
@@ -60169,33 +61507,47 @@ UCF_System is not available yet
 
         if ('data-sap-ui-language' in oSapui5Attributes) {
             if (__UCF_TRACE__) {
-                UCF_Tracer.trace(INFO, 'setting language to "' + oSapui5Attributes['data-sap-ui-language'] + '"', "Page.js(1429): runtimeConfigureSapui5IfNecessary");
+                UCF_Tracer.trace(INFO, 'setting language to "' + oSapui5Attributes['data-sap-ui-language'] + '"', "Page.js(1450): runtimeConfigureSapui5IfNecessary");
             }
             ;
             sapui5["getConfiguration"]()["setLanguage"](oSapui5Attributes['data-sap-ui-language']);
         }
 
+        var oPromiseForLibs = null;
         if ('data-sap-ui-libs' in oSapui5Attributes) {
-            oLoadedLibraries = sapui5["getLoadedLibraries"]();
-            UCF_JsUtil["forEach"](UCF_JsUtil["map"](oSapui5Attributes['data-sap-ui-libs']["split"](','), UCF_StringUtil["sTrim"]), function (sLib) {
-                if (UCF_JsUtil["contains"](UCF_JsUtil["keys"](oLoadedLibraries), sLib)) {
+            if (oSapui5Attributes['data-sap-ui-preload'] === 'async') {
+                oLoadedLibraries = sapui5["getLoadedLibraries"]();
+                oPromiseForLibs = UCF_Promise["all"](UCF_JsUtil["map"](oSapui5Attributes['data-sap-ui-libs']["split"](','), function (sLib) {
                     if (__UCF_TRACE__) {
-                        UCF_Tracer.trace(INFO, 'skipping library "' + sLib + '" as it is already loaded', "Page.js(1437): runtimeConfigureSapui5IfNecessary");
+                        UCF_Tracer.trace(INFO, 'loading library (async) "' + sLib + '"', "Page.js(1459): runtimeConfigureSapui5IfNecessary");
                     }
                     ;
-                } else {
-                    if (__UCF_TRACE__) {
-                        UCF_Tracer.trace(INFO, 'loading library "' + sLib + '"', "Page.js(1439): runtimeConfigureSapui5IfNecessary");
+                    return UCF_JsUtil["contains"](UCF_JsUtil["keys"](oLoadedLibraries), sLib)
+                        ? UCF_Promise["resolve"](oLoadedLibraries[sLib])
+                        : sapui5["loadLibrary"](UCF_StringUtil["sTrim"](sLib), {"async": true});
+                }));
+            } else {
+                oLoadedLibraries = sapui5["getLoadedLibraries"]();
+                UCF_JsUtil["forEach"](UCF_JsUtil["map"](oSapui5Attributes['data-sap-ui-libs']["split"](','), UCF_StringUtil["sTrim"]), function (sLib) {
+                    if (UCF_JsUtil["contains"](UCF_JsUtil["keys"](oLoadedLibraries), sLib)) {
+                        if (__UCF_TRACE__) {
+                            UCF_Tracer.trace(INFO, 'skipping library "' + sLib + '" as it is already loaded', "Page.js(1469): runtimeConfigureSapui5IfNecessary");
+                        }
+                        ;
+                    } else {
+                        if (__UCF_TRACE__) {
+                            UCF_Tracer.trace(INFO, 'loading library "' + sLib + '"', "Page.js(1471): runtimeConfigureSapui5IfNecessary");
+                        }
+                        ;
+                        sapui5["loadLibrary"](sLib);
                     }
-                    ;
-                    sapui5["loadLibrary"](sLib);
-                }
-            });
+                });
+            }
         }
 
         if ('data-sap-ui-logLevel' in oSapui5Attributes) {
             if (__UCF_TRACE__) {
-                UCF_Tracer.trace(INFO, 'setting logLevel to "' + oSapui5Attributes['data-sap-ui-logLevel'] + '"', "Page.js(1446): runtimeConfigureSapui5IfNecessary");
+                UCF_Tracer.trace(INFO, 'setting logLevel to "' + oSapui5Attributes['data-sap-ui-logLevel'] + '"', "Page.js(1479): runtimeConfigureSapui5IfNecessary");
             }
             ;
             window["jQuery"]["sap"]["log"]["setLevel"](oSapui5Attributes['data-sap-ui-logLevel']);
@@ -60203,7 +61555,7 @@ UCF_System is not available yet
 
         if ('data-sap-ui-theme' in oSapui5Attributes) {
             if (__UCF_TRACE__) {
-                UCF_Tracer.trace(INFO, 'setting theme to "' + oSapui5Attributes['data-sap-ui-theme'] + '"', "Page.js(1451): runtimeConfigureSapui5IfNecessary");
+                UCF_Tracer.trace(INFO, 'setting theme to "' + oSapui5Attributes['data-sap-ui-theme'] + '"', "Page.js(1484): runtimeConfigureSapui5IfNecessary");
             }
             ;
             sapui5["applyTheme"](oSapui5Attributes['data-sap-ui-theme']);
@@ -60211,7 +61563,7 @@ UCF_System is not available yet
 
         if ('data-sap-ui-themeRoots' in oSapui5Attributes) {
             if (__UCF_TRACE__) {
-                UCF_Tracer.trace(INFO, 'setting themeRoots to "' + oSapui5Attributes['data-sap-ui-themeRoots'] + '"', "Page.js(1456): runtimeConfigureSapui5IfNecessary");
+                UCF_Tracer.trace(INFO, 'setting themeRoots to "' + oSapui5Attributes['data-sap-ui-themeRoots'] + '"', "Page.js(1489): runtimeConfigureSapui5IfNecessary");
             }
             ;
             sapui5["setThemeRoot"](oSapui5Attributes['data-sap-ui-themeRoots']);
@@ -60220,11 +61572,13 @@ UCF_System is not available yet
         UCF_JsUtil["each"](oSapui5Attributes, function (sAttribute, sValue) { // using each (not forEach) as it can walk objects
             if (!UCF_JsUtil["contains"](aConfigurableAttributes, sAttribute)) {
                 if (__UCF_TRACE__) {
-                    UCF_Tracer.trace(WARNING, sAttribute + '="' + sValue + '" can not be configured at runtime and is ignored.', "Page.js(1462): runtimeConfigureSapui5IfNecessary");
+                    UCF_Tracer.trace(WARNING, sAttribute + '="' + sValue + '" can not be configured at runtime and is ignored.', "Page.js(1495): runtimeConfigureSapui5IfNecessary");
                 }
                 ;
             }
         });
+
+        return oPromiseForLibs;
     };
     ;
     if (__UCF_COVERAGE__) {
@@ -60303,10 +61657,11 @@ UCF_System is not available yet
             UCF_Page["_"]["onScriptReadyStateChange"]++;
         }
         ;
+        /** @type {HTMLScriptElement} */
         var oSource = oDomEvent["target"] || oDomEvent["srcElement"];
         if (oSource["tagName"] === "SCRIPT" && (!window["oScript"]["readyState"] || window["oScript"]["readyState"] === "loaded" || window["oScript"]["readyState"] === "complete")) {
             if (__UCF_TRACE__) {
-                UCF_Tracer.trace(INFO, "Script added " + oSource["src"] + " successful", "Page.js(1515): onScriptReadyStateChange");
+                UCF_Tracer.trace(INFO, "Script added " + oSource["src"] + " successful", "Page.js(1551): onScriptReadyStateChange");
             }
             ;
             this["shiftScriptQueue"](); //remove the currently loaded script
@@ -60316,6 +61671,39 @@ UCF_System is not available yet
     ;
     if (__UCF_COVERAGE__) {
         UCF_Page["_"]["onScriptReadyStateChange"] = 0;
+    }
+    ;
+
+    /**
+     * Handles the onreadystatechange event of a script element that was added using addScript
+     * @param {Object} oDomEvent
+     * @param {boolean} bOptional Ignore script loading errors
+     * @private
+     */
+    UCF_Page["prototype"]["onScriptLoadError"] = function (oDomEvent, bOptional) {
+        ;
+        if (__UCF_COVERAGE__) {
+            UCF_Page["_"]["onScriptLoadError"]++;
+        }
+        ;
+        /** @type {HTMLScriptElement} */
+        var oSource = oDomEvent["target"] || oDomEvent["srcElement"];
+        if (bOptional) {
+            if (__UCF_TRACE__) {
+                UCF_Tracer.trace(INFO, 'Error loading script (ignored because parameter bOptional=true): ' + oSource["src"], "Page.js(1567): onScriptLoadError");
+            }
+            ;
+            this["onScriptReadyStateChange"](oDomEvent);
+        } else {
+            if (__UCF_TRACE__) {
+                UCF_Tracer.trace(ERROR, 'Script failed to load: ' + oSource["src"], "Page.js(1571): onScriptLoadError");
+            }
+            ;
+        }
+    };
+    ;
+    if (__UCF_COVERAGE__) {
+        UCF_Page["_"]["onScriptLoadError"] = 0;
     }
     ;
 
@@ -60333,11 +61721,11 @@ UCF_System is not available yet
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(typeof sData === "string", "typeof sData === \"string\"", "Page.js(1529): setDragData");
+            UCF_Tracer.assert(typeof sData === "string", "typeof sData === \"string\"", "Page.js(1583): setDragData");
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(typeof sMimeType === "string", "typeof sMimeType === \"string\"", "Page.js(1530): setDragData");
+            UCF_Tracer.assert(typeof sMimeType === "string", "typeof sMimeType === \"string\"", "Page.js(1584): setDragData");
         }
         ;
 
@@ -60361,7 +61749,7 @@ UCF_System is not available yet
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(typeof sUrl === "string", "typeof sUrl === \"string\"", "Page.js(1541): downloadFile");
+            UCF_Tracer.assert(typeof sUrl === "string", "typeof sUrl === \"string\"", "Page.js(1595): downloadFile");
         }
         ;
 
@@ -60455,7 +61843,7 @@ UCF_System is not available yet
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(typeof sId === "string", "typeof sId === \"string\"", "Page.js(1611): scrollIntoView");
+            UCF_Tracer.assert(typeof sId === "string", "typeof sId === \"string\"", "Page.js(1665): scrollIntoView");
         }
         ;
 
@@ -60556,14 +61944,14 @@ UCF_System is not available yet
                         }, window["parent"]);
                         this["bFLPSessionHandlingRegistered"] = true;
                         if (__UCF_TRACE__) {
-                            UCF_Tracer.trace(INFO, "FLP LogoffHandling: register via PM sap.ushell.services.CrossApplicationNavigation.registerBeforeAppCloseEvent and listen to sap.ushell.services.CrossApplicationNavigation.beforeAppCloseEvent", "Page.js(1667): registerFLPSessionHandling");
+                            UCF_Tracer.trace(INFO, "FLP LogoffHandling: register via PM sap.ushell.services.CrossApplicationNavigation.registerBeforeAppCloseEvent and listen to sap.ushell.services.CrossApplicationNavigation.beforeAppCloseEvent", "Page.js(1721): registerFLPSessionHandling");
                         }
                         ;
                     }
                 }
             } catch (ex) {
                 if (__UCF_TRACE__) {
-                    UCF_Tracer.trace(ERROR, "FLP LogoffHandling: could NOT register via PM PostMessage sap.ushell.services.CrossApplicationNavigation.registerBeforeAppCloseEvent: " + ex, "Page.js(1671): registerFLPSessionHandling");
+                    UCF_Tracer.trace(ERROR, "FLP LogoffHandling: could NOT register via PM PostMessage sap.ushell.services.CrossApplicationNavigation.registerBeforeAppCloseEvent: " + ex, "Page.js(1725): registerFLPSessionHandling");
                 }
                 ;
             }
@@ -60586,14 +61974,14 @@ UCF_System is not available yet
 
         if (this["sUnloadUrl"]) {
             if (__UCF_TRACE__) {
-                UCF_Tracer.trace(INFO, "FLP LogoffHandling: send logoff request due to received PM sap.ushell.services.CrossApplicationNavigation.beforeAppCloseEvent", "Page.js(1681): bHandleUnloadPostMessage");
+                UCF_Tracer.trace(INFO, "FLP LogoffHandling: send logoff request due to received PM sap.ushell.services.CrossApplicationNavigation.beforeAppCloseEvent", "Page.js(1735): bHandleUnloadPostMessage");
             }
             ;
             UCF_RequestUtil["sendUnloadRequest"](this["sUnloadUrl"], null, "DEFAULT");
             this["setUnloadUrl"](""); //unload done - do not repeat it during unload event
         }
         if (__UCF_TRACE__) {
-            UCF_Tracer.trace(INFO, "FLP LogoffHandling: done answer with PM sap.ushell.services.CrossApplicationNavigation.beforeAppCloseEvent", "Page.js(1685): bHandleUnloadPostMessage");
+            UCF_Tracer.trace(INFO, "FLP LogoffHandling: done answer with PM sap.ushell.services.CrossApplicationNavigation.beforeAppCloseEvent", "Page.js(1739): bHandleUnloadPostMessage");
         }
         ;
 
@@ -60625,11 +62013,11 @@ UCF_System is not available yet
         ;
 
         if (typeof sSessionHandling === 'string' && sSessionHandling !== '') {
-            this["sSessionHandling"] = sSessionHandling; // eslint-disable-line ur/no-memory-leaks
+            this["sSessionHandling"] = sSessionHandling; // eslint-disable-line @ur/no-memory-leaks
             this["setClientProperty"]("SessionHandling", this["sSessionHandling"], true);
         }
 
-        this["sUnloadUrl"] = sUrl; // eslint-disable-line ur/no-memory-leaks
+        this["sUnloadUrl"] = sUrl; // eslint-disable-line @ur/no-memory-leaks
         this["setClientProperty"]("UnloadUrl", this["sUnloadUrl"], true);
         if (!__UCF_IE6__ && !this["bFLPSessionHandlingRegistered"]) {
             this["registerFLPSessionHandling"]();
@@ -60747,7 +62135,7 @@ UCF_System is not available yet
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(UCF_JsUtil["bInstanceOf"](oEvent, 'UCF_Event'), "UCF_JsUtil.bInstanceOf(oEvent, 'UCF_Event')", "Page.js(1776): onLsUnlock");
+            UCF_Tracer.assert(UCF_JsUtil["bInstanceOf"](oEvent, 'UCF_Event'), "UCF_JsUtil.bInstanceOf(oEvent, 'UCF_Event')", "Page.js(1830): onLsUnlock");
         }
         ;
 
@@ -60779,7 +62167,7 @@ UCF_System is not available yet
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(UCF_JsUtil["bInstanceOf"](oEvent, 'UCF_Event'), "UCF_JsUtil.bInstanceOf(oEvent, 'UCF_Event')", "Page.js(1795): onLsLock");
+            UCF_Tracer.assert(UCF_JsUtil["bInstanceOf"](oEvent, 'UCF_Event'), "UCF_JsUtil.bInstanceOf(oEvent, 'UCF_Event')", "Page.js(1849): onLsLock");
         }
         ;
 
@@ -60845,12 +62233,12 @@ UCF_System is not available yet
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(typeof sBrowserHistory === "string", "typeof sBrowserHistory === \"string\"", "Page.js(1836): setBrowserHistory");
+            UCF_Tracer.assert(typeof sBrowserHistory === "string", "typeof sBrowserHistory === \"string\"", "Page.js(1890): setBrowserHistory");
         }
         ;
 
         this["cleanUpBrowserHistory"]();
-        this["sBrowserHistory"] = sBrowserHistory; // eslint-disable-line ur/no-memory-leaks
+        this["sBrowserHistory"] = sBrowserHistory; // eslint-disable-line @ur/no-memory-leaks
         this["setClientProperty"]("BrowserHistory", this["sBrowserHistory"], true);
         this["initBrowserHistory"](false);
     };
@@ -60899,7 +62287,7 @@ UCF_System is not available yet
         var bBackprevention, bHistorySupport;
 
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(typeof bPageInitial === "boolean", "typeof bPageInitial === \"boolean\"", "Page.js(1867): initBrowserHistory");
+            UCF_Tracer.assert(typeof bPageInitial === "boolean", "typeof bPageInitial === \"boolean\"", "Page.js(1921): initBrowserHistory");
         }
         ;
 
@@ -60970,7 +62358,7 @@ UCF_System is not available yet
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(UCF_JsUtil["bInstanceOf"](oEvent, 'UCF_Event'), "UCF_JsUtil.bInstanceOf(oEvent, 'UCF_Event')", "Page.js(1915): onHashChanged");
+            UCF_Tracer.assert(UCF_JsUtil["bInstanceOf"](oEvent, 'UCF_Event'), "UCF_JsUtil.bInstanceOf(oEvent, 'UCF_Event')", "Page.js(1969): onHashChanged");
         }
         ;
 
@@ -60999,11 +62387,11 @@ UCF_System is not available yet
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(typeof sNewHash === "string", "typeof sNewHash === \"string\"", "Page.js(1931): fireHashChangedEvent");
+            UCF_Tracer.assert(typeof sNewHash === "string", "typeof sNewHash === \"string\"", "Page.js(1985): fireHashChangedEvent");
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(typeof sOldHash === "string", "typeof sOldHash === \"string\"", "Page.js(1932): fireHashChangedEvent");
+            UCF_Tracer.assert(typeof sOldHash === "string", "typeof sOldHash === \"string\"", "Page.js(1986): fireHashChangedEvent");
         }
         ;
 
@@ -61041,7 +62429,7 @@ UCF_System is not available yet
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(typeof sHash === "string", "typeof sHash === \"string\"", "Page.js(1957): setHash");
+            UCF_Tracer.assert(typeof sHash === "string", "typeof sHash === \"string\"", "Page.js(2011): setHash");
         }
         ;
 
@@ -61097,12 +62485,12 @@ UCF_System is not available yet
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(typeof bHashChangedNotification === "string", "typeof bHashChangedNotification === \"string\"", "Page.js(1990): setHashChangedNotification");
+            UCF_Tracer.assert(typeof bHashChangedNotification === "string", "typeof bHashChangedNotification === \"string\"", "Page.js(2044): setHashChangedNotification");
         }
         ;
 
         if (bHashChangedNotification !== this["bHashChangedNotification"]) {
-            this["bHashChangedNotification"] = bHashChangedNotification; // eslint-disable-line ur/no-memory-leaks
+            this["bHashChangedNotification"] = bHashChangedNotification; // eslint-disable-line @ur/no-memory-leaks
             this["setClientProperty"]("HashChangedNotification", this["bHashChangedNotification"], true);
             this["cleanUpBrowserHistory"]();
             this["initBrowserHistory"](false);
@@ -61127,7 +62515,7 @@ UCF_System is not available yet
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(typeof sScrollingMode === "string", "typeof sScrollingMode === \"string\"", "Page.js(2007): setScrollingMode");
+            UCF_Tracer.assert(typeof sScrollingMode === "string", "typeof sScrollingMode === \"string\"", "Page.js(2061): setScrollingMode");
         }
         ;
 
@@ -61147,13 +62535,13 @@ UCF_System is not available yet
                     break;
                 default:
                     if (__UCF_TRACE__) {
-                        UCF_Tracer.trace(ERROR, "ScrollingMode '" + sScrollingMode + "' is unknown.", "Page.js(2024): setScrollingMode");
+                        UCF_Tracer.trace(ERROR, "ScrollingMode '" + sScrollingMode + "' is unknown.", "Page.js(2078): setScrollingMode");
                     }
                     ;
                     return;
             }
 
-            this["sScrollingMode"] = sScrollingMode; // eslint-disable-line ur/no-memory-leaks
+            this["sScrollingMode"] = sScrollingMode; // eslint-disable-line @ur/no-memory-leaks
             this["setClientProperty"]("ScrollingMode", this["sScrollingMode"], true);
         }
     };
@@ -61359,7 +62747,7 @@ UCF_System is not available yet
         if (!Object["bind"]) {
             //less uses bind and cannot be loaded in old environments
             if (__UCF_TRACE__) {
-                UCF_Tracer.trace("ERROR", "Failed to load less because bind() is not available.", "Page.js(2151): loadLess");
+                UCF_Tracer.trace("ERROR", "Failed to load less because bind() is not available.", "Page.js(2205): loadLess");
             }
             ;
             return;
@@ -61422,7 +62810,7 @@ UCF_System is not available yet
                 mConditionalRules = UCF_JsUtil["oJsonParse"](mConditionalRules);
             } catch (ex) {
                 if (__UCF_TRACE__) {
-                    UCF_Tracer.trace(INFO, "Failed to parse JSON", "Page.js(2191): setConditionalRules");
+                    UCF_Tracer.trace(INFO, "Failed to parse JSON", "Page.js(2245): setConditionalRules");
                 }
                 ;
                 mConditionalRules = {};
@@ -61466,7 +62854,7 @@ UCF_System is not available yet
                 mConditionalControlMap = UCF_JsUtil["oJsonParse"](mConditionalControlMap);
             } catch (ex) {
                 if (__UCF_TRACE__) {
-                    UCF_Tracer.trace("INFO", "Failed to parse JSON", "Page.js(2222): setConditionalControlMapping");
+                    UCF_Tracer.trace("INFO", "Failed to parse JSON", "Page.js(2276): setConditionalControlMapping");
                 }
                 ;
                 mConditionalControlMap = {};
@@ -62045,7 +63433,7 @@ UCF_System is not available yet
             if (this["mModels"][sModelId]) {
                 this["mModels"][sModelId]["setData"](oData, bMerge);
             } else {
-                this["mModels"][sModelId] = new (UCF_ClassLoader["oGetClass"]("UCF_JSONModel"))();
+                this["mModels"][sModelId] = new (UCF_ClassLoader["oGetClass"]("UCF_JSONModel"))({});
                 oUCFInstance = new (UCF_ClassLoader["oGetClass"]("UCF_ModelControl"))(oDomRef, this["oLS"], sModelId);
                 this["mModels"][sModelId]["setUCFInstance"](oUCFInstance);
                 this["mModels"][sModelId]["setData"](oData, false);
@@ -62242,7 +63630,12 @@ UCF_System is not available yet
             UCF_Page["_"]["ariaAlertMessage"]++;
         }
         ;
+        /** @type {string} */
         var sMessageText = "";
+        /** @type {string} */
+        var sAriaId = 'sapur-aria-alert';
+        /** @type {HTMLDivElement} */
+        var oAriaDiv;
 
         if (!window["UCF_System"]["bIsAria"] || iCount === 0 || !this["oLS"]["oBrowserWindow"]["bIsFocussed"]()) return; //Announce messages only if the browser window is active and has the focus
 
@@ -62258,6 +63651,11 @@ UCF_System is not available yet
         }
 
         UCF_AriaStateHelper["setAlert"](sMessageText);
+        oAriaDiv = UCF_DomUtil["$"](sAriaId);
+        if (oAriaDiv) {
+            // it would be better to use aria-describedby but JAWS doesn't read it out
+            UCF_AriaStateHelper["setLabelledBy"](oAriaDiv, 'ARIA_MA_TOGGLE_FOCUS_TUTOR');
+        }
     };
     ;
     if (__UCF_COVERAGE__) {
@@ -62298,7 +63696,7 @@ UCF_System is not available yet
         oMessageArea = this["oLS"]["oControlFactory"]["oGetControlById"](sMessageAreaId);
         if (!oMessageArea) {
             if (__UCF_TRACE__) {
-                UCF_Tracer.trace(ERROR, "No control found for ID " + sMessageAreaId + " Cannot activate focus toggle", "Page.js(2816): setMessageFocusToggleInfoInternal");
+                UCF_Tracer.trace(ERROR, "No control found for ID " + sMessageAreaId + " Cannot activate focus toggle", "Page.js(2880): setMessageFocusToggleInfoInternal");
             }
             ;
             return;
@@ -62312,7 +63710,7 @@ UCF_System is not available yet
                 oChild = oMessageArea["oGetFirstFocusableChild"]();
                 if (!oChild) {
                     if (__UCF_TRACE__) {
-                        UCF_Tracer.trace(ERROR, "No focusable child control found in Message Area " + sMessageAreaId, "Page.js(2827): setMessageFocusToggleInfoInternal");
+                        UCF_Tracer.trace(ERROR, "No focusable child control found in Message Area " + sMessageAreaId, "Page.js(2891): setMessageFocusToggleInfoInternal");
                     }
                     ;
                 }
@@ -62390,7 +63788,7 @@ UCF_System is not available yet
 
         if (!oFocusedControl) {
             if (__UCF_TRACE__) {
-                UCF_Tracer.trace(ERROR, "No focsued Control", "Page.js(2882): updateMessageFocusToggleInfo");
+                UCF_Tracer.trace(ERROR, "No focsued Control", "Page.js(2946): updateMessageFocusToggleInfo");
             }
             ;
             return;
@@ -62399,14 +63797,14 @@ UCF_System is not available yet
         if (oFocusedControl === this["oMessageFocusToggleInfo"]["oMessageArea"] ||
             UCF_DomUtil["bContains"](this["oMessageFocusToggleInfo"]["oMessageArea"]["oDomRef"], oFocusedControl["oDomRef"])) {
             if (__UCF_TRACE__) {
-                UCF_Tracer.trace(DEBUG, "Updating Message Focus Info: sMessageFocusInfo =  " + sFocusInfo, "Page.js(2888): updateMessageFocusToggleInfo");
+                UCF_Tracer.trace(DEBUG, "Updating Message Focus Info: sMessageFocusInfo =  " + sFocusInfo, "Page.js(2952): updateMessageFocusToggleInfo");
             }
             ;
             this["oMessageFocusToggleInfo"]["sMessageFocusInfo"] = sFocusInfo;
             this["oMessageFocusToggleInfo"]["bFocusOnMsg"] = true;
         } else {
             if (__UCF_TRACE__) {
-                UCF_Tracer.trace(DEBUG, "Updating Target Focus Info: sTargetFocusInfo =  " + sFocusInfo, "Page.js(2892): updateMessageFocusToggleInfo");
+                UCF_Tracer.trace(DEBUG, "Updating Target Focus Info: sTargetFocusInfo =  " + sFocusInfo, "Page.js(2956): updateMessageFocusToggleInfo");
             }
             ;
             this["oMessageFocusToggleInfo"]["sTargetFocusInfo"] = sFocusInfo;
@@ -62440,20 +63838,20 @@ UCF_System is not available yet
 
             this["oMessageFocusToggleInfo"]["bFocusOnMsg"] = false;
             if (__UCF_TRACE__) {
-                UCF_Tracer.trace(DEBUG, "ToggleMessageFocus: sTargetFocusInfo = " + this["oMessageFocusToggleInfo"]["sTargetFocusInfo"], "Page.js(2913): toggleMessageFocus");
+                UCF_Tracer.trace(DEBUG, "ToggleMessageFocus: sTargetFocusInfo = " + this["oMessageFocusToggleInfo"]["sTargetFocusInfo"], "Page.js(2977): toggleMessageFocus");
             }
             ;
 
             if (oCallback && oCallback["o"] && oCallback["sMethod"] && oCallback["o"][oCallback["sMethod"]]) {
                 if (__UCF_TRACE__) {
-                    UCF_Tracer.trace(DEBUG, "ToggleMessageFocus: Call callback method to set focus", "Page.js(2916): toggleMessageFocus");
+                    UCF_Tracer.trace(DEBUG, "ToggleMessageFocus: Call callback method to set focus", "Page.js(2980): toggleMessageFocus");
                 }
                 ;
                 oCallback["o"][oCallback["sMethod"]](this["oMessageFocusToggleInfo"]["sTargetFocusInfo"]);
 
             } else if (this["oMessageFocusToggleInfo"]["sTargetFocusInfo"]) {
                 if (__UCF_TRACE__) {
-                    UCF_Tracer.trace(DEBUG, "ToggleMessageFocus: Set focus " + this["oMessageFocusToggleInfo"]["sTargetFocusInfo"], "Page.js(2920): toggleMessageFocus");
+                    UCF_Tracer.trace(DEBUG, "ToggleMessageFocus: Set focus " + this["oMessageFocusToggleInfo"]["sTargetFocusInfo"], "Page.js(2984): toggleMessageFocus");
                 }
                 ;
                 this["oLS"]["focusElement"](this["oMessageFocusToggleInfo"]["sTargetFocusInfo"]);
@@ -62462,7 +63860,7 @@ UCF_System is not available yet
             // Set Focus back to Message Area
             this["oMessageFocusToggleInfo"]["bFocusOnMsg"] = true;
             if (__UCF_TRACE__) {
-                UCF_Tracer.trace(DEBUG, "ToggleMessageFocus: Set focus to message " + this["oMessageFocusToggleInfo"]["sMessageFocusInfo"], "Page.js(2926): toggleMessageFocus");
+                UCF_Tracer.trace(DEBUG, "ToggleMessageFocus: Set focus to message " + this["oMessageFocusToggleInfo"]["sMessageFocusInfo"], "Page.js(2990): toggleMessageFocus");
             }
             ;
             this["oLS"]["focusElement"](this["oMessageFocusToggleInfo"]["sMessageFocusInfo"]);
@@ -62488,7 +63886,7 @@ UCF_System is not available yet
 
         if (!this["oMessageFocusToggleInfo"]) return;
         if (__UCF_TRACE__) {
-            UCF_Tracer.trace(DEBUG, "Cleanup MessageFocusToggleInfo", "Page.js(2939): cleanupMessageFocusInfo");
+            UCF_Tracer.trace(DEBUG, "Cleanup MessageFocusToggleInfo", "Page.js(3003): cleanupMessageFocusInfo");
         }
         ;
 
@@ -62529,7 +63927,7 @@ UCF_System is not available yet
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(typeof sAccessibilityStd === 'string', "typeof sAccessibilityStd === 'string'", "Page.js(2967): setAccessibility");
+            UCF_Tracer.assert(typeof sAccessibilityStd === 'string', "typeof sAccessibilityStd === 'string'", "Page.js(3031): setAccessibility");
         }
         ;
 
@@ -62591,7 +63989,7 @@ UCF_System is not available yet
 
         if (!this["fForwardMouseMoveEvent"]) {
             var oSelf = this;
-            // eslint-disable-next-line ur/no-memory-leaks
+            // eslint-disable-next-line @ur/no-memory-leaks
             this["fForwardMouseMoveEvent"] = function (oEvent) {
                 if (oSelf["bIgnoreFirstMouseMove"])
                     return oSelf["bIgnoreFirstMouseMove"] = false;
@@ -62623,38 +64021,6 @@ UCF_System is not available yet
     ;
 
     /**
-     * @private
-     * @static
-     * @type {boolean}
-     */
-    UCF_Page["bIsPageVisualizeAccesskeysEnabled"] = null;
-
-    /**
-     * @public
-     * @return {boolean}
-     */
-    UCF_Page["prototype"]["bIsPageVisualizeAccesskeysEnabled"] = function () {
-        ;
-        if (__UCF_COVERAGE__) {
-            UCF_Page["_"]["bIsPageVisualizeAccesskeysEnabled"]++;
-        }
-        ;
-        if (typeof UCF_Page["bIsPageVisualizeAccesskeysEnabled"] !== 'boolean') {
-            UCF_Page["bIsPageVisualizeAccesskeysEnabled"] = this["oLS"]["oGetRenderManager"]()["callFragment"](
-                'IsEnabled',
-                'FeatureFlags', {"Feature": 'Page.VisualizeAccesskeys'}
-            );
-        }
-
-        return UCF_Page["bIsPageVisualizeAccesskeysEnabled"];
-    };
-    ;
-    if (__UCF_COVERAGE__) {
-        UCF_Page["_"]["bIsPageVisualizeAccesskeysEnabled"] = 0;
-    }
-    ;
-
-    /**
      * @protected
      * @param {UCF_BrowserEvent} oKeydown the keydown event
      */
@@ -62664,69 +64030,75 @@ UCF_System is not available yet
             UCF_Page["_"]["onkeydown"]++;
         }
         ;
+        // oKeydown.keyCode() will return 0 if the event has been cancelled by
+        // the control, so we need to get the keyCode from the DomEvent.
         /** @type {number} */
-        var iKeyCode = oKeydown["iKeyCode"]();
-        /** @type {HTMLDivElement[]} */
-        var aAllAccesskeyRefs = [];
+        var iKeyCode = oKeydown["oDomEvent"]["keyCode"];
         /** @type {HTMLDivElement[]} */
         var aMatchingAccesskeyRefs = [];
-
-        if (this["bIsPageVisualizeAccesskeysEnabled"]() && UCF_KeyboardHelper["bIsValidAccessKeyShortcut"](oKeydown)) {
-            if (!this["bAccessKeyIsHighlighted"]) {
-                UCF_DomUtil["addClass"](this["oRootRef"], 'lsHighlightAccessKeys');
-                this["bAccessKeyIsHighlighted"] = true;
-                oKeydown["cancelBubble"]();
-                oKeydown["cancel"]();
-            }
-        }
+        /** @type {number} */
+        var iCurrentMatchingAccessKeyIndex;
+        /** @type {number} */
+        var iNextMatchingAccessKeyIndex;
+        /** @type {bool} */
+        var bCycleForward = UCF_KeyboardHelper["bShouldHandleAccessKey"](oKeydown, iKeyCode);
+        /** @type {bool} */
+        var bCycleBack = UCF_KeyboardHelper["bShouldHandleAccessKeyBack"](oKeydown, iKeyCode);
+        /** @type {UCF_Page} */
+        var self = this;
 
         if (
-            UCF_KeyboardHelper["bShouldHandleAccessKey"](oKeydown, iKeyCode)
+            bCycleForward || bCycleBack
         ) {
-            if (this["bIsPageVisualizeAccesskeysEnabled"]() && this["bAccessKeyIsHighlighted"]) {
-                UCF_DomUtil["removeClass"](this["oRootRef"], 'lsHighlightAccessKeys');
-                this["bAccessKeyIsHighlighted"] = false;
-                // oKeydown.cancelBubble();
-                // oKeydown.cancel();
-            }
-            if (this["oCache"]["has"]('aAllAccesskeyRefs')) {
-                aAllAccesskeyRefs = this["oCache"]["get"]('aAllAccesskeyRefs', aAllAccesskeyRefs);
-            } else {
-                aAllAccesskeyRefs = UCF_JsUtil["arrayFrom"](
-                    UCF_DomUtil["querySelectorAll"]('[accesskey]')
-                );
-                this["oCache"]["set"]('aAllAccesskeyRefs', aAllAccesskeyRefs);
-            }
-
-            if (this["oCache"]["has"](iKeyCode)) {
-                aMatchingAccesskeyRefs = this["oCache"]["get"](iKeyCode, aMatchingAccesskeyRefs);
-            } else {
-                aMatchingAccesskeyRefs = UCF_JsUtil["reduce"](aAllAccesskeyRefs,
+            aMatchingAccesskeyRefs = this["oCache"]["get"]('aMatchingAccesskeyRefs(' + iKeyCode + ')', function () {
+                return UCF_JsUtil["reduce"](
+                    self["oCache"]["get"](
+                        'aAllAccesskeyRefs',
+                        function () {
+                            return UCF_JsUtil["arrayFrom"](
+                                UCF_DomUtil["querySelectorAll"]('[lsaccesskey]')
+                            );
+                        }
+                    ),
                     function (aMatchingAccesskeyRefs, sAccessKeyRef) {
                         if (document["getElementById"](sAccessKeyRef["id"]) &&
                         UCF_DomUtil["bIsVisible"](sAccessKeyRef, true) &&
-                        isNaN(sAccessKeyRef["accessKey"])
-                            ? UCF_KeyCodes[sAccessKeyRef["accessKey"]["toUpperCase"]()] === iKeyCode
-                            : UCF_KeyCodes['_' + sAccessKeyRef["accessKey"]] === iKeyCode) {
+                        isNaN(sAccessKeyRef["getAttribute"]('lsaccessKey'))
+                            ? UCF_KeyCodes[sAccessKeyRef["getAttribute"]('lsaccessKey')["toUpperCase"]()] === iKeyCode
+                            : UCF_KeyCodes['_' + sAccessKeyRef["getAttribute"]('lsaccessKey')] === iKeyCode) {
                             aMatchingAccesskeyRefs["push"](sAccessKeyRef);
                         }
                         return aMatchingAccesskeyRefs;
                     },
-                    []);
-                this["oCache"]["set"](iKeyCode, aMatchingAccesskeyRefs);
+                    []
+                );
+            });
+
+            // active element has the same accesskey that has just been raised
+            // search for next/previous index in the array
+            if (document["activeElement"] && document["activeElement"]["getAttribute"]('lsaccesskey') &&
+                UCF_KeyCodes[document["activeElement"]["getAttribute"]('lsaccesskey')["toUpperCase"]()] === iKeyCode &&
+                aMatchingAccesskeyRefs["includes"](document["activeElement"])) {
+                iCurrentMatchingAccessKeyIndex = aMatchingAccesskeyRefs["indexOf"](document["activeElement"]);
+            } else {
+                iCurrentMatchingAccessKeyIndex = this["oCache"]["get"]('iCurrentMatchingAccessKeyIndex(' + iKeyCode + ')', null);
             }
 
-            try {
-                UCF_JsUtil["forEach"](aMatchingAccesskeyRefs, function (oAccesskeyRef) {
-                    aMatchingAccesskeyRefs["splice"](oAccesskeyRef, 1);
-                    oKeydown["cancelBubble"]();
-                    oKeydown["cancel"]();
-                    UCF_DomUtil["moveFocusDomElement"](oAccesskeyRef);
-                    aMatchingAccesskeyRefs["push"](oAccesskeyRef);
-                    throw 'AccessKeyFound';
-                });
-            } catch (e) {
-                if (e !== 'AccessKeyFound') throw e;
+            iNextMatchingAccessKeyIndex = bCycleForward
+                ? ((typeof iCurrentMatchingAccessKeyIndex === 'number'
+                ? iCurrentMatchingAccessKeyIndex
+                : -1) + 1) % aMatchingAccesskeyRefs["length"]
+                : bCycleBack
+                    ? ((typeof iCurrentMatchingAccessKeyIndex === 'number'
+                    ? iCurrentMatchingAccessKeyIndex
+                    : 0) - 1 + aMatchingAccesskeyRefs["length"]) % aMatchingAccesskeyRefs["length"]
+                    : iCurrentMatchingAccessKeyIndex;
+
+            if (aMatchingAccesskeyRefs[iNextMatchingAccessKeyIndex]) {
+                UCF_DomUtil["moveFocusDomElement"](aMatchingAccesskeyRefs[iNextMatchingAccessKeyIndex]);
+                oKeydown["cancel"]();
+                oKeydown["cancelBubble"]();
+                this["oCache"]["set"]('iCurrentMatchingAccessKeyIndex(' + iKeyCode + ')', iNextMatchingAccessKeyIndex);
             }
         }
     };
@@ -62737,537 +64109,196 @@ UCF_System is not available yet
     ;
 
     /**
-     * @protected
-     * @param {UCF_BrowserEvent} oKeyup the keyup event
-     */
-    UCF_Page["prototype"]["onkeyup"] = function (oKeyup) {
-        ;
-        if (__UCF_COVERAGE__) {
-            UCF_Page["_"]["onkeyup"]++;
-        }
-        ;
-        if (!this["bIsPageVisualizeAccesskeysEnabled"]()) {
-            return;
-        }
-
-        //if (UCF_KeyboardHelper.bIsValidAccessKeyShortcut(oKeyup)) {  // why not?
-        if (oKeyup["oDomEvent"]["key"] === 'Alt') {
-            if (this["bAccessKeyIsHighlighted"]) {
-                UCF_DomUtil["removeClass"](this["oRootRef"], 'lsHighlightAccessKeys');
-                this["bAccessKeyIsHighlighted"] = false;
-            }
-        }
-    };
-    ;
-    if (__UCF_COVERAGE__) {
-        UCF_Page["_"]["onkeyup"] = 0;
-    }
-    ;
-
-    /**
      * @private
-     * @param {UCF_Event} oEvent
+     * @param {UCF_Event} oEvent the UpdateDocumentComplete
      */
-    UCF_Page["prototype"]["onPendingRequest"] = function (oEvent) {
+    UCF_Page["prototype"]["onUpdateDocumentComplete"] = function (oEvent) {
         ;
         if (__UCF_COVERAGE__) {
-            UCF_Page["_"]["onPendingRequest"]++;
+            UCF_Page["_"]["onUpdateDocumentComplete"]++;
         }
         ;
         this["oCache"]["invalidate"]();
     };
     ;
     if (__UCF_COVERAGE__) {
-        UCF_Page["_"]["onPendingRequest"] = 0;
+        UCF_Page["_"]["onUpdateDocumentComplete"] = 0;
     }
     ;
 
-// =============================================================================
-// Copyright 2009 - SAP - NW UI F. All rights reserved. SAP
-// PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
-// =============================================================================
-
     /**
-     * Array of names of transported parameters/attributes (clientaccess defined). In the current control:
-     * - {@link #sFormId}
-     * - {@link #sScrollingMode}
-     * - {@link #sHotkeysId}
-     * - {@link #sBrowserHistory}
-     * - {@link #sUnloadUrl}
-     * - {@link #iScrollTop}
-     * - {@link #iScrollLeft}
-     * - {@link #sDirtyMode}
-     * - {@link #bDirty}
-     * - {@link #sHash}
-     * - {@link #bHashChangedNotification}
-     * - {@link #bHasEventQueue}
-     * - {@link #iSessionTimeout}
-     * - {@link #sSessionKeepAliveUrl}
-     * - {@link #sDefaultButtonId}
-     * - {@link #sCustomStyle}
-     * - {@link #sCustomData}
-     * - {@link #sSessionTimeoutActionUrl}
-     * - {@link #sSessionTimeoutActionTarget}
-     * - {@link #sSessionTimeoutActionText}
-     * - {@link #sSessionHandling}
-     * - {@link #sSessionTimeoutBehavior}
-     * - {@link #sSessionLogoutServiceName}
-     * - {@link #sSessionExtendServiceName}
+     * Array of names of transported names/attributes (clientaccess defined).
      * @private
      * @type {string[]}
      */
-    UCF_Page["prototype"]["aAttributeNames"] = ['sFormId', 'sScrollingMode', 'sHotkeysId', 'sBrowserHistory', 'sUnloadUrl', 'iScrollTop', 'iScrollLeft', 'sDirtyMode', 'bDirty', 'sHash', 'bHashChangedNotification', 'bHasEventQueue', 'iSessionTimeout', 'sSessionKeepAliveUrl', 'sDefaultButtonId', 'sCustomStyle', 'sCustomData', 'sSessionTimeoutActionUrl', 'sSessionTimeoutActionTarget', 'sSessionTimeoutActionText', 'sSessionHandling', 'sSessionTimeoutBehavior', 'sSessionLogoutServiceName', 'sSessionExtendServiceName'];
+    UCF_Page["prototype"]["aAttributeNames"] = ["sFormId", "sScrollingMode", "sHotkeysId", "sBrowserHistory", "sUnloadUrl", "iScrollTop", "iScrollLeft", "sDirtyMode", "bDirty", "sHash", "bHashChangedNotification", "bHasEventQueue", "iSessionTimeout", "sSessionKeepAliveUrl", "sDefaultButtonId", "sCustomStyle", "sCustomData", "sSessionTimeoutActionUrl", "sSessionTimeoutActionTarget", "sSessionTimeoutActionText", "sSessionHandling", "sSessionTimeoutBehavior", "sSessionLogoutServiceName", "sSessionExtendServiceName", "iSessionTimeoutWarning"];
 
     /**
-     * Array of names of events of the control:
-     * - Help
-     * - ContextMenu
-     * - FocusChange
-     * - Hotkey
-     * - Back
-     * - Scroll
-     * - Request
-     * - Resize
-     * - HashChanged
-     * - DragEnter
-     * - DragLeave
-     * - Initialized
-     * @type {string[]}
-     */
-    UCF_Page["prototype"]["aEventNames"] = ['Help', 'ContextMenu', 'FocusChange', 'Hotkey', 'Back', 'Scroll', 'Request', 'Resize', 'HashChanged', 'DragEnter', 'DragLeave', 'Initialized'];
-
-    /**
-     * Array of names of public methods of the control - public control API are:
-     *
-     * {@link #setTitle}
-     * Sets the page title in the browser window
-     * Parameter: {string} Title -
-     *
-     * {@link #setHasMargin}
-     * Sets or unsets the margin of the page
-     * Parameter: {bool} HasMargin -
-     *
-     * {@link #setBrowserHistory}
-     * Sets the value for the browser history. Use the Enum value as a string in this case.
-     * Parameter: {string} BrowserHistory -
-     *
-     * {@link #setFocus}
-     * Sets the active element
-     * Parameter: {string} FocusInfo - Detailed focus information that was passed with the FocusChange event or the control id to focus.
-     *
-     * {@link #showModalDialog}
-     * Opens a modal PopupWindow. deprecated, use openModalPopup
-     * Parameter: {string} Id -
-     * Parameter: {string} URL -
-     *
-     * {@link #openModalPopup}
-     * Opens a modal PopupWindow.
-     * Parameter: {string} Id -
-     * Parameter: {string} URL -
-     *
-     * {@link #closePopup}
-     * Closes a PopupWindow.
-     * Parameter: {string} Id -
-     *
-     * {@link #closeAllModalPopups}
-     * Closes all internal PopupWindows.
-     *
-     * {@link #openExternalWindow}
-     * Opens an external browser window
-     * Parameter: {string} Id -
-     * Parameter: {string} URL -
-     * Parameter: {int} Top -
-     * Parameter: {int} Left -
-     * Parameter: {int} Width -
-     * Parameter: {int} Height -
-     * Parameter: {bool} HasMenubar -
-     * Parameter: {bool} HasStatusbar -
-     * Parameter: {bool} HasToolbar -
-     * Parameter: {bool} HasAddressbar -
-     * Parameter: {bool} bDisableOpener -
-     *
-     * {@link #openExternalWindowByPost}
-     * Opens an external browser window
-     * Parameter: {string} Id -
-     * Parameter: {string} URL -
-     * Parameter: {string} PostParameters -
-     * Parameter: {int} Top -
-     * Parameter: {int} Left -
-     * Parameter: {int} Width -
-     * Parameter: {int} Height -
-     * Parameter: {bool} HasMenubar -
-     * Parameter: {bool} HasStatusbar -
-     * Parameter: {bool} HasToolbar -
-     * Parameter: {bool} HasAddressbar -
-     * Parameter: {bool} bDisableOpener -
-     *
-     * {@link #closeExternalWindow}
-     * Closes an external browser window
-     * Parameter: {string} Id -
-     *
-     * {@link #closeWindow}
-     * Closes a browser window.
-     *
-     * {@link #setKeepAlive}
-     * Sets the keepalive state for the control with the given id
-     * Parameter: {string} Id -
-     * Parameter: {bool} KeepAlive -
-     *
-     * {@link #setDragData}
-     * Sets the drag data for the current drag operation
-     * Parameter: {string} Data -
-     * Parameter: {string} MimeType -
-     * Parameter: {string} DragSessionIdId -
-     *
-     * {@link #downloadFile}
-     * Triggers the download of the file referenced by the given URL
-     * Parameter: {string} Url -
-     *
-     * {@link #scrollIntoView}
-     * Scroll the control with the given ID into view
-     * Parameter: {string} Id -
-     * Parameter: {bool} AlignToTop -
-     *
-     * {@link #setDirty}
-     * Sets the dirty flag of the page
-     * Parameter: {bool} Dirty -
-     *
-     * {@link #print}
-     * Prints the pages content area.
-     *
-     * {@link #setUnloadUrl}
-     * Sets the unload Url that is called if the page is unloaded.
-     * Parameter: {string} Url -
-     *
-     * {@link #redirect}
-     * Redirects to a given URL. The Url can contain URL parameters. Additionally URL encoded Post Parameters can be added via PostParameter. The Method can be GET, POST
-     * Parameter: {string} Method -
-     * Parameter: {string} Url -
-     * Parameter: {string} PostParameter -
-     *
-     * {@link #setHash}
-     * Sets the hash of the pages URL
-     * Parameter: {string} Hash -
-     * Parameter: {bool} SuppressHashChanged - This parmeter has been deprecated and has no effect. The method does not fire any events when used.
-     *
-     * {@link #getHash}
-     * Returns the currently set hash
-     *
-     * {@link #setHashChangedNotification}
-     * Switches the hash change notification on/off if a HashChanged event is bound.
-     * Parameter: {bool} HashChangedNotification - true is 'on', false is 'off'
-     *
-     * {@link #setDirtyMode}
-     * Sets the dirty mode of the page
-     * Parameter: {DirtyMode} Dirty -
-     *
-     * {@link #enableDataLossPopup}
-     * Show browser data loss popup in case of LS is dirty. Default is false.
-     * Parameter: {bool} ShowPopup -
-     *
-     * {@link #setScrollingMode}
-     * Sets the scroll mode for the Page control. For the parameter values see enumeration 'ScrollingMode'. Default is 'NONE' - in this mode no scrollbar viualization is set and the browser default (overflow:inherit) is used.
-     * Parameter: {string} ScrollingMode -
-     *
-     * {@link #setDefaultButtonId}
-     * Changes the DefaultButtonId.
-     * Parameter: {string} DefaultButtonId -
-     *
-     * {@link #addStyle}
-     * Adds a style link to the head of the page.
-     * Parameter: {string} StyleURL - The url for the style
-     * Parameter: {string} StyleContent - The content for the style
-     *
-     * {@link #addScript}
-     * Adds a script to the head of the page.
-     * Parameter: {string} ScriptURL - The url of the script
-     * Parameter: {string} ScriptContent - The optional content of the script
-     * Parameter: {string} CustomAttributes -
-     *
-     * {@link #changeThemeUrl}
-     * Returns the SemanticColor
-     * Parameter: {string} ThemeUrl -
-     *
-     * {@link #addCustomStyleClass}
-     * Adds a custom style class
-     * Parameter: {string} ClassName -
-     *
-     * {@link #removeCustomStyleClass}
-     * Removes a custom style class
-     * Parameter: {string} ClassName -
-     *
-     * {@link #applyCustomStyles}
-     * Adds a given array of custom styles to the page. If the object in the array are CustomStyleObects provided by CustomStyleProvider the classes are generated using less.
-     * Parameter: {string} Id -
-     * Parameter: {string} Styles -
-     *
-     * {@link #setConditionalRules}
-     * Sets the rules to the page that can be used for conditional formatting of controls
-     * Parameter: {string} RuleMap -
-     *
-     * {@link #setConditionalControlMapping}
-     * Sets the controllist and the rules that apply to a control for conditional
-     * Parameter: {string} ControlIdRuleMap -
-     *
-     * {@link #applyConditionalRules}
-     * Triggers apply of a given conditional ruleset
-     *
-     * {@link #applyPositions}
-     * DEPRECATED: Not implemented
-     *
-     * {@link #applyMargins}
-     * DEPRECATED: Not implemented
-     *
-     * {@link #disableContextMenuEvent}
-     * Disables the semantic event for context menus to be sent
-     *
-     * {@link #enableContextMenuEvent}
-     * Enables the semantic event for context menus to be sent
-     *
-     * {@link #setPreunloadUrl}
-     * Sets a Url for a specific session state to be sent via xmlHttpRequest before Unload. ServiceProviderId identifies the eventing service hub.
-     * Parameter: {string} SessionState -
-     * Parameter: {string} Url -
-     * Parameter: {string} ServiceProviderId -
-     *
-     * {@link #setSessionState}
-     * Sets the current session state. The validity parameter defines the validity of the sessionState. For possible values see enumeration SessionStateValidity
-     * Parameter: {string} SessionState -
-     * Parameter: {SessionStateValidity} Validity -
-     *
-     * {@link #sendPreunloadRequest}
-     * Sends the Preunload request.
-     *
-     * {@link #loadLess}
-     * Load less compiler for custom styles
-     *
-     * {@link #setMessageFocusToggleInfo}
-     * Enables toggling Message Area Focus focus with Ctrl+Shift+Alt+M.
-     * Parameter: {string} MessageAreaId - Id of Message Area Control
-     * Parameter: {string} FocusedMessageId - Control Id of the message to focus, if focus is set to a message, otherwise empty
-     * Parameter: {string} TargetFocusInfo - Detailed focus information that was passed with the FocusChange event or the control id to focus.
-     *
-     * {@link #ariaAlertMessage}
-     * Announce messsages in ARIA mode
-     * Parameter: {int} Count - Number of existing messages
-     * Parameter: {int} ErrorCount - Number of existing error messages. Used only if count > 1
-     * Parameter: {int} WarningCount - Number of existing warning messages. Used only if count > 1 and errorCount < 1
-     * Parameter: {string} Text - Text of the message. Used only if count=1
-     * Parameter: {MessageType} Type - Type of the message. Used only if count=1. See MessageType enumeration
-     *
-     * {@link #setAccessibility}
-     * Sets the accessibility mode. It does not influence the server side rendering. It should be set latest on the second roundtrip. ARIA should be enabled for the Page if 508 is false. The page will not be rendered and ARIA attributes will not remove.
-     * Parameter: {string} AccessibilityStd - Accessibility Standard. Supported are ARIA and NONE
-     *
-     * {@link #fileSelect}
-     * Display a file upload dialog and retruns a promise.
-     * Parameter: {string} Options - Options as JSON -  multiple: true/fale, accept: value
-     *
+     * Array of names of transported events.
      * @private
      * @type {string[]}
      */
-    UCF_Page["prototype"]["aMethodNames"] = ['setTitle', 'setHasMargin', 'setBrowserHistory', 'setFocus', 'showModalDialog', 'openModalPopup', 'closePopup', 'closeAllModalPopups', 'openExternalWindow', 'openExternalWindowByPost', 'closeExternalWindow', 'closeWindow', 'setKeepAlive', 'setDragData', 'downloadFile', 'scrollIntoView', 'setDirty', 'print', 'setUnloadUrl', 'redirect', 'setHash', 'getHash', 'setHashChangedNotification', 'setDirtyMode', 'enableDataLossPopup', 'setScrollingMode', 'setDefaultButtonId', 'addStyle', 'addScript', 'changeThemeUrl', 'addCustomStyleClass', 'removeCustomStyleClass', 'applyCustomStyles', 'setConditionalRules', 'setConditionalControlMapping', 'applyConditionalRules', 'applyPositions', 'applyMargins', 'disableContextMenuEvent', 'enableContextMenuEvent', 'setPreunloadUrl', 'setSessionState', 'sendPreunloadRequest', 'loadLess', 'setMessageFocusToggleInfo', 'ariaAlertMessage', 'setAccessibility', 'fileSelect', 'updateEvent', 'addClientListener', 'removeClientListener', 'playAnimation', 'getCustomData', 'sGetCustomData', 'show', 'hide', 'focus', 'oGetParentControl'];
-
-// ===== Default values of the transported parameters =========================
+    UCF_Page["prototype"]["aEventNames"] = ["Help", "ContextMenu", "FocusChange", "Hotkey", "Back", "Scroll", "Request", "Resize", "HashChanged", "DragEnter", "DragLeave", "Initialized"];
 
     /**
-     * Additional ID of the Form for sending of EventQueue
-     *
+     * Array of names of public methods.
      * @private
+     * @type {string[]}
+     */
+    UCF_Page["prototype"]["aMethodNames"] = ["setTitle", "setHasMargin", "setBrowserHistory", "setFocus", "showModalDialog", "openModalPopup", "closePopup", "closeAllModalPopups", "openExternalWindow", "openExternalWindowByPost", "closeExternalWindow", "closeWindow", "setKeepAlive", "setDragData", "downloadFile", "scrollIntoView", "setDirty", "print", "setUnloadUrl", "redirect", "setHash", "getHash", "setHashChangedNotification", "setDirtyMode", "enableDataLossPopup", "setScrollingMode", "setDefaultButtonId", "addStyle", "addScript", "changeThemeUrl", "addCustomStyleClass", "removeCustomStyleClass", "applyCustomStyles", "setConditionalRules", "setConditionalControlMapping", "applyConditionalRules", "applyPositions", "applyMargins", "disableContextMenuEvent", "enableContextMenuEvent", "setPreunloadUrl", "setSessionState", "sendPreunloadRequest", "loadLess", "setMessageFocusToggleInfo", "ariaAlertMessage", "setAccessibility", "fileSelect", "setRole", "updateEvent", "addClientListener", "removeClientListener", "playAnimation", "getCustomData", "sGetCustomData", "show", "hide", "focus", "oGetParentControl"];
+
+    /**
+     *Â @private
      * @type {string}
      */
     UCF_Page["prototype"]["sFormId"] = '';
 
     /**
-     * Sets the scroll mode for the Page control. For the parameter values see enumeration 'ScrollingMode'. Default is 'NONE' - in this mode no scrollbar viualization is set and the browser default (overflow:inherit) is used.
-     *
-     * @private
-     * @type {string}
+     *Â @private
+     * @type {UCF_ClientInterfaces.E.ScrollingMode}
      */
     UCF_Page["prototype"]["sScrollingMode"] = "NONE";
 
     /**
-     * Specifies a hotkeys collection. If hotkeys are specified the container handles the defined hotkeys locally.
-     *
-     * @private
+     *Â @private
      * @type {string}
      */
     UCF_Page["prototype"]["sHotkeysId"] = '';
 
     /**
-     * Allows to control the browser history buttons for back and forward navigation. Default is ENABLED, the buttons are enabled and allow normal browser history access.
-     *
-     * @private
-     * @type {string}
+     *Â @private
+     * @type {UCF_ClientInterfaces.E.BrowserHistory}
      */
     UCF_Page["prototype"]["sBrowserHistory"] = "ENABLED";
 
     /**
-     * Url that is fired at the unload of the page.
-     *
-     * @private
+     *Â @private
      * @type {string}
      */
     UCF_Page["prototype"]["sUnloadUrl"] = '';
 
     /**
-     * The new position of the vertical scroll bar in pixels. The browser doesn't scroll if the event is not attached.
-     *
-     * @private
+     *Â @private
      * @type {number}
      */
     UCF_Page["prototype"]["iScrollTop"] = 0;
 
     /**
-     * The new position of the horizontal scroll bar in pixels.  The browser doesn't scroll if the event is not attached.
-     *
-     * @private
+     *Â @private
      * @type {number}
      */
     UCF_Page["prototype"]["iScrollLeft"] = 0;
 
     /**
-     * Defines the dirty mode of the page. NONE - No Dirty Mode is used. SERVER - The server will set the Dirty Flag explicitly. CLIENTSERVER - The client will set the dirty flag for all events with the markDirty flag set to true and the server can mark the dirty flag explicitly. NONE will be the default.
-     *
-     * @private
-     * @type {string}
+     *Â @private
+     * @type {UCF_ClientInterfaces.E.DirtyMode}
      */
     UCF_Page["prototype"]["sDirtyMode"] = "CLIENTSERVER";
 
     /**
-     * Defines the the page is currently dirty. Use this flag together with the DirtyMode SERVER or CLIENTSERVER
-     *
-     * @private
+     *Â @private
      * @type {boolean}
      */
     UCF_Page["prototype"]["bDirty"] = false;
 
     /**
-     * The hash that was processed by the server.
-     *
-     * @private
+     *Â @private
      * @type {string}
      */
     UCF_Page["prototype"]["sHash"] = '';
 
     /**
-     * Switches the hash change notification on/off if a HashChanged event is bound.
-     *
-     * @private
+     *Â @private
      * @type {boolean}
      */
     UCF_Page["prototype"]["bHashChangedNotification"] = true;
 
     /**
-     * Specifies whether page keeps default event queue. When disabled (false), then the FormId parameter have to specify a valid Form with own event queue
-     *
-     * @private
+     *Â @private
      * @type {boolean}
      */
     UCF_Page["prototype"]["bHasEventQueue"] = true;
 
     /**
-     * Sets the session timeout on the server in seconds for the application. If the value is set, a session timeout warning dialogue will be displayed before the session is destroyed.
-     *
-     * @private
+     *Â @private
      * @type {number}
      */
     UCF_Page["prototype"]["iSessionTimeout"] = 0;
 
     /**
-     * Sets the keepalive URL which can be used to prolong the session timeout on the server. If the url contains the variable $time it will be replaced by the elapsed time since the last user interaction in seconds.
-     *
-     * @private
+     *Â @private
      * @type {string}
      */
     UCF_Page["prototype"]["sSessionKeepAliveUrl"] = '';
 
     /**
-     * This parameter has the default button Id for the Page
-     *
-     * @private
+     *Â @private
      * @type {string}
      */
     UCF_Page["prototype"]["sDefaultButtonId"] = '';
 
     /**
-     * Sets the custom style class for a control.
-     *
-     * @private
+     *Â @private
      * @type {string}
      */
     UCF_Page["prototype"]["sCustomStyle"] = '';
 
     /**
-     * Sets a custom data string that can be retrieved on the client via method sGetCustomData() or getCustomData(sJsonPropertyName) in case it is a JSON string
-     *
-     * @private
+     *Â @private
      * @type {string}
      */
     UCF_Page["prototype"]["sCustomData"] = '';
 
     /**
-     * URL to trigger for the action-button in the session-timeout system-popup. It will be shown instead of the default close-button
-     *
-     * @private
+     *Â @private
      * @type {string}
      */
     UCF_Page["prototype"]["sSessionTimeoutActionUrl"] = '';
 
     /**
-     * The target (like target attribute of a link, e.g. _TOP, _BLANK) for the action URL
-     *
-     * @private
+     *Â @private
      * @type {string}
      */
     UCF_Page["prototype"]["sSessionTimeoutActionTarget"] = '';
 
     /**
-     * The text for the session-timeout action-button
-     *
-     * @private
+     *Â @private
      * @type {string}
      */
     UCF_Page["prototype"]["sSessionTimeoutActionText"] = '';
 
     /**
-     * Once unloadURL is provided the session handling will be synchronous or asynchronous. Default is to use synchronous session handling where possible otherwise asynchronous.
-     *
-     * @private
-     * @type {string}
+     *Â @private
+     * @type {UCF_ClientInterfaces.E.PageSessionHandling}
      */
     UCF_Page["prototype"]["sSessionHandling"] = "DEFAULT";
 
     /**
-     * Determines how to react on timeout events.
-     *
-     * @private
-     * @type {string}
+     *Â @private
+     * @type {UCF_ClientInterfaces.E.SessionTimeoutBehavior}
      */
     UCF_Page["prototype"]["sSessionTimeoutBehavior"] = "PAGE";
 
     /**
-     * The postmessage service called for logging off.
-     *
-     * @private
+     *Â @private
      * @type {string}
      */
     UCF_Page["prototype"]["sSessionLogoutServiceName"] = 'sap.ushell.sessionHandler.logout';
 
     /**
-     * The postmessage service called for extending the session.
-     *
-     * @private
+     *Â @private
      * @type {string}
      */
     UCF_Page["prototype"]["sSessionExtendServiceName"] = 'sap.ushell.sessionHandler.extendSession';
 
+    /**
+     *Â @private
+     * @type {number}
+     */
+    UCF_Page["prototype"]["iSessionTimeoutWarning"] = 0;
 
 //#JSCOVER_EXCL_START
-    /**
-     * Default value setter
-     * @private
-     */
+    /** @protected */
     UCF_Page["prototype"]["setDefaultValues"] = function () {
         ;
         if (__UCF_COVERAGE__) {
@@ -63298,32 +64329,34 @@ UCF_System is not available yet
         this["sSessionTimeoutBehavior"] = "PAGE";
         this["sSessionLogoutServiceName"] = 'sap.ushell.sessionHandler.logout';
         this["sSessionExtendServiceName"] = 'sap.ushell.sessionHandler.extendSession';
+        this["iSessionTimeoutWarning"] = 0;
 
         if (this["getClientControl"]() && !this["bKeepAlive"]) {
-            this["setClientProperty"]('', '', true);
-            this["setClientProperty"]('', "NONE", true);
-            this["setClientProperty"]('', '', true);
-            this["setClientProperty"]('', "ENABLED", true);
-            this["setClientProperty"]('', '', true);
-            this["setClientProperty"]('', 0, true);
-            this["setClientProperty"]('', 0, true);
-            this["setClientProperty"]('', "CLIENTSERVER", true);
-            this["setClientProperty"]('', false, true);
-            this["setClientProperty"]('', '', true);
-            this["setClientProperty"]('', true, true);
-            this["setClientProperty"]('', true, true);
-            this["setClientProperty"]('', 0, true);
-            this["setClientProperty"]('', '', true);
-            this["setClientProperty"]('', '', true);
-            this["setClientProperty"]('', '', true);
-            this["setClientProperty"]('', '', true);
-            this["setClientProperty"]('', '', true);
-            this["setClientProperty"]('', '', true);
-            this["setClientProperty"]('', '', true);
-            this["setClientProperty"]('', "DEFAULT", true);
-            this["setClientProperty"]('', "PAGE", true);
-            this["setClientProperty"]('', 'sap.ushell.sessionHandler.logout', true);
-            this["setClientProperty"]('', 'sap.ushell.sessionHandler.extendSession', true);
+            this["setClientProperty"]("FormId", '', true);
+            this["setClientProperty"]("ScrollingMode", "NONE", true);
+            this["setClientProperty"]("HotkeysId", '', true);
+            this["setClientProperty"]("BrowserHistory", "ENABLED", true);
+            this["setClientProperty"]("UnloadUrl", '', true);
+            this["setClientProperty"]("ScrollTop", 0, true);
+            this["setClientProperty"]("ScrollLeft", 0, true);
+            this["setClientProperty"]("DirtyMode", "CLIENTSERVER", true);
+            this["setClientProperty"]("Dirty", false, true);
+            this["setClientProperty"]("Hash", '', true);
+            this["setClientProperty"]("HashChangedNotification", true, true);
+            this["setClientProperty"]("HasEventQueue", true, true);
+            this["setClientProperty"]("SessionTimeout", 0, true);
+            this["setClientProperty"]("SessionKeepAliveUrl", '', true);
+            this["setClientProperty"]("DefaultButtonId", '', true);
+            this["setClientProperty"]("CustomStyle", '', true);
+            this["setClientProperty"]("CustomData", '', true);
+            this["setClientProperty"]("SessionTimeoutActionUrl", '', true);
+            this["setClientProperty"]("SessionTimeoutActionTarget", '', true);
+            this["setClientProperty"]("SessionTimeoutActionText", '', true);
+            this["setClientProperty"]("SessionHandling", "DEFAULT", true);
+            this["setClientProperty"]("SessionTimeoutBehavior", "PAGE", true);
+            this["setClientProperty"]("SessionLogoutServiceName", 'sap.ushell.sessionHandler.logout', true);
+            this["setClientProperty"]("SessionExtendServiceName", 'sap.ushell.sessionHandler.extendSession', true);
+            this["setClientProperty"]("SessionTimeoutWarning", 0, true);
         }
     };
     ;
@@ -63333,13 +64366,12 @@ UCF_System is not available yet
     ;
 //#JSCOVER_EXCL_STOP
 
+
     /**
-     * Help event (triggered by pressing F1)
-     *
-     * @private
+     * @protected
      * @param {string} sId The Id of the page control
      * @param {string} sControlId The Id of the control where the event occured
-     * @fires Page:Help
+     * @fires Page::Help
      */
     UCF_Page["prototype"]["fireHelp"] = function (sId, sControlId) {
         ;
@@ -63347,45 +64379,43 @@ UCF_System is not available yet
             UCF_Page["_"]["fireHelp"]++;
         }
         ;
-        /** @type {UCF_Control} */
-        var oControl;
         /** @type {{Id: string, ControlId: string}} */
         var mParams;
+        /** @type {UCF_Control} */
+        var oControl;
 
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(arguments["length"] == 2, "arguments.length == 2", "Page.js(3708): fireHelp");
+            UCF_Tracer.assert(arguments["length"] == 2, "arguments.length == 2", "Page.js(3426): fireHelp");
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(sId != null, "sId != null", "Page.js(3709): fireHelp");
+            UCF_Tracer.assert(sId != null, "sId != null", "Page.js(3427): fireHelp");
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(typeof sId === 'string', "typeof sId === 'string'", "Page.js(3710): fireHelp");
+            UCF_Tracer.assert(typeof (sId) == "string", "typeof(sId) == \"string\"", "Page.js(3428): fireHelp");
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(sControlId != null, "sControlId != null", "Page.js(3711): fireHelp");
+            UCF_Tracer.assert(sControlId != null, "sControlId != null", "Page.js(3429): fireHelp");
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(typeof sControlId === 'string', "typeof sControlId === 'string'", "Page.js(3712): fireHelp");
+            UCF_Tracer.assert(typeof (sControlId) == "string", "typeof(sControlId) == \"string\"", "Page.js(3430): fireHelp");
         }
         ;
-
         mParams = {
             "Id": sId,
             "ControlId": sControlId
         };
+
         if (sControlId) {
             oControl = this["oLS"]["oControlFactory"]["oGetControlById"](sControlId);
-
             if (oControl) {
-                oControl["enrichSemanticEventParamsWithBindingContext"](mParams, 'ControlId');
+                oControl["enrichSemanticEventParamsWithBindingContext"](mParams, "ControlId");
             }
         }
-
-        this["fireSemanticEvent"]('Page', 'Help', mParams, false, false, false);
+        this["fireSemanticEvent"]("Page", "Help", mParams, false, false, false);
     };
     ;
     if (__UCF_COVERAGE__) {
@@ -63394,9 +64424,7 @@ UCF_System is not available yet
     ;
 
     /**
-     * Context menu event (triggered by right click, context menu key or Shift-F10)
-     *
-     * @private
+     * @protected
      * @param {string} sId The Id of the page control
      * @param {string} sControlId The Id of the control where the event occured
      * @param {number} iPosX The horizontal position
@@ -63404,7 +64432,7 @@ UCF_System is not available yet
      * @param {boolean} bShift Indicates whether the shift key was pressed when the event occured.
      * @param {boolean} bCtrl Indicates whether the control key was pressed when the event occured.
      * @param {boolean} bAlt Indicates whether the alt key was pressed when the event occured.
-     * @fires Page:ContextMenu
+     * @fires Page::ContextMenu
      */
     UCF_Page["prototype"]["fireContextMenu"] = function (sId, sControlId, iPosX, iPosY, bShift, bCtrl, bAlt) {
         ;
@@ -63412,90 +64440,90 @@ UCF_System is not available yet
             UCF_Page["_"]["fireContextMenu"]++;
         }
         ;
-        /** @type {UCF_Control} */
-        var oControl;
         /** @type {{Id: string, ControlId: string, PosX: number, PosY: number, Shift: boolean, Ctrl: boolean, Alt: boolean}} */
         var mParams;
+        /** @type {UCF_Control} */
+        var oControl;
 
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(arguments["length"] == 7, "arguments.length == 7", "Page.js(3748): fireContextMenu");
+            UCF_Tracer.assert(arguments["length"] == 7, "arguments.length == 7", "Page.js(3462): fireContextMenu");
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(sId != null, "sId != null", "Page.js(3749): fireContextMenu");
+            UCF_Tracer.assert(sId != null, "sId != null", "Page.js(3463): fireContextMenu");
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(typeof sId === 'string', "typeof sId === 'string'", "Page.js(3750): fireContextMenu");
+            UCF_Tracer.assert(typeof (sId) == "string", "typeof(sId) == \"string\"", "Page.js(3464): fireContextMenu");
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(sControlId != null, "sControlId != null", "Page.js(3751): fireContextMenu");
+            UCF_Tracer.assert(sControlId != null, "sControlId != null", "Page.js(3465): fireContextMenu");
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(typeof sControlId === 'string', "typeof sControlId === 'string'", "Page.js(3752): fireContextMenu");
+            UCF_Tracer.assert(typeof (sControlId) == "string", "typeof(sControlId) == \"string\"", "Page.js(3466): fireContextMenu");
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(iPosX != null, "iPosX != null", "Page.js(3753): fireContextMenu");
+            UCF_Tracer.assert(iPosX != null, "iPosX != null", "Page.js(3467): fireContextMenu");
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(typeof iPosX === 'number', "typeof iPosX === 'number'", "Page.js(3754): fireContextMenu");
+            UCF_Tracer.assert(typeof (iPosX) == "number", "typeof(iPosX) == \"number\"", "Page.js(3468): fireContextMenu");
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(iPosY != null, "iPosY != null", "Page.js(3755): fireContextMenu");
+            UCF_Tracer.assert(iPosY != null, "iPosY != null", "Page.js(3469): fireContextMenu");
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(typeof iPosY === 'number', "typeof iPosY === 'number'", "Page.js(3756): fireContextMenu");
+            UCF_Tracer.assert(typeof (iPosY) == "number", "typeof(iPosY) == \"number\"", "Page.js(3470): fireContextMenu");
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(bShift != null, "bShift != null", "Page.js(3757): fireContextMenu");
+            UCF_Tracer.assert(bShift != null, "bShift != null", "Page.js(3471): fireContextMenu");
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(typeof bShift === 'boolean', "typeof bShift === 'boolean'", "Page.js(3758): fireContextMenu");
+            UCF_Tracer.assert(typeof (bShift) == "boolean", "typeof(bShift) == \"boolean\"", "Page.js(3472): fireContextMenu");
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(bCtrl != null, "bCtrl != null", "Page.js(3759): fireContextMenu");
+            UCF_Tracer.assert(bCtrl != null, "bCtrl != null", "Page.js(3473): fireContextMenu");
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(typeof bCtrl === 'boolean', "typeof bCtrl === 'boolean'", "Page.js(3760): fireContextMenu");
+            UCF_Tracer.assert(typeof (bCtrl) == "boolean", "typeof(bCtrl) == \"boolean\"", "Page.js(3474): fireContextMenu");
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(bAlt != null, "bAlt != null", "Page.js(3761): fireContextMenu");
+            UCF_Tracer.assert(bAlt != null, "bAlt != null", "Page.js(3475): fireContextMenu");
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(typeof bAlt === 'boolean', "typeof bAlt === 'boolean'", "Page.js(3762): fireContextMenu");
+            UCF_Tracer.assert(typeof (bAlt) == "boolean", "typeof(bAlt) == \"boolean\"", "Page.js(3476): fireContextMenu");
         }
         ;
-
         mParams = {
             "Id": sId,
             "ControlId": sControlId,
-            "PosX": Math["round"](iPosX),
-            "PosY": Math["round"](iPosY),
+            "PosX": iPosX,
+            "PosY": iPosY,
             "Shift": bShift,
             "Ctrl": bCtrl,
             "Alt": bAlt
         };
+
         if (sControlId) {
             oControl = this["oLS"]["oControlFactory"]["oGetControlById"](sControlId);
-
             if (oControl) {
-                oControl["enrichSemanticEventParamsWithBindingContext"](mParams, 'ControlId');
+                oControl["enrichSemanticEventParamsWithBindingContext"](mParams, "ControlId");
             }
         }
 
-        this["fireSemanticEvent"]('Page', 'ContextMenu', mParams, false, false, false);
+
+        this["fireSemanticEvent"]("Page", "ContextMenu", mParams, false, false, false);
     };
     ;
     if (__UCF_COVERAGE__) {
@@ -63504,14 +64532,12 @@ UCF_System is not available yet
     ;
 
     /**
-     * Fires if the focus moves a another control
-     *
-     * @private
+     * @protected
      * @param {string} sId The control where the event occured
      * @param {string} sControlId The id of the control that got the focus.
      * @param {string} sLastFocusedId The id of the control that had the focus before.
      * @param {string} sFocusInfo Detailed focus information including cursor position and internal control settings. Pass this string to the method setFocus() on the page to the client in order to apply the focus information again after a roundtrip.
-     * @fires Page:FocusChange
+     * @fires Page::FocusChange
      */
     UCF_Page["prototype"]["fireFocusChange"] = function (sId, sControlId, sLastFocusedId, sFocusInfo) {
         ;
@@ -63519,70 +64545,68 @@ UCF_System is not available yet
             UCF_Page["_"]["fireFocusChange"]++;
         }
         ;
-        /** @type {UCF_Control} */
-        var oControl;
         /** @type {{Id: string, ControlId: string, LastFocusedId: string, FocusInfo: string}} */
         var mParams;
+        /** @type {UCF_Control} */
+        var oControl;
 
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(arguments["length"] == 4, "arguments.length == 4", "Page.js(3800): fireFocusChange");
+            UCF_Tracer.assert(arguments["length"] == 4, "arguments.length == 4", "Page.js(3515): fireFocusChange");
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(sId != null, "sId != null", "Page.js(3801): fireFocusChange");
+            UCF_Tracer.assert(sId != null, "sId != null", "Page.js(3516): fireFocusChange");
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(typeof sId === 'string', "typeof sId === 'string'", "Page.js(3802): fireFocusChange");
+            UCF_Tracer.assert(typeof (sId) == "string", "typeof(sId) == \"string\"", "Page.js(3517): fireFocusChange");
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(sControlId != null, "sControlId != null", "Page.js(3803): fireFocusChange");
+            UCF_Tracer.assert(sControlId != null, "sControlId != null", "Page.js(3518): fireFocusChange");
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(typeof sControlId === 'string', "typeof sControlId === 'string'", "Page.js(3804): fireFocusChange");
+            UCF_Tracer.assert(typeof (sControlId) == "string", "typeof(sControlId) == \"string\"", "Page.js(3519): fireFocusChange");
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(sLastFocusedId != null, "sLastFocusedId != null", "Page.js(3805): fireFocusChange");
+            UCF_Tracer.assert(sLastFocusedId != null, "sLastFocusedId != null", "Page.js(3520): fireFocusChange");
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(typeof sLastFocusedId === 'string', "typeof sLastFocusedId === 'string'", "Page.js(3806): fireFocusChange");
+            UCF_Tracer.assert(typeof (sLastFocusedId) == "string", "typeof(sLastFocusedId) == \"string\"", "Page.js(3521): fireFocusChange");
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(sFocusInfo != null, "sFocusInfo != null", "Page.js(3807): fireFocusChange");
+            UCF_Tracer.assert(sFocusInfo != null, "sFocusInfo != null", "Page.js(3522): fireFocusChange");
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(typeof sFocusInfo === 'string', "typeof sFocusInfo === 'string'", "Page.js(3808): fireFocusChange");
+            UCF_Tracer.assert(typeof (sFocusInfo) == "string", "typeof(sFocusInfo) == \"string\"", "Page.js(3523): fireFocusChange");
         }
         ;
-
         mParams = {
             "Id": sId,
             "ControlId": sControlId,
             "LastFocusedId": sLastFocusedId,
             "FocusInfo": sFocusInfo
         };
+
         if (sControlId) {
             oControl = this["oLS"]["oControlFactory"]["oGetControlById"](sControlId);
-
             if (oControl) {
-                oControl["enrichSemanticEventParamsWithBindingContext"](mParams, 'ControlId');
+                oControl["enrichSemanticEventParamsWithBindingContext"](mParams, "ControlId");
             }
         }
         if (sLastFocusedId) {
             oControl = this["oLS"]["oControlFactory"]["oGetControlById"](sLastFocusedId);
-
             if (oControl) {
-                oControl["enrichSemanticEventParamsWithBindingContext"](mParams, 'LastFocusedId');
+                oControl["enrichSemanticEventParamsWithBindingContext"](mParams, "LastFocusedId");
             }
         }
 
-        this["fireSemanticEvent"]('Page', 'FocusChange', mParams, false, false, false);
+        this["fireSemanticEvent"]("Page", "FocusChange", mParams, false, false, false);
     };
     ;
     if (__UCF_COVERAGE__) {
@@ -63591,14 +64615,12 @@ UCF_System is not available yet
     ;
 
     /**
-     * Event fires when a hotkey occurs which is specified in the Hotkeys collection with the parameter HotkeysId.
-     *
-     * @private
+     * @protected
      * @param {string} sId Identifier of the control
-     * @param {string} sHotkey The fired hotkey
+     * @param {UCF_ClientInterfaces.E.HotkeyValue} sHotkey The fired hotkey
      * @param {string} sProviderId ID of the hotkey provider
      * @param {string} sControlId The Id of the control where the event occured
-     * @fires Page:Hotkey
+     * @fires Page::Hotkey
      */
     UCF_Page["prototype"]["fireHotkey"] = function (sId, sHotkey, sProviderId, sControlId) {
         ;
@@ -63606,63 +64628,62 @@ UCF_System is not available yet
             UCF_Page["_"]["fireHotkey"]++;
         }
         ;
+        /** @type {{Id: string, Hotkey: UCF_ClientInterfaces.E.HotkeyValue, ProviderId: string, ControlId: string}} */
+        var mParams;
         /** @type {UCF_Control} */
         var oControl;
-        /** @type {{Id: string, Hotkey: string, ProviderId: string, ControlId: string}} */
-        var mParams;
 
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(arguments["length"] == 4, "arguments.length == 4", "Page.js(3850): fireHotkey");
+            UCF_Tracer.assert(arguments["length"] == 4, "arguments.length == 4", "Page.js(3561): fireHotkey");
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(sId != null, "sId != null", "Page.js(3851): fireHotkey");
+            UCF_Tracer.assert(sId != null, "sId != null", "Page.js(3562): fireHotkey");
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(typeof sId === 'string', "typeof sId === 'string'", "Page.js(3852): fireHotkey");
+            UCF_Tracer.assert(typeof (sId) == "string", "typeof(sId) == \"string\"", "Page.js(3563): fireHotkey");
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(sHotkey != null, "sHotkey != null", "Page.js(3853): fireHotkey");
+            UCF_Tracer.assert(sHotkey != null, "sHotkey != null", "Page.js(3564): fireHotkey");
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(typeof sHotkey === 'string', "typeof sHotkey === 'string'", "Page.js(3854): fireHotkey");
+            UCF_Tracer.assert(typeof (sHotkey) == "string", "typeof(sHotkey) == \"string\"", "Page.js(3565): fireHotkey");
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(sProviderId != null, "sProviderId != null", "Page.js(3855): fireHotkey");
+            UCF_Tracer.assert(sProviderId != null, "sProviderId != null", "Page.js(3566): fireHotkey");
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(typeof sProviderId === 'string', "typeof sProviderId === 'string'", "Page.js(3856): fireHotkey");
+            UCF_Tracer.assert(typeof (sProviderId) == "string", "typeof(sProviderId) == \"string\"", "Page.js(3567): fireHotkey");
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(sControlId != null, "sControlId != null", "Page.js(3857): fireHotkey");
+            UCF_Tracer.assert(sControlId != null, "sControlId != null", "Page.js(3568): fireHotkey");
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(typeof sControlId === 'string', "typeof sControlId === 'string'", "Page.js(3858): fireHotkey");
+            UCF_Tracer.assert(typeof (sControlId) == "string", "typeof(sControlId) == \"string\"", "Page.js(3569): fireHotkey");
         }
         ;
-
         mParams = {
             "Id": sId,
             "Hotkey": sHotkey,
             "ProviderId": sProviderId,
             "ControlId": sControlId
         };
+
+
         if (sControlId) {
             oControl = this["oLS"]["oControlFactory"]["oGetControlById"](sControlId);
-
             if (oControl) {
-                oControl["enrichSemanticEventParamsWithBindingContext"](mParams, 'ControlId');
+                oControl["enrichSemanticEventParamsWithBindingContext"](mParams, "ControlId");
             }
         }
-
-        this["fireSemanticEvent"]('Page', 'Hotkey', mParams, false, false, false);
+        this["fireSemanticEvent"]("Page", "Hotkey", mParams, false, false, false);
     };
     ;
     if (__UCF_COVERAGE__) {
@@ -63671,11 +64692,9 @@ UCF_System is not available yet
     ;
 
     /**
-     * Event fires if the user hits the back button of the browser history
-     *
-     * @private
+     * @protected
      * @param {string} sId The Id of the page control
-     * @fires Page:Back
+     * @fires Page::Back
      */
     UCF_Page["prototype"]["fireBack"] = function (sId) {
         ;
@@ -63683,29 +64702,26 @@ UCF_System is not available yet
             UCF_Page["_"]["fireBack"]++;
         }
         ;
-        /** @type {UCF_Control} */
-        var oControl;
         /** @type {{Id: string}} */
         var mParams;
 
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(arguments["length"] == 1, "arguments.length == 1", "Page.js(3890): fireBack");
+            UCF_Tracer.assert(arguments["length"] == 1, "arguments.length == 1", "Page.js(3597): fireBack");
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(sId != null, "sId != null", "Page.js(3891): fireBack");
+            UCF_Tracer.assert(sId != null, "sId != null", "Page.js(3598): fireBack");
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(typeof sId === 'string', "typeof sId === 'string'", "Page.js(3892): fireBack");
+            UCF_Tracer.assert(typeof (sId) == "string", "typeof(sId) == \"string\"", "Page.js(3599): fireBack");
         }
         ;
-
         mParams = {
             "Id": sId
         };
 
-        this["fireSemanticEvent"]('Page', 'Back', mParams, false, false, false);
+        this["fireSemanticEvent"]("Page", "Back", mParams, false, false, false);
     };
     ;
     if (__UCF_COVERAGE__) {
@@ -63714,13 +64730,11 @@ UCF_System is not available yet
     ;
 
     /**
-     * Event fires when the user scrolls either vertically or horizontally.
-     *
-     * @private
+     * @protected
      * @param {string} sId Identifier of the control
      * @param {number} iScrollTop The new position of the vertical scroll bar in pixels.
      * @param {number} iScrollLeft The new position of the horizontal scroll bar in pixels.
-     * @fires Page:Scroll
+     * @fires Page::Scroll
      */
     UCF_Page["prototype"]["fireScroll"] = function (sId, iScrollTop, iScrollLeft) {
         ;
@@ -63728,47 +64742,45 @@ UCF_System is not available yet
             UCF_Page["_"]["fireScroll"]++;
         }
         ;
-        /** @type {UCF_Control} */
-        var oControl;
         /** @type {{Id: string, ScrollTop: number, ScrollLeft: number}} */
         var mParams;
 
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(arguments["length"] == 3, "arguments.length == 3", "Page.js(3916): fireScroll");
+            UCF_Tracer.assert(arguments["length"] == 3, "arguments.length == 3", "Page.js(3618): fireScroll");
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(sId != null, "sId != null", "Page.js(3917): fireScroll");
+            UCF_Tracer.assert(sId != null, "sId != null", "Page.js(3619): fireScroll");
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(typeof sId === 'string', "typeof sId === 'string'", "Page.js(3918): fireScroll");
+            UCF_Tracer.assert(typeof (sId) == "string", "typeof(sId) == \"string\"", "Page.js(3620): fireScroll");
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(iScrollTop != null, "iScrollTop != null", "Page.js(3919): fireScroll");
+            UCF_Tracer.assert(iScrollTop != null, "iScrollTop != null", "Page.js(3621): fireScroll");
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(typeof iScrollTop === 'number', "typeof iScrollTop === 'number'", "Page.js(3920): fireScroll");
+            UCF_Tracer.assert(typeof (iScrollTop) == "number", "typeof(iScrollTop) == \"number\"", "Page.js(3622): fireScroll");
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(iScrollLeft != null, "iScrollLeft != null", "Page.js(3921): fireScroll");
+            UCF_Tracer.assert(iScrollLeft != null, "iScrollLeft != null", "Page.js(3623): fireScroll");
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(typeof iScrollLeft === 'number', "typeof iScrollLeft === 'number'", "Page.js(3922): fireScroll");
+            UCF_Tracer.assert(typeof (iScrollLeft) == "number", "typeof(iScrollLeft) == \"number\"", "Page.js(3624): fireScroll");
         }
         ;
-
         mParams = {
             "Id": sId,
-            "ScrollTop": Math["round"](iScrollTop),
-            "ScrollLeft": Math["round"](iScrollLeft)
+            "ScrollTop": iScrollTop,
+            "ScrollLeft": iScrollLeft
         };
 
-        this["fireSemanticEvent"]('Page', 'Scroll', mParams, false, false, false);
+
+        this["fireSemanticEvent"]("Page", "Scroll", mParams, false, false, false);
     };
     ;
     if (__UCF_COVERAGE__) {
@@ -63777,16 +64789,14 @@ UCF_System is not available yet
     ;
 
     /**
-     * Event fires if a request is send to the server
-     *
-     * @private
+     * @protected
      * @param {string} sId Identifier of the page control
      * @param {boolean} bAsync Determines whether the request is sent synchronously (false,default) or asynchronously(true)
      * @param {string} sFocusInfo Detailed focus information including cursor position and internal control settings. Pass this string to the method setFocus() on the page to the client in order to apply the focus information again after a roundtrip.
      * @param {string} sHash Hash part of the current URL
      * @param {boolean} bDomChanged Determines whether the client side browser dom was changed on the client by a user interaction after the last request.
      * @param {boolean} bIsDirty Deterimines the current value of Dirty Flag needed for WorkProtect feature.
-     * @fires Page:Request
+     * @fires Page::Request
      */
     UCF_Page["prototype"]["fireRequest"] = function (sId, bAsync, sFocusInfo, sHash, bDomChanged, bIsDirty) {
         ;
@@ -63794,64 +64804,61 @@ UCF_System is not available yet
             UCF_Page["_"]["fireRequest"]++;
         }
         ;
-        /** @type {UCF_Control} */
-        var oControl;
         /** @type {{Id: string, Async: boolean, FocusInfo: string, Hash: string, DomChanged: boolean, IsDirty: boolean}} */
         var mParams;
 
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(arguments["length"] == 6, "arguments.length == 6", "Page.js(3951): fireRequest");
+            UCF_Tracer.assert(arguments["length"] == 6, "arguments.length == 6", "Page.js(3650): fireRequest");
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(sId != null, "sId != null", "Page.js(3952): fireRequest");
+            UCF_Tracer.assert(sId != null, "sId != null", "Page.js(3651): fireRequest");
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(typeof sId === 'string', "typeof sId === 'string'", "Page.js(3953): fireRequest");
+            UCF_Tracer.assert(typeof (sId) == "string", "typeof(sId) == \"string\"", "Page.js(3652): fireRequest");
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(bAsync != null, "bAsync != null", "Page.js(3954): fireRequest");
+            UCF_Tracer.assert(bAsync != null, "bAsync != null", "Page.js(3653): fireRequest");
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(typeof bAsync === 'boolean', "typeof bAsync === 'boolean'", "Page.js(3955): fireRequest");
+            UCF_Tracer.assert(typeof (bAsync) == "boolean", "typeof(bAsync) == \"boolean\"", "Page.js(3654): fireRequest");
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(sFocusInfo != null, "sFocusInfo != null", "Page.js(3956): fireRequest");
+            UCF_Tracer.assert(sFocusInfo != null, "sFocusInfo != null", "Page.js(3655): fireRequest");
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(typeof sFocusInfo === 'string', "typeof sFocusInfo === 'string'", "Page.js(3957): fireRequest");
+            UCF_Tracer.assert(typeof (sFocusInfo) == "string", "typeof(sFocusInfo) == \"string\"", "Page.js(3656): fireRequest");
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(sHash != null, "sHash != null", "Page.js(3958): fireRequest");
+            UCF_Tracer.assert(sHash != null, "sHash != null", "Page.js(3657): fireRequest");
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(typeof sHash === 'string', "typeof sHash === 'string'", "Page.js(3959): fireRequest");
+            UCF_Tracer.assert(typeof (sHash) == "string", "typeof(sHash) == \"string\"", "Page.js(3658): fireRequest");
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(bDomChanged != null, "bDomChanged != null", "Page.js(3960): fireRequest");
+            UCF_Tracer.assert(bDomChanged != null, "bDomChanged != null", "Page.js(3659): fireRequest");
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(typeof bDomChanged === 'boolean', "typeof bDomChanged === 'boolean'", "Page.js(3961): fireRequest");
+            UCF_Tracer.assert(typeof (bDomChanged) == "boolean", "typeof(bDomChanged) == \"boolean\"", "Page.js(3660): fireRequest");
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(bIsDirty != null, "bIsDirty != null", "Page.js(3962): fireRequest");
+            UCF_Tracer.assert(bIsDirty != null, "bIsDirty != null", "Page.js(3661): fireRequest");
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(typeof bIsDirty === 'boolean', "typeof bIsDirty === 'boolean'", "Page.js(3963): fireRequest");
+            UCF_Tracer.assert(typeof (bIsDirty) == "boolean", "typeof(bIsDirty) == \"boolean\"", "Page.js(3662): fireRequest");
         }
         ;
-
         mParams = {
             "Id": sId,
             "Async": bAsync,
@@ -63861,7 +64868,8 @@ UCF_System is not available yet
             "IsDirty": bIsDirty
         };
 
-        this["fireSemanticEvent"]('Page', 'Request', mParams, false, false, false);
+
+        this["fireSemanticEvent"]("Page", "Request", mParams, false, false, false);
     };
     ;
     if (__UCF_COVERAGE__) {
@@ -63870,13 +64878,11 @@ UCF_System is not available yet
     ;
 
     /**
-     * Event fires when the window was resized and this causes a resize of the page
-     *
-     * @private
+     * @protected
      * @param {string} sId Identifier of the control
      * @param {number} iWidth Width after the resize operation
      * @param {number} iHeight Height after the resize operation
-     * @fires Page:Resize
+     * @fires Page::Resize
      */
     UCF_Page["prototype"]["fireResize"] = function (sId, iWidth, iHeight) {
         ;
@@ -63884,47 +64890,45 @@ UCF_System is not available yet
             UCF_Page["_"]["fireResize"]++;
         }
         ;
-        /** @type {UCF_Control} */
-        var oControl;
         /** @type {{Id: string, Width: number, Height: number}} */
         var mParams;
 
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(arguments["length"] == 3, "arguments.length == 3", "Page.js(3992): fireResize");
+            UCF_Tracer.assert(arguments["length"] == 3, "arguments.length == 3", "Page.js(3691): fireResize");
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(sId != null, "sId != null", "Page.js(3993): fireResize");
+            UCF_Tracer.assert(sId != null, "sId != null", "Page.js(3692): fireResize");
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(typeof sId === 'string', "typeof sId === 'string'", "Page.js(3994): fireResize");
+            UCF_Tracer.assert(typeof (sId) == "string", "typeof(sId) == \"string\"", "Page.js(3693): fireResize");
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(iWidth != null, "iWidth != null", "Page.js(3995): fireResize");
+            UCF_Tracer.assert(iWidth != null, "iWidth != null", "Page.js(3694): fireResize");
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(typeof iWidth === 'number', "typeof iWidth === 'number'", "Page.js(3996): fireResize");
+            UCF_Tracer.assert(typeof (iWidth) == "number", "typeof(iWidth) == \"number\"", "Page.js(3695): fireResize");
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(iHeight != null, "iHeight != null", "Page.js(3997): fireResize");
+            UCF_Tracer.assert(iHeight != null, "iHeight != null", "Page.js(3696): fireResize");
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(typeof iHeight === 'number', "typeof iHeight === 'number'", "Page.js(3998): fireResize");
+            UCF_Tracer.assert(typeof (iHeight) == "number", "typeof(iHeight) == \"number\"", "Page.js(3697): fireResize");
         }
         ;
-
         mParams = {
             "Id": sId,
-            "Width": Math["round"](iWidth),
-            "Height": Math["round"](iHeight)
+            "Width": iWidth,
+            "Height": iHeight
         };
 
-        this["fireSemanticEvent"]('Page', 'Resize', mParams, false, false, false);
+
+        this["fireSemanticEvent"]("Page", "Resize", mParams, false, false, false);
     };
     ;
     if (__UCF_COVERAGE__) {
@@ -63933,13 +64937,11 @@ UCF_System is not available yet
     ;
 
     /**
-     * Fires if the location hash changed
-     *
-     * @private
+     * @protected
      * @param {string} sId Identifier of the control.
      * @param {string} sHash The new hash of the page.
      * @param {string} sPreviousHash The old hash of the page.
-     * @fires Page:HashChanged
+     * @fires Page::HashChanged
      */
     UCF_Page["prototype"]["fireHashChanged"] = function (sId, sHash, sPreviousHash) {
         ;
@@ -63947,47 +64949,45 @@ UCF_System is not available yet
             UCF_Page["_"]["fireHashChanged"]++;
         }
         ;
-        /** @type {UCF_Control} */
-        var oControl;
         /** @type {{Id: string, Hash: string, PreviousHash: string}} */
         var mParams;
 
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(arguments["length"] == 3, "arguments.length == 3", "Page.js(4024): fireHashChanged");
+            UCF_Tracer.assert(arguments["length"] == 3, "arguments.length == 3", "Page.js(3720): fireHashChanged");
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(sId != null, "sId != null", "Page.js(4025): fireHashChanged");
+            UCF_Tracer.assert(sId != null, "sId != null", "Page.js(3721): fireHashChanged");
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(typeof sId === 'string', "typeof sId === 'string'", "Page.js(4026): fireHashChanged");
+            UCF_Tracer.assert(typeof (sId) == "string", "typeof(sId) == \"string\"", "Page.js(3722): fireHashChanged");
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(sHash != null, "sHash != null", "Page.js(4027): fireHashChanged");
+            UCF_Tracer.assert(sHash != null, "sHash != null", "Page.js(3723): fireHashChanged");
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(typeof sHash === 'string', "typeof sHash === 'string'", "Page.js(4028): fireHashChanged");
+            UCF_Tracer.assert(typeof (sHash) == "string", "typeof(sHash) == \"string\"", "Page.js(3724): fireHashChanged");
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(sPreviousHash != null, "sPreviousHash != null", "Page.js(4029): fireHashChanged");
+            UCF_Tracer.assert(sPreviousHash != null, "sPreviousHash != null", "Page.js(3725): fireHashChanged");
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(typeof sPreviousHash === 'string', "typeof sPreviousHash === 'string'", "Page.js(4030): fireHashChanged");
+            UCF_Tracer.assert(typeof (sPreviousHash) == "string", "typeof(sPreviousHash) == \"string\"", "Page.js(3726): fireHashChanged");
         }
         ;
-
         mParams = {
             "Id": sId,
             "Hash": sHash,
             "PreviousHash": sPreviousHash
         };
 
-        this["fireSemanticEvent"]('Page', 'HashChanged', mParams, false, true, false);
+
+        this["fireSemanticEvent"]("Page", "HashChanged", mParams, false, true, false);
     };
     ;
     if (__UCF_COVERAGE__) {
@@ -63996,11 +64996,9 @@ UCF_System is not available yet
     ;
 
     /**
-     * Event fires if the dragged element enters the page
-     *
-     * @private
+     * @protected
      * @param {string} sId Identifier of the control.
-     * @fires Page:DragEnter
+     * @fires Page::DragEnter
      */
     UCF_Page["prototype"]["fireDragEnter"] = function (sId) {
         ;
@@ -64008,29 +65006,26 @@ UCF_System is not available yet
             UCF_Page["_"]["fireDragEnter"]++;
         }
         ;
-        /** @type {UCF_Control} */
-        var oControl;
         /** @type {{Id: string}} */
         var mParams;
 
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(arguments["length"] == 1, "arguments.length == 1", "Page.js(4054): fireDragEnter");
+            UCF_Tracer.assert(arguments["length"] == 1, "arguments.length == 1", "Page.js(3747): fireDragEnter");
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(sId != null, "sId != null", "Page.js(4055): fireDragEnter");
+            UCF_Tracer.assert(sId != null, "sId != null", "Page.js(3748): fireDragEnter");
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(typeof sId === 'string', "typeof sId === 'string'", "Page.js(4056): fireDragEnter");
+            UCF_Tracer.assert(typeof (sId) == "string", "typeof(sId) == \"string\"", "Page.js(3749): fireDragEnter");
         }
         ;
-
         mParams = {
             "Id": sId
         };
 
-        this["fireSemanticEvent"]('Page', 'DragEnter', mParams, false, false, false);
+        this["fireSemanticEvent"]("Page", "DragEnter", mParams, false, false, false);
     };
     ;
     if (__UCF_COVERAGE__) {
@@ -64039,11 +65034,9 @@ UCF_System is not available yet
     ;
 
     /**
-     * Event fires if the dragged element leaves the page
-     *
-     * @private
+     * @protected
      * @param {string} sId Identifier of the control.
-     * @fires Page:DragLeave
+     * @fires Page::DragLeave
      */
     UCF_Page["prototype"]["fireDragLeave"] = function (sId) {
         ;
@@ -64051,29 +65044,26 @@ UCF_System is not available yet
             UCF_Page["_"]["fireDragLeave"]++;
         }
         ;
-        /** @type {UCF_Control} */
-        var oControl;
         /** @type {{Id: string}} */
         var mParams;
 
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(arguments["length"] == 1, "arguments.length == 1", "Page.js(4078): fireDragLeave");
+            UCF_Tracer.assert(arguments["length"] == 1, "arguments.length == 1", "Page.js(3766): fireDragLeave");
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(sId != null, "sId != null", "Page.js(4079): fireDragLeave");
+            UCF_Tracer.assert(sId != null, "sId != null", "Page.js(3767): fireDragLeave");
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(typeof sId === 'string', "typeof sId === 'string'", "Page.js(4080): fireDragLeave");
+            UCF_Tracer.assert(typeof (sId) == "string", "typeof(sId) == \"string\"", "Page.js(3768): fireDragLeave");
         }
         ;
-
         mParams = {
             "Id": sId
         };
 
-        this["fireSemanticEvent"]('Page', 'DragLeave', mParams, false, false, false);
+        this["fireSemanticEvent"]("Page", "DragLeave", mParams, false, false, false);
     };
     ;
     if (__UCF_COVERAGE__) {
@@ -64082,11 +65072,9 @@ UCF_System is not available yet
     ;
 
     /**
-     * Fires if the page has been initialized
-     *
-     * @private
+     * @protected
      * @param {string} sId The control where the event occured
-     * @fires Page:Initialized
+     * @fires Page::Initialized
      */
     UCF_Page["prototype"]["fireInitialized"] = function (sId) {
         ;
@@ -64094,29 +65082,26 @@ UCF_System is not available yet
             UCF_Page["_"]["fireInitialized"]++;
         }
         ;
-        /** @type {UCF_Control} */
-        var oControl;
         /** @type {{Id: string}} */
         var mParams;
 
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(arguments["length"] == 1, "arguments.length == 1", "Page.js(4102): fireInitialized");
+            UCF_Tracer.assert(arguments["length"] == 1, "arguments.length == 1", "Page.js(3785): fireInitialized");
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(sId != null, "sId != null", "Page.js(4103): fireInitialized");
+            UCF_Tracer.assert(sId != null, "sId != null", "Page.js(3786): fireInitialized");
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(typeof sId === 'string', "typeof sId === 'string'", "Page.js(4104): fireInitialized");
+            UCF_Tracer.assert(typeof (sId) == "string", "typeof(sId) == \"string\"", "Page.js(3787): fireInitialized");
         }
         ;
-
         mParams = {
             "Id": sId
         };
 
-        this["fireSemanticEvent"]('Page', 'Initialized', mParams, false, false, false);
+        this["fireSemanticEvent"]("Page", "Initialized", mParams, false, false, false);
     };
     ;
     if (__UCF_COVERAGE__) {
@@ -64124,7 +65109,7 @@ UCF_System is not available yet
     }
     ;
 
-    UCF_Page.prototype["aPublicMethods"] = ["setPreunloadUrl", "setSessionState", "disableContextMenuEvent", "enableContextMenuEvent", "setScrollPosition", "setTitle", "setHasMargin", "openModalPopup", "closePopup", "closeAllModalPopups", "openExternalWindow", "openExternalWindowByPost", "closeExternalWindow", "closeWindow", "setFocus", "setKeepAlive", "addStyle", "addScript", "setDragData", "downloadFile", "fileSelect", "scrollIntoView", "setDirty", "print", "setUnloadUrl", "redirect", "setDirtyMode", "setBrowserHistory", "setHash", "getHash", "setHashChangedNotification", "setScrollingMode", "sGetScrollingMode", "changeThemeUrl", "addCustomStyleClass", "removeCustomStyleClass", "applyCustomStyles", "loadLess", "setConditionalRules", "setConditionalControlMapping", "applyConditionalRules", "setDefaultButtonId", "updateModel", "ariaAlertMessage", "setMessageFocusToggleInfo", "setAccessibility", "bIsPageVisualizeAccesskeysEnabled"].concat(UCF_Page.prototype.aPublicMethods || []);
+    UCF_Page.prototype["aPublicMethods"] = ["setPreunloadUrl", "setSessionState", "disableContextMenuEvent", "enableContextMenuEvent", "setScrollPosition", "setTitle", "setRole", "setHasMargin", "openModalPopup", "closePopup", "closeAllModalPopups", "openExternalWindow", "openExternalWindowByPost", "closeExternalWindow", "closeWindow", "setFocus", "setKeepAlive", "addStyle", "addScript", "setDragData", "downloadFile", "fileSelect", "scrollIntoView", "setDirty", "print", "setUnloadUrl", "redirect", "setDirtyMode", "setBrowserHistory", "setHash", "getHash", "setHashChangedNotification", "setScrollingMode", "sGetScrollingMode", "changeThemeUrl", "addCustomStyleClass", "removeCustomStyleClass", "applyCustomStyles", "loadLess", "setConditionalRules", "setConditionalControlMapping", "applyConditionalRules", "setDefaultButtonId", "updateModel", "ariaAlertMessage", "setMessageFocusToggleInfo", "setAccessibility"].concat(UCF_Page.prototype.aPublicMethods || []);
     /* global UCF_Exception */
 
 /// <reference path="./Exception.js"/>
@@ -64143,8 +65128,8 @@ UCF_System is not available yet
         ;
         if (arguments["length"] === 0) return;
 
-        this["name"] = "ParseException"; // eslint-disable-line ur/no-memory-leaks
-        this["message"] = message;       // eslint-disable-line ur/no-memory-leaks
+        this["name"] = "ParseException"; // eslint-disable-line @ur/no-memory-leaks
+        this["message"] = message;       // eslint-disable-line @ur/no-memory-leaks
     };window["UCF_ParseException"] = UCF_ParseException;
     ;
     if (__UCF_COVERAGE__) {
@@ -65166,61 +66151,41 @@ UCF_System is not available yet
 
     UCF_Property["prototype"] = new (UCF_ClassLoader["oGetClass"]("UCF_ControlInfo"))();
     UCF_Property.prototype["sClassName"] = "UCF_Property";
-
-// =============================================================================
-// Copyright 2009 - SAP - NW UI F. All rights reserved. SAP
-// PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
-// =============================================================================
-
     /**
-     * Array of names of transported parameters/attributes (clientaccess defined). In the current control:
-     * - {@link #sKey}
-     * - {@link #sValue}
+     * Array of names of transported names/attributes (clientaccess defined).
      * @private
      * @type {string[]}
      */
-    UCF_Property["prototype"]["aAttributeNames"] = ['sKey', 'sValue'];
+    UCF_Property["prototype"]["aAttributeNames"] = ["sKey", "sValue"];
 
     /**
-     * Array of names of events of the control:
+     * Array of names of transported events.
+     * @private
      * @type {string[]}
      */
     UCF_Property["prototype"]["aEventNames"] = [];
 
     /**
-     * Array of names of public methods of the control - public control API are:
-     *
-     * no public API available
-     *
+     * Array of names of public methods.
      * @private
      * @type {string[]}
      */
-    UCF_Property["prototype"]["aMethodNames"] = [, 'updateEvent', 'addClientListener', 'removeClientListener', 'playAnimation', 'getCustomData', 'sGetCustomData', 'show', 'hide', 'focus', 'oGetParentControl'];
-
-// ===== Default values of the transported parameters =========================
+    UCF_Property["prototype"]["aMethodNames"] = [];
 
     /**
-     *
-     *
-     * @private
+     *Â @private
      * @type {string}
      */
     UCF_Property["prototype"]["sKey"] = '';
 
     /**
-     *
-     *
-     * @private
+     *Â @private
      * @type {string}
      */
     UCF_Property["prototype"]["sValue"] = '';
 
-
 //#JSCOVER_EXCL_START
-    /**
-     * Default value setter
-     * @private
-     */
+    /** @protected */
     UCF_Property["prototype"]["setDefaultValues"] = function () {
         ;
         if (__UCF_COVERAGE__) {
@@ -65231,8 +66196,8 @@ UCF_System is not available yet
         this["sValue"] = '';
 
         if (this["getClientControl"]() && !this["bKeepAlive"]) {
-            this["setClientProperty"]('', '', true);
-            this["setClientProperty"]('', '', true);
+            this["setClientProperty"]("Key", '', true);
+            this["setClientProperty"]("Value", '', true);
         }
     };
     ;
@@ -65254,6 +66219,8 @@ UCF_System is not available yet
 /// <reference path="./ResourceUtil.js"/>
     /* global UCF_System */
 /// <reference path="./System.js"/>
+    /* global UCF_DomUtil */
+/// <reference path="../../core/util/DomUtil.js"/>
 
     /**
      * @typedef {Object} UCF_RenderManager_Renderer
@@ -65432,7 +66399,7 @@ UCF_System is not available yet
                 oRenderer["render"](oRenderInfo, this);
             } else {
                 if (__UCF_TRACE__) {
-                    UCF_Tracer.trace(ERROR, 'Class ' + sClassName + ' could not be loaded.', "RenderManager.js(142): renderControl");
+                    UCF_Tracer.trace(ERROR, 'Class ' + sClassName + ' could not be loaded.', "RenderManager.js(144): renderControl");
                 }
                 ;
 
@@ -65442,9 +66409,7 @@ UCF_System is not available yet
 
         if (oDomRef) {
             oDomElement = document["createElement"]('DIV');
-
-            // eslint-disable-next-line no-unsanitized/property
-            oDomElement["innerHTML"] = this["getHTMLString"]();
+            UCF_DomUtil["setInnerHtml"](oDomElement, this["getHTMLString"]());
 
             oControlDomRef = oDomElement["firstChild"];
             if (oControlDomRef) {
@@ -65520,8 +66485,7 @@ UCF_System is not available yet
         this["resetInitializeIds"]();
         this["oLS"]["oBrowserWindow"]["notifyLayoutChangeFrom"](
             null,
-            'UCF_RenderManager',
-            {"sRenderedControlId": sRenderedControlId}
+            'UCF_RenderManager', {"sRenderedControlId": sRenderedControlId}
         );
 
         if (oControlTree) {
@@ -65622,7 +66586,7 @@ UCF_System is not available yet
                 sId + '" called by ' + s;
 
             if (__UCF_TRACE__) {
-                UCF_Tracer.trace(ERROR, sError, "RenderManager.js(279): addInitializeId");
+                UCF_Tracer.trace(ERROR, sError, "RenderManager.js(278): addInitializeId");
             }
             ;
             throw sError;
@@ -65711,9 +66675,7 @@ UCF_System is not available yet
         var oRef = document["createElement"]('div');
 
         // operates on the string built by the rendermanager itself only
-        // eslint-disable-next-line no-unsanitized/property
-        oRef["innerHTML"] = this["getHTMLString"]();
-
+        UCF_DomUtil["setInnerHtml"](oRef, this["getHTMLString"]());
         return oRef["firstChild"];
     };
     ;
@@ -65894,6 +66856,15 @@ UCF_System is not available yet
     ;
 
     /**
+     * @param {string} sIdentifier
+     * @return {string}
+     */
+    UCF_RenderManager["prototype"]["escapeCSSIdentifier"] = (window["CSS"] && window["CSS"]["escape"]) || function (sIdentifier) {
+        return sIdentifier["replace"](/([\.\[\]])/g, '\\$1')["replace"](/:/g, '\\3a ')
+            ["replace"](/#/g, '\\23 ')["replace"](/_/g, '\\5f ')["replace"](/(^\d)/, '\\3$1 ');
+    };
+
+    /**
      * @see sGetEscaped (static)
      * @param {string} s the string to be escaped
      * @param {UCF_RenderManager_Escape} [sType='xml'] The escaping type
@@ -65985,6 +66956,7 @@ UCF_System is not available yet
                     return s["replace"](/\\/gi, '\\\\')
                         ["replace"](/'/gi, '&#39;')
                         ["replace"](/"/gi, '\\"')
+                        ["replace"](/&quot;/gi, '\\&quot;')
                         ["replace"](/\r/gi, '\\r')
                         ["replace"](/\n/gi, '\\n');
                 case 'xml':
@@ -66036,7 +67008,7 @@ UCF_System is not available yet
 
                 oResult = oRenderer[sFragment](oParameters || {}, oRenderManager);
 
-                if (!oResult) {
+                if (oResult == null) {
                     oResult = oRenderManager["getHTMLString"]();
                 }
 
@@ -66045,7 +67017,7 @@ UCF_System is not available yet
                 return oResult;
             } else {
                 if (__UCF_TRACE__) {
-                    UCF_Tracer.trace(ERROR, 'unknown fragment "' + sName + '" in renderer "' + sUseControl + '"', "RenderManager.js(589): callFragment");
+                    UCF_Tracer.trace(ERROR, 'unknown fragment "' + sName + '" in renderer "' + sUseControl + '"', "RenderManager.js(596): callFragment");
                 }
                 ;
 
@@ -66053,7 +67025,7 @@ UCF_System is not available yet
             }
         } else {
             if (__UCF_TRACE__) {
-                UCF_Tracer.trace(ERROR, 'unknown renderer "' + sUseControl + '"', "RenderManager.js(594): callFragment");
+                UCF_Tracer.trace(ERROR, 'unknown renderer "' + sUseControl + '"', "RenderManager.js(601): callFragment");
             }
             ;
 
@@ -66065,6 +67037,7 @@ UCF_System is not available yet
         UCF_RenderManager["_"]["callFragment"] = 0;
     }
     ;
+
 
     /* global _measure, _trace, START, STOP, INFO WARNING, ERROR */
 /// <reference path="../../core/debug/Tracer.js"/>
@@ -66155,14 +67128,63 @@ UCF_System is not available yet
     /**
      * @typedef UCF_ResourceUtil_SvgInfo
      * @type {Object}
-     * @property {string} sSvg* @property {boolean} bInlined
+     * @property {string} sSvg
+     * @property {boolean} bInlined
      */
-
     /**
      * @typedef {Object} UCF_ResourceUtil_SvgLibPassInfo
      * @property {string} sLibId
      * @property {string} sContent
      * @property {Object<string,UCF_ResourceUtil_SvgInfo>} mSvgs
+     */
+    /** @typedef {0.0} UCF_ResourceUtil_UnknownVersion */
+    /** @typedef {2.0} UCF_ResourceUtil_RepositoryVersion */
+    /** @typedef {UCF_ResourceUtil_UnknownVersion|UCF_ResourceUtil_RepositoryVersion} UCF_ResourceUtil_Version */
+    /**
+     * @typedef {Object} UCF_ResourceUtil_VersionEnum
+     * @property {UCF_ResourceUtil_UnknownVersion} Unknown
+     * @property {UCF_ResourceUtil_RepositoryVersion} Repository
+     */
+    /** @typedef {'MATCH'} UCF_ResourceUtil_MatchMatchResult */
+    /** @typedef {'MISMATCH_CSS'} UCF_ResourceUtil_MismatchCssMatchResult */
+    /** @typedef {'MISMATCH_RUNTIME'} UCF_ResourceUtil_MismatchRuntimeMatchResult */
+    /** @typedef {'REQUIRED_VERSION_UNAVAILABLE'} UCF_ResourceUtil_RequiredVersionUnavailableMatchResult */
+    /** @typedef {'RUNTIME_VERSION_UNAVAILABLE'} UCF_ResourceUtil_RuntimeVersionUnavailableMatchResult */
+    /** @typedef {'RESOURCE_UNAVAILABLE'} UCF_ResourceUtil_ResourceUnavailableMatchResult */
+    /** @typedef {'METADATA_UNAVAILABLE'} UCF_ResourceUtil_MetadataUnavailableMatchResult */
+    /** @typedef {'UNAVAILABLE'} UCF_ResourceUtil_UnavailableMatchResult */
+    /** @typedef {'UNSUPPORTED'} UCF_ResourceUtil_UnsupportedMatchResult */
+    /** @typedef {UCF_ResourceUtil_MatchMatchResult|UCF_ResourceUtil_MismatchCssMatchResult|UCF_ResourceUtil_MismatchRuntimeMatchResult|UCF_ResourceUtil_RequiredVersionUnavailableMatchResult|UCF_ResourceUtil_RuntimeVersionUnavailableMatchResult|UCF_ResourceUtil_ResourceUnavailableMatchResult|UCF_ResourceUtil_MetadataUnavailableMatchResult|UCF_ResourceUtil_UnavailableMatchResult|UCF_ResourceUtil_UnsupportedMatchResult} UCF_ResourceUtil_MatchResult */
+    /**
+     * @typedef {Object} UCF_ResourceUtil_MatchResultEnum
+     * @property {UCF_ResourceUtil_MatchMatchResult} Match
+     * @property {UCF_ResourceUtil_MismatchCssMatchResult} MismatchCss
+     * @property {UCF_ResourceUtil_MismatchRuntimeMatchResult} MismatchRuntime
+     * @property {UCF_ResourceUtil_RequiredVersionUnavailableMatchResult} RequiredVersionUnavailable
+     * @property {UCF_ResourceUtil_RuntimeVersionUnavailableMatchResult} RuntimeVersionUnavailable
+     * @property {UCF_ResourceUtil_ResourceUnavailableMatchResult} ResourceUnavailable
+     * @property {UCF_ResourceUtil_MetadataUnavailableMatchResult} MetadataUnavailable
+     * @property {UCF_ResourceUtil_UnavailableMatchResult} Unavailable
+     * @property {UCF_ResourceUtil_UnsupportedMatchResult} Unsupported
+     */
+    /** @typedef {'READY'} UCF_ResourceUtil_ReadyReadyState */
+    /** @typedef {'PENDING'} UCF_ResourceUtil_PendingReadyState */
+    /** @typedef {UCF_ResourceUtil_ReadyReadyState|UCF_ResourceUtil_PendingReadyState} UCF_ResourceUtil_ReadyState */
+    /**
+     * @typedef {Object} UCF_ResourceUtil_ReadyStateEnum
+     * @property {UCF_ResourceUtil_ReadyReadyState} Ready
+     * @property {UCF_ResourceUtil_PendingReadyState} Pending
+     */
+    /** @typedef {'XMLHttpRequest'} UCF_ResourceUtil_XhrLoadingMethod */
+    /** @typedef {'PassedSvgContent'} UCF_ResourceUtil_ContentLoadingMethod */
+    /** @typedef {'CSS'} UCF_ResourceUtil_CssLoadingMethod */
+    /** @typedef {UCF_ResourceUtil_XhrLoadingMethod|UCF_ResourceUtil_ContentLoadingMethod|UCF_ResourceUtil_CssLoadingMethod} UCF_ResourceUtil_LoadingMethod */
+
+    /**
+     * @typedef {Object} UCF_ResourceUtil_LoadingMethodEnum
+     * @property {UCF_ResourceUtil_XhrLoadingMethod} Xhr
+     * @property {UCF_ResourceUtil_ContentLoadingMethod} Content
+     * @property {UCF_ResourceUtil_CssLoadingMethod} Css
      */
 
     /**
@@ -66186,20 +67208,17 @@ UCF_System is not available yet
     ;
 
     /**
-     * @private
-     * @readonly
-     * @enum {number}
+     * @static
+     * @type {UCF_ResourceUtil_VersionEnum}
      */
     UCF_ResourceUtil["VERSION"] = {
         "Repository": 2.0,
-        "Legacy": 1.0,
         "Unknown": 0.0
     };
 
     /**
-     * @private
-     * @readonly
-     * @enum {string}
+     * @static
+     * @type {UCF_ResourceUtil_MatchResultEnum}
      */
     UCF_ResourceUtil["MATCH_RESULT"] = {
         "Match": 'MATCH',
@@ -66214,9 +67233,8 @@ UCF_System is not available yet
     };
 
     /**
-     * @private
-     * @readonly
-     * @enum {string}
+     * @static
+     * @type {UCF_ResourceUtil_ReadyStateEnum}
      */
     UCF_ResourceUtil["READY_STATE"] = {
         "Ready": 'READY',
@@ -66224,9 +67242,8 @@ UCF_System is not available yet
     };
 
     /**
-     * @private
-     * @readonly
-     * @enum {string}
+     * @static
+     * @type {UCF_ResourceUtil_LoadingMethodEnum}
      */
     UCF_ResourceUtil["LOADING_METHOD"] = {
         "Xhr": 'XMLHttpRequest',
@@ -66235,16 +67252,15 @@ UCF_System is not available yet
     };
 
     /**
-     * @private
+     * @static
      * @type {boolean}
      */
     UCF_ResourceUtil["bSVGEnabled"] = false;
 
     /**
      * @public
-     * @return {number} the version of the used theming approach.
-     * >= 1.0 => Legacy Theming
-     * >= 2.0 => Theming wth the repository approach
+     * @statuc
+     * @return {UCF_ResourceUtil_RepositoryVersion}
      */
     UCF_ResourceUtil["fGetThemingVersion"] = function () {
         ;
@@ -66252,17 +67268,7 @@ UCF_System is not available yet
             UCF_ResourceUtil["_"]["fGetThemingVersion"]++;
         }
         ;
-        if (typeof UCF_ResourceUtil["fThemingVersion"] !== 'number') {
-            if (window["UCF_System"]["sThemeRepositoryURL"]) {
-                UCF_ResourceUtil["fThemingVersion"] = UCF_ResourceUtil["VERSION"]["Repository"];
-            } else if (window["UCF_System"]["sExternalThemeRoot"]) {
-                UCF_ResourceUtil["fThemingVersion"] = UCF_ResourceUtil["VERSION"]["Legacy"];
-            } else {
-                UCF_ResourceUtil["fThemingVersion"] = UCF_ResourceUtil["VERSION"]["Unknown"];
-            }
-        }
-
-        return UCF_ResourceUtil["fThemingVersion"];
+        return UCF_ResourceUtil["VERSION"]["Repository"];
     };
     ;
     if (__UCF_COVERAGE__) {
@@ -66272,6 +67278,7 @@ UCF_System is not available yet
 
     /**
      * @private
+     * @static
      * @return {boolean} bRepositoryMode
      */
     UCF_ResourceUtil["bIsRepositoryMode"] = function () {
@@ -66280,12 +67287,7 @@ UCF_System is not available yet
             UCF_ResourceUtil["_"]["bIsRepositoryMode"]++;
         }
         ;
-        if (typeof UCF_ResourceUtil["bRepositoryMode"] !== 'boolean') {
-            UCF_ResourceUtil["bRepositoryMode"] = UCF_ResourceUtil["fGetThemingVersion"]() >=
-                UCF_ResourceUtil["VERSION"]["Repository"];
-        }
-
-        return UCF_ResourceUtil["bRepositoryMode"];
+        return true;
     };
     ;
     if (__UCF_COVERAGE__) {
@@ -66295,6 +67297,7 @@ UCF_System is not available yet
 
     /**
      * @public
+     * @static
      * @return {string} the URL parameter appendix including a leading "?"
      */
     UCF_ResourceUtil["sGetThemeUrlAppendix"] = function () {
@@ -66303,15 +67306,9 @@ UCF_System is not available yet
             UCF_ResourceUtil["_"]["sGetThemeUrlAppendix"]++;
         }
         ;
-        if (UCF_ResourceUtil["bIsRepositoryMode"]()) {
-            return window["UCF_System"]["sThemeRepositoryURLAppendix"]
-                ? '?' + window["UCF_System"]["sThemeRepositoryURLAppendix"]
-                : '';
-        } else {
-            return window["UCF_System"]["sClientVersionKey"]
-                ? '?' + window["UCF_System"]["sClientVersionKey"]
-                : '';
-        }
+        return window["UCF_System"]["sThemeRepositoryURLAppendix"]
+            ? '?' + window["UCF_System"]["sThemeRepositoryURLAppendix"]
+            : '';
     };
     ;
     if (__UCF_COVERAGE__) {
@@ -66321,6 +67318,7 @@ UCF_System is not available yet
 
     /**
      * @public
+     * @static
      * @param {boolean} [bIsRtl=UCF_System.bIsRTL] the rtl setting
      * @return {string} the CSS file name of the main lightspeed stylesheet
      */
@@ -66330,17 +67328,9 @@ UCF_System is not available yet
             UCF_ResourceUtil["_"]["sGetCssFileName"]++;
         }
         ;
-        return UCF_ResourceUtil["bIsRepositoryMode"]()
-            ? (
-                (window["UCF_System"]["sThemeFileName"] || window["UCF_System"]["sDevice"]) +
-                ((typeof bIsRtl === 'undefined' ? window["UCF_System"]["bIsRtl"] : bIsRtl) ? '-RTL' : '') +
-                '.css'
-            )
-            : (
-                'ls_' +
-                (window["UCF_System"]["sDevice"] === 'ff1' ? 'nn7' : window["UCF_System"]["sDevice"]) +
-                '.css'
-            );
+        return (window["UCF_System"]["sThemeFileName"] || window["UCF_System"]["sDevice"]) +
+            ((typeof bIsRtl === 'undefined' ? window["UCF_System"]["bIsRtl"] : bIsRtl) ? '-RTL' : '') +
+            '.css';
     };
     ;
     if (__UCF_COVERAGE__) {
@@ -66350,6 +67340,7 @@ UCF_System is not available yet
 
     /**
      * @public
+     * @static
      * @return {string} the deepest theme folder all lightspeed themes have in
      * common
      */
@@ -66359,19 +67350,7 @@ UCF_System is not available yet
             UCF_ResourceUtil["_"]["sGetThemesRoot"]++;
         }
         ;
-        /** @type {string} */
-        var sExternalThemeRoot;
-
-        if (UCF_ResourceUtil["bIsRepositoryMode"]()) {
-            return window["UCF_System"]["sThemeRepositoryURL"] + '/UR/ls';
-        } else {
-            sExternalThemeRoot = window["UCF_System"]["sExternalThemeRoot"];
-
-            return sExternalThemeRoot["substring"](
-                0,
-                sExternalThemeRoot["lastIndexOf"]('/')
-            );
-        }
+        return window["UCF_System"]["sThemeRepositoryURL"] + '/UR/ls';
     };
     ;
     if (__UCF_COVERAGE__) {
@@ -66381,32 +67360,18 @@ UCF_System is not available yet
 
     /**
      * @public
+     * @static
      * @param {boolean} [sThemeId=UCF_System.sThemeID] the theme id
-     * @param {boolean} [bIsRtl=UCF_System.bIsRTL] the rtl setting
      * @return {string} the deepest theme folder the theme has in common for all
      * devices and RTL variants
      */
-    UCF_ResourceUtil["sGetThemeRoot"] = function (sThemeId, bIsRtl) {
+    UCF_ResourceUtil["sGetThemeRoot"] = function (sThemeId) {
         ;
         if (__UCF_COVERAGE__) {
             UCF_ResourceUtil["_"]["sGetThemeRoot"]++;
         }
         ;
-        /** @type {string} */
-        var sThemesRoot = UCF_ResourceUtil["sGetThemesRoot"]();
-
-        if (typeof bIsRtl === 'undefined') {
-            bIsRtl = window["UCF_System"]["bIsRTL"];
-        }
-
-        if (UCF_ResourceUtil["bIsRepositoryMode"]()) {
-            return sThemesRoot + '/' + (sThemeId || window["UCF_System"]["sThemeID"]);
-        } else {
-            return sThemesRoot +
-                '/' +
-                (sThemeId || window["UCF_System"]["sThemeID"]) +
-                (bIsRtl ? '/r' : '');
-        }
+        return UCF_ResourceUtil["sGetThemesRoot"]() + '/' + (sThemeId || window["UCF_System"]["sThemeID"]);
     };
     ;
     if (__UCF_COVERAGE__) {
@@ -66416,18 +67381,17 @@ UCF_System is not available yet
 
     /**
      * @public
+     * @static
      * @param {boolean} [sThemeId=UCF_System.sThemeID] the theme id
-     * @param {boolean} [bIsRtl=UCF_System.bIsRTL] the rtl setting
      * @return {string} the URL to the folder of the currently used CSS file
      */
-    UCF_ResourceUtil["sGetCssRoot"] = function (sThemeId, bIsRtl) {
+    UCF_ResourceUtil["sGetCssRoot"] = function (sThemeId) {
         ;
         if (__UCF_COVERAGE__) {
             UCF_ResourceUtil["_"]["sGetCssRoot"]++;
         }
         ;
-        return UCF_ResourceUtil["sGetThemeRoot"](sThemeId, bIsRtl) +
-            (UCF_ResourceUtil["bIsRepositoryMode"]() ? '' : '/ls');
+        return UCF_ResourceUtil["sGetThemeRoot"](sThemeId);
     };
     ;
     if (__UCF_COVERAGE__) {
@@ -66437,6 +67401,7 @@ UCF_System is not available yet
 
     /**
      * @public
+     * @static
      * @param {boolean} [sThemeId=UCF_System.sThemeID] the theme id
      * @param {boolean} [bIsRtl=UCF_System.bIsRTL] the rtl setting
      * @return {string} the URL to the folder of the currently used asset or
@@ -66448,18 +67413,9 @@ UCF_System is not available yet
             UCF_ResourceUtil["_"]["sGetControlAssetsRoot"]++;
         }
         ;
-        /** @type {string} */
-        var sThemeRoot;
-
-        if (typeof bIsRtl === 'undefined') {
-            bIsRtl = window["UCF_System"]["bIsRTL"];
-        }
-
-        sThemeRoot = UCF_ResourceUtil["sGetThemeRoot"](sThemeId, bIsRtl);
-
-        return UCF_ResourceUtil["bIsRepositoryMode"]()
-            ? sThemeRoot + '/img' + (bIsRtl ? '-RTL' : '')
-            : sThemeRoot + '/common';
+        return UCF_ResourceUtil["sGetThemeRoot"](sThemeId) + '/img' + (
+            (typeof bIsRtl === 'undefined' ? window["UCF_System"]["bIsRTL"] : bIsRtl) ? '-RTL' : ''
+        );
     };
     ;
     if (__UCF_COVERAGE__) {
@@ -66469,6 +67425,7 @@ UCF_System is not available yet
 
     /**
      * @public
+     * @static
      * @param {boolean} [sThemeId=UCF_System.sThemeID] the theme id
      * @return {string} the URL to the folder where the fonts of the wanted theme
      * is located
@@ -66479,9 +67436,7 @@ UCF_System is not available yet
             UCF_ResourceUtil["_"]["sGetFontsRoot"]++;
         }
         ;
-        // Fonts are not RTL dependent
-        return UCF_ResourceUtil["sGetThemeRoot"](sThemeId, false) +
-            (UCF_ResourceUtil["bIsRepositoryMode"]() ? '/img/fonts' : '/common/fonts');
+        return UCF_ResourceUtil["sGetThemeRoot"](sThemeId) + '/img/fonts';
     };
     ;
     if (__UCF_COVERAGE__) {
@@ -66491,6 +67446,7 @@ UCF_System is not available yet
 
     /**
      * @public
+     * @static
      * @param {string} sAssetSubPath the sub path to the asset e.g.
      * "/button/arrow.gif"
      * @return {string} the URL to control asset
@@ -66513,6 +67469,7 @@ UCF_System is not available yet
 
     /**
      * @public
+     * @static
      * @param {boolean} [sThemeId=UCF_System.sThemeID] the theme id
      * @param {boolean} [bIsRtl=UCF_System.bIsRTL] the rtl setting
      * @return {string} the URL to stylesheet including the appendix
@@ -66523,13 +67480,11 @@ UCF_System is not available yet
             UCF_ResourceUtil["_"]["sGetCssUrl"]++;
         }
         ;
-        if (typeof bIsRtl === 'undefined') {
-            bIsRtl = window["UCF_System"]["bIsRTL"];
-        }
-
-        return UCF_ResourceUtil["sGetCssRoot"](sThemeId, bIsRtl) +
+        return UCF_ResourceUtil["sGetCssRoot"](sThemeId) +
             '/' +
-            UCF_ResourceUtil["sGetCssFileName"](bIsRtl) +
+            UCF_ResourceUtil["sGetCssFileName"](
+                typeof bIsRtl === 'undefined' ? window["UCF_System"]["bIsRTL"] : bIsRtl
+            ) +
             UCF_ResourceUtil["sGetThemeUrlAppendix"]();
     };
     ;
@@ -66565,6 +67520,7 @@ UCF_System is not available yet
 
     /**
      * @public
+     * @static
      * @return {string} the URL to Lightspeed JS files
      */
     UCF_ResourceUtil["sGetJsRoot"] = function () {
@@ -66583,6 +67539,7 @@ UCF_System is not available yet
 
     /**
      * @public
+     * @static
      * @return {string} the URL to Lightspeed HTML files
      */
     UCF_ResourceUtil["sGetHtmlRoot"] = function () {
@@ -66601,6 +67558,7 @@ UCF_System is not available yet
 
     /**
      * @public
+     * @static
      * @return {string} the URL to Lightspeed message bundles
      */
     UCF_ResourceUtil["sGetMessageBundlesRoot"] = function () {
@@ -66619,6 +67577,7 @@ UCF_System is not available yet
 
     /**
      * @public
+     * @static
      * @return {string} the URL to Lightspeed QUinit resource folder
      */
     UCF_ResourceUtil["sGetQUnitRoot"] = function () {
@@ -66637,6 +67596,7 @@ UCF_System is not available yet
 
     /**
      * @public
+     * @static
      * @param {HTMLLinkElement} oDomRefLink the LINK DOM element of the stylesheet
      * @return {boolean} `true` if the passed LINK DOM element refers to a
      * lightspeed CSS URL
@@ -66665,9 +67625,11 @@ UCF_System is not available yet
     /**
      * Sets an given URL to the LS stylesheet element
      * @public
+     * @static
      * @param {string} sCssLinkUrl The CSS URL
      * @param {HTMLLinkElement} [oLinkRef=UCF_ResourceUtil.oGetLightspeedCssLink()] the link element
      */
+
     UCF_ResourceUtil["setLightspeedCssLinkUrl"] = function (sCssLinkUrl, oLinkRef) {
         ;
         if (__UCF_COVERAGE__) {
@@ -66691,44 +67653,35 @@ UCF_System is not available yet
             ) {
                 oLinkRef["setAttribute"]('bLsLoaded', 'false');
 
-                fLoaded = function () {
-                    UCF_DomUtil["detachEvent"](oNewLink || oLinkRef, 'load', fLoaded);
-                    UCF_DomUtil["detachEvent"](oNewLink || oLinkRef, 'error', fLoaded);
-                    if (UCF_UserAgent["bIsChromium"]() || UCF_UserAgent["bIsWebKit"]() || UCF_UserAgent["bIsMSEdge"]()) {
-                        // Chrome would not really write the changed value to the DOM
-                        // otherwise(?!)
-                        UCF_JsUtil["setImmediate"](function () {
-                            UCF_ResourceUtil["onLoad"](oLinkRef);
-                        });
-                    } else {
-                        UCF_ResourceUtil["onLoad"](oLinkRef);
+
+                // Workaround: Chrome would not trigger load event when loading the css
+                // from a changed href
+                // Note: cloneNode() did not work - it must be a completely fresh new
+                // link element
+                oNewLink = document["createElement"]('LINK');
+                for (i = 0; i < oLinkRef["attributes"]["length"]; i++) {
+                    // eslint-disable-next-line max-depth
+                    if (oLinkRef["attributes"][i]["name"] !== 'href') {
+                        oNewLink["setAttribute"](
+                            oLinkRef["attributes"][i]["name"],
+                            oLinkRef["attributes"][i]["value"]
+                        );
                     }
+                }
+                oNewLink["setAttribute"]('href', sCssLinkUrl);
+                oLinkRef["parentNode"]["insertBefore"](oNewLink, oLinkRef);
+
+                fLoaded = function () {
+                    UCF_DomUtil["detachEvent"](oNewLink, 'load', fLoaded);
+                    UCF_DomUtil["detachEvent"](oNewLink, 'error', fLoaded);
+                    oLinkRef["parentNode"]["removeChild"](oLinkRef);
+                    UCF_JsUtil["setImmediate"](function () {
+                        UCF_ResourceUtil["onLoad"](oNewLink);
+                    });
                 };
 
-                if (UCF_UserAgent["bIsChromium"]() || UCF_UserAgent["bIsWebKit"]()) {
-                    // Workaround: Chrome would not trigger load event when loading the css
-                    // from a changed href
-                    // Note: cloneNode() did not work - it must be a completely fresh new
-                    // link element
-                    oNewLink = document["createElement"]('LINK');
-                    for (i = 0; i < oLinkRef["attributes"]["length"]; i++) {
-                        // eslint-disable-next-line max-depth
-                        if (oLinkRef["attributes"][i]["name"] !== 'href') {
-                            oNewLink["setAttribute"](
-                                oLinkRef["attributes"][i]["name"],
-                                oLinkRef["attributes"][i]["value"]
-                            );
-                        }
-                    }
-                    oNewLink["setAttribute"]('href', sCssLinkUrl);
-                    oLinkRef["parentNode"]["replaceChild"](oNewLink, oLinkRef);
-                    UCF_DomUtil["attachEvent"](oNewLink, 'load', fLoaded);
-                    UCF_DomUtil["attachEvent"](oNewLink, 'error', fLoaded);
-                } else {
-                    UCF_DomUtil["attachEvent"](oLinkRef, 'load', fLoaded);
-                    UCF_DomUtil["attachEvent"](oLinkRef, 'error', fLoaded);
-                    oLinkRef["setAttribute"]('href', sCssLinkUrl);
-                }
+                UCF_DomUtil["attachEvent"](oNewLink, 'load', fLoaded);
+                UCF_DomUtil["attachEvent"](oNewLink, 'error', fLoaded);
             }
         }
     };
@@ -66740,6 +67693,7 @@ UCF_System is not available yet
 
     /**
      * @private
+     * @static
      * @param {HTMLLinkElement} oLinkRef
      */
     UCF_ResourceUtil["onLoad"] = function (oLinkRef) {
@@ -66782,6 +67736,7 @@ UCF_System is not available yet
     /**
      * Executes the given callback when the the CSS is loaded
      * @public
+     * @static
      * @return {UCF_Promise<void,void>}
      */
     UCF_ResourceUtil["ensureLightspeedCssLoaded"] = function () {
@@ -66812,6 +67767,7 @@ UCF_System is not available yet
 
     /**
      * @public
+     * @static
      * @return {boolean} whether the CSS is loaded or not.
      */
     UCF_ResourceUtil["bLightspeedCssLoaded"] = function () {
@@ -66830,6 +67786,7 @@ UCF_System is not available yet
 
     /**
      * @public
+     * @static
      * @param {HTMLLinkElement} oLightspeedCssLink optional
      * @return {string} the URL of the LS stylesheet element
      */
@@ -66853,6 +67810,7 @@ UCF_System is not available yet
 
     /**
      * @public
+     * @static
      * @return {HTMLLinkElement} the link element refering to the main CSS
      * stylesheet
      */
@@ -66883,7 +67841,8 @@ UCF_System is not available yet
 
     /**
      * @public
-     * @return {Object} the link element refering to the main CSS sytlesheet
+     * @static
+     * @return {CSSStyleSheet} the link element refering to the main CSS sytlesheet
      */
     UCF_ResourceUtil["oGetLightspeedCssStylesheet"] = function () {
         ;
@@ -66913,8 +67872,9 @@ UCF_System is not available yet
      * This method checks if the leading stylesheet has claims that it has an
      * additional artifact to load and loads it
      *
-     * @param {HTMLLinkElement} oDomRefLink the LINK DOM element of the stylesheet
      * @public
+     * @static
+     * @param {HTMLLinkElement} oDomRefLink the LINK DOM element of the stylesheet
      */
     UCF_ResourceUtil["applyIECssRuleLimitWorkaround"] = function (oDomRefLink) {
         ;
@@ -66991,6 +67951,7 @@ UCF_System is not available yet
 
     /**
      * @public
+     * @static
      * @param {HTMLLinkElement} [oDomRefLink=UCF_ResourceUtil.oGetLightspeedCssLink()]
      * the LINK DOM element of the stylesheet
      * @return {UCF_ResourceUtil_CssMetaData} the CSS meta data from an passed link element
@@ -67024,7 +67985,7 @@ UCF_System is not available yet
                         return UCF_JsUtil["oJsonParse"](sJSON);
                     } catch (e) {
                         if (__UCF_TRACE__) {
-                            UCF_Tracer.trace(ERROR, 'Chaught error in UCF_JsUtil.oJsonParse:' + e["message"], "ResourceUtil.js(691): oExtractCssMetaData");
+                            UCF_Tracer.trace(ERROR, 'Chaught error in UCF_JsUtil.oJsonParse:' + e["message"], "ResourceUtil.js(679): oExtractCssMetaData");
                         }
                         ;
                     }
@@ -67055,7 +68016,7 @@ UCF_System is not available yet
      * UCF_ResourceUtil.oGetMetadataFromTheme(m) // => {myheight: 14}
      * </script>
      * ```
-     * @protected
+     * @static
      * @param {HTMLElement|string} oElementOrClassName
      * @return {Object}
      */
@@ -67105,7 +68066,7 @@ UCF_System is not available yet
                 }
             } catch (e) {
                 if (__UCF_TRACE__) {
-                    UCF_Tracer.trace(WARNING, 'Error getting metadata from background-image of "' + oElement["className"] + '" (got: "' + sBackgroundImage + '"): ' + e["message"], "ResourceUtil.js(758): oGetMetadataFromTheme");
+                    UCF_Tracer.trace(WARNING, 'Error getting metadata from background-image of "' + oElement["className"] + '" (got: "' + sBackgroundImage + '"): ' + e["message"], "ResourceUtil.js(746): oGetMetadataFromTheme");
                 }
                 ;
 
@@ -67113,7 +68074,7 @@ UCF_System is not available yet
             }
         } else {
             if (__UCF_TRACE__) {
-                UCF_Tracer.trace(WARNING, 'Could not get metadata from ' + oElementOrClassName, "ResourceUtil.js(763): oGetMetadataFromTheme");
+                UCF_Tracer.trace(WARNING, 'Could not get metadata from ' + oElementOrClassName, "ResourceUtil.js(751): oGetMetadataFromTheme");
             }
             ;
 
@@ -67128,6 +68089,7 @@ UCF_System is not available yet
 
     /**
      * @private
+     * @static
      * @param {HTMLLinkElement} oDomRefLink the link element
      * @return {boolean}
      */
@@ -67166,6 +68128,7 @@ UCF_System is not available yet
 
     /**
      * @private
+     * @static
      * @param {HTMLLinkElement} oDomRefLink the link element
      * @return {boolean}
      */
@@ -67190,7 +68153,7 @@ UCF_System is not available yet
     ;
 
     /**
-     * @protected
+     * @static
      * @return {UCF_Promise<void>} the promise
      */
     UCF_ResourceUtil["initTheme"] = function () {
@@ -67210,6 +68173,7 @@ UCF_System is not available yet
 
     /**
      * @private
+     * @static
      * @return {UCF_Promise<void>}
      */
     UCF_ResourceUtil["ensureSupportedTheme"] = function () {
@@ -67229,7 +68193,7 @@ UCF_System is not available yet
                     var sFallbackThemeID;
 
                     if (__UCF_TRACE__) {
-                        UCF_Tracer.trace(INFO, window["UCF_System"]["sThemeID"] + '@' + window["UCF_System"]["sThemeRepositoryURL"], "ResourceUtil.js(836): ensureSupportedTheme");
+                        UCF_Tracer.trace(INFO, window["UCF_System"]["sThemeID"] + '@' + window["UCF_System"]["sThemeRepositoryURL"], "ResourceUtil.js(827): ensureSupportedTheme");
                     }
                     ;
 
@@ -67324,7 +68288,7 @@ UCF_System is not available yet
         }
 
         if (__UCF_TRACE__) {
-            UCF_Tracer.trace(INFO, oConf["sThemeID"] + '@' + oConf["sThemeRepositoryURL"], "ResourceUtil.js(918): recursiveThemeFallbackTo");
+            UCF_Tracer.trace(INFO, oConf["sThemeID"] + '@' + oConf["sThemeRepositoryURL"], "ResourceUtil.js(909): recursiveThemeFallbackTo");
         }
         ;
         UCF_ResourceUtil["setLightspeedCssLinkUrl"](UCF_ResourceUtil["sGetCssUrl"]());
@@ -67359,14 +68323,14 @@ UCF_System is not available yet
             window["UCF_System"]["setThemeID"](oConf["sThemeID"]);
             window["UCF_System"]["setThemeRepositoryURL"](oConf["sThemeRepositoryURL"]);
             if (__UCF_TRACE__) {
-                UCF_Tracer.trace(INFO, oConf["sThemeID"] + '@' + oConf["sThemeRepositoryURL"], "ResourceUtil.js(940): directThemeFallbackTo");
+                UCF_Tracer.trace(INFO, oConf["sThemeID"] + '@' + oConf["sThemeRepositoryURL"], "ResourceUtil.js(931): directThemeFallbackTo");
             }
             ;
             UCF_ResourceUtil["setLightspeedCssLinkUrl"](UCF_ResourceUtil["sGetCssUrl"]());
         } else {
             // last resort mode => direct fallback to ThemeFallbackCSSURL
             if (__UCF_TRACE__) {
-                UCF_Tracer.trace(INFO, oConf["sThemeFallbackCSSURL"], "ResourceUtil.js(944): directThemeFallbackTo");
+                UCF_Tracer.trace(INFO, oConf["sThemeFallbackCSSURL"], "ResourceUtil.js(935): directThemeFallbackTo");
             }
             ;
             UCF_ResourceUtil["setLightspeedCssLinkUrl"](oConf["sThemeFallbackCSSURL"]);
@@ -67376,7 +68340,7 @@ UCF_System is not available yet
             return new (UCF_ClassLoader["oGetClass"]("UCF_Promise"))(function (resolve) {
                 // oExtractCssMetaData doesn't contain the ThemeID in Safari at this moment
                 // => request AF, try later
-                UCF_JsUtil["requestAnimationFrame"](function () {
+                UCF_JsUtil["requestIdleCallback"](function () {
                     /** @type {string} */
                     var sThemeID = UCF_ResourceUtil["sGetThemeID"]();
 
@@ -67396,7 +68360,6 @@ UCF_System is not available yet
     ;
 
     /**
-     * @protected
      * @static
      * @param {UCF_ResourceUtil_CssMetaData} [oCssMetaData]
      * @return {string}
@@ -67530,19 +68493,15 @@ UCF_System is not available yet
         /** @type {string} */
         var sCssUrl;
 
-        if (UCF_ResourceUtil["bIsRepositoryMode"]()) {
-            sCssUrl = UCF_ResourceUtil["sGetCssUrl"]();
+        sCssUrl = UCF_ResourceUtil["sGetCssUrl"]();
 
-            if (!(sCssUrl in UCF_ResourceUtil["oExtendsThemeIDs"])) {
-                UCF_ResourceUtil["oExtendsThemeIDs"][sCssUrl] = UCF_ResourceUtil["sGetThemeFallbackIDFromExtends"](
-                    UCF_ResourceUtil["oExtractCssMetaData"]()
-                ) || '';
-            }
-
-            return UCF_ResourceUtil["oExtendsThemeIDs"][sCssUrl];
-        } else {
-            return '';
+        if (!(sCssUrl in UCF_ResourceUtil["oExtendsThemeIDs"])) {
+            UCF_ResourceUtil["oExtendsThemeIDs"][sCssUrl] = UCF_ResourceUtil["sGetThemeFallbackIDFromExtends"](
+                UCF_ResourceUtil["oExtractCssMetaData"]()
+            ) || '';
         }
+
+        return UCF_ResourceUtil["oExtendsThemeIDs"][sCssUrl];
     };
     ;
     if (__UCF_COVERAGE__) {
@@ -67703,7 +68662,7 @@ UCF_System is not available yet
      * +---------+--------+ +---------+--------+
      *           |                    |
      * +---------+--------------------+--------+                                           +------------------+
-     * |               sap_belize              |                                           |  sap_fiori_hcw   |
+     * |               sap_belize              |                                           | sap_fiori_3_hcw  |
      * +---------+-----------------------------+                                           +---------+--------+
      *           |                                                                                   |
      * +---------+--------+ +------------------+                      +------------------+ +---------+--------+
@@ -67779,6 +68738,7 @@ UCF_System is not available yet
 
     /**
      * @public
+     * @static
      * @param {HTMLLinkElement} [oDomRefLink=UCF_ResourceUtil.oGetLightspeedCssLink()]
      * the LINK DOM element of the stylesheet.
      * @return {UCF_ResourceUtil_VersionInfo} the result
@@ -68014,37 +68974,37 @@ UCF_System is not available yet
                 return false;
             case UCF_ResourceUtil["MATCH_RESULT"]["MismatchCss"]:
                 if (__UCF_TRACE__) {
-                    UCF_Tracer.trace(WARNING, 'The loaded CSS does not match to the rendered HTML. This will lead to display problems. The runtime requires a CSS version ' + oInfo["versionCssRequired"]["versionString"] + ' while actually version ' + oInfo["versionCss"]["versionString"] + ' is provided.', "ResourceUtil.js(1431): bIsThemeRejected");
+                    UCF_Tracer.trace(WARNING, 'The loaded CSS does not match to the rendered HTML. This will lead to display problems. The runtime requires a CSS version ' + oInfo["versionCssRequired"]["versionString"] + ' while actually version ' + oInfo["versionCss"]["versionString"] + ' is provided.', "ResourceUtil.js(1418): bIsThemeRejected");
                 }
                 ;
                 return true; // eslint-disable-line newline-before-return
             case UCF_ResourceUtil["MATCH_RESULT"]["MismatchRuntime"]:
                 if (__UCF_TRACE__) {
-                    UCF_Tracer.trace(WARNING, 'The loaded CSS does not match to the rendered HTML. This will lead to display problems. The CSS requires a runtime version ' + oInfo["versionRuntimeRequired"]["versionString"] + ' while actually version ' + oInfo["versionRuntime"]["versionString"] + ' is provided.', "ResourceUtil.js(1434): bIsThemeRejected");
+                    UCF_Tracer.trace(WARNING, 'The loaded CSS does not match to the rendered HTML. This will lead to display problems. The CSS requires a runtime version ' + oInfo["versionRuntimeRequired"]["versionString"] + ' while actually version ' + oInfo["versionRuntime"]["versionString"] + ' is provided.', "ResourceUtil.js(1421): bIsThemeRejected");
                 }
                 ;
                 return true; // eslint-disable-line newline-before-return
             case UCF_ResourceUtil["MATCH_RESULT"]["Unsupported"]:
                 if (__UCF_TRACE__) {
-                    UCF_Tracer.trace(WARNING, 'The loaded CSS derives from a theme that is not supported by the application. Only themes deriving from one of ' + window["UCF_System"]["sSupportedSapThemeIDs"] + ' are supported, "' + sFirstSapThemeID + '" is none of them.', "ResourceUtil.js(1437): bIsThemeRejected");
+                    UCF_Tracer.trace(WARNING, 'The loaded CSS derives from a theme that is not supported by the application. Only themes deriving from one of ' + window["UCF_System"]["sSupportedSapThemeIDs"] + ' are supported, "' + sFirstSapThemeID + '" is none of them.', "ResourceUtil.js(1424): bIsThemeRejected");
                 }
                 ;
                 return true; // eslint-disable-line newline-before-return
             case UCF_ResourceUtil["MATCH_RESULT"]["RuntimeVersionUnavailable"]:
                 if (__UCF_TRACE__) {
-                    UCF_Tracer.trace(WARNING, 'The loaded CSS requires a runtime version but runtime version is not available.', "ResourceUtil.js(1440): bIsThemeRejected");
+                    UCF_Tracer.trace(WARNING, 'The loaded CSS requires a runtime version but runtime version is not available.', "ResourceUtil.js(1427): bIsThemeRejected");
                 }
                 ;
                 return true; // eslint-disable-line newline-before-return
             case UCF_ResourceUtil["MATCH_RESULT"]["ResourceUnavailable"]:
                 if (__UCF_TRACE__) {
-                    UCF_Tracer.trace(WARNING, 'The CSS resource could not be loaded.', "ResourceUtil.js(1443): bIsThemeRejected");
+                    UCF_Tracer.trace(WARNING, 'The CSS resource could not be loaded.', "ResourceUtil.js(1430): bIsThemeRejected");
                 }
                 ;
                 return true; // eslint-disable-line newline-before-return
             default:
                 if (__UCF_TRACE__) {
-                    UCF_Tracer.trace(WARNING, 'Failed to compare producer version. Reason: ' + oInfo["matchResult"], "ResourceUtil.js(1446): bIsThemeRejected");
+                    UCF_Tracer.trace(WARNING, 'Failed to compare producer version. Reason: ' + oInfo["matchResult"], "ResourceUtil.js(1433): bIsThemeRejected");
                 }
                 ;
                 return false; // eslint-disable-line newline-before-return
@@ -68055,7 +69015,67 @@ UCF_System is not available yet
         UCF_ResourceUtil["_"]["bIsThemeRejected"] = 0;
     }
     ;
+// #region css libs ===========================================================
+    /** @type {Object<string, string>} */
+    UCF_ResourceUtil["mLoadedCssLibs"] = {};
 
+    /**
+     * @param {string} sHtml
+     * @param {UCF_LS} oLS
+     */
+    UCF_ResourceUtil["loadCssLibsUsedInHtml"] = function (sHtml, oLS) {
+        ;
+        if (__UCF_COVERAGE__) {
+            UCF_ResourceUtil["_"]["loadCssLibsUsedInHtml"]++;
+        }
+        ;
+        /** @type {UCF_Page} */
+        var oPage = oLS && oLS["oGetPage"]();
+        /** @type {RegExp} */
+        var oRegExp;
+        /** @type {RegExpExecArray} */
+        var aMatch;
+        /** @type {string} */
+        var sId;
+        /** @type {string} */
+        var sLibId;
+        /** @type {string} */
+        var sLibUrl;
+
+        if (oPage) {
+            // CSN
+            oRegExp = /sap-icon(?:\:|&#x3a;)(?:\/|&#x2f;)(?:\/|&#x2f;)(.*?)(?:\s|'|"|&|\?|&#x3b;|&#x3f;|$)/g; // infinite loop without /g
+
+            do {
+                aMatch = oRegExp["exec"](sHtml);
+
+                if (aMatch && aMatch["length"] > 1) {
+                    sId = aMatch[1];
+                    sLibId = UCF_StringUtil["bContains"](sId, '/') ? sId["split"]('/')[0] : 'SAP-icons';
+
+                    if (!(sLibId in UCF_ResourceUtil["mLoadedCssLibs"])) {
+                        sLibUrl = UCF_ResourceUtil["sGetCssRoot"]() + '/' +
+                            sLibId + '.css' +
+                            UCF_ResourceUtil["sGetThemeUrlAppendix"]();
+
+                        if (__UCF_TRACE__) {
+                            UCF_Tracer.trace(INFO, 'Loading CSS Lib "' + sLibId + '" from "' + sLibUrl + '".', "ResourceUtil.js(1475): loadCssLibsUsedInHtml");
+                        }
+                        ;
+                        oPage["addStyle"](sLibUrl);
+                        UCF_ResourceUtil["mLoadedCssLibs"][sLibId] = sLibUrl;
+                    }
+                }
+            } while (aMatch != null);
+        }
+    };
+    ;
+    if (__UCF_COVERAGE__) {
+        UCF_ResourceUtil["_"]["loadCssLibsUsedInHtml"] = 0;
+    }
+    ;
+// #endregion
+// #region svg libs ===========================================================
     /** @type {Object<string, UCF_ResourceUtil_SvgLibInfo>} map of sLibUrl=>oLibInfo */
     UCF_ResourceUtil["mLoadedSvgLibs"] = {};
     /** @type {number} */
@@ -68064,6 +69084,7 @@ UCF_System is not available yet
     UCF_ResourceUtil["iCurrentUseIdCount"] = 0;
 
     /**
+     * @static
      * @param {string} sHtml the html string to decode
      * @return {string} the decoded html string
      */
@@ -68098,7 +69119,10 @@ UCF_System is not available yet
     }
     ;
 
-    /** @public */
+    /**
+     * @public
+     * @static
+     */
     UCF_ResourceUtil["enableSVG"] = function () {
         ;
         if (__UCF_COVERAGE__) {
@@ -68115,22 +69139,28 @@ UCF_System is not available yet
 
     /**
      * @private
+     * @static
      * @const {RegExp}
      */
-    UCF_ResourceUtil["R_SVG"] = /\<svg (.+?)xlink\:href\=([\'\"])(.*?\.svg)(?:#|\?.*?#|.*?&#x23;)(.+?)(?:\2|(?:(\?|&amp;)metric|(\?|&amp;)aspectRatio|(\?|&amp;)color|(\?|&)metric|(\?|&)aspectRatio|(\?|&)color)=.*?\2)(.*?\>)/g;
+    UCF_ResourceUtil["R_SVG"] = /\<svg (.+?)xlink\:href\=([\'\"])(.*?\.svg)(?:#|\?.*?#|.*?&#x23;)(.+?)(?:\2|(?:(?:\?|&amp;|&)metric|(?:\?|&amp;|&)aspectRatio|(?:\?|&amp;|&)color)=.*?\2)(.*?\>)/g;
 
     /**
      * @private
+     * @static
      * @const {RegExp}
      */
     UCF_ResourceUtil["R_METRIC"] = /(\?|&)?metric=(s|m|l|xl)/;
+
     /**
      * @private
+     * @static
      * @const {RegExp}
      */
     UCF_ResourceUtil["R_ASPECT_RATIO"] = /(\?|&)?aspectRatio=(1|2)/;
+
     /**
      * @private
+     * @static
      * @const {RegExp}
      */
     UCF_ResourceUtil["R_COLOR"] = /(\?|&)?color=(Contrast|Critical|Default|Marker|Negative|Neutral|NonInteractive|Positive|Tile)/;
@@ -68141,6 +69171,7 @@ UCF_System is not available yet
      * onload event for the SVGs which results in a performance improvement
      *
      * @public
+     * @static
      * @param {string} sHtml the html to inline the svg
      * @param {UCF_LS} [oLS] the lightspeed instance
      * @return {string} sHtml with the svgs inlined
@@ -68153,6 +69184,8 @@ UCF_System is not available yet
         ;
         /** @type {string} */
         var sResultHtml;
+
+        UCF_ResourceUtil["loadCssLibsUsedInHtml"](sHtml, oLS);
 
         if (UCF_ResourceUtil["bSVGEnabled"]) {
             if (__UCF_MEASURE__) {
@@ -68293,7 +69326,7 @@ UCF_System is not available yet
                             ? ' class="' + oLibInfo["mIdToCssClassMap"][sLibIconId] + '"'
                             : '') +
                         (sUseId ? ' id="' + sUseId + '" ' : '') +
-                        sTail;
+                        (sTail || '');
                 }
 
                 return sResultSvg;
@@ -68358,7 +69391,7 @@ UCF_System is not available yet
                 }
             } else {
                 if (__UCF_TRACE__) {
-                    UCF_Tracer.trace(WARNING, 'Svg "' + oLibInfo["sLibId"] + '#' + sId + '" not inlined: ' + sValidationMessage, "ResourceUtil.js(1711): ensureSvgInDom");
+                    UCF_Tracer.trace(WARNING, 'Svg "' + oLibInfo["sLibId"] + '#' + sId + '" not inlined: ' + sValidationMessage, "ResourceUtil.js(1758): ensureSvgInDom");
                 }
                 ;
             }
@@ -68374,10 +69407,10 @@ UCF_System is not available yet
     /**
      * Loads the passed SVG lib and inlines the lib string in the document.
      *
+     * @public
+     * @static
      * @param {string} sLibUrl library URL
      * @param {UCF_ResourceUtil_SvgLibPassInfo} [oSvgLibPassInfo]
-     *
-     * @public
      */
     UCF_ResourceUtil["inlineSvgLib"] = function (sLibUrl, oSvgLibPassInfo) {
         ;
@@ -68579,7 +69612,7 @@ UCF_System is not available yet
 
             if (oSvgLibPassInfo) {
                 if (__UCF_TRACE__) {
-                    UCF_Tracer.trace(INFO, 'Inlining SVG lib "' + sLibUrl + '" by passed SVG lib content', "ResourceUtil.js(1919): inlineSvgLib");
+                    UCF_Tracer.trace(INFO, 'Inlining SVG lib "' + sLibUrl + '" by passed SVG lib content', "ResourceUtil.js(1966): inlineSvgLib");
                 }
                 ;
                 oLibInfo["sInlineIdPrefix"] = oSvgLibPassInfo["sInlineIdPrefix"];
@@ -68588,7 +69621,7 @@ UCF_System is not available yet
                 UCF_ResourceUtil["inlineSvgLibByContent"](oLibInfo, oSvgLibPassInfo, fApplySvgLib);
             } else if (bSameOrigin) {
                 if (__UCF_TRACE__) {
-                    UCF_Tracer.trace(INFO, 'Inlining SVG lib "' + sLibUrl + '" by XML HTTP request approach due to located in same origin.', "ResourceUtil.js(1925): inlineSvgLib");
+                    UCF_Tracer.trace(INFO, 'Inlining SVG lib "' + sLibUrl + '" by XML HTTP request approach due to located in same origin.', "ResourceUtil.js(1972): inlineSvgLib");
                 }
                 ;
                 oLibInfo["sLoadingMethod"] = UCF_ResourceUtil["LOADING_METHOD"]["Xhr"];
@@ -68596,7 +69629,7 @@ UCF_System is not available yet
                 UCF_ResourceUtil["inlineSvgLibByXhr"](oLibInfo, fApplySvgLib);
             } else {
                 if (__UCF_TRACE__) {
-                    UCF_Tracer.trace(INFO, 'Inlining SVG lib "' + oLibInfo["sLibUrl"] + '" by CSS embedding approach due to NOT located in same origin.', "ResourceUtil.js(1930): inlineSvgLib");
+                    UCF_Tracer.trace(INFO, 'Inlining SVG lib "' + oLibInfo["sLibUrl"] + '" by CSS embedding approach due to NOT located in same origin.', "ResourceUtil.js(1977): inlineSvgLib");
                 }
                 ;
                 oLibInfo["sLoadingMethod"] = UCF_ResourceUtil["LOADING_METHOD"]["Css"];
@@ -68612,6 +69645,7 @@ UCF_System is not available yet
     ;
 
     /**
+     * @static
      * @param {UCF_ResourceUtil_SvgLibInfo} oLibInfo
      * @param {string} sSvgLib
      */
@@ -68649,6 +69683,7 @@ UCF_System is not available yet
     /**
      * security validation. It scans for unallowed tags, attributes etc. and
      * stops inlining process when found invalid expressions
+     * @static
      * @param {string} sSvgLib
      * @return {string} `''` to indicate a valid svg lib, or an error message
      */
@@ -68698,6 +69733,7 @@ UCF_System is not available yet
 
     /**
      * @private
+     * @static
      * @param {UCF_ResourceUtil_SvgLibInfo} oLibInfo the lib information
      * @param {UCF_ResourceUtil_SvgLibPassInfo} oPassInfo the lib information passed
      * @param {function(string): void} fApplySvgLib
@@ -68834,7 +69870,7 @@ UCF_System is not available yet
 
                 if (!aInfoStyle) {
                     if (__UCF_TRACE__) {
-                        UCF_Tracer.trace(WARNING, 'Invalid format in SVG lib "' + oLibInfo["sLibUrl"] + '" chunk number "' + (iChunkCount - 1) + '".', "ResourceUtil.js(2105): onSvgCssLoaded");
+                        UCF_Tracer.trace(WARNING, 'Invalid format in SVG lib "' + oLibInfo["sLibUrl"] + '" chunk number "' + (iChunkCount - 1) + '".', "ResourceUtil.js(2155): onSvgCssLoaded");
                     }
                     ;
                     sSvgLib = null;
@@ -68852,7 +69888,7 @@ UCF_System is not available yet
             fApplySvgLib(sSvgLib);
         } else {
             if (__UCF_TRACE__) {
-                UCF_Tracer.trace(WARNING, 'Unable to inline SVG lib "' + oLibInfo["sLibUrl"] + '"', "ResourceUtil.js(2120): onSvgCssLoaded");
+                UCF_Tracer.trace(WARNING, 'Unable to inline SVG lib "' + oLibInfo["sLibUrl"] + '"', "ResourceUtil.js(2170): onSvgCssLoaded");
             }
             ;
         }
@@ -68875,6 +69911,7 @@ UCF_System is not available yet
      * inlined SVG
      *
      * @public
+     * @static
      * @param {string|SVGUseElement} oUseTag use tag
      * @param {string} sLibIconId if of the icon lib
      * @param {string} sLibUrl the url of the lib
@@ -68901,7 +69938,7 @@ UCF_System is not available yet
 
             if (!oUseTag) {
                 if (__UCF_TRACE__) {
-                    UCF_Tracer.trace(WARNING, 'Not able to find SVG USE tag DOM element "' + sUseTag + '"', "ResourceUtil.js(2156): bApplySvgInlineHref");
+                    UCF_Tracer.trace(WARNING, 'Not able to find SVG USE tag DOM element "' + sUseTag + '"', "ResourceUtil.js(2207): bApplySvgInlineHref");
                 }
                 ;
 
@@ -68935,6 +69972,7 @@ UCF_System is not available yet
      * Normalizes a passed URL
      *
      * @public
+     * @static
      * @param {string} sUrl the url to normalize
      * @return {string} the normalized url
      */
@@ -69004,9 +70042,11 @@ UCF_System is not available yet
         UCF_ResourceUtil["_"]["sNormalizeUrl"] = 0;
     }
     ;
+// #endregion
 
     /**
      * @public
+     * @static
      * @return {string} the documents host including protocol and port
      */
     UCF_ResourceUtil["sGetDocumentOrigin"] = function () {
@@ -69026,6 +70066,10 @@ UCF_System is not available yet
     }
     ;
 
+    /**
+     * @static
+     * @param {function(): void} fnLoaded
+     */
     UCF_ResourceUtil["applyThemeChange"] = function (fnLoaded) {
         ;
         if (__UCF_COVERAGE__) {
@@ -69033,7 +70077,7 @@ UCF_System is not available yet
         }
         ;
         UCF_ResourceUtil["setLightspeedCssLinkUrl"](UCF_ResourceUtil["sGetCssUrl"](window["UCF_System"]["sThemeID"]));
-        UCF_ResourceUtil["ensureLightspeedCssLoaded"]()["then"](fnLoaded);
+        UCF_ResourceUtil["initTheme"]()["then"](fnLoaded);
     };
     ;
     if (__UCF_COVERAGE__) {
@@ -69041,8 +70085,7 @@ UCF_System is not available yet
     }
     ;
 
-
-    UCF_ResourceUtil.prototype["aPublicMethods"] = ["fGetThemingVersion", "sGetThemeUrlAppendix", "sGetCssFileName", "sGetThemesRoot", "sGetThemeRoot", "sGetCssRoot", "sGetControlAssetsRoot", "sGetFontsRoot", "sGetControlAssetUrl", "sGetCssUrl", "sGetSpacerImageUrl", "sGetJsRoot", "sGetHtmlRoot", "sGetMessageBundlesRoot", "sGetQUnitRoot", "bIsLightspeedCssLink", "setLightspeedCssLinkUrl", "ensureLightspeedCssLoaded", "bLightspeedCssLoaded", "sGetLightspeedCssLinkUrl", "oGetLightspeedCssLink", "oGetLightspeedCssStylesheet", "applyIECssRuleLimitWorkaround", "oExtractCssMetaData", "oExtractCssValidationInfo", "enableSVG", "sInlineSvgByHtmlExchange", "inlineSvgLib", "bApplySvgInlineHref", "sNormalizeUrl", "sGetDocumentOrigin"].concat(UCF_ResourceUtil.prototype.aPublicMethods || []);
+    UCF_ResourceUtil.prototype["aPublicMethods"] = ["fGetThemingVersion", "sGetThemeUrlAppendix", "sGetCssFileName", "sGetThemesRoot", "sGetThemeRoot", "sGetCssRoot", "sGetControlAssetsRoot", "sGetFontsRoot", "sGetControlAssetUrl", "sGetCssUrl", "sGetSpacerImageUrl", "sGetJsRoot", "sGetHtmlRoot", "sGetMessageBundlesRoot", "sGetQUnitRoot", "bIsLightspeedCssLink", "ensureLightspeedCssLoaded", "bLightspeedCssLoaded", "sGetLightspeedCssLinkUrl", "oGetLightspeedCssLink", "oGetLightspeedCssStylesheet", "applyIECssRuleLimitWorkaround", "oExtractCssMetaData", "oExtractCssValidationInfo", "enableSVG", "sInlineSvgByHtmlExchange", "inlineSvgLib", "bApplySvgInlineHref", "sNormalizeUrl", "sGetDocumentOrigin"].concat(UCF_ResourceUtil.prototype.aPublicMethods || []);
     /* global _assert */
 /// <reference path="../../core/debug/Tracer.js"/>
     /* global UCF_JsUtil */
@@ -69733,6 +70776,7 @@ UCF_System is not available yet
 
         this["collectGenericProperties"](oLS);
         this["collectWeekendDays"]();
+        this["calculateUTCOffsetMinutes"]();
 
         this["setDataTypeFormats"](this["sDataTypeFormats"]);
 
@@ -69760,9 +70804,9 @@ UCF_System is not available yet
         this["bIsAria"] = null;
         this["aSupportedSapThemeIDs"] = null;
         this["oDataTypeFormats"] = null;
-        this["sThemeID"] = null; // eslint-disable-line ur/no-missing-setClientProperty
-        this["sThemeRepositoryURL"] = null; // eslint-disable-line ur/no-missing-setClientProperty
-        this["bIs508"] = null; // eslint-disable-line ur/no-missing-setClientProperty
+        this["sThemeID"] = null; // eslint-disable-line @ur/no-missing-setClientProperty
+        this["sThemeRepositoryURL"] = null; // eslint-disable-line @ur/no-missing-setClientProperty
+        this["bIs508"] = null; // eslint-disable-line @ur/no-missing-setClientProperty
         this["sParameter"] = null;
         this["sFeatureFlags"] = null;
 
@@ -69813,17 +70857,17 @@ UCF_System is not available yet
         ;
         if (!this["sRuntimeVersion"]) {
             if (__UCF_TRACE__) {
-                UCF_Tracer.trace(INFO, 'No backend runtime version found at UCF_System.', "System.js(137): checkRuntimeVersion");
+                UCF_Tracer.trace(INFO, 'No backend runtime version found at UCF_System.', "System.js(138): checkRuntimeVersion");
             }
             ;
         } else if (0 === UCF_VersionInfo["mVersionProperties"]["mUICore"]["urversion"]["indexOf"](this["sRuntimeVersion"])) {
             if (__UCF_TRACE__) {
-                UCF_Tracer.trace(INFO, 'Runtime version match: "' + this["sRuntimeVersion"] + '" (backend) vs. "' + UCF_VersionInfo["mVersionProperties"]["mUICore"]["urversion"] + '" (frontend).', "System.js(139): checkRuntimeVersion");
+                UCF_Tracer.trace(INFO, 'Runtime version match: "' + this["sRuntimeVersion"] + '" (backend) vs. "' + UCF_VersionInfo["mVersionProperties"]["mUICore"]["urversion"] + '" (frontend).', "System.js(140): checkRuntimeVersion");
             }
             ;
         } else if (__UCF_DEBUG__) {
             if (__UCF_TRACE__) {
-                UCF_Tracer.trace(ERROR, 'Runtime version mismatch: "' + this["sRuntimeVersion"] + '" (backend) vs. "' + UCF_VersionInfo["mVersionProperties"]["mUICore"]["urversion"] + '" (frontend).', "System.js(141): checkRuntimeVersion");
+                UCF_Tracer.trace(ERROR, 'Runtime version mismatch: "' + this["sRuntimeVersion"] + '" (backend) vs. "' + UCF_VersionInfo["mVersionProperties"]["mUICore"]["urversion"] + '" (frontend).', "System.js(142): checkRuntimeVersion");
             }
             ;
         } else if (console && console["error"]) {
@@ -69893,7 +70937,7 @@ UCF_System is not available yet
                 }
 
                 if (__UCF_TRACE__) {
-                    UCF_Tracer.trace(INFO, 'set system property: ' + oProp["sKey"] + '=' + oProp["sValue"], "System.js(198): collectGenericProperties");
+                    UCF_Tracer.trace(INFO, 'set system property: ' + oProp["sKey"] + '=' + oProp["sValue"], "System.js(199): collectGenericProperties");
                 }
                 ;
             }
@@ -69918,7 +70962,7 @@ UCF_System is not available yet
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(typeof sJSON === 'string', "typeof sJSON === 'string'", "System.js(210): setDataTypeFormats");
+            UCF_Tracer.assert(typeof sJSON === 'string', "typeof sJSON === 'string'", "System.js(211): setDataTypeFormats");
         }
         ;
         /** @type {Object} */
@@ -69944,7 +70988,7 @@ UCF_System is not available yet
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(typeof sType === 'string', "typeof sType === 'string'", "System.js(223): sGetDataTypeFormat");
+            UCF_Tracer.assert(typeof sType === 'string', "typeof sType === 'string'", "System.js(224): sGetDataTypeFormat");
         }
         ;
 
@@ -69975,12 +71019,12 @@ UCF_System is not available yet
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(typeof sThemeID === 'string', "typeof sThemeID === 'string'", "System.js(241): setThemeID");
+            UCF_Tracer.assert(typeof sThemeID === 'string', "typeof sThemeID === 'string'", "System.js(242): setThemeID");
         }
         ;
 
         if (__UCF_TRACE__) {
-            UCF_Tracer.trace(WARNING, 'Changing ThemeID from "' + this["sThemeID"] + '" to "' + sThemeID + '"', "System.js(243): setThemeID");
+            UCF_Tracer.trace(WARNING, 'Changing ThemeID from "' + this["sThemeID"] + '" to "' + sThemeID + '"', "System.js(244): setThemeID");
         }
         ;
         this["sThemeID"] = sThemeID;
@@ -70010,12 +71054,12 @@ UCF_System is not available yet
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(typeof sThemeRepositoryURL === 'string', "typeof sThemeRepositoryURL === 'string'", "System.js(260): setThemeRepositoryURL");
+            UCF_Tracer.assert(typeof sThemeRepositoryURL === 'string', "typeof sThemeRepositoryURL === 'string'", "System.js(261): setThemeRepositoryURL");
         }
         ;
 
         if (__UCF_TRACE__) {
-            UCF_Tracer.trace(WARNING, 'Changing ThemeRepositoryURL from "' + this["sThemeRepositoryURL"] + '" to "' + sThemeRepositoryURL + '"', "System.js(262): setThemeRepositoryURL");
+            UCF_Tracer.trace(WARNING, 'Changing ThemeRepositoryURL from "' + this["sThemeRepositoryURL"] + '" to "' + sThemeRepositoryURL + '"', "System.js(263): setThemeRepositoryURL");
         }
         ;
         this["sThemeRepositoryURL"] = sThemeRepositoryURL;
@@ -70047,7 +71091,7 @@ UCF_System is not available yet
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(typeof iDay === 'number', "typeof iDay === 'number'", "System.js(281): bIsWeekend");
+            UCF_Tracer.assert(typeof iDay === 'number', "typeof iDay === 'number'", "System.js(282): bIsWeekend");
         }
         ;
 
@@ -70265,7 +71309,7 @@ UCF_System is not available yet
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(typeof sFeatureFlags === 'string', "typeof sFeatureFlags === 'string'", "System.js(404): setFeatureFlags");
+            UCF_Tracer.assert(typeof sFeatureFlags === 'string', "typeof sFeatureFlags === 'string'", "System.js(405): setFeatureFlags");
         }
         ;
 
@@ -70293,11 +71337,11 @@ UCF_System is not available yet
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(UCF_JsUtil["contains"](aSupportedValues, oValue), "UCF_JsUtil.contains(aSupportedValues, oValue)", "System.js(419): setParameter");
+            UCF_Tracer.assert(UCF_JsUtil["contains"](aSupportedValues, oValue), "UCF_JsUtil.contains(aSupportedValues, oValue)", "System.js(420): setParameter");
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(sParameter in this, "sParameter in this", "System.js(420): setParameter");
+            UCF_Tracer.assert(sParameter in this, "sParameter in this", "System.js(421): setParameter");
         }
         ;
 
@@ -70332,512 +71376,399 @@ UCF_System is not available yet
     }
     ;
 // #endregion
-// #endregion
 
-// =============================================================================
-// Copyright 2009 - SAP - NW UI F. All rights reserved. SAP
-// PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
-// =============================================================================
+    UCF_System["prototype"]["calculateUTCOffsetMinutes"] = function () {
+        ;
+        if (__UCF_COVERAGE__) {
+            UCF_System["_"]["calculateUTCOffsetMinutes"]++;
+        }
+        ;
+        if (!this["sUTCOffset"] || this["sUTCOffset"] === "")
+            return;
+        if (/.*([+,-])(\d\d):(\d\d)/g["exec"](this["sUTCOffset"])) //UTC-05:30
+            // eslint-disable-next-line @ur/no-memory-leaks
+            this["iUTCOffsetMinutes"] = ((60 * parseInt(RegExp["$2"])) + parseInt(RegExp["$3"])) * (RegExp["$1"] === '-' ? -1 : 1);
+        else if (/.*([+,-]\d*\.\d*).*/g["exec"](this["sUTCOffset"])) // -9.5
+            this["iUTCOffsetMinutes"] = parseInt(60 * RegExp["$1"]);
+        else if (/.*([+,-])(\d\d)(\d\d)/g["exec"](this["sUTCOffset"])) // UTC-0545
+            this["iUTCOffsetMinutes"] = ((60 * parseInt(RegExp["$2"])) + parseInt(RegExp["$3"])) * (RegExp["$1"] === '-' ? -1 : 1);
+        else if (/.*([+,-])(\d\d)/g["exec"](this["sUTCOffset"])) //UTC+05
+            this["iUTCOffsetMinutes"] = (60 * parseInt(RegExp["$2"])) * (RegExp["$1"] === '-' ? -1 : 1);
+        else if (__UCF_TRACE__) {
+            UCF_Tracer.trace(ERROR, 'UTC Offset correction: ' + this["sUTCOffset"] + ' is invalid.', "System.js(463): calculateUTCOffsetMinutes");
+        }
+        ;
+        if (__UCF_TRACE__) {
+            UCF_Tracer.trace(INFO, 'UTC Offset correction: ' + this["sUTCOffset"] + ' >> ' + this["iUTCOffsetMinutes"] + ' minutes.', "System.js(464): calculateUTCOffsetMinutes");
+        }
+        ;
+    };
+    ;
+    if (__UCF_COVERAGE__) {
+        UCF_System["_"]["calculateUTCOffsetMinutes"] = 0;
+    }
+    ;
 
     /**
-     * Array of names of transported parameters/attributes (clientaccess defined). In the current control:
-     * - {@link #bIs508}
-     * - {@link #bIsRTL}
-     * - {@link #sDevice}
-     * - {@link #sLanguage}
-     * - {@link #iFirstDayOfWeek}
-     * - {@link #iMinimalDaysInFirstWeek}
-     * - {@link #bIsDesigntime}
-     * - {@link #bClientDebug}
-     * - Deprecated: {@link #sExternalThemeRoot}
-     * - {@link #sCSSURL}
-     * - {@link #sResourceRoot}
-     * - Deprecated: {@link #sSpaceGif}
-     * - {@link #bLoadOnDemand}
-     * - {@link #bUseAnimation}
-     * - {@link #bUseActiveX}
-     * - {@link #bIsUCF}
-     * - {@link #sPlatform}
-     * - {@link #sClientVersionKey}
-     * - {@link #sUserAgentName}
-     * - {@link #fUserAgentVersion}
-     * - {@link #bUseSafeTransportEncoding}
-     * - Deprecated: {@link #bUseXHR}
-     * - {@link #sAccessibility}
-     * - Deprecated: {@link #sEmbedding}
-     * - Deprecated: {@link #sCustomData}
-     * - {@link #sThemeID}
-     * - {@link #sThemeFileName}
-     * - {@link #sThemeRepositoryURL}
-     * - {@link #sThemeRepositoryURLAppendix}
-     * - {@link #sThemeRequiredVersion}
-     * - {@link #sThemeFallbackRepositoryURL}
-     * - {@link #sThemeFallbackID}
-     * - {@link #sThemeFallbackCSSURL}
-     * - {@link #sDataTypeFormats}
-     * - {@link #sRuntimeVersion}
-     * - {@link #bEnableClientSideTesting}
-     * - {@link #sBaseURL}
-     * - {@link #sWeekendDays}
-     * - {@link #bSetDirtyForRoundtrips}
-     * - {@link #bIsRemoteDesktop}
-     * - {@link #bUseFocusColor}
-     * - {@link #sDebugLevel}
-     * - {@link #sFeatureChannel}
-     * - {@link #sFeatureFlags}
-     * - {@link #sBrowserName}
-     * - {@link #sBrowserVersion}
-     * - {@link #sNonce}
-     * - {@link #sSubmitMethod}
-     * - {@link #sInteractionType}
-     * - {@link #sSupportedSapThemeIDs}
-     * - {@link #sDefaultClientAction}
-     * - {@link #sDefaultResponseData}
+     * @return {integer}
+     */
+
+    UCF_System["prototype"]["iGetUTCOffsetMinutes"] = function () {
+        ;
+        if (__UCF_COVERAGE__) {
+            UCF_System["_"]["iGetUTCOffsetMinutes"]++;
+        }
+        ;
+        return this["iUTCOffsetMinutes"];              // might  be undefined
+    };
+    ;
+    if (__UCF_COVERAGE__) {
+        UCF_System["_"]["iGetUTCOffsetMinutes"] = 0;
+    }
+    ;
+
+// #endregion
+    /**
+     * Array of names of transported names/attributes (clientaccess defined).
      * @private
      * @type {string[]}
      */
-    UCF_System["prototype"]["aAttributeNames"] = ['bIs508', 'bIsRTL', 'sDevice', 'sLanguage', 'iFirstDayOfWeek', 'iMinimalDaysInFirstWeek', 'bIsDesigntime', 'bClientDebug', 'sExternalThemeRoot', 'sCSSURL', 'sResourceRoot', 'sSpaceGif', 'bLoadOnDemand', 'bUseAnimation', 'bUseActiveX', 'bIsUCF', 'sPlatform', 'sClientVersionKey', 'sUserAgentName', 'fUserAgentVersion', 'bUseSafeTransportEncoding', 'bUseXHR', 'sAccessibility', 'sEmbedding', 'sCustomData', 'sThemeID', 'sThemeFileName', 'sThemeRepositoryURL', 'sThemeRepositoryURLAppendix', 'sThemeRequiredVersion', 'sThemeFallbackRepositoryURL', 'sThemeFallbackID', 'sThemeFallbackCSSURL', 'sDataTypeFormats', 'sRuntimeVersion', 'bEnableClientSideTesting', 'sBaseURL', 'sWeekendDays', 'bSetDirtyForRoundtrips', 'bIsRemoteDesktop', 'bUseFocusColor', 'sDebugLevel', 'sFeatureChannel', 'sFeatureFlags', 'sBrowserName', 'sBrowserVersion', 'sNonce', 'sSubmitMethod', 'sInteractionType', 'sSupportedSapThemeIDs', 'sDefaultClientAction', 'sDefaultResponseData'];
+    UCF_System["prototype"]["aAttributeNames"] = ["bIs508", "bIsRTL", "sDevice", "sLanguage", "iFirstDayOfWeek", "iMinimalDaysInFirstWeek", "bIsDesigntime", "bClientDebug", "sExternalThemeRoot", "sCSSURL", "sResourceRoot", "sSpaceGif", "bLoadOnDemand", "bUseAnimation", "bUseActiveX", "bIsUCF", "sPlatform", "sClientVersionKey", "sUserAgentName", "fUserAgentVersion", "bUseSafeTransportEncoding", "bUseXHR", "sAccessibility", "sEmbedding", "sCustomData", "sThemeID", "sThemeFileName", "sThemeRepositoryURL", "sThemeRepositoryURLAppendix", "sThemeRequiredVersion", "sThemeFallbackRepositoryURL", "sThemeFallbackID", "sThemeFallbackCSSURL", "sDataTypeFormats", "sRuntimeVersion", "bEnableClientSideTesting", "sBaseURL", "sWeekendDays", "bSetDirtyForRoundtrips", "bIsRemoteDesktop", "bUseFocusColor", "sDebugLevel", "sFeatureChannel", "sFeatureFlags", "sBrowserName", "sBrowserVersion", "sNonce", "sSubmitMethod", "sInteractionType", "sSupportedSapThemeIDs", "sDefaultClientAction", "sDefaultResponseData", "sUTCOffset"];
 
     /**
-     * Array of names of events of the control:
+     * Array of names of transported events.
+     * @private
      * @type {string[]}
      */
     UCF_System["prototype"]["aEventNames"] = [];
 
     /**
-     * Array of names of public methods of the control - public control API are:
-     *
-     * no public API available
-     *
+     * Array of names of public methods.
      * @private
      * @type {string[]}
      */
-    UCF_System["prototype"]["aMethodNames"] = [, 'updateEvent', 'addClientListener', 'removeClientListener', 'playAnimation', 'getCustomData', 'sGetCustomData', 'show', 'hide', 'focus', 'oGetParentControl'];
-
-// ===== Default values of the transported parameters =========================
+    UCF_System["prototype"]["aMethodNames"] = [];
 
     /**
-     * Specifies whether the System is in 508 = accessibility mode or not.
-     *
-     * @private
+     *Â @private
      * @type {boolean}
      */
     UCF_System["prototype"]["bIs508"] = false;
 
     /**
-     * Specifies whether the System is in right-to-left mode or not.
-     *
-     * @private
+     *Â @private
      * @type {boolean}
      */
     UCF_System["prototype"]["bIsRTL"] = false;
 
     /**
-     * Sets the device string (browser) - mainly used in the look and feel infrastructure, the generated renderers and the javascript
-     *
-     * @private
+     *Â @private
      * @type {string}
      */
     UCF_System["prototype"]["sDevice"] = 'ie6';
 
     /**
-     * Sets the language string
-     *
-     * @private
+     *Â @private
      * @type {string}
      */
     UCF_System["prototype"]["sLanguage"] = 'en';
 
     /**
-     * Sets the first day of the week for the locale or user wehere 0=Sunday and 6 is Saturday.
-     *
-     * @private
+     *Â @private
      * @type {number}
      */
     UCF_System["prototype"]["iFirstDayOfWeek"] = 0;
 
     /**
-     * Sets how many days are required in the first week of the year to make it week number 1, Default 4 = ISO 8601 = week number 1 is the week with the first Thursday.
-     *
-     * @private
+     *Â @private
      * @type {number}
      */
     UCF_System["prototype"]["iMinimalDaysInFirstWeek"] = 4;
 
     /**
-     * Specifies whether the System renders for designtime or runtime.
-     *
-     * @private
+     *Â @private
      * @type {boolean}
      */
     UCF_System["prototype"]["bIsDesigntime"] = false;
 
     /**
-     * Specified whether debug-libraries should be used.
-     *
-     * @private
+     *Â @private
      * @type {boolean}
      */
     UCF_System["prototype"]["bClientDebug"] = false;
 
     /**
-     * Sets the external (browser) root path to the theme. It is used to render various image path from the theme in the generated HTML content.
-     *
-     * @private
+     *Â @private
      * @type {string}
      */
     UCF_System["prototype"]["sExternalThemeRoot"] = '';
 
     /**
-     * Specified a URL to CSS that is used if InlineCSS=false. This URL is only used for the old theming infrastructure. When using the new Theming infrastructure use the parameter 'ThemeRepositoryURL'
-     *
-     * @private
+     *Â @private
      * @type {string}
      */
     UCF_System["prototype"]["sCSSURL"] = '';
 
     /**
-     * Sets the root path (external/browser) to the ressources .
-     *
-     * @private
+     *Â @private
      * @type {string}
      */
     UCF_System["prototype"]["sResourceRoot"] = '.';
 
     /**
-     * Sets the path to the spacer GIF image files in the System. Deprecated: Use resourceRoot instead which contains the 1x1.gif
-     *
-     * @private
+     *Â @private
      * @type {string}
      */
     UCF_System["prototype"]["sSpaceGif"] = null;
 
     /**
-     * Specifies whether control JS should be loaded on demand or intially.
-     *
-     * @private
+     *Â @private
      * @type {boolean}
      */
     UCF_System["prototype"]["bLoadOnDemand"] = true;
 
     /**
-     * Specifies whether animation effects should be used. Implies UseFocusColor=true.
-     *
-     * @private
+     *Â @private
      * @type {boolean}
      */
     UCF_System["prototype"]["bUseAnimation"] = true;
 
     /**
-     * Specifies whether ActiveX should be used.
-     *
-     * @private
+     *Â @private
      * @type {boolean}
      */
     UCF_System["prototype"]["bUseActiveX"] = true;
 
     /**
-     * Specifies whether the System uses UCF features or not
-     *
-     * @private
+     *Â @private
      * @type {boolean}
      */
     UCF_System["prototype"]["bIsUCF"] = false;
 
     /**
-     * Sets the platform of the browser. Valid values are Windows, X11, Macintosh, iOS, Android
-     *
-     * @private
+     *Â @private
      * @type {string}
      */
     UCF_System["prototype"]["sPlatform"] = 'Windows';
 
     /**
-     * Sets the version for the client that is used to access the resources from the server. The framework has to ensure that the client version key is different between different customers on the same patch level. The client version key must be almost constant to avoid too many caching cleanups on runnings systems.
-     *
-     * @private
+     *Â @private
      * @type {string}
      */
     UCF_System["prototype"]["sClientVersionKey"] = '';
 
     /**
-     * Sets the name of the user agent (rendering engine) that can be found in the user agent string of the request
-     *
-     * @private
+     *Â @private
      * @type {string}
      */
     UCF_System["prototype"]["sUserAgentName"] = 'MSIE';
 
     /**
-     * Sets the major and minor version number of the user agent (rendering engine). Minor number is the fraction in the float.  Please don't use the version number of the browser.
-     *
-     * @private
+     *Â @private
      * @type {number}
      */
     UCF_System["prototype"]["fUserAgentVersion"] = 0;
 
     /**
-     * Specifies whether extra transport encoding of Event Queue data between client and server is used or not. Default setting (=true) guarantees the data gets passed in codepage-safe way, converted to low-ascii character. The consuming framework may disable this extra encoding (=false) on demand to get slimmer upstream network traffic, but only under assumption both client and server are using UTF8 encoding
-     *
-     * @private
+     *Â @private
      * @type {boolean}
      */
     UCF_System["prototype"]["bUseSafeTransportEncoding"] = true;
 
     /**
-     * Specifies whether IFrames should be used instead of XMLHttpRequest. Unsupported and for test purposes only.
-     *
-     * @private
+     *Â @private
      * @type {boolean}
      */
     UCF_System["prototype"]["bUseXHR"] = true;
 
     /**
-     * Specifies the accessibility mode. See Accessibility enumeration for more details.
-     *
-     * @private
+     *Â @private
      * @type {string}
      */
     UCF_System["prototype"]["sAccessibility"] = 'NONE';
 
     /**
-     * DO NOT USE!! AUTO | ISOLATED
-     *
-     * @private
+     *Â @private
      * @type {string}
      */
     UCF_System["prototype"]["sEmbedding"] = 'AUTO';
 
     /**
-     * Do not use
-     *
-     * @private
+     *Â @private
      * @type {string}
      */
     UCF_System["prototype"]["sCustomData"] = '';
 
     /**
-     * Sets the themeId - it's the technical name of the theme
-     *
-     * @private
+     *Â @private
      * @type {string}
      */
     UCF_System["prototype"]["sThemeID"] = null;
 
     /**
-     * An optional name of a less file (without extension) in the theme which identifies the CSS to refer. If empty the Device is used to determine the ThemeFileName
-     *
-     * @private
+     *Â @private
      * @type {string}
      */
     UCF_System["prototype"]["sThemeFileName"] = '';
 
     /**
-     * The URL to the root of the theme repository which has to be used to choose right Theminh data. It is mandartory that ThemeID is set additionally.
-     *
-     * @private
+     *Â @private
      * @type {string}
      */
     UCF_System["prototype"]["sThemeRepositoryURL"] = '';
 
     /**
-     * A string to be appended to the style URL after the '?'. This could be used e.g. for cache version handling
-     *
-     * @private
+     *Â @private
      * @type {string}
      */
     UCF_System["prototype"]["sThemeRepositoryURLAppendix"] = '';
 
     /**
-     * The version string which is used to be compared with the CSS version. An empty version string means that no check is perfromed
-     *
-     * @private
+     *Â @private
      * @type {string}
      */
     UCF_System["prototype"]["sThemeRequiredVersion"] = '';
 
     /**
-     * An optional fallback URL to an repository which is loaded when the CSS version does not match to the ThemeRequiredVersion
-     *
-     * @private
+     *Â @private
      * @type {string}
      */
     UCF_System["prototype"]["sThemeFallbackRepositoryURL"] = '';
 
     /**
-     * An optional fallback ID used in combination with ThemeFallbackRepositoryURL
-     *
-     * @private
+     *Â @private
      * @type {string}
      */
     UCF_System["prototype"]["sThemeFallbackID"] = '';
 
     /**
-     * An optional fallback URL to an stylesheet which is loaded when the CSS version does not match to the ThemeRequiredVersion
-     *
-     * @private
+     *Â @private
      * @type {string}
      */
     UCF_System["prototype"]["sThemeFallbackCSSURL"] = '';
 
     /**
-     * A string in JSON format which defines the format strings to parse and serialize data types. Supported types are 'Date' and 'Decimal'
-     *
-     * @private
+     *Â @private
      * @type {string}
      */
     UCF_System["prototype"]["sDataTypeFormats"] = '';
 
     /**
-     * The current runtime version of JS and renderer
-     *
-     * @private
+     *Â @private
      * @type {string}
      */
     UCF_System["prototype"]["sRuntimeVersion"] = '';
 
     /**
-     * Enables a special test mode.
-     *
-     * @private
+     *Â @private
      * @type {boolean}
      */
     UCF_System["prototype"]["bEnableClientSideTesting"] = false;
 
     /**
-     * This URL is set for the base tag of the page
-     *
-     * @private
+     *Â @private
      * @type {string}
      */
     UCF_System["prototype"]["sBaseURL"] = '';
 
     /**
-     * Sets the weekend days as an array where 0=Sunday and 6 is Saturday.
-     *
-     * @private
+     *Â @private
      * @type {string}
      */
     UCF_System["prototype"]["sWeekendDays"] = '[0,6]';
 
     /**
-     * Specifies whether the UCF_WorkProtectHandler (IHub-related) is set to dirty when LightSpeed is locked (SetDirtyForRoundtrips=true) or only if LightSpeed is actually dirty (SetDirtyForRoundtrips=false, the default).
-     *
-     * @private
+     *Â @private
      * @type {boolean}
      */
     UCF_System["prototype"]["bSetDirtyForRoundtrips"] = false;
 
     /**
-     * Specifies whether the System is accessed via remote desktop.
-     *
-     * @private
+     *Â @private
      * @type {boolean}
      */
     UCF_System["prototype"]["bIsRemoteDesktop"] = false;
 
     /**
-     * Specifies whether focus should be visualized.
-     *
-     * @private
+     *Â @private
      * @type {boolean}
      */
     UCF_System["prototype"]["bUseFocusColor"] = false;
 
     /**
-     * Specifies the amount of debug information provided by Lightspeed. Default is OFF (== no information).
-     *
-     * @private
-     * @type {string}
+     *Â @private
+     * @type {UCF_ClientInterfaces.E.DebugLevel}
      */
     UCF_System["prototype"]["sDebugLevel"] = "OFF";
 
     /**
-     * Specifies the amount of features to be used. See FeatureChannel.enumeration. Default is STABLE.
-     *
-     * @private
-     * @type {string}
+     *Â @private
+     * @type {UCF_ClientInterfaces.E.FeatureChannel}
      */
     UCF_System["prototype"]["sFeatureChannel"] = "STABLE";
 
     /**
-     * Comma-separated list of specific features to enable (usually to test features during development)
-     *
-     * @private
+     *Â @private
      * @type {string}
      */
     UCF_System["prototype"]["sFeatureFlags"] = '';
 
     /**
-     * Specifies the browser name.
-     *
-     * @private
+     *Â @private
      * @type {string}
      */
     UCF_System["prototype"]["sBrowserName"] = '';
 
     /**
-     * Specifies the browser version.
-     *
-     * @private
+     *Â @private
      * @type {string}
      */
     UCF_System["prototype"]["sBrowserVersion"] = '';
 
     /**
-     * CSP-Nonce.
-     *
-     * @private
+     *Â @private
      * @type {string}
      */
     UCF_System["prototype"]["sNonce"] = '';
 
     /**
-     * Determines the method used during submit.
-     *
-     * @private
-     * @type {string}
+     *Â @private
+     * @type {UCF_ClientInterfaces.E.SubmitMethod}
      */
     UCF_System["prototype"]["sSubmitMethod"] = "FORM";
 
     /**
-     * Determines the prefered interaction.
-     *
-     * @private
-     * @type {string}
+     *Â @private
+     * @type {UCF_ClientInterfaces.E.InteractionType}
      */
     UCF_System["prototype"]["sInteractionType"] = "KEYBOARD";
 
     /**
-     * List of all SAP themes supported by the application. Must be valid JSON, e.g. '["sap_tradeshow","sap_corbu","sap_belize","sap_belize_hcb"]'. "*" is supported as a wildcard, i.e. '["sap_belize*"]' equals '["sap_belize","sap_belize_plus""sap_belize_hcb","sap_belize_hcw"]'. Themes where the first SAP theme in the inheritance chain does not match any item in this list of SupportedThemes will be rejected, i.e. a theme fallback will be performed, possibly multiple times, until a supported theme is found. The default is 'null' (which is equal to '["*"]'), accepting all SAP themes.
-     *
-     * @private
+     *Â @private
      * @type {string}
      */
     UCF_System["prototype"]["sSupportedSapThemeIDs"] = 'null';
 
     /**
-     * Sets the default ClientAction to be used in the ucf parameters of events. See ClientAction.enumeration. Defaults to ENQUEUE.
-     *
-     * @private
-     * @type {string}
+     *Â @private
+     * @type {UCF_ClientInterfaces.E.ClientAction}
      */
     UCF_System["prototype"]["sDefaultClientAction"] = "ENQUEUE";
 
     /**
-     * Sets the default ResponseData to be used in the ucf parameters of events. See ResponseData.enumeration. Defaults to INHERIT.
-     *
-     * @private
-     * @type {string}
+     *Â @private
+     * @type {UCF_ClientInterfaces.E.ResponseData}
      */
     UCF_System["prototype"]["sDefaultResponseData"] = "INHERIT";
 
+    /**
+     *Â @private
+     * @type {string}
+     */
+    UCF_System["prototype"]["sUTCOffset"] = '';
 
 //#JSCOVER_EXCL_START
-    /**
-     * Default value setter
-     * @private
-     */
+    /** @protected */
     UCF_System["prototype"]["setDefaultValues"] = function () {
         ;
         if (__UCF_COVERAGE__) {
@@ -70896,60 +71827,62 @@ UCF_System is not available yet
         this["sSupportedSapThemeIDs"] = 'null';
         this["sDefaultClientAction"] = "ENQUEUE";
         this["sDefaultResponseData"] = "INHERIT";
+        this["sUTCOffset"] = '';
 
         if (this["getClientControl"]() && !this["bKeepAlive"]) {
-            this["setClientProperty"]('', false, true);
-            this["setClientProperty"]('', false, true);
-            this["setClientProperty"]('', 'ie6', true);
-            this["setClientProperty"]('', 'en', true);
-            this["setClientProperty"]('', 0, true);
-            this["setClientProperty"]('', 4, true);
-            this["setClientProperty"]('', false, true);
-            this["setClientProperty"]('', false, true);
-            this["setClientProperty"]('', '', true);
-            this["setClientProperty"]('', '', true);
-            this["setClientProperty"]('', '.', true);
-            this["setClientProperty"]('', null, true);
-            this["setClientProperty"]('', true, true);
-            this["setClientProperty"]('', true, true);
-            this["setClientProperty"]('', true, true);
-            this["setClientProperty"]('', false, true);
-            this["setClientProperty"]('', 'Windows', true);
-            this["setClientProperty"]('', '', true);
-            this["setClientProperty"]('', 'MSIE', true);
-            this["setClientProperty"]('', 0, true);
-            this["setClientProperty"]('', true, true);
-            this["setClientProperty"]('', true, true);
-            this["setClientProperty"]('', 'NONE', true);
-            this["setClientProperty"]('', 'AUTO', true);
-            this["setClientProperty"]('', '', true);
-            this["setClientProperty"]('', null, true);
-            this["setClientProperty"]('', '', true);
-            this["setClientProperty"]('', '', true);
-            this["setClientProperty"]('', '', true);
-            this["setClientProperty"]('', '', true);
-            this["setClientProperty"]('', '', true);
-            this["setClientProperty"]('', '', true);
-            this["setClientProperty"]('', '', true);
-            this["setClientProperty"]('', '', true);
-            this["setClientProperty"]('', '', true);
-            this["setClientProperty"]('', false, true);
-            this["setClientProperty"]('', '', true);
-            this["setClientProperty"]('', '[0,6]', true);
-            this["setClientProperty"]('', false, true);
-            this["setClientProperty"]('', false, true);
-            this["setClientProperty"]('', false, true);
-            this["setClientProperty"]('', "OFF", true);
-            this["setClientProperty"]('', "STABLE", true);
-            this["setClientProperty"]('', '', true);
-            this["setClientProperty"]('', '', true);
-            this["setClientProperty"]('', '', true);
-            this["setClientProperty"]('', '', true);
-            this["setClientProperty"]('', "FORM", true);
-            this["setClientProperty"]('', "KEYBOARD", true);
-            this["setClientProperty"]('', 'null', true);
-            this["setClientProperty"]('', "ENQUEUE", true);
-            this["setClientProperty"]('', "INHERIT", true);
+            this["setClientProperty"]("Is508", false, true);
+            this["setClientProperty"]("IsRTL", false, true);
+            this["setClientProperty"]("Device", 'ie6', true);
+            this["setClientProperty"]("Language", 'en', true);
+            this["setClientProperty"]("FirstDayOfWeek", 0, true);
+            this["setClientProperty"]("MinimalDaysInFirstWeek", 4, true);
+            this["setClientProperty"]("IsDesigntime", false, true);
+            this["setClientProperty"]("ClientDebug", false, true);
+            this["setClientProperty"]("ExternalThemeRoot", '', true);
+            this["setClientProperty"]("CSSURL", '', true);
+            this["setClientProperty"]("ResourceRoot", '.', true);
+            this["setClientProperty"]("SpaceGif", null, true);
+            this["setClientProperty"]("LoadOnDemand", true, true);
+            this["setClientProperty"]("UseAnimation", true, true);
+            this["setClientProperty"]("UseActiveX", true, true);
+            this["setClientProperty"]("IsUCF", false, true);
+            this["setClientProperty"]("Platform", 'Windows', true);
+            this["setClientProperty"]("ClientVersionKey", '', true);
+            this["setClientProperty"]("UserAgentName", 'MSIE', true);
+            this["setClientProperty"]("UserAgentVersion", 0, true);
+            this["setClientProperty"]("UseSafeTransportEncoding", true, true);
+            this["setClientProperty"]("UseXHR", true, true);
+            this["setClientProperty"]("Accessibility", 'NONE', true);
+            this["setClientProperty"]("Embedding", 'AUTO', true);
+            this["setClientProperty"]("CustomData", '', true);
+            this["setClientProperty"]("ThemeID", null, true);
+            this["setClientProperty"]("ThemeFileName", '', true);
+            this["setClientProperty"]("ThemeRepositoryURL", '', true);
+            this["setClientProperty"]("ThemeRepositoryURLAppendix", '', true);
+            this["setClientProperty"]("ThemeRequiredVersion", '', true);
+            this["setClientProperty"]("ThemeFallbackRepositoryURL", '', true);
+            this["setClientProperty"]("ThemeFallbackID", '', true);
+            this["setClientProperty"]("ThemeFallbackCSSURL", '', true);
+            this["setClientProperty"]("DataTypeFormats", '', true);
+            this["setClientProperty"]("RuntimeVersion", '', true);
+            this["setClientProperty"]("EnableClientSideTesting", false, true);
+            this["setClientProperty"]("BaseURL", '', true);
+            this["setClientProperty"]("WeekendDays", '[0,6]', true);
+            this["setClientProperty"]("SetDirtyForRoundtrips", false, true);
+            this["setClientProperty"]("IsRemoteDesktop", false, true);
+            this["setClientProperty"]("UseFocusColor", false, true);
+            this["setClientProperty"]("DebugLevel", "OFF", true);
+            this["setClientProperty"]("FeatureChannel", "STABLE", true);
+            this["setClientProperty"]("FeatureFlags", '', true);
+            this["setClientProperty"]("BrowserName", '', true);
+            this["setClientProperty"]("BrowserVersion", '', true);
+            this["setClientProperty"]("Nonce", '', true);
+            this["setClientProperty"]("SubmitMethod", "FORM", true);
+            this["setClientProperty"]("InteractionType", "KEYBOARD", true);
+            this["setClientProperty"]("SupportedSapThemeIDs", 'null', true);
+            this["setClientProperty"]("DefaultClientAction", "ENQUEUE", true);
+            this["setClientProperty"]("DefaultResponseData", "INHERIT", true);
+            this["setClientProperty"]("UTCOffset", '', true);
         }
     };
     ;
@@ -70978,9 +71911,9 @@ UCF_System is not available yet
             UCF_ValidateException["_"]["UCF_ValidateException"]++;
         }
         ;
-        this["name"] = "ValidateException";                // eslint-disable-line ur/no-memory-leaks
-        this["message"] = message;                         // eslint-disable-line ur/no-memory-leaks
-        this["violatedConstraints"] = violatedConstraints; // eslint-disable-line ur/no-memory-leaks
+        this["name"] = "ValidateException";                // eslint-disable-line @ur/no-memory-leaks
+        this["message"] = message;                         // eslint-disable-line @ur/no-memory-leaks
+        this["violatedConstraints"] = violatedConstraints; // eslint-disable-line @ur/no-memory-leaks
     };window["UCF_ValidateException"] = UCF_ValidateException;
     ;
     if (__UCF_COVERAGE__) {
@@ -74720,7 +75653,7 @@ UCF_System is not available yet
         }
         ;
         // eslint-disable-next-line no-unsanitized/property
-        oSpanRef["innerHTML"] = sHTML;
+        UCF_DomUtil["setInnerHtml"](oSpanRef, sHTML);
         oRootRef["appendChild"](oSpanRef["firstChild"]);
     };
     ;
@@ -74755,13 +75688,9 @@ UCF_System is not available yet
         // TODO: For unknown reasons this does not work on Safari
         // CSN: C-703528 2010 Do the input field hack only for IE.
         if (UCF_UserAgent["bIsIE"]() || UCF_UserAgent["bIsMSEdge"]()) {
-            // eslint-disable-next-line no-unsanitized/property
-            oDiv["innerHTML"] = '<input type=hidden>' + UCF_PageUpdater["sGetCDATAContent"](
-                oUpdateRef
-            );
+            UCF_DomUtil["setInnerHtml"](oDiv, '<input type=hidden>' + UCF_PageUpdater["sGetCDATAContent"](oUpdateRef));
         } else {
-            // eslint-disable-next-line no-unsanitized/property
-            oDiv["innerHTML"] = UCF_PageUpdater["sGetCDATAContent"](oUpdateRef);
+            UCF_DomUtil["setInnerHtml"](oDiv, UCF_PageUpdater["sGetCDATAContent"](oUpdateRef));
         }
 
     };
@@ -74803,7 +75732,7 @@ UCF_System is not available yet
 
         if (oControl == null) {
             if (__UCF_TRACE__) {
-                UCF_Tracer.trace(ERROR, 'Control to update not found: id=' + sId, "PageUpdater.js(720): updateContent");
+                UCF_Tracer.trace(ERROR, 'Control to update not found: id=' + sId, "PageUpdater.js(716): updateContent");
             }
             ;
         } else {
@@ -74812,11 +75741,11 @@ UCF_System is not available yet
             sHTML = UCF_ResourceUtil["sInlineSvgByHtmlExchange"](sHTML, this["oLS"]);
 
             if (__UCF_TRACE__) {
-                UCF_Tracer.trace(INFO, 'Updating content of control "' + sId + '"', "PageUpdater.js(726): updateContent");
+                UCF_Tracer.trace(INFO, 'Updating content of control "' + sId + '"', "PageUpdater.js(722): updateContent");
             }
             ;
             // eslint-disable-next-line no-unsanitized/property
-            oRootRef["innerHTML"] = sHTML;
+            UCF_DomUtil["setInnerHtml"](oRootRef, sHTML);
         }
 
     };
@@ -74892,7 +75821,7 @@ UCF_System is not available yet
             sHTML = UCF_ResourceUtil["sInlineSvgByHtmlExchange"](sHTML, this["oLS"]);
 
             if (__UCF_TRACE__) {
-                UCF_Tracer.trace(INFO, 'Updating control "' + sId + '" with method ' + (sUpdateMethod == null ? 'FULL' : sUpdateMethod) + '"', "PageUpdater.js(793): updateControl");
+                UCF_Tracer.trace(INFO, 'Updating control "' + sId + '" with method ' + (sUpdateMethod == null ? 'FULL' : sUpdateMethod) + '"', "PageUpdater.js(789): updateControl");
             }
             ;
 
@@ -74915,7 +75844,7 @@ UCF_System is not available yet
 
                 // Replace content of parent (inner approach)
                 // eslint-disable-next-line no-unsanitized/property
-                oParentRef["innerHTML"] = sHTML;
+                UCF_DomUtil["setInnerHtml"](oParentRef, sHTML);
             } else {
                 // Create a documentfragment containing all nodes
                 oFragment = document["createDocumentFragment"]();
@@ -74940,7 +75869,7 @@ UCF_System is not available yet
         if (oControlTreeRef) {
             if (oClientControl && oControl && sUpdateMethod === 'PARTIAL') {
                 if (__UCF_TRACE__) {
-                    UCF_Tracer.trace(INFO, 'Client side rendering parial update.', "PageUpdater.js(838): updateControl");
+                    UCF_Tracer.trace(INFO, 'Client side rendering parial update.', "PageUpdater.js(834): updateControl");
                 }
                 ;
                 oTempRenderManager = new (UCF_ClassLoader["oGetClass"]("UCF_RenderManager"))(this["oLS"]);
@@ -75044,13 +75973,13 @@ UCF_System is not available yet
 
             if (oContentRef) {
                 if (__UCF_TRACE__) {
-                    UCF_Tracer.trace(INFO, 'Appending control "' + sId + '" to container ' + sCId, "PageUpdater.js(929): appendControl");
+                    UCF_Tracer.trace(INFO, 'Appending control "' + sId + '" to container ' + sCId, "PageUpdater.js(925): appendControl");
                 }
                 ;
                 oDiv = document["createElement"]('div');
                 oParentRef["appendChild"](oDiv);
                 // eslint-disable-next-line no-unsanitized/property
-                oDiv["innerHTML"] = sHTML;
+                UCF_DomUtil["setInnerHtml"](oDiv, sHTML);
             }
             if (oControlTreeRef) {
                 // this is a strange case for Client Rendering as there is no "container"
@@ -75059,12 +75988,12 @@ UCF_System is not available yet
                 oClientContainer = this["oLS"]["oControlFactory"]["oGetClientControlById"](sCId);
                 if (!oClientContainer) {
                     if (__UCF_TRACE__) {
-                        UCF_Tracer.trace(INFO, 'Appending control tree "' + sId + '" to container ' + sCId + ' failed. The client control for the container does not exist.', "PageUpdater.js(941): appendControl");
+                        UCF_Tracer.trace(INFO, 'Appending control tree "' + sId + '" to container ' + sCId + ' failed. The client control for the container does not exist.', "PageUpdater.js(937): appendControl");
                     }
                     ;
                 }
                 if (__UCF_TRACE__) {
-                    UCF_Tracer.trace(INFO, 'Appending control tree "' + sId + '" to container ' + sCId, "PageUpdater.js(943): appendControl");
+                    UCF_Tracer.trace(INFO, 'Appending control tree "' + sId + '" to container ' + sCId, "PageUpdater.js(939): appendControl");
                 }
                 ;
                 if (oClientContainer instanceof UCF_ClientContainer) {
@@ -75125,7 +76054,7 @@ UCF_System is not available yet
         var oParentRef;
 
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(this["oLS"]["oControlFactory"]["oGetControlById"](sId) == null, "this.oLS.oControlFactory.oGetControlById(sId) == null", "PageUpdater.js(991): updateHtml");
+            UCF_Tracer.assert(this["oLS"]["oControlFactory"]["oGetControlById"](sId) == null, "this.oLS.oControlFactory.oGetControlById(sId) == null", "PageUpdater.js(987): updateHtml");
         }
         ;
 
@@ -75136,25 +76065,23 @@ UCF_System is not available yet
         );
 
         if (__UCF_TRACE__) {
-            UCF_Tracer.trace(INFO, 'Updating html "' + sId + '"', "PageUpdater.js(999): updateHtml");
+            UCF_Tracer.trace(INFO, 'Updating html "' + sId + '"', "PageUpdater.js(995): updateHtml");
         }
         ;
 
         if (bInnerHTML) {
-            // eslint-disable-next-line no-unsanitized/property
-            oRootRef["innerHTML"] = sHTML;
+            UCF_DomUtil["setInnerHtml"](oRootRef, sHTML);
         } else if (UCF_UserAgent["bIsIE"]() || UCF_UserAgent["bIsMSEdge"]()) {
-            // eslint-disable-next-line no-unsanitized/property
-            oRootRef["outerHTML"] = sHTML;
+            UCF_DomUtil["setOuterHtml"](oRootRef, sHTML);
         } else {
             oTemp = document["createElement"]('div');
             // TODO: multiple tags with the same ID e.g. for JSF
             oParentRef = oRootRef["parentNode"];
             // eslint-disable-next-line no-unsanitized/property
-            oTemp["innerHTML"] = sHTML;
+            UCF_DomUtil["setInnerHtml"](oTemp, sHTML);
 
             if (__UCF_ASSERT__) {
-                UCF_Tracer.assert(oParentRef != null, "oParentRef != null", "PageUpdater.js(1014): updateHtml");
+                UCF_Tracer.assert(oParentRef != null, "oParentRef != null", "PageUpdater.js(1008): updateHtml");
             }
             ;
 
@@ -75196,7 +76123,7 @@ UCF_System is not available yet
         var oRootRef = UCF_DomUtil["$"](sId);
 
         if (__UCF_TRACE__) {
-            UCF_Tracer.trace(INFO, 'Update control "' + sId + '" with client side rendered controls.', "PageUpdater.js(1043): updateLSX");
+            UCF_Tracer.trace(INFO, 'Update control "' + sId + '" with client side rendered controls.', "PageUpdater.js(1037): updateLSX");
         }
         ;
         oRenderManager["renderXMLStream"](sXML, oRootRef);
@@ -75256,7 +76183,7 @@ UCF_System is not available yet
         if (oDomRef && oDomRef["parentNode"]) {
             oTemp = document["createElement"]('div');
             // eslint-disable-next-line no-unsanitized/property
-            oTemp["innerHTML"] = sHTML;
+            UCF_DomUtil["setInnerHtml"](oTemp, sHTML);
 
             oFragment = document["createDocumentFragment"]();
             while (oTemp["firstChild"]) {
@@ -75392,6 +76319,7 @@ UCF_System is not available yet
         UCF_PageUpdater["_"]["updateModel"] = 0;
     }
     ;
+
 
     /* global _assert, _trace, INFO, WARNING, ERROR */
 /// <reference path="../../core/debug/Tracer.js"/>
@@ -76455,19 +77383,19 @@ UCF_System is not available yet
 
         this["aLSLoaded"] = [];
         this["aPopups"] = new Array();
-        //this.aPopupIDsForLayering = new Array();
+        this["aPopupIDsForLayering"] = new Array();
 
         //special mode: blocklayer is only in main LS
         //currently not used
-        this["bBlocklayerLocal"] = false; // eslint-disable-line ur/no-memory-leaks
-        this["bBlockLayerShaded"] = true; // eslint-disable-line ur/no-memory-leaks
+        this["bBlocklayerLocal"] = false; // eslint-disable-line @ur/no-memory-leaks
+        this["bBlockLayerShaded"] = true; // eslint-disable-line @ur/no-memory-leaks
 
         // Cache the Iframe which have been in use
         // Disable IFRame-reuse in FF which caused very strange problems.
         // It would refuse to load the template html page from WDA (in a single custom application)
-        this["bIframeCaching"] = UCF_UserAgent["bIsFirefox"]() ? false : true; // eslint-disable-line ur/no-memory-leaks
+        this["bIframeCaching"] = UCF_UserAgent["bIsFirefox"]() ? false : true; // eslint-disable-line @ur/no-memory-leaks
 
-        //this.oLS.attachEvent(this.oLS.E_EVENTS.UpdateComplete, this, "onUpdateComplete");
+        this["oLS"]["attachEvent"](this["oLS"]["E_EVENTS"]["UpdateComplete"], this, "onUpdateComplete");
         this["oLS"]["attachEvent"](this["oLS"]["E_EVENTS"]["PendingRequest"], this, "onPendingRequest");
         this["oDocument"] = window["document"];
         this["oTopWindow"] = null;
@@ -76694,10 +77622,10 @@ UCF_System is not available yet
      * to the upper/top position (highest index in array).
      * @param {UCF_PopupWindow} oPopup
      */
-    UCF_PopupManager["prototype"]["reInitDivPopup"] = function (oPopup) {
+    UCF_PopupManager["prototype"]["updatePopup"] = function (oPopup) {
         ;
         if (__UCF_COVERAGE__) {
-            UCF_PopupManager["_"]["reInitDivPopup"]++;
+            UCF_PopupManager["_"]["updatePopup"]++;
         }
         ;
 
@@ -76719,7 +77647,7 @@ UCF_System is not available yet
     };
     ;
     if (__UCF_COVERAGE__) {
-        UCF_PopupManager["_"]["reInitDivPopup"] = 0;
+        UCF_PopupManager["_"]["updatePopup"] = 0;
     }
     ;
 
@@ -76922,22 +77850,52 @@ UCF_System is not available yet
 // };
 
 
-// /**
-//  * Handles the event to calculate the z-index values for all DIV-popups
-//  * in a single page update.
-//  */
-// UCF_PopupManager.prototype.onUpdateComplete = function() {
-// 	if (this.aPopupIDsForLayering.length === 0) return;
+    /**
+     * WDA-workaround/hack:
+     * Handles the event to calculate the z-index values for all DIV-popups
+     * in a single page update.
+     */
+    UCF_PopupManager["prototype"]["onUpdateComplete"] = function () {
+        ;
+        if (__UCF_COVERAGE__) {
+            UCF_PopupManager["_"]["onUpdateComplete"]++;
+        }
+        ;
+        if (this["aPopupIDsForLayering"]["length"] === 0) return;
 
-// 	for (var p = 0; p < this.aPopupIDsForLayering.length - 1; p++) {
-// 		this.updateZIndices(
-// 		this.oGetPopupById(
-// 				this.aPopupIDsForLayering[p]
-// 			)
-// 		);
-// 	}
-// 	this.aPopupIDsForLayering = new Array();
-// };
+        if (this["aPopupIDsForLayering"]["length"] > 1) {
+            // Sanity-check for IDs that we collected during popup initialize/registration
+            // before trying to sort by number contained in WDA ID...
+            for (var i = 0; i < this["aPopupIDsForLayering"]["length"]; i++) {
+                var sCheckID = this["aPopupIDsForLayering"][i];
+                if (sCheckID["length"] < 5 || isNaN(parseInt(sCheckID["charAt"](4)))) {
+                    return;
+                }
+            }
+            // Sort by index-number after the 'WDWL' prefix in WDA
+            this["aPopupIDsForLayering"]["sort"](function (a, b) {
+                var iIndexA = parseInt(a["charAt"](4));
+                var iIndexB = parseInt(b["charAt"](4));
+                return iIndexA - iIndexB;
+            });
+        }
+        for (var p = 0; p < this["aPopupIDsForLayering"]["length"]; p++) {
+            this["updateZIndices"](
+                this["oGetPopupById"](this["aPopupIDsForLayering"][p])
+            );
+            var oMainPopupManager = this["oLS"]["oGetMainLS"]()["oGetPopupManagerInternal"]();
+            oMainPopupManager["fireEvent"](oMainPopupManager["E_EVENTS"]["PopupOpen"], {
+                "sPopupId": this["aPopupIDsForLayering"][p]
+            });
+        }
+        this["aPopupIDsForLayering"] = new Array();
+
+    };
+    ;
+    if (__UCF_COVERAGE__) {
+        UCF_PopupManager["_"]["onUpdateComplete"] = 0;
+    }
+    ;
 
     /**
      * Notifies that the given PopupWindow control is loaded
@@ -76964,17 +77922,21 @@ UCF_System is not available yet
             }
 
         }
-        //if (!oPopup.bIsDivPopup || oPopup.bIsDivPopup && this.aPopupIDsForLayering.length === 0) {
-        this["updateZIndices"](oPopup);
-        //}
-        // else: If Framework provided layering information calculate z-indices in onUpdateComplete()
 
         var oMainPopupManager = this["oLS"]["oGetMainLS"]()["oGetPopupManagerInternal"]();
-
-        // Send open event after z-indices have been calculated
-        oMainPopupManager["fireEvent"](oMainPopupManager["E_EVENTS"]["PopupOpen"], {
-            "sPopupId": oPopup["sId"]
-        });
+        if (oPopup["bIsDivPopup"] && oPopup["sId"]["indexOf"]('WDWL') === 0) {
+            // Workaround/Hack: WDA: Framework will update first popup when a second one is opened
+            // and "switch" the order in the initialize array ([WDWL2, WDWL1]) This will cause trouble with z-index
+            // because we have no other information about the layering, only the initialize-order!
+            // => Use index value in IDs per convention and calculate z-indices later in onUpdateComplete()
+            this["aPopupIDsForLayering"]["push"](oPopup["sId"]);
+        } else {
+            this["updateZIndices"](oPopup);
+            // Send open event after z-indices have been calculated
+            oMainPopupManager["fireEvent"](oMainPopupManager["E_EVENTS"]["PopupOpen"], {
+                "sPopupId": oPopup["sId"]
+            });
+        }
 
         // Resume a possible pending request
         if (oMainPopupManager["oPendingRequest"] && !this["bHasPendingPopups"]()) {
@@ -77068,6 +78030,7 @@ UCF_System is not available yet
             UCF_PopupManager["_"]["unregister"]++;
         }
         ;
+        if (this["oLS"] == null) return; // destroyed
         var popups = this["aGetPopups"]();
 
         for (var x = 0; x < popups["length"]; x++) {
@@ -77304,7 +78267,7 @@ UCF_System is not available yet
             if (iZIndex > UCF_LS["E_LAYERS"]["POPUPMENUS"]) {
                 // This should not happen in real applications, we have room for 100 nested popups...
                 if (__UCF_TRACE__) {
-                    UCF_Tracer.trace(ERROR, "Too many nested PopupWindow controls", "PopupManager.js(680): updateZIndices");
+                    UCF_Tracer.trace(ERROR, "Too many nested PopupWindow controls", "PopupManager.js(706): updateZIndices");
                 }
                 ;
             }
@@ -77348,7 +78311,7 @@ UCF_System is not available yet
                 // We allow only a one special case: A single Div-popup inside the last opened/modal IFrame-popup: In this case the index of the BlockLayer must not be changed
                 // Note: If the Div-popup shall be MODAL the application has to create its own additional BlockLayer inside the IFrame-popup!
                 //
-                var bDivPopupInsideLastIFramePopup = (x > 0 && popup["ucfPopupWindow"]["bIsDivPopup"] && !popups[x - 1]["ucfPopupWindow"]["bIsDivPopup"]);
+                var bDivPopupInsideLastIFramePopup = (x > 0 && popup["ucfPopupWindow"]["bIsDivPopup"] && popups[x - 1]["ucfPopupWindow"] && !popups[x - 1]["ucfPopupWindow"]["bIsDivPopup"]);
                 if (!bDivPopupInsideLastIFramePopup) this["oBlockLayer"]["setZIndex"](nextZIndex());
             }
             //focussedPopup will be displayed on top of all others later
@@ -77412,11 +78375,11 @@ UCF_System is not available yet
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(oControl, "oControl", "PopupManager.js(775): bControlIsBlocked");
+            UCF_Tracer.assert(oControl, "oControl", "PopupManager.js(801): bControlIsBlocked");
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(oControl instanceof UCF_Control, "oControl instanceof UCF_Control", "PopupManager.js(776): bControlIsBlocked");
+            UCF_Tracer.assert(oControl instanceof UCF_Control, "oControl instanceof UCF_Control", "PopupManager.js(802): bControlIsBlocked");
         }
         ;
         var oCheckControl = oControl;
@@ -77959,8 +78922,7 @@ UCF_System is not available yet
             UCF_PopupManager["_"]["destroy"]++;
         }
         ;
-
-        //this.oLS.detachEvent(this.oLS.E_EVENTS.UpdateComplete, this, "onUpdateComplete");
+        this["oLS"]["detachEvent"](this["oLS"]["E_EVENTS"]["UpdateComplete"], this, "onUpdateComplete");
         this["oLS"]["detachEvent"](this["oLS"]["E_EVENTS"]["PendingRequest"], this, "onPendingRequest");
 
         if (this["oLS"] == this["oMainLS"]) {
@@ -78025,7 +78987,7 @@ UCF_System is not available yet
         this["oLS"] = null;
         this["aLSLoaded"] = null;
         this["aPopups"] = null;
-        //this.aPopupIDsForLayering = null;
+        this["aPopupIDsForLayering"] = null;
         this["oGetHostWindow"] = null;
         this["oDocument"] = null;
         this["oTopWindow"] = null;
@@ -78203,7 +79165,7 @@ UCF_System is not available yet
         this["oTrgtRect"] = oTrgtRect;
         this["fCallbackMethod"] = fCallbackMethod;
 
-        this["iAnimationStartTime"] = new Date()["valueOf"](); // eslint-disable-line ur/no-memory-leaks
+        this["iAnimationStartTime"] = new Date()["valueOf"](); // eslint-disable-line @ur/no-memory-leaks
         //create rect:
         this["createAnimationRectangle"]();
         this["doResizeAnimationStep"]();
@@ -78226,6 +79188,8 @@ UCF_System is not available yet
             UCF_PopupManager["_"]["doResizeAnimationStep"]++;
         }
         ;
+
+        if (this["oLS"] === null) return; // destroyed
 
         var iDuration = 150,
             iTime = new Date()["valueOf"]();
@@ -78371,232 +79335,571 @@ UCF_System is not available yet
 
 
     UCF_PopupManager.prototype["aPublicMethods"] = ["showModalDialog", "createPopupWindow", "oGetTopPopup", "setHostWindow", "oGetWindowByPopupId", "sGetPopupIdByWindow", "oGetOpenerWindow", "oGetOpenerLSByPopupId", "setBlockLayerShaded", "closePopup", "notifyContentUpdate", "notifyTitleUpdate", "closeAllPopups"].concat(UCF_PopupManager.prototype.aPublicMethods || []);
-    /* eslint-disable jsdoc/require-jsdoc */
-    /* eslint-disable jsdoc/check-alignment */
-    /* global _assert, _trace, DEBUG */
-/// <reference path="../../core/debug/Tracer.js"/>
-    /* global UCF_ClassLoader */
-/// <reference path="../../core/util/ClassLoader.js"/>
-    /* global UCF_UserAgent */
-/// <reference path="../../core/util/UserAgent.js"/>
+    /* global _assert */
+/// <reference path="../../../core/debug/Tracer.js"/>
+    /* global UCF_DomUtil */
+/// <reference path="../../../core/util/DomUtil.js"/>
     /* global UCF_JsUtil */
-/// <reference path="../../core/util/JsUtil.js"/>
+/// <reference path="../../../core/util/JsUtil.js"/>
+    /* global UCF_UserAgent */
+/// <reference path="../../../core/util/UserAgent.js"/>
+    /* global UCF_EventProvider */
+/// <reference path="../../../core/EventProvider.js"/>
     /* global UCF_Control */
-/// <reference path="../core/Control.js"/>
-    /* global UCF_LS */
-/// <reference path="../core/LS.js"/>
+/// <reference path="../../core/Control.js"/>
     /* global UCF_System */
 
-/// <reference path="../core/System.js"/>
+/// <reference path="../../core/System.js"/>
 
     /**
+     * Helper Class for all controls that need scrolling area events.
+     * Control must register for its ScrollDomRef to scroll event,  because it does not bubble.
      *
-     * Post Message Services holds a list of PM Services with their
-     * implementations for handle PMs
-     *
-     * Let the class UCF_PMServiceGenericResponder build the response
-     * for a service request like 'sap.ls.back'
-     *
-     * "sap.ls.back":"UCF_PMServiceGenericResponder"
-     *
-     *
+     * @example  <caption>How to use</caption>
+     *  var oScrollDomRef = UCF_DomUtil.$(this.sId + "-scrl");
+     *    this.oScrollArea = 	new UCF_ScrollArea(oScrollDomRef);
+     *    this.attachBrowserEvent("scroll", oScrollDomRef);
+     *    this.oScrollArea.attachEvent(this.oScrollArea.E_EVENTS.Scroll,this,"onScroll");
+     *    this.addDelegate(this.oScrollArea);
      *
      * @class
      * @param {HTMLElement} oDomRef
-     * @param {UCF_LS} oLS
      */
-// eslint-disable-next-line jsdoc/check-syntax
-    function UCF_PostMessageServices(oDomRef, oLS) {
+    function UCF_ScrollArea(oDomRef) {
         if (__UCF_COVERAGE__) {
-            UCF_PostMessageServices["_"]["UCF_PostMessageServices"]++;
+            UCF_ScrollArea["_"]["UCF_ScrollArea"]++;
         }
         ;
 
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(typeof (oDomRef) === 'object', "typeof(oDomRef) === 'object'", "PostMessageServices.js(37): UCF_PostMessageServices");
+            UCF_Tracer.assert(typeof (oDomRef) === "object", "typeof(oDomRef) === \"object\"", "ScrollArea.js(32): UCF_ScrollArea");
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(oDomRef !== null, "oDomRef !== null", "PostMessageServices.js(38): UCF_PostMessageServices");
+            UCF_Tracer.assert(oDomRef != null, "oDomRef != null", "ScrollArea.js(33): UCF_ScrollArea");
+        }
+        ;
+
+        UCF_EventProvider["apply"](this);
+
+        this["defineEvents"](['Scroll']);
+
+        this["oDomRef"] = oDomRef;
+        // eslint-disable-next-line @ur/no-memory-leaks
+        this["bDragScrollingEnabled"] = true;
+
+        this["sTimeOutId"] = null;
+
+        this["iCurrentStepY"] = 0;
+        this["iCurrentStepX"] = 0;
+
+        // eslint-disable-next-line @ur/no-memory-leaks
+        this["iScrollTop"] = 0;
+        // eslint-disable-next-line @ur/no-memory-leaks
+        this["iScrollLeft"] = 0;
+
+        // Some controls don't use static oCreateAndConnectScrollArea() !
+        // They do: new UCF_ScrollArea(...); ...
+        this["oDomRef"]["setAttribute"](UCF_ScrollArea["ScrollAttribute"], "true");
+    };window["UCF_ScrollArea"] = UCF_ScrollArea;
+    ;
+    if (__UCF_COVERAGE__) {
+        window.UCF_classes.push("UCF_ScrollArea");
+        UCF_ScrollArea["_"] = {UCF_ScrollArea: 0};
+    }
+    ;
+    ;
+    UCF_ScrollArea["prototype"] = new (UCF_ClassLoader["oGetClass"]("UCF_EventProvider"))();
+    UCF_ScrollArea.prototype["sClassName"] = "UCF_ScrollArea";
+
+    UCF_ScrollArea["ScrollAttribute"] = "lsscrl";
+
+    /**
+     * Creates a scollarea if possible, adds it as delegate and attaches all necessary event handlers
+     *
+     * @param {UCF_Control} oControl
+     * @param {string} sScrollingMode The scrolling mode of the area
+     * @param {string} sScrollHandlerName The name of the scrollhandler which is called in the passed control by scroll events
+     *
+     * @type { UCF_ScrollArea }
+     * @return { UCF_ScrollArea } The ScrollArea
+     *
+     * @see UCF_ScrollArea.disconnectScrollArea
+     */
+    UCF_ScrollArea["oCreateAndConnectScrollArea"] = function (oControl, sScrollingMode, sScrollHandlerName, oScrollDomRef) {
+        ;
+        if (__UCF_COVERAGE__) {
+            UCF_ScrollArea["_"]["oCreateAndConnectScrollArea"]++;
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(oLS instanceof UCF_LS, "oLS instanceof UCF_LS", "PostMessageServices.js(39): UCF_PostMessageServices");
+            UCF_Tracer.assert(oControl != null, "oControl != null", "ScrollArea.js(74): oCreateAndConnectScrollArea");
+        }
+        ;
+        if (__UCF_ASSERT__) {
+            UCF_Tracer.assert(oControl instanceof UCF_Control, "oControl instanceof UCF_Control", "ScrollArea.js(75): oCreateAndConnectScrollArea");
+        }
+        ;
+        if (__UCF_ASSERT__) {
+            UCF_Tracer.assert(typeof (sScrollingMode) === "string", "typeof(sScrollingMode) === \"string\"", "ScrollArea.js(76): oCreateAndConnectScrollArea");
+        }
+        ;
+        if (__UCF_ASSERT__) {
+            UCF_Tracer.assert(typeof (sScrollHandlerName) === "string", "typeof(sScrollHandlerName) === \"string\"", "ScrollArea.js(77): oCreateAndConnectScrollArea");
+        }
+        ;
+        if (__UCF_ASSERT__) {
+            UCF_Tracer.assert(oControl[sScrollHandlerName] != null, "oControl[sScrollHandlerName] != null", "ScrollArea.js(78): oCreateAndConnectScrollArea");
         }
         ;
 
-        UCF_Control["apply"](this, [oDomRef, oLS]);
+        var oScrollArea = null;
 
-        if (!UCF_UserAgent["bIsStandardsMode"]()) {
-            if (__UCF_TRACE__) {
-                UCF_Tracer.trace(DEBUG, 'PostMessageHubs are supported in standards mode only', "PostMessageServices.js(44): UCF_PostMessageServices");
+        if (sScrollingMode !== "NONE") { //scroll area only exists when a height is provided
+            oScrollDomRef = oScrollDomRef || UCF_DomUtil["$"](oControl["sId"] + "-scrl");
+            if (oScrollDomRef) {
+                oScrollArea = new (UCF_ClassLoader["oGetClass"]("UCF_ScrollArea"))(oScrollDomRef);
+                oControl["attachBrowserEvent"]("scroll", oScrollDomRef);
+                oScrollArea["attachEvent"](oScrollArea["E_EVENTS"]["Scroll"], oControl, sScrollHandlerName);
+                oControl["addDelegate"](oScrollArea);
             }
-            ;
-            // eslint-disable-next-line no-unsanitized/property
-            this["oRootRef"]["innerHTML"] =
-                oLS["sGetText"]('SAPUR_HTML5_CONTROL_ERROR', [
-                    '<a target=\'_blank\' href=\'https://service.sap.com/sap/support/notes/1970689\'>Note 1970689</a>',
-                    'Postmessage'
-                ]);
+        }
 
+        return oScrollArea;
+    };
+    ;
+    if (__UCF_COVERAGE__) {
+        UCF_ScrollArea["_"]["oCreateAndConnectScrollArea"] = 0;
+    }
+    ;
+
+    /**
+     * Disconnects a scroll area connected by the static method "oConnectAndGetScrollArea" and destroys it.
+     *
+     * @param {UCF_Control} oControl
+     * @param {UCF_ScrollArea} oScrollArea The scroll area
+     *
+     * @see UCF_ScrollArea.oCreateAndConnectScrollArea
+     */
+    UCF_ScrollArea["disconnectAndDestroyScrollArea"] = function (oControl, oScrollArea) {
+        ;
+        if (__UCF_COVERAGE__) {
+            UCF_ScrollArea["_"]["disconnectAndDestroyScrollArea"]++;
+        }
+        ;
+        if (__UCF_ASSERT__) {
+            UCF_Tracer.assert(oControl instanceof UCF_EventProvider, "oControl instanceof UCF_EventProvider", "ScrollArea.js(104): disconnectAndDestroyScrollArea");
+        }
+        ;
+
+        if (oScrollArea) {
+            if (oScrollArea["E_EVENTS"]) {
+                oScrollArea["detachEvent"](oScrollArea["E_EVENTS"]["Scroll"], oControl);
+            }
+
+            if (oScrollArea["oDomRef"]) {
+                oScrollArea["oDomRef"]["removeAttribute"](UCF_ScrollArea["ScrollAttribute"]);
+                oControl["detachBrowserEvent"]("scroll", oScrollArea["oDomRef"]);
+            }
+
+            oScrollArea["destroy"]();
+        }
+    };
+    ;
+    if (__UCF_COVERAGE__) {
+        UCF_ScrollArea["_"]["disconnectAndDestroyScrollArea"] = 0;
+    }
+    ;
+
+    UCF_ScrollArea["prototype"]["destroy"] = function () {
+        ;
+        if (__UCF_COVERAGE__) {
+            UCF_ScrollArea["_"]["destroy"]++;
+        }
+        ;
+        this["oDomRef"] = null;
+        this["cleanUpScrollTiming"]();
+        UCF_EventProvider.prototype["destroy"]["apply"](this, arguments);
+    };
+    ;
+    if (__UCF_COVERAGE__) {
+        UCF_ScrollArea["_"]["destroy"] = 0;
+    }
+    ;
+
+    /**
+     * Handles the scroll event.
+     * Only fire if necessary. Do not fire:
+     * - When scroll position was defined
+     *
+     * @param {UCF_BrowserEvent} oBrowserEvent
+     */
+    UCF_ScrollArea["prototype"]["onscroll"] = function (oBrowserEvent) {
+        ;
+        if (__UCF_COVERAGE__) {
+            UCF_ScrollArea["_"]["onscroll"]++;
+        }
+        ;
+
+        oBrowserEvent["cancelBubble"]();
+
+        if (this["bIgnoreScrollEvent"]) {
             return;
         }
-        if (!UCF_PostMessageServices["mServices"])
-            UCF_PostMessageServices["mServices"] = {};
-        try {
-            if (oDomRef["innerHTML"]["substring"](12, oDomRef["innerHTML"]["length"] - 6) === '{}') ;
-            //			this.mServices = {};
-            else {
-                var newValues = UCF_JsUtil["oJsonParse"](
-                    oDomRef["innerHTML"]["substring"](12, oDomRef["innerHTML"]["length"] - 6)["replace"](/\\/g, ''));
-                var aKeys = UCF_JsUtil["keys"](newValues);
-                for (var iIndex = 0; iIndex < aKeys["length"]; iIndex++)
-                    UCF_PostMessageServices["mServices"][aKeys[iIndex]] = newValues[aKeys[iIndex]];
+
+        this["handleScroll"]();
+
+    };
+    ;
+    if (__UCF_COVERAGE__) {
+        UCF_ScrollArea["_"]["onscroll"] = 0;
+    }
+    ;
+
+    /**
+     *    A timeout is used to avoid multiple scroll events while scrolling,
+     *  instead only one -in this case two- events are fired when the scroll process
+     *  has finished.
+     *  BUT in case no timeout is started yet one event is fired upfront
+     *  this is to avoid having a scroll event in an event quue that no longer belongs
+     *  to the new context.
+     */
+    UCF_ScrollArea["prototype"]["handleScroll"] = function () {
+        ;
+        if (__UCF_COVERAGE__) {
+            UCF_ScrollArea["_"]["handleScroll"]++;
+        }
+        ;
+
+        if (this["sTimeOutId"] == null) {
+            this["fireScroll"]();
+        } else {
+            this["cleanUpScrollTiming"]();
+        }
+        this["sTimeOutId"] = UCF_JsUtil["delayedCall"](200, this, "fireScroll");
+
+    };
+    ;
+    if (__UCF_COVERAGE__) {
+        UCF_ScrollArea["_"]["handleScroll"] = 0;
+    }
+    ;
+
+    /**
+     *  Resets the scroll timing state and kills all time out processes
+     */
+    UCF_ScrollArea["prototype"]["cleanUpScrollTiming"] = function () {
+        ;
+        if (__UCF_COVERAGE__) {
+            UCF_ScrollArea["_"]["cleanUpScrollTiming"]++;
+        }
+        ;
+        if (this["sTimeOutId"]) {
+            UCF_JsUtil["clearDelayedCall"](this["sTimeOutId"]);
+            this["sTimeOutId"] = null;
+        }
+    };
+    ;
+    if (__UCF_COVERAGE__) {
+        UCF_ScrollArea["_"]["cleanUpScrollTiming"] = 0;
+    }
+    ;
+
+    /**
+     * Fires the scroll event
+     */
+    UCF_ScrollArea["prototype"]["fireScroll"] = function () {
+        ;
+        if (__UCF_COVERAGE__) {
+            UCF_ScrollArea["_"]["fireScroll"]++;
+        }
+        ;
+
+        var iScrollTop, iScrollLeft;
+        this["cleanUpScrollTiming"]();
+        this["sTimeOutId"] = null;
+        // Get positions from the DOM
+        iScrollTop = this["oDomRef"]["scrollTop"];
+        iScrollLeft = this["oDomRef"]["scrollLeft"];
+        if (this["iScrollTop"] !== iScrollTop || this["iScrollLeft"] !== iScrollLeft) {
+            this["iScrollTop"] = iScrollTop;
+            this["iScrollLeft"] = iScrollLeft;
+            // For RTL calculate scrollRight instead
+            if (window["UCF_System"]["bIsRTL"]) {
+                iScrollLeft = this["oDomRef"]["scrollWidth"] - this["oDomRef"]["clientWidth"] - this["oDomRef"]["scrollLeft"];
             }
-        } catch (e) {
-            if (__UCF_TRACE__) {
-                UCF_Tracer.trace(DEBUG, 'PostMessageServices: Service List cannot be parsed', "PostMessageServices.js(67): UCF_PostMessageServices");
+            // Fire Scroll event for the control
+            this["fireEvent"](this["E_EVENTS"]["Scroll"], {"iScrollTop": parseInt(iScrollTop), "iScrollLeft": parseInt(iScrollLeft)});
+        }
+    };
+    ;
+    if (__UCF_COVERAGE__) {
+        UCF_ScrollArea["_"]["fireScroll"] = 0;
+    }
+    ;
+
+    /**
+     * Sets the scroll position programmatically
+     *
+     * @param { int } iScrollTop
+     * @param { int } iScrollLeft
+     */
+    UCF_ScrollArea["prototype"]["setScrollPosition"] = function (iScrollTop, iScrollLeft) {
+        ;
+        if (__UCF_COVERAGE__) {
+            UCF_ScrollArea["_"]["setScrollPosition"]++;
+        }
+        ;
+
+        if (__UCF_ASSERT__) {
+            UCF_Tracer.assert(typeof (iScrollTop) === "number", "typeof(iScrollTop) === \"number\"", "ScrollArea.js(205): setScrollPosition");
+        }
+        ;
+        if (__UCF_ASSERT__) {
+            UCF_Tracer.assert(typeof (iScrollLeft) === "number", "typeof(iScrollLeft) === \"number\"", "ScrollArea.js(206): setScrollPosition");
+        }
+        ;
+        if (__UCF_ASSERT__) {
+            UCF_Tracer.assert(iScrollTop >= -1, "iScrollTop >= -1", "ScrollArea.js(207): setScrollPosition");
+        }
+        ;
+        if (__UCF_ASSERT__) {
+            UCF_Tracer.assert(iScrollLeft >= -1, "iScrollLeft >= -1", "ScrollArea.js(208): setScrollPosition");
+        }
+        ;
+
+        // Get scroll height and scroll width to make sure that it has
+        // been calculated properly by Internet Explorer
+        var iScrollHeight = this["oDomRef"]["scrollHeight"],
+            iScrollWidth = this["oDomRef"]["scrollWidth"];
+
+        // Special value -1: Scroll to the end
+        if (iScrollTop === -1) iScrollTop = iScrollHeight;
+        if (iScrollLeft === -1) iScrollLeft = iScrollWidth;
+        // For RTL calculate scrollRight instead
+        if (window["UCF_System"]["bIsRTL"]) {
+            iScrollLeft = iScrollWidth - this["oDomRef"]["clientWidth"] - iScrollLeft;
+        }
+
+        this["iScrollTop"] = iScrollTop;
+        this["iScrollLeft"] = iScrollLeft;
+
+        // Set new position in the DOM
+        if (iScrollTop !== this["oDomRef"]["scrollTop"] || iScrollLeft !== this["oDomRef"]["scrollLeft"]) {
+            this["setIgnoreScrollEvent"](true);
+
+            // Apply new scroll positions
+
+            // 1) Update the scrollposition of the scroll lock mechanism in the case that LS is locked
+            // IE sometimes fires scroll events when srollTop/Left is set. Such events applies the formerly stored position to lock also scrolling while LS is locked.
+            // To avoid this the stored positon is updated as well.
+            this["oDomRef"]["lsStoredScrollTop"] = iScrollTop;
+            this["oDomRef"]["lsStoredScrollLeft"] = iScrollLeft;
+
+            // 2) set the actual position
+            if (UCF_UserAgent["bIsIE"]() && this["oDomRef"]["tagName"] === "BODY" && document["documentElement"] !== undefined) {
+                // make it also work in IE11 on the body, because this class is used by the Page only for this purpose....
+                document["documentElement"]["scrollTop"] = iScrollTop;
+                document["documentElement"]["scrollLeft"] = iScrollLeft;
+            } else {
+                this["oDomRef"]["scrollTop"] = iScrollTop;
+                this["oDomRef"]["scrollLeft"] = iScrollLeft;
             }
-            ;
-        }
-        this["oLS"] = oLS;
-    };window["UCF_PostMessageServices"] = UCF_PostMessageServices;
-    ;
-    if (__UCF_COVERAGE__) {
-        window.UCF_classes.push("UCF_PostMessageServices");
-        UCF_PostMessageServices["_"] = {UCF_PostMessageServices: 0};
-    }
-    ;
-    ;
 
-    UCF_PostMessageServices["prototype"] = new (UCF_ClassLoader["oGetClass"]("UCF_Control"))();
-    UCF_PostMessageServices.prototype["sClassName"] = "UCF_PostMessageServices";
+            // In case LS is locked scroll events will not be dispatched
+            // so clear scroll ignore flag after timeout
+            UCF_JsUtil["delayedCall"](200, this, "setIgnoreScrollEvent", [false]);
 
-    UCF_PostMessageServices["addPostMessageService"] = function (sService, sImplementation) {
-        ;
-        if (__UCF_COVERAGE__) {
-            UCF_PostMessageServices["_"]["addPostMessageService"]++;
-        }
-        ;
-        if (!UCF_PostMessageServices["mServices"])
-            UCF_PostMessageServices["mServices"] = {};
-        UCF_PostMessageServices["mServices"][sService] = sImplementation;
-    };
-    ;
-    if (__UCF_COVERAGE__) {
-        UCF_PostMessageServices["_"]["addPostMessageService"] = 0;
-    }
-    ;
-
-    UCF_PostMessageServices["removePostMessageService"] = function (sService) {
-        ;
-        if (__UCF_COVERAGE__) {
-            UCF_PostMessageServices["_"]["removePostMessageService"]++;
-        }
-        ;
-        if (UCF_PostMessageServices["mServices"])
-            UCF_PostMessageServices["mServices"][sService] = null;
-    };
-    ;
-    if (__UCF_COVERAGE__) {
-        UCF_PostMessageServices["_"]["removePostMessageService"] = 0;
-    }
-    ;
-
-    UCF_PostMessageServices["dispatch"] = function (sService, oEvent) {
-        ;
-        if (__UCF_COVERAGE__) {
-            UCF_PostMessageServices["_"]["dispatch"]++;
-        }
-        ;
-        if (UCF_PostMessageServices["mServices"] == null) return false; // Trigger a RequestReceive Event
-        if (UCF_PostMessageServices["mServices"][sService] == null || UCF_PostMessageServices["mServices"][sService] === '') return false;
-
-        if (UCF_JsUtil["bIsFunction"](UCF_PostMessageServices["mServices"][sService])) {
-            return UCF_PostMessageServices["mServices"][sService](sService, oEvent, window["UCF_System"]["oLS"]);
-        } else if (UCF_PostMessageServices["mServices"][sService] && UCF_PostMessageServices["mServices"][sService] !== '') {
-            var oImpl = UCF_ClassLoader["oGetClass"](UCF_PostMessageServices["mServices"][sService]);
-            if (oImpl)
-                return oImpl(sService, oEvent, window["UCF_System"]["oLS"]);
-        }
-        return true;
-    };
-    ;
-    if (__UCF_COVERAGE__) {
-        UCF_PostMessageServices["_"]["dispatch"] = 0;
-    }
-    ;
-
-// =============================================================================
-// Copyright 2009 - SAP - NW UI F. All rights reserved. SAP
-// PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
-// =============================================================================
-
-    /**
-     * Array of names of transported parameters/attributes (clientaccess defined). In the current control:
-     * - {@link #sCustomData}
-     * @private
-     * @type {string[]}
-     */
-    UCF_PostMessageServices["prototype"]["aAttributeNames"] = ['sCustomData'];
-
-    /**
-     * Array of names of events of the control:
-     * @type {string[]}
-     */
-    UCF_PostMessageServices["prototype"]["aEventNames"] = [];
-
-    /**
-     * Array of names of public methods of the control - public control API are:
-     *
-     * {@link #addPostMessageService}
-     * Post a String to the parent
-     * Parameter: {string} Name - The name of the Service
-     * Parameter: {string} Implementation - The class name of the implementation
-     *
-     * {@link #removePostMessageService}
-     * Post a String to the parent
-     * Parameter: {string} Name - The name of the Service
-     *
-     * @private
-     * @type {string[]}
-     */
-    UCF_PostMessageServices["prototype"]["aMethodNames"] = ['addPostMessageService', 'removePostMessageService', 'updateEvent', 'addClientListener', 'removeClientListener', 'playAnimation', 'getCustomData', 'sGetCustomData', 'show', 'hide', 'focus', 'oGetParentControl'];
-
-// ===== Default values of the transported parameters =========================
-
-    /**
-     * Sets a custom data string that can be retrieved on the client via method sGetCustomData() or getCustomData(sJsonPropertyName) in case it is a JSON string
-     *
-     * @private
-     * @type {string}
-     */
-    UCF_PostMessageServices["prototype"]["sCustomData"] = '';
-
-
-//#JSCOVER_EXCL_START
-    /**
-     * Default value setter
-     * @private
-     */
-    UCF_PostMessageServices["prototype"]["setDefaultValues"] = function () {
-        ;
-        if (__UCF_COVERAGE__) {
-            UCF_PostMessageServices["_"]["setDefaultValues"]++;
-        }
-        ;
-        this["sCustomData"] = '';
-
-        if (this["getClientControl"]() && !this["bKeepAlive"]) {
-            this["setClientProperty"]('', '', true);
         }
     };
     ;
     if (__UCF_COVERAGE__) {
-        UCF_PostMessageServices["_"]["setDefaultValues"] = 0;
+        UCF_ScrollArea["_"]["setScrollPosition"] = 0;
     }
     ;
-//#JSCOVER_EXCL_STOP
+
+    /**
+     * Returns the scroll position of the ScrollArea
+     *
+     * @return { Object }
+     */
+    UCF_ScrollArea["prototype"]["oGetScrollPosition"] = function () {
+        ;
+        if (__UCF_COVERAGE__) {
+            UCF_ScrollArea["_"]["oGetScrollPosition"]++;
+        }
+        ;
+        if (this["oDomRef"]) {
+            return {
+                "top": this["oDomRef"]["scrollTop"],
+                "left": this["oDomRef"]["scrollLeft"]
+            };
+        }
+        return null;
+    };
+    ;
+    if (__UCF_COVERAGE__) {
+        UCF_ScrollArea["_"]["oGetScrollPosition"] = 0;
+    }
+    ;
+
+    /**
+     * Set ignore scroll flag to avoid scroll events to be thrown
+     * by setting the scroll position programmatically
+     * @param {boolean} bIgnoreScrollEvent
+     */
+    UCF_ScrollArea["prototype"]["setIgnoreScrollEvent"] = function (bIgnoreScrollEvent) {
+        ;
+        if (__UCF_COVERAGE__) {
+            UCF_ScrollArea["_"]["setIgnoreScrollEvent"]++;
+        }
+        ;
+
+        // eslint-disable-next-line @ur/no-memory-leaks
+        this["bIgnoreScrollEvent"] = bIgnoreScrollEvent;
+
+    };
+    ;
+    if (__UCF_COVERAGE__) {
+        UCF_ScrollArea["_"]["setIgnoreScrollEvent"] = 0;
+    }
+    ;
+
+    /**
+     * activate/deactivate scrolling during drag and drop
+     * @param {boolean} bEnabled
+     */
+    UCF_ScrollArea["prototype"]["enableDragScrolling"] = function (bEnabled) {
+        ;
+        if (__UCF_COVERAGE__) {
+            UCF_ScrollArea["_"]["enableDragScrolling"]++;
+        }
+        ;
+
+        this["bDragScrollingEnabled"] = bEnabled;
+    };
+    ;
+    if (__UCF_COVERAGE__) {
+        UCF_ScrollArea["_"]["enableDragScrolling"] = 0;
+    }
+    ;
+
+    /**
+     * fire scroll event because originally it is called delayed
+     * and will not be in the event queue on drop
+     * (ScrollArea has to be added as delegate before the drop delegate [which should be the case normally])
+     * @param {UVF_BrowserEvent} oBrowserEvent
+     */
+    UCF_ScrollArea["prototype"]["onlsdrop"] = function (oBrowserEvent) {
+        ;
+        if (__UCF_COVERAGE__) {
+            UCF_ScrollArea["_"]["onlsdrop"]++;
+        }
+        ;
+        this["cleanUpScrollTiming"]();
+        this["fireScroll"]();
+    };
+    ;
+    if (__UCF_COVERAGE__) {
+        UCF_ScrollArea["_"]["onlsdrop"] = 0;
+    }
+    ;
+
+    UCF_ScrollArea["prototype"]["onlsdragleave"] = function (oBrowserEvent) {
+        ;
+        if (__UCF_COVERAGE__) {
+            UCF_ScrollArea["_"]["onlsdragleave"]++;
+        }
+        ;
+        this["cleanUpScrollTiming"]();
+        this["fireScroll"]();
+    };
+    ;
+    if (__UCF_COVERAGE__) {
+        UCF_ScrollArea["_"]["onlsdragleave"] = 0;
+    }
+    ;
+
+    /**
+     * handle scrolling during drag and drop.
+     * @param { UVF_BrowserEvent } oBrowserEvent
+     */
+    UCF_ScrollArea["prototype"]["onlsdragscroll"] = function (oBrowserEvent) {
+        ;
+        if (__UCF_COVERAGE__) {
+            UCF_ScrollArea["_"]["onlsdragscroll"]++;
+        }
+        ;
+
+        if (!this["bDragScrollingEnabled"])
+            return;
+
+        var oMouseLocation = {
+            "x": oBrowserEvent["iPageX"](),
+            "y": oBrowserEvent["iPageY"]()
+        };
+
+        var oViewPort = UCF_DomUtil["oGetObjectRect"](this["oDomRef"]);
+
+        //consider scroll position for body
+        if (this["oDomRef"] === document["body"]) {
+            oViewPort["top"] += this["oDomRef"]["scrollTop"];
+            oViewPort["left"] += this["oDomRef"]["scrollLeft"];
+        }
+
+        oViewPort["width"] = this["oDomRef"]["clientWidth"]; // TGCHECK
+        oViewPort["height"] = this["oDomRef"]["clientHeight"];
+
+        var iVerticalZone = Math["min"](35, oViewPort["height"] / 4);
+        var iHorizontalZone = Math["min"](35, oViewPort["width"] / 4);
+
+        var iScrollThresholdTop = oViewPort["top"] + iVerticalZone;
+        var iScrollThresholdBottom = oViewPort["top"] + oViewPort["height"] - iVerticalZone;
+
+        var iScrollThresholdLeft = oViewPort["left"] + iHorizontalZone;
+        var iScrollThresholdRight = oViewPort["left"] + oViewPort["width"] - iHorizontalZone;
+
+        //scroll up
+
+        var iStepY = 0,
+            iStepX = 0;
+
+        if (oMouseLocation["x"] < iScrollThresholdLeft) {
+            iStepX = -Math["round"]((iScrollThresholdLeft - oMouseLocation["x"]) / iHorizontalZone * 10);
+        } else if (oMouseLocation["x"] > iScrollThresholdRight) {
+            iStepX = Math["round"]((oMouseLocation["x"] - iScrollThresholdRight) / iHorizontalZone * 10);
+        }
+
+        if (oMouseLocation["y"] < iScrollThresholdTop) {
+            iStepY = -Math["round"]((iScrollThresholdTop - oMouseLocation["y"]) / iVerticalZone * 10);
+        } else if (oMouseLocation["y"] > iScrollThresholdBottom) {
+            iStepY = Math["round"]((oMouseLocation["y"] - iScrollThresholdBottom) / iVerticalZone * 10);
+        }
+
+        if (this["iCurrentStepX"] < iStepX) {
+            this["iCurrentStepX"]++;
+        } else if (this["iCurrentStepX"] > iStepX) {
+            this["iCurrentStepX"]--;
+        }
+
+        if (this["iCurrentStepY"] < iStepY) {
+            this["iCurrentStepY"]++;
+        } else if (this["iCurrentStepY"] > iStepY) {
+            this["iCurrentStepY"]--;
+        }
+
+        this["oDomRef"]["scrollLeft"] += this["iCurrentStepX"];
+        this["oDomRef"]["scrollTop"] += this["iCurrentStepY"];
+
+        //creates a scroll event
+        this["handleScroll"](oBrowserEvent);
+        oBrowserEvent["cancelBubble"]();
+    };
+    ;
+    if (__UCF_COVERAGE__) {
+        UCF_ScrollArea["_"]["onlsdragscroll"] = 0;
+    }
+    ;
 
     /* global _assert, _trace, WARNING, ERROR */
 /// <reference path="../../core/debug/Tracer.js"/>
@@ -78968,6 +80271,7 @@ UCF_System is not available yet
             this["checkParameter"]('s', 'ClientURL', '', aData, true);
             this["checkParameter"]('b', 'IsTopWindow', '', aData);
             this["checkParameter"]('b', 'ParentAccessible', '', aData);
+            this["checkParameter"]('s', 'IsHighContrastOsUser', '', aData);
         }
 
         if (aData["length"]) {
@@ -79399,7 +80703,7 @@ UCF_System is not available yet
             aThemedSvgLibUrls = UCF_JsUtil["oJsonParse"](this["sThemedSvgLibUrls"]);
         } catch (e) {
             if (__UCF_TRACE__) {
-                UCF_Tracer.trace(ERROR, 'No valid JSON for in parameter ThemedSvgLibUrls' + this["sThemedSvgLibUrls"], "ClientInspector.js(531): sGetThemedSvgLibUrls");
+                UCF_Tracer.trace(ERROR, 'No valid JSON for in parameter ThemedSvgLibUrls' + this["sThemedSvgLibUrls"], "ClientInspector.js(532): sGetThemedSvgLibUrls");
             }
             ;
 
@@ -80246,6 +81550,37 @@ UCF_System is not available yet
     }
     ;
 
+
+    /** @return {boolean} */
+    UCF_ClientInspector["prototype"]["sGetIsHighContrastOsUser"] = function () {
+        ;
+        if (__UCF_COVERAGE__) {
+            UCF_ClientInspector["_"]["sGetIsHighContrastOsUser"]++;
+        }
+        ;
+        /** @type {HTMLDivElement} */
+        var oRef = document["createElement"]('div');
+        /** @type {string} */
+        var sActualColor;
+
+        oRef["style"]["color"] = 'rgb(31, 41, 59)';
+        document["body"]["appendChild"](oRef);
+
+        sActualColor = this["sGetCurrentStyle"](oRef, 'color');
+        sActualColor = sActualColor["replace"](/ /g, '');
+
+        if (sActualColor === 'rgb(31,41,59)') {
+            return 'OFF';
+        } else {
+            return 'ON';
+        }
+    };
+    ;
+    if (__UCF_COVERAGE__) {
+        UCF_ClientInspector["_"]["sGetIsHighContrastOsUser"] = 0;
+    }
+    ;
+
     /**
      *
      * First quick implementation of resize notification
@@ -80453,7 +81788,7 @@ UCF_System is not available yet
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(oEvent instanceof UCF_Event, "oEvent instanceof UCF_Event", "ClientInspector.js(1120): onLsUnlock");
+            UCF_Tracer.assert(oEvent instanceof UCF_Event, "oEvent instanceof UCF_Event", "ClientInspector.js(1142): onLsUnlock");
         }
         ;
 
@@ -80481,7 +81816,7 @@ UCF_System is not available yet
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(oEvent instanceof UCF_Event, "oEvent instanceof UCF_Event", "ClientInspector.js(1135): onLsLock");
+            UCF_Tracer.assert(oEvent instanceof UCF_Event, "oEvent instanceof UCF_Event", "ClientInspector.js(1157): onLsLock");
         }
         ;
 
@@ -80495,449 +81830,305 @@ UCF_System is not available yet
         UCF_ClientInspector["_"]["onLsLock"] = 0;
     }
     ;
-
-// =============================================================================
-// Copyright 2009 - SAP - NW UI F. All rights reserved. SAP
-// PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
-// =============================================================================
-
     /**
-     * Array of names of transported parameters/attributes (clientaccess defined). In the current control:
-     * - {@link #sNotificationTrigger}
-     * - {@link #sClientWidth}
-     * - {@link #sClientHeight}
-     * - {@link #sScreenWidth}
-     * - {@link #sScreenHeight}
-     * - {@link #sScreenOrientation}
-     * - Deprecated: {@link #sQME}
-     * - {@link #sRenderingModeCompatibility}
-     * - {@link #sThemeID}
-     * - {@link #sSapThemeID}
-     * - {@link #sThemeScope}
-     * - {@link #sThemedTableRowHeight}
-     * - {@link #sThemedFormLayoutRowHeight}
-     * - {@link #sThemedScrollbarDimension}
-     * - {@link #sThemedDocumentBackgroundColor}
-     * - Deprecated: {@link #sThemedSvgLibs}
-     * - {@link #sThemedSvgLibUrls}
-     * - {@link #sThemedRasterHeight}
-     * - {@link #sThemedRasterWidth}
-     * - {@link #sThemedLayoutPaddingTop}
-     * - {@link #sThemedLayoutPaddingLeft}
-     * - {@link #sThemedLayoutPaddingBottom}
-     * - {@link #sThemedLayoutPaddingRight}
-     * - {@link #sThemedAbapListRasterHeight}
-     * - {@link #sThemedAbapListRasterWidth}
-     * - {@link #sThemedValueHelpHeight}
-     * - {@link #sThemedValueHelpWidth}
-     * - {@link #sThemeTags}
-     * - {@link #sWordEnabled}
-     * - {@link #sExcelEnabled}
-     * - {@link #sFlashEnabled}
-     * - {@link #sAcrobatEnabled}
-     * - {@link #sSilverlightEnabled}
-     * - {@link #sJavaEnabled}
-     * - {@link #sJavaVersion}
-     * - {@link #sWebSocketsEnabled}
-     * - {@link #sDeviceType}
-     * - {@link #sCssMatchesHtmlVersion}
-     * - {@link #sCustomData}
-     * - {@link #sPlatform}
-     * - {@link #sWindowOpenerExists}
-     * - {@link #sClientURL}
-     * - {@link #sDocumentDomain}
-     * - {@link #sIsTopWindow}
-     * - {@link #sParentAccessible}
+     * Array of names of transported names/attributes (clientaccess defined).
      * @private
      * @type {string[]}
      */
-    UCF_ClientInspector["prototype"]["aAttributeNames"] = ['sNotificationTrigger', 'sClientWidth', 'sClientHeight', 'sScreenWidth', 'sScreenHeight', 'sScreenOrientation', 'sQME', 'sRenderingModeCompatibility', 'sThemeID', 'sSapThemeID', 'sThemeScope', 'sThemedTableRowHeight', 'sThemedFormLayoutRowHeight', 'sThemedScrollbarDimension', 'sThemedDocumentBackgroundColor', 'sThemedSvgLibs', 'sThemedSvgLibUrls', 'sThemedRasterHeight', 'sThemedRasterWidth', 'sThemedLayoutPaddingTop', 'sThemedLayoutPaddingLeft', 'sThemedLayoutPaddingBottom', 'sThemedLayoutPaddingRight', 'sThemedAbapListRasterHeight', 'sThemedAbapListRasterWidth', 'sThemedValueHelpHeight', 'sThemedValueHelpWidth', 'sThemeTags', 'sWordEnabled', 'sExcelEnabled', 'sFlashEnabled', 'sAcrobatEnabled', 'sSilverlightEnabled', 'sJavaEnabled', 'sJavaVersion', 'sWebSocketsEnabled', 'sDeviceType', 'sCssMatchesHtmlVersion', 'sCustomData', 'sPlatform', 'sWindowOpenerExists', 'sClientURL', 'sDocumentDomain', 'sIsTopWindow', 'sParentAccessible'];
+    UCF_ClientInspector["prototype"]["aAttributeNames"] = ["sNotificationTrigger", "sClientWidth", "sClientHeight", "sScreenWidth", "sScreenHeight", "sScreenOrientation", "sQME", "sRenderingModeCompatibility", "sThemeID", "sSapThemeID", "sThemeScope", "sThemedTableRowHeight", "sThemedFormLayoutRowHeight", "sThemedScrollbarDimension", "sThemedDocumentBackgroundColor", "sThemedSvgLibs", "sThemedSvgLibUrls", "sThemedRasterHeight", "sThemedRasterWidth", "sThemedLayoutPaddingTop", "sThemedLayoutPaddingLeft", "sThemedLayoutPaddingBottom", "sThemedLayoutPaddingRight", "sThemedAbapListRasterHeight", "sThemedAbapListRasterWidth", "sThemedValueHelpHeight", "sThemedValueHelpWidth", "sThemeTags", "sWordEnabled", "sExcelEnabled", "sFlashEnabled", "sAcrobatEnabled", "sSilverlightEnabled", "sJavaEnabled", "sJavaVersion", "sWebSocketsEnabled", "sDeviceType", "sCssMatchesHtmlVersion", "sCustomData", "sPlatform", "sWindowOpenerExists", "sClientURL", "sDocumentDomain", "sIsTopWindow", "sParentAccessible", "sIsHighContrastOsUser"];
 
     /**
-     * Array of names of events of the control:
-     * - Notify
-     * @type {string[]}
-     */
-    UCF_ClientInspector["prototype"]["aEventNames"] = ['Notify'];
-
-    /**
-     * Array of names of public methods of the control - public control API are:
-     *
-     * no public API available
-     *
+     * Array of names of transported events.
      * @private
      * @type {string[]}
      */
-    UCF_ClientInspector["prototype"]["aMethodNames"] = [, 'updateEvent', 'addClientListener', 'removeClientListener', 'playAnimation', 'getCustomData', 'sGetCustomData', 'show', 'hide', 'focus', 'oGetParentControl'];
-
-// ===== Default values of the transported parameters =========================
+    UCF_ClientInspector["prototype"]["aEventNames"] = ["Notify"];
 
     /**
-     * Defines in which point in time it is checked if a notification is necessary
-     *
+     * Array of names of public methods.
      * @private
-     * @type {string}
+     * @type {string[]}
+     */
+    UCF_ClientInspector["prototype"]["aMethodNames"] = [];
+
+    /**
+     *Â @private
+     * @type {UCF_ClientInterfaces.E.NotificationTrigger}
      */
     UCF_ClientInspector["prototype"]["sNotificationTrigger"] = "INITIAL";
 
     /**
-     * The 'px' width of the client window.
-     *
-     * @private
+     *Â @private
      * @type {string}
      */
     UCF_ClientInspector["prototype"]["sClientWidth"] = 'OFF';
 
     /**
-     * The 'px' height of the client window.
-     *
-     * @private
+     *Â @private
      * @type {string}
      */
     UCF_ClientInspector["prototype"]["sClientHeight"] = 'OFF';
 
     /**
-     * The 'px' width of the screen.
-     *
-     * @private
+     *Â @private
      * @type {string}
      */
     UCF_ClientInspector["prototype"]["sScreenWidth"] = 'OFF';
 
     /**
-     * The 'px' height of screen.
-     *
-     * @private
+     *Â @private
      * @type {string}
      */
     UCF_ClientInspector["prototype"]["sScreenHeight"] = 'OFF';
 
     /**
-     * 'landscape' or 'portrait'
-     *
-     * @private
+     *Â @private
      * @type {string}
      */
     UCF_ClientInspector["prototype"]["sScreenOrientation"] = 'OFF';
 
     /**
-     * 'TRUE' if QME is used on client side, 'FALSE' if not. Deprecated use RenderingModeCompatibility instead
-     *
-     * @private
+     *Â @private
      * @type {string}
      */
     UCF_ClientInspector["prototype"]["sQME"] = 'OFF';
 
     /**
-     * 'COMPATIBLE' if document runs in a supported rendering mode, 'QME' if QME and 'IE_STANDARDSxx8' if IE standards mode in docmode 8 or lower
-     *
-     * @private
+     *Â @private
      * @type {string}
      */
     UCF_ClientInspector["prototype"]["sRenderingModeCompatibility"] = 'OFF';
 
     /**
-     * The ID of the applied theme. E.g. 'sap_goldreflection' in UR/ls/sap_goldreflection/standards.css
-     *
-     * @private
+     *Â @private
      * @type {string}
      */
     UCF_ClientInspector["prototype"]["sThemeID"] = 'OFF';
 
     /**
-     * The ID of the sap the the applied theme derives from. E.g. 'sap_belize' if 'myCocaColaBelize' derives from 'sap_belize', 'sap_belize' if 'sap_belize' is the applied theme.
-     *
-     * @private
+     *Â @private
      * @type {string}
      */
     UCF_ClientInspector["prototype"]["sSapThemeID"] = 'OFF';
 
     /**
-     * Defines the scopename in which the themed attributes are calculated
-     *
-     * @private
+     *Â @private
      * @type {string}
      */
     UCF_ClientInspector["prototype"]["sThemeScope"] = '';
 
     /**
-     * The CSS height of a standard table row defined in the client applied theme.
-     *
-     * @private
+     *Â @private
      * @type {string}
      */
     UCF_ClientInspector["prototype"]["sThemedTableRowHeight"] = 'OFF';
 
     /**
-     * The CSS height of a layout row used to align forms defined in the client applied theme.
-     *
-     * @private
+     *Â @private
      * @type {string}
      */
     UCF_ClientInspector["prototype"]["sThemedFormLayoutRowHeight"] = 'OFF';
 
     /**
-     * The CSS dimension of the scrollbars.
-     *
-     * @private
+     *Â @private
      * @type {string}
      */
     UCF_ClientInspector["prototype"]["sThemedScrollbarDimension"] = 'OFF';
 
     /**
-     * The CSS document background color.
-     *
-     * @private
+     *Â @private
      * @type {string}
      */
     UCF_ClientInspector["prototype"]["sThemedDocumentBackgroundColor"] = 'OFF';
 
     /**
-     * Returns a comma separated list of URL-encoded paths referring to the available SVG libs
-     *
-     * @private
+     *Â @private
      * @type {string}
      */
     UCF_ClientInspector["prototype"]["sThemedSvgLibs"] = 'OFF';
 
     /**
-     * Returns a JSON string of URL-encoded paths referring to the available SVG libs
-     *
-     * @private
+     *Â @private
      * @type {string}
      */
     UCF_ClientInspector["prototype"]["sThemedSvgLibUrls"] = '[]';
 
     /**
-     * The CSS height of a raster row used to position elements.
-     *
-     * @private
+     *Â @private
      * @type {string}
      */
     UCF_ClientInspector["prototype"]["sThemedRasterHeight"] = 'OFF';
 
     /**
-     * The CSS width of a raster column used to position elements.
-     *
-     * @private
+     *Â @private
      * @type {string}
      */
     UCF_ClientInspector["prototype"]["sThemedRasterWidth"] = 'OFF';
 
     /**
-     * The CSS padding top of the layout.
-     *
-     * @private
+     *Â @private
      * @type {string}
      */
     UCF_ClientInspector["prototype"]["sThemedLayoutPaddingTop"] = 'OFF';
 
     /**
-     * The CSS padding left of the layout.
-     *
-     * @private
+     *Â @private
      * @type {string}
      */
     UCF_ClientInspector["prototype"]["sThemedLayoutPaddingLeft"] = 'OFF';
 
     /**
-     * The CSS padding bottom of the layout.
-     *
-     * @private
+     *Â @private
      * @type {string}
      */
     UCF_ClientInspector["prototype"]["sThemedLayoutPaddingBottom"] = 'OFF';
 
     /**
-     * The CSS padding right of the layout.
-     *
-     * @private
+     *Â @private
      * @type {string}
      */
     UCF_ClientInspector["prototype"]["sThemedLayoutPaddingRight"] = 'OFF';
 
     /**
-     * The CSS height of a raster row of a AbapList screen used to position elements.
-     *
-     * @private
+     *Â @private
      * @type {string}
      */
     UCF_ClientInspector["prototype"]["sThemedAbapListRasterHeight"] = 'OFF';
 
     /**
-     * The CSS width of a raster column of a AbapList screen used to position elements.
-     *
-     * @private
+     *Â @private
      * @type {string}
      */
     UCF_ClientInspector["prototype"]["sThemedAbapListRasterWidth"] = 'OFF';
 
     /**
-     * The minimum CSS height of the value help dialog as specified in the theme and the currently available height for a PopupWindow. '-1' (the default height of the PopupWindow) if the theme did not specify a height. This may be viewport- and orientation-dependent, so you may want to use NotificationTrigger=WHEN_CHANGED.
-     *
-     * @private
+     *Â @private
      * @type {string}
      */
     UCF_ClientInspector["prototype"]["sThemedValueHelpHeight"] = 'OFF';
 
     /**
-     * The minimum CSS width of the value help dialog as specified in the theme and the currently available width for a PopupWindow. '-1' (the default width of the PopupWindow) if the theme did not specify a width. This may be viewport- and orientation-dependent, so you may want to use NotificationTrigger=WHEN_CHANGED.
-     *
-     * @private
+     *Â @private
      * @type {string}
      */
     UCF_ClientInspector["prototype"]["sThemedValueHelpWidth"] = 'OFF';
 
     /**
-     * A list of tags applied to the theme
-     *
-     * @private
+     *Â @private
      * @type {string}
      */
     UCF_ClientInspector["prototype"]["sThemeTags"] = 'OFF';
 
     /**
-     * 'TRUE' if client side is able to handle the active component 'Word', 'FALSE' if not
-     *
-     * @private
+     *Â @private
      * @type {string}
      */
     UCF_ClientInspector["prototype"]["sWordEnabled"] = 'OFF';
 
     /**
-     * 'TRUE' if client side is able to handle the active component 'Excel', 'FALSE' if not
-     *
-     * @private
+     *Â @private
      * @type {string}
      */
     UCF_ClientInspector["prototype"]["sExcelEnabled"] = 'OFF';
 
     /**
-     * 'TRUE' if client side is able to handle the active component 'Flash', 'FALSE' if not
-     *
-     * @private
+     *Â @private
      * @type {string}
      */
     UCF_ClientInspector["prototype"]["sFlashEnabled"] = 'OFF';
 
     /**
-     * 'TRUE' if client side is able to handle the active component 'Acrobat', 'FALSE' if not
-     *
-     * @private
+     *Â @private
      * @type {string}
      */
     UCF_ClientInspector["prototype"]["sAcrobatEnabled"] = 'OFF';
 
     /**
-     * 'TRUE' if client side is able to handle the active component 'Silverlight', 'FALSE' if not
-     *
-     * @private
+     *Â @private
      * @type {string}
      */
     UCF_ClientInspector["prototype"]["sSilverlightEnabled"] = 'OFF';
 
     /**
-     * 'TRUE' if client side is able to handle the active component 'Java', 'FALSE' if not
-     *
-     * @private
+     *Â @private
      * @type {string}
      */
     UCF_ClientInspector["prototype"]["sJavaEnabled"] = 'OFF';
 
     /**
-     * 'NOT_INSTALLED' if Java is not installed, 'UNKNOWN' if version unknown or X.X depending on the java version e.g. '1.4'. Patch levels are not included
-     *
-     * @private
+     *Â @private
      * @type {string}
      */
     UCF_ClientInspector["prototype"]["sJavaVersion"] = 'OFF';
 
     /**
-     * 'TRUE' if client side is able to handle web sockets, 'FALSE' if not
-     *
-     * @private
+     *Â @private
      * @type {string}
      */
     UCF_ClientInspector["prototype"]["sWebSocketsEnabled"] = 'OFF';
 
     /**
-     * 'DESKTOP', 'TABLET' or 'PHONE'. Server needs to set one of these values to be notified.
-     *
-     * @private
+     *Â @private
      * @type {string}
      */
     UCF_ClientInspector["prototype"]["sDeviceType"] = 'OFF';
 
     /**
-     * 'TRUE', 'FALSE'
-     *
-     * @private
+     *Â @private
      * @type {string}
      */
     UCF_ClientInspector["prototype"]["sCssMatchesHtmlVersion"] = 'OFF';
 
     /**
-     * Sets a custom data string that can be retrieved on the client via method sGetCustomData() or getCustomData(sJsonPropertyName) in case it is a JSON string
-     *
-     * @private
+     *Â @private
      * @type {string}
      */
     UCF_ClientInspector["prototype"]["sCustomData"] = '';
 
     /**
-     * See platform enumeration. Server needs to set one of these values to be notified.
-     *
-     * @private
+     *Â @private
      * @type {string}
      */
     UCF_ClientInspector["prototype"]["sPlatform"] = 'OFF';
 
     /**
-     * 'TRUE' when a opener does exist.
-     *
-     * @private
+     *Â @private
      * @type {string}
      */
     UCF_ClientInspector["prototype"]["sWindowOpenerExists"] = 'OFF';
 
     /**
-     * document.location.href
-     *
-     * @private
+     *Â @private
      * @type {string}
      */
     UCF_ClientInspector["prototype"]["sClientURL"] = 'OFF';
 
     /**
-     * document.domain
-     *
-     * @private
+     *Â @private
      * @type {string}
      */
     UCF_ClientInspector["prototype"]["sDocumentDomain"] = 'OFF';
 
     /**
-     * 'TRUE' when the window is top.
-     *
-     * @private
+     *Â @private
      * @type {string}
      */
     UCF_ClientInspector["prototype"]["sIsTopWindow"] = 'OFF';
 
     /**
-     * 'TRUE' when the parent window can be accessed.
-     *
-     * @private
+     *Â @private
      * @type {string}
      */
     UCF_ClientInspector["prototype"]["sParentAccessible"] = 'OFF';
 
+    /**
+     *Â @private
+     * @type {string}
+     */
+    UCF_ClientInspector["prototype"]["sIsHighContrastOsUser"] = 'OFF';
 
 //#JSCOVER_EXCL_START
-    /**
-     * Default value setter
-     * @private
-     */
+    /** @protected */
     UCF_ClientInspector["prototype"]["setDefaultValues"] = function () {
         ;
         if (__UCF_COVERAGE__) {
@@ -80989,53 +82180,55 @@ UCF_System is not available yet
         this["sDocumentDomain"] = 'OFF';
         this["sIsTopWindow"] = 'OFF';
         this["sParentAccessible"] = 'OFF';
+        this["sIsHighContrastOsUser"] = 'OFF';
 
         if (this["getClientControl"]() && !this["bKeepAlive"]) {
-            this["setClientProperty"]('', "INITIAL", true);
-            this["setClientProperty"]('', 'OFF', true);
-            this["setClientProperty"]('', 'OFF', true);
-            this["setClientProperty"]('', 'OFF', true);
-            this["setClientProperty"]('', 'OFF', true);
-            this["setClientProperty"]('', 'OFF', true);
-            this["setClientProperty"]('', 'OFF', true);
-            this["setClientProperty"]('', 'OFF', true);
-            this["setClientProperty"]('', 'OFF', true);
-            this["setClientProperty"]('', 'OFF', true);
-            this["setClientProperty"]('', '', true);
-            this["setClientProperty"]('', 'OFF', true);
-            this["setClientProperty"]('', 'OFF', true);
-            this["setClientProperty"]('', 'OFF', true);
-            this["setClientProperty"]('', 'OFF', true);
-            this["setClientProperty"]('', 'OFF', true);
-            this["setClientProperty"]('', '[]', true);
-            this["setClientProperty"]('', 'OFF', true);
-            this["setClientProperty"]('', 'OFF', true);
-            this["setClientProperty"]('', 'OFF', true);
-            this["setClientProperty"]('', 'OFF', true);
-            this["setClientProperty"]('', 'OFF', true);
-            this["setClientProperty"]('', 'OFF', true);
-            this["setClientProperty"]('', 'OFF', true);
-            this["setClientProperty"]('', 'OFF', true);
-            this["setClientProperty"]('', 'OFF', true);
-            this["setClientProperty"]('', 'OFF', true);
-            this["setClientProperty"]('', 'OFF', true);
-            this["setClientProperty"]('', 'OFF', true);
-            this["setClientProperty"]('', 'OFF', true);
-            this["setClientProperty"]('', 'OFF', true);
-            this["setClientProperty"]('', 'OFF', true);
-            this["setClientProperty"]('', 'OFF', true);
-            this["setClientProperty"]('', 'OFF', true);
-            this["setClientProperty"]('', 'OFF', true);
-            this["setClientProperty"]('', 'OFF', true);
-            this["setClientProperty"]('', 'OFF', true);
-            this["setClientProperty"]('', 'OFF', true);
-            this["setClientProperty"]('', '', true);
-            this["setClientProperty"]('', 'OFF', true);
-            this["setClientProperty"]('', 'OFF', true);
-            this["setClientProperty"]('', 'OFF', true);
-            this["setClientProperty"]('', 'OFF', true);
-            this["setClientProperty"]('', 'OFF', true);
-            this["setClientProperty"]('', 'OFF', true);
+            this["setClientProperty"]("NotificationTrigger", "INITIAL", true);
+            this["setClientProperty"]("ClientWidth", 'OFF', true);
+            this["setClientProperty"]("ClientHeight", 'OFF', true);
+            this["setClientProperty"]("ScreenWidth", 'OFF', true);
+            this["setClientProperty"]("ScreenHeight", 'OFF', true);
+            this["setClientProperty"]("ScreenOrientation", 'OFF', true);
+            this["setClientProperty"]("QME", 'OFF', true);
+            this["setClientProperty"]("RenderingModeCompatibility", 'OFF', true);
+            this["setClientProperty"]("ThemeID", 'OFF', true);
+            this["setClientProperty"]("SapThemeID", 'OFF', true);
+            this["setClientProperty"]("ThemeScope", '', true);
+            this["setClientProperty"]("ThemedTableRowHeight", 'OFF', true);
+            this["setClientProperty"]("ThemedFormLayoutRowHeight", 'OFF', true);
+            this["setClientProperty"]("ThemedScrollbarDimension", 'OFF', true);
+            this["setClientProperty"]("ThemedDocumentBackgroundColor", 'OFF', true);
+            this["setClientProperty"]("ThemedSvgLibs", 'OFF', true);
+            this["setClientProperty"]("ThemedSvgLibUrls", '[]', true);
+            this["setClientProperty"]("ThemedRasterHeight", 'OFF', true);
+            this["setClientProperty"]("ThemedRasterWidth", 'OFF', true);
+            this["setClientProperty"]("ThemedLayoutPaddingTop", 'OFF', true);
+            this["setClientProperty"]("ThemedLayoutPaddingLeft", 'OFF', true);
+            this["setClientProperty"]("ThemedLayoutPaddingBottom", 'OFF', true);
+            this["setClientProperty"]("ThemedLayoutPaddingRight", 'OFF', true);
+            this["setClientProperty"]("ThemedAbapListRasterHeight", 'OFF', true);
+            this["setClientProperty"]("ThemedAbapListRasterWidth", 'OFF', true);
+            this["setClientProperty"]("ThemedValueHelpHeight", 'OFF', true);
+            this["setClientProperty"]("ThemedValueHelpWidth", 'OFF', true);
+            this["setClientProperty"]("ThemeTags", 'OFF', true);
+            this["setClientProperty"]("WordEnabled", 'OFF', true);
+            this["setClientProperty"]("ExcelEnabled", 'OFF', true);
+            this["setClientProperty"]("FlashEnabled", 'OFF', true);
+            this["setClientProperty"]("AcrobatEnabled", 'OFF', true);
+            this["setClientProperty"]("SilverlightEnabled", 'OFF', true);
+            this["setClientProperty"]("JavaEnabled", 'OFF', true);
+            this["setClientProperty"]("JavaVersion", 'OFF', true);
+            this["setClientProperty"]("WebSocketsEnabled", 'OFF', true);
+            this["setClientProperty"]("DeviceType", 'OFF', true);
+            this["setClientProperty"]("CssMatchesHtmlVersion", 'OFF', true);
+            this["setClientProperty"]("CustomData", '', true);
+            this["setClientProperty"]("Platform", 'OFF', true);
+            this["setClientProperty"]("WindowOpenerExists", 'OFF', true);
+            this["setClientProperty"]("ClientURL", 'OFF', true);
+            this["setClientProperty"]("DocumentDomain", 'OFF', true);
+            this["setClientProperty"]("IsTopWindow", 'OFF', true);
+            this["setClientProperty"]("ParentAccessible", 'OFF', true);
+            this["setClientProperty"]("IsHighContrastOsUser", 'OFF', true);
         }
     };
     ;
@@ -81045,13 +82238,12 @@ UCF_System is not available yet
     ;
 //#JSCOVER_EXCL_STOP
 
+
     /**
-     * Event fires when given parameter values did not match to the given API value
-     *
-     * @private
+     * @protected
      * @param {string} sId Identifier of the ClientInspector control.
      * @param {string} sData A map of parameters with their current values. The key/value is separated by ':' while the pairs are separated by ';'
-     * @fires ClientInspector:Notify
+     * @fires ClientInspector::Notify
      */
     UCF_ClientInspector["prototype"]["fireNotify"] = function (sId, sData) {
         ;
@@ -81059,42 +82251,308 @@ UCF_System is not available yet
             UCF_ClientInspector["_"]["fireNotify"]++;
         }
         ;
-        /** @type {UCF_Control} */
-        var oControl;
         /** @type {{Id: string, Data: string}} */
         var mParams;
 
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(arguments["length"] == 2, "arguments.length == 2", "ClientInspector.js(1696): fireNotify");
+            UCF_Tracer.assert(arguments["length"] == 2, "arguments.length == 2", "ClientInspector.js(1573): fireNotify");
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(sId != null, "sId != null", "ClientInspector.js(1697): fireNotify");
+            UCF_Tracer.assert(sId != null, "sId != null", "ClientInspector.js(1574): fireNotify");
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(typeof sId === 'string', "typeof sId === 'string'", "ClientInspector.js(1698): fireNotify");
+            UCF_Tracer.assert(typeof (sId) == "string", "typeof(sId) == \"string\"", "ClientInspector.js(1575): fireNotify");
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(sData != null, "sData != null", "ClientInspector.js(1699): fireNotify");
+            UCF_Tracer.assert(sData != null, "sData != null", "ClientInspector.js(1576): fireNotify");
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(typeof sData === 'string', "typeof sData === 'string'", "ClientInspector.js(1700): fireNotify");
+            UCF_Tracer.assert(typeof (sData) == "string", "typeof(sData) == \"string\"", "ClientInspector.js(1577): fireNotify");
         }
         ;
-
         mParams = {
             "Id": sId,
             "Data": sData
         };
 
-        this["fireSemanticEvent"]('ClientInspector', 'Notify', mParams, false, false, false);
+
+        this["fireSemanticEvent"]("ClientInspector", "Notify", mParams, false, false, false);
     };
     ;
     if (__UCF_COVERAGE__) {
         UCF_ClientInspector["_"]["fireNotify"] = 0;
+    }
+    ;
+
+    /* eslint-disable jsdoc/require-jsdoc */
+    /* eslint-disable jsdoc/check-alignment */
+    /* global _assert, _trace, DEBUG */
+/// <reference path="../../core/debug/Tracer.js"/>
+    /* global UCF_ClassLoader */
+/// <reference path="../../core/util/ClassLoader.js"/>
+    /* global UCF_UserAgent */
+/// <reference path="../../core/util/UserAgent.js"/>
+    /* global UCF_JsUtil */
+/// <reference path="../../core/util/JsUtil.js"/>
+    /* global UCF_Control */
+/// <reference path="../core/Control.js"/>
+    /* global UCF_LS */
+/// <reference path="../core/LS.js"/>
+    /* global UCF_System */
+
+/// <reference path="../core/System.js"/>
+
+    /**
+     *
+     * Post Message Services holds a list of PM Services with their
+     * implementations for handle PMs
+     *
+     * Let the class UCF_PMServiceGenericResponder build the response
+     * for a service request like 'sap.ls.back'
+     *
+     * "sap.ls.back":"UCF_PMServiceGenericResponder"
+     *
+     *
+     *
+     * @class
+     * @param {HTMLElement} oDomRef
+     * @param {UCF_LS} oLS
+     */
+// eslint-disable-next-line jsdoc/check-syntax
+    function UCF_PostMessageServices(oDomRef, oLS) {
+        if (__UCF_COVERAGE__) {
+            UCF_PostMessageServices["_"]["UCF_PostMessageServices"]++;
+        }
+        ;
+
+        if (__UCF_ASSERT__) {
+            UCF_Tracer.assert(typeof (oDomRef) === 'object', "typeof(oDomRef) === 'object'", "PostMessageServices.js(37): UCF_PostMessageServices");
+        }
+        ;
+        if (__UCF_ASSERT__) {
+            UCF_Tracer.assert(oDomRef !== null, "oDomRef !== null", "PostMessageServices.js(38): UCF_PostMessageServices");
+        }
+        ;
+        if (__UCF_ASSERT__) {
+            UCF_Tracer.assert(oLS instanceof UCF_LS, "oLS instanceof UCF_LS", "PostMessageServices.js(39): UCF_PostMessageServices");
+        }
+        ;
+
+        UCF_Control["apply"](this, [oDomRef, oLS]);
+
+        if (!UCF_UserAgent["bIsStandardsMode"]()) {
+            if (__UCF_TRACE__) {
+                UCF_Tracer.trace(DEBUG, 'PostMessageHubs are supported in standards mode only', "PostMessageServices.js(44): UCF_PostMessageServices");
+            }
+            ;
+            // eslint-disable-next-line no-unsanitized/property
+            this["oRootRef"]["innerHTML"] =
+                oLS["sGetText"]('SAPUR_HTML5_CONTROL_ERROR', [
+                    '<a target=\'_blank\' href=\'https://service.sap.com/sap/support/notes/1970689\'>Note 1970689</a>',
+                    'Postmessage'
+                ]);
+
+            return;
+        }
+        if (!UCF_PostMessageServices["mServices"])
+            UCF_PostMessageServices["mServices"] = {};
+        try {
+            if (oDomRef["innerHTML"]["substring"](12, oDomRef["innerHTML"]["length"] - 6) === '{}') ;
+            //			this.mServices = {};
+            else {
+                var newValues = UCF_JsUtil["oJsonParse"](
+                    oDomRef["innerHTML"]["substring"](12, oDomRef["innerHTML"]["length"] - 6)["replace"](/\\/g, ''));
+                var aKeys = UCF_JsUtil["keys"](newValues);
+                for (var iIndex = 0; iIndex < aKeys["length"]; iIndex++)
+                    UCF_PostMessageServices["mServices"][aKeys[iIndex]] = newValues[aKeys[iIndex]];
+            }
+        } catch (e) {
+            if (__UCF_TRACE__) {
+                UCF_Tracer.trace(DEBUG, 'PostMessageServices: Service List cannot be parsed', "PostMessageServices.js(67): UCF_PostMessageServices");
+            }
+            ;
+        }
+        this["oLS"] = oLS;
+    };window["UCF_PostMessageServices"] = UCF_PostMessageServices;
+    ;
+    if (__UCF_COVERAGE__) {
+        window.UCF_classes.push("UCF_PostMessageServices");
+        UCF_PostMessageServices["_"] = {UCF_PostMessageServices: 0};
+    }
+    ;
+    ;
+
+    UCF_PostMessageServices["prototype"] = new (UCF_ClassLoader["oGetClass"]("UCF_Control"))();
+    UCF_PostMessageServices.prototype["sClassName"] = "UCF_PostMessageServices";
+
+    UCF_PostMessageServices["addPostMessageService"] = function (sService, sImplementation) {
+        ;
+        if (__UCF_COVERAGE__) {
+            UCF_PostMessageServices["_"]["addPostMessageService"]++;
+        }
+        ;
+        if (!UCF_PostMessageServices["mServices"])
+            UCF_PostMessageServices["mServices"] = {};
+        UCF_PostMessageServices["mServices"][sService] = sImplementation;
+    };
+    ;
+    if (__UCF_COVERAGE__) {
+        UCF_PostMessageServices["_"]["addPostMessageService"] = 0;
+    }
+    ;
+
+    UCF_PostMessageServices["removePostMessageService"] = function (sService) {
+        ;
+        if (__UCF_COVERAGE__) {
+            UCF_PostMessageServices["_"]["removePostMessageService"]++;
+        }
+        ;
+        if (UCF_PostMessageServices["mServices"])
+            UCF_PostMessageServices["mServices"][sService] = null;
+    };
+    ;
+    if (__UCF_COVERAGE__) {
+        UCF_PostMessageServices["_"]["removePostMessageService"] = 0;
+    }
+    ;
+
+    UCF_PostMessageServices["dispatch"] = function (sService, oEvent) {
+        ;
+        if (__UCF_COVERAGE__) {
+            UCF_PostMessageServices["_"]["dispatch"]++;
+        }
+        ;
+        if (UCF_PostMessageServices["mServices"] == null) return false; // Trigger a RequestReceive Event
+        if (UCF_PostMessageServices["mServices"][sService] == null || UCF_PostMessageServices["mServices"][sService] === '') return false;
+
+        if (UCF_JsUtil["bIsFunction"](UCF_PostMessageServices["mServices"][sService])) {
+            return UCF_PostMessageServices["mServices"][sService](sService, oEvent, window["UCF_System"]["oLS"]);
+        } else if (UCF_PostMessageServices["mServices"][sService] && UCF_PostMessageServices["mServices"][sService] !== '') {
+            var oImpl = UCF_ClassLoader["oGetClass"](UCF_PostMessageServices["mServices"][sService]);
+            if (oImpl)
+                return oImpl(sService, oEvent, window["UCF_System"]["oLS"]);
+        }
+        return true;
+    };
+    ;
+    if (__UCF_COVERAGE__) {
+        UCF_PostMessageServices["_"]["dispatch"] = 0;
+    }
+    ;
+    /**
+     * Array of names of transported names/attributes (clientaccess defined).
+     * @private
+     * @type {string[]}
+     */
+    UCF_PostMessageServices["prototype"]["aAttributeNames"] = ["sCustomData"];
+
+    /**
+     * Array of names of transported events.
+     * @private
+     * @type {string[]}
+     */
+    UCF_PostMessageServices["prototype"]["aEventNames"] = [];
+
+    /**
+     * Array of names of public methods.
+     * @private
+     * @type {string[]}
+     */
+    UCF_PostMessageServices["prototype"]["aMethodNames"] = ["addPostMessageService", "removePostMessageService", "updateEvent", "addClientListener", "removeClientListener", "playAnimation", "getCustomData", "sGetCustomData", "show", "hide", "focus", "oGetParentControl"];
+
+    /**
+     *Â @private
+     * @type {string}
+     */
+    UCF_PostMessageServices["prototype"]["sCustomData"] = '';
+
+//#JSCOVER_EXCL_START
+    /** @protected */
+    UCF_PostMessageServices["prototype"]["setDefaultValues"] = function () {
+        ;
+        if (__UCF_COVERAGE__) {
+            UCF_PostMessageServices["_"]["setDefaultValues"]++;
+        }
+        ;
+        this["sCustomData"] = '';
+
+        if (this["getClientControl"]() && !this["bKeepAlive"]) {
+            this["setClientProperty"]("CustomData", '', true);
+        }
+    };
+    ;
+    if (__UCF_COVERAGE__) {
+        UCF_PostMessageServices["_"]["setDefaultValues"] = 0;
+    }
+    ;
+//#JSCOVER_EXCL_STOP
+
+    /* global UCF_DomUtil */
+
+/// <reference path="../../../core/util/DomUtil.js"/>
+
+    /**
+     * @class
+     */
+    function UCF_ControlUtil() {
+        if (__UCF_COVERAGE__) {
+            UCF_ControlUtil["_"]["UCF_ControlUtil"]++;
+        }
+        ;
+
+    };window["UCF_ControlUtil"] = UCF_ControlUtil;
+    ;
+    if (__UCF_COVERAGE__) {
+        window.UCF_classes.push("UCF_ControlUtil");
+        UCF_ControlUtil["_"] = {UCF_ControlUtil: 0};
+    }
+    ;
+    ;
+
+    /**
+     * Set the text-align style property to the given domRef
+     * for value matrix compare UrBase.renderer - UrBase_sTextAlign
+     *
+     * @param {element} oDomRef  the domRef of an HTML element for the current style
+     * @param {element} sTextAlign  textAlign enumeration
+     * @param {element} sTextDirection  textDirection enumeration
+     * @private
+     */
+    UCF_ControlUtil["setTextAlign"] = function (oDomRef, sTextAlign, sTextDirection) {
+        ;
+        if (__UCF_COVERAGE__) {
+            UCF_ControlUtil["_"]["setTextAlign"]++;
+        }
+        ;
+        var mSystemDirection = {
+                "LTR": 0,
+                "RTL": 1
+
+            },
+            mTextAlignStates = {
+                "FORCEDLEFT": [{"LTR": "", "RTL": "left", "INHERIT": ""}, {"LTR": "left", "RTL": "left", "INHERIT": "left"}],
+                "LEFT": [{"LTR": "", "RTL": "", "INHERIT": ""}, {"LTR": "", "RTL": "", "INHERIT": ""}],
+                "CENTER": [{"LTR": "center", "RTL": "center", "INHERIT": "center"}, {"LTR": "center", "RTL": "center", "INHERIT": "center"}],
+                "RIGHT": [{"LTR": "right", "RTL": "right", "INHERIT": "right"}, {"LTR": "right", "RTL": "", "INHERIT": ""}],
+                "ENDOFLINE": [{"LTR": "right", "RTL": "left", "INHERIT": "right"}, {"LTR": "right", "RTL": "left", "INHERIT": "left"}],
+                "FORCEDRIGHT": [{"LTR": "right", "RTL": "right", "INHERIT": "right"}, {"LTR": "right", "RTL": "", "INHERIT": ""}],
+                "BEGINOFLINE": [{"LTR": "left", "RTL": "right", "INHERIT": "left"}, {"LTR": "left", "RTL": "right", "INHERIT": "right"}]
+            },
+            oTextAlignState = mTextAlignStates[sTextAlign],
+            iLayoutDirection = UCF_DomUtil["bIsRTL"] ? mSystemDirection["RTL"] : mSystemDirection["LTR"],
+            oTextAlignStateSD = oTextAlignState[iLayoutDirection],
+            sTextAlignStyle = oTextAlignStateSD[sTextDirection];
+
+        oDomRef["style"]["textAlign"] = sTextAlignStyle;
+
+    };
+    ;
+    if (__UCF_COVERAGE__) {
+        UCF_ControlUtil["_"]["setTextAlign"] = 0;
     }
     ;
 
@@ -81465,97 +82923,59 @@ UCF_System is not available yet
         UCF_IHubPostMessage["_"]["postMessageHandler"] = 0;
     }
     ;
-
-// =============================================================================
-// Copyright 2009 - SAP - NW UI F. All rights reserved. SAP
-// PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
-// =============================================================================
-
     /**
-     * Array of names of transported parameters/attributes (clientaccess defined). In the current control:
-     * - {@link #sServiceProviderListId}
-     * - {@link #sTarget}
-     * - {@link #bSynchronous}
-     * - {@link #sServiceWhitelist}
-     * - {@link #sCustomData}
+     * Array of names of transported names/attributes (clientaccess defined).
      * @private
      * @type {string[]}
      */
-    UCF_IHubPostMessage["prototype"]["aAttributeNames"] = ['sServiceProviderListId', 'sTarget', 'bSynchronous', 'sServiceWhitelist', 'sCustomData'];
+    UCF_IHubPostMessage["prototype"]["aAttributeNames"] = ["sServiceProviderListId", "sTarget", "bSynchronous", "sServiceWhitelist", "sCustomData"];
 
     /**
-     * Array of names of events of the control:
-     * - Receive
-     * - RequestReceive
-     * @type {string[]}
-     */
-    UCF_IHubPostMessage["prototype"]["aEventNames"] = ['Receive', 'RequestReceive'];
-
-    /**
-     * Array of names of public methods of the control - public control API are:
-     *
-     * {@link #postMessage}
-     * Post a String to the parent
-     * Parameter: {string} Data - The string - JSON object - to be sent
-     * Parameter: {string} Target - The target document
-     *
-     * {@link #addToServiceWhitelist}
-     * Add an entry to the Servicewhitelist
-     * Parameter: {string} ServiceName - Add a service name to the Whitelist
-     *
+     * Array of names of transported events.
      * @private
      * @type {string[]}
      */
-    UCF_IHubPostMessage["prototype"]["aMethodNames"] = ['postMessage', 'addToServiceWhitelist', 'updateEvent', 'addClientListener', 'removeClientListener', 'playAnimation', 'getCustomData', 'sGetCustomData', 'show', 'hide', 'focus', 'oGetParentControl'];
-
-// ===== Default values of the transported parameters =========================
+    UCF_IHubPostMessage["prototype"]["aEventNames"] = ["Receive", "RequestReceive"];
 
     /**
-     * Identifier of the Hub Plugin
-     *
+     * Array of names of public methods.
      * @private
+     * @type {string[]}
+     */
+    UCF_IHubPostMessage["prototype"]["aMethodNames"] = ["postMessage", "addToServiceWhitelist", "updateEvent", "addClientListener", "removeClientListener", "playAnimation", "getCustomData", "sGetCustomData", "show", "hide", "focus", "oGetParentControl"];
+
+    /**
+     *Â @private
      * @type {string}
      */
     UCF_IHubPostMessage["prototype"]["sServiceProviderListId"] = '';
 
     /**
-     * Target
-     *
-     * @private
+     *Â @private
      * @type {string}
      */
     UCF_IHubPostMessage["prototype"]["sTarget"] = '';
 
     /**
-     * Sync/Async behaviour
-     *
-     * @private
+     *Â @private
      * @type {boolean}
      */
     UCF_IHubPostMessage["prototype"]["bSynchronous"] = false;
 
     /**
-     * Services allowed to fire a Requestreceive - JSON array of servicenames
-     *
-     * @private
+     *Â @private
      * @type {string}
      */
     UCF_IHubPostMessage["prototype"]["sServiceWhitelist"] = null;
 
     /**
-     * Sets a custom data string that can be retrieved on the client via method sGetCustomData() or getCustomData(sJsonPropertyName) in case it is a JSON string
-     *
-     * @private
+     *Â @private
      * @type {string}
      */
     UCF_IHubPostMessage["prototype"]["sCustomData"] = '';
 
-
 //#JSCOVER_EXCL_START
-    /**
-     * Default value setter
-     * @private
-     */
+    /** @protected */
     UCF_IHubPostMessage["prototype"]["setDefaultValues"] = function () {
         ;
         if (__UCF_COVERAGE__) {
@@ -81569,11 +82989,11 @@ UCF_System is not available yet
         this["sCustomData"] = '';
 
         if (this["getClientControl"]() && !this["bKeepAlive"]) {
-            this["setClientProperty"]('', '', true);
-            this["setClientProperty"]('', '', true);
-            this["setClientProperty"]('', false, true);
-            this["setClientProperty"]('', null, true);
-            this["setClientProperty"]('', '', true);
+            this["setClientProperty"]("ServiceProviderListId", '', true);
+            this["setClientProperty"]("Target", '', true);
+            this["setClientProperty"]("Synchronous", false, true);
+            this["setClientProperty"]("ServiceWhitelist", null, true);
+            this["setClientProperty"]("CustomData", '', true);
         }
     };
     ;
@@ -81583,13 +83003,12 @@ UCF_System is not available yet
     ;
 //#JSCOVER_EXCL_STOP
 
+
     /**
-     * Event fires when a message has been received
-     *
-     * @private
+     * @protected
      * @param {string} sId Identifier of the control
      * @param {string} sData Message payload - Json stringified
-     * @fires IHubPostMessage:Receive
+     * @fires IHubPostMessage::Receive
      */
     UCF_IHubPostMessage["prototype"]["fireReceive"] = function (sId, sData) {
         ;
@@ -81597,38 +83016,36 @@ UCF_System is not available yet
             UCF_IHubPostMessage["_"]["fireReceive"]++;
         }
         ;
-        /** @type {UCF_Control} */
-        var oControl;
         /** @type {{Id: string, Data: string}} */
         var mParams;
 
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(arguments["length"] == 2, "arguments.length == 2", "IHubPostMessage.js(363): fireReceive");
+            UCF_Tracer.assert(arguments["length"] == 2, "arguments.length == 2", "IHubPostMessage.js(322): fireReceive");
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(sId != null, "sId != null", "IHubPostMessage.js(364): fireReceive");
+            UCF_Tracer.assert(sId != null, "sId != null", "IHubPostMessage.js(323): fireReceive");
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(typeof sId === 'string', "typeof sId === 'string'", "IHubPostMessage.js(365): fireReceive");
+            UCF_Tracer.assert(typeof (sId) == "string", "typeof(sId) == \"string\"", "IHubPostMessage.js(324): fireReceive");
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(sData != null, "sData != null", "IHubPostMessage.js(366): fireReceive");
+            UCF_Tracer.assert(sData != null, "sData != null", "IHubPostMessage.js(325): fireReceive");
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(typeof sData === 'string', "typeof sData === 'string'", "IHubPostMessage.js(367): fireReceive");
+            UCF_Tracer.assert(typeof (sData) == "string", "typeof(sData) == \"string\"", "IHubPostMessage.js(326): fireReceive");
         }
         ;
-
         mParams = {
             "Id": sId,
             "Data": sData
         };
 
-        this["fireSemanticEvent"]('IHubPostMessage', 'Receive', mParams, false, false, false);
+
+        this["fireSemanticEvent"]("IHubPostMessage", "Receive", mParams, false, false, false);
     };
     ;
     if (__UCF_COVERAGE__) {
@@ -81637,12 +83054,10 @@ UCF_System is not available yet
     ;
 
     /**
-     * Event fires when a request message (object with type=='request' has been received
-     *
-     * @private
+     * @protected
      * @param {string} sId Identifier of the control
      * @param {string} sData Message payload - Json stringified
-     * @fires IHubPostMessage:RequestReceive
+     * @fires IHubPostMessage::RequestReceive
      */
     UCF_IHubPostMessage["prototype"]["fireRequestReceive"] = function (sId, sData) {
         ;
@@ -81650,38 +83065,36 @@ UCF_System is not available yet
             UCF_IHubPostMessage["_"]["fireRequestReceive"]++;
         }
         ;
-        /** @type {UCF_Control} */
-        var oControl;
         /** @type {{Id: string, Data: string}} */
         var mParams;
 
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(arguments["length"] == 2, "arguments.length == 2", "IHubPostMessage.js(391): fireRequestReceive");
+            UCF_Tracer.assert(arguments["length"] == 2, "arguments.length == 2", "IHubPostMessage.js(346): fireRequestReceive");
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(sId != null, "sId != null", "IHubPostMessage.js(392): fireRequestReceive");
+            UCF_Tracer.assert(sId != null, "sId != null", "IHubPostMessage.js(347): fireRequestReceive");
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(typeof sId === 'string', "typeof sId === 'string'", "IHubPostMessage.js(393): fireRequestReceive");
+            UCF_Tracer.assert(typeof (sId) == "string", "typeof(sId) == \"string\"", "IHubPostMessage.js(348): fireRequestReceive");
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(sData != null, "sData != null", "IHubPostMessage.js(394): fireRequestReceive");
+            UCF_Tracer.assert(sData != null, "sData != null", "IHubPostMessage.js(349): fireRequestReceive");
         }
         ;
         if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(typeof sData === 'string', "typeof sData === 'string'", "IHubPostMessage.js(395): fireRequestReceive");
+            UCF_Tracer.assert(typeof (sData) == "string", "typeof(sData) == \"string\"", "IHubPostMessage.js(350): fireRequestReceive");
         }
         ;
-
         mParams = {
             "Id": sId,
             "Data": sData
         };
 
-        this["fireSemanticEvent"]('IHubPostMessage', 'RequestReceive', mParams, false, false, false);
+
+        this["fireSemanticEvent"]("IHubPostMessage", "RequestReceive", mParams, false, false, false);
     };
     ;
     if (__UCF_COVERAGE__) {
@@ -81690,661 +83103,4 @@ UCF_System is not available yet
     ;
 
     UCF_IHubPostMessage.prototype["aPublicMethods"] = ["postMessageStatic"].concat(UCF_IHubPostMessage.prototype.aPublicMethods || []);
-    /* global _assert */
-/// <reference path="../../../core/debug/Tracer.js"/>
-    /* global UCF_DomUtil */
-/// <reference path="../../../core/util/DomUtil.js"/>
-    /* global UCF_JsUtil */
-/// <reference path="../../../core/util/JsUtil.js"/>
-    /* global UCF_UserAgent */
-/// <reference path="../../../core/util/UserAgent.js"/>
-    /* global UCF_EventProvider */
-/// <reference path="../../../core/EventProvider.js"/>
-    /* global UCF_Control */
-/// <reference path="../../core/Control.js"/>
-    /* global UCF_System */
-
-/// <reference path="../../core/System.js"/>
-
-    /**
-     * Helper Class for all controls that need scrolling area events.
-     * Control must register for its ScrollDomRef to scroll event,  because it does not bubble.
-     *
-     * @example  <caption>How to use</caption>
-     *  var oScrollDomRef = UCF_DomUtil.$(this.sId + "-scrl");
-     *    this.oScrollArea = 	new UCF_ScrollArea(oScrollDomRef);
-     *    this.attachBrowserEvent("scroll", oScrollDomRef);
-     *    this.oScrollArea.attachEvent(this.oScrollArea.E_EVENTS.Scroll,this,"onScroll");
-     *    this.addDelegate(this.oScrollArea);
-     *
-     * @class
-     * @param {HTMLElement} oDomRef
-     */
-    function UCF_ScrollArea(oDomRef) {
-        if (__UCF_COVERAGE__) {
-            UCF_ScrollArea["_"]["UCF_ScrollArea"]++;
-        }
-        ;
-
-        if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(typeof (oDomRef) === "object", "typeof(oDomRef) === \"object\"", "ScrollArea.js(32): UCF_ScrollArea");
-        }
-        ;
-        if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(oDomRef != null, "oDomRef != null", "ScrollArea.js(33): UCF_ScrollArea");
-        }
-        ;
-
-        UCF_EventProvider["apply"](this);
-
-        this["defineEvents"](['Scroll']);
-
-        this["oDomRef"] = oDomRef;
-        // eslint-disable-next-line ur/no-memory-leaks
-        this["bDragScrollingEnabled"] = true;
-
-        this["sTimeOutId"] = null;
-
-        this["iCurrentStepY"] = 0;
-        this["iCurrentStepX"] = 0;
-
-        // eslint-disable-next-line ur/no-memory-leaks
-        this["iScrollTop"] = 0;
-        // eslint-disable-next-line ur/no-memory-leaks
-        this["iScrollLeft"] = 0;
-
-        // Some controls don't use static oCreateAndConnectScrollArea() !
-        // They do: new UCF_ScrollArea(...); ...
-        this["oDomRef"]["setAttribute"](UCF_ScrollArea["ScrollAttribute"], "true");
-    };window["UCF_ScrollArea"] = UCF_ScrollArea;
-    ;
-    if (__UCF_COVERAGE__) {
-        window.UCF_classes.push("UCF_ScrollArea");
-        UCF_ScrollArea["_"] = {UCF_ScrollArea: 0};
-    }
-    ;
-    ;
-    UCF_ScrollArea["prototype"] = new (UCF_ClassLoader["oGetClass"]("UCF_EventProvider"))();
-    UCF_ScrollArea.prototype["sClassName"] = "UCF_ScrollArea";
-
-    UCF_ScrollArea["ScrollAttribute"] = "lsscrl";
-
-    /**
-     * Creates a scollarea if possible, adds it as delegate and attaches all necessary event handlers
-     *
-     * @param {UCF_Control} oControl
-     * @param {string} sScrollingMode The scrolling mode of the area
-     * @param {string} sScrollHandlerName The name of the scrollhandler which is called in the passed control by scroll events
-     *
-     * @type { UCF_ScrollArea }
-     * @return { UCF_ScrollArea } The ScrollArea
-     *
-     * @see UCF_ScrollArea.disconnectScrollArea
-     */
-    UCF_ScrollArea["oCreateAndConnectScrollArea"] = function (oControl, sScrollingMode, sScrollHandlerName, oScrollDomRef) {
-        ;
-        if (__UCF_COVERAGE__) {
-            UCF_ScrollArea["_"]["oCreateAndConnectScrollArea"]++;
-        }
-        ;
-        if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(oControl != null, "oControl != null", "ScrollArea.js(74): oCreateAndConnectScrollArea");
-        }
-        ;
-        if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(oControl instanceof UCF_Control, "oControl instanceof UCF_Control", "ScrollArea.js(75): oCreateAndConnectScrollArea");
-        }
-        ;
-        if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(typeof (sScrollingMode) === "string", "typeof(sScrollingMode) === \"string\"", "ScrollArea.js(76): oCreateAndConnectScrollArea");
-        }
-        ;
-        if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(typeof (sScrollHandlerName) === "string", "typeof(sScrollHandlerName) === \"string\"", "ScrollArea.js(77): oCreateAndConnectScrollArea");
-        }
-        ;
-        if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(oControl[sScrollHandlerName] != null, "oControl[sScrollHandlerName] != null", "ScrollArea.js(78): oCreateAndConnectScrollArea");
-        }
-        ;
-
-        var oScrollArea = null;
-
-        if (sScrollingMode !== "NONE") { //scroll area only exists when a height is provided
-            oScrollDomRef = oScrollDomRef || UCF_DomUtil["$"](oControl["sId"] + "-scrl");
-            if (oScrollDomRef) {
-                oScrollArea = new (UCF_ClassLoader["oGetClass"]("UCF_ScrollArea"))(oScrollDomRef);
-                oControl["attachBrowserEvent"]("scroll", oScrollDomRef);
-                oScrollArea["attachEvent"](oScrollArea["E_EVENTS"]["Scroll"], oControl, sScrollHandlerName);
-                oControl["addDelegate"](oScrollArea);
-            }
-        }
-
-        return oScrollArea;
-    };
-    ;
-    if (__UCF_COVERAGE__) {
-        UCF_ScrollArea["_"]["oCreateAndConnectScrollArea"] = 0;
-    }
-    ;
-
-    /**
-     * Disconnects a scroll area connected by the static method "oConnectAndGetScrollArea" and destroys it.
-     *
-     * @param {UCF_Control} oControl
-     * @param {UCF_ScrollArea} oScrollArea The scroll area
-     *
-     * @see UCF_ScrollArea.oCreateAndConnectScrollArea
-     */
-    UCF_ScrollArea["disconnectAndDestroyScrollArea"] = function (oControl, oScrollArea) {
-        ;
-        if (__UCF_COVERAGE__) {
-            UCF_ScrollArea["_"]["disconnectAndDestroyScrollArea"]++;
-        }
-        ;
-        if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(oControl instanceof UCF_Control, "oControl instanceof UCF_Control", "ScrollArea.js(104): disconnectAndDestroyScrollArea");
-        }
-        ;
-
-        if (oScrollArea) {
-            if (oScrollArea["E_EVENTS"]) {
-                oScrollArea["detachEvent"](oScrollArea["E_EVENTS"]["Scroll"], oControl);
-            }
-
-            if (oScrollArea["oDomRef"]) {
-                oScrollArea["oDomRef"]["removeAttribute"](UCF_ScrollArea["ScrollAttribute"]);
-                oControl["detachBrowserEvent"]("scroll", oScrollArea["oDomRef"]);
-            }
-
-            oScrollArea["destroy"]();
-        }
-    };
-    ;
-    if (__UCF_COVERAGE__) {
-        UCF_ScrollArea["_"]["disconnectAndDestroyScrollArea"] = 0;
-    }
-    ;
-
-    UCF_ScrollArea["prototype"]["destroy"] = function () {
-        ;
-        if (__UCF_COVERAGE__) {
-            UCF_ScrollArea["_"]["destroy"]++;
-        }
-        ;
-        this["oDomRef"] = null;
-        this["cleanUpScrollTiming"]();
-        UCF_EventProvider.prototype["destroy"]["apply"](this, arguments);
-    };
-    ;
-    if (__UCF_COVERAGE__) {
-        UCF_ScrollArea["_"]["destroy"] = 0;
-    }
-    ;
-
-    /**
-     * Handles the scroll event.
-     * Only fire if necessary. Do not fire:
-     * - When scroll position was defined
-     *
-     * @param {UCF_BrowserEvent} oBrowserEvent
-     */
-    UCF_ScrollArea["prototype"]["onscroll"] = function (oBrowserEvent) {
-        ;
-        if (__UCF_COVERAGE__) {
-            UCF_ScrollArea["_"]["onscroll"]++;
-        }
-        ;
-
-        oBrowserEvent["cancelBubble"]();
-
-        if (this["bIgnoreScrollEvent"]) {
-            return;
-        }
-
-        this["handleScroll"]();
-
-    };
-    ;
-    if (__UCF_COVERAGE__) {
-        UCF_ScrollArea["_"]["onscroll"] = 0;
-    }
-    ;
-
-    /**
-     *    A timeout is used to avoid multiple scroll events while scrolling,
-     *  instead only one -in this case two- events are fired when the scroll process
-     *  has finished.
-     *  BUT in case no timeout is started yet one event is fired upfront
-     *  this is to avoid having a scroll event in an event quue that no longer belongs
-     *  to the new context.
-     */
-    UCF_ScrollArea["prototype"]["handleScroll"] = function () {
-        ;
-        if (__UCF_COVERAGE__) {
-            UCF_ScrollArea["_"]["handleScroll"]++;
-        }
-        ;
-
-        if (this["sTimeOutId"] == null) {
-            this["fireScroll"]();
-        } else {
-            this["cleanUpScrollTiming"]();
-        }
-        this["sTimeOutId"] = UCF_JsUtil["delayedCall"](200, this, "fireScroll");
-
-    };
-    ;
-    if (__UCF_COVERAGE__) {
-        UCF_ScrollArea["_"]["handleScroll"] = 0;
-    }
-    ;
-
-    /**
-     *  Resets the scroll timing state and kills all time out processes
-     */
-    UCF_ScrollArea["prototype"]["cleanUpScrollTiming"] = function () {
-        ;
-        if (__UCF_COVERAGE__) {
-            UCF_ScrollArea["_"]["cleanUpScrollTiming"]++;
-        }
-        ;
-        if (this["sTimeOutId"]) {
-            UCF_JsUtil["clearDelayedCall"](this["sTimeOutId"]);
-            this["sTimeOutId"] = null;
-        }
-    };
-    ;
-    if (__UCF_COVERAGE__) {
-        UCF_ScrollArea["_"]["cleanUpScrollTiming"] = 0;
-    }
-    ;
-
-    /**
-     * Fires the scroll event
-     */
-    UCF_ScrollArea["prototype"]["fireScroll"] = function () {
-        ;
-        if (__UCF_COVERAGE__) {
-            UCF_ScrollArea["_"]["fireScroll"]++;
-        }
-        ;
-
-        var iScrollTop, iScrollLeft;
-        this["cleanUpScrollTiming"]();
-        this["sTimeOutId"] = null;
-        // Get positions from the DOM
-        iScrollTop = this["oDomRef"]["scrollTop"];
-        iScrollLeft = this["oDomRef"]["scrollLeft"];
-        if (this["iScrollTop"] !== iScrollTop || this["iScrollLeft"] !== iScrollLeft) {
-            this["iScrollTop"] = iScrollTop;
-            this["iScrollLeft"] = iScrollLeft;
-            // For RTL calculate scrollRight instead
-            if (window["UCF_System"]["bIsRTL"]) {
-                iScrollLeft = this["oDomRef"]["scrollWidth"] - this["oDomRef"]["clientWidth"] - this["oDomRef"]["scrollLeft"];
-            }
-            // Fire Scroll event for the control
-            this["fireEvent"](this["E_EVENTS"]["Scroll"], {
-                "iScrollTop": parseInt(iScrollTop),
-                "iScrollLeft": parseInt(iScrollLeft)
-            });
-        }
-    };
-    ;
-    if (__UCF_COVERAGE__) {
-        UCF_ScrollArea["_"]["fireScroll"] = 0;
-    }
-    ;
-
-    /**
-     * Sets the scroll position programmatically
-     *
-     * @param { int } iScrollTop
-     * @param { int } iScrollLeft
-     */
-    UCF_ScrollArea["prototype"]["setScrollPosition"] = function (iScrollTop, iScrollLeft) {
-        ;
-        if (__UCF_COVERAGE__) {
-            UCF_ScrollArea["_"]["setScrollPosition"]++;
-        }
-        ;
-
-        if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(typeof (iScrollTop) === "number", "typeof(iScrollTop) === \"number\"", "ScrollArea.js(205): setScrollPosition");
-        }
-        ;
-        if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(typeof (iScrollLeft) === "number", "typeof(iScrollLeft) === \"number\"", "ScrollArea.js(206): setScrollPosition");
-        }
-        ;
-        if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(iScrollTop >= -1, "iScrollTop >= -1", "ScrollArea.js(207): setScrollPosition");
-        }
-        ;
-        if (__UCF_ASSERT__) {
-            UCF_Tracer.assert(iScrollLeft >= -1, "iScrollLeft >= -1", "ScrollArea.js(208): setScrollPosition");
-        }
-        ;
-
-        // Get scroll height and scroll width to make sure that it has
-        // been calculated properly by Internet Explorer
-        var iScrollHeight = this["oDomRef"]["scrollHeight"],
-            iScrollWidth = this["oDomRef"]["scrollWidth"];
-
-        // Special value -1: Scroll to the end
-        if (iScrollTop === -1) iScrollTop = iScrollHeight;
-        if (iScrollLeft === -1) iScrollLeft = iScrollWidth;
-        // For RTL calculate scrollRight instead
-        if (window["UCF_System"]["bIsRTL"]) {
-            iScrollLeft = iScrollWidth - this["oDomRef"]["clientWidth"] - iScrollLeft;
-        }
-
-        this["iScrollTop"] = iScrollTop;
-        this["iScrollLeft"] = iScrollLeft;
-
-        // Set new position in the DOM
-        if (iScrollTop !== this["oDomRef"]["scrollTop"] || iScrollLeft !== this["oDomRef"]["scrollLeft"]) {
-            this["setIgnoreScrollEvent"](true);
-
-            // Apply new scroll positions
-
-            // 1) Update the scrollposition of the scroll lock mechanism in the case that LS is locked
-            // IE sometimes fires scroll events when srollTop/Left is set. Such events applies the formerly stored position to lock also scrolling while LS is locked.
-            // To avoid this the stored positon is updated as well.
-            this["oDomRef"]["lsStoredScrollTop"] = iScrollTop;
-            this["oDomRef"]["lsStoredScrollLeft"] = iScrollLeft;
-
-            // 2) set the actual position
-            if (UCF_UserAgent["bIsIE"]() && this["oDomRef"]["tagName"] === "BODY" && document["documentElement"] !== undefined) {
-                // make it also work in IE11 on the body, because this class is used by the Page only for this purpose....
-                document["documentElement"]["scrollTop"] = iScrollTop;
-                document["documentElement"]["scrollLeft"] = iScrollLeft;
-            } else {
-                this["oDomRef"]["scrollTop"] = iScrollTop;
-                this["oDomRef"]["scrollLeft"] = iScrollLeft;
-            }
-
-            // In case LS is locked scroll events will not be dispatched
-            // so clear scroll ignore flag after timeout
-            UCF_JsUtil["delayedCall"](200, this, "setIgnoreScrollEvent", [false]);
-
-        }
-    };
-    ;
-    if (__UCF_COVERAGE__) {
-        UCF_ScrollArea["_"]["setScrollPosition"] = 0;
-    }
-    ;
-
-    /**
-     * Returns the scroll position of the ScrollArea
-     *
-     * @return { Object }
-     */
-    UCF_ScrollArea["prototype"]["oGetScrollPosition"] = function () {
-        ;
-        if (__UCF_COVERAGE__) {
-            UCF_ScrollArea["_"]["oGetScrollPosition"]++;
-        }
-        ;
-        if (this["oDomRef"]) {
-            return {
-                "top": this["oDomRef"]["scrollTop"],
-                "left": this["oDomRef"]["scrollLeft"]
-            };
-        }
-        return null;
-    };
-    ;
-    if (__UCF_COVERAGE__) {
-        UCF_ScrollArea["_"]["oGetScrollPosition"] = 0;
-    }
-    ;
-
-    /**
-     * Set ignore scroll flag to avoid scroll events to be thrown
-     * by setting the scroll position programmatically
-     * @param {boolean} bIgnoreScrollEvent
-     */
-    UCF_ScrollArea["prototype"]["setIgnoreScrollEvent"] = function (bIgnoreScrollEvent) {
-        ;
-        if (__UCF_COVERAGE__) {
-            UCF_ScrollArea["_"]["setIgnoreScrollEvent"]++;
-        }
-        ;
-
-        // eslint-disable-next-line ur/no-memory-leaks
-        this["bIgnoreScrollEvent"] = bIgnoreScrollEvent;
-
-    };
-    ;
-    if (__UCF_COVERAGE__) {
-        UCF_ScrollArea["_"]["setIgnoreScrollEvent"] = 0;
-    }
-    ;
-
-    /**
-     * activate/deactivate scrolling during drag and drop
-     * @param {boolean} bEnabled
-     */
-    UCF_ScrollArea["prototype"]["enableDragScrolling"] = function (bEnabled) {
-        ;
-        if (__UCF_COVERAGE__) {
-            UCF_ScrollArea["_"]["enableDragScrolling"]++;
-        }
-        ;
-
-        this["bDragScrollingEnabled"] = bEnabled;
-    };
-    ;
-    if (__UCF_COVERAGE__) {
-        UCF_ScrollArea["_"]["enableDragScrolling"] = 0;
-    }
-    ;
-
-    /**
-     * fire scroll event because originally it is called delayed
-     * and will not be in the event queue on drop
-     * (ScrollArea has to be added as delegate before the drop delegate [which should be the case normally])
-     * @param {UVF_BrowserEvent} oBrowserEvent
-     */
-    UCF_ScrollArea["prototype"]["onlsdrop"] = function (oBrowserEvent) {
-        ;
-        if (__UCF_COVERAGE__) {
-            UCF_ScrollArea["_"]["onlsdrop"]++;
-        }
-        ;
-        this["cleanUpScrollTiming"]();
-        this["fireScroll"]();
-    };
-    ;
-    if (__UCF_COVERAGE__) {
-        UCF_ScrollArea["_"]["onlsdrop"] = 0;
-    }
-    ;
-
-    UCF_ScrollArea["prototype"]["onlsdragleave"] = function (oBrowserEvent) {
-        ;
-        if (__UCF_COVERAGE__) {
-            UCF_ScrollArea["_"]["onlsdragleave"]++;
-        }
-        ;
-        this["cleanUpScrollTiming"]();
-        this["fireScroll"]();
-    };
-    ;
-    if (__UCF_COVERAGE__) {
-        UCF_ScrollArea["_"]["onlsdragleave"] = 0;
-    }
-    ;
-
-    /**
-     * handle scrolling during drag and drop.
-     * @param { UVF_BrowserEvent } oBrowserEvent
-     */
-    UCF_ScrollArea["prototype"]["onlsdragscroll"] = function (oBrowserEvent) {
-        ;
-        if (__UCF_COVERAGE__) {
-            UCF_ScrollArea["_"]["onlsdragscroll"]++;
-        }
-        ;
-
-        if (!this["bDragScrollingEnabled"])
-            return;
-
-        var oMouseLocation = {
-            "x": oBrowserEvent["iPageX"](),
-            "y": oBrowserEvent["iPageY"]()
-        };
-
-        var oViewPort = UCF_DomUtil["oGetObjectRect"](this["oDomRef"]);
-
-        //consider scroll position for body
-        if (this["oDomRef"] === document["body"]) {
-            oViewPort["top"] += this["oDomRef"]["scrollTop"];
-            oViewPort["left"] += this["oDomRef"]["scrollLeft"];
-        }
-
-        oViewPort["width"] = this["oDomRef"]["clientWidth"]; // TGCHECK
-        oViewPort["height"] = this["oDomRef"]["clientHeight"];
-
-        var iVerticalZone = Math["min"](35, oViewPort["height"] / 4);
-        var iHorizontalZone = Math["min"](35, oViewPort["width"] / 4);
-
-        var iScrollThresholdTop = oViewPort["top"] + iVerticalZone;
-        var iScrollThresholdBottom = oViewPort["top"] + oViewPort["height"] - iVerticalZone;
-
-        var iScrollThresholdLeft = oViewPort["left"] + iHorizontalZone;
-        var iScrollThresholdRight = oViewPort["left"] + oViewPort["width"] - iHorizontalZone;
-
-        //scroll up
-
-        var iStepY = 0,
-            iStepX = 0;
-
-        if (oMouseLocation["x"] < iScrollThresholdLeft) {
-            iStepX = -Math["round"]((iScrollThresholdLeft - oMouseLocation["x"]) / iHorizontalZone * 10);
-        } else if (oMouseLocation["x"] > iScrollThresholdRight) {
-            iStepX = Math["round"]((oMouseLocation["x"] - iScrollThresholdRight) / iHorizontalZone * 10);
-        }
-
-        if (oMouseLocation["y"] < iScrollThresholdTop) {
-            iStepY = -Math["round"]((iScrollThresholdTop - oMouseLocation["y"]) / iVerticalZone * 10);
-        } else if (oMouseLocation["y"] > iScrollThresholdBottom) {
-            iStepY = Math["round"]((oMouseLocation["y"] - iScrollThresholdBottom) / iVerticalZone * 10);
-        }
-
-        if (this["iCurrentStepX"] < iStepX) {
-            this["iCurrentStepX"]++;
-        } else if (this["iCurrentStepX"] > iStepX) {
-            this["iCurrentStepX"]--;
-        }
-
-        if (this["iCurrentStepY"] < iStepY) {
-            this["iCurrentStepY"]++;
-        } else if (this["iCurrentStepY"] > iStepY) {
-            this["iCurrentStepY"]--;
-        }
-
-        this["oDomRef"]["scrollLeft"] += this["iCurrentStepX"];
-        this["oDomRef"]["scrollTop"] += this["iCurrentStepY"];
-
-        //creates a scroll event
-        this["handleScroll"](oBrowserEvent);
-        oBrowserEvent["cancelBubble"]();
-    };
-    ;
-    if (__UCF_COVERAGE__) {
-        UCF_ScrollArea["_"]["onlsdragscroll"] = 0;
-    }
-    ;
-
-    /* global UCF_DomUtil */
-
-/// <reference path="../../../core/util/DomUtil.js"/>
-
-    /**
-     * @class
-     */
-    function UCF_ControlUtil() {
-        if (__UCF_COVERAGE__) {
-            UCF_ControlUtil["_"]["UCF_ControlUtil"]++;
-        }
-        ;
-
-    };window["UCF_ControlUtil"] = UCF_ControlUtil;
-    ;
-    if (__UCF_COVERAGE__) {
-        window.UCF_classes.push("UCF_ControlUtil");
-        UCF_ControlUtil["_"] = {UCF_ControlUtil: 0};
-    }
-    ;
-    ;
-
-    /**
-     * Set the text-align style property to the given domRef
-     * for value matrix compare UrBase.renderer - UrBase_sTextAlign
-     *
-     * @param {element} oDomRef  the domRef of an HTML element for the current style
-     * @param {element} sTextAlign  textAlign enumeration
-     * @param {element} sTextDirection  textDirection enumeration
-     * @private
-     */
-    UCF_ControlUtil["setTextAlign"] = function (oDomRef, sTextAlign, sTextDirection) {
-        ;
-        if (__UCF_COVERAGE__) {
-            UCF_ControlUtil["_"]["setTextAlign"]++;
-        }
-        ;
-        var mSystemDirection = {
-                "LTR": 0,
-                "RTL": 1
-
-            },
-            mTextAlignStates = {
-                "FORCEDLEFT": [{"LTR": "", "RTL": "left", "INHERIT": ""}, {
-                    "LTR": "left",
-                    "RTL": "left",
-                    "INHERIT": "left"
-                }],
-                "LEFT": [{"LTR": "", "RTL": "", "INHERIT": ""}, {"LTR": "", "RTL": "", "INHERIT": ""}],
-                "CENTER": [{"LTR": "center", "RTL": "center", "INHERIT": "center"}, {
-                    "LTR": "center",
-                    "RTL": "center",
-                    "INHERIT": "center"
-                }],
-                "RIGHT": [{"LTR": "right", "RTL": "right", "INHERIT": "right"}, {
-                    "LTR": "right",
-                    "RTL": "",
-                    "INHERIT": ""
-                }],
-                "ENDOFLINE": [{"LTR": "right", "RTL": "left", "INHERIT": "right"}, {
-                    "LTR": "right",
-                    "RTL": "left",
-                    "INHERIT": "left"
-                }],
-                "FORCEDRIGHT": [{"LTR": "right", "RTL": "right", "INHERIT": "right"}, {
-                    "LTR": "right",
-                    "RTL": "",
-                    "INHERIT": ""
-                }],
-                "BEGINOFLINE": [{"LTR": "left", "RTL": "right", "INHERIT": "left"}, {
-                    "LTR": "left",
-                    "RTL": "right",
-                    "INHERIT": "right"
-                }]
-            },
-            oTextAlignState = mTextAlignStates[sTextAlign],
-            iLayoutDirection = UCF_DomUtil["bIsRTL"] ? mSystemDirection["RTL"] : mSystemDirection["LTR"],
-            oTextAlignStateSD = oTextAlignState[iLayoutDirection],
-            sTextAlignStyle = oTextAlignStateSD[sTextDirection];
-
-        oDomRef["style"]["textAlign"] = sTextAlignStyle;
-
-    };
-    ;
-    if (__UCF_COVERAGE__) {
-        UCF_ControlUtil["_"]["setTextAlign"] = 0;
-    }
-    ;
 })()

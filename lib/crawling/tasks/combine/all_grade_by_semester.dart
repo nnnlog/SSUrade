@@ -35,12 +35,11 @@ class AllGradeBySemester extends CrawlingTask<SemesterSubjectsManager> {
       throw UnauthenticatedException();
     }
 
-    var semesters = map;
-    if (map.isEmpty) semesters = await Crawler.gradeSemesterList(parentTransaction: transaction).directExecute(Queue()..add(controller));
+    if (map.isEmpty) map = await Crawler.gradeSemesterList(parentTransaction: transaction).directExecute(Queue()..add(controller));
 
     result = SemesterSubjectsManager(SplayTreeMap.from({}), STATE_SEMESTER);
 
-    for (var key in semesters.keys) {
+    for (var key in map.keys) {
       var tmp = await Crawler.singleGradeBySemester(
         key,
         reloadPage: false,
