@@ -5,6 +5,7 @@ import 'package:ssurade/crawling/tasks/combine/all_grade_by_category.dart';
 import 'package:ssurade/crawling/tasks/combine/all_grade_by_semester.dart';
 import 'package:ssurade/crawling/tasks/combine/semester_subject_detail_grade.dart';
 import 'package:ssurade/crawling/tasks/units/extract_data_from_viewer.dart';
+import 'package:ssurade/crawling/tasks/units/get_scholarship.dart';
 import 'package:ssurade/crawling/tasks/units/grade_semester_list.dart';
 import 'package:ssurade/crawling/tasks/units/login_session.dart';
 import 'package:ssurade/crawling/tasks/units/single_chapel_by_semester.dart';
@@ -29,4 +30,5 @@ class Crawler {
   static const semesterSubjectDetailGrade = SemesterSubjectDetailGrade.get;
   static const singleChapelBySemester = SingleChapelBySemester.get;
   static const allChapel = AllChapel.get;
+  static const getScholarship = GetScholarship.get;
 }
