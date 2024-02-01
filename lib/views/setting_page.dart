@@ -49,9 +49,7 @@ class _SettingPageState extends State<SettingPage> {
       body: Padding(
         padding: const EdgeInsets.all(30),
         child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
+          child: ListView(
             children: <Widget>[
                   SwitchListTile(
                     value: globals.setting.refreshGradeAutomatically,
@@ -62,7 +60,7 @@ class _SettingPageState extends State<SettingPage> {
 
                       globals.setting.saveFile();
                     },
-                    title: const Text("마지막 학기 성적 자동으로 불러오기"),
+                    title: const Text("최신 학사 정보 자동으로 불러오기"),
                   ),
                   SwitchListTile(
                     value: globals.setting.noticeGradeInBackground,
@@ -77,7 +75,7 @@ class _SettingPageState extends State<SettingPage> {
                       globals.setting.saveFile();
                       updateBackgroundService();
                     },
-                    title: const Text("성적/채플 변경 알림 (백그라운드)"),
+                    title: const Text("학사 정보 변경 알림 (백그라운드)"),
                   ),
                   SwitchListTile(
                     value: globals.setting.showGrade,
@@ -88,7 +86,7 @@ class _SettingPageState extends State<SettingPage> {
 
                       globals.setting.saveFile();
                     },
-                    title: const Text("성적/채플 변경 알림 - 성적 보이기"),
+                    title: const Text("학사 정보 변경 알림 - 성적 보이기"),
                   ),
                   OutlinedButton(
                     onPressed: () {
@@ -101,7 +99,7 @@ class _SettingPageState extends State<SettingPage> {
                   ),
                   TextField(
                     controller: _intervalController,
-                    decoration: const InputDecoration(labelText: "성적/채플 변경 알림 - 확인 주기 (최솟값 : 15분)"),
+                    decoration: const InputDecoration(labelText: "학사 정보 변경 알림 - 확인 주기 (최솟값 : 15분)"),
                     keyboardType: TextInputType.number,
                     inputFormatters: [
                       FilteringTextInputFormatter.digitsOnly,
@@ -242,6 +240,17 @@ class _SettingPageState extends State<SettingPage> {
                             minimumSize: const Size.fromHeight(40),
                           ),
                           child: const Text("채플 정보 삭제"),
+                        ),
+                        OutlinedButton(
+                          onPressed: () async {
+                            globals.scholarshipManager.data.clear();
+                            globals.scholarshipManager.saveFile();
+                            showToast("저장된 장학 정보를 삭제했어요.");
+                          },
+                          style: OutlinedButton.styleFrom(
+                            minimumSize: const Size.fromHeight(40),
+                          ),
+                          child: const Text("장학 정보 삭제"),
                         ),
                         OutlinedButton(
                           onPressed: () {

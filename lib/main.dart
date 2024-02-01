@@ -15,6 +15,7 @@ import 'package:ssurade/views/grade_statistics_page.dart';
 import 'package:ssurade/views/information.dart';
 import 'package:ssurade/views/login.dart';
 import 'package:ssurade/views/main_page.dart';
+import 'package:ssurade/views/scholarship_page.dart';
 import 'package:ssurade/views/setting_page.dart';
 import 'package:workmanager/workmanager.dart';
 
@@ -76,7 +77,7 @@ class MyApp extends StatelessWidget {
         '/grade_statistics': (context) => const GradeStatisticsPage(),
         '/category_statistics': (context) => const StatisticsPage(),
         '/chapel': (context) => const ChapelPage(),
-        // '/scholarship': (context) => const ScholarshipPage(),
+        '/scholarship': (context) => const ScholarshipPage(),
         '/setting': (context) => const SettingPage(),
         '/information': (context) => const InformationPage(),
       },

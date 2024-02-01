@@ -142,6 +142,44 @@ Future<void> fetchNewChapel() async {
   }
 }
 
+Future<void> fetchScholarship() async {
+  var scholarshipData = await Crawler.getScholarship().execute();
+
+  var originalData = globals.scholarshipManager.data;
+  List<String> updates = [];
+
+  int index = 0;
+  for (var data in scholarshipData.data) {
+    int prev = index;
+    while (index < originalData.length && data.name != originalData[index].name) {
+      index++;
+    }
+    bool updated = false;
+    if (index < originalData.length) {
+      if (data.when != originalData[index].when || data.process != originalData[index].process) {
+        updated = true;
+      }
+    } else {
+      updated = true;
+      index = prev;
+    }
+
+    if (updated) {
+      updates.add("${data.name} > ${data.process} (${data.price}원)");
+    }
+  }
+
+  if (updates.isNotEmpty) {
+    if (originalData.isNotEmpty) {
+      await showNotification("장학 정보 변경", updates.join("\n"));
+    }
+    globals.scholarshipManager = scholarshipData;
+    await globals.scholarshipManager.saveFile();
+  } else if (kDebugMode) {
+    await showNotification("not updated (${DateTime.now().toString()})", scholarshipData.data.map((e) => "${e.name} : ${e.when.display}").join("\n"));
+  }
+}
+
 @pragma('vm:entry-point')
 void startBackgroundService() {
   Workmanager().executeTask((task, inputData) async {
@@ -153,6 +191,7 @@ void startBackgroundService() {
         fetchGrade(),
         fetchChapel(),
         fetchNewChapel(),
+        fetchScholarship(),
       ];
 
       await Future.wait(futures).catchError((e) => throw e);

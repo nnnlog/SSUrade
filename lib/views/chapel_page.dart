@@ -53,7 +53,7 @@ class _ChapelPageState extends State<ChapelPage> with SingleTickerProviderStateM
 
       globals.chapelInformationManager.data.remove(data);
       globals.chapelInformationManager.data.add(data);
-      globals.semesterSubjectsManager.saveFile();
+      globals.chapelInformationManager.saveFile();
 
       if (!mounted) return;
       if (search != _chapelInformation.currentSemester) return;
