@@ -148,20 +148,13 @@ Future<void> fetchScholarship() async {
   var originalData = globals.scholarshipManager.data;
   List<String> updates = [];
 
-  int index = 0;
   for (var data in scholarshipData.data) {
-    int prev = index;
-    while (index < originalData.length && data.name != originalData[index].name) {
-      index++;
-    }
-    bool updated = false;
-    if (index < originalData.length) {
-      if (data.when != originalData[index].when || data.process != originalData[index].process) {
-        updated = true;
+    bool updated = true;
+    for (var i in originalData) {
+      if (i.when == data.when && i.name == data.name) {
+        updated = false;
+        break;
       }
-    } else {
-      updated = true;
-      index = prev;
     }
 
     if (updated) {
