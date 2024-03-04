@@ -83,7 +83,9 @@ class _GradePageHeaderState extends State<GradePageHeader> {
                     padding: EdgeInsets.zero,
                     minimumSize: const Size(30, 30),
                     tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                    primary: Colors.black.withOpacity(0.7),
+                    textStyle: TextStyle(
+                      color: Colors.black.withOpacity(0.7),
+                    ),
                   ),
                   child: Visibility(
                     visible: !widget._exportImage,

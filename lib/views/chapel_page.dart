@@ -222,7 +222,9 @@ class _ChapelPageState extends State<ChapelPage> with SingleTickerProviderStateM
                                   padding: EdgeInsets.zero,
                                   minimumSize: const Size(30, 30),
                                   tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                                  primary: Colors.black.withOpacity(0.7),
+                                  textStyle: TextStyle(
+                                    color: Colors.black.withOpacity(0.7),
+                                  ),
                                 ),
                                 child: Icon(
                                   Icons.refresh,

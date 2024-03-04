@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
+import 'package:intl/intl.dart';
 import 'package:ssurade/components/common/custom_app_bar.dart';
 import 'package:ssurade/components/common/key_value_data.dart';
 import 'package:ssurade/crawling/common/crawler.dart';
@@ -132,9 +133,14 @@ class _ScholarshipPage extends State<ScholarshipPage> {
                     scrollDirection: Axis.vertical,
                     child: KeyValueTable(
                       map: Map.fromEntries(
-                        globals.scholarshipManager.data.map(
-                          (e) => MapEntry("${e.name}\n(${e.when.display})", "${e.process}\n(${e.price}원)"),
-                        ),
+                        [
+                              MapEntry("총 수혜 금액", NumberFormat("###,###,###,###,###,###원").format(globals.scholarshipManager.data.map((e) => int.parse(e.price.replaceAll(",", ""))).reduce((value, element) => value + element))),
+                            ] +
+                            globals.scholarshipManager.data
+                                .map(
+                                  (e) => MapEntry("${e.name}\n(${e.when.display})", "${e.process}\n(${e.price}원)"),
+                                )
+                                .toList(),
                       ),
                     ),
                   ),
