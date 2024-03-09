@@ -57,7 +57,7 @@ class SingleChapelBySemester extends CrawlingTask<ChapelInformation> {
     var summary = res["summary"];
     span.finish(status: const SpanStatus.ok());
 
-    if (summary == null) throw NoDataException();
+    if (summary == null || res["attendance"].length == 0) throw NoDataException();
 
     span = transaction.startChild("finalizing_data");
 

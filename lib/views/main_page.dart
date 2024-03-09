@@ -134,6 +134,8 @@ class _MainPageState extends State<MainPage> {
             for (var semester in newSemesters.keys) {
               globals.semesterSubjectsManager.data[semester] = result.data[semester]!;
             }
+
+            globals.semesterSubjectsManager.saveFile();
           }
         });
 
@@ -154,6 +156,8 @@ class _MainPageState extends State<MainPage> {
             for (var data in value.data) {
               globals.chapelInformationManager.data.add(data);
             }
+
+            globals.chapelInformationManager.saveFile();
           });
         }
 
@@ -227,220 +231,222 @@ class _MainPageState extends State<MainPage> {
           body: Padding(
             padding: const EdgeInsets.all(30),
             child: Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: (_progress == MainProgress.init
-                    ? <Widget>[
-                        const LinearProgressIndicator(),
-                        const SizedBox(
-                          width: 1,
-                          height: 15,
-                        ),
-                        const Text("정보를 불러오고 있어요..."),
-                      ]
-                    : (_progress == MainProgress.agree
-                        ? <Widget>[
-                            Expanded(
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  const Text(
-                                    "SSUrade 개인정보 처리방침",
-                                    style: TextStyle(
-                                      fontSize: 20,
-                                      fontWeight: FontWeight.w600,
+              child: SingleChildScrollView(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: (_progress == MainProgress.init
+                      ? <Widget>[
+                          const LinearProgressIndicator(),
+                          const SizedBox(
+                            width: 1,
+                            height: 15,
+                          ),
+                          const Text("정보를 불러오고 있어요..."),
+                        ]
+                      : (_progress == MainProgress.agree
+                          ? <Widget>[
+                              Expanded(
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    const Text(
+                                      "SSUrade 개인정보 처리방침",
+                                      style: TextStyle(
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.w600,
+                                      ),
                                     ),
-                                  ),
-                                  const SizedBox(
-                                    height: 30,
-                                  ),
-                                  SingleChildScrollView(
-                                    child: Text(_agreement_short),
-                                  ),
-                                  const SizedBox(
-                                    height: 10,
-                                  ),
-                                  TextButton(
-                                    style: ElevatedButton.styleFrom(
+                                    const SizedBox(
+                                      height: 30,
+                                    ),
+                                    SingleChildScrollView(
+                                      child: Text(_agreement_short),
+                                    ),
+                                    const SizedBox(
+                                      height: 10,
+                                    ),
+                                    TextButton(
+                                      style: ElevatedButton.styleFrom(
+                                        minimumSize: const Size.fromHeight(40),
+                                      ),
+                                      onPressed: () {
+                                        showScrollableDialog(
+                                          context,
+                                          [
+                                            SingleChildScrollView(
+                                              child: SelectableText(_agreement),
+                                            ),
+                                            TextButton(
+                                              style: ElevatedButton.styleFrom(
+                                                minimumSize: const Size.fromHeight(40),
+                                              ),
+                                              onPressed: () {
+                                                Navigator.pop(context);
+                                              },
+                                              child: const Text("닫기"),
+                                            ),
+                                          ],
+                                        );
+                                      },
+                                      child: const Text(
+                                        "전체 보기",
+                                      ),
+                                    ),
+                                    const SizedBox(
+                                      height: 50,
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              IntrinsicHeight(
+                                child: Row(
+                                  children: [
+                                    TextButton(
+                                      onPressed: () {
+                                        showToast("동의하지 않으면 앱을 사용할 수 없어요.");
+                                        FlutterExitApp.exitApp(iosForceExit: true);
+                                      },
+                                      child: const Text("닫기"),
+                                    ),
+                                    const Spacer(),
+                                    FilledButton(
+                                      onPressed: () {
+                                        globals.setting.agree = true;
+                                        globals.setting.saveFile();
+
+                                        _agreeFuture.complete();
+                                      },
+                                      child: const Text("동의 후 계속하기"),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ]
+                          : <Widget>[
+                                Visibility(
+                                  visible: Crawler.loginSession().isNotEmpty,
+                                  child: OutlinedButton(
+                                    onPressed: () async {
+                                      Navigator.pushNamed(context, "/grade_view");
+                                    },
+                                    style: OutlinedButton.styleFrom(
                                       minimumSize: const Size.fromHeight(40),
                                     ),
-                                    onPressed: () {
-                                      showScrollableDialog(
-                                        context,
-                                        [
-                                          SingleChildScrollView(
-                                            child: SelectableText(_agreement),
-                                          ),
-                                          TextButton(
-                                            style: ElevatedButton.styleFrom(
-                                              minimumSize: const Size.fromHeight(40),
-                                            ),
-                                            onPressed: () {
-                                              Navigator.pop(context);
-                                            },
-                                            child: const Text("닫기"),
-                                          ),
-                                        ],
-                                      );
+                                    child: const Text("학기별 성적 조회"),
+                                  ),
+                                ),
+                                Visibility(
+                                  visible: Crawler.loginSession().isNotEmpty,
+                                  child: OutlinedButton(
+                                    onPressed: () async {
+                                      Navigator.pushNamed(context, "/grade_statistics");
                                     },
-                                    child: const Text(
-                                      "전체 보기",
+                                    style: OutlinedButton.styleFrom(
+                                      minimumSize: const Size.fromHeight(40),
                                     ),
+                                    child: const Text("성적 통계"),
                                   ),
-                                  const SizedBox(
-                                    height: 50,
-                                  ),
-                                ],
-                              ),
-                            ),
-                            IntrinsicHeight(
-                              child: Row(
-                                children: [
-                                  TextButton(
-                                    onPressed: () {
-                                      showToast("동의하지 않으면 앱을 사용할 수 없어요.");
-                                      FlutterExitApp.exitApp(iosForceExit: true);
+                                ),
+                                Visibility(
+                                  visible: Crawler.loginSession().isNotEmpty,
+                                  child: OutlinedButton(
+                                    onPressed: () async {
+                                      Navigator.pushNamed(context, "/category_statistics");
                                     },
-                                    child: const Text("닫기"),
+                                    style: OutlinedButton.styleFrom(
+                                      minimumSize: const Size.fromHeight(40),
+                                    ),
+                                    child: const Text("이수 구분별 성적 통계"),
                                   ),
-                                  const Spacer(),
-                                  FilledButton(
-                                    onPressed: () {
-                                      globals.setting.agree = true;
-                                      globals.setting.saveFile();
-
-                                      _agreeFuture.complete();
+                                ),
+                                Visibility(
+                                  visible: Crawler.loginSession().isNotEmpty,
+                                  child: OutlinedButton(
+                                    onPressed: () async {
+                                      Navigator.pushNamed(context, "/chapel");
                                     },
-                                    child: const Text("동의 후 계속하기"),
+                                    style: OutlinedButton.styleFrom(
+                                      minimumSize: const Size.fromHeight(40),
+                                    ),
+                                    child: const Text("채플 정보 조회"),
                                   ),
-                                ],
-                              ),
-                            ),
-                          ]
-                        : <Widget>[
-                              Visibility(
-                                visible: Crawler.loginSession().isNotEmpty,
-                                child: OutlinedButton(
-                                  onPressed: () async {
-                                    Navigator.pushNamed(context, "/grade_view");
-                                  },
-                                  style: OutlinedButton.styleFrom(
-                                    minimumSize: const Size.fromHeight(40),
-                                  ),
-                                  child: const Text("학기별 성적 조회"),
                                 ),
-                              ),
-                              Visibility(
-                                visible: Crawler.loginSession().isNotEmpty,
-                                child: OutlinedButton(
-                                  onPressed: () async {
-                                    Navigator.pushNamed(context, "/grade_statistics");
-                                  },
-                                  style: OutlinedButton.styleFrom(
-                                    minimumSize: const Size.fromHeight(40),
+                                Visibility(
+                                  visible: Crawler.loginSession().isNotEmpty,
+                                  child: OutlinedButton(
+                                    onPressed: () async {
+                                      Navigator.pushNamed(context, "/scholarship");
+                                    },
+                                    style: OutlinedButton.styleFrom(
+                                      minimumSize: const Size.fromHeight(40),
+                                    ),
+                                    child: const Text("장학 정보 조회"),
                                   ),
-                                  child: const Text("성적 통계"),
                                 ),
-                              ),
-                              Visibility(
-                                visible: Crawler.loginSession().isNotEmpty,
-                                child: OutlinedButton(
-                                  onPressed: () async {
-                                    Navigator.pushNamed(context, "/category_statistics");
-                                  },
-                                  style: OutlinedButton.styleFrom(
-                                    minimumSize: const Size.fromHeight(40),
+                                Visibility(
+                                  visible: Crawler.loginSession().isEmpty || Crawler.loginSession().isFail, // 자동 로그인 실패했거나 로그인이 필요하면
+                                  child: OutlinedButton(
+                                    onPressed: () {
+                                      Navigator.pushNamed(context, "/login");
+                                    },
+                                    style: OutlinedButton.styleFrom(
+                                      minimumSize: const Size.fromHeight(40),
+                                    ),
+                                    child: const Text("로그인"),
                                   ),
-                                  child: const Text("이수 구분별 성적 통계"),
                                 ),
-                              ),
-                              Visibility(
-                                visible: Crawler.loginSession().isNotEmpty,
-                                child: OutlinedButton(
-                                  onPressed: () async {
-                                    Navigator.pushNamed(context, "/chapel");
-                                  },
-                                  style: OutlinedButton.styleFrom(
-                                    minimumSize: const Size.fromHeight(40),
+                                Visibility(
+                                  visible: Crawler.loginSession().isNotEmpty && Crawler.loginSession().isFail, // 자동 로그인 실패했을 때
+                                  child: OutlinedButton(
+                                    onPressed: () async {
+                                      if (await Crawler.loginSession().execute().catchError((_) {
+                                        showToast("자동 로그인을 실패했어요.");
+                                        return false;
+                                      })) {
+                                        showToast("자동으로 로그인 했어요.");
+                                      }
+                                    },
+                                    style: OutlinedButton.styleFrom(
+                                      minimumSize: const Size.fromHeight(40),
+                                    ),
+                                    child: const Text("자동 로그인 재시도"),
                                   ),
-                                  child: const Text("채플 정보 조회"),
                                 ),
-                              ),
-                              Visibility(
-                                visible: Crawler.loginSession().isNotEmpty,
-                                child: OutlinedButton(
-                                  onPressed: () async {
-                                    Navigator.pushNamed(context, "/scholarship");
-                                  },
-                                  style: OutlinedButton.styleFrom(
-                                    minimumSize: const Size.fromHeight(40),
-                                  ),
-                                  child: const Text("장학 정보 조회"),
-                                ),
-                              ),
-                              Visibility(
-                                visible: Crawler.loginSession().isEmpty || Crawler.loginSession().isFail, // 자동 로그인 실패했거나 로그인이 필요하면
-                                child: OutlinedButton(
+                              ] +
+                              <Widget>[
+                                OutlinedButton(
                                   onPressed: () {
-                                    Navigator.pushNamed(context, "/login");
+                                    Navigator.pushNamed(context, "/setting");
                                   },
                                   style: OutlinedButton.styleFrom(
                                     minimumSize: const Size.fromHeight(40),
                                   ),
-                                  child: const Text("로그인"),
+                                  child: const Text("설정"),
                                 ),
-                              ),
-                              Visibility(
-                                visible: Crawler.loginSession().isNotEmpty && Crawler.loginSession().isFail, // 자동 로그인 실패했을 때
-                                child: OutlinedButton(
-                                  onPressed: () async {
-                                    if (await Crawler.loginSession().execute().catchError((_) {
-                                      showToast("자동 로그인을 실패했어요.");
-                                      return false;
-                                    })) {
-                                      showToast("자동으로 로그인 했어요.");
-                                    }
+                                OutlinedButton(
+                                  onPressed: () {
+                                    Navigator.pushNamed(context, "/information");
                                   },
                                   style: OutlinedButton.styleFrom(
                                     minimumSize: const Size.fromHeight(40),
                                   ),
-                                  child: const Text("자동 로그인 재시도"),
+                                  child: const Text("정보"),
                                 ),
-                              ),
-                            ] +
-                            <Widget>[
-                              OutlinedButton(
-                                onPressed: () {
-                                  Navigator.pushNamed(context, "/setting");
-                                },
-                                style: OutlinedButton.styleFrom(
-                                  minimumSize: const Size.fromHeight(40),
+                                OutlinedButton(
+                                  onPressed: () => launchUrl(
+                                    Uri.parse("https://github.com/nnnlog/SSUrade/blob/master/USAGE.md"),
+                                    mode: LaunchMode.externalApplication,
+                                  ),
+                                  style: OutlinedButton.styleFrom(
+                                    minimumSize: const Size.fromHeight(40),
+                                  ),
+                                  child: const Text(
+                                    "사용법 및 도움말",
+                                  ),
                                 ),
-                                child: const Text("설정"),
-                              ),
-                              OutlinedButton(
-                                onPressed: () {
-                                  Navigator.pushNamed(context, "/information");
-                                },
-                                style: OutlinedButton.styleFrom(
-                                  minimumSize: const Size.fromHeight(40),
-                                ),
-                                child: const Text("정보"),
-                              ),
-                              OutlinedButton(
-                                onPressed: () => launchUrl(
-                                  Uri.parse("https://github.com/nnnlog/SSUrade/blob/master/USAGE.md"),
-                                  mode: LaunchMode.externalApplication,
-                                ),
-                                style: OutlinedButton.styleFrom(
-                                  minimumSize: const Size.fromHeight(40),
-                                ),
-                                child: const Text(
-                                  "사용법 및 도움말",
-                                ),
-                              ),
-                            ])),
+                              ])),
+                ),
               ),
             ),
           ),
