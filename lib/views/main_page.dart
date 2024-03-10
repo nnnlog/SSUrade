@@ -82,7 +82,7 @@ class _MainPageState extends State<MainPage> {
       await globals.flutterLocalNotificationsPlugin.resolvePlatformSpecificImplementation<AndroidFlutterLocalNotificationsPlugin>()?.createNotificationChannel(globals.channel);
 
       Crawler.loginSession().loginStatusChangeEvent.subscribe((args) {
-        updateBackgroundService(lazy: false);
+        updateBackgroundService(lazy: true);
       });
 
       setState(() {

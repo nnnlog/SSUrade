@@ -1,6 +1,4 @@
-import 'package:disable_battery_optimization/disable_battery_optimization.dart';
 import 'package:flutter/foundation.dart';
-import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:logger/logger.dart';
 import 'package:ssurade/crawling/common/crawler.dart';
 import 'package:ssurade/globals.dart' as globals;
@@ -9,7 +7,6 @@ import 'package:ssurade/types/semester/semester.dart';
 import 'package:ssurade/types/semester/year_semester.dart';
 import 'package:ssurade/utils/notification.dart';
 import 'package:ssurade/utils/set.dart';
-import 'package:ssurade/utils/toast.dart';
 import 'package:workmanager/workmanager.dart';
 
 Future<void> disableBatteryOptimize({bool show = false}) async {

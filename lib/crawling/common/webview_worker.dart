@@ -10,12 +10,12 @@ import 'package:ssurade/crawling/common/crawling_task.dart';
 import 'package:ssurade/crawling/common/webview_controller_extension.dart';
 import 'package:ssurade/crawling/error/unauthenticated_exception.dart';
 import 'package:ssurade/filesystem/filesystem.dart';
+import 'package:ssurade/globals.dart' as globals;
 
 /// Execute task with headless webview.
 class WebViewWorker {
   static List<String> webViewScript = [];
   static WebViewWorker instance = WebViewWorker._();
-  static String _lightspeedCache = "";
 
   WebViewWorker._();
 
@@ -124,12 +124,7 @@ class WebViewWorker {
       },
       shouldInterceptRequest: (InAppWebViewController controller, WebResourceRequest request) async {
         if (request.url.toString().startsWith("https://ecc.ssu.ac.kr/sap/public/bc/ur/nw7/js/lightspeed.js")) {
-          if (_lightspeedCache.isEmpty) {
-            // _lightspeedCache =
-            //     (await http.get(Uri.parse("https://gist.githubusercontent.com/nnnlog/7f2420106e0fdf9260ee7e736c3b3c70/raw/ec02c5a98485fdd297485a585ac2b3c25f0d9bda/lightspeed.js"))).body;
-            _lightspeedCache = await rootBundle.loadString("assets/js/lightspeed.js");
-          }
-          return WebResourceResponse(contentType: "application/x-javascript", data: Uint8List.fromList(_lightspeedCache.codeUnits));
+          return WebResourceResponse(contentType: "application/x-javascript", data: Uint8List.fromList((await globals.lightspeedManager.get(request.url.query)).codeUnits));
         }
         if ((request.url.path.endsWith(".css") && !request.url.toString().contains("ecc.ssu.ac.kr")) || request.url.toString().startsWith("https://fonts.googleapis.com/css")) {
           return WebResourceResponse(contentType: "text/css", data: Uint8List.fromList([]));
@@ -151,7 +146,7 @@ class WebViewWorker {
       initialSettings: InAppWebViewSettings(
         useShouldInterceptRequest: true,
         appCachePath: getPath("webview_cache"),
-        cacheMode: CacheMode.LOAD_CACHE_ELSE_NETWORK,
+        // cacheMode: CacheMode.LOAD_CACHE_ELSE_NETWORK,
         cacheEnabled: true,
         userAgent: "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
       ),
