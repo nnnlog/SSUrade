@@ -98,6 +98,7 @@ class LoginSession extends CrawlingTask<bool> {
   Future<bool>? _future;
 
   logout() {
+    _isLogin = false;
     id = password = "";
     _credentials = [];
     loginStatusChangeEvent.broadcast(Value(_isLogin)); // false
@@ -185,16 +186,21 @@ class LoginSession extends CrawlingTask<bool> {
     }
     span.finish(status: fail ? const SpanStatus.cancelled() : const SpanStatus.ok());
 
-    // await controller.customLoadPage("https://saint.ssu.ac.kr/irj/portal?NavigationTarget=ROLES://portal_content/ac.ssu.pct.fd.SSU/ac.ssu.pct.fd.COMMON/ac.ssu.pct.fd.Role/ac.ssu.pct.fd.New_No_EntryPoint/ssu.ac.pct.r.Graduate/ssu.ac.pct.r.Graduate_REG/ac.ssu.pct.cm.ws.ws_cm006/ac.ssu.pct.cm.iv.cmS0020"); // loads any page
-    await controller.customLoadPage("https://ecc.ssu.ac.kr/sap/bc/webdynpro/SAP/ZCMW1001n?sap-language=KO"); // loads any page
-    await controller.callAsyncJavaScript(functionBody: "return await ssurade.lightspeed.waitForPageLoad();");
+    if (!fail) {
+      // await controller.customLoadPage("https://saint.ssu.ac.kr/irj/portal?NavigationTarget=ROLES://portal_content/ac.ssu.pct.fd.SSU/ac.ssu.pct.fd.COMMON/ac.ssu.pct.fd.Role/ac.ssu.pct.fd.New_No_EntryPoint/ssu.ac.pct.r.Graduate/ssu.ac.pct.r.Graduate_REG/ac.ssu.pct.cm.ws.ws_cm006/ac.ssu.pct.cm.iv.cmS0020"); // loads any page
+      await controller.customLoadPage("https://ecc.ssu.ac.kr/sap/bc/webdynpro/SAP/ZCMW1001n?sap-language=KO"); // loads any page
+      await controller.callAsyncJavaScript(functionBody: "return await ssurade.lightspeed.waitForPageLoad();");
 
-    for (var url in [WebUri("https://.ssu.ac.kr"), WebUri("https://ecc.ssu.ac.kr")]) {
-      _credentials.addAll((await CookieManager.instance().getCookies(url: url, webViewController: controller)).map((e) => Tuple2(url, e)));
+      for (var url in [WebUri("https://.ssu.ac.kr"), WebUri("https://ecc.ssu.ac.kr")]) {
+        _credentials.addAll((await CookieManager.instance().getCookies(url: url, webViewController: controller)).map((e) => Tuple2(url, e)));
+      }
+
+      _isLogin = true;
+    } else {
+      _isFail = true;
+      loginFailEvent.broadcast(cause);
     }
-
-    _isLogin = true;
-    loginStatusChangeEvent.broadcast(Value(true));
+    loginStatusChangeEvent.broadcast(Value(_isLogin));
     completer.complete(_isLogin);
 
     return _isLogin;

@@ -68,6 +68,7 @@ class _LoginPageState extends State<LoginPage> {
                       globals.analytics.logEvent(name: "login", parameters: {"auto_login": "false"});
                     } else {
                       session.logout();
+                      showToast("로그인을 실패했어요.");
                     }
                     session.saveFile();
 
