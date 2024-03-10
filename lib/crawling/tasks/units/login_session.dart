@@ -201,7 +201,9 @@ class LoginSession extends CrawlingTask<bool> {
       loginFailEvent.broadcast(cause);
     }
     loginStatusChangeEvent.broadcast(Value(_isLogin));
+
     completer.complete(_isLogin);
+    _future = null;
 
     return _isLogin;
   }
