@@ -27,14 +27,14 @@ dependencies:
   image_gallery_saver: ^2.0.3
   json_annotation: ^4.8.1
   event: ^2.1.2
-  firebase_analytics: ^10.8.7
-  firebase_core: ^2.25.5
+  firebase_analytics: ^10.8.9
+  firebase_core: ^2.27.0
   flutter_secure_storage: ^9.0.0
-  sentry_flutter: ^7.16.1
+  sentry_flutter: ^7.17.0
   flutter_exit_app: ^1.1.2
   df: ^0.4.0-nullsafety.0
   workmanager: ^0.5.2
-  flutter_local_notifications: ^16.3.2
+  flutter_local_notifications: ^17.0.0
   logger: ^2.1.0
   disable_battery_optimization: ^1.1.1
   randomstring_dart: ^0.0.4
