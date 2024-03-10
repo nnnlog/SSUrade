@@ -201,7 +201,7 @@ class _ChapelPageState extends State<ChapelPage> with SingleTickerProviderStateM
                                           ),
                                         ))
                                     .toList(),
-                                value: globals.chapelInformationManager.data.last.currentSemester,
+                                value: _chapelInformation.currentSemester,
                                 onChanged: (YearSemester? value) {
                                   setState(() {
                                     _chapelInformation = globals.chapelInformationManager.data[value!]!;

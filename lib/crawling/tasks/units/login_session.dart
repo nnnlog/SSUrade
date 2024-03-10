@@ -9,6 +9,7 @@ import 'package:sentry_flutter/sentry_flutter.dart';
 import 'package:ssurade/crawling/background/background_service.dart';
 import 'package:ssurade/crawling/common/crawling_task.dart';
 import 'package:ssurade/crawling/common/webview_controller_extension.dart';
+import 'package:tuple/tuple.dart';
 
 /// U-Saint Session Manager
 /// All WebView Controller share same CookieManager, so need only one instance for managing login session.
@@ -25,7 +26,7 @@ class LoginSession extends CrawlingTask<bool> {
 
   String _password;
 
-  List<Cookie> _credentials = [];
+  List<Tuple2<WebUri, Cookie>> _credentials = [];
 
   LoginSession._(this._id, this._password) : super(null);
 
@@ -103,10 +104,8 @@ class LoginSession extends CrawlingTask<bool> {
   }
 
   Future<void> copyCredentials(InAppWebViewController controller) async {
-    if ((await CookieManager.instance().getCookies(url: WebUri(".ssu.ac.kr"))).isEmpty) {
-      for (var cookie in _credentials) {
-        await CookieManager.instance().setCookie(url: WebUri(".ssu.ac.kr"), name: cookie.name, value: cookie.value);
-      }
+    for (var info in _credentials) {
+      await CookieManager.instance().setCookie(url: info.item1, name: info.item2.name, value: info.item2.value, webViewController: controller);
     }
   }
 
@@ -186,9 +185,13 @@ class LoginSession extends CrawlingTask<bool> {
     }
     span.finish(status: fail ? const SpanStatus.cancelled() : const SpanStatus.ok());
 
+    // await controller.customLoadPage("https://saint.ssu.ac.kr/irj/portal?NavigationTarget=ROLES://portal_content/ac.ssu.pct.fd.SSU/ac.ssu.pct.fd.COMMON/ac.ssu.pct.fd.Role/ac.ssu.pct.fd.New_No_EntryPoint/ssu.ac.pct.r.Graduate/ssu.ac.pct.r.Graduate_REG/ac.ssu.pct.cm.ws.ws_cm006/ac.ssu.pct.cm.iv.cmS0020"); // loads any page
     await controller.customLoadPage("https://ecc.ssu.ac.kr/sap/bc/webdynpro/SAP/ZCMW1001n?sap-language=KO"); // loads any page
+    await controller.callAsyncJavaScript(functionBody: "return await ssurade.lightspeed.waitForPageLoad();");
 
-    _credentials = await CookieManager.instance().getCookies(url: WebUri(".ssu.ac.kr"));
+    for (var url in [WebUri("https://.ssu.ac.kr"), WebUri("https://ecc.ssu.ac.kr")]) {
+      _credentials.addAll((await CookieManager.instance().getCookies(url: url, webViewController: controller)).map((e) => Tuple2(url, e)));
+    }
 
     _isLogin = true;
     loginStatusChangeEvent.broadcast(Value(true));
