@@ -26,7 +26,7 @@ class WebViewWorker {
     var list = <HeadlessInAppWebView>[];
     var futures = <Future>[];
     for (int i = 0; i < taskInformation.getWebViewCount(); i++) {
-      futures.add(_initWebView().then((webView) {
+      futures.add(initWebView().then((webView) {
         list.add(webView);
       }));
     }
@@ -85,7 +85,7 @@ class WebViewWorker {
     completer.completeError(Exception("canceled by user"));
   }
 
-  Future<HeadlessInAppWebView> _initWebView() async {
+  Future<HeadlessInAppWebView> initWebView() async {
     var dir = Directory(getPath("webview_cache"));
     if (!await dir.exists()) {
       await dir.create(recursive: true);

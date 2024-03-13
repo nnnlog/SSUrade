@@ -5,6 +5,7 @@ import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 import 'package:ssurade/crawling/common/crawler.dart';
 import 'package:ssurade/crawling/common/crawling_task.dart';
+import 'package:ssurade/crawling/common/webview_worker.dart';
 import 'package:ssurade/crawling/error/unauthenticated_exception.dart';
 import 'package:ssurade/globals.dart' as globals;
 import 'package:ssurade/types/semester/year_semester.dart';
@@ -35,6 +36,9 @@ class AllGradeBySemester extends CrawlingTask<SemesterSubjectsManager> {
       throw UnauthenticatedException();
     }
 
+    var webView = await WebViewWorker.instance.initWebView();
+    var ctrls = Queue<InAppWebViewController>()..add(webView.webViewController!);
+
     if (map.isEmpty) map = await Crawler.gradeSemesterList(parentTransaction: transaction).directExecute(Queue()..add(controller));
 
     result = SemesterSubjectsManager(SplayTreeMap.from({}), STATE_SEMESTER);
@@ -44,6 +48,7 @@ class AllGradeBySemester extends CrawlingTask<SemesterSubjectsManager> {
         key,
         reloadPage: false,
         getRanking: false,
+        subControllers: ctrls,
         parentTransaction: transaction,
       ).directExecute(Queue()..add(controller));
       if (tmp.isEmpty) continue;
@@ -53,6 +58,8 @@ class AllGradeBySemester extends CrawlingTask<SemesterSubjectsManager> {
 
       result.data[key] = tmp;
     }
+
+    webView.dispose();
 
     return result;
   }

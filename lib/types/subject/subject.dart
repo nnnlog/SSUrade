@@ -61,6 +61,7 @@ class Subject extends Comparable<Subject> {
 
     // 성적 상세 조회
     if (after.detail.isEmpty) after.detail = before.detail;
+    if (after.credit == 0) after.credit = before.credit; // 성적 미입력 기간
 
     if (stateAfter == STATE_FULL) return after;
 

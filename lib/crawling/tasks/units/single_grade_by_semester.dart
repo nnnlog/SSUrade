@@ -17,16 +17,18 @@ class SingleGradeBySemester extends CrawlingTask<SemesterSubjects> {
   YearSemester search;
   bool reloadPage;
   bool getRanking;
+  Queue<InAppWebViewController>? _subControllers;
 
   factory SingleGradeBySemester.get(
     YearSemester search, {
     bool reloadPage = false,
     bool getRanking = true,
+    Queue<InAppWebViewController>? subControllers,
     ISentrySpan? parentTransaction,
   }) =>
-      SingleGradeBySemester._(search, reloadPage, getRanking, parentTransaction);
+      SingleGradeBySemester._(search, reloadPage, getRanking, subControllers, parentTransaction);
 
-  SingleGradeBySemester._(this.search, this.reloadPage, this.getRanking, ISentrySpan? parentTransaction) : super(parentTransaction);
+  SingleGradeBySemester._(this.search, this.reloadPage, this.getRanking, this._subControllers, ISentrySpan? parentTransaction) : super(parentTransaction);
 
   @override
   Future<SemesterSubjects> internalExecute(Queue<InAppWebViewController> controllers, [Completer? onComplete]) async {
@@ -70,6 +72,14 @@ class SingleGradeBySemester extends CrawlingTask<SemesterSubjects> {
     for (var obj in res["subjects"]) {
       var data = Subject(obj["subject_code"], obj["subject_name"], double.parse(obj["credit"]), obj["grade_symbol"], obj["grade_score"], obj["professor"], "", false, "");
       result.subjects[data.code] = data;
+    }
+
+    if (result.subjects.isEmpty) {
+      if (_subControllers == null || _subControllers!.isEmpty) {
+        result.subjects = (await Crawler.singleGradeBySemesterOldVersion(search, parentTransaction: transaction).execute()).subjects;
+      } else {
+        result.subjects = (await Crawler.singleGradeBySemesterOldVersion(search, parentTransaction: transaction).directExecute(_subControllers!)).subjects;
+      }
     }
     span.finish(status: const SpanStatus.ok());
 

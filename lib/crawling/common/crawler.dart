@@ -10,6 +10,7 @@ import 'package:ssurade/crawling/tasks/units/grade_semester_list.dart';
 import 'package:ssurade/crawling/tasks/units/login_session.dart';
 import 'package:ssurade/crawling/tasks/units/single_chapel_by_semester.dart';
 import 'package:ssurade/crawling/tasks/units/single_grade_by_semester.dart';
+import 'package:ssurade/crawling/tasks/units/single_grade_by_semester_old_version.dart';
 import 'package:ssurade/crawling/tasks/units/subject_detail_grade.dart';
 import 'package:ssurade/crawling/tasks/units/weburl_by_category.dart';
 
@@ -26,6 +27,7 @@ class Crawler {
   static const allGradeBySemester = AllGradeBySemester.get;
   static const gradeSemesterList = GradeSemesterList.get;
   static const singleGradeBySemester = SingleGradeBySemester.get;
+  static const singleGradeBySemesterOldVersion = SingleGradeBySemesterOldVersion.get;
   static const subjectDetailGrade = SubjectDetailGrade.get;
   static const semesterSubjectDetailGrade = SemesterSubjectDetailGrade.get;
   static const singleChapelBySemester = SingleChapelBySemester.get;
