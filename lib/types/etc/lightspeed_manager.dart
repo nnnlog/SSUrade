@@ -23,7 +23,7 @@ class LightspeedManager {
 
   @override
   String toString() {
-    return "$runtimeType(data=$data)";
+    return "$runtimeType(version=$version)";
   }
 
   bool get isEmpty => data.isEmpty;
@@ -45,7 +45,7 @@ class LightspeedManager {
     return LightspeedManager("", "");
   }
 
-  Future<String>? _future = null;
+  Future<String>? _future;
 
   Future<String> get(String version) async {
     if (_future != null) return await _future!;

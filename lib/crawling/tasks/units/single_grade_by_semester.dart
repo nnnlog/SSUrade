@@ -70,6 +70,9 @@ class SingleGradeBySemester extends CrawlingTask<SemesterSubjects> {
 
     SemesterSubjects result = SemesterSubjects(SplayTreeMap(), search, semesterRanking, totalRanking);
     for (var obj in res["subjects"]) {
+      if (obj["grade_symbol"] == "성적 미입력") {
+        obj["grade_symbol"] = "";
+      }
       var data = Subject(obj["subject_code"], obj["subject_name"], double.parse(obj["credit"]), obj["grade_symbol"], obj["grade_score"], obj["professor"], "", false, "");
       result.subjects[data.code] = data;
     }
