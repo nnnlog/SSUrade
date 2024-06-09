@@ -40,7 +40,7 @@ class Subject extends Comparable<Subject> {
 
   bool get isMajor => category.startsWith("전공") && category != "전공기초";
 
-  bool get isExcluded => info.split(",").indexWhere((element) => element.startsWith("Ex")) > -1;
+  bool get isExcluded => grade.trim() == "" || info.split(",").indexWhere((element) => element.startsWith("Ex")) > -1;
 
   @override
   String toString() {
