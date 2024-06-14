@@ -715,7 +715,7 @@ class FullScreenImage extends StatelessWidget {
                     onPressed: () {
                       Navigator.pop(context);
                     },
-                    child: Text("닫기"),
+                    child: const Text("닫기"),
                   ),
                 ),
               ],

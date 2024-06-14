@@ -20,7 +20,7 @@ class AllGradeByCategory extends CrawlingTask<SemesterSubjectsManager> {
   }) =>
       AllGradeByCategory._(parentTransaction);
 
-  AllGradeByCategory._(ISentrySpan? parentTransaction) : super(parentTransaction);
+  AllGradeByCategory._(super.parentTransaction);
 
   @override
   Future<SemesterSubjectsManager> internalExecute(Queue<InAppWebViewController> controllers, [Completer? onComplete]) async {
@@ -43,7 +43,7 @@ class AllGradeByCategory extends CrawlingTask<SemesterSubjectsManager> {
       var rawKey = data["HUKGI"]!.split("―"); // format: 2022―1, 2022―겨울
       var key = YearSemester(int.parse(rawKey[0]), Semester.parse("${rawKey[1]}학기"));
 
-      ret.data[key] ??= SemesterSubjects(SplayTreeMap(), key, Ranking(0, 0), Ranking(0, 0));
+      ret.data[key] ??= SemesterSubjects(SplayTreeMap(), key, const Ranking(0, 0), const Ranking(0, 0));
 
       var category = data["COMPL_TEXT"]!;
       var credit = double.parse(data["CPATTEMP"]!);

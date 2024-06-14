@@ -15,7 +15,7 @@ class WebUrlByCategory extends CrawlingTask<String> {
   }) =>
       WebUrlByCategory._(parentTransaction);
 
-  WebUrlByCategory._(ISentrySpan? parentTransaction) : super(parentTransaction);
+  WebUrlByCategory._(super.parentTransaction);
 
   @override
   Future<String> internalExecute(Queue<InAppWebViewController> controllers, [Completer? onComplete]) async {

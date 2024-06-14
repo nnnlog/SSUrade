@@ -19,7 +19,7 @@ class GetScholarship extends CrawlingTask<ScholarshipManager> {
   }) =>
       GetScholarship._(parentTransaction);
 
-  GetScholarship._(ISentrySpan? parentTransaction) : super(parentTransaction);
+  GetScholarship._(super.parentTransaction);
 
   @override
   Future<ScholarshipManager> internalExecute(Queue<InAppWebViewController> controllers, [Completer? onComplete]) async {

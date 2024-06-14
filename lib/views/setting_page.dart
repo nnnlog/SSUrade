@@ -9,7 +9,7 @@ import 'package:ssurade/types/subject/state.dart';
 import 'package:ssurade/utils/toast.dart';
 
 class SettingPage extends StatefulWidget {
-  const SettingPage({Key? key}) : super(key: key);
+  const SettingPage({super.key});
 
   @override
   State<StatefulWidget> createState() => _SettingPageState();
