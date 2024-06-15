@@ -181,7 +181,7 @@ Future<void> fetchAbsent() async {
     for (var i in originalData) {
       if (i.startDate == data.startDate &&
           i.endDate == data.endDate &&
-          i.applicationDate == data.endDate &&
+          i.applicationDate == data.applicationDate &&
           i.absentCause == data.absentCause &&
           i.status == data.status &&
           i.absentType == data.absentType) {
