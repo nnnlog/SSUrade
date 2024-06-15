@@ -10,9 +10,9 @@ Setting _$SettingFromJson(Map<String, dynamic> json) => Setting(
       json['refreshGradeAutomatically'] as bool,
       json['noticeGradeInBackground'] as bool,
       json['showGrade'] as bool,
-      json['interval'] as int,
-      json['timeoutGrade'] as int,
-      json['timeoutAllGrade'] as int,
+      (json['interval'] as num).toInt(),
+      (json['timeoutGrade'] as num).toInt(),
+      (json['timeoutAllGrade'] as num).toInt(),
       json['agree'] as bool,
     );
 

@@ -8,7 +8,7 @@ part of 'semester_subjects_manager.dart';
 
 SemesterSubjectsManager _$SemesterSubjectsManagerFromJson(Map<String, dynamic> json) => SemesterSubjectsManager(
       const _DataConverter().fromJson(json['data'] as List),
-      json['_state'] as int,
+      (json['_state'] as num).toInt(),
     );
 
 Map<String, dynamic> _$SemesterSubjectsManagerToJson(SemesterSubjectsManager instance) => <String, dynamic>{

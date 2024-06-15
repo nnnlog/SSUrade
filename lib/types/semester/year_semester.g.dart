@@ -7,7 +7,7 @@ part of 'year_semester.dart';
 // **************************************************************************
 
 YearSemester _$YearSemesterFromJson(Map<String, dynamic> json) => YearSemester(
-      json['_year'] as int,
+      (json['_year'] as num).toInt(),
       $enumDecode(_$SemesterEnumMap, json['_semester']),
     );
 

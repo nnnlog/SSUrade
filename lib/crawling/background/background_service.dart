@@ -170,6 +170,42 @@ Future<void> fetchScholarship() async {
   }
 }
 
+Future<void> fetchAbsent() async {
+  var absentInformations = await Crawler.singleAbsentBySemester().execute();
+
+  var originalData = globals.absentApplicationManager.data;
+  List<String> updates = [];
+
+  for (var data in absentInformations) {
+    bool updated = true;
+    for (var i in originalData) {
+      if (i.startDate == data.startDate &&
+          i.endDate == data.endDate &&
+          i.applicationDate == data.endDate &&
+          i.absentCause == data.absentCause &&
+          i.status == data.status &&
+          i.absentType == data.absentType) {
+        updated = false;
+        break;
+      }
+    }
+
+    if (updated) {
+      updates.add("${data.startDate == data.endDate ? data.startDate : "${data.startDate} ~ ${data.endDate}"} > ${data.status}");
+    }
+  }
+
+  if (updates.isNotEmpty) {
+    if (originalData.isNotEmpty) {
+      await showNotification("유고 결석 정보 변경", updates.join("\n"));
+    }
+    globals.absentApplicationManager.data = absentInformations;
+    await globals.absentApplicationManager.saveFile();
+  } else if (kDebugMode) {
+    await showNotification("not updated (${DateTime.now().toString()})", absentInformations.map((e) => "${e.applicationDate} : ${e.status}").join("\n"));
+  }
+}
+
 @pragma('vm:entry-point')
 void startBackgroundService() {
   Workmanager().executeTask((task, inputData) async {
@@ -182,6 +218,7 @@ void startBackgroundService() {
         fetchChapel(),
         fetchNewChapel(),
         fetchScholarship(),
+        fetchAbsent(),
       ];
 
       await Future.wait(futures).catchError((e) => throw e);

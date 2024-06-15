@@ -7,7 +7,7 @@ part of 'background_setting.dart';
 // **************************************************************************
 
 BackgroundSetting _$BackgroundSettingFromJson(Map<String, dynamic> json) => BackgroundSetting(
-      json['notificationId'] as int,
+      (json['notificationId'] as num).toInt(),
     );
 
 Map<String, dynamic> _$BackgroundSettingToJson(BackgroundSetting instance) => <String, dynamic>{

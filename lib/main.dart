@@ -8,6 +8,7 @@ import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 import 'package:ssurade/crawling/background/background_service.dart';
 import 'package:ssurade/globals.dart' as globals;
+import 'package:ssurade/views/absent_page.dart';
 import 'package:ssurade/views/category_statistics_page.dart';
 import 'package:ssurade/views/chapel_page.dart';
 import 'package:ssurade/views/grade_page.dart';
@@ -78,6 +79,7 @@ class MyApp extends StatelessWidget {
         '/category_statistics': (context) => const StatisticsPage(),
         '/chapel': (context) => const ChapelPage(),
         '/scholarship': (context) => const ScholarshipPage(),
+        '/absent': (context) => const AbsentPage(),
         '/setting': (context) => const SettingPage(),
         '/information': (context) => const InformationPage(),
       },
