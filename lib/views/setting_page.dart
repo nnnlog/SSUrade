@@ -212,7 +212,6 @@ class _SettingPageState extends State<SettingPage> {
 
                             _refreshGradeDetail = false;
                             showToast("성적 상세 정보를 불러왔어요.");
-                            showToast("성적 조회에서 과목을 길게 누르면 상세 성적을 조회할 수 있어요.");
                           },
                           style: OutlinedButton.styleFrom(
                             minimumSize: const Size.fromHeight(40),

@@ -225,7 +225,7 @@ class _MainPageState extends State<MainPage> {
     return Stack(
       children: <Widget>[
         Scaffold(
-          appBar: customAppBar("숭실대학교 성적 조회"),
+          appBar: customAppBar("숭실대학교 학사 정보 조회"),
           body: Padding(
             padding: const EdgeInsets.all(30),
             child: Center(

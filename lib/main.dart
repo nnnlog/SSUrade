@@ -52,7 +52,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: '숭실대학교 성적 조회',
+      title: '숭실대학교 학사 정보 조회',
       theme: ThemeData(
         primaryColor: const MaterialColor(0xFF00A4CA, {
           50: Color.fromRGBO(0, 164, 202, .1),
