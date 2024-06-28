@@ -73,7 +73,7 @@ class Subject extends Comparable<Subject> {
     }
 
     // 학기별 성적 조회
-    if ((stateAfter & STATE_SEMESTER > 0) && (STATE_CATEGORY & STATE_CATEGORY > 0)) {
+    if ((stateAfter & STATE_SEMESTER > 0) && (stateBefore & STATE_CATEGORY > 0)) {
       if (after.category.isEmpty) after.category = before.category;
       after.isPassFail = before.isPassFail;
       after.info = before.info;
