@@ -99,6 +99,7 @@ class _SubjectWidgetState extends State<SubjectWidget> {
                                   entry.key,
                                   textAlign: TextAlign.left,
                                   style: const TextStyle(color: Colors.black54),
+                                  strutStyle: const StrutStyle(height: 0, forceStrutHeight: true),
                                 ),
                               ),
                               const SizedBox(width: 10),

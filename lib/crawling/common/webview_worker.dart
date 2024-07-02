@@ -10,11 +10,11 @@ import 'package:ssurade/crawling/common/crawling_task.dart';
 import 'package:ssurade/crawling/common/webview_controller_extension.dart';
 import 'package:ssurade/crawling/error/unauthenticated_exception.dart';
 import 'package:ssurade/filesystem/filesystem.dart';
-import 'package:ssurade/globals.dart' as globals;
 
 /// Execute task with headless webview.
 class WebViewWorker {
-  static List<String> webViewScript = [];
+  static List<String> webViewScriptOnStart = [];
+  static List<String> webViewScriptOnStop = [];
   static WebViewWorker instance = WebViewWorker._();
 
   WebViewWorker._();
@@ -119,13 +119,17 @@ class WebViewWorker {
       onJsPrompt: (controller, action) async {
         return JsPromptResponse(); // cancel prompt event
       },
+      onLoadStart: (InAppWebViewController controller, WebUri? url) async {
+        await Future.wait(webViewScriptOnStart.map((e) => controller.evaluateJavascript(source: e)));
+      },
       onLoadStop: (InAppWebViewController controller, Uri? url) async {
-        await Future.wait(webViewScript.map((e) => controller.evaluateJavascript(source: e)));
+        await Future.wait(webViewScriptOnStop.map((e) => controller.evaluateJavascript(source: e)));
       },
       shouldInterceptRequest: (InAppWebViewController controller, WebResourceRequest request) async {
-        if (request.url.toString().startsWith("https://ecc.ssu.ac.kr/sap/public/bc/ur/nw7/js/lightspeed.js")) {
-          return WebResourceResponse(contentType: "application/x-javascript", data: Uint8List.fromList((await globals.lightspeedManager.get(request.url.query)).codeUnits));
-        }
+        // works for android only ->  replace to customLoadPage
+        // if (request.url.toString().startsWith("https://ecc.ssu.ac.kr/sap/public/bc/ur/nw7/js/lightspeed.js")) {
+        //   return WebResourceResponse(contentType: "application/x-javascript", data: Uint8List.fromList((await globals.lightspeedManager.get(request.url.query)).codeUnits));
+        // }
         if ((request.url.path.endsWith(".css") && !request.url.toString().contains("ecc.ssu.ac.kr")) || request.url.toString().startsWith("https://fonts.googleapis.com/css")) {
           return WebResourceResponse(contentType: "text/css", data: Uint8List.fromList([]));
         }
@@ -143,10 +147,14 @@ class WebViewWorker {
         }
         return null;
       },
+      shouldOverrideUrlLoading: (InAppWebViewController controller, NavigationAction action) async {
+        return NavigationActionPolicy.ALLOW;
+      },
       initialSettings: InAppWebViewSettings(
+        isInspectable: true,
         useShouldInterceptRequest: true,
         cacheEnabled: true,
-        userAgent: "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+        userAgent: "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36",
       ),
     );
     await webView.run();

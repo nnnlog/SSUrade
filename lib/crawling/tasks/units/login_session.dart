@@ -174,12 +174,13 @@ class LoginSession extends CrawlingTask<bool> {
       clear: true,
       parentTransaction: transaction,
     );
+
     span = transaction.startChild("fill_form");
     await controller.evaluateJavascript(source: 'document.LoginInfo.userid.value = atob("${base64Encode(utf8.encode(_id))}");');
     await controller.evaluateJavascript(source: 'document.LoginInfo.pwd.value = atob("${base64Encode(utf8.encode(_password))}");');
-
     await controller.evaluateJavascript(source: 'document.LoginInfo.submit();');
     span.finish(status: const SpanStatus.ok());
+
     span = transaction.startChild("wait_redirection");
     while (!fail && !(await controller.getUrl()).toString().startsWith("https://saint.ssu.ac.kr/irj/portal")) {
       await Future.delayed(const Duration(milliseconds: 1));

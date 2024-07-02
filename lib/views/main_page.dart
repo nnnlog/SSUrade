@@ -14,6 +14,7 @@ import 'package:ssurade/types/semester/semester.dart';
 import 'package:ssurade/types/semester/year_semester.dart';
 import 'package:ssurade/types/subject/ranking.dart';
 import 'package:ssurade/types/subject/semester_subjects_manager.dart';
+import 'package:ssurade/utils/notification.dart';
 import 'package:ssurade/utils/set.dart';
 import 'package:ssurade/utils/toast.dart';
 import 'package:ssurade/utils/update.dart';
@@ -82,6 +83,8 @@ class _MainPageState extends State<MainPage> {
 
       await globals.flutterLocalNotificationsPlugin.resolvePlatformSpecificImplementation<AndroidFlutterLocalNotificationsPlugin>()?.requestNotificationsPermission();
       await globals.flutterLocalNotificationsPlugin.resolvePlatformSpecificImplementation<AndroidFlutterLocalNotificationsPlugin>()?.createNotificationChannel(globals.channel);
+
+      await globals.flutterLocalNotificationsPlugin.resolvePlatformSpecificImplementation<IOSFlutterLocalNotificationsPlugin>()?.requestPermissions();
 
       Crawler.loginSession().loginStatusChangeEvent.subscribe((args) {
         updateBackgroundService(lazy: true);

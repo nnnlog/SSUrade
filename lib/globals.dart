@@ -37,7 +37,7 @@ AndroidNotificationChannel channel = const AndroidNotificationChannel(
 );
 
 Event gradeUpdateEvent = Event();
-List<String> assets = ["common.js"];
+List<String> assetsStart = [], assetsEnd = ["common.js"];
 
 Future<void> init() async {
   await initFileSystem();
@@ -50,12 +50,16 @@ Future<void> init() async {
     ScholarshipManager.loadFromFile().then((value) => scholarshipManager = value),
     LightspeedManager.loadFromFile().then((value) => lightspeedManager = value),
     AbsentApplicationManager.loadFromFile().then((value) => absentApplicationManager = value),
-    ...assets.map((e) => rootBundle.loadString("assets/js/$e").then((value) {
-          WebViewWorker.webViewScript.add(value);
+    ...assetsStart.map((e) => rootBundle.loadString("assets/js/$e").then((value) {
+          WebViewWorker.webViewScriptOnStart.add(value);
+        })),
+    ...assetsEnd.map((e) => rootBundle.loadString("assets/js/$e").then((value) {
+          WebViewWorker.webViewScriptOnStop.add(value);
         })),
   ]);
 
   const AndroidInitializationSettings initializationSettingsAndroid = AndroidInitializationSettings('app_icon');
-  const InitializationSettings initializationSettings = InitializationSettings(android: initializationSettingsAndroid);
+  const DarwinInitializationSettings initializationSettingsDarwin = DarwinInitializationSettings();
+  const InitializationSettings initializationSettings = InitializationSettings(android: initializationSettingsAndroid, iOS: initializationSettingsDarwin);
   await flutterLocalNotificationsPlugin.initialize(initializationSettings, onDidReceiveNotificationResponse: (NotificationResponse r) => Future.value());
 }
