@@ -38,7 +38,7 @@ Future<void> registerBackgroundService({lazy = false}) async {
   // await globals.flutterLocalNotificationsPlugin.resolvePlatformSpecificImplementation<AndroidFlutterLocalNotificationsPlugin>()?.requestNotificationsPermission();
   await Workmanager().registerPeriodicTask(
     "ssurade",
-    "bg_service",
+    "ssurade",
     constraints: Constraints(
       networkType: NetworkType.connected,
       requiresDeviceIdle: false,

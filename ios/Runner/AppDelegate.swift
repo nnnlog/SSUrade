@@ -17,14 +17,22 @@ import workmanager
         UNUserNotificationCenter.current().delegate = self as? UNUserNotificationCenterDelegate
       }
 
-    UIApplication.shared.setMinimumBackgroundFetchInterval(TimeInterval(60*15))
-    WorkmanagerPlugin.registerTask(withIdentifier: "ssurade")
+//    WorkmanagerPlugin.registerBGProcessingTask(withIdentifier: "ssurade")
+    WorkmanagerPlugin.registerPeriodicTask(withIdentifier: "ssurade", frequency: NSNumber(value: 15 * 60))
 
 //    GeneratedPluginRegistrant.register(with: self)
 
     AppDelegate.registerPlugins(with: self)
     WorkmanagerPlugin.setPluginRegistrantCallback { registry in AppDelegate.registerPlugins(with: registry) }
 
+    UNUserNotificationCenter.current().delegate = self
+
     return super.application(application, didFinishLaunchingWithOptions: launchOptions)
   }
+
+  override func userNotificationCenter(_ center: UNUserNotificationCenter,
+                                           willPresent notification: UNNotification,
+                                           withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+           completionHandler(.alert) // shows banner even if app is in foreground
+       }
 }
