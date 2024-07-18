@@ -1,24 +1,18 @@
-# ssurade
-SSUrade : 숭실대학교 성적/학점 조회 애플리케이션
+# SSUrade
+SSUrade : Soongsil University Information Inquiry Application
+* 숭실대학교 학사 정보 조회 애플리케이션
 
 ## Installation
 * [Play Store](https://play.google.com/store/apps/details?id=com.nnnlog.ssurade)
 * [Github Release](https://github.com/nnnlog/ssurade/releases)
+* 곧 iOS 지원을 시작합니다!
 
 ## Usage
 * Read [Usage.md](./USAGE.md)
 
-## Build Instruction (for Android only)
-### Set signing key
-* Put your `key.properties` in `android/` directory.
-* If you don't have your own `key.properties`, you can copy and paste of auto-generated `android/local.properties`.
+## Build Instruction
 
-### Setup Analytics (Firebase)
-```shell
-flutterfire configure --project=<Firbase project id>
-```
-
-### Build Javascript code for injecting to WebView
+### 1. Build Javascript code for injecting to WebView
 ```shell
 cd usaint-injector/
 npm ci
@@ -27,14 +21,21 @@ mkdir ../assets/js/
 cp dist/main.js ../assets/js/common.js
 ```
 
-### Build
+### 2. Install dependency
 ```shell
+flutter pub get
 flutter pub run build_runner build
+```
+
+### 3. Build
+* For iOS build, you should install xcode in macOS. Also, please set appropriate settings in your xcode.
+```shell
+flutter build ios --obfuscate --split-debug-info=./debug/
 flutter build apk --obfuscate --split-debug-info=./debug/
 flutter build appbundle --obfuscate --split-debug-info=./debug/
 ```
 
-### (Optional) Upload debug symbols to Sentry
+### (Optional/Production) Upload debug symbols to Sentry
 ```shell
 SENTRY_AUTH_TOKEN=<token> SENTRY_ORG=<org> SENTRY_PROJECT=<project name> flutter packages pub run sentry_dart_plugin
 ```
@@ -51,4 +52,23 @@ adb shell setprop debug.firebase.analytics.app com.nnnlog.ssurade
 ### Debug (End)
 ```shell
 adb shell setprop debug.firebase.analytics.app .none.
+```
+
+## Project Setup (for developers)
+### Build for iOS
+* For building iOS artifacts, you must need macOS and install xcode in your computer.
+
+### Set signing key for Android
+* Put your `key.properties` in `android/` directory.
+* If you don't have your own `key.properties`, you can copy and paste of auto-generated `android/local.properties`.
+
+### Setup Analytics (Firebase)
+```shell
+flutterfire configure --project=<Firbase project id>
+```
+
+### Create auto-generated code
+* If you modify code included @JSONSerializable annotation, you must run a below command.
+```shell
+flutter pub run build_runner build
 ```
