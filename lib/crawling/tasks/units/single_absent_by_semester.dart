@@ -3,11 +3,9 @@ import 'dart:collection';
 
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
-import 'package:ssurade/crawling/common/crawler.dart';
 import 'package:ssurade/crawling/common/crawling_task.dart';
 import 'package:ssurade/crawling/common/webview_controller_extension.dart';
 import 'package:ssurade/crawling/error/no_data_exception.dart';
-import 'package:ssurade/crawling/error/unauthenticated_exception.dart';
 import 'package:ssurade/globals.dart' as globals;
 import 'package:ssurade/types/absent/absent_application_information.dart';
 import 'package:ssurade/types/semester/year_semester.dart';
@@ -32,10 +30,6 @@ class SingleAbsentBySemester extends CrawlingTask<List<AbsentApplicationInformat
     final transaction = parentTransaction?.startChild(getTaskId()) ?? Sentry.startTransaction('SingleAbsentBySemester', getTaskId());
     late ISentrySpan span;
 
-    if (!(await Crawler.loginSession(parentTransaction: transaction).directExecute(Queue()..add(controller)))) {
-      throw UnauthenticatedException();
-    }
-
     span = transaction.startChild("check_url");
     var url = (await controller.getUrl()).toString();
     if (url.contains("#")) {
@@ -47,6 +41,7 @@ class SingleAbsentBySemester extends CrawlingTask<List<AbsentApplicationInformat
       await controller.customLoadPage(
         "https://ecc.ssu.ac.kr/sap/bc/webdynpro/SAP/ZCMW3683?sap-language=KO",
         parentTransaction: transaction,
+        login: true,
       );
     }
 

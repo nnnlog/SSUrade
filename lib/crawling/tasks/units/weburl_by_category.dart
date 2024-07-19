@@ -3,10 +3,8 @@ import 'dart:collection';
 
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
-import 'package:ssurade/crawling/common/crawler.dart';
 import 'package:ssurade/crawling/common/crawling_task.dart';
 import 'package:ssurade/crawling/common/webview_controller_extension.dart';
-import 'package:ssurade/crawling/error/unauthenticated_exception.dart';
 import 'package:ssurade/globals.dart' as globals;
 
 class WebUrlByCategory extends CrawlingTask<String> {
@@ -24,11 +22,11 @@ class WebUrlByCategory extends CrawlingTask<String> {
     final transaction = parentTransaction == null ? Sentry.startTransaction('WebUrlByCategory', getTaskId()) : parentTransaction!.startChild(getTaskId());
     late ISentrySpan span;
 
-    if (!(await Crawler.loginSession(parentTransaction: transaction).directExecute(Queue()..add(controller)))) {
-      throw UnauthenticatedException();
-    }
-
-    await controller.customLoadPage("https://ecc.ssu.ac.kr/sap/bc/webdynpro/SAP/ZCMW8030n?sap-language=KO", parentTransaction: transaction);
+    await controller.customLoadPage(
+      "https://ecc.ssu.ac.kr/sap/bc/webdynpro/SAP/ZCMW8030n?sap-language=KO",
+      parentTransaction: transaction,
+      login: true,
+    );
 
     span = transaction.startChild("get_viewer_url");
     var url = (await controller.callAsyncJavaScript(functionBody: "return await ssurade.crawl.getGradeViewerURL().catch(() => {});"))!.value;

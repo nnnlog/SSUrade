@@ -6,7 +6,6 @@ import 'package:sentry_flutter/sentry_flutter.dart';
 import 'package:ssurade/crawling/common/crawler.dart';
 import 'package:ssurade/crawling/common/crawling_task.dart';
 import 'package:ssurade/crawling/common/webview_worker.dart';
-import 'package:ssurade/crawling/error/unauthenticated_exception.dart';
 import 'package:ssurade/globals.dart' as globals;
 import 'package:ssurade/types/semester/year_semester.dart';
 import 'package:ssurade/types/subject/ranking.dart';
@@ -32,9 +31,6 @@ class AllGradeBySemester extends CrawlingTask<SemesterSubjectsManager> {
     final transaction = parentTransaction == null ? Sentry.startTransaction('AllGradeBySemester', getTaskId()) : parentTransaction!.startChild(getTaskId());
 
     SemesterSubjectsManager? result;
-    if (!await Crawler.loginSession(parentTransaction: transaction).directExecute(Queue()..add(controller))) {
-      throw UnauthenticatedException();
-    }
 
     var webView = await WebViewWorker.instance.initWebView();
     var ctrls = Queue<InAppWebViewController>()..add(webView.webViewController!);

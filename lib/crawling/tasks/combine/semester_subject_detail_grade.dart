@@ -6,7 +6,6 @@ import 'package:sentry_flutter/sentry_flutter.dart';
 import 'package:ssurade/crawling/common/crawler.dart';
 import 'package:ssurade/crawling/common/crawling_task.dart';
 import 'package:ssurade/crawling/common/webview_controller_extension.dart';
-import 'package:ssurade/crawling/error/unauthenticated_exception.dart';
 import 'package:ssurade/types/subject/semester_subjects.dart';
 
 class SemesterSubjectDetailGrade extends CrawlingTask<Map<String, Map<String, String>>> {
@@ -61,13 +60,10 @@ class SemesterSubjectDetailGrade extends CrawlingTask<Map<String, Map<String, St
       }
 
       (() async {
-        if (!(await Crawler.loginSession(parentTransaction: transaction).directExecute(Queue()..add(controller)))) {
-          throw UnauthenticatedException();
-        }
-
         await controller.customLoadPage(
           "https://ecc.ssu.ac.kr/sap/bc/webdynpro/SAP/ZCMB3W0017?sap-language=KO",
           parentTransaction: transaction,
+          login: true,
         );
 
         for (var code in inputs) {

@@ -14,7 +14,6 @@ import 'package:ssurade/types/semester/semester.dart';
 import 'package:ssurade/types/semester/year_semester.dart';
 import 'package:ssurade/types/subject/ranking.dart';
 import 'package:ssurade/types/subject/semester_subjects_manager.dart';
-import 'package:ssurade/utils/notification.dart';
 import 'package:ssurade/utils/set.dart';
 import 'package:ssurade/utils/toast.dart';
 import 'package:ssurade/utils/update.dart';

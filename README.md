@@ -4,8 +4,8 @@ SSUrade : Soongsil University Information Inquiry Application
 
 ## Installation
 * [Play Store](https://play.google.com/store/apps/details?id=com.nnnlog.ssurade)
-* [Github Release](https://github.com/nnnlog/ssurade/releases)
 * 곧 iOS 지원을 시작합니다!
+* [Github Release](https://github.com/nnnlog/ssurade/releases)
 
 ## Usage
 * Read [Usage.md](./USAGE.md)
@@ -24,7 +24,6 @@ cp dist/main.js ../assets/js/common.js
 ### 2. Install dependency
 ```shell
 flutter pub get
-flutter pub run build_runner build
 ```
 
 ### 3. Build

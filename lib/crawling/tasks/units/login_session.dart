@@ -5,40 +5,55 @@ import 'dart:convert';
 import 'package:event/event.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart' as secureStorage;
+import 'package:json_annotation/json_annotation.dart';
+import 'package:logger/logger.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 import 'package:ssurade/crawling/background/background_service.dart';
 import 'package:ssurade/crawling/common/crawling_task.dart';
 import 'package:ssurade/crawling/common/webview_controller_extension.dart';
+import 'package:ssurade/filesystem/filesystem.dart';
 import 'package:tuple/tuple.dart';
 
+part 'login_session.g.dart';
+
 /// U-Saint Session Manager
-/// All WebView Controller share same CookieManager, so need only one instance for managing login session.
-/// Provide Event
+@JsonSerializable(converters: [_DataConverter()], ignoreUnannotated: true, constructor: "_")
 class LoginSession extends CrawlingTask<bool> {
-  static final LoginSession _instance = LoginSession._("", "");
+  static final LoginSession _instance = LoginSession._([]);
 
   factory LoginSession.get({
     ISentrySpan? parentTransaction,
   }) =>
       _instance..parentTransaction = parentTransaction;
 
-  String _id;
+  String _id = "";
 
-  String _password;
+  String _password = "";
 
-  List<Tuple2<WebUri, Cookie>> _credentials = [];
+  @JsonKey(includeFromJson: true, includeToJson: true)
+  List<Tuple2<WebUri, Cookie>> _credentials;
 
-  LoginSession._(this._id, this._password) : super(null);
+  // FILE I/O
+  static const String _filename = "login.json"; // internal file name
+
+  LoginSession._(this._credentials) : super(null);
 
   /// Singleton
   Future<LoginSession> loadFromFile() async {
     try {
       const storage = secureStorage.FlutterSecureStorage(aOptions: secureStorage.AndroidOptions(encryptedSharedPreferences: true));
-
       id = (await storage.read(key: "id")) ?? "";
       password = (await storage.read(key: "password")) ?? "";
-    } catch (e) {
+
+      if (await existFile(_filename)) {
+        Map<String, dynamic> data = jsonDecode((await readFile(_filename))!);
+        var tmp = _$LoginSessionFromJson(data);
+        _credentials = tmp._credentials;
+      }
+    } catch (e, st) {
+      Logger().e(e, stackTrace: st);
       id = password = "";
+      _credentials = [];
     }
 
     return this;
@@ -46,10 +61,15 @@ class LoginSession extends CrawlingTask<bool> {
 
   saveFile() async {
     const storage = secureStorage.FlutterSecureStorage(aOptions: secureStorage.AndroidOptions(encryptedSharedPreferences: true));
-
     await storage.write(key: "id", value: id);
     await storage.write(key: "password", value: password);
+
+    await writeFile(_filename, jsonEncode(_$LoginSessionToJson(this)));
   }
+
+  bool get hasCredentials => _credentials.isNotEmpty;
+
+  List<Tuple2<WebUri, Cookie>> get credentials => _credentials;
 
   bool isBackground = false;
   bool _isLogin = false;
@@ -79,6 +99,7 @@ class LoginSession extends CrawlingTask<bool> {
     _id = value;
     _isLogin = false;
     _isFail = false;
+    _credentials = [];
   }
 
   get password {
@@ -89,6 +110,7 @@ class LoginSession extends CrawlingTask<bool> {
     _password = value;
     _isLogin = false;
     _isFail = false;
+    _credentials = [];
   }
 
   Event<Value<bool>> loginStatusChangeEvent = Event(); // broadcast event when login status change
@@ -96,6 +118,11 @@ class LoginSession extends CrawlingTask<bool> {
   Event<Value<String>> loginFailEvent = Event(); // broadcast event when login fail
 
   Future<bool>? _future;
+
+  clearCredentials() {
+    _credentials = [];
+    _isLogin = false;
+  }
 
   logout() {
     _isLogin = false;
@@ -110,13 +137,25 @@ class LoginSession extends CrawlingTask<bool> {
     }
   }
 
+  refreshCredentials(InAppWebViewController controller) async {
+    _credentials = [];
+    for (var url in [WebUri("https://.ssu.ac.kr"), WebUri("https://ecc.ssu.ac.kr")]) {
+      _credentials.addAll((await CookieManager.instance().getCookies(url: url, webViewController: controller)).map((e) => Tuple2(url, e)));
+    }
+    await saveFile();
+  }
+
   /// Critical section (even for between foreground and background service)
   @override
   Future<bool> internalExecute(Queue<InAppWebViewController> controllers, [Completer? onComplete]) async {
     var controller = controllers.removeFirst();
 
-    if (isLogin) {
+    if (isLogin || hasCredentials) {
       await copyCredentials(controller);
+      if (!isLogin) {
+        _isLogin = true;
+        loginStatusChangeEvent.broadcast(Value(true));
+      }
       return true;
     }
 
@@ -152,6 +191,7 @@ class LoginSession extends CrawlingTask<bool> {
     _future = completer.future;
     var fail = false;
 
+    _credentials = [];
     _isLogin = false;
     _isFail = false;
     Value<String>? cause;
@@ -192,9 +232,8 @@ class LoginSession extends CrawlingTask<bool> {
       await controller.customLoadPage("https://ecc.ssu.ac.kr/sap/bc/webdynpro/SAP/ZCMW1001n?sap-language=KO"); // loads any page
       await controller.callAsyncJavaScript(functionBody: "return await ssurade.lightspeed.waitForPageLoad();");
 
-      for (var url in [WebUri("https://.ssu.ac.kr"), WebUri("https://ecc.ssu.ac.kr")]) {
-        _credentials.addAll((await CookieManager.instance().getCookies(url: url, webViewController: controller)).map((e) => Tuple2(url, e)));
-      }
+      await refreshCredentials(controller);
+      saveFile();
 
       _isLogin = true;
     } else {
@@ -220,5 +259,19 @@ class LoginSession extends CrawlingTask<bool> {
   @override
   String getTaskId() {
     return "login";
+  }
+}
+
+class _DataConverter extends JsonConverter<List<Tuple2<WebUri, Cookie>>, List> {
+  const _DataConverter();
+
+  @override
+  List<Tuple2<WebUri, Cookie>> fromJson(List json) {
+    return json.map((e) => Tuple2(WebUri(e[0]), Cookie.fromMap(e[1])!)).toList();
+  }
+
+  @override
+  List toJson(List<Tuple2<WebUri, Cookie>> object) {
+    return object.map((e) => [e.item1.toString(), e.item2.toMap()]).toList();
   }
 }

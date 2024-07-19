@@ -56,6 +56,7 @@ class SubjectDetailGrade extends CrawlingTask<Map<String, String>> {
       await controller.customLoadPage(
         "https://ecc.ssu.ac.kr/sap/bc/webdynpro/SAP/ZCMB3W0017?sap-language=KO",
         parentTransaction: transaction,
+        login: true,
       );
     }
 

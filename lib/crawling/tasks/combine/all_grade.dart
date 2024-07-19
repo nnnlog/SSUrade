@@ -5,7 +5,6 @@ import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 import 'package:ssurade/crawling/common/crawler.dart';
 import 'package:ssurade/crawling/common/crawling_task.dart';
-import 'package:ssurade/crawling/error/unauthenticated_exception.dart';
 import 'package:ssurade/globals.dart' as globals;
 import 'package:ssurade/types/subject/semester_subjects_manager.dart';
 import 'package:ssurade/types/subject/state.dart';
@@ -24,10 +23,6 @@ class AllGrade extends CrawlingTask<SemesterSubjectsManager> {
 
     final transaction = parentTransaction == null ? Sentry.startTransaction('AllGrade', getTaskId()) : parentTransaction!.startChild(getTaskId());
     late ISentrySpan span;
-
-    if (!(await Future.wait([con1, con2].map((e) => Crawler.loginSession(parentTransaction: transaction).directExecute(Queue()..add(e))))).every((element) => element)) {
-      throw UnauthenticatedException();
-    }
 
     span = transaction.startChild("get_grade_info");
     List<Future<SemesterSubjectsManager>> wait = [];

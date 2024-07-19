@@ -7,7 +7,6 @@ import 'package:ssurade/crawling/common/crawler.dart';
 import 'package:ssurade/crawling/common/crawling_task.dart';
 import 'package:ssurade/crawling/common/webview_controller_extension.dart';
 import 'package:ssurade/crawling/error/no_data_exception.dart';
-import 'package:ssurade/crawling/error/unauthenticated_exception.dart';
 import 'package:ssurade/types/chapel/chapel_information.dart';
 import 'package:ssurade/types/chapel/chapel_information_manager.dart';
 import 'package:ssurade/types/semester/semester.dart';
@@ -66,13 +65,10 @@ class AllChapel extends CrawlingTask<ChapelInformationManager> {
       }
 
       (() async {
-        if (!(await Crawler.loginSession(parentTransaction: transaction).directExecute(Queue()..add(controller)))) {
-          throw UnauthenticatedException();
-        }
-
         await controller.customLoadPage(
           "https://ecc.ssu.ac.kr/sap/bc/webdynpro/SAP/ZCMW3681?sap-language=KO",
           parentTransaction: transaction,
+          login: true,
         );
 
         for (var current in inputs) {

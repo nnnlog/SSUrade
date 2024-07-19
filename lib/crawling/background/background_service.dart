@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:flutter/foundation.dart';
 import 'package:logger/logger.dart';
 import 'package:ssurade/crawling/common/crawler.dart';
