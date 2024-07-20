@@ -30,6 +30,7 @@ flutter pub get
 * For iOS build, you should install xcode in macOS. Also, please set appropriate settings in your xcode.
 ```shell
 flutter build ios --obfuscate --split-debug-info=./debug/
+flutter build ipa --obfuscate --split-debug-info=./debug/
 flutter build apk --obfuscate --split-debug-info=./debug/
 flutter build appbundle --obfuscate --split-debug-info=./debug/
 ```
@@ -69,5 +70,5 @@ flutterfire configure --project=<Firbase project id>
 ### Create auto-generated code
 * If you modify code included @JSONSerializable annotation, you must run a below command.
 ```shell
-flutter pub run build_runner build
+dart run build_runner build
 ```

@@ -87,6 +87,7 @@ extension WebViewControllerExtension on InAppWebViewController {
       } else if (login) {
         if (i == 0) {
           loginSession.clearCredentials();
+          await loginSession.saveFile();
           await loginSession.directExecute(Queue()..add(this));
           continue;
         } else {
