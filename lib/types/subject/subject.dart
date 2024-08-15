@@ -77,7 +77,7 @@ class Subject extends Comparable<Subject> {
       if (after.category.isEmpty) after.category = before.category;
       after.isPassFail = before.isPassFail;
       after.info = before.info;
-      after.credit = before.credit; // 성적 미입력 기간 (이수구분별 성적표 우선)
+      if (after.credit == 0) after.credit = before.credit; // 성적 미입력 기간 (이수구분별 성적표 우선)
     }
 
     return after;

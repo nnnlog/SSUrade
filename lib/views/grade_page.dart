@@ -54,26 +54,24 @@ class _GradePageState extends State<GradePage> {
     try {
       late SemesterSubjects data1;
       late Map<String, Map<String, String>> data2;
+      late SemesterSubjectsManager data3;
 
       var futures = <Future>[];
       futures.add(Crawler.singleGradeBySemester(search).execute().then((value) => data1 = value));
-      futures.add(Crawler.semesterSubjectDetailGrade(_semesterSubjects).execute().then((value) => data2 = value).then((value) {
-        if (_semesterSubjects.currentSemester.toString() == search.toString()) {
-          showToast("성적 상세 정보를 불러왔어요.");
-        }
-      }));
+      futures.add(Crawler.semesterSubjectDetailGrade(_semesterSubjects).execute().then((value) => data2 = value));
+      futures.add(Crawler.allGradeByCategory().execute().then((value) => data3 = value));
 
       await Future.wait(futures);
+
+      if (data3.data.containsKey(search)) {
+        SemesterSubjects.merge(data1, data3.data[search]!, STATE_SEMESTER, STATE_CATEGORY);
+      }
 
       for (var subjectCode in data2.keys) {
         data1.subjects[subjectCode]?.detail = data2[subjectCode]!;
       }
 
-      if (globals.semesterSubjectsManager.data.containsKey(search)) {
-        globals.semesterSubjectsManager.data[search] = SemesterSubjects.merge(data1, globals.semesterSubjectsManager.data[search]!, STATE_SEMESTER, globals.semesterSubjectsManager.state)!;
-      } else {
-        globals.semesterSubjectsManager.data[search] = data1;
-      }
+      globals.semesterSubjectsManager.data[search] = data1;
 
       globals.gradeUpdateEvent.broadcast();
       globals.semesterSubjectsManager.saveFile();
