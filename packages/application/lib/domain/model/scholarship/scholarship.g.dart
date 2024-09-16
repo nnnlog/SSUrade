@@ -99,8 +99,7 @@ Scholarship _$ScholarshipFromJson(Map<String, dynamic> json) => Scholarship(
       price: json['price'] as String,
     );
 
-Map<String, dynamic> _$ScholarshipToJson(Scholarship instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$ScholarshipToJson(Scholarship instance) => <String, dynamic>{
       'when': instance.when,
       'name': instance.name,
       'process': instance.process,
