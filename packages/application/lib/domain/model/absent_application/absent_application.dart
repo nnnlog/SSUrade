@@ -1,8 +1,10 @@
+import 'package:copy_with_extension/copy_with_extension.dart';
 import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'absent_application.g.dart';
 
+@CopyWith()
 @JsonSerializable()
 class AbsentApplication extends Equatable {
   @JsonKey()
@@ -32,6 +34,9 @@ class AbsentApplication extends Equatable {
     required this.rejectCause,
     required this.status,
   });
+
+  @override
+  List<Object?> get props => [absentType, startDate, endDate, absentCause, applicationDate, proceedDate, rejectCause, status];
 
   // JSON serialization
   factory AbsentApplication.fromJson(Map<String, dynamic> json) => _$AbsentApplicationFromJson(json);

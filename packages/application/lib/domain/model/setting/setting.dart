@@ -1,9 +1,12 @@
+import 'package:copy_with_extension/copy_with_extension.dart';
+import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'setting.g.dart';
 
+@CopyWith()
 @JsonSerializable()
-class Setting {
+class Setting extends Equatable {
   @JsonKey()
   final bool refreshGradeAutomatically;
   @JsonKey()
@@ -28,6 +31,9 @@ class Setting {
     required this.timeoutAllGrade,
     required this.agree,
   });
+
+  @override
+  List<Object?> get props => [refreshGradeAutomatically, noticeGradeInBackground, showGrade, interval, timeoutGrade, timeoutAllGrade, agree];
 
   factory Setting.defaultSetting() => Setting(
         refreshGradeAutomatically: false,

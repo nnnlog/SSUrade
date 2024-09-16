@@ -2,5 +2,5 @@ import 'package:ssurade_application/domain/model/absent_application/absent_appli
 import 'package:ssurade_application/domain/model/job/job.dart';
 
 abstract interface class ExternalAbsentApplicationRetrievalPort {
-  Job<AbsentApplicationManager> retrieveAbsentManager();
+  Job<AbsentApplicationManager?> retrieveAbsentManager();
 }

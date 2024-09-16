@@ -1,10 +1,13 @@
+import 'package:copy_with_extension/copy_with_extension.dart';
+import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:ssurade_application/domain/model/chapel/chapel_attendance_status.dart';
 
 part 'chapel_attendance.g.dart';
 
+@CopyWith()
 @JsonSerializable()
-class ChapelAttendance implements Comparable<ChapelAttendance> {
+class ChapelAttendance extends Equatable implements Comparable<ChapelAttendance> {
   @JsonKey()
   final ChapelAttendanceStatus attendance;
   @JsonKey()
@@ -32,6 +35,9 @@ class ChapelAttendance implements Comparable<ChapelAttendance> {
     this.lectureType = "",
     this.lecturer = "",
   });
+
+  @override
+  List<Object?> get props => [attendance, overwrittenAttendance, affiliation, lectureDate, lectureEtc, lectureName, lectureType, lecturer];
 
   ChapelAttendanceStatus get displayAttendance => overwrittenAttendance != ChapelAttendanceStatus.unknown ? overwrittenAttendance : attendance;
 

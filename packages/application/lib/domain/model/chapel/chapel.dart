@@ -1,6 +1,8 @@
 import 'dart:collection';
 import 'dart:core';
 
+import 'package:copy_with_extension/copy_with_extension.dart';
+import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:ssurade_application/domain/model/chapel/chapel_attendance.dart';
 import 'package:ssurade_application/domain/model/chapel/chapel_attendance_status.dart';
@@ -8,8 +10,9 @@ import 'package:ssurade_application/domain/model/semester/year_semester.dart';
 
 part 'chapel.g.dart';
 
+@CopyWith()
 @JsonSerializable(converters: [_DataConverter()])
-class Chapel implements Comparable<Chapel> {
+class Chapel extends Equatable implements Comparable<Chapel> {
   @JsonKey()
   final YearSemester currentSemester;
   @JsonKey()
@@ -34,6 +37,9 @@ class Chapel implements Comparable<Chapel> {
     this.floor = "",
     this.seatNo = "",
   });
+
+  @override
+  List<Object?> get props => [currentSemester, attendances, subjectCode, subjectPlace, subjectTime, floor, seatNo];
 
   int get absentCount => attendances.map((e) => e.displayAttendance == ChapelAttendanceStatus.absent ? 1 : 0).reduce((value, element) => value + element);
 

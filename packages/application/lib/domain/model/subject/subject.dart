@@ -1,10 +1,13 @@
+import 'package:copy_with_extension/copy_with_extension.dart';
+import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:ssurade_application/domain/model/subject/grade_table.dart';
 
 part 'subject.g.dart';
 
+@CopyWith()
 @JsonSerializable()
-class Subject implements Comparable<Subject> {
+class Subject extends Equatable implements Comparable<Subject> {
   @JsonKey()
   final String code; // 과목 번호
   @JsonKey()
@@ -57,6 +60,9 @@ class Subject implements Comparable<Subject> {
     if (credit != other.credit) return credit > other.credit ? -1 : 1; // 학점(credit) 높은 것부터
     return name.compareTo(other.name);
   }
+
+  @override
+  List<Object?> get props => [code, name, credit, grade, score, professor, category, isPassFail, info, detail];
 
 // static Subject? merge(Subject after, Subject before, int stateAfter, int stateBefore) {
 //   if (stateAfter | stateBefore != STATE_FULL) return null;

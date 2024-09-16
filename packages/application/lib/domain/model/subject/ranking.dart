@@ -1,9 +1,12 @@
+import 'package:copy_with_extension/copy_with_extension.dart';
+import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'ranking.g.dart';
 
+@CopyWith()
 @JsonSerializable()
-class Ranking {
+class Ranking extends Equatable {
   static const Ranking unknown = Ranking(my: 0, total: 0);
 
   @JsonKey()
@@ -15,6 +18,9 @@ class Ranking {
     required this.my,
     required this.total,
   });
+
+  @override
+  List<Object?> get props => [my, total];
 
   factory Ranking.fromJson(Map<String, dynamic> json) => _$RankingFromJson(json);
 

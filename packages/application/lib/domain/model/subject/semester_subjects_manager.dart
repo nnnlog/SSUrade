@@ -1,13 +1,16 @@
 import 'dart:collection';
 
+import 'package:copy_with_extension/copy_with_extension.dart';
+import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:ssurade_application/domain/model/semester/year_semester.dart';
 import 'package:ssurade_application/domain/model/subject/semester_subjects.dart';
 
 part 'semester_subjects_manager.g.dart';
 
+@CopyWith()
 @JsonSerializable(converters: [_DataConverter()])
-class SemesterSubjectsManager {
+class SemesterSubjectsManager extends Equatable {
   @JsonKey()
   final int state;
 
@@ -36,6 +39,9 @@ class SemesterSubjectsManager {
     }
     return ret;
   }
+
+  @override
+  List<Object?> get props => [state, data];
 
 // static SemesterSubjectsManager? merge(SemesterSubjectsManager after, SemesterSubjectsManager before) {
 //   if (after.state | before.state != STATE_FULL) return null;

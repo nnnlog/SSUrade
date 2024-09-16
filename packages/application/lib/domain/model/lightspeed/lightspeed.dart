@@ -1,9 +1,12 @@
+import 'package:copy_with_extension/copy_with_extension.dart';
+import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'lightspeed.g.dart';
 
+@CopyWith()
 @JsonSerializable()
-class Lightspeed {
+class Lightspeed extends Equatable {
   @JsonKey()
   final String version;
   @JsonKey()
@@ -13,6 +16,9 @@ class Lightspeed {
     required this.version,
     required this.data,
   });
+
+  @override
+  List<Object?> get props => [version, data];
 
   factory Lightspeed.fromJson(Map<String, dynamic> json) => _$LightspeedFromJson(json);
 

@@ -1,5 +1,7 @@
 import 'dart:collection';
 
+import 'package:copy_with_extension/copy_with_extension.dart';
+import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:ssurade_application/domain/model/semester/year_semester.dart';
 import 'package:ssurade_application/domain/model/subject/grade_table.dart';
@@ -8,8 +10,9 @@ import 'package:ssurade_application/domain/model/subject/subject.dart';
 
 part 'semester_subjects.g.dart';
 
+@CopyWith()
 @JsonSerializable(converters: [_DataConverter()])
-class SemesterSubjects {
+class SemesterSubjects extends Equatable {
   @JsonKey()
   final SplayTreeMap<String, Subject> subjects;
   @JsonKey()
@@ -95,6 +98,9 @@ class SemesterSubjects {
     if (totalCredit == 0) return 0;
     return ((totalGrade * 100) ~/ totalCredit) / 100;
   }
+
+  @override
+  List<Object?> get props => [subjects, semesterRanking, totalRanking, currentSemester];
 
 // static SemesterSubjects? merge(SemesterSubjects after, SemesterSubjects before, int stateAfter, int stateBefore) {
 //   if (stateAfter | stateBefore != STATE_FULL) return null;

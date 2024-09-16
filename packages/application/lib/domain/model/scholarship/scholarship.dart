@@ -1,10 +1,13 @@
+import 'package:copy_with_extension/copy_with_extension.dart';
+import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:ssurade_application/domain/model/semester/year_semester.dart';
 
 part 'scholarship.g.dart';
 
+@CopyWith()
 @JsonSerializable()
-class Scholarship {
+class Scholarship extends Equatable {
   @JsonKey()
   final YearSemester when; // 장학 처리 시기
   @JsonKey()
@@ -21,8 +24,10 @@ class Scholarship {
     required this.price,
   });
 
-  factory Scholarship.fromJson(Map<String, dynamic> json) =>
-      _$ScholarshipFromJson(json);
+  @override
+  List<Object?> get props => [when, name, process, price];
+
+  factory Scholarship.fromJson(Map<String, dynamic> json) => _$ScholarshipFromJson(json);
 
   Map<String, dynamic> toJson() => _$ScholarshipToJson(this);
 }
