@@ -85,14 +85,16 @@ class _$ChapelCWProxyImpl implements _$ChapelCWProxy {
     Object? seatNo = const $CopyWithPlaceholder(),
   }) {
     return Chapel(
-      currentSemester == const $CopyWithPlaceholder() || currentSemester == null
+      currentSemester: currentSemester == const $CopyWithPlaceholder() ||
+              currentSemester == null
           ? _value.currentSemester
           // ignore: cast_nullable_to_non_nullable
           : currentSemester as YearSemester,
-      attendances == const $CopyWithPlaceholder() || attendances == null
-          ? _value.attendances
-          // ignore: cast_nullable_to_non_nullable
-          : attendances as SplayTreeSet<ChapelAttendance>,
+      attendances:
+          attendances == const $CopyWithPlaceholder() || attendances == null
+              ? _value.attendances
+              // ignore: cast_nullable_to_non_nullable
+              : attendances as SplayTreeSet<ChapelAttendance>,
       subjectCode:
           subjectCode == const $CopyWithPlaceholder() || subjectCode == null
               ? _value.subjectCode
@@ -131,13 +133,14 @@ extension $ChapelCopyWith on Chapel {
 // **************************************************************************
 
 Chapel _$ChapelFromJson(Map<String, dynamic> json) => Chapel(
-      YearSemester.fromJson(json['currentSemester'] as Map<String, dynamic>),
-      const _DataConverter().fromJson(json['attendances'] as List),
-      subjectCode: json['subjectCode'] as String? ?? "",
-      subjectPlace: json['subjectPlace'] as String? ?? "",
-      subjectTime: json['subjectTime'] as String? ?? "",
-      floor: json['floor'] as String? ?? "",
-      seatNo: json['seatNo'] as String? ?? "",
+      currentSemester: YearSemester.fromJson(
+          json['currentSemester'] as Map<String, dynamic>),
+      attendances: const _DataConverter().fromJson(json['attendances'] as List),
+      subjectCode: json['subjectCode'] as String,
+      subjectPlace: json['subjectPlace'] as String,
+      subjectTime: json['subjectTime'] as String,
+      floor: json['floor'] as String,
+      seatNo: json['seatNo'] as String,
     );
 
 Map<String, dynamic> _$ChapelToJson(Chapel instance) => <String, dynamic>{

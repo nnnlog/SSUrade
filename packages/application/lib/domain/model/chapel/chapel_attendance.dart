@@ -26,14 +26,14 @@ class ChapelAttendance extends Equatable implements Comparable<ChapelAttendance>
   final String lecturer;
 
   const ChapelAttendance({
-    this.attendance = ChapelAttendanceStatus.unknown,
-    this.overwrittenAttendance = ChapelAttendanceStatus.unknown,
-    this.affiliation = "",
-    this.lectureDate = "",
-    this.lectureEtc = "",
-    this.lectureName = "",
-    this.lectureType = "",
-    this.lecturer = "",
+    required this.attendance,
+    required this.overwrittenAttendance,
+    required this.affiliation,
+    required this.lectureDate,
+    required this.lectureEtc,
+    required this.lectureName,
+    required this.lectureType,
+    required this.lecturer,
   });
 
   @override

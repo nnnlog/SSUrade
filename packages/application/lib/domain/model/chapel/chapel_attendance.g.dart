@@ -155,18 +155,16 @@ extension $ChapelAttendanceCopyWith on ChapelAttendance {
 
 ChapelAttendance _$ChapelAttendanceFromJson(Map<String, dynamic> json) =>
     ChapelAttendance(
-      attendance: $enumDecodeNullable(
-              _$ChapelAttendanceStatusEnumMap, json['attendance']) ??
-          ChapelAttendanceStatus.unknown,
-      overwrittenAttendance: $enumDecodeNullable(
-              _$ChapelAttendanceStatusEnumMap, json['overwrittenAttendance']) ??
-          ChapelAttendanceStatus.unknown,
-      affiliation: json['affiliation'] as String? ?? "",
-      lectureDate: json['lectureDate'] as String? ?? "",
-      lectureEtc: json['lectureEtc'] as String? ?? "",
-      lectureName: json['lectureName'] as String? ?? "",
-      lectureType: json['lectureType'] as String? ?? "",
-      lecturer: json['lecturer'] as String? ?? "",
+      attendance:
+          $enumDecode(_$ChapelAttendanceStatusEnumMap, json['attendance']),
+      overwrittenAttendance: $enumDecode(
+          _$ChapelAttendanceStatusEnumMap, json['overwrittenAttendance']),
+      affiliation: json['affiliation'] as String,
+      lectureDate: json['lectureDate'] as String,
+      lectureEtc: json['lectureEtc'] as String,
+      lectureName: json['lectureName'] as String,
+      lectureType: json['lectureType'] as String,
+      lecturer: json['lecturer'] as String,
     );
 
 Map<String, dynamic> _$ChapelAttendanceToJson(ChapelAttendance instance) =>

@@ -1,7 +1,6 @@
 import 'package:copy_with_extension/copy_with_extension.dart';
 import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
-// import 'package:quiver/core.dart';
 import 'package:ssurade_application/domain/model/semester/semester.dart';
 
 part 'year_semester.g.dart';

@@ -28,14 +28,14 @@ class Chapel extends Equatable implements Comparable<Chapel> {
   @JsonKey()
   final String seatNo;
 
-  const Chapel(
-    this.currentSemester,
-    this.attendances, {
-    this.subjectCode = "",
-    this.subjectPlace = "",
-    this.subjectTime = "",
-    this.floor = "",
-    this.seatNo = "",
+  const Chapel({
+    required this.currentSemester,
+    required this.attendances,
+    required this.subjectCode,
+    required this.subjectPlace,
+    required this.subjectTime,
+    required this.floor,
+    required this.seatNo,
   });
 
   @override
