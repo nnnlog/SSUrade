@@ -62,7 +62,8 @@ class SubjectDetailGrade extends CrawlingTask<Map<String, String>> {
 
     span = transaction.startChild("execute_js");
     var ret =
-        (((await controller.callAsyncJavaScript(functionBody: "return await ssurade.crawl.getGradeDetail('${search.year}', '${search.semester.keyValue}', '$subjectCode').catch(() => {});"))!.value) ??
+        (((await controller.callAsyncJavaScript(functionBody: "return await ssurade.crawl.getGradeDetail('${search.year}', '${search.semester.rawIntegerValue}', '$subjectCode').catch(() => {});"))!
+                    .value) ??
                 {"-": "성적이 입력되지 않았거나 상세 정보가 없어요."})
             .cast<String, String>();
     span.finish(status: const SpanStatus.ok());

@@ -1,41 +1,84 @@
+import 'dart:collection';
+
 import 'package:injectable/injectable.dart';
+import 'package:parallel_worker/parallel_worker.dart';
 import 'package:ssurade_adaptor/crawling/job/main_thread_crawling_job.dart';
+import 'package:ssurade_adaptor/crawling/webview/web_view_client.dart';
 import 'package:ssurade_adaptor/crawling/webview/web_view_client_service.dart';
 import 'package:ssurade_application/ssurade_application.dart';
 
-@singleton
-class ExternalAbsentApplicationService implements ExternalAbsentApplicationRetrievalPort {
+@Singleton(as: ExternalChapelManagerRetrievalPort)
+class ExternalChapelRetrievalService implements ExternalChapelManagerRetrievalPort {
   WebViewClientService _webViewClientService;
 
-  ExternalAbsentApplicationService(this._webViewClientService);
+  ExternalChapelRetrievalService(this._webViewClientService);
+
+  Future<Chapel?> _getChapel(WebViewClient client, YearSemester yearSemester) async {
+    return client.execute("return await ssurade.crawl.getChapelInformation('${yearSemester.year}', '${yearSemester.semester.rawIntegerValue}').catch(() => {});").then((res) {
+      var summary = res["summary"];
+      if (summary == null || res["attendance"].length == 0) {
+        return null;
+      }
+
+      return Chapel(
+        currentSemester: yearSemester,
+        subjectCode: summary["subject_code"],
+        subjectPlace: summary["subject_place"],
+        subjectTime: summary["subject_time"],
+        floor: summary["floor"],
+        seatNo: summary["seat_no"],
+        attendances: res["attendance"].map((e) {
+          return ChapelAttendance(
+            attendance: ChapelAttendanceStatus.from(e["attendance"]),
+            overwrittenAttendance: ChapelAttendanceStatus.unknown,
+            affiliation: e["affiliation"],
+            lectureDate: e["lecture_date"],
+            lectureEtc: e["lecture_etc"],
+            lectureName: e["lecture_name"],
+            lectureType: e["lecture_type"],
+            lecturer: e["lecturer"],
+          );
+        }).toList(),
+      );
+    });
+  }
+
+  static String get _url => "https://ecc.ssu.ac.kr/sap/bc/webdynpro/SAP/ZCMW3681?sap-language=KO";
+
+  static int get _webViewCount => 3;
 
   @override
-  Job<AbsentApplicationManager?> retrieveAbsentManager() {
+  Job<ChapelManager> retrieveChapels(List<YearSemester> yearSemesters) {
+    return MainThreadCrawlingJob(() async {
+      final clients = await Future.wait(List.filled(_webViewCount, null).map((_) {
+        return _webViewClientService.create();
+      }).toList());
+
+      await Future.wait(clients.map((client) => client.loadPage(_url)));
+
+      final chapels = await ParallelWorker(
+        jobs: yearSemesters.map((yearSemester) {
+          return (client) => _getChapel(client, yearSemester);
+        }).toList(),
+        workers: clients,
+      ).result;
+
+      clients.forEach((client) {
+        client.dispose();
+      });
+
+      return ChapelManager(SplayTreeSet.from(chapels));
+    });
+  }
+
+  @override
+  Job<Chapel?> retrieveChapel(YearSemester yearSemester) {
     return MainThreadCrawlingJob(() async {
       final client = await _webViewClientService.create();
 
-      await client.loadPage("https://ecc.ssu.ac.kr/sap/bc/webdynpro/SAP/ZCMW3683?sap-language=KO");
+      await client.loadPage(_url);
 
-      return await client.execute("return await ssurade.crawl.getAbsentApplicationInformation().catch(() => {});").then((res) {
-        if (!(res is List)) {
-          return null;
-        }
-
-        final result = res
-            .map((obj) => AbsentApplication(
-                  absentType: obj['absent_type'],
-                  startDate: obj['start_date'],
-                  endDate: obj['end_date'],
-                  absentCause: obj['absent_cause'],
-                  applicationDate: obj['application_date'],
-                  proceedDate: obj['proceed_date'],
-                  rejectCause: obj['reject_cause'],
-                  status: obj['status'],
-                ))
-            .toList();
-
-        return AbsentApplicationManager(result);
-      }).whenComplete(() {
+      return _getChapel(client, yearSemester).whenComplete(() {
         client.dispose();
       });
     });

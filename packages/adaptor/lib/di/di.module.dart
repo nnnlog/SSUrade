@@ -7,8 +7,10 @@
 import 'dart:async' as _i687;
 
 import 'package:injectable/injectable.dart' as _i526;
-import 'package:ssurade_adaptor/crawling/service/external_absent_application_service.dart'
-    as _i115;
+import 'package:ssurade_adaptor/crawling/service/external_absent_application_retrieval_service.dart'
+    as _i507;
+import 'package:ssurade_adaptor/crawling/service/external_chapel_retrieval_service.dart'
+    as _i984;
 import 'package:ssurade_adaptor/crawling/webview/web_view_client_service.dart'
     as _i722;
 import 'package:ssurade_adaptor/persistence/client/local_storage_client.dart'
@@ -112,9 +114,11 @@ class SsuradeAdaptorPackageModule extends _i526.MicroPackageModule {
           credentialSavePort: gh<_i67.LocalStorageCredentialSavePort>(),
           lightspeedRetrievalPort: gh<_i67.LightspeedRetrievalPort>(),
         ));
-    gh.singleton<_i115.ExternalAbsentApplicationService>(() =>
-        _i115.ExternalAbsentApplicationService(
+    gh.singleton<_i67.ExternalAbsentApplicationRetrievalPort>(() =>
+        _i507.ExternalAbsentApplicationRetrievalService(
             gh<_i722.WebViewClientService>()));
+    gh.singleton<_i67.ExternalChapelManagerRetrievalPort>(() =>
+        _i984.ExternalChapelRetrievalService(gh<_i722.WebViewClientService>()));
   }
 }
 

@@ -3,11 +3,11 @@ import 'package:ssurade_adaptor/crawling/job/main_thread_crawling_job.dart';
 import 'package:ssurade_adaptor/crawling/webview/web_view_client_service.dart';
 import 'package:ssurade_application/ssurade_application.dart';
 
-@singleton
-class ExternalAbsentApplicationService implements ExternalAbsentApplicationRetrievalPort {
+@Singleton(as: ExternalAbsentApplicationRetrievalPort)
+class ExternalAbsentApplicationRetrievalService implements ExternalAbsentApplicationRetrievalPort {
   WebViewClientService _webViewClientService;
 
-  ExternalAbsentApplicationService(this._webViewClientService);
+  ExternalAbsentApplicationRetrievalService(this._webViewClientService);
 
   @override
   Job<AbsentApplicationManager?> retrieveAbsentManager() {

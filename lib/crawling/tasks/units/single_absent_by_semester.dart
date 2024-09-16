@@ -47,7 +47,7 @@ class SingleAbsentBySemester extends CrawlingTask<List<AbsentApplicationInformat
 
     span = transaction.startChild("execute_js");
     var res = (await controller.callAsyncJavaScript(
-            functionBody: "return await ssurade.crawl.getAbsentApplicationInformation(${search == null ? "" : "'${search!.year}', '${search!.semester.keyValue}'"}).catch(() => {});"))!
+            functionBody: "return await ssurade.crawl.getAbsentApplicationInformation(${search == null ? "" : "'${search!.year}', '${search!.semester.rawIntegerValue}'"}).catch(() => {});"))!
         .value;
     span.finish(status: const SpanStatus.ok());
 

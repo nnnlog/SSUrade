@@ -53,7 +53,8 @@ class SingleGradeBySemester extends CrawlingTask<SemesterSubjects> {
 
     span = transaction.startChild("execute_js");
     var res = (await controller.callAsyncJavaScript(
-            functionBody: "return await ssurade.crawl.getGradeBySemester('${search.year}', '${search.semester.keyValue}', '${search.semester.textValue}', ${getRanking.toString()}).catch(() => {});"))!
+            functionBody:
+                "return await ssurade.crawl.getGradeBySemester('${search.year}', '${search.semester.rawIntegerValue}', '${search.semester.rawTextContent}', ${getRanking.toString()}).catch(() => {});"))!
         .value;
     span.finish(status: const SpanStatus.ok());
 

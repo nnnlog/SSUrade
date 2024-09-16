@@ -47,7 +47,8 @@ class SingleGradeBySemesterOldVersion extends CrawlingTask<SemesterSubjects> {
     }
 
     span = transaction.startChild("execute_js");
-    var res = (await controller.callAsyncJavaScript(functionBody: "return await ssurade.crawl.getGradeBySemesterOldVersion('${search.year}', '${search.semester.keyValue}').catch(() => {});"))!.value;
+    var res =
+        (await controller.callAsyncJavaScript(functionBody: "return await ssurade.crawl.getGradeBySemesterOldVersion('${search.year}', '${search.semester.rawIntegerValue}').catch(() => {});"))!.value;
     span.finish(status: const SpanStatus.ok());
 
     SemesterSubjects result = SemesterSubjects(SplayTreeMap(), search, Ranking.unknown, Ranking.unknown);

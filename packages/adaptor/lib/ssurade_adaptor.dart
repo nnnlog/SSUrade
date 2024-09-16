@@ -5,7 +5,8 @@
 // if you want to update your packages on power: dart pub upgrade --major-versions
 
 export 'package:ssurade_adaptor/crawling/job/main_thread_crawling_job.dart';
-export 'package:ssurade_adaptor/crawling/service/external_absent_application_service.dart';
+export 'package:ssurade_adaptor/crawling/service/external_absent_application_retrieval_service.dart';
+export 'package:ssurade_adaptor/crawling/service/external_chapel_retrieval_service.dart';
 export 'package:ssurade_adaptor/crawling/webview/islolate_client.dart';
 export 'package:ssurade_adaptor/crawling/webview/web_view_client.dart';
 export 'package:ssurade_adaptor/crawling/webview/web_view_client_service.dart';

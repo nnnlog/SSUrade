@@ -48,7 +48,7 @@ class SingleChapelBySemester extends CrawlingTask<ChapelInformation> {
     }
 
     span = transaction.startChild("execute_js");
-    var res = (await controller.callAsyncJavaScript(functionBody: "return await ssurade.crawl.getChapelInformation('${search.year}', '${search.semester.keyValue}').catch(() => {});"))!.value;
+    var res = (await controller.callAsyncJavaScript(functionBody: "return await ssurade.crawl.getChapelInformation('${search.year}', '${search.semester.rawIntegerValue}').catch(() => {});"))!.value;
     var summary = res["summary"];
     span.finish(status: const SpanStatus.ok());
 

@@ -10,6 +10,9 @@ dependencies:
   ssurade_application:
     path: ../application
 
+  parallel_worker:
+    path: ../parallel_worker
+
   injectable: ^2.4.4
   get_it: ^7.7.0
   path_provider: ^2.1.4
