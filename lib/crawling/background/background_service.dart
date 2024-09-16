@@ -2,7 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:logger/logger.dart';
 import 'package:ssurade/crawling/common/crawler.dart';
 import 'package:ssurade/globals.dart' as globals;
-import 'package:ssurade/types/chapel/chapel_attendance.dart';
+import 'package:ssurade/types/chapel/chapel_attendance_status.dart';
 import 'package:ssurade/types/semester/semester.dart';
 import 'package:ssurade/types/semester/year_semester.dart';
 import 'package:ssurade/utils/notification.dart';

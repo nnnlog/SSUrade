@@ -3,7 +3,7 @@ import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:ssurade/components/common/custom_app_bar.dart';
 import 'package:ssurade/crawling/common/crawler.dart';
 import 'package:ssurade/globals.dart' as globals;
-import 'package:ssurade/types/absent/absent_application_information.dart';
+import 'package:ssurade/types/absent/absent_application.dart';
 import 'package:ssurade/types/etc/progress.dart';
 import 'package:ssurade/utils/toast.dart';
 import 'package:tuple/tuple.dart';

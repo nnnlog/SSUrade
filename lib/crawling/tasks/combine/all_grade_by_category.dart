@@ -33,7 +33,7 @@ class AllGradeByCategory extends CrawlingTask<SemesterSubjectsManager> {
     var gradeData = await Crawler.extractDataFromViewer(viewerUrl, parentTransaction: transaction).directExecute(Queue()..add(controller));
 
     span = transaction.startChild("finalizing_data");
-    var ret = SemesterSubjectsManager(SplayTreeMap(), STATE_CATEGORY);
+    var ret = SemesterSubjectsManager(SplayTreeMap(), category);
     for (var _data in gradeData.rows) {
       Map<String, String> data = {};
       for (var key in _data.keys) {

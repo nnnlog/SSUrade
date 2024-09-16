@@ -5,12 +5,12 @@ import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 import 'package:ssurade/crawling/common/crawling_task.dart';
 import 'package:ssurade/crawling/common/webview_controller_extension.dart';
-import 'package:ssurade/crawling/error/no_data_exception.dart';
 import 'package:ssurade/globals.dart' as globals;
+import 'package:ssurade/types/chapel/chapel.dart';
 import 'package:ssurade/types/chapel/chapel_attendance.dart';
-import 'package:ssurade/types/chapel/chapel_attendance_information.dart';
-import 'package:ssurade/types/chapel/chapel_information.dart';
+import 'package:ssurade/types/chapel/chapel_attendance_status.dart';
 import 'package:ssurade/types/semester/year_semester.dart';
+import 'package:ssurade_application/domain/model/error/no_data_exception.dart';
 
 class SingleChapelBySemester extends CrawlingTask<ChapelInformation> {
   YearSemester search;
@@ -52,7 +52,7 @@ class SingleChapelBySemester extends CrawlingTask<ChapelInformation> {
     var summary = res["summary"];
     span.finish(status: const SpanStatus.ok());
 
-    if (summary == null || res["attendance"].length == 0) throw NoDataException();
+    if (summary == null || res["attendance"].length == 0) throw EmptyDataException();
 
     span = transaction.startChild("finalizing_data");
 

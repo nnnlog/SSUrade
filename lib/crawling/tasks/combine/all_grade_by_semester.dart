@@ -37,7 +37,7 @@ class AllGradeBySemester extends CrawlingTask<SemesterSubjectsManager> {
 
     if (map.isEmpty) map = await Crawler.gradeSemesterList(parentTransaction: transaction).directExecute(Queue()..add(controller));
 
-    result = SemesterSubjectsManager(SplayTreeMap.from({}), STATE_SEMESTER);
+    result = SemesterSubjectsManager(SplayTreeMap.from({}), semester);
 
     for (var key in map.keys) {
       var tmp = await Crawler.singleGradeBySemester(

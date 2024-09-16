@@ -5,10 +5,10 @@ import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 import 'package:ssurade/crawling/common/crawling_task.dart';
 import 'package:ssurade/crawling/common/webview_controller_extension.dart';
-import 'package:ssurade/crawling/error/no_data_exception.dart';
 import 'package:ssurade/globals.dart' as globals;
-import 'package:ssurade/types/absent/absent_application_information.dart';
+import 'package:ssurade/types/absent/absent_application.dart';
 import 'package:ssurade/types/semester/year_semester.dart';
+import 'package:ssurade_application/domain/model/error/no_data_exception.dart';
 
 class SingleAbsentBySemester extends CrawlingTask<List<AbsentApplicationInformation>> {
   YearSemester? search;
@@ -51,7 +51,7 @@ class SingleAbsentBySemester extends CrawlingTask<List<AbsentApplicationInformat
         .value;
     span.finish(status: const SpanStatus.ok());
 
-    if (res == null) throw NoDataException();
+    if (res == null) throw EmptyDataException();
 
     span = transaction.startChild("finalizing_data");
 

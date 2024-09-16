@@ -172,7 +172,7 @@ class _SettingPageState extends State<SettingPage> {
                             SemesterSubjectsManager res;
                             try {
                               res = await Crawler.allGrade().execute();
-                              if (res.state != STATE_FULL) throw Exception();
+                              if (res.state != full) throw Exception();
                             } catch (_) {
                               showToast("성적 정보를 가져오지 못했어요.\n다시 시도해주세요.");
                               return;

@@ -12,6 +12,9 @@ dependencies:
   flutter:
     sdk: flutter
 
+  ssurade_application:
+    path: ./packages/application
+
   cupertino_icons: ^1.0.8
   flutter_inappwebview: ^6.0.0
   path_provider: ^2.1.4

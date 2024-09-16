@@ -4,11 +4,11 @@ import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:ssurade/components/common/custom_app_bar.dart';
 import 'package:ssurade/components/common/key_value_data.dart';
 import 'package:ssurade/crawling/common/crawler.dart';
-import 'package:ssurade/crawling/error/no_data_exception.dart';
 import 'package:ssurade/globals.dart' as globals;
 import 'package:ssurade/types/etc/progress.dart';
 import 'package:ssurade/types/scholarship/scholarship_manager.dart';
 import 'package:ssurade/utils/toast.dart';
+import 'package:ssurade_application/domain/model/error/no_data_exception.dart';
 
 class ScholarshipPage extends StatefulWidget {
   const ScholarshipPage({super.key});
@@ -32,7 +32,7 @@ class _ScholarshipPage extends State<ScholarshipPage> {
     try {
       ScholarshipManager data = await Crawler.getScholarship().execute();
 
-      if (data.isEmpty) throw NoDataException();
+      if (data.isEmpty) throw EmptyDataException();
 
       globals.scholarshipManager = data;
       globals.scholarshipManager.saveFile();

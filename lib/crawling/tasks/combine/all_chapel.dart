@@ -6,11 +6,11 @@ import 'package:sentry_flutter/sentry_flutter.dart';
 import 'package:ssurade/crawling/common/crawler.dart';
 import 'package:ssurade/crawling/common/crawling_task.dart';
 import 'package:ssurade/crawling/common/webview_controller_extension.dart';
-import 'package:ssurade/crawling/error/no_data_exception.dart';
-import 'package:ssurade/types/chapel/chapel_information.dart';
-import 'package:ssurade/types/chapel/chapel_information_manager.dart';
+import 'package:ssurade/types/chapel/chapel.dart';
+import 'package:ssurade/types/chapel/chapel_manager.dart';
 import 'package:ssurade/types/semester/semester.dart';
 import 'package:ssurade/types/semester/year_semester.dart';
+import 'package:ssurade_application/domain/model/error/no_data_exception.dart';
 
 class AllChapel extends CrawlingTask<ChapelInformationManager> {
   List<YearSemester> search;
@@ -73,7 +73,7 @@ class AllChapel extends CrawlingTask<ChapelInformationManager> {
 
         for (var current in inputs) {
           ret.data.add(await Crawler.singleChapelBySemester(current, reloadPage: false, parentTransaction: transaction).directExecute(Queue()..add(controller)).catchError((e) {
-            if (e is NoDataException) {
+            if (e is EmptyDataException) {
               return dump;
             }
           }));

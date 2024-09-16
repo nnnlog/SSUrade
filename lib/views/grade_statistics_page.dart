@@ -29,7 +29,7 @@ class _GradeStatisticsPageState extends State<GradeStatisticsPage> {
     }
     for (var value in globals.semesterSubjectsManager.data.values) {
       for (var subject in value.subjects.values) {
-        if (subject.isExcluded) continue;
+        if (subject.excluded) continue;
         subjects.add(subject);
       }
     }

@@ -25,7 +25,7 @@ class _StatisticsPageState extends State<StatisticsPage> with SingleTickerProvid
     Map<String, List<Tuple2<Subject, YearSemester>>> ret = {};
     for (var value in globals.semesterSubjectsManager.data.values) {
       for (var subject in value.subjects.values) {
-        if (!subject.isExcluded) {
+        if (!subject.excluded) {
           if (!ret.containsKey(subject.category)) ret[subject.category] = [];
           if (!ret.containsKey(key1)) ret[key1] = [];
           ret[subject.category]!.add(Tuple2(subject, value.currentSemester));
@@ -109,13 +109,13 @@ class _StatisticsPageState extends State<StatisticsPage> with SingleTickerProvid
                           showBottomBorder: true,
                           columns: [DataColumn(label: Container()), DataColumn(label: Container())],
                           rows: [
-                            Tuple2("이수 과목 수", data[key]!.map((e) => e.item1.isExcluded ? 0 : 1).reduce((value, element) => value + element).toString()),
-                            Tuple2("이수 학점 수", data[key]!.map((e) => e.item1.isExcluded ? 0 : e.item1.credit).reduce((value, element) => value + element).toString()),
-                            Tuple2("P/F 제외 이수 학점 수", data[key]!.map((e) => e.item1.isExcluded || e.item1.isPassFail ? 0 : e.item1.credit).reduce((value, element) => value + element).toString()),
+                            Tuple2("이수 과목 수", data[key]!.map((e) => e.item1.excluded ? 0 : 1).reduce((value, element) => value + element).toString()),
+                            Tuple2("이수 학점 수", data[key]!.map((e) => e.item1.excluded ? 0 : e.item1.credit).reduce((value, element) => value + element).toString()),
+                            Tuple2("P/F 제외 이수 학점 수", data[key]!.map((e) => e.item1.excluded || e.item1.isPassFail ? 0 : e.item1.credit).reduce((value, element) => value + element).toString()),
                             Tuple2(
                               "평점",
                               SemesterSubjects(SplayTreeMap.fromIterable(
-                                ([...data[key]!]..removeWhere((element) => element.item1.isExcluded)),
+                                ([...data[key]!]..removeWhere((element) => element.item1.excluded)),
                                 key: (e) => e.hashCode.toString(),
                                 value: (e) => e.item1,
                               )).averageGrade.toStringAsFixed(2),
@@ -176,7 +176,7 @@ class _StatisticsPageState extends State<StatisticsPage> with SingleTickerProvid
                               .toList(),
                           rows: data[key]!
                               .map((e) => DataRow(
-                                    onLongPress: e.item1.isExcluded
+                                    onLongPress: e.item1.excluded
                                         ? () {
                                             showToast("졸업 사정에서 제외된 수강 기록이에요.");
                                           }
@@ -200,7 +200,7 @@ class _StatisticsPageState extends State<StatisticsPage> with SingleTickerProvid
                                             e.item1.name,
                                             textAlign: TextAlign.center,
                                             softWrap: true,
-                                            style: TextStyle(decoration: e.item1.isExcluded ? TextDecoration.lineThrough : TextDecoration.none),
+                                            style: TextStyle(decoration: e.item1.excluded ? TextDecoration.lineThrough : TextDecoration.none),
                                           ),
                                         ),
                                       ),
@@ -211,7 +211,7 @@ class _StatisticsPageState extends State<StatisticsPage> with SingleTickerProvid
                                             e.item1.credit.toStringAsFixed(1),
                                             textAlign: TextAlign.center,
                                             softWrap: true,
-                                            style: TextStyle(decoration: e.item1.isExcluded ? TextDecoration.lineThrough : TextDecoration.none),
+                                            style: TextStyle(decoration: e.item1.excluded ? TextDecoration.lineThrough : TextDecoration.none),
                                           ),
                                         ),
                                       ),
@@ -222,7 +222,7 @@ class _StatisticsPageState extends State<StatisticsPage> with SingleTickerProvid
                                             e.item1.grade,
                                             textAlign: TextAlign.center,
                                             softWrap: true,
-                                            style: TextStyle(decoration: e.item1.isExcluded ? TextDecoration.lineThrough : TextDecoration.none),
+                                            style: TextStyle(decoration: e.item1.excluded ? TextDecoration.lineThrough : TextDecoration.none),
                                           ),
                                         ),
                                       ),

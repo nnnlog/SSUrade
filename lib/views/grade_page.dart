@@ -64,7 +64,7 @@ class _GradePageState extends State<GradePage> {
       await Future.wait(futures);
 
       if (data3.data.containsKey(search)) {
-        SemesterSubjects.merge(data1, data3.data[search]!, STATE_SEMESTER, STATE_CATEGORY);
+        SemesterSubjects.merge(data1, data3.data[search]!, semester, category);
       }
 
       for (var subjectCode in data2.keys) {
