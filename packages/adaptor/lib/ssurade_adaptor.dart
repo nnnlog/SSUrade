@@ -5,6 +5,7 @@
 // if you want to update your packages on power: dart pub upgrade --major-versions
 
 export 'package:ssurade_adaptor/application/app_version_fetch_service.dart';
+export 'package:ssurade_adaptor/application/background/background_process_service.dart';
 export 'package:ssurade_adaptor/application/notification_service.dart';
 export 'package:ssurade_adaptor/application/toast_service.dart';
 export 'package:ssurade_adaptor/crawling/job/main_thread_crawling_job.dart';

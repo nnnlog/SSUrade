@@ -8,6 +8,7 @@ import 'dart:async' as _i687;
 
 import 'package:injectable/injectable.dart' as _i526;
 import 'package:ssurade_adaptor/application/app_version_fetch_service.dart' as _i159;
+import 'package:ssurade_adaptor/application/background/background_process_service.dart' as _i909;
 import 'package:ssurade_adaptor/application/notification_service.dart' as _i762;
 import 'package:ssurade_adaptor/crawling/service/external_absent_application_retrieval_service.dart' as _i507;
 import 'package:ssurade_adaptor/crawling/service/external_chapel_retrieval_service.dart' as _i984;
@@ -26,6 +27,7 @@ import 'package:ssurade_adaptor/persistence/service/local_storage_scholarship_ma
 import 'package:ssurade_adaptor/persistence/service/local_storage_semester_subjects_manager_service.dart' as _i388;
 import 'package:ssurade_adaptor/persistence/service/local_storage_setting_service.dart' as _i86;
 import 'package:ssurade_application/port/out/application/app_version_fetch_port.dart' as _i747;
+import 'package:ssurade_application/port/out/application/background_process_port.dart' as _i194;
 import 'package:ssurade_application/port/out/application/notification_port.dart' as _i77;
 import 'package:ssurade_application/port/out/external/external_credential_retrieval_port.dart' as _i1067;
 import 'package:ssurade_application/ssurade_application.dart' as _i67;
@@ -66,6 +68,7 @@ class SsuradeAdaptorPackageModule extends _i526.MicroPackageModule {
       preResolve: true,
     );
     gh.singleton<_i747.AppVersionFetchPort>(() => _i159.AppVersionFetchService());
+    gh.singleton<_i194.BackgroundProcessPort>(() => _i909.BackgroundProcessService());
     gh.singleton<_i1004.LocalStorageChapelManagerService>(() => _i1004.LocalStorageChapelManagerService(gh<_i289.LocalStorageClient>()));
     gh.singleton<_i86.LocalStorageSettingService>(() => _i86.LocalStorageSettingService(gh<_i289.LocalStorageClient>()));
     gh.singleton<_i109.LocalStorageScholarshipManagerService>(() => _i109.LocalStorageScholarshipManagerService(gh<_i289.LocalStorageClient>()));
