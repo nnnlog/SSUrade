@@ -36,20 +36,16 @@ class _$SemesterSubjectsCWProxyImpl implements _$SemesterSubjectsCWProxy {
   final SemesterSubjects _value;
 
   @override
-  SemesterSubjects subjects(SplayTreeMap<String, Subject> subjects) =>
-      this(subjects: subjects);
+  SemesterSubjects subjects(SplayTreeMap<String, Subject> subjects) => this(subjects: subjects);
 
   @override
-  SemesterSubjects semesterRanking(Ranking semesterRanking) =>
-      this(semesterRanking: semesterRanking);
+  SemesterSubjects semesterRanking(Ranking semesterRanking) => this(semesterRanking: semesterRanking);
 
   @override
-  SemesterSubjects totalRanking(Ranking totalRanking) =>
-      this(totalRanking: totalRanking);
+  SemesterSubjects totalRanking(Ranking totalRanking) => this(totalRanking: totalRanking);
 
   @override
-  SemesterSubjects currentSemester(YearSemester currentSemester) =>
-      this(currentSemester: currentSemester);
+  SemesterSubjects currentSemester(YearSemester currentSemester) => this(currentSemester: currentSemester);
 
   @override
 
@@ -70,18 +66,15 @@ class _$SemesterSubjectsCWProxyImpl implements _$SemesterSubjectsCWProxy {
           ? _value.subjects
           // ignore: cast_nullable_to_non_nullable
           : subjects as SplayTreeMap<String, Subject>,
-      semesterRanking: semesterRanking == const $CopyWithPlaceholder() ||
-              semesterRanking == null
+      semesterRanking: semesterRanking == const $CopyWithPlaceholder() || semesterRanking == null
           ? _value.semesterRanking
           // ignore: cast_nullable_to_non_nullable
           : semesterRanking as Ranking,
-      totalRanking:
-          totalRanking == const $CopyWithPlaceholder() || totalRanking == null
-              ? _value.totalRanking
-              // ignore: cast_nullable_to_non_nullable
-              : totalRanking as Ranking,
-      currentSemester: currentSemester == const $CopyWithPlaceholder() ||
-              currentSemester == null
+      totalRanking: totalRanking == const $CopyWithPlaceholder() || totalRanking == null
+          ? _value.totalRanking
+          // ignore: cast_nullable_to_non_nullable
+          : totalRanking as Ranking,
+      currentSemester: currentSemester == const $CopyWithPlaceholder() || currentSemester == null
           ? _value.currentSemester
           // ignore: cast_nullable_to_non_nullable
           : currentSemester as YearSemester,
@@ -99,19 +92,14 @@ extension $SemesterSubjectsCopyWith on SemesterSubjects {
 // JsonSerializableGenerator
 // **************************************************************************
 
-SemesterSubjects _$SemesterSubjectsFromJson(Map<String, dynamic> json) =>
-    SemesterSubjects(
+SemesterSubjects _$SemesterSubjectsFromJson(Map<String, dynamic> json) => SemesterSubjects(
       subjects: const _DataConverter().fromJson(json['subjects'] as List),
-      semesterRanking:
-          Ranking.fromJson(json['semesterRanking'] as Map<String, dynamic>),
-      totalRanking:
-          Ranking.fromJson(json['totalRanking'] as Map<String, dynamic>),
-      currentSemester: YearSemester.fromJson(
-          json['currentSemester'] as Map<String, dynamic>),
+      semesterRanking: Ranking.fromJson(json['semesterRanking'] as Map<String, dynamic>),
+      totalRanking: Ranking.fromJson(json['totalRanking'] as Map<String, dynamic>),
+      currentSemester: YearSemester.fromJson(json['currentSemester'] as Map<String, dynamic>),
     );
 
-Map<String, dynamic> _$SemesterSubjectsToJson(SemesterSubjects instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$SemesterSubjectsToJson(SemesterSubjects instance) => <String, dynamic>{
       'subjects': const _DataConverter().toJson(instance.subjects),
       'semesterRanking': instance.semesterRanking,
       'totalRanking': instance.totalRanking,

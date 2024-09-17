@@ -81,7 +81,7 @@ class WebViewClient {
 
   static List<WebUri> get _cookieDomains => [WebUri("https://.ssu.ac.kr"), WebUri("https://ecc.ssu.ac.kr")];
 
-  Future<List<Cookie>> get _cookies async {
+  Future<List<Cookie>> get cookies async {
     final controller = _controller;
     List<Cookie> cookies = [];
     for (var url in _cookieDomains) {
@@ -90,24 +90,29 @@ class WebViewClient {
     return cookies;
   }
 
+  Future<String> get url => _controller.getUrl().then((url) => url.toString());
+
   Future<void> loadPage(String url) async {
     final controller = _controller;
 
-    for (var url in _cookieDomains) {
-      await CookieManager.instance().deleteCookies(url: url, webViewController: controller);
-    }
-
-    await _credentialRetrievalPort.retrieveCredential().then((credential) async {
-      if (credential != null) {
-        final cookies = credential.cookies.map((raw) => Cookie.fromMap(raw)).whereType<Cookie>().toList();
-        for (final cookie in cookies) {
-          await CookieManager.instance().setCookie(url: WebUri("https://${cookie.domain}"), name: cookie.name, value: cookie.value, domain: cookie.domain, webViewController: controller);
-        }
+    // load cookie from credential
+    await run(() async {
+      for (var url in _cookieDomains) {
+        await CookieManager.instance().deleteCookies(url: url, webViewController: controller);
       }
+
+      await _credentialRetrievalPort.retrieveCredential().then((credential) async {
+        if (credential != null) {
+          final cookies = credential.cookies.map((raw) => Cookie.fromMap(raw)).whereType<Cookie>().toList();
+          for (final cookie in cookies) {
+            await CookieManager.instance().setCookie(url: WebUri("https://${cookie.domain}"), name: cookie.name, value: cookie.value, domain: cookie.domain, webViewController: controller);
+          }
+        }
+      });
     });
 
     final response = await http.get(Uri.parse(url), headers: {
-      "Cookie": (await _cookies).map((c) => c.toString()).join("; "),
+      "Cookie": (await cookies).map((c) => c.toString()).join("; "),
       "User-Agent": HttpConfiguration.userAgent,
     });
 

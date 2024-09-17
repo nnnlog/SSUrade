@@ -9,8 +9,7 @@ part of 'chapel_attendance.dart';
 abstract class _$ChapelAttendanceCWProxy {
   ChapelAttendance attendance(ChapelAttendanceStatus attendance);
 
-  ChapelAttendance overwrittenAttendance(
-      ChapelAttendanceStatus overwrittenAttendance);
+  ChapelAttendance overwrittenAttendance(ChapelAttendanceStatus overwrittenAttendance);
 
   ChapelAttendance affiliation(String affiliation);
 
@@ -49,33 +48,25 @@ class _$ChapelAttendanceCWProxyImpl implements _$ChapelAttendanceCWProxy {
   final ChapelAttendance _value;
 
   @override
-  ChapelAttendance attendance(ChapelAttendanceStatus attendance) =>
-      this(attendance: attendance);
+  ChapelAttendance attendance(ChapelAttendanceStatus attendance) => this(attendance: attendance);
 
   @override
-  ChapelAttendance overwrittenAttendance(
-          ChapelAttendanceStatus overwrittenAttendance) =>
-      this(overwrittenAttendance: overwrittenAttendance);
+  ChapelAttendance overwrittenAttendance(ChapelAttendanceStatus overwrittenAttendance) => this(overwrittenAttendance: overwrittenAttendance);
 
   @override
-  ChapelAttendance affiliation(String affiliation) =>
-      this(affiliation: affiliation);
+  ChapelAttendance affiliation(String affiliation) => this(affiliation: affiliation);
 
   @override
-  ChapelAttendance lectureDate(String lectureDate) =>
-      this(lectureDate: lectureDate);
+  ChapelAttendance lectureDate(String lectureDate) => this(lectureDate: lectureDate);
 
   @override
-  ChapelAttendance lectureEtc(String lectureEtc) =>
-      this(lectureEtc: lectureEtc);
+  ChapelAttendance lectureEtc(String lectureEtc) => this(lectureEtc: lectureEtc);
 
   @override
-  ChapelAttendance lectureName(String lectureName) =>
-      this(lectureName: lectureName);
+  ChapelAttendance lectureName(String lectureName) => this(lectureName: lectureName);
 
   @override
-  ChapelAttendance lectureType(String lectureType) =>
-      this(lectureType: lectureType);
+  ChapelAttendance lectureType(String lectureType) => this(lectureType: lectureType);
 
   @override
   ChapelAttendance lecturer(String lecturer) => this(lecturer: lecturer);
@@ -99,42 +90,34 @@ class _$ChapelAttendanceCWProxyImpl implements _$ChapelAttendanceCWProxy {
     Object? lecturer = const $CopyWithPlaceholder(),
   }) {
     return ChapelAttendance(
-      attendance:
-          attendance == const $CopyWithPlaceholder() || attendance == null
-              ? _value.attendance
-              // ignore: cast_nullable_to_non_nullable
-              : attendance as ChapelAttendanceStatus,
-      overwrittenAttendance:
-          overwrittenAttendance == const $CopyWithPlaceholder() ||
-                  overwrittenAttendance == null
-              ? _value.overwrittenAttendance
-              // ignore: cast_nullable_to_non_nullable
-              : overwrittenAttendance as ChapelAttendanceStatus,
-      affiliation:
-          affiliation == const $CopyWithPlaceholder() || affiliation == null
-              ? _value.affiliation
-              // ignore: cast_nullable_to_non_nullable
-              : affiliation as String,
-      lectureDate:
-          lectureDate == const $CopyWithPlaceholder() || lectureDate == null
-              ? _value.lectureDate
-              // ignore: cast_nullable_to_non_nullable
-              : lectureDate as String,
-      lectureEtc:
-          lectureEtc == const $CopyWithPlaceholder() || lectureEtc == null
-              ? _value.lectureEtc
-              // ignore: cast_nullable_to_non_nullable
-              : lectureEtc as String,
-      lectureName:
-          lectureName == const $CopyWithPlaceholder() || lectureName == null
-              ? _value.lectureName
-              // ignore: cast_nullable_to_non_nullable
-              : lectureName as String,
-      lectureType:
-          lectureType == const $CopyWithPlaceholder() || lectureType == null
-              ? _value.lectureType
-              // ignore: cast_nullable_to_non_nullable
-              : lectureType as String,
+      attendance: attendance == const $CopyWithPlaceholder() || attendance == null
+          ? _value.attendance
+          // ignore: cast_nullable_to_non_nullable
+          : attendance as ChapelAttendanceStatus,
+      overwrittenAttendance: overwrittenAttendance == const $CopyWithPlaceholder() || overwrittenAttendance == null
+          ? _value.overwrittenAttendance
+          // ignore: cast_nullable_to_non_nullable
+          : overwrittenAttendance as ChapelAttendanceStatus,
+      affiliation: affiliation == const $CopyWithPlaceholder() || affiliation == null
+          ? _value.affiliation
+          // ignore: cast_nullable_to_non_nullable
+          : affiliation as String,
+      lectureDate: lectureDate == const $CopyWithPlaceholder() || lectureDate == null
+          ? _value.lectureDate
+          // ignore: cast_nullable_to_non_nullable
+          : lectureDate as String,
+      lectureEtc: lectureEtc == const $CopyWithPlaceholder() || lectureEtc == null
+          ? _value.lectureEtc
+          // ignore: cast_nullable_to_non_nullable
+          : lectureEtc as String,
+      lectureName: lectureName == const $CopyWithPlaceholder() || lectureName == null
+          ? _value.lectureName
+          // ignore: cast_nullable_to_non_nullable
+          : lectureName as String,
+      lectureType: lectureType == const $CopyWithPlaceholder() || lectureType == null
+          ? _value.lectureType
+          // ignore: cast_nullable_to_non_nullable
+          : lectureType as String,
       lecturer: lecturer == const $CopyWithPlaceholder() || lecturer == null
           ? _value.lecturer
           // ignore: cast_nullable_to_non_nullable
@@ -153,12 +136,9 @@ extension $ChapelAttendanceCopyWith on ChapelAttendance {
 // JsonSerializableGenerator
 // **************************************************************************
 
-ChapelAttendance _$ChapelAttendanceFromJson(Map<String, dynamic> json) =>
-    ChapelAttendance(
-      attendance:
-          $enumDecode(_$ChapelAttendanceStatusEnumMap, json['attendance']),
-      overwrittenAttendance: $enumDecode(
-          _$ChapelAttendanceStatusEnumMap, json['overwrittenAttendance']),
+ChapelAttendance _$ChapelAttendanceFromJson(Map<String, dynamic> json) => ChapelAttendance(
+      attendance: $enumDecode(_$ChapelAttendanceStatusEnumMap, json['attendance']),
+      overwrittenAttendance: $enumDecode(_$ChapelAttendanceStatusEnumMap, json['overwrittenAttendance']),
       affiliation: json['affiliation'] as String,
       lectureDate: json['lectureDate'] as String,
       lectureEtc: json['lectureEtc'] as String,
@@ -167,11 +147,9 @@ ChapelAttendance _$ChapelAttendanceFromJson(Map<String, dynamic> json) =>
       lecturer: json['lecturer'] as String,
     );
 
-Map<String, dynamic> _$ChapelAttendanceToJson(ChapelAttendance instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$ChapelAttendanceToJson(ChapelAttendance instance) => <String, dynamic>{
       'attendance': _$ChapelAttendanceStatusEnumMap[instance.attendance]!,
-      'overwrittenAttendance':
-          _$ChapelAttendanceStatusEnumMap[instance.overwrittenAttendance]!,
+      'overwrittenAttendance': _$ChapelAttendanceStatusEnumMap[instance.overwrittenAttendance]!,
       'affiliation': instance.affiliation,
       'lectureDate': instance.lectureDate,
       'lectureEtc': instance.lectureEtc,

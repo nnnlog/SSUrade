@@ -4,9 +4,13 @@
 // publish your package hint: dart pub publish --dry-run
 // if you want to update your packages on power: dart pub upgrade --major-versions
 
+export 'package:ssurade_adaptor/application/app_version_fetch_service.dart';
+export 'package:ssurade_adaptor/application/notification_service.dart';
+export 'package:ssurade_adaptor/application/toast_service.dart';
 export 'package:ssurade_adaptor/crawling/job/main_thread_crawling_job.dart';
 export 'package:ssurade_adaptor/crawling/service/external_absent_application_retrieval_service.dart';
 export 'package:ssurade_adaptor/crawling/service/external_chapel_retrieval_service.dart';
+export 'package:ssurade_adaptor/crawling/service/external_credential_retrieval_service.dart';
 export 'package:ssurade_adaptor/crawling/service/external_scholarship_manager_retrieval_service.dart';
 export 'package:ssurade_adaptor/crawling/service/external_subject_retrieval_service.dart';
 export 'package:ssurade_adaptor/crawling/webview/islolate_client.dart';

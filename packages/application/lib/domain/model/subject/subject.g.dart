@@ -132,11 +132,10 @@ class _$SubjectCWProxyImpl implements _$SubjectCWProxy {
           ? _value.category
           // ignore: cast_nullable_to_non_nullable
           : category as String,
-      isPassFail:
-          isPassFail == const $CopyWithPlaceholder() || isPassFail == null
-              ? _value.isPassFail
-              // ignore: cast_nullable_to_non_nullable
-              : isPassFail as bool,
+      isPassFail: isPassFail == const $CopyWithPlaceholder() || isPassFail == null
+          ? _value.isPassFail
+          // ignore: cast_nullable_to_non_nullable
+          : isPassFail as bool,
       info: info == const $CopyWithPlaceholder() || info == null
           ? _value.info
           // ignore: cast_nullable_to_non_nullable

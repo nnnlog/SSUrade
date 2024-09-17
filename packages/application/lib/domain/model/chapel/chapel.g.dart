@@ -45,12 +45,10 @@ class _$ChapelCWProxyImpl implements _$ChapelCWProxy {
   final Chapel _value;
 
   @override
-  Chapel currentSemester(YearSemester currentSemester) =>
-      this(currentSemester: currentSemester);
+  Chapel currentSemester(YearSemester currentSemester) => this(currentSemester: currentSemester);
 
   @override
-  Chapel attendances(SplayTreeSet<ChapelAttendance> attendances) =>
-      this(attendances: attendances);
+  Chapel attendances(SplayTreeSet<ChapelAttendance> attendances) => this(attendances: attendances);
 
   @override
   Chapel subjectCode(String subjectCode) => this(subjectCode: subjectCode);
@@ -85,31 +83,26 @@ class _$ChapelCWProxyImpl implements _$ChapelCWProxy {
     Object? seatNo = const $CopyWithPlaceholder(),
   }) {
     return Chapel(
-      currentSemester: currentSemester == const $CopyWithPlaceholder() ||
-              currentSemester == null
+      currentSemester: currentSemester == const $CopyWithPlaceholder() || currentSemester == null
           ? _value.currentSemester
           // ignore: cast_nullable_to_non_nullable
           : currentSemester as YearSemester,
-      attendances:
-          attendances == const $CopyWithPlaceholder() || attendances == null
-              ? _value.attendances
-              // ignore: cast_nullable_to_non_nullable
-              : attendances as SplayTreeSet<ChapelAttendance>,
-      subjectCode:
-          subjectCode == const $CopyWithPlaceholder() || subjectCode == null
-              ? _value.subjectCode
-              // ignore: cast_nullable_to_non_nullable
-              : subjectCode as String,
-      subjectPlace:
-          subjectPlace == const $CopyWithPlaceholder() || subjectPlace == null
-              ? _value.subjectPlace
-              // ignore: cast_nullable_to_non_nullable
-              : subjectPlace as String,
-      subjectTime:
-          subjectTime == const $CopyWithPlaceholder() || subjectTime == null
-              ? _value.subjectTime
-              // ignore: cast_nullable_to_non_nullable
-              : subjectTime as String,
+      attendances: attendances == const $CopyWithPlaceholder() || attendances == null
+          ? _value.attendances
+          // ignore: cast_nullable_to_non_nullable
+          : attendances as SplayTreeSet<ChapelAttendance>,
+      subjectCode: subjectCode == const $CopyWithPlaceholder() || subjectCode == null
+          ? _value.subjectCode
+          // ignore: cast_nullable_to_non_nullable
+          : subjectCode as String,
+      subjectPlace: subjectPlace == const $CopyWithPlaceholder() || subjectPlace == null
+          ? _value.subjectPlace
+          // ignore: cast_nullable_to_non_nullable
+          : subjectPlace as String,
+      subjectTime: subjectTime == const $CopyWithPlaceholder() || subjectTime == null
+          ? _value.subjectTime
+          // ignore: cast_nullable_to_non_nullable
+          : subjectTime as String,
       floor: floor == const $CopyWithPlaceholder() || floor == null
           ? _value.floor
           // ignore: cast_nullable_to_non_nullable
@@ -133,8 +126,7 @@ extension $ChapelCopyWith on Chapel {
 // **************************************************************************
 
 Chapel _$ChapelFromJson(Map<String, dynamic> json) => Chapel(
-      currentSemester: YearSemester.fromJson(
-          json['currentSemester'] as Map<String, dynamic>),
+      currentSemester: YearSemester.fromJson(json['currentSemester'] as Map<String, dynamic>),
       attendances: const _DataConverter().fromJson(json['attendances'] as List),
       subjectCode: json['subjectCode'] as String,
       subjectPlace: json['subjectPlace'] as String,

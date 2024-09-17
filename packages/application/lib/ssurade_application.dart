@@ -6,6 +6,7 @@
 
 export 'package:ssurade_application/domain/model/absent_application/absent_application.dart';
 export 'package:ssurade_application/domain/model/absent_application/absent_application_manager.dart';
+export 'package:ssurade_application/domain/model/application/app_version.dart';
 export 'package:ssurade_application/domain/model/chapel/chapel.dart';
 export 'package:ssurade_application/domain/model/chapel/chapel_attendance.dart';
 export 'package:ssurade_application/domain/model/chapel/chapel_attendance_status.dart';
@@ -27,8 +28,12 @@ export 'package:ssurade_application/domain/model/subject/semester_subjects.dart'
 export 'package:ssurade_application/domain/model/subject/semester_subjects_manager.dart';
 export 'package:ssurade_application/domain/model/subject/state.dart';
 export 'package:ssurade_application/domain/model/subject/subject.dart';
+export 'package:ssurade_application/port/out/application/app_version_fetch_port.dart';
+export 'package:ssurade_application/port/out/application/notification_port.dart';
+export 'package:ssurade_application/port/out/application/toast_port.dart';
 export 'package:ssurade_application/port/out/external/external_absent_application_retrieval_port.dart';
 export 'package:ssurade_application/port/out/external/external_chapel_retrieval_port.dart';
+export 'package:ssurade_application/port/out/external/external_credential_retrieval_port.dart';
 export 'package:ssurade_application/port/out/external/external_scholarship_manager_retrieval_port.dart';
 export 'package:ssurade_application/port/out/external/external_subject_retrieval_port.dart';
 export 'package:ssurade_application/port/out/lightspeed_retrieval_port.dart';

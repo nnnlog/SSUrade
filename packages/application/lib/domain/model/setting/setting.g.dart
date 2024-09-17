@@ -45,12 +45,10 @@ class _$SettingCWProxyImpl implements _$SettingCWProxy {
   final Setting _value;
 
   @override
-  Setting refreshGradeAutomatically(bool refreshGradeAutomatically) =>
-      this(refreshGradeAutomatically: refreshGradeAutomatically);
+  Setting refreshGradeAutomatically(bool refreshGradeAutomatically) => this(refreshGradeAutomatically: refreshGradeAutomatically);
 
   @override
-  Setting noticeGradeInBackground(bool noticeGradeInBackground) =>
-      this(noticeGradeInBackground: noticeGradeInBackground);
+  Setting noticeGradeInBackground(bool noticeGradeInBackground) => this(noticeGradeInBackground: noticeGradeInBackground);
 
   @override
   Setting showGrade(bool showGrade) => this(showGrade: showGrade);
@@ -62,8 +60,7 @@ class _$SettingCWProxyImpl implements _$SettingCWProxy {
   Setting timeoutGrade(int timeoutGrade) => this(timeoutGrade: timeoutGrade);
 
   @override
-  Setting timeoutAllGrade(int timeoutAllGrade) =>
-      this(timeoutAllGrade: timeoutAllGrade);
+  Setting timeoutAllGrade(int timeoutAllGrade) => this(timeoutAllGrade: timeoutAllGrade);
 
   @override
   Setting agree(bool agree) => this(agree: agree);
@@ -86,18 +83,14 @@ class _$SettingCWProxyImpl implements _$SettingCWProxy {
     Object? agree = const $CopyWithPlaceholder(),
   }) {
     return Setting(
-      refreshGradeAutomatically:
-          refreshGradeAutomatically == const $CopyWithPlaceholder() ||
-                  refreshGradeAutomatically == null
-              ? _value.refreshGradeAutomatically
-              // ignore: cast_nullable_to_non_nullable
-              : refreshGradeAutomatically as bool,
-      noticeGradeInBackground:
-          noticeGradeInBackground == const $CopyWithPlaceholder() ||
-                  noticeGradeInBackground == null
-              ? _value.noticeGradeInBackground
-              // ignore: cast_nullable_to_non_nullable
-              : noticeGradeInBackground as bool,
+      refreshGradeAutomatically: refreshGradeAutomatically == const $CopyWithPlaceholder() || refreshGradeAutomatically == null
+          ? _value.refreshGradeAutomatically
+          // ignore: cast_nullable_to_non_nullable
+          : refreshGradeAutomatically as bool,
+      noticeGradeInBackground: noticeGradeInBackground == const $CopyWithPlaceholder() || noticeGradeInBackground == null
+          ? _value.noticeGradeInBackground
+          // ignore: cast_nullable_to_non_nullable
+          : noticeGradeInBackground as bool,
       showGrade: showGrade == const $CopyWithPlaceholder() || showGrade == null
           ? _value.showGrade
           // ignore: cast_nullable_to_non_nullable
@@ -106,13 +99,11 @@ class _$SettingCWProxyImpl implements _$SettingCWProxy {
           ? _value.interval
           // ignore: cast_nullable_to_non_nullable
           : interval as int,
-      timeoutGrade:
-          timeoutGrade == const $CopyWithPlaceholder() || timeoutGrade == null
-              ? _value.timeoutGrade
-              // ignore: cast_nullable_to_non_nullable
-              : timeoutGrade as int,
-      timeoutAllGrade: timeoutAllGrade == const $CopyWithPlaceholder() ||
-              timeoutAllGrade == null
+      timeoutGrade: timeoutGrade == const $CopyWithPlaceholder() || timeoutGrade == null
+          ? _value.timeoutGrade
+          // ignore: cast_nullable_to_non_nullable
+          : timeoutGrade as int,
+      timeoutAllGrade: timeoutAllGrade == const $CopyWithPlaceholder() || timeoutAllGrade == null
           ? _value.timeoutAllGrade
           // ignore: cast_nullable_to_non_nullable
           : timeoutAllGrade as int,
