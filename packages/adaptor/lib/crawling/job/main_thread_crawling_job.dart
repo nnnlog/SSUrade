@@ -15,7 +15,7 @@ class MainThreadCrawlingJob<T> extends Job<T> {
 
   @override
   void cancel() {
-    throw UnimplementedError("cancel() is not available in CrawlingJob");
+    throw UnimplementedError("cancel() is not available in MainThreadCrawlingJob");
   }
 
   @override

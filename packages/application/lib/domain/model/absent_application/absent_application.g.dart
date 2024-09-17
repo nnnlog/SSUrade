@@ -48,7 +48,8 @@ class _$AbsentApplicationCWProxyImpl implements _$AbsentApplicationCWProxy {
   final AbsentApplication _value;
 
   @override
-  AbsentApplication absentType(String absentType) => this(absentType: absentType);
+  AbsentApplication absentType(String absentType) =>
+      this(absentType: absentType);
 
   @override
   AbsentApplication startDate(String startDate) => this(startDate: startDate);
@@ -57,16 +58,20 @@ class _$AbsentApplicationCWProxyImpl implements _$AbsentApplicationCWProxy {
   AbsentApplication endDate(String endDate) => this(endDate: endDate);
 
   @override
-  AbsentApplication absentCause(String absentCause) => this(absentCause: absentCause);
+  AbsentApplication absentCause(String absentCause) =>
+      this(absentCause: absentCause);
 
   @override
-  AbsentApplication applicationDate(String applicationDate) => this(applicationDate: applicationDate);
+  AbsentApplication applicationDate(String applicationDate) =>
+      this(applicationDate: applicationDate);
 
   @override
-  AbsentApplication proceedDate(String proceedDate) => this(proceedDate: proceedDate);
+  AbsentApplication proceedDate(String proceedDate) =>
+      this(proceedDate: proceedDate);
 
   @override
-  AbsentApplication rejectCause(String rejectCause) => this(rejectCause: rejectCause);
+  AbsentApplication rejectCause(String rejectCause) =>
+      this(rejectCause: rejectCause);
 
   @override
   AbsentApplication status(String status) => this(status: status);
@@ -90,10 +95,11 @@ class _$AbsentApplicationCWProxyImpl implements _$AbsentApplicationCWProxy {
     Object? status = const $CopyWithPlaceholder(),
   }) {
     return AbsentApplication(
-      absentType: absentType == const $CopyWithPlaceholder() || absentType == null
-          ? _value.absentType
-          // ignore: cast_nullable_to_non_nullable
-          : absentType as String,
+      absentType:
+          absentType == const $CopyWithPlaceholder() || absentType == null
+              ? _value.absentType
+              // ignore: cast_nullable_to_non_nullable
+              : absentType as String,
       startDate: startDate == const $CopyWithPlaceholder() || startDate == null
           ? _value.startDate
           // ignore: cast_nullable_to_non_nullable
@@ -102,22 +108,26 @@ class _$AbsentApplicationCWProxyImpl implements _$AbsentApplicationCWProxy {
           ? _value.endDate
           // ignore: cast_nullable_to_non_nullable
           : endDate as String,
-      absentCause: absentCause == const $CopyWithPlaceholder() || absentCause == null
-          ? _value.absentCause
-          // ignore: cast_nullable_to_non_nullable
-          : absentCause as String,
-      applicationDate: applicationDate == const $CopyWithPlaceholder() || applicationDate == null
+      absentCause:
+          absentCause == const $CopyWithPlaceholder() || absentCause == null
+              ? _value.absentCause
+              // ignore: cast_nullable_to_non_nullable
+              : absentCause as String,
+      applicationDate: applicationDate == const $CopyWithPlaceholder() ||
+              applicationDate == null
           ? _value.applicationDate
           // ignore: cast_nullable_to_non_nullable
           : applicationDate as String,
-      proceedDate: proceedDate == const $CopyWithPlaceholder() || proceedDate == null
-          ? _value.proceedDate
-          // ignore: cast_nullable_to_non_nullable
-          : proceedDate as String,
-      rejectCause: rejectCause == const $CopyWithPlaceholder() || rejectCause == null
-          ? _value.rejectCause
-          // ignore: cast_nullable_to_non_nullable
-          : rejectCause as String,
+      proceedDate:
+          proceedDate == const $CopyWithPlaceholder() || proceedDate == null
+              ? _value.proceedDate
+              // ignore: cast_nullable_to_non_nullable
+              : proceedDate as String,
+      rejectCause:
+          rejectCause == const $CopyWithPlaceholder() || rejectCause == null
+              ? _value.rejectCause
+              // ignore: cast_nullable_to_non_nullable
+              : rejectCause as String,
       status: status == const $CopyWithPlaceholder() || status == null
           ? _value.status
           // ignore: cast_nullable_to_non_nullable
@@ -129,14 +139,16 @@ class _$AbsentApplicationCWProxyImpl implements _$AbsentApplicationCWProxy {
 extension $AbsentApplicationCopyWith on AbsentApplication {
   /// Returns a callable class that can be used as follows: `instanceOfAbsentApplication.copyWith(...)` or like so:`instanceOfAbsentApplication.copyWith.fieldName(...)`.
   // ignore: library_private_types_in_public_api
-  _$AbsentApplicationCWProxy get copyWith => _$AbsentApplicationCWProxyImpl(this);
+  _$AbsentApplicationCWProxy get copyWith =>
+      _$AbsentApplicationCWProxyImpl(this);
 }
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-AbsentApplication _$AbsentApplicationFromJson(Map<String, dynamic> json) => AbsentApplication(
+AbsentApplication _$AbsentApplicationFromJson(Map<String, dynamic> json) =>
+    AbsentApplication(
       absentType: json['absentType'] as String,
       startDate: json['startDate'] as String,
       endDate: json['endDate'] as String,
@@ -147,7 +159,8 @@ AbsentApplication _$AbsentApplicationFromJson(Map<String, dynamic> json) => Abse
       status: json['status'] as String,
     );
 
-Map<String, dynamic> _$AbsentApplicationToJson(AbsentApplication instance) => <String, dynamic>{
+Map<String, dynamic> _$AbsentApplicationToJson(AbsentApplication instance) =>
+    <String, dynamic>{
       'absentType': instance.absentType,
       'startDate': instance.startDate,
       'endDate': instance.endDate,

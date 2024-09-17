@@ -4,12 +4,12 @@ import 'package:ssurade_application/domain/model/subject/semester_subjects.dart'
 import 'package:ssurade_application/domain/model/subject/semester_subjects_manager.dart';
 
 abstract interface class ExternalSubjectRetrievalPort {
-  Job<SemesterSubjects> retrieveSemesterSubjects(
+  Job<SemesterSubjects?> retrieveSemesterSubjects(
     YearSemester yearSemester, {
-    bool includeDetail = false,
+    bool includeDetail = true,
   });
 
-  Job<SemesterSubjectsManager> retrieveAllSemesterSubjects({
-    bool includeDetail = false,
+  Job<SemesterSubjectsManager?> retrieveAllSemesterSubjects({
+    bool includeDetail = true,
   });
 }

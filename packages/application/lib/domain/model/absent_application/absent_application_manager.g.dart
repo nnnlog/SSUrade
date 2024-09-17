@@ -21,13 +21,15 @@ abstract class _$AbsentApplicationManagerCWProxy {
 }
 
 /// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfAbsentApplicationManager.copyWith(...)`. Additionally contains functions for specific fields e.g. `instanceOfAbsentApplicationManager.copyWith.fieldName(...)`
-class _$AbsentApplicationManagerCWProxyImpl implements _$AbsentApplicationManagerCWProxy {
+class _$AbsentApplicationManagerCWProxyImpl
+    implements _$AbsentApplicationManagerCWProxy {
   const _$AbsentApplicationManagerCWProxyImpl(this._value);
 
   final AbsentApplicationManager _value;
 
   @override
-  AbsentApplicationManager data(List<AbsentApplication> data) => this(data: data);
+  AbsentApplicationManager data(List<AbsentApplication> data) =>
+      this(data: data);
 
   @override
 
@@ -52,17 +54,24 @@ class _$AbsentApplicationManagerCWProxyImpl implements _$AbsentApplicationManage
 extension $AbsentApplicationManagerCopyWith on AbsentApplicationManager {
   /// Returns a callable class that can be used as follows: `instanceOfAbsentApplicationManager.copyWith(...)` or like so:`instanceOfAbsentApplicationManager.copyWith.fieldName(...)`.
   // ignore: library_private_types_in_public_api
-  _$AbsentApplicationManagerCWProxy get copyWith => _$AbsentApplicationManagerCWProxyImpl(this);
+  _$AbsentApplicationManagerCWProxy get copyWith =>
+      _$AbsentApplicationManagerCWProxyImpl(this);
 }
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-AbsentApplicationManager _$AbsentApplicationManagerFromJson(Map<String, dynamic> json) => AbsentApplicationManager(
-      (json['data'] as List<dynamic>).map((e) => AbsentApplication.fromJson(e as Map<String, dynamic>)).toList(),
+AbsentApplicationManager _$AbsentApplicationManagerFromJson(
+        Map<String, dynamic> json) =>
+    AbsentApplicationManager(
+      (json['data'] as List<dynamic>)
+          .map((e) => AbsentApplication.fromJson(e as Map<String, dynamic>))
+          .toList(),
     );
 
-Map<String, dynamic> _$AbsentApplicationManagerToJson(AbsentApplicationManager instance) => <String, dynamic>{
+Map<String, dynamic> _$AbsentApplicationManagerToJson(
+        AbsentApplicationManager instance) =>
+    <String, dynamic>{
       'data': instance.data,
     };

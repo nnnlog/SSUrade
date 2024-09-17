@@ -5,6 +5,7 @@ import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:ssurade_application/domain/model/semester/year_semester.dart';
 import 'package:ssurade_application/domain/model/subject/semester_subjects.dart';
+import 'package:ssurade_application/domain/model/subject/state.dart';
 
 part 'semester_subjects_manager.g.dart';
 
@@ -43,25 +44,21 @@ class SemesterSubjectsManager extends Equatable {
   @override
   List<Object?> get props => [state, data];
 
-// static SemesterSubjectsManager? merge(SemesterSubjectsManager after, SemesterSubjectsManager before) {
-//   if (after.state | before.state != STATE_FULL) return null;
-//   SemesterSubjectsManager ret = SemesterSubjectsManager(SplayTreeMap(), STATE_FULL);
-//   for (var key in after.data.keys) {
-//     if (before.data.containsKey(key)) {
-//       ret.data[key] = SemesterSubjects.merge(after.data[key]!, before.data[key]!, after.state, before.state)!;
-//     }
-//   }
-//   return ret;
-// }
-//
-// static SemesterSubjectsManager? merges(List<SemesterSubjectsManager> list) {
-//   if (list.isEmpty) return null;
-//   var result = list.removeLast();
-//   while (list.isNotEmpty) {
-//     result = SemesterSubjectsManager.merge(list.removeLast(), result)!;
-//   }
-//   return result;
-// }
+  static SemesterSubjectsManager? merge(SemesterSubjectsManager after, SemesterSubjectsManager before) {
+    if (after.state | before.state != SubjectState.full) return null;
+    return after.copyWith(
+      data: SplayTreeMap.fromIterable(
+        after.data.values.map((value) {
+          var key = value.currentSemester;
+          if (before.data.containsKey(key)) {
+            return SemesterSubjects.merge(after.data[key]!, before.data[key]!, after.state, before.state);
+          }
+          return value;
+        }),
+        key: (value) => value.currentSemester,
+      ),
+    );
+  }
 }
 
 class _DataConverter extends JsonConverter<SplayTreeMap<YearSemester, SemesterSubjects>, List<dynamic>> {

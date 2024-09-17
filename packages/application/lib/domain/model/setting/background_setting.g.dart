@@ -27,7 +27,8 @@ class _$BackgroundSettingCWProxyImpl implements _$BackgroundSettingCWProxy {
   final BackgroundSetting _value;
 
   @override
-  BackgroundSetting notificationId(int notificationId) => this(notificationId: notificationId);
+  BackgroundSetting notificationId(int notificationId) =>
+      this(notificationId: notificationId);
 
   @override
 
@@ -52,17 +53,20 @@ class _$BackgroundSettingCWProxyImpl implements _$BackgroundSettingCWProxy {
 extension $BackgroundSettingCopyWith on BackgroundSetting {
   /// Returns a callable class that can be used as follows: `instanceOfBackgroundSetting.copyWith(...)` or like so:`instanceOfBackgroundSetting.copyWith.fieldName(...)`.
   // ignore: library_private_types_in_public_api
-  _$BackgroundSettingCWProxy get copyWith => _$BackgroundSettingCWProxyImpl(this);
+  _$BackgroundSettingCWProxy get copyWith =>
+      _$BackgroundSettingCWProxyImpl(this);
 }
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-BackgroundSetting _$BackgroundSettingFromJson(Map<String, dynamic> json) => BackgroundSetting(
+BackgroundSetting _$BackgroundSettingFromJson(Map<String, dynamic> json) =>
+    BackgroundSetting(
       (json['notificationId'] as num).toInt(),
     );
 
-Map<String, dynamic> _$BackgroundSettingToJson(BackgroundSetting instance) => <String, dynamic>{
+Map<String, dynamic> _$BackgroundSettingToJson(BackgroundSetting instance) =>
+    <String, dynamic>{
       'notificationId': instance.notificationId,
     };

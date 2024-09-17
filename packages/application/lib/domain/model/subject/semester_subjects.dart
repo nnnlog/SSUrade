@@ -6,6 +6,7 @@ import 'package:json_annotation/json_annotation.dart';
 import 'package:ssurade_application/domain/model/semester/year_semester.dart';
 import 'package:ssurade_application/domain/model/subject/grade_table.dart';
 import 'package:ssurade_application/domain/model/subject/ranking.dart';
+import 'package:ssurade_application/domain/model/subject/state.dart';
 import 'package:ssurade_application/domain/model/subject/subject.dart';
 
 part 'semester_subjects.g.dart';
@@ -102,22 +103,21 @@ class SemesterSubjects extends Equatable {
   @override
   List<Object?> get props => [subjects, semesterRanking, totalRanking, currentSemester];
 
-// static SemesterSubjects? merge(SemesterSubjects after, SemesterSubjects before, int stateAfter, int stateBefore) {
-//   if (stateAfter | stateBefore != STATE_FULL) return null;
-//
-//   for (var key in after.subjects.keys) {
-//     if (before.subjects.containsKey(key)) {
-//       after.subjects[key] = Subject.merge(after.subjects[key]!, before.subjects[key]!, stateAfter, stateBefore)!;
-//     }
-//   }
-//
-//   if ((stateAfter & STATE_SEMESTER == 0) && (stateBefore & STATE_SEMESTER > 0)) {
-//     if (before.semesterRanking.isNotEmpty) after.semesterRanking = before.semesterRanking;
-//     if (before.totalRanking.isNotEmpty) after.totalRanking = before.totalRanking;
-//   }
-//
-//   return after;
-// }
+  static SemesterSubjects? merge(SemesterSubjects after, SemesterSubjects before, int stateAfter, int stateBefore) {
+    if (stateAfter | stateBefore != SubjectState.full) return null;
+    return after.copyWith(
+      subjects: SplayTreeMap.fromIterable(
+        after.subjects.values.map((value) {
+          final key = value.code;
+          if (before.subjects.containsKey(key)) {
+            return Subject.merge(after.subjects[key]!, before.subjects[key]!, stateAfter, stateBefore);
+          }
+          return value;
+        }).whereType<Subject>(),
+        key: (e) => e.code,
+      ),
+    );
+  }
 }
 
 class _DataConverter extends JsonConverter<SplayTreeMap<String, Subject>, List<dynamic>> {

@@ -2,6 +2,7 @@ import 'package:copy_with_extension/copy_with_extension.dart';
 import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:ssurade_application/domain/model/subject/grade_table.dart';
+import 'package:ssurade_application/domain/model/subject/state.dart';
 
 part 'subject.g.dart';
 
@@ -64,30 +65,31 @@ class Subject extends Equatable implements Comparable<Subject> {
   @override
   List<Object?> get props => [code, name, credit, grade, score, professor, category, isPassFail, info, detail];
 
-// static Subject? merge(Subject after, Subject before, int stateAfter, int stateBefore) {
-//   if (stateAfter | stateBefore != STATE_FULL) return null;
-//
-//   // 성적 상세 조회
-//   if (after.detail.isEmpty) after.detail = before.detail;
-//
-//   if (stateAfter == STATE_FULL) return after;
-//
-//   // 이수구분별 성적 조회
-//   if ((stateAfter & STATE_CATEGORY > 0) && (stateBefore & STATE_SEMESTER > 0)) {
-//     if (after.name.isEmpty) after.name = before.name;
-//     if (after.professor.isEmpty) after.professor = before.professor;
-//     if (after.grade.isEmpty) after.grade = before.grade; // 성적 입력 기간
-//     if (after.score.isEmpty) after.score = before.score; // Pass 과목
-//   }
-//
-//   // 학기별 성적 조회
-//   if ((stateAfter & STATE_SEMESTER > 0) && (stateBefore & STATE_CATEGORY > 0)) {
-//     if (after.category.isEmpty) after.category = before.category;
-//     after.isPassFail = before.isPassFail;
-//     after.info = before.info;
-//     if (after.credit == 0) after.credit = before.credit; // 성적 미입력 기간 (이수구분별 성적표 우선)
-//   }
-//
-//   return after;
-// }
+  static Subject? merge(Subject after, Subject before, int stateAfter, int stateBefore) {
+    if ((stateAfter | stateBefore) != SubjectState.full) return null;
+
+    if (stateAfter == SubjectState.full) return after;
+
+    // 이수구분별 성적 조회 <- 학기별 성적 조회
+    if ((stateAfter & SubjectState.category > 0) && (stateBefore & SubjectState.semester > 0)) {
+      return after.copyWith(
+        name: before.name.isEmpty ? after.name : before.name,
+        professor: before.professor.isEmpty ? after.professor : before.professor,
+        grade: before.grade.isEmpty ? after.grade : before.grade,
+        score: before.score.isEmpty ? after.score : before.score,
+      );
+    }
+
+    // 학기별 성적 조회 <- 이수구분별 성적 조회
+    if ((stateAfter & SubjectState.semester > 0) && (stateBefore & SubjectState.category > 0)) {
+      return after.copyWith(
+        category: before.category.isEmpty ? after.category : before.category,
+        isPassFail: before.isPassFail ? after.isPassFail : before.isPassFail,
+        info: before.info.isEmpty ? after.info : before.info,
+        credit: before.credit == 0 ? after.credit : before.credit,
+      );
+    }
+
+    return null;
+  }
 }

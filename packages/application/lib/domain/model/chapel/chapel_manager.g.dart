@@ -59,10 +59,12 @@ extension $ChapelManagerCopyWith on ChapelManager {
 // JsonSerializableGenerator
 // **************************************************************************
 
-ChapelManager _$ChapelManagerFromJson(Map<String, dynamic> json) => ChapelManager(
+ChapelManager _$ChapelManagerFromJson(Map<String, dynamic> json) =>
+    ChapelManager(
       const _DataConverter().fromJson(json['data'] as List),
     );
 
-Map<String, dynamic> _$ChapelManagerToJson(ChapelManager instance) => <String, dynamic>{
+Map<String, dynamic> _$ChapelManagerToJson(ChapelManager instance) =>
+    <String, dynamic>{
       'data': const _DataConverter().toJson(instance.data),
     };

@@ -75,7 +75,8 @@ Lightspeed _$LightspeedFromJson(Map<String, dynamic> json) => Lightspeed(
       data: json['data'] as String,
     );
 
-Map<String, dynamic> _$LightspeedToJson(Lightspeed instance) => <String, dynamic>{
+Map<String, dynamic> _$LightspeedToJson(Lightspeed instance) =>
+    <String, dynamic>{
       'version': instance.version,
       'data': instance.data,
     };
