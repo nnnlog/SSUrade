@@ -3,11 +3,11 @@
 
 ## 설치
 * [Play Store](https://play.google.com/store/apps/details?id=com.nnnlog.ssurade)
-* 곧 iOS 지원을 시작합니다.
+* App Store (TBD)
 * [Github Release](https://github.com/nnnlog/ssurade/releases)
 
 ## 사용법
-* Read [Usage.md](./USAGE.md)
+* [Usage.md](./USAGE.md)를 읽어주세요.
 
 ## 빌드 방법
 
@@ -56,7 +56,7 @@ SENTRY_AUTH_TOKEN=<token> SENTRY_ORG=<org> SENTRY_PROJECT=<project name> flutter
 
 ## 개발 가이드
 * SSUrade는 여려분의 기여를 환영합니다!
-* PRD와 Tech Spec은 [Notion 문서](https://nnnlog.notion.site/SSUrade-Document-102cdd9e958680b58c59f6f80d6b9292?pvs=74)에서 확인할 수 있습니다.
+* PRD와 Tech Spec은 [SSUrade 문서](https://ssurade.nlog.dev)에서 확인할 수 있습니다.
 
 ### 프로젝트 구조
 * TBD
@@ -64,11 +64,12 @@ SENTRY_AUTH_TOKEN=<token> SENTRY_ORG=<org> SENTRY_PROJECT=<project name> flutter
 ### 자동 생성되는 코드
 * SSUrade는 JSON Serailization, Injectable 등을 사용하고 있습니다.
 * 해당 어노테이션이 있는 파일을 수정한 경우, 다음 명령어를 실행하여 코드를 자동으로 생성하세요.
+* 루트 디렉토리, `packages/adaptor`, `packages/application` 디렉토리 각각에 대해서 명령어를 실행해야 합니다.
 ```shell
 dart run build_runner build
 ```
 
 #### Setup Analytics (Firebase)
 ```shell
-flutterfire configure --project=<Firbase project id>
+flutterfire configure --project=<Firebase project id>
 ```
