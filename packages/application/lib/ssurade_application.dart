@@ -28,8 +28,10 @@ export 'package:ssurade_application/domain/model/subject/semester_subjects.dart'
 export 'package:ssurade_application/domain/model/subject/semester_subjects_manager.dart';
 export 'package:ssurade_application/domain/model/subject/state.dart';
 export 'package:ssurade_application/domain/model/subject/subject.dart';
+export 'package:ssurade_application/domain/service/background/background_process_service.dart';
+export 'package:ssurade_application/port/in/background/background_process_use_case.dart';
 export 'package:ssurade_application/port/out/application/app_version_fetch_port.dart';
-export 'package:ssurade_application/port/out/application/background_process_port.dart';
+export 'package:ssurade_application/port/out/application/background_process_management_port.dart';
 export 'package:ssurade_application/port/out/application/notification_port.dart';
 export 'package:ssurade_application/port/out/application/toast_port.dart';
 export 'package:ssurade_application/port/out/external/external_absent_application_retrieval_port.dart';

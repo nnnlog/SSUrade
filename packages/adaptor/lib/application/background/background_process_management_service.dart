@@ -1,19 +1,23 @@
 import 'package:injectable/injectable.dart';
-import 'package:ssurade_application/port/out/application/background_process_port.dart';
+import 'package:ssurade_adaptor/di/di.dart';
+import 'package:ssurade_application/port/in/background/background_process_use_case.dart';
+import 'package:ssurade_application/port/out/application/background_process_management_port.dart';
 import 'package:workmanager/workmanager.dart';
-
-part 'background_chapel.dart';
 
 @pragma("vm:entry-point")
 void _backgroundServiceMain() {
   Workmanager().executeTask((_, __) async {
     try {
+      await configureDependencies();
+
+      final backgroundProcessUseCase = getIt<BackgroundProcessUseCase>();
+
       var futures = [
-        // _fetchGrade(),
-        // fetchChapel(),
-        _fetchChapel(),
-        // fetchScholarship(),
-        // fetchAbsent(),
+        backgroundProcessUseCase.fetchGrade(),
+        backgroundProcessUseCase.fetchChapel(),
+        backgroundProcessUseCase.fetchNewChapel(),
+        backgroundProcessUseCase.fetchScholarship(),
+        backgroundProcessUseCase.fetchAbsent(),
       ];
 
       await Future.wait(futures).catchError((e) => throw e);
@@ -25,14 +29,14 @@ void _backgroundServiceMain() {
   });
 }
 
-@Singleton(as: BackgroundProcessPort)
-class BackgroundProcessService implements BackgroundProcessPort {
+@Singleton(as: BackgroundProcessManagementPort)
+class BackgroundProcessManagementService implements BackgroundProcessManagementPort {
   static String get _backgroundServiceName => "ssurade";
 
-  @factoryMethod
-  factory BackgroundProcessService() {
-    Workmanager().initialize(_backgroundServiceMain, isInDebugMode: false);
-    return BackgroundProcessService();
+  @FactoryMethod(preResolve: true)
+  static Future<BackgroundProcessManagementService> init() async {
+    await Workmanager().initialize(_backgroundServiceMain, isInDebugMode: false);
+    return BackgroundProcessManagementService();
   }
 
   @override

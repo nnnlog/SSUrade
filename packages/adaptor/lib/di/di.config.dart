@@ -1,11 +1,14 @@
-//@GeneratedMicroModule;SsuradeAdaptorPackageModule;package:ssurade_adaptor/di/di.module.dart
 // GENERATED CODE - DO NOT MODIFY BY HAND
+
+// **************************************************************************
+// InjectableConfigGenerator
+// **************************************************************************
+
 // ignore_for_file: type=lint
 // coverage:ignore-file
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'dart:async' as _i687;
-
+import 'package:get_it/get_it.dart' as _i174;
 import 'package:injectable/injectable.dart' as _i526;
 import 'package:ssurade_adaptor/application/app_version_fetch_service.dart' as _i159;
 import 'package:ssurade_adaptor/application/background/background_process_management_service.dart' as _i717;
@@ -32,10 +35,17 @@ import 'package:ssurade_application/port/out/application/notification_port.dart'
 import 'package:ssurade_application/port/out/external/external_credential_retrieval_port.dart' as _i1067;
 import 'package:ssurade_application/ssurade_application.dart' as _i67;
 
-class SsuradeAdaptorPackageModule extends _i526.MicroPackageModule {
+extension GetItInjectableX on _i174.GetIt {
 // initializes the registration of main-scope dependencies inside of GetIt
-  @override
-  _i687.FutureOr<void> init(_i526.GetItHelper gh) async {
+  Future<_i174.GetIt> init({
+    String? environment,
+    _i526.EnvironmentFilter? environmentFilter,
+  }) async {
+    final gh = _i526.GetItHelper(
+      this,
+      environment,
+      environmentFilter,
+    );
     final localStorageChapelManagerServiceModule = _$LocalStorageChapelManagerServiceModule();
     final localStorageSettingServiceModule = _$LocalStorageSettingServiceModule();
     final localStorageCredentialServiceModule = _$LocalStorageCredentialServiceModule();
@@ -89,6 +99,7 @@ class SsuradeAdaptorPackageModule extends _i526.MicroPackageModule {
     gh.singleton<_i67.ExternalScholarshipManagerRetrievalPort>(() => _i675.ExternalScholarshipManagerRetrievalService(gh<_i722.WebViewClientService>()));
     gh.singleton<_i67.ExternalChapelManagerRetrievalPort>(() => _i984.ExternalChapelRetrievalService(gh<_i722.WebViewClientService>()));
     gh.singleton<_i1067.ExternalCredentialRetrievalPort>(() => _i333.ExternalCredentialRetrievalService(gh<_i722.WebViewClientService>()));
+    return this;
   }
 }
 
