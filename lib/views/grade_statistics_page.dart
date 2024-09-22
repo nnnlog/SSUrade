@@ -234,7 +234,7 @@ class _GradeStatisticsPageState extends State<GradeStatisticsPage> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
-                            "  ${e.year}학년도 ${e.semester.displayName}",
+                            "  ${e.year}학년도 ${e.semester.displayText}",
                             style: const TextStyle(fontWeight: FontWeight.w500),
                           ),
                           Row(
@@ -264,8 +264,8 @@ class _GradeStatisticsPageState extends State<GradeStatisticsPage> {
                             Tuple2("이수 학점", data[e]!.totalCredit.toStringAsFixed(1)),
                             Tuple2("이수 전공 학점", data[e]!.majorCredit.toStringAsFixed(1)),
                             Tuple2("전공 평점", data[e]!.averageMajorGrade.toStringAsFixed(2)),
-                            Tuple2("학기 석차", data[e]!.semesterRanking.display),
-                            Tuple2("전체 석차", data[e]!.totalRanking.display),
+                            Tuple2("학기 석차", data[e]!.semesterRanking.displayText),
+                            Tuple2("전체 석차", data[e]!.totalRanking.displayText),
                           ]
                               .map((e) => Container(
                                     margin: const EdgeInsets.symmetric(vertical: 3),

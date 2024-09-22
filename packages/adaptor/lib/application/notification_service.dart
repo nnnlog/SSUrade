@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:injectable/injectable.dart';
 import 'package:ssurade_application/port/out/application/notification_port.dart';
@@ -30,9 +32,14 @@ class NotificationService implements NotificationPort {
   }
 
   @override
-  Future<void> sendNotification(String title, String body, int notificationId) async {
+  Future<void> sendNotification({
+    required String title,
+    required String body,
+    // required int notificationId,
+  }) async {
     await _flutterLocalNotificationsPlugin.show(
-      notificationId,
+      Random().nextInt(1000000),
+      // notificationId,
       title,
       body,
       NotificationDetails(

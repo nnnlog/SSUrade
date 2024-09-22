@@ -3,7 +3,7 @@ enum ChapelAttendanceStatus {
   absent,
   attend;
 
-  String get displayName {
+  String get displayText {
     switch (this) {
       case ChapelAttendanceStatus.unknown:
         return "미결";

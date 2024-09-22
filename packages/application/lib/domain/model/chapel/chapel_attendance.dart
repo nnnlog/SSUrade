@@ -9,9 +9,9 @@ part 'chapel_attendance.g.dart';
 @JsonSerializable()
 class ChapelAttendance extends Equatable implements Comparable<ChapelAttendance> {
   @JsonKey()
-  final ChapelAttendanceStatus attendance;
+  final ChapelAttendanceStatus status;
   @JsonKey()
-  final ChapelAttendanceStatus overwrittenAttendance;
+  final ChapelAttendanceStatus overwrittenStatus;
   @JsonKey()
   final String affiliation;
   @JsonKey()
@@ -26,8 +26,8 @@ class ChapelAttendance extends Equatable implements Comparable<ChapelAttendance>
   final String lecturer;
 
   const ChapelAttendance({
-    required this.attendance,
-    required this.overwrittenAttendance,
+    required this.status,
+    required this.overwrittenStatus,
     required this.affiliation,
     required this.lectureDate,
     required this.lectureEtc,
@@ -37,9 +37,9 @@ class ChapelAttendance extends Equatable implements Comparable<ChapelAttendance>
   });
 
   @override
-  List<Object?> get props => [attendance, overwrittenAttendance, affiliation, lectureDate, lectureEtc, lectureName, lectureType, lecturer];
+  List<Object?> get props => [status, overwrittenStatus, affiliation, lectureDate, lectureEtc, lectureName, lectureType, lecturer];
 
-  ChapelAttendanceStatus get displayAttendance => overwrittenAttendance != ChapelAttendanceStatus.unknown ? overwrittenAttendance : attendance;
+  ChapelAttendanceStatus get displayAttendance => overwrittenStatus != ChapelAttendanceStatus.unknown ? overwrittenStatus : status;
 
   factory ChapelAttendance.fromJson(Map<String, dynamic> json) => _$ChapelAttendanceFromJson(json);
 

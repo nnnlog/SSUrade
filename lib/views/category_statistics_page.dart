@@ -186,7 +186,7 @@ class _StatisticsPageState extends State<StatisticsPage> with SingleTickerProvid
                                         SizedBox(
                                           width: MediaQuery.of(context).size.width * 0.25,
                                           child: Text(
-                                            "${e.item2.year}-${e.item2.semester.displayName.replaceAll("학기", "")}",
+                                            "${e.item2.year}-${e.item2.semester.displayText.replaceAll("학기", "")}",
                                             textAlign: TextAlign.center,
                                             softWrap: true,
                                           ),

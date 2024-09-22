@@ -9,6 +9,8 @@ dependencies:
   injectable: ^2.4.4
   get_it: ^7.7.0
   copy_with_extension: ^5.0.4
+  mutex: ^3.1.0
+  dart_scope_functions: ^0.1.8
 
 dev_dependencies:
   build_runner: ^2.4.12

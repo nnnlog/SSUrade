@@ -152,13 +152,13 @@ class ExternalSubjectRetrievalService implements ExternalSubjectRetrievalPort {
   }
 
   Future<SemesterSubjectsManager> _getAllSemesterSubjectsByCategory(WebViewClient client) async {
-    final String syllabusUrl = await run(() async {
+    final String gradeUrl = await run(() async {
       await client.loadPage("https://ecc.ssu.ac.kr/sap/bc/webdynpro/SAP/ZCMW8030n?sap-language=KO");
       return (await client.execute("return await ssurade.crawl.getGradeViewerURL().catch(() => {});"));
     });
 
     final String rawData = await run(() async {
-      await client.loadPage(syllabusUrl);
+      await client.loadPage(gradeUrl);
       return await client.execute("return await ssurade.crawl.getGradeFromViewer();");
     });
 

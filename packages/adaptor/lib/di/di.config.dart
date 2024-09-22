@@ -10,6 +10,7 @@
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:get_it/get_it.dart' as _i174;
 import 'package:injectable/injectable.dart' as _i526;
+import 'package:ssurade_adaptor/application/app_environment_service.dart' as _i78;
 import 'package:ssurade_adaptor/application/app_version_fetch_service.dart' as _i159;
 import 'package:ssurade_adaptor/application/background/background_process_management_service.dart' as _i717;
 import 'package:ssurade_adaptor/application/notification_service.dart' as _i762;
@@ -23,12 +24,12 @@ import 'package:ssurade_adaptor/persistence/client/local_storage_client.dart' as
 import 'package:ssurade_adaptor/persistence/client/secure_storage_client.dart' as _i497;
 import 'package:ssurade_adaptor/persistence/service/lightspeed_retrieval_service.dart' as _i460;
 import 'package:ssurade_adaptor/persistence/service/local_storage_absent_application_manager_service.dart' as _i470;
-import 'package:ssurade_adaptor/persistence/service/local_storage_background_setting_service.dart' as _i994;
 import 'package:ssurade_adaptor/persistence/service/local_storage_chapel_manager_service.dart' as _i1004;
 import 'package:ssurade_adaptor/persistence/service/local_storage_credential_service.dart' as _i1054;
 import 'package:ssurade_adaptor/persistence/service/local_storage_scholarship_manager_service.dart' as _i109;
 import 'package:ssurade_adaptor/persistence/service/local_storage_semester_subjects_manager_service.dart' as _i388;
 import 'package:ssurade_adaptor/persistence/service/local_storage_setting_service.dart' as _i86;
+import 'package:ssurade_application/port/out/application/app_environment_port.dart' as _i124;
 import 'package:ssurade_application/port/out/application/app_version_fetch_port.dart' as _i747;
 import 'package:ssurade_application/port/out/application/background_process_management_port.dart' as _i975;
 import 'package:ssurade_application/port/out/application/notification_port.dart' as _i77;
@@ -51,7 +52,6 @@ extension GetItInjectableX on _i174.GetIt {
     final localStorageCredentialServiceModule = _$LocalStorageCredentialServiceModule();
     final localStorageScholarshipManagerServiceModule = _$LocalStorageScholarshipManagerServiceModule();
     final localStorageAbsentApplicationManagerServiceModule = _$LocalStorageAbsentApplicationManagerServiceModule();
-    final localStorageBackgroundSettingServiceModule = _$LocalStorageBackgroundSettingServiceModule();
     final localStorageSemesterSubjectsManagerServiceModule = _$LocalStorageSemesterSubjectsManagerServiceModule();
     gh.factory<_i67.LocalStorageChapelManagerRetrievalPort>(() => localStorageChapelManagerServiceModule.i1);
     gh.factory<_i67.LocalStorageChapelManagerSavePort>(() => localStorageChapelManagerServiceModule.i2);
@@ -63,8 +63,6 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i67.LocalStorageScholarshipManagerSavePort>(() => localStorageScholarshipManagerServiceModule.i2);
     gh.factory<_i67.LocalStorageAbsentApplicationManagerRetrievalPort>(() => localStorageAbsentApplicationManagerServiceModule.i1);
     gh.factory<_i67.LocalStorageAbsentApplicationManagerSavePort>(() => localStorageAbsentApplicationManagerServiceModule.i2);
-    gh.factory<_i67.LocalStorageBackgroundSettingRetrievalPort>(() => localStorageBackgroundSettingServiceModule.i1);
-    gh.factory<_i67.LocalStorageBackgroundSettingSavePort>(() => localStorageBackgroundSettingServiceModule.i2);
     gh.factory<_i67.LocalStorageSemesterSubjectsManagerRetrievalPort>(() => localStorageSemesterSubjectsManagerServiceModule.i1);
     gh.factory<_i67.LocalStorageSemesterSubjectsManagerSavePort>(() => localStorageSemesterSubjectsManagerServiceModule.i2);
     await gh.singletonAsync<_i289.LocalStorageClient>(
@@ -86,8 +84,8 @@ extension GetItInjectableX on _i174.GetIt {
     gh.singleton<_i86.LocalStorageSettingService>(() => _i86.LocalStorageSettingService(gh<_i289.LocalStorageClient>()));
     gh.singleton<_i109.LocalStorageScholarshipManagerService>(() => _i109.LocalStorageScholarshipManagerService(gh<_i289.LocalStorageClient>()));
     gh.singleton<_i470.LocalStorageAbsentApplicationManagerService>(() => _i470.LocalStorageAbsentApplicationManagerService(gh<_i289.LocalStorageClient>()));
-    gh.singleton<_i994.LocalStorageBackgroundSettingService>(() => _i994.LocalStorageBackgroundSettingService(gh<_i289.LocalStorageClient>()));
     gh.singleton<_i388.LocalStorageSemesterSubjectsManagerService>(() => _i388.LocalStorageSemesterSubjectsManagerService(gh<_i289.LocalStorageClient>()));
+    gh.singleton<_i124.AppEnvironmentPort>(() => _i78.AppEnvironmentService());
     gh.singleton<_i1054.LocalStorageCredentialService>(() => _i1054.LocalStorageCredentialService(gh<_i497.SecureStorageClient>()));
     gh.singleton<_i722.WebViewClientService>(() => _i722.WebViewClientService(
           credentialRetrievalPort: gh<_i67.LocalStorageCredentialRetrievalPort>(),
@@ -99,6 +97,7 @@ extension GetItInjectableX on _i174.GetIt {
     gh.singleton<_i67.ExternalScholarshipManagerRetrievalPort>(() => _i675.ExternalScholarshipManagerRetrievalService(gh<_i722.WebViewClientService>()));
     gh.singleton<_i67.ExternalChapelManagerRetrievalPort>(() => _i984.ExternalChapelRetrievalService(gh<_i722.WebViewClientService>()));
     gh.singleton<_i1067.ExternalCredentialRetrievalPort>(() => _i333.ExternalCredentialRetrievalService(gh<_i722.WebViewClientService>()));
+    await _i67.SsuradeApplicationPackageModule().init(gh);
     return this;
   }
 }
@@ -112,7 +111,5 @@ class _$LocalStorageCredentialServiceModule extends _i1054.LocalStorageCredentia
 class _$LocalStorageScholarshipManagerServiceModule extends _i109.LocalStorageScholarshipManagerServiceModule {}
 
 class _$LocalStorageAbsentApplicationManagerServiceModule extends _i470.LocalStorageAbsentApplicationManagerServiceModule {}
-
-class _$LocalStorageBackgroundSettingServiceModule extends _i994.LocalStorageBackgroundSettingServiceModule {}
 
 class _$LocalStorageSemesterSubjectsManagerServiceModule extends _i388.LocalStorageSemesterSubjectsManagerServiceModule {}

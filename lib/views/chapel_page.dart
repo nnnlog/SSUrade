@@ -41,7 +41,7 @@ class _ChapelPageState extends State<ChapelPage> with SingleTickerProviderStateM
     if (_lockedForRefresh.contains(search)) return;
     _lockedForRefresh.add(search);
 
-    showToast("${search.year}학년도 ${search.semester.displayName} 채플 정보를 불러오는 중이에요...");
+    showToast("${search.year}학년도 ${search.semester.displayText} 채플 정보를 불러오는 중이에요...");
 
     try {
       ChapelInformation data = await Crawler.singleChapelBySemester(search).execute();
@@ -60,10 +60,10 @@ class _ChapelPageState extends State<ChapelPage> with SingleTickerProviderStateM
 
       callbackSelectSubject(search);
 
-      showToast("${search.year}학년도 ${search.semester.displayName} 채플 정보를 불러왔어요.");
+      showToast("${search.year}학년도 ${search.semester.displayText} 채플 정보를 불러왔어요.");
     } catch (_) {
       if (mounted) {
-        showToast("${search.year}학년도 ${search.semester.displayName} 채플 정보를 불러오지 못했어요.");
+        showToast("${search.year}학년도 ${search.semester.displayText} 채플 정보를 불러오지 못했어요.");
       }
     } finally {
       _lockedForRefresh.remove(search);
@@ -193,7 +193,7 @@ class _ChapelPageState extends State<ChapelPage> with SingleTickerProviderStateM
                                     .map((element) => DropdownMenuItem(
                                           value: element.currentSemester,
                                           child: Text(
-                                            "${element.currentSemester.year}학년도 ${element.currentSemester.semester.displayName}",
+                                            "${element.currentSemester.year}학년도 ${element.currentSemester.semester.displayText}",
                                             style: TextStyle(
                                               color: globals.isLightMode ? Colors.black : Colors.white,
                                               fontFamily: "Pretendard",
@@ -524,7 +524,7 @@ class _ChapelPageState extends State<ChapelPage> with SingleTickerProviderStateM
                                                     style: const TextStyle(fontWeight: FontWeight.w500),
                                                   ),
                                                   Text(
-                                                    e.displayAttendance.display,
+                                                    e.displayAttendance.displayText,
                                                     style: TextStyle(color: e.displayAttendance.color, fontWeight: FontWeight.w500),
                                                   ),
                                                 ],
@@ -537,7 +537,7 @@ class _ChapelPageState extends State<ChapelPage> with SingleTickerProviderStateM
                                                 Tuple2("강사", e.lecturer),
                                                 Tuple2("소속", e.affiliation.isEmpty ? "-" : e.affiliation),
                                                 Tuple2("강의명", e.lectureName),
-                                                Tuple2("입력된 출결 상태", e.attendance.display),
+                                                Tuple2("입력된 출결 상태", e.status.displayText),
                                                 Tuple2("비고", e.lectureEtc.isEmpty ? "-" : e.lectureEtc),
                                               ].map((e) => Container(
                                                     margin: const EdgeInsets.symmetric(vertical: 3),
@@ -581,7 +581,7 @@ class _ChapelPageState extends State<ChapelPage> with SingleTickerProviderStateM
                                                         .map((state) => DropdownMenuItem(
                                                               value: state,
                                                               child: Text(
-                                                                state == ChapelAttendance.unknown ? "지정하지 않음" : state.display,
+                                                                state == ChapelAttendance.unknown ? "지정하지 않음" : state.displayText,
                                                                 textAlign: TextAlign.right,
                                                                 style: const TextStyle(fontWeight: FontWeight.w500, fontFamily: "Pretendard", fontStyle: FontStyle.italic),
                                                               ),
@@ -589,11 +589,11 @@ class _ChapelPageState extends State<ChapelPage> with SingleTickerProviderStateM
                                                         .toList(),
                                                     onChanged: (ChapelAttendance? value) {
                                                       setState(() {
-                                                        e.overwrittenAttendance = value!;
+                                                        e.overwrittenStatus = value!;
                                                       });
                                                       globals.chapelInformationManager.saveFile();
                                                     },
-                                                    value: e.overwrittenAttendance,
+                                                    value: e.overwrittenStatus,
                                                   ),
                                                 ],
                                               ),

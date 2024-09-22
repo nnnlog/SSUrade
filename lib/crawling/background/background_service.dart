@@ -71,8 +71,8 @@ Future<void> fetchGrade() async {
 
   if (gradeData.semesterRanking.isNotEmpty && originalGradeData.semesterRanking.isEmpty) {
     if (globals.setting.showGrade) {
-      updates.add("[학기 석차] > ${gradeData.semesterRanking.display}");
-      updates.add("[전체 석차] > ${gradeData.totalRanking.display}");
+      updates.add("[학기 석차] > ${gradeData.semesterRanking.displayText}");
+      updates.add("[전체 석차] > ${gradeData.totalRanking.displayText}");
     } else {
       updates.add("[학기 석차]");
       updates.add("[전체 석차]");
@@ -99,8 +99,8 @@ Future<void> fetchChapel() async {
   List<String> updates = [];
 
   for (var data in chapelData.attendances) {
-    if (data.attendance != ChapelAttendance.unknown && originalAttendanceData.attendances[data.lectureDate]?.attendance != data.attendance) {
-      updates.add("${data.lectureDate} > ${data.attendance.display}");
+    if (data.status != ChapelAttendance.unknown && originalAttendanceData.attendances[data.lectureDate]?.status != data.status) {
+      updates.add("${data.lectureDate} > ${data.status.displayText}");
       originalAttendanceData.attendances.remove(data);
       originalAttendanceData.attendances.add(data);
     }
@@ -110,7 +110,7 @@ Future<void> fetchChapel() async {
     await showNotification("채플 출결 변경", updates.join("\n"));
     await globals.chapelInformationManager.saveFile();
   } else if (kDebugMode) {
-    await showNotification("not updated (${DateTime.now().toString()})", chapelData.attendances.map((e) => "${e.lectureDate} : ${e.attendance.display}").join("\n"));
+    await showNotification("not updated (${DateTime.now().toString()})", chapelData.attendances.map((e) => "${e.lectureDate} : ${e.status.displayText}").join("\n"));
   }
 }
 
@@ -126,7 +126,7 @@ Future<void> fetchNewChapel() async {
 
   for (var data in chapelData.data) {
     if (!globals.chapelInformationManager.data.contains(data)) {
-      updates.add(data.currentSemester.display);
+      updates.add(data.currentSemester.displayText);
       globals.chapelInformationManager.data.add(data);
     }
   }
@@ -135,7 +135,7 @@ Future<void> fetchNewChapel() async {
     await showNotification("채플 정보 등록", updates.join("\n"));
     await globals.chapelInformationManager.saveFile();
   } else if (kDebugMode) {
-    await showNotification("not updated (${DateTime.now().toString()})", globals.chapelInformationManager.data.map((e) => "${e.currentSemester.display}").join("\n"));
+    await showNotification("not updated (${DateTime.now().toString()})", globals.chapelInformationManager.data.map((e) => "${e.currentSemester.displayText}").join("\n"));
   }
 }
 
@@ -166,7 +166,7 @@ Future<void> fetchScholarship() async {
     globals.scholarshipManager = scholarshipData;
     await globals.scholarshipManager.saveFile();
   } else if (kDebugMode) {
-    await showNotification("not updated (${DateTime.now().toString()})", scholarshipData.data.map((e) => "${e.name} : ${e.when.display}").join("\n"));
+    await showNotification("not updated (${DateTime.now().toString()})", scholarshipData.data.map((e) => "${e.name} : ${e.when.displayText}").join("\n"));
   }
 }
 

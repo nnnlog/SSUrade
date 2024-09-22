@@ -182,6 +182,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.0.5"
+  dart_scope_functions:
+    dependency: "direct main"
+    description:
+      name: dart_scope_functions
+      sha256: "2785a295c3199781b894c3a55a978df80d95fe27ed5eab4dcb0247471a6769ef"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.1.8"
   dart_style:
     dependency: transitive
     description:
@@ -350,6 +358,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.6"
+  mutex:
+    dependency: "direct main"
+    description:
+      name: mutex
+      sha256: "8827da25de792088eb33e572115a5eb0d61d61a3c01acbc8bcbe76ed78f1a1f2"
+      url: "https://pub.dev"
+    source: hosted
+    version: "3.1.0"
   package_config:
     dependency: transitive
     description:

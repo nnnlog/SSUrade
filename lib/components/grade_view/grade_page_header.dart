@@ -54,7 +54,7 @@ class _GradePageHeaderState extends State<GradePageHeader> {
                       .map((e) => DropdownMenuItem<YearSemester>(
                             value: e.key,
                             child: Text(
-                              "${e.key.year}학년도 ${e.key.semester.displayName} (${e.value.totalCredit}학점)",
+                              "${e.key.year}학년도 ${e.key.semester.displayText} (${e.value.totalCredit}학점)",
                               style: TextStyle(
                                 color: globals.isLightMode ? Colors.black : Colors.white,
                                 fontFamily: "Pretendard",
@@ -158,7 +158,7 @@ class _GradePageHeaderState extends State<GradePageHeader> {
                         height: 2,
                       ),
                       Text(
-                        "${widget.data.semesterRanking.display} ${widget.data.semesterRanking.isEmpty ? '' : '(상위 ${widget.data.semesterRanking.percentage.toStringAsFixed(1)}%)'}",
+                        "${widget.data.semesterRanking.displayText} ${widget.data.semesterRanking.isEmpty ? '' : '(상위 ${widget.data.semesterRanking.percentage.toStringAsFixed(1)}%)'}",
                         style: const TextStyle(
                           fontSize: 12,
                           fontWeight: FontWeight.w500,
@@ -179,7 +179,7 @@ class _GradePageHeaderState extends State<GradePageHeader> {
                         height: 2,
                       ),
                       Text(
-                        "${widget.data.totalRanking.display} ${widget.data.totalRanking.isEmpty ? '' : '(상위 ${widget.data.totalRanking.percentage.toStringAsFixed(1)}%)'}",
+                        "${widget.data.totalRanking.displayText} ${widget.data.totalRanking.isEmpty ? '' : '(상위 ${widget.data.totalRanking.percentage.toStringAsFixed(1)}%)'}",
                         style: const TextStyle(
                           fontSize: 12,
                           fontWeight: FontWeight.w500,

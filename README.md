@@ -63,13 +63,22 @@ SENTRY_AUTH_TOKEN=<token> SENTRY_ORG=<org> SENTRY_PROJECT=<project name> flutter
 
 ### 자동 생성되는 코드
 * SSUrade는 JSON Serailization, Injectable 등을 사용하고 있습니다.
-* 해당 어노테이션이 있는 파일을 수정한 경우, 다음 명령어를 실행하여 코드를 자동으로 생성하세요.
-* 루트 디렉토리, `packages/adaptor`, `packages/application` 디렉토리 각각에 대해서 명령어를 실행해야 합니다.
+* 해당 어노테이션이 있는 파일을 수정한 경우, 프로젝트 루트 디렉터리에서 다음 명령어를 실행하여 코드를 자동으로 생성하세요.
 ```shell
-dart run build_runner build
+./scripts/gen.sh
 ```
 
-#### Setup Analytics (Firebase)
+### 코드 포맷팅
+```shell
+./scripts/format.sh
+```
+
+### 외부 서비스 연동
+
+#### Firebase (Analytics) 설정
 ```shell
 flutterfire configure --project=<Firebase project id>
 ```
+
+#### Sentry 설정
+* TBD

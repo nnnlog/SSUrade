@@ -7,9 +7,9 @@ part of 'chapel_attendance.dart';
 // **************************************************************************
 
 abstract class _$ChapelAttendanceCWProxy {
-  ChapelAttendance attendance(ChapelAttendanceStatus attendance);
+  ChapelAttendance status(ChapelAttendanceStatus status);
 
-  ChapelAttendance overwrittenAttendance(ChapelAttendanceStatus overwrittenAttendance);
+  ChapelAttendance overwrittenStatus(ChapelAttendanceStatus overwrittenStatus);
 
   ChapelAttendance affiliation(String affiliation);
 
@@ -30,8 +30,8 @@ abstract class _$ChapelAttendanceCWProxy {
   /// ChapelAttendance(...).copyWith(id: 12, name: "My name")
   /// ````
   ChapelAttendance call({
-    ChapelAttendanceStatus? attendance,
-    ChapelAttendanceStatus? overwrittenAttendance,
+    ChapelAttendanceStatus? status,
+    ChapelAttendanceStatus? overwrittenStatus,
     String? affiliation,
     String? lectureDate,
     String? lectureEtc,
@@ -48,10 +48,10 @@ class _$ChapelAttendanceCWProxyImpl implements _$ChapelAttendanceCWProxy {
   final ChapelAttendance _value;
 
   @override
-  ChapelAttendance attendance(ChapelAttendanceStatus attendance) => this(attendance: attendance);
+  ChapelAttendance status(ChapelAttendanceStatus status) => this(status: status);
 
   @override
-  ChapelAttendance overwrittenAttendance(ChapelAttendanceStatus overwrittenAttendance) => this(overwrittenAttendance: overwrittenAttendance);
+  ChapelAttendance overwrittenStatus(ChapelAttendanceStatus overwrittenStatus) => this(overwrittenStatus: overwrittenStatus);
 
   @override
   ChapelAttendance affiliation(String affiliation) => this(affiliation: affiliation);
@@ -80,8 +80,8 @@ class _$ChapelAttendanceCWProxyImpl implements _$ChapelAttendanceCWProxy {
   /// ChapelAttendance(...).copyWith(id: 12, name: "My name")
   /// ````
   ChapelAttendance call({
-    Object? attendance = const $CopyWithPlaceholder(),
-    Object? overwrittenAttendance = const $CopyWithPlaceholder(),
+    Object? status = const $CopyWithPlaceholder(),
+    Object? overwrittenStatus = const $CopyWithPlaceholder(),
     Object? affiliation = const $CopyWithPlaceholder(),
     Object? lectureDate = const $CopyWithPlaceholder(),
     Object? lectureEtc = const $CopyWithPlaceholder(),
@@ -90,14 +90,14 @@ class _$ChapelAttendanceCWProxyImpl implements _$ChapelAttendanceCWProxy {
     Object? lecturer = const $CopyWithPlaceholder(),
   }) {
     return ChapelAttendance(
-      attendance: attendance == const $CopyWithPlaceholder() || attendance == null
-          ? _value.attendance
+      status: status == const $CopyWithPlaceholder() || status == null
+          ? _value.status
           // ignore: cast_nullable_to_non_nullable
-          : attendance as ChapelAttendanceStatus,
-      overwrittenAttendance: overwrittenAttendance == const $CopyWithPlaceholder() || overwrittenAttendance == null
-          ? _value.overwrittenAttendance
+          : status as ChapelAttendanceStatus,
+      overwrittenStatus: overwrittenStatus == const $CopyWithPlaceholder() || overwrittenStatus == null
+          ? _value.overwrittenStatus
           // ignore: cast_nullable_to_non_nullable
-          : overwrittenAttendance as ChapelAttendanceStatus,
+          : overwrittenStatus as ChapelAttendanceStatus,
       affiliation: affiliation == const $CopyWithPlaceholder() || affiliation == null
           ? _value.affiliation
           // ignore: cast_nullable_to_non_nullable
@@ -137,8 +137,8 @@ extension $ChapelAttendanceCopyWith on ChapelAttendance {
 // **************************************************************************
 
 ChapelAttendance _$ChapelAttendanceFromJson(Map<String, dynamic> json) => ChapelAttendance(
-      attendance: $enumDecode(_$ChapelAttendanceStatusEnumMap, json['attendance']),
-      overwrittenAttendance: $enumDecode(_$ChapelAttendanceStatusEnumMap, json['overwrittenAttendance']),
+      status: $enumDecode(_$ChapelAttendanceStatusEnumMap, json['status']),
+      overwrittenStatus: $enumDecode(_$ChapelAttendanceStatusEnumMap, json['overwrittenStatus']),
       affiliation: json['affiliation'] as String,
       lectureDate: json['lectureDate'] as String,
       lectureEtc: json['lectureEtc'] as String,
@@ -148,8 +148,8 @@ ChapelAttendance _$ChapelAttendanceFromJson(Map<String, dynamic> json) => Chapel
     );
 
 Map<String, dynamic> _$ChapelAttendanceToJson(ChapelAttendance instance) => <String, dynamic>{
-      'attendance': _$ChapelAttendanceStatusEnumMap[instance.attendance]!,
-      'overwrittenAttendance': _$ChapelAttendanceStatusEnumMap[instance.overwrittenAttendance]!,
+      'status': _$ChapelAttendanceStatusEnumMap[instance.status]!,
+      'overwrittenStatus': _$ChapelAttendanceStatusEnumMap[instance.overwrittenStatus]!,
       'affiliation': instance.affiliation,
       'lectureDate': instance.lectureDate,
       'lectureEtc': instance.lectureEtc,

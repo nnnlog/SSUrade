@@ -25,7 +25,7 @@ class YearSemester extends Equatable implements Comparable<YearSemester> {
 
   Map<String, dynamic> toJson() => _$YearSemesterToJson(this);
 
-  get display => "$year-${semester.displayName}";
+  get displayText => "$year-${semester.displayText}";
 
   bool operator <(YearSemester other) {
     const Map<Semester, int> semesterOrder = {

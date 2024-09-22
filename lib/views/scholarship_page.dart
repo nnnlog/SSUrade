@@ -141,7 +141,7 @@ class _ScholarshipPage extends State<ScholarshipPage> {
                             ] +
                             globals.scholarshipManager.data
                                 .map(
-                                  (e) => MapEntry("${e.name}\n(${e.when.display})", "${e.process}\n(${e.price}원)"),
+                                  (e) => MapEntry("${e.name}\n(${e.when.displayText})", "${e.process}\n(${e.price}원)"),
                                 )
                                 .toList(),
                       ),

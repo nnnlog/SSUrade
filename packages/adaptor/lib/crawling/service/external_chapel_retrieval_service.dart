@@ -1,5 +1,3 @@
-import 'dart:collection';
-
 import 'package:injectable/injectable.dart';
 import 'package:parallel_worker/parallel_worker.dart';
 import 'package:ssurade_adaptor/crawling/job/main_thread_crawling_job.dart';
@@ -29,8 +27,8 @@ class ExternalChapelRetrievalService implements ExternalChapelManagerRetrievalPo
         seatNo: summary["seat_no"],
         attendances: res["attendance"].map((e) {
           return ChapelAttendance(
-            attendance: ChapelAttendanceStatus.from(e["attendance"]),
-            overwrittenAttendance: ChapelAttendanceStatus.unknown,
+            status: ChapelAttendanceStatus.from(e["attendance"]),
+            overwrittenStatus: ChapelAttendanceStatus.unknown,
             affiliation: e["affiliation"],
             lectureDate: e["lecture_date"],
             lectureEtc: e["lecture_etc"],
@@ -48,7 +46,7 @@ class ExternalChapelRetrievalService implements ExternalChapelManagerRetrievalPo
   static int get _webViewCount => 3;
 
   @override
-  Job<ChapelManager> retrieveChapels(List<YearSemester> yearSemesters) {
+  Job<List<Chapel>> retrieveChapels(List<YearSemester> yearSemesters) {
     return MainThreadCrawlingJob(() async {
       final clients = await Future.wait(List.filled(_webViewCount, null).map((_) {
         return _webViewClientService.create();
@@ -67,7 +65,7 @@ class ExternalChapelRetrievalService implements ExternalChapelManagerRetrievalPo
         client.dispose();
       });
 
-      return ChapelManager(SplayTreeSet.from(chapels));
+      return chapels.whereType<Chapel>().toList();
     });
   }
 

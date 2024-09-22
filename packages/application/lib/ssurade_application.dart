@@ -4,6 +4,8 @@
 // publish your package hint: dart pub publish --dry-run
 // if you want to update your packages on power: dart pub upgrade --major-versions
 
+export 'package:ssurade_application/di/di.dart';
+export 'package:ssurade_application/di/di.module.dart';
 export 'package:ssurade_application/domain/model/absent_application/absent_application.dart';
 export 'package:ssurade_application/domain/model/absent_application/absent_application_manager.dart';
 export 'package:ssurade_application/domain/model/application/app_version.dart';
@@ -30,10 +32,17 @@ export 'package:ssurade_application/domain/model/subject/state.dart';
 export 'package:ssurade_application/domain/model/subject/subject.dart';
 export 'package:ssurade_application/domain/service/background/background_process_service.dart';
 export 'package:ssurade_application/port/in/background/background_process_use_case.dart';
+export 'package:ssurade_application/port/out/application/app_environment_port.dart';
 export 'package:ssurade_application/port/out/application/app_version_fetch_port.dart';
 export 'package:ssurade_application/port/out/application/background_process_management_port.dart';
 export 'package:ssurade_application/port/out/application/notification_port.dart';
 export 'package:ssurade_application/port/out/application/toast_port.dart';
+export 'package:ssurade_application/port/out/data/absent_application_data_port.dart';
+export 'package:ssurade_application/port/out/data/chapel_data_port.dart';
+export 'package:ssurade_application/port/out/data/credential_data_port.dart';
+export 'package:ssurade_application/port/out/data/scholarship_data_port.dart';
+export 'package:ssurade_application/port/out/data/setting_data_port.dart';
+export 'package:ssurade_application/port/out/data/subject_data_port.dart';
 export 'package:ssurade_application/port/out/external/external_absent_application_retrieval_port.dart';
 export 'package:ssurade_application/port/out/external/external_chapel_retrieval_port.dart';
 export 'package:ssurade_application/port/out/external/external_credential_retrieval_port.dart';
@@ -41,16 +50,15 @@ export 'package:ssurade_application/port/out/external/external_scholarship_manag
 export 'package:ssurade_application/port/out/external/external_subject_retrieval_port.dart';
 export 'package:ssurade_application/port/out/lightspeed_retrieval_port.dart';
 export 'package:ssurade_application/port/out/local_storage/retrieval/local_storage_absent_application_manager_retrieval_port.dart';
-export 'package:ssurade_application/port/out/local_storage/retrieval/local_storage_background_setting_retrieval_port.dart';
 export 'package:ssurade_application/port/out/local_storage/retrieval/local_storage_chapel_manager_retrieval_port.dart';
 export 'package:ssurade_application/port/out/local_storage/retrieval/local_storage_credential_retrieval_port.dart';
 export 'package:ssurade_application/port/out/local_storage/retrieval/local_storage_scholarship_manager_retrieval_port.dart';
 export 'package:ssurade_application/port/out/local_storage/retrieval/local_storage_semester_subjects_manager_retrieval_port.dart';
 export 'package:ssurade_application/port/out/local_storage/retrieval/local_storage_setting_retrieval_port.dart';
 export 'package:ssurade_application/port/out/local_storage/save/local_storage_absent_application_manager_save_port.dart';
-export 'package:ssurade_application/port/out/local_storage/save/local_storage_background_setting_save_port.dart';
 export 'package:ssurade_application/port/out/local_storage/save/local_storage_chapel_manager_save_port.dart';
 export 'package:ssurade_application/port/out/local_storage/save/local_storage_credential_save_port.dart';
 export 'package:ssurade_application/port/out/local_storage/save/local_storage_scholarship_manager_save_port.dart';
 export 'package:ssurade_application/port/out/local_storage/save/local_storage_semester_subjects_manager_save_port.dart';
 export 'package:ssurade_application/port/out/local_storage/save/local_storage_setting_save_port.dart';
+export 'package:ssurade_application/utils/map_styled_set.dart';

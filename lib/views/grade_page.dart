@@ -48,7 +48,7 @@ class _GradePageState extends State<GradePage> {
     if (_lockedForRefresh.contains(search)) return;
     _lockedForRefresh.add(search);
 
-    showToast("${search.year}학년도 ${search.semester.displayName} 성적을 불러오는 중이에요...");
+    showToast("${search.year}학년도 ${search.semester.displayText} 성적을 불러오는 중이에요...");
     showToast("불러오는 시간이 오래 걸릴 수 있어요.");
 
     try {
@@ -83,10 +83,10 @@ class _GradePageState extends State<GradePage> {
         _semesterSubjects = globals.semesterSubjectsManager.data[search]!;
       });
 
-      showToast("${search.year}학년도 ${search.semester.displayName} 성적을 불러왔어요.");
+      showToast("${search.year}학년도 ${search.semester.displayText} 성적을 불러왔어요.");
     } catch (_) {
       if (mounted) {
-        showToast("${search.year}학년도 ${search.semester.displayName} 성적을 불러오지 못했어요.");
+        showToast("${search.year}학년도 ${search.semester.displayText} 성적을 불러오지 못했어요.");
       }
     } finally {
       _lockedForRefresh.remove(search);
@@ -309,7 +309,8 @@ class _GradePageState extends State<GradePage> {
                                               _exportImage = true;
                                             });
                                             final bytes = await _imageController.capture();
-                                            await ImageGallerySaver.saveImage(bytes!, name: "ssurade_${_semesterSubjects.currentSemester.display}_${DateTime.now().toLocal().millisecondsSinceEpoch}");
+                                            await ImageGallerySaver.saveImage(bytes!,
+                                                name: "ssurade_${_semesterSubjects.currentSemester.displayText}_${DateTime.now().toLocal().millisecondsSinceEpoch}");
 
                                             setState(() {
                                               _exportImage = false;
