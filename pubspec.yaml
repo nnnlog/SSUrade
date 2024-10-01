@@ -3,7 +3,7 @@ description: 숭실대학교 학사 정보 조회 애플리케이션
 
 publish_to: 'none'
 
-version: 2.7.2+55
+version: 2.7.2+56
 
 environment:
   sdk: ">=2.17.3 <3.0.0"
@@ -60,7 +60,7 @@ dev_dependencies:
 flutter_icons:
   android: true
   ios: true
-  image_path: "assets/icon/icon.jpg"
+  image_path: "assets/icon/icon.png"
 
 flutter:
   assets:
