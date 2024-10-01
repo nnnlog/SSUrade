@@ -57,10 +57,10 @@ dev_dependencies:
   sentry_dart_plugin: ^2.1.0
   change_app_package_name: ^1.4.0
 
-flutter_icons:
+flutter_launcher_icons:
   android: true
   ios: true
-  image_path: "assets/icon/icon.png"
+  image_path: "assets/icon/icon.jpg"
 
 flutter:
   assets:
