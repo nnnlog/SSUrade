@@ -3,7 +3,7 @@ description: 숭실대학교 학사 정보 조회 애플리케이션
 
 publish_to: 'none'
 
-version: 2.7.2+58
+version: 2.7.2+59
 
 environment:
   sdk: ">=2.17.3 <3.0.0"
@@ -56,6 +56,13 @@ dev_dependencies:
   build_runner: ^2.4.13
   sentry_dart_plugin: ^2.1.0
   change_app_package_name: ^1.4.0
+
+dependency_overrides:
+  flutter_inappwebview_ios:
+    git:
+      url: https://github.com/nnnlog/flutter_inappwebview
+      ref: 6a0c1927bd439ee206b6222a0d6ab2cd25b14a6f
+      path: flutter_inappwebview_ios
 
 flutter_launcher_icons:
   android: true

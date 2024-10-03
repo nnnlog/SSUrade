@@ -147,14 +147,11 @@ class WebViewWorker {
         }
         return null;
       },
-      shouldOverrideUrlLoading: (InAppWebViewController controller, NavigationAction action) async {
-        return NavigationActionPolicy.ALLOW;
-      },
       initialSettings: InAppWebViewSettings(
         isInspectable: true,
-        useShouldInterceptRequest: true,
-        cacheEnabled: true,
-        userAgent: "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36",
+        userAgent: Platform.isIOS
+            ? "Mozilla/5.0 (iPhone; CPU iPhone OS 17_7 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.0 Mobile/15E148 Safari/604.1"
+            : "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.6668.81 Mobile Safari/537.36",
       ),
     );
     await webView.run();

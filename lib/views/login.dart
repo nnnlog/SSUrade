@@ -50,6 +50,25 @@ class _LoginPageState extends State<LoginPage> {
                     autofillHints: const [AutofillHints.password],
                   ),
                 ),
+                Container(
+                  height: 10,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Icon(
+                      Icons.info,
+                      color: Colors.grey,
+                      size: 5,
+                    ),
+                    Text(
+                      " 앱 첫 실행 시 로그인이 오래 걸릴 수 있어요.",
+                      style: TextStyle(
+                        color: Colors.grey,
+                      ),
+                    ),
+                  ],
+                ),
                 TextButton(
                   onPressed: () async {
                     if (lockLoginButton) return;

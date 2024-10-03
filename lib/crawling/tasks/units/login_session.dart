@@ -232,8 +232,6 @@ class LoginSession extends CrawlingTask<bool> {
       await controller.customLoadPage("https://ecc.ssu.ac.kr/sap/bc/webdynpro/SAP/ZCMW1001n?sap-language=KO"); // loads any page
       await controller.callAsyncJavaScript(functionBody: "return await ssurade.lightspeed.waitForPageLoad();");
 
-      print("4");
-
       await refreshCredentials(controller);
       saveFile();
 
@@ -255,7 +253,7 @@ class LoginSession extends CrawlingTask<bool> {
 
   @override
   int getTimeout() {
-    return 30;
+    return 60;
   }
 
   @override

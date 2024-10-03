@@ -51,9 +51,7 @@ class _MainPageState extends State<MainPage> {
   void dispose() {
     super.dispose();
 
-    Crawler.loginSession()
-        .loginStatusChangeEvent
-        .unsubscribe(handleLoginStatusChange);
+    Crawler.loginSession().loginStatusChangeEvent.unsubscribe(handleLoginStatusChange);
     Crawler.loginSession().loginFailEvent.unsubscribe(handleLoginFail);
   }
 
@@ -61,9 +59,7 @@ class _MainPageState extends State<MainPage> {
   void initState() {
     super.initState();
 
-    Crawler.loginSession()
-        .loginStatusChangeEvent
-        .subscribe(handleLoginStatusChange);
+    Crawler.loginSession().loginStatusChangeEvent.subscribe(handleLoginStatusChange);
     Crawler.loginSession().loginFailEvent.subscribe(handleLoginFail);
 
     (() async {
@@ -73,8 +69,7 @@ class _MainPageState extends State<MainPage> {
         await disableBatteryOptimize(show: true);
 
         _agreement = await rootBundle.loadString("assets/agreement.txt");
-        _agreement_short =
-            await rootBundle.loadString("assets/agreement_short.txt");
+        _agreement_short = await rootBundle.loadString("assets/agreement_short.txt");
         setState(() {
           _progress = MainProgress.agree;
         });
@@ -85,19 +80,10 @@ class _MainPageState extends State<MainPage> {
 
       updateBackgroundService(lazy: true); // repair background service
 
-      await globals.flutterLocalNotificationsPlugin
-          .resolvePlatformSpecificImplementation<
-              AndroidFlutterLocalNotificationsPlugin>()
-          ?.requestNotificationsPermission();
-      await globals.flutterLocalNotificationsPlugin
-          .resolvePlatformSpecificImplementation<
-              AndroidFlutterLocalNotificationsPlugin>()
-          ?.createNotificationChannel(globals.channel);
+      await globals.flutterLocalNotificationsPlugin.resolvePlatformSpecificImplementation<AndroidFlutterLocalNotificationsPlugin>()?.requestNotificationsPermission();
+      await globals.flutterLocalNotificationsPlugin.resolvePlatformSpecificImplementation<AndroidFlutterLocalNotificationsPlugin>()?.createNotificationChannel(globals.channel);
 
-      await globals.flutterLocalNotificationsPlugin
-          .resolvePlatformSpecificImplementation<
-              IOSFlutterLocalNotificationsPlugin>()
-          ?.requestPermissions();
+      await globals.flutterLocalNotificationsPlugin.resolvePlatformSpecificImplementation<IOSFlutterLocalNotificationsPlugin>()?.requestPermissions();
 
       Crawler.loginSession().loginStatusChangeEvent.subscribe((args) {
         updateBackgroundService(lazy: true);
@@ -112,8 +98,7 @@ class _MainPageState extends State<MainPage> {
           if (value) {
             showToast("자동으로 로그인 했어요.");
 
-            globals.analytics
-                .logEvent(name: "login", parameters: {"auto_login": "true"});
+            globals.analytics.logEvent(name: "login", parameters: {"auto_login": "true"});
           } else {
             showToast("자동 로그인을 실패했어요.");
           }
@@ -144,14 +129,12 @@ class _MainPageState extends State<MainPage> {
             wait.add(Crawler.allGradeByCategory().execute());
             wait.add(Crawler.allGradeBySemester(map: newSemesters).execute());
 
-            var ret = (await Future.wait(wait))
-              ..removeWhere((element) => element.isEmpty);
+            var ret = (await Future.wait(wait))..removeWhere((element) => element.isEmpty);
             var result = SemesterSubjectsManager.merges(ret);
             if (result == null) return;
 
             for (var semester in newSemesters.keys) {
-              globals.semesterSubjectsManager.data[semester] =
-                  result.data[semester]!;
+              globals.semesterSubjectsManager.data[semester] = result.data[semester]!;
             }
 
             globals.semesterSubjectsManager.saveFile();
@@ -297,8 +280,7 @@ class _MainPageState extends State<MainPage> {
                                           ),
                                           TextButton(
                                             style: ElevatedButton.styleFrom(
-                                              minimumSize:
-                                                  const Size.fromHeight(40),
+                                              minimumSize: const Size.fromHeight(40),
                                             ),
                                             onPressed: () {
                                               Navigator.pop(context);
@@ -324,8 +306,7 @@ class _MainPageState extends State<MainPage> {
                                   TextButton(
                                     onPressed: () {
                                       showToast("동의하지 않으면 앱을 사용할 수 없어요.");
-                                      FlutterExitApp.exitApp(
-                                          iosForceExit: true);
+                                      FlutterExitApp.exitApp(iosForceExit: true);
                                     },
                                     child: const Text("닫기"),
                                   ),
@@ -348,129 +329,101 @@ class _MainPageState extends State<MainPage> {
                               child: Column(
                                 children: <Widget>[
                                       Visibility(
-                                        visible:
-                                            Crawler.loginSession().isNotEmpty,
+                                        visible: Crawler.loginSession().isNotEmpty,
                                         child: OutlinedButton(
                                           onPressed: () async {
-                                            Navigator.pushNamed(
-                                                context, "/grade_view");
+                                            Navigator.pushNamed(context, "/grade_view");
                                           },
                                           style: OutlinedButton.styleFrom(
-                                            minimumSize:
-                                                const Size.fromHeight(40),
+                                            minimumSize: const Size.fromHeight(40),
                                           ),
                                           child: const Text("학기별 성적 조회"),
                                         ),
                                       ),
                                       Visibility(
-                                        visible:
-                                            Crawler.loginSession().isNotEmpty,
+                                        visible: Crawler.loginSession().isNotEmpty,
                                         child: OutlinedButton(
                                           onPressed: () async {
-                                            Navigator.pushNamed(
-                                                context, "/grade_statistics");
+                                            Navigator.pushNamed(context, "/grade_statistics");
                                           },
                                           style: OutlinedButton.styleFrom(
-                                            minimumSize:
-                                                const Size.fromHeight(40),
+                                            minimumSize: const Size.fromHeight(40),
                                           ),
                                           child: const Text("성적 통계"),
                                         ),
                                       ),
                                       Visibility(
-                                        visible:
-                                            Crawler.loginSession().isNotEmpty,
+                                        visible: Crawler.loginSession().isNotEmpty,
                                         child: OutlinedButton(
                                           onPressed: () async {
-                                            Navigator.pushNamed(context,
-                                                "/category_statistics");
+                                            Navigator.pushNamed(context, "/category_statistics");
                                           },
                                           style: OutlinedButton.styleFrom(
-                                            minimumSize:
-                                                const Size.fromHeight(40),
+                                            minimumSize: const Size.fromHeight(40),
                                           ),
                                           child: const Text("이수 구분별 성적 통계"),
                                         ),
                                       ),
                                       Visibility(
-                                        visible:
-                                            Crawler.loginSession().isNotEmpty,
+                                        visible: Crawler.loginSession().isNotEmpty,
                                         child: OutlinedButton(
                                           onPressed: () async {
-                                            Navigator.pushNamed(
-                                                context, "/chapel");
+                                            Navigator.pushNamed(context, "/chapel");
                                           },
                                           style: OutlinedButton.styleFrom(
-                                            minimumSize:
-                                                const Size.fromHeight(40),
+                                            minimumSize: const Size.fromHeight(40),
                                           ),
                                           child: const Text("채플 정보 조회"),
                                         ),
                                       ),
                                       Visibility(
-                                        visible:
-                                            Crawler.loginSession().isNotEmpty,
+                                        visible: Crawler.loginSession().isNotEmpty,
                                         child: OutlinedButton(
                                           onPressed: () async {
-                                            Navigator.pushNamed(
-                                                context, "/scholarship");
+                                            Navigator.pushNamed(context, "/scholarship");
                                           },
                                           style: OutlinedButton.styleFrom(
-                                            minimumSize:
-                                                const Size.fromHeight(40),
+                                            minimumSize: const Size.fromHeight(40),
                                           ),
                                           child: const Text("장학 정보 조회"),
                                         ),
                                       ),
                                       Visibility(
-                                        visible:
-                                            Crawler.loginSession().isNotEmpty,
+                                        visible: Crawler.loginSession().isNotEmpty,
                                         child: OutlinedButton(
                                           onPressed: () async {
-                                            Navigator.pushNamed(
-                                                context, "/absent");
+                                            Navigator.pushNamed(context, "/absent");
                                           },
                                           style: OutlinedButton.styleFrom(
-                                            minimumSize:
-                                                const Size.fromHeight(40),
+                                            minimumSize: const Size.fromHeight(40),
                                           ),
                                           child: const Text("유고 결석 정보 조회"),
                                         ),
                                       ),
                                       Visibility(
-                                        visible: Crawler.loginSession()
-                                                .isEmpty ||
-                                            Crawler.loginSession()
-                                                .isFail, // 자동 로그인 실패했거나 로그인이 필요하면
+                                        visible: Crawler.loginSession().isEmpty || Crawler.loginSession().isFail, // 자동 로그인 실패했거나 로그인이 필요하면
                                         child: OutlinedButton(
                                           onPressed: () {
-                                            Navigator.pushNamed(
-                                                context, "/login");
+                                            Navigator.pushNamed(context, "/login");
                                           },
                                           style: OutlinedButton.styleFrom(
-                                            minimumSize:
-                                                const Size.fromHeight(40),
+                                            minimumSize: const Size.fromHeight(40),
                                           ),
                                           child: const Text("로그인"),
                                         ),
                                       ),
                                       Visibility(
-                                        visible:
-                                            Crawler.loginSession().isNotEmpty &&
-                                                Crawler.loginSession()
-                                                    .isFail, // 자동 로그인 실패했을 때
+                                        visible: Crawler.loginSession().isNotEmpty && Crawler.loginSession().isFail, // 자동 로그인 실패했을 때
                                         child: OutlinedButton(
                                           onPressed: () async {
-                                            if (await Crawler.loginSession()
-                                                .execute()) {
+                                            if (await Crawler.loginSession().execute()) {
                                               showToast("자동으로 로그인 했어요.");
                                             } else {
                                               showToast("자동 로그인을 실패했어요.");
                                             }
                                           },
                                           style: OutlinedButton.styleFrom(
-                                            minimumSize:
-                                                const Size.fromHeight(40),
+                                            minimumSize: const Size.fromHeight(40),
                                           ),
                                           child: const Text("자동 로그인 재시도"),
                                         ),
@@ -479,35 +432,29 @@ class _MainPageState extends State<MainPage> {
                                     <Widget>[
                                       OutlinedButton(
                                         onPressed: () {
-                                          Navigator.pushNamed(
-                                              context, "/setting");
+                                          Navigator.pushNamed(context, "/setting");
                                         },
                                         style: OutlinedButton.styleFrom(
-                                          minimumSize:
-                                              const Size.fromHeight(40),
+                                          minimumSize: const Size.fromHeight(40),
                                         ),
                                         child: const Text("설정"),
                                       ),
                                       OutlinedButton(
                                         onPressed: () {
-                                          Navigator.pushNamed(
-                                              context, "/information");
+                                          Navigator.pushNamed(context, "/information");
                                         },
                                         style: OutlinedButton.styleFrom(
-                                          minimumSize:
-                                              const Size.fromHeight(40),
+                                          minimumSize: const Size.fromHeight(40),
                                         ),
                                         child: const Text("정보"),
                                       ),
                                       OutlinedButton(
                                         onPressed: () => launchUrl(
-                                          Uri.parse(
-                                              "https://github.com/nnnlog/SSUrade/blob/master/USAGE.md"),
+                                          Uri.parse("https://github.com/nnnlog/SSUrade/blob/master/USAGE.md"),
                                           mode: LaunchMode.externalApplication,
                                         ),
                                         style: OutlinedButton.styleFrom(
-                                          minimumSize:
-                                              const Size.fromHeight(40),
+                                          minimumSize: const Size.fromHeight(40),
                                         ),
                                         child: const Text(
                                           "사용법 및 도움말",
