@@ -95,11 +95,11 @@ extension WebViewControllerExtension on InAppWebViewController {
         }
       }
 
+      waitForLoadingPage = Completer();
       loadData(data: body, baseUrl: WebUri(url));
       break;
     }
 
-    waitForLoadingPage = Completer();
     await waitForLoadingPage?.future;
     span?.finish(status: const SpanStatus.ok());
 
