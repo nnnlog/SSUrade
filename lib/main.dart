@@ -25,8 +25,7 @@ import 'firebase_options.dart';
 void main() async {
   await SentryFlutter.init(
     (options) {
-      options.dsn =
-          'https://71fdb674566745408a9611f2e72b2599@o4504542772789248.ingest.sentry.io/4504551497596928';
+      options.dsn = 'https://71fdb674566745408a9611f2e72b2599@o4504542772789248.ingest.sentry.io/4504551497596928';
       options.tracesSampleRate = 0.1;
     },
     appRunner: () async {
@@ -34,8 +33,7 @@ void main() async {
         await InAppWebViewController.setWebContentsDebuggingEnabled(kDebugMode);
       }
 
-      Workmanager()
-          .initialize(startBackgroundService, isInDebugMode: kDebugMode);
+      Workmanager().initialize(startBackgroundService, isInDebugMode: kDebugMode);
 
       WidgetsFlutterBinding.ensureInitialized();
       await Firebase.initializeApp(
@@ -68,8 +66,7 @@ class MyApp extends StatelessWidget {
           800: Color.fromRGBO(0, 164, 202, .9),
           900: Color.fromRGBO(0, 164, 202, 1),
         }),
-        scaffoldBackgroundColor:
-            globals.isLightMode ? Colors.white : Colors.black54,
+        scaffoldBackgroundColor: globals.isLightMode ? Colors.white : Colors.black54,
         fontFamily: "Pretendard",
       ),
       // darkTheme: ThemeData.dark(), // TODO
