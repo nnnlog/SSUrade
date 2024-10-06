@@ -1,5 +1,6 @@
 import 'package:injectable/injectable.dart';
 import 'package:parallel_worker/parallel_worker.dart';
+import 'package:ssurade_adaptor/crawling/constant/crawling_timeout.dart';
 import 'package:ssurade_adaptor/crawling/job/main_thread_crawling_job.dart';
 import 'package:ssurade_adaptor/crawling/webview/web_view_client.dart';
 import 'package:ssurade_adaptor/crawling/webview/web_view_client_service.dart';
@@ -47,7 +48,7 @@ class ExternalChapelRetrievalService implements ExternalChapelManagerRetrievalPo
 
   @override
   Job<List<Chapel>> retrieveChapels(List<YearSemester> yearSemesters) {
-    return MainThreadCrawlingJob(() async {
+    return MainThreadCrawlingJob(CrawlingTimeout.chapel, () async {
       final clients = await Future.wait(List.filled(_webViewCount, null).map((_) {
         return _webViewClientService.create();
       }).toList());
@@ -71,7 +72,7 @@ class ExternalChapelRetrievalService implements ExternalChapelManagerRetrievalPo
 
   @override
   Job<Chapel?> retrieveChapel(YearSemester yearSemester) {
-    return MainThreadCrawlingJob(() async {
+    return MainThreadCrawlingJob(CrawlingTimeout.chapel, () async {
       final client = await _webViewClientService.create();
 
       await client.loadPage(_url);

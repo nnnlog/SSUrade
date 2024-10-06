@@ -23,6 +23,13 @@ class SemesterSubjectsManager extends Equatable {
     required this.state,
   });
 
+  factory SemesterSubjectsManager.empty() {
+    return SemesterSubjectsManager(
+      data: SplayTreeMap(),
+      state: SubjectState.empty,
+    );
+  }
+
   factory SemesterSubjectsManager.fromJson(Map<String, dynamic> json) => _$SemesterSubjectsManagerFromJson(json);
 
   Map<String, dynamic> toJson() => _$SemesterSubjectsManagerToJson(this);

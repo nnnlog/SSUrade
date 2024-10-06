@@ -4,6 +4,7 @@ import 'package:dart_scope_functions/dart_scope_functions.dart';
 import 'package:df/df.dart';
 import 'package:injectable/injectable.dart';
 import 'package:parallel_worker/parallel_worker.dart';
+import 'package:ssurade_adaptor/crawling/constant/crawling_timeout.dart';
 import 'package:ssurade_adaptor/crawling/job/main_thread_crawling_job.dart';
 import 'package:ssurade_adaptor/crawling/webview/web_view_client.dart';
 import 'package:ssurade_adaptor/crawling/webview/web_view_client_service.dart';
@@ -219,7 +220,7 @@ class ExternalSubjectRetrievalService implements ExternalSubjectRetrievalPort {
 
   @override
   Job<SemesterSubjectsManager?> retrieveAllSemesterSubjects({bool includeDetail = true}) {
-    return MainThreadCrawlingJob(() async {
+    return MainThreadCrawlingJob(CrawlingTimeout.grade, () async {
       final clients = await Future.wait(List.filled(_webViewCount, null).map((_) {
         return _webViewClientService.create();
       }).toList());
@@ -281,7 +282,7 @@ class ExternalSubjectRetrievalService implements ExternalSubjectRetrievalPort {
 
   @override
   Job<SemesterSubjects?> retrieveSemesterSubjects(YearSemester yearSemester, {bool includeDetail = true}) {
-    return MainThreadCrawlingJob(() async {
+    return MainThreadCrawlingJob(CrawlingTimeout.grade, () async {
       final semesterClient = await _webViewClientService.create(), categoryClient = await _webViewClientService.create();
 
       final results = await Future.wait([

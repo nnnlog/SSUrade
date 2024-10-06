@@ -1,3 +1,6 @@
+import 'package:ssurade_application/domain/model/credential/credential.dart';
+import 'package:ssurade_application/domain/model/job/job.dart';
+
 abstract interface class ExternalCredentialRetrievalPort {
-  Future<List<dynamic>?> getCredential(String id, String password);
+  Job<List<dynamic>?> getCookiesFromCredential(Credential credential);
 }

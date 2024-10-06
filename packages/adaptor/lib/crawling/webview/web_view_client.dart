@@ -6,16 +6,20 @@ import 'package:dart_scope_functions/dart_scope_functions.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:html/parser.dart';
 import 'package:http/http.dart' as http;
+import 'package:ssurade_adaptor/asset/asset_loader_service.dart';
 import 'package:ssurade_adaptor/http_configuration.dart';
+import 'package:ssurade_adaptor/persistence/localstorage/lightspeed_retrieval_service.dart';
 import 'package:ssurade_application/ssurade_application.dart';
 
 class WebViewClientEventManager {
+  Future<void> Function(InAppWebViewController controller, Uri? url)? onLoadStop;
   Future<JsAlertResponse?> Function(InAppWebViewController controller, JsAlertRequest jsAlertRequest)? onJsAlert;
   Future<JsConfirmResponse?> Function(InAppWebViewController controller, JsConfirmRequest jsConfirmRequest)? onJsConfirm;
   Future<JsPromptResponse?> Function(InAppWebViewController controller, JsPromptRequest jsPromptRequest)? onJsPrompt;
   Future<WebResourceResponse?> Function(InAppWebViewController controller, WebResourceRequest request)? shouldInterceptRequest;
 
   WebViewClientEventManager({
+    this.onLoadStop,
     this.onJsAlert,
     this.onJsConfirm,
     this.onJsPrompt,
@@ -56,30 +60,31 @@ class WebViewClientEventManager {
 }
 
 class WebViewClient {
+  static List<WebUri> get _cookieDomains => [WebUri("https://.ssu.ac.kr"), WebUri("https://ecc.ssu.ac.kr")];
+  static String get _injectorAssetPath => "js/common.js";
+
   final WebViewClientEventManager _eventManager;
   final HeadlessInAppWebView _webView;
 
-  final LocalStorageCredentialRetrievalPort _credentialRetrievalPort;
-  final LocalStorageCredentialSavePort _credentialSavePort;
-  final LightspeedRetrievalPort _lightspeedRetrievalPort;
+  final LocalStorageCredentialPort _localStorageCredentialPort; // Replace it to internal logic of adaptor
+  final LightspeedRetrievalService _lightspeedRetrievalService;
+  final AssetLoaderService _assetLoaderService;
 
   const WebViewClient({
     required final WebViewClientEventManager eventManager,
     required final HeadlessInAppWebView webView,
-    required final LocalStorageCredentialRetrievalPort credentialRetrievalPort,
-    required final LocalStorageCredentialSavePort credentialSavePort,
-    required final LightspeedRetrievalPort lightspeedRetrievalPort,
+    required final LocalStorageCredentialPort localStorageCredentialPort,
+    required final LightspeedRetrievalService lightspeedRetrievalService,
+    required final AssetLoaderService assetLoaderService,
   })  : _eventManager = eventManager,
         _webView = webView,
-        _credentialRetrievalPort = credentialRetrievalPort,
-        _credentialSavePort = credentialSavePort,
-        _lightspeedRetrievalPort = lightspeedRetrievalPort;
+        _localStorageCredentialPort = localStorageCredentialPort,
+        _lightspeedRetrievalService = lightspeedRetrievalService,
+        _assetLoaderService = assetLoaderService;
 
   InAppWebViewController get _controller => _webView.webViewController!;
 
   WebViewClientEventManager get eventManager => _eventManager;
-
-  static List<WebUri> get _cookieDomains => [WebUri("https://.ssu.ac.kr"), WebUri("https://ecc.ssu.ac.kr")];
 
   Future<List<Cookie>> get cookies async {
     final controller = _controller;
@@ -101,7 +106,7 @@ class WebViewClient {
         await CookieManager.instance().deleteCookies(url: url, webViewController: controller);
       }
 
-      await _credentialRetrievalPort.retrieveCredential().then((credential) async {
+      await _localStorageCredentialPort.retrieveCredential().then((credential) async {
         if (credential != null) {
           final cookies = credential.cookies.map((raw) => Cookie.fromMap(raw)).whereType<Cookie>().toList();
           for (final cookie in cookies) {
@@ -127,10 +132,10 @@ class WebViewClient {
         await CookieManager.instance().setCookie(url: WebUri("https://${cookie.domain}"), name: cookie.name, value: cookie.value, webViewController: controller);
       }
 
-      _credentialRetrievalPort.retrieveCredential().then((credential) async {
+      _localStorageCredentialPort.retrieveCredential().then((credential) async {
         if (credential != null) {
           credential = credential.copyWith(cookies: (await cookies).map((cookie) => cookie.toMap()).toList());
-          await _credentialSavePort.saveCredential(credential);
+          await _localStorageCredentialPort.saveCredential(credential);
         }
       });
     });
@@ -141,7 +146,7 @@ class WebViewClient {
       final script = document.querySelector("script[src*='lightspeed.js']");
       if (script != null) {
         final scriptUrl = script.attributes["src"]!;
-        final lightspeed = await _lightspeedRetrievalPort.retrieveLightspeed(Uri.parse(scriptUrl).query);
+        final lightspeed = await _lightspeedRetrievalService.retrieveLightspeed(Uri.parse(scriptUrl).query);
 
         script.innerHtml = "document.currentScript.src = atob(`${base64Encode(utf8.encode(scriptUrl))}`);\n";
         script.innerHtml += "eval(atob(`${base64Encode(utf8.encode(lightspeed.data))}`));";
@@ -151,7 +156,9 @@ class WebViewClient {
       }
     }
 
-    // TODO: Inject usaint-injector
+    eventManager.onLoadStop = (controller, _) async {
+      await _controller.evaluateJavascript(source: await _assetLoaderService.loadAsset(_injectorAssetPath));
+    };
 
     await controller.loadData(data: body, baseUrl: WebUri(url));
   }

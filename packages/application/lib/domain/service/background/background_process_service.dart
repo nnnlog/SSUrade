@@ -19,36 +19,28 @@ import 'package:ssurade_application/port/out/external/external_absent_applicatio
 import 'package:ssurade_application/port/out/external/external_chapel_retrieval_port.dart';
 import 'package:ssurade_application/port/out/external/external_scholarship_manager_retrieval_port.dart';
 import 'package:ssurade_application/port/out/external/external_subject_retrieval_port.dart';
-import 'package:ssurade_application/port/out/local_storage/retrieval/local_storage_absent_application_manager_retrieval_port.dart';
-import 'package:ssurade_application/port/out/local_storage/retrieval/local_storage_chapel_manager_retrieval_port.dart';
-import 'package:ssurade_application/port/out/local_storage/retrieval/local_storage_scholarship_manager_retrieval_port.dart';
-import 'package:ssurade_application/port/out/local_storage/retrieval/local_storage_semester_subjects_manager_retrieval_port.dart';
-import 'package:ssurade_application/port/out/local_storage/retrieval/local_storage_setting_retrieval_port.dart';
-import 'package:ssurade_application/port/out/local_storage/save/local_storage_absent_application_manager_save_port.dart';
-import 'package:ssurade_application/port/out/local_storage/save/local_storage_chapel_manager_save_port.dart';
-import 'package:ssurade_application/port/out/local_storage/save/local_storage_scholarship_manager_save_port.dart';
-import 'package:ssurade_application/port/out/local_storage/save/local_storage_semester_subjects_manager_save_port.dart';
+import 'package:ssurade_application/port/out/local_storage/local_storage_absent_application_manager_port.dart';
+import 'package:ssurade_application/port/out/local_storage/local_storage_chapel_manager_port.dart';
+import 'package:ssurade_application/port/out/local_storage/local_storage_scholarship_manager_port.dart';
+import 'package:ssurade_application/port/out/local_storage/local_storage_semester_subjects_manager_port.dart';
+import 'package:ssurade_application/port/out/local_storage/local_storage_setting_port.dart';
 import 'package:ssurade_application/utils/map_styled_set.dart';
 
 @Singleton(as: BackgroundProcessUseCase)
 class BackgroundProcessService implements BackgroundProcessUseCase {
-  final LocalStorageAbsentApplicationManagerRetrievalPort _localStorageAbsentApplicationManagerRetrievalPort;
-  final LocalStorageAbsentApplicationManagerSavePort _localStorageAbsentApplicationManagerSavePort;
+  final LocalStorageAbsentApplicationManagerPort _localStorageAbsentApplicationManagerPort;
   final ExternalAbsentApplicationRetrievalPort _externalAbsentApplicationRetrievalPort;
 
-  final LocalStorageChapelManagerRetrievalPort _localStorageChapelManagerRetrievalPort;
-  final LocalStorageChapelManagerSavePort _localStorageChapelManagerSavePort;
+  final LocalStorageChapelManagerPort _localStorageChapelManagerPort;
   final ExternalChapelManagerRetrievalPort _externalChapelRetrievalPort;
 
-  final LocalStorageSemesterSubjectsManagerRetrievalPort _localStorageSemesterSubjectsManagerRetrievalPort;
-  final LocalStorageSemesterSubjectsManagerSavePort _localStorageSemesterSubjectsManagerSavePort;
+  final LocalStorageSemesterSubjectsManagerPort _localStorageSemesterSubjectsManagerPort;
   final ExternalSubjectRetrievalPort _externalSubjectRetrievalPort;
 
-  final LocalStorageScholarshipManagerRetrievalPort _localStorageScholarshipManagerRetrievalPort;
-  final LocalStorageScholarshipManagerSavePort _localStorageScholarshipManagerSavePort;
+  final LocalStorageScholarshipManagerPort _localStorageScholarshipManagerPort;
   final ExternalScholarshipManagerRetrievalPort _externalScholarshipRetrievalPort;
 
-  final LocalStorageSettingRetrievalPort _localStorageSettingRetrievalPort;
+  final LocalStorageSettingPort _localStorageSettingPort;
 
   final NotificationPort _notificationPort;
 
@@ -57,26 +49,22 @@ class BackgroundProcessService implements BackgroundProcessUseCase {
   final Mutex _mutexForChapel = Mutex();
 
   BackgroundProcessService(
-    this._localStorageAbsentApplicationManagerRetrievalPort,
-    this._localStorageAbsentApplicationManagerSavePort,
+    this._localStorageAbsentApplicationManagerPort,
     this._externalAbsentApplicationRetrievalPort,
-    this._localStorageChapelManagerRetrievalPort,
-    this._localStorageChapelManagerSavePort,
+    this._localStorageChapelManagerPort,
     this._externalChapelRetrievalPort,
-    this._localStorageSemesterSubjectsManagerRetrievalPort,
-    this._localStorageSemesterSubjectsManagerSavePort,
+    this._localStorageSemesterSubjectsManagerPort,
     this._externalSubjectRetrievalPort,
-    this._localStorageScholarshipManagerRetrievalPort,
-    this._localStorageScholarshipManagerSavePort,
+    this._localStorageScholarshipManagerPort,
     this._externalScholarshipRetrievalPort,
-    this._localStorageSettingRetrievalPort,
+    this._localStorageSettingPort,
     this._notificationPort,
     this._appEnvironmentPort,
   );
 
   @override
   Future<void> fetchAbsent() async {
-    final originalAbsentData = await _localStorageAbsentApplicationManagerRetrievalPort.retrieveAbsentApplicationManager();
+    final originalAbsentData = await _localStorageAbsentApplicationManagerPort.retrieveAbsentApplicationManager();
 
     if (originalAbsentData == null) {
       return;
@@ -99,7 +87,7 @@ class BackgroundProcessService implements BackgroundProcessUseCase {
 
     if (updates.isNotEmpty) {
       await _notificationPort.sendNotification(title: "유고 결석 정보 변경", body: updates.join("\n"));
-      await _localStorageAbsentApplicationManagerSavePort.saveAbsentApplicationManager(newAbsentData);
+      await _localStorageAbsentApplicationManagerPort.saveAbsentApplicationManager(newAbsentData);
     } else if (_appEnvironmentPort.getEnvironment() == AppEnvironment.debug) {
       await _notificationPort.sendNotification(title: "not updated (${DateTime.now().toString()})", body: newAbsentData.data.map((e) => "${e.startDate} ~ ${e.endDate} : ${e.status}").join("\n"));
     }
@@ -109,7 +97,7 @@ class BackgroundProcessService implements BackgroundProcessUseCase {
   Future<void> fetchChapel() async {
     await _mutexForChapel.acquire();
 
-    final originChapelManager = await _localStorageChapelManagerRetrievalPort.retrieveChapelManager();
+    final originChapelManager = await _localStorageChapelManagerPort.retrieveChapelManager();
 
     if (originChapelManager == null || originChapelManager.data.isEmpty) {
       return;
@@ -152,7 +140,7 @@ class BackgroundProcessService implements BackgroundProcessUseCase {
 
       final nextChapelManager = originChapelManager.copyWith(data: nextChapels);
 
-      await _localStorageChapelManagerSavePort.saveChapelManager(nextChapelManager);
+      await _localStorageChapelManagerPort.saveChapelManager(nextChapelManager);
     } else if (_appEnvironmentPort.getEnvironment() == AppEnvironment.debug) {
       await _notificationPort.sendNotification(
           title: "not updated (${DateTime.now().toString()})", body: newChapelData.attendances.map((e) => "${e.lectureDate} : ${e.status.displayText}").join("\n"));
@@ -163,8 +151,8 @@ class BackgroundProcessService implements BackgroundProcessUseCase {
 
   @override
   Future<void> fetchGrade() async {
-    final originalSemesterSubjectsManager = await _localStorageSemesterSubjectsManagerRetrievalPort.retrieveSemesterSubjectsManager();
-    final setting = await _localStorageSettingRetrievalPort.retrieveSetting();
+    final originalSemesterSubjectsManager = await _localStorageSemesterSubjectsManagerPort.retrieveSemesterSubjectsManager();
+    final setting = await _localStorageSettingPort.retrieveSetting();
 
     if (originalSemesterSubjectsManager == null) {
       return;
@@ -216,7 +204,7 @@ class BackgroundProcessService implements BackgroundProcessUseCase {
 
       final nextSemesterSubjectsManager = originalSemesterSubjectsManager.copyWith(data: nextData);
 
-      await _localStorageSemesterSubjectsManagerSavePort.saveSemesterSubjectsManager(nextSemesterSubjectsManager);
+      await _localStorageSemesterSubjectsManagerPort.saveSemesterSubjectsManager(nextSemesterSubjectsManager);
     } else if (_appEnvironmentPort.getEnvironment() == AppEnvironment.debug) {
       await _notificationPort.sendNotification(title: "not updated (${DateTime.now().toString()})", body: newSubjects.join("\n"));
     }
@@ -232,7 +220,7 @@ class BackgroundProcessService implements BackgroundProcessUseCase {
       search.add(YearSemester(year: it, semester: Semester.second));
     });
 
-    final originalChapelManager = await _localStorageChapelManagerRetrievalPort.retrieveChapelManager() ?? ChapelManager.empty();
+    final originalChapelManager = await _localStorageChapelManagerPort.retrieveChapelManager() ?? ChapelManager.empty();
 
     final chapelData = await _externalChapelRetrievalPort.retrieveChapels(search).result;
     List<String> updates = [];
@@ -255,7 +243,7 @@ class BackgroundProcessService implements BackgroundProcessUseCase {
 
       final nextChapelManager = originalChapelManager.copyWith(data: nextChapels);
 
-      await _localStorageChapelManagerSavePort.saveChapelManager(nextChapelManager);
+      await _localStorageChapelManagerPort.saveChapelManager(nextChapelManager);
     } else if (_appEnvironmentPort.getEnvironment() == AppEnvironment.debug) {
       await _notificationPort.sendNotification(title: "not updated (${DateTime.now().toString()})", body: chapelData.map((e) => "${e.currentSemester.displayText}").join("\n"));
     }
@@ -265,7 +253,7 @@ class BackgroundProcessService implements BackgroundProcessUseCase {
 
   @override
   Future<void> fetchScholarship() async {
-    final originalScholarshipManager = await _localStorageScholarshipManagerRetrievalPort.retrieveScholarshipManager();
+    final originalScholarshipManager = await _localStorageScholarshipManagerPort.retrieveScholarshipManager();
 
     if (originalScholarshipManager == null) {
       return;
@@ -292,7 +280,7 @@ class BackgroundProcessService implements BackgroundProcessUseCase {
 
     if (updates.isNotEmpty) {
       await _notificationPort.sendNotification(title: "장학 정보 변경", body: updates.join("\n"));
-      await _localStorageScholarshipManagerSavePort.saveScholarshipManager(scholarshipData);
+      await _localStorageScholarshipManagerPort.saveScholarshipManager(scholarshipData);
     } else if (_appEnvironmentPort.getEnvironment() == AppEnvironment.debug) {
       await _notificationPort.sendNotification(title: "not updated (${DateTime.now().toString()})", body: scholarshipData.data.map((e) => "${e.name} : ${e.when.displayText}").join("\n"));
     }

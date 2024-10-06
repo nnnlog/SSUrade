@@ -1,13 +1,44 @@
 import 'package:flutter/material.dart';
 
-class GradeLogo extends StatefulWidget {
+class GradeLogo extends StatelessWidget {
   final String bigText, smallText;
   final Color backgroundColor, textColor;
 
   const GradeLogo({super.key, this.bigText = "", this.smallText = "", required this.backgroundColor, required this.textColor});
 
   @override
-  State<StatefulWidget> createState() => _GradeLogoState();
+  Widget build(BuildContext context) {
+    return Container(
+      width: 50,
+      height: 50,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(14),
+        color: backgroundColor,
+      ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Text(
+            bigText,
+            style: TextStyle(
+              color: textColor,
+              fontWeight: FontWeight.w900,
+              fontSize: 25,
+            ),
+          ),
+          Text(
+            smallText,
+            style: TextStyle(
+              color: textColor,
+              fontWeight: FontWeight.w900,
+              fontSize: 13,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
 
   static const GradeLogo pass = GradeLogo(
     backgroundColor: Color.fromRGBO(209, 255, 187, 1),
@@ -61,40 +92,4 @@ class GradeLogo extends StatefulWidget {
     if (grade.startsWith("D")) return D(grade.substring(1, 2));
     return unknown;
   };
-}
-
-class _GradeLogoState extends State<GradeLogo> {
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      width: 50,
-      height: 50,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(14),
-        color: widget.backgroundColor,
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Text(
-            widget.bigText,
-            style: TextStyle(
-              color: widget.textColor,
-              fontWeight: FontWeight.w900,
-              fontSize: 25,
-            ),
-          ),
-          Text(
-            widget.smallText,
-            style: TextStyle(
-              color: widget.textColor,
-              fontWeight: FontWeight.w900,
-              fontSize: 13,
-            ),
-          ),
-        ],
-      ),
-    );
-  }
 }

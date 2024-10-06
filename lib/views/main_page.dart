@@ -28,199 +28,125 @@ class MainPage extends StatefulWidget {
 }
 
 class _MainPageState extends State<MainPage> {
-  final Completer<void> _agreeFuture = Completer();
-  late String _agreement, _agreement_short;
-  MainProgress _progress = MainProgress.init;
-
-  void handleLoginStatusChange(_) {
-    setState(() {});
-  }
-
-  void handleLoginFail(msg) {
-    // showToast("로그인을 실패했어요.");
-    // showToast("메인 화면에서 자동 로그인을 다시 시도하거나 새로운 계정으로 로그인하세요.");
-
-    if (msg != null) {
-      showToast(msg.value);
-    }
-
-    globals.analytics.logEvent(name: "login_fail");
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
-
-    Crawler.loginSession().loginStatusChangeEvent.unsubscribe(handleLoginStatusChange);
-    Crawler.loginSession().loginFailEvent.unsubscribe(handleLoginFail);
-  }
+  // final Completer<void> _agreeFuture = Completer();
+  // late String _agreement, _agreement_short;
+  // MainProgress _progress = MainProgress.init;
 
   @override
   void initState() {
     super.initState();
 
-    Crawler.loginSession().loginStatusChangeEvent.subscribe(handleLoginStatusChange);
-    Crawler.loginSession().loginFailEvent.subscribe(handleLoginFail);
-
-    (() async {
-      await globals.init();
-
-      if (!globals.setting.agree) {
-        await disableBatteryOptimize(show: true);
-
-        _agreement = await rootBundle.loadString("assets/agreement.txt");
-        _agreement_short = await rootBundle.loadString("assets/agreement_short.txt");
-        setState(() {
-          _progress = MainProgress.agree;
-        });
-        await _agreeFuture.future;
-      } else {
-        await disableBatteryOptimize();
-      }
-
-      updateBackgroundService(lazy: true); // repair background service
-
-      await globals.flutterLocalNotificationsPlugin.resolvePlatformSpecificImplementation<AndroidFlutterLocalNotificationsPlugin>()?.requestNotificationsPermission();
-      await globals.flutterLocalNotificationsPlugin.resolvePlatformSpecificImplementation<AndroidFlutterLocalNotificationsPlugin>()?.createNotificationChannel(globals.channel);
-
-      await globals.flutterLocalNotificationsPlugin.resolvePlatformSpecificImplementation<IOSFlutterLocalNotificationsPlugin>()?.requestPermissions();
-
-      Crawler.loginSession().loginStatusChangeEvent.subscribe((args) {
-        updateBackgroundService(lazy: true);
-      });
-
-      setState(() {
-        _progress = MainProgress.finish;
-      });
-
-      if (Crawler.loginSession().isNotEmpty) {
-        Crawler.loginSession().execute().then((value) {
-          if (value) {
-            showToast("자동으로 로그인 했어요.");
-
-            globals.analytics.logEvent(name: "login", parameters: {"auto_login": "true"});
-          } else {
-            showToast("자동 로그인을 실패했어요.");
-          }
-        });
-
-        Crawler.gradeSemesterList().execute().then((value) async {
-          int year = DateTime.now().year;
-          if (DateTime.now().month <= 2) year--;
-          for (var e in Semester.values) {
-            var key = YearSemester(year, e);
-            if (!value.containsKey(key)) {
-              value[key] = const Tuple2(Ranking.unknown, Ranking.unknown);
-            }
-          }
-
-          var manager = globals.semesterSubjectsManager;
-          Map<YearSemester, Tuple2<Ranking, Ranking>> newSemesters = {};
-
-          for (var semester in value.keys) {
-            if (!manager.data.containsKey(semester)) {
-              newSemesters[semester] = value[semester]!;
-            }
-          }
-
-          if (newSemesters.isNotEmpty) {
-            List<Future<SemesterSubjectsManager>> wait = [];
-
-            wait.add(Crawler.allGradeByCategory().execute());
-            wait.add(Crawler.allGradeBySemester(map: newSemesters).execute());
-
-            var ret = (await Future.wait(wait))..removeWhere((element) => element.isEmpty);
-            var result = SemesterSubjectsManager.merges(ret);
-            if (result == null) return;
-
-            for (var semester in newSemesters.keys) {
-              globals.semesterSubjectsManager.data[semester] = result.data[semester]!;
-            }
-
-            globals.semesterSubjectsManager.saveFile();
-          }
-        });
-
-        {
-          int year = DateTime.now().year;
-          if (DateTime.now().month <= 2) year--;
-          List<YearSemester> searches = [];
-          for (var e in [Semester.first, Semester.second]) {
-            var key = YearSemester(year, e);
-            if (globals.chapelInformationManager.data[key] != null) {
-              searches.add(key);
-            }
-          }
-
-          Crawler.allChapel(searches).execute().then((value) {
-            if (value.isEmpty) return;
-
-            for (var data in value.data) {
-              globals.chapelInformationManager.data.add(data);
-            }
-
-            globals.chapelInformationManager.saveFile();
-          });
-        }
-
-        // Crawler.allGrade().execute().then((value) {
-        //   if (value.isEmpty) return;
-        //   if (value.state != STATE_FULL) return;
-        //
-        //   bool foundNewSemester = false;
-        //   List<String> newSemester = [];
-        //
-        //   for (var key in value.data.keys) {
-        //     if (!globals.semesterSubjectsManager.data.containsKey(key)) {
-        //       foundNewSemester = true;
-        //       newSemester.add("${key.year}학년도 ${key.semester.name}");
-        //
-        //       Crawler.semesterSubjectDetailGrade(value.data[key]!).execute().then((value) {
-        //         for (var subjectCode in value.keys) {
-        //           if (value[subjectCode]?.isNotEmpty == true) {
-        //             globals.semesterSubjectsManager.data[key]?.subjects[subjectCode]?.detail = value[subjectCode]!;
-        //             globals.semesterSubjectsManager.saveFile();
-        //
-        //             globals.gradeUpdateEvent.broadcast();
-        //           }
-        //         }
-        //       });
-        //     }
-        //   }
-        //
-        //   globals.semesterSubjectsManager = SemesterSubjectsManager.merge(value, globals.semesterSubjectsManager)!;
-        //   globals.semesterSubjectsManager.saveFile();
-        //
-        //   globals.gradeUpdateEvent.broadcast();
-        //
-        //   if (foundNewSemester) {
-        //     showToast("새로운 학기(${newSemester.join(", ")}) 성적을 찾았어요.");
-        //     globals.gradeUpdateEvent.broadcast();
-        //   }
-        // });
-
-        // {
-        //   var value = globals.semesterSubjectsManager;
-        //   for (var key in value.data.keys) {
-        //     Crawler.semesterSubjectDetailGrade(value.data[key]!).execute().then((value) {
-        //       for (var subjectCode in value.keys) {
-        //         if (value[subjectCode]?.isNotEmpty == true) {
-        //           globals.semesterSubjectsManager.data[key]?.subjects[subjectCode]?.detail = value[subjectCode]!;
-        //           globals.gradeUpdateEvent.broadcast();
-        //           globals.semesterSubjectsManager.saveFile();
-        //         }
-        //       }
-        //     });
-        //   }
-        // }
-      }
-
-      fetchAppVersion().then((value) {
-        if (value.item2 != "") {
-          showToast("새로운 버전 v${value.item2}(으)로 업데이트할 수 있어요.");
-          showToast("Github 또는 Play Store에 방문해 주세요.");
-        }
-      });
+    // Crawler.loginSession().loginStatusChangeEvent.subscribe(handleLoginStatusChange);
+    // Crawler.loginSession().loginFailEvent.subscribe(handleLoginFail);
+    //
+    // (() async {
+    //   await globals.init();
+    //
+    //   if (!globals.setting.agree) {
+    //     await disableBatteryOptimize(show: true);
+    //
+    //     _agreement = await rootBundle.loadString("asset/agreement.txt");
+    //     _agreement_short = await rootBundle.loadString("asset/agreement_short.txt");
+    //     setState(() {
+    //       _progress = MainProgress.agree;
+    //     });
+    //     await _agreeFuture.future;
+    //   } else {
+    //     await disableBatteryOptimize();
+    //   }
+    //
+    //   updateBackgroundService(lazy: true); // repair background service
+    //
+    //   await globals.flutterLocalNotificationsPlugin.resolvePlatformSpecificImplementation<AndroidFlutterLocalNotificationsPlugin>()?.requestNotificationsPermission();
+    //   await globals.flutterLocalNotificationsPlugin.resolvePlatformSpecificImplementation<AndroidFlutterLocalNotificationsPlugin>()?.createNotificationChannel(globals.channel);
+    //
+    //   await globals.flutterLocalNotificationsPlugin.resolvePlatformSpecificImplementation<IOSFlutterLocalNotificationsPlugin>()?.requestPermissions();
+    //
+    //   Crawler.loginSession().loginStatusChangeEvent.subscribe((args) {
+    //     updateBackgroundService(lazy: true);
+    //   });
+    //
+    //   setState(() {
+    //     _progress = MainProgress.finish;
+    //   });
+    //
+    //   if (Crawler.loginSession().isNotEmpty) {
+    //     Crawler.loginSession().execute().then((value) {
+    //       if (value) {
+    //         showToast("자동으로 로그인 했어요.");
+    //
+    //         globals.analytics.logEvent(name: "login", parameters: {"auto_login": "true"});
+    //       } else {
+    //         showToast("자동 로그인을 실패했어요.");
+    //       }
+    //     });
+    //
+    //     Crawler.gradeSemesterList().execute().then((value) async {
+    //       int year = DateTime.now().year;
+    //       if (DateTime.now().month <= 2) year--;
+    //       for (var e in Semester.values) {
+    //         var key = YearSemester(year, e);
+    //         if (!value.containsKey(key)) {
+    //           value[key] = const Tuple2(Ranking.unknown, Ranking.unknown);
+    //         }
+    //       }
+    //
+    //       var manager = globals.semesterSubjectsManager;
+    //       Map<YearSemester, Tuple2<Ranking, Ranking>> newSemesters = {};
+    //
+    //       for (var semester in value.keys) {
+    //         if (!manager.data.containsKey(semester)) {
+    //           newSemesters[semester] = value[semester]!;
+    //         }
+    //       }
+    //
+    //       if (newSemesters.isNotEmpty) {
+    //         List<Future<SemesterSubjectsManager>> wait = [];
+    //
+    //         wait.add(Crawler.allGradeByCategory().execute());
+    //         wait.add(Crawler.allGradeBySemester(map: newSemesters).execute());
+    //
+    //         var ret = (await Future.wait(wait))..removeWhere((element) => element.isEmpty);
+    //         var result = SemesterSubjectsManager.merges(ret);
+    //         if (result == null) return;
+    //
+    //         for (var semester in newSemesters.keys) {
+    //           globals.semesterSubjectsManager.data[semester] = result.data[semester]!;
+    //         }
+    //
+    //         globals.semesterSubjectsManager.saveFile();
+    //       }
+    //     });
+    //
+    //     {
+    //       int year = DateTime.now().year;
+    //       if (DateTime.now().month <= 2) year--;
+    //       List<YearSemester> searches = [];
+    //       for (var e in [Semester.first, Semester.second]) {
+    //         var key = YearSemester(year, e);
+    //         if (globals.chapelInformationManager.data[key] != null) {
+    //           searches.add(key);
+    //         }
+    //       }
+    //
+    //       Crawler.allChapel(searches).execute().then((value) {
+    //         if (value.isEmpty) return;
+    //
+    //         for (var data in value.data) {
+    //           globals.chapelInformationManager.data.add(data);
+    //         }
+    //
+    //         globals.chapelInformationManager.saveFile();
+    //       });
+    //     }
+    //   }
+    //
+    //   fetchAppVersion().then((value) {
+    //     if (value.item2 != "") {
+    //       showToast("새로운 버전 v${value.item2}(으)로 업데이트할 수 있어요.");
+    //       showToast("Github 또는 Play Store에 방문해 주세요.");
+    //     }
+    //   });
     })();
   }
 

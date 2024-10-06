@@ -16,10 +16,6 @@ class Setting extends Equatable {
   @JsonKey()
   final int interval;
   @JsonKey()
-  final int timeoutGrade;
-  @JsonKey()
-  final int timeoutAllGrade;
-  @JsonKey()
   final bool agree;
 
   const Setting({
@@ -27,21 +23,17 @@ class Setting extends Equatable {
     required this.noticeGradeInBackground,
     required this.showGrade,
     required this.interval,
-    required this.timeoutGrade,
-    required this.timeoutAllGrade,
     required this.agree,
   });
 
   @override
-  List<Object?> get props => [refreshGradeAutomatically, noticeGradeInBackground, showGrade, interval, timeoutGrade, timeoutAllGrade, agree];
+  List<Object?> get props => [refreshGradeAutomatically, noticeGradeInBackground, showGrade, interval, agree];
 
   factory Setting.defaultSetting() => Setting(
         refreshGradeAutomatically: false,
         noticeGradeInBackground: true,
         showGrade: true,
         interval: 15,
-        timeoutGrade: 20,
-        timeoutAllGrade: 60,
         agree: false,
       );
 

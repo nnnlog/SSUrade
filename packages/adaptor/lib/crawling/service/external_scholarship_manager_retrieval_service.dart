@@ -1,4 +1,5 @@
 import 'package:injectable/injectable.dart';
+import 'package:ssurade_adaptor/crawling/constant/crawling_timeout.dart';
 import 'package:ssurade_adaptor/crawling/job/main_thread_crawling_job.dart';
 import 'package:ssurade_adaptor/crawling/webview/web_view_client_service.dart';
 import 'package:ssurade_application/ssurade_application.dart';
@@ -11,7 +12,7 @@ class ExternalScholarshipManagerRetrievalService implements ExternalScholarshipM
 
   @override
   Job<ScholarshipManager?> retrieveScholarshipManager() {
-    return MainThreadCrawlingJob(() async {
+    return MainThreadCrawlingJob(CrawlingTimeout.scholarship, () async {
       final client = await _webViewClientService.create();
 
       await client.loadPage("https://ecc.ssu.ac.kr/sap/bc/webdynpro/SAP/ZCMW7530n?sap-language=KO");

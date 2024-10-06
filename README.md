@@ -17,8 +17,8 @@
 cd usaint-injector/
 npm ci
 npm run build
-mkdir ../assets/js/
-cp dist/main.js ../assets/js/common.js
+mkdir ../asset/js/
+cp dist/main.js ../asset/js/common.js
 ```
 
 ### 2. 플러터 디펜던시를 설치합니다.
