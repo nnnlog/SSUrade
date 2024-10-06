@@ -2,7 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:logger/logger.dart';
 import 'package:ssurade/crawling/common/crawler.dart';
 import 'package:ssurade/globals.dart' as globals;
-import 'package:ssurade/types/chapel/chapel_attendance_status.dart';
+import 'package:ssurade/types/chapel/chapel_attendance.dart';
 import 'package:ssurade/types/semester/semester.dart';
 import 'package:ssurade/types/semester/year_semester.dart';
 import 'package:ssurade/utils/notification.dart';
@@ -35,19 +35,21 @@ Future<void> updateBackgroundService({lazy = false}) async {
 Future<void> registerBackgroundService({lazy = false}) async {
   // await globals.flutterLocalNotificationsPlugin.resolvePlatformSpecificImplementation<AndroidFlutterLocalNotificationsPlugin>()?.requestNotificationsPermission();
   await Workmanager().registerPeriodicTask(
-    "ssurade",
-    "ssurade",
+    "ssurade.fetch",
+    "ssurade.fetch",
     constraints: Constraints(
       networkType: NetworkType.connected,
       requiresDeviceIdle: false,
     ),
     backoffPolicy: BackoffPolicy.linear,
     existingWorkPolicy: ExistingWorkPolicy.replace,
-    initialDelay: lazy ? Duration(minutes: globals.setting.interval) : Duration.zero,
+    initialDelay:
+        lazy ? Duration(minutes: globals.setting.interval) : Duration.zero,
   );
 }
 
-Future<void> unregisterBackgroundService() => Workmanager().cancelByUniqueName("ssurade");
+Future<void> unregisterBackgroundService() =>
+    Workmanager().cancelByUniqueName("ssurade.fetch");
 
 Future<void> fetchGrade() async {
   if (globals.semesterSubjectsManager.isEmpty) return;
@@ -59,7 +61,8 @@ Future<void> fetchGrade() async {
   List<String> updates = [];
 
   for (var subject in gradeData.subjects.values) {
-    if (subject.grade.isNotEmpty && originalGradeData.subjects[subject.code]?.grade != subject.grade) {
+    if (subject.grade.isNotEmpty &&
+        originalGradeData.subjects[subject.code]?.grade != subject.grade) {
       if (globals.setting.showGrade) {
         updates.add("${subject.name} > ${subject.grade}");
       } else {
@@ -69,10 +72,11 @@ Future<void> fetchGrade() async {
     }
   }
 
-  if (gradeData.semesterRanking.isNotEmpty && originalGradeData.semesterRanking.isEmpty) {
+  if (gradeData.semesterRanking.isNotEmpty &&
+      originalGradeData.semesterRanking.isEmpty) {
     if (globals.setting.showGrade) {
-      updates.add("[학기 석차] > ${gradeData.semesterRanking.displayText}");
-      updates.add("[전체 석차] > ${gradeData.totalRanking.displayText}");
+      updates.add("[학기 석차] > ${gradeData.semesterRanking.display}");
+      updates.add("[전체 석차] > ${gradeData.totalRanking.display}");
     } else {
       updates.add("[학기 석차]");
       updates.add("[전체 석차]");
@@ -82,10 +86,15 @@ Future<void> fetchGrade() async {
   }
 
   if (updates.isNotEmpty) {
-    await showNotification("성적 정보 변경", updates.join(globals.setting.showGrade ? "\n" : ", "));
+    await showNotification(
+        "성적 정보 변경", updates.join(globals.setting.showGrade ? "\n" : ", "));
     await globals.semesterSubjectsManager.saveFile();
   } else if (kDebugMode) {
-    await showNotification("not updated (${DateTime.now().toString()})", gradeData.subjects.values.map((e) => "${e.name} : ${e.grade}").join("\n"));
+    await showNotification(
+        "not updated (${DateTime.now().toString()})",
+        gradeData.subjects.values
+            .map((e) => "${e.name} : ${e.grade}")
+            .join("\n"));
   }
 }
 
@@ -95,12 +104,15 @@ Future<void> fetchChapel() async {
   var lastSemester = globals.chapelInformationManager.data.last.currentSemester;
   var chapelData = await Crawler.singleChapelBySemester(lastSemester).execute();
 
-  var originalAttendanceData = globals.chapelInformationManager.data[lastSemester]!;
+  var originalAttendanceData =
+      globals.chapelInformationManager.data[lastSemester]!;
   List<String> updates = [];
 
   for (var data in chapelData.attendances) {
-    if (data.status != ChapelAttendance.unknown && originalAttendanceData.attendances[data.lectureDate]?.status != data.status) {
-      updates.add("${data.lectureDate} > ${data.status.displayText}");
+    if (data.attendance != ChapelAttendance.unknown &&
+        originalAttendanceData.attendances[data.lectureDate]?.attendance !=
+            data.attendance) {
+      updates.add("${data.lectureDate} > ${data.attendance.display}");
       originalAttendanceData.attendances.remove(data);
       originalAttendanceData.attendances.add(data);
     }
@@ -110,7 +122,11 @@ Future<void> fetchChapel() async {
     await showNotification("채플 출결 변경", updates.join("\n"));
     await globals.chapelInformationManager.saveFile();
   } else if (kDebugMode) {
-    await showNotification("not updated (${DateTime.now().toString()})", chapelData.attendances.map((e) => "${e.lectureDate} : ${e.status.displayText}").join("\n"));
+    await showNotification(
+        "not updated (${DateTime.now().toString()})",
+        chapelData.attendances
+            .map((e) => "${e.lectureDate} : ${e.attendance.display}")
+            .join("\n"));
   }
 }
 
@@ -126,7 +142,7 @@ Future<void> fetchNewChapel() async {
 
   for (var data in chapelData.data) {
     if (!globals.chapelInformationManager.data.contains(data)) {
-      updates.add(data.currentSemester.displayText);
+      updates.add(data.currentSemester.display);
       globals.chapelInformationManager.data.add(data);
     }
   }
@@ -135,7 +151,11 @@ Future<void> fetchNewChapel() async {
     await showNotification("채플 정보 등록", updates.join("\n"));
     await globals.chapelInformationManager.saveFile();
   } else if (kDebugMode) {
-    await showNotification("not updated (${DateTime.now().toString()})", globals.chapelInformationManager.data.map((e) => "${e.currentSemester.displayText}").join("\n"));
+    await showNotification(
+        "not updated (${DateTime.now().toString()})",
+        globals.chapelInformationManager.data
+            .map((e) => "${e.currentSemester.display}")
+            .join("\n"));
   }
 }
 
@@ -166,7 +186,11 @@ Future<void> fetchScholarship() async {
     globals.scholarshipManager = scholarshipData;
     await globals.scholarshipManager.saveFile();
   } else if (kDebugMode) {
-    await showNotification("not updated (${DateTime.now().toString()})", scholarshipData.data.map((e) => "${e.name} : ${e.when.displayText}").join("\n"));
+    await showNotification(
+        "not updated (${DateTime.now().toString()})",
+        scholarshipData.data
+            .map((e) => "${e.name} : ${e.when.display}")
+            .join("\n"));
   }
 }
 
@@ -191,7 +215,8 @@ Future<void> fetchAbsent() async {
     }
 
     if (updated) {
-      updates.add("${data.startDate == data.endDate ? data.startDate : "${data.startDate} ~ ${data.endDate}"} > ${data.status}");
+      updates.add(
+          "${data.startDate == data.endDate ? data.startDate : "${data.startDate} ~ ${data.endDate}"} > ${data.status}");
     }
   }
 
@@ -202,7 +227,11 @@ Future<void> fetchAbsent() async {
     globals.absentApplicationManager.data = absentInformations;
     await globals.absentApplicationManager.saveFile();
   } else if (kDebugMode) {
-    await showNotification("not updated (${DateTime.now().toString()})", absentInformations.map((e) => "${e.applicationDate} : ${e.status}").join("\n"));
+    await showNotification(
+        "not updated (${DateTime.now().toString()})",
+        absentInformations
+            .map((e) => "${e.applicationDate} : ${e.status}")
+            .join("\n"));
   }
 }
 

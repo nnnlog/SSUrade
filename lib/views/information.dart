@@ -12,7 +12,10 @@ class InformationPage extends StatefulWidget {
 }
 
 class _InformationPageState extends State<InformationPage> {
-  String appVer = "불러오는 중...", newVer = "-", devVer = "", buildNum = "불러오는 중...";
+  String appVer = "불러오는 중...",
+      newVer = "-",
+      devVer = "",
+      buildNum = "불러오는 중...";
 
   @override
   void initState() {
@@ -50,7 +53,7 @@ class _InformationPageState extends State<InformationPage> {
               height: 5,
             ),
             const Text(
-              "숭실대학교 성적 조회 앱",
+              "숭실대 학생들을 위한 학사 정보 조회 애플리케이션",
               style: TextStyle(
                 fontSize: 16,
                 fontWeight: FontWeight.w600,
@@ -90,7 +93,8 @@ class _InformationPageState extends State<InformationPage> {
                                 ),
                               ),
                               onTap: () => launchUrl(
-                                Uri.parse("https://github.com/nnnlog/ssurade/releases/tag/v$newVer"),
+                                Uri.parse(
+                                    "https://github.com/nnnlog/ssurade/releases/tag/v$newVer"),
                                 mode: LaunchMode.inAppBrowserView,
                               ),
                             )),
@@ -107,7 +111,8 @@ class _InformationPageState extends State<InformationPage> {
                                 ),
                               ),
                               onTap: () => launchUrl(
-                                Uri.parse("https://github.com/nnnlog/ssurade/releases/tag/v$devVer"),
+                                Uri.parse(
+                                    "https://github.com/nnnlog/ssurade/releases/tag/v$devVer"),
                                 mode: LaunchMode.inAppBrowserView,
                               ),
                             )),
@@ -241,7 +246,10 @@ class _InformationPageState extends State<InformationPage> {
             ),
             Text(
               "· 유어슈 '숨쉴때 성적표'의 디자인을 일부 참고하였습니다.",
-              style: TextStyle(color: Colors.black.withOpacity(0.7), fontSize: 13, fontWeight: FontWeight.w300),
+              style: TextStyle(
+                  color: Colors.black.withOpacity(0.7),
+                  fontSize: 13,
+                  fontWeight: FontWeight.w300),
             ),
           ],
         ),

@@ -253,7 +253,7 @@ class LoginSession extends CrawlingTask<bool> {
 
   @override
   int getTimeout() {
-    return 20;
+    return 60;
   }
 
   @override

@@ -17,10 +17,7 @@ import workmanager
         UNUserNotificationCenter.current().delegate = self as? UNUserNotificationCenterDelegate
       }
 
-//    WorkmanagerPlugin.registerBGProcessingTask(withIdentifier: "ssurade")
-    WorkmanagerPlugin.registerPeriodicTask(withIdentifier: "ssurade", frequency: NSNumber(value: 15 * 60))
-
-//    GeneratedPluginRegistrant.register(with: self)
+    WorkmanagerPlugin.registerPeriodicTask(withIdentifier: "ssurade.fetch", frequency: NSNumber(value: 15 * 60))
 
     AppDelegate.registerPlugins(with: self)
     WorkmanagerPlugin.setPluginRegistrantCallback { registry in AppDelegate.registerPlugins(with: registry) }
