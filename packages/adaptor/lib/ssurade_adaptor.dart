@@ -10,6 +10,8 @@ export 'package:ssurade_adaptor/application/background/background_process_manage
 export 'package:ssurade_adaptor/application/notification_service.dart';
 export 'package:ssurade_adaptor/application/toast_service.dart';
 export 'package:ssurade_adaptor/asset/asset_loader_service.dart';
+export 'package:ssurade_adaptor/crawling/cache/credential_cache.dart';
+export 'package:ssurade_adaptor/crawling/cache/credential_manager_service.dart';
 export 'package:ssurade_adaptor/crawling/constant/crawling_timeout.dart';
 export 'package:ssurade_adaptor/crawling/job/main_thread_crawling_job.dart';
 export 'package:ssurade_adaptor/crawling/service/external_absent_application_retrieval_service.dart';

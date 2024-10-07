@@ -7,7 +7,7 @@ abstract interface class LoginViewModelUseCase {
 
   Future<void> clearCredential();
 
-  Future<bool> validateCurrentCredential();
-
   Stream<Credential> getCredentialStream();
+
+  Future<bool> validateCredential(Credential credential);
 }

@@ -7,9 +7,9 @@ import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:html/parser.dart';
 import 'package:http/http.dart' as http;
 import 'package:ssurade_adaptor/asset/asset_loader_service.dart';
+import 'package:ssurade_adaptor/crawling/cache/credential_manager_service.dart';
 import 'package:ssurade_adaptor/http_configuration.dart';
 import 'package:ssurade_adaptor/persistence/localstorage/lightspeed_retrieval_service.dart';
-import 'package:ssurade_application/ssurade_application.dart';
 
 class WebViewClientEventManager {
   Future<void> Function(InAppWebViewController controller, Uri? url)? onLoadStop;
@@ -61,26 +61,27 @@ class WebViewClientEventManager {
 
 class WebViewClient {
   static List<WebUri> get _cookieDomains => [WebUri("https://.ssu.ac.kr"), WebUri("https://ecc.ssu.ac.kr")];
+
   static String get _injectorAssetPath => "js/common.js";
 
   final WebViewClientEventManager _eventManager;
   final HeadlessInAppWebView _webView;
 
-  final LocalStorageCredentialPort _localStorageCredentialPort; // Replace it to internal logic of adaptor
+  final CredentialManagerService _credentialCacheService;
   final LightspeedRetrievalService _lightspeedRetrievalService;
   final AssetLoaderService _assetLoaderService;
 
   const WebViewClient({
-    required final WebViewClientEventManager eventManager,
-    required final HeadlessInAppWebView webView,
-    required final LocalStorageCredentialPort localStorageCredentialPort,
-    required final LightspeedRetrievalService lightspeedRetrievalService,
-    required final AssetLoaderService assetLoaderService,
-  })  : _eventManager = eventManager,
-        _webView = webView,
-        _localStorageCredentialPort = localStorageCredentialPort,
+    required HeadlessInAppWebView webView,
+    required CredentialManagerService credentialCacheService,
+    required LightspeedRetrievalService lightspeedRetrievalService,
+    required AssetLoaderService assetLoaderService,
+    required WebViewClientEventManager eventManager,
+  })  : _webView = webView,
+        _credentialCacheService = credentialCacheService,
         _lightspeedRetrievalService = lightspeedRetrievalService,
-        _assetLoaderService = assetLoaderService;
+        _assetLoaderService = assetLoaderService,
+        _eventManager = eventManager;
 
   InAppWebViewController get _controller => _webView.webViewController!;
 
@@ -100,21 +101,17 @@ class WebViewClient {
   Future<void> loadPage(String url) async {
     final controller = _controller;
 
-    // load cookie from credential
-    await run(() async {
+    // load cookie
+    {
       for (var url in _cookieDomains) {
         await CookieManager.instance().deleteCookies(url: url, webViewController: controller);
       }
 
-      await _localStorageCredentialPort.retrieveCredential().then((credential) async {
-        if (credential != null) {
-          final cookies = credential.cookies.map((raw) => Cookie.fromMap(raw)).whereType<Cookie>().toList();
-          for (final cookie in cookies) {
-            await CookieManager.instance().setCookie(url: WebUri("https://${cookie.domain}"), name: cookie.name, value: cookie.value, domain: cookie.domain, webViewController: controller);
-          }
-        }
-      });
-    });
+      final cookies = (await _credentialCacheService.getCookies()).map((raw) => Cookie.fromMap(raw)).whereType<Cookie>().toList();
+      for (final cookie in cookies) {
+        await CookieManager.instance().setCookie(url: WebUri("https://${cookie.domain}"), name: cookie.name, value: cookie.value, domain: cookie.domain, webViewController: controller);
+      }
+    }
 
     final response = await http.get(Uri.parse(url), headers: {
       "Cookie": (await cookies).map((c) => c.toString()).join("; "),
@@ -132,12 +129,7 @@ class WebViewClient {
         await CookieManager.instance().setCookie(url: WebUri("https://${cookie.domain}"), name: cookie.name, value: cookie.value, webViewController: controller);
       }
 
-      _localStorageCredentialPort.retrieveCredential().then((credential) async {
-        if (credential != null) {
-          credential = credential.copyWith(cookies: (await cookies).map((cookie) => cookie.toMap()).toList());
-          await _localStorageCredentialPort.saveCredential(credential);
-        }
-      });
+      await _credentialCacheService.setCookies(cookies.map((cookie) => cookie.toMap()).toList());
     });
 
     var body = response.body;

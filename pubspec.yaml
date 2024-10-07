@@ -46,6 +46,7 @@ dependencies:
   intl: ^0.17.0
   cookie_store: ^0.3.5
   html: ^0.15.4
+  flutter_bloc: ^8.1.6
 
 dev_dependencies:
   flutter_test:

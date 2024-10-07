@@ -7,16 +7,14 @@ part 'credential.g.dart';
 class Credential extends Equatable {
   final String id;
   final String password;
-  final List<dynamic> cookies;
 
   const Credential({
     required this.id,
     required this.password,
-    required this.cookies,
   });
 
   @override
-  List<Object?> get props => [id, password, cookies];
+  List<Object?> get props => [id, password];
 
-  factory Credential.empty() => Credential(id: "", password: "", cookies: []);
+  factory Credential.empty() => Credential(id: "", password: "");
 }

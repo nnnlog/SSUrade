@@ -11,8 +11,6 @@ abstract class _$CredentialCWProxy {
 
   Credential password(String password);
 
-  Credential cookies(List<dynamic> cookies);
-
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `Credential(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -22,7 +20,6 @@ abstract class _$CredentialCWProxy {
   Credential call({
     String? id,
     String? password,
-    List<dynamic>? cookies,
   });
 }
 
@@ -39,9 +36,6 @@ class _$CredentialCWProxyImpl implements _$CredentialCWProxy {
   Credential password(String password) => this(password: password);
 
   @override
-  Credential cookies(List<dynamic> cookies) => this(cookies: cookies);
-
-  @override
 
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `Credential(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
@@ -52,7 +46,6 @@ class _$CredentialCWProxyImpl implements _$CredentialCWProxy {
   Credential call({
     Object? id = const $CopyWithPlaceholder(),
     Object? password = const $CopyWithPlaceholder(),
-    Object? cookies = const $CopyWithPlaceholder(),
   }) {
     return Credential(
       id: id == const $CopyWithPlaceholder() || id == null
@@ -63,10 +56,6 @@ class _$CredentialCWProxyImpl implements _$CredentialCWProxy {
           ? _value.password
           // ignore: cast_nullable_to_non_nullable
           : password as String,
-      cookies: cookies == const $CopyWithPlaceholder() || cookies == null
-          ? _value.cookies
-          // ignore: cast_nullable_to_non_nullable
-          : cookies as List<dynamic>,
     );
   }
 }

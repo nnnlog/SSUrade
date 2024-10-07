@@ -38,21 +38,13 @@ class LoginViewModelService implements LoginViewModelUseCase {
   @override
   Future<bool> loadNewCredential(Credential credential) async {
     await _localStorageCredentialPort.saveCredential(credential);
+
     _streamController.add(credential);
-    return validateCurrentCredential();
+    return validateCredential(credential);
   }
 
   @override
-  Future<bool> validateCurrentCredential() async {
-    final credential = await _localStorageCredentialPort.retrieveCredential();
-    if (credential == null) {
-      return false;
-    }
-    final cookies = await _externalCredentialRetrievalPort.getCookiesFromCredential(credential).result;
-    if (cookies != null) {
-      _localStorageCredentialPort.saveCredential(credential.copyWith(cookies: cookies));
-      return true;
-    }
-    return false;
+  Future<bool> validateCredential(Credential credential) async {
+    return await _externalCredentialRetrievalPort.getCookiesFromCredential(credential).result != null;
   }
 }

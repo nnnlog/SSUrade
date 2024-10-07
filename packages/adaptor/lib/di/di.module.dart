@@ -15,6 +15,9 @@ import 'package:ssurade_adaptor/application/background/background_process_manage
     as _i717;
 import 'package:ssurade_adaptor/application/notification_service.dart' as _i762;
 import 'package:ssurade_adaptor/asset/asset_loader_service.dart' as _i27;
+import 'package:ssurade_adaptor/crawling/cache/credential_cache.dart' as _i320;
+import 'package:ssurade_adaptor/crawling/cache/credential_manager_service.dart'
+    as _i903;
 import 'package:ssurade_adaptor/crawling/service/external_absent_application_retrieval_service.dart'
     as _i507;
 import 'package:ssurade_adaptor/crawling/service/external_chapel_retrieval_service.dart'
@@ -61,13 +64,13 @@ class SsuradeAdaptorPackageModule extends _i526.MicroPackageModule {
 // initializes the registration of main-scope dependencies inside of GetIt
   @override
   _i687.FutureOr<void> init(_i526.GetItHelper gh) async {
+    gh.singleton<_i27.AssetLoaderService>(() => _i27.AssetLoaderService());
     await gh.singletonAsync<_i289.LocalStorageClient>(
       () => _i289.LocalStorageClient.init(),
       preResolve: true,
     );
     gh.singleton<_i497.SecureStorageClient>(
         () => const _i497.SecureStorageClient());
-    gh.singleton<_i27.AssetLoaderService>(() => _i27.AssetLoaderService());
     await gh.singletonAsync<_i975.BackgroundProcessManagementPort>(
       () => _i717.BackgroundProcessManagementService.init(),
       preResolve: true,
@@ -93,14 +96,26 @@ class SsuradeAdaptorPackageModule extends _i526.MicroPackageModule {
         () => _i615.LightspeedRetrievalService(gh<_i289.LocalStorageClient>()));
     gh.singleton<_i67.LocalStorageSettingPort>(
         () => _i47.LocalStorageSettingService(gh<_i289.LocalStorageClient>()));
+    gh.singleton<_i903.CredentialManagerService>(
+        () => _i903.CredentialManagerService(
+              credentialCache: gh<_i320.CredentialCache>(),
+              localStorageClient: gh<_i289.LocalStorageClient>(),
+              localStorageCredentialService:
+                  gh<_i101.LocalStorageCredentialService>(),
+              externalCredentialRetrievalService:
+                  gh<_i333.ExternalCredentialRetrievalService>(),
+            ));
     gh.singleton<_i124.AppEnvironmentPort>(() => _i78.AppEnvironmentService());
-    gh.singleton<_i67.LocalStorageCredentialPort>(() =>
-        _i101.LocalStorageCredentialService(gh<_i497.SecureStorageClient>()));
     gh.singleton<_i722.WebViewClientService>(() => _i722.WebViewClientService(
-          localStorageCredentialPort: gh<_i67.LocalStorageCredentialPort>(),
-          lightspeedRetrievalPort: gh<_i615.LightspeedRetrievalService>(),
+          credentialCacheService: gh<_i903.CredentialManagerService>(),
+          lightspeedRetrievalService: gh<_i615.LightspeedRetrievalService>(),
           assetLoaderService: gh<_i27.AssetLoaderService>(),
         ));
+    gh.singleton<_i67.LocalStorageCredentialPort>(
+        () => _i101.LocalStorageCredentialService(
+              gh<_i497.SecureStorageClient>(),
+              gh<_i903.CredentialManagerService>(),
+            ));
     gh.singleton<_i67.ExternalSubjectRetrievalPort>(() =>
         _i683.ExternalSubjectRetrievalService(
             gh<_i722.WebViewClientService>()));

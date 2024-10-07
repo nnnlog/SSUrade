@@ -4,23 +4,23 @@ import 'package:dart_scope_functions/dart_scope_functions.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:injectable/injectable.dart';
 import 'package:ssurade_adaptor/asset/asset_loader_service.dart';
+import 'package:ssurade_adaptor/crawling/cache/credential_manager_service.dart';
 import 'package:ssurade_adaptor/crawling/webview/web_view_client.dart';
 import 'package:ssurade_adaptor/http_configuration.dart';
 import 'package:ssurade_adaptor/persistence/localstorage/lightspeed_retrieval_service.dart';
-import 'package:ssurade_application/ssurade_application.dart';
 
 @singleton
 class WebViewClientService {
-  final LocalStorageCredentialPort _localStorageCredentialPort;
+  final CredentialManagerService _credentialCacheService;
   final LightspeedRetrievalService _lightspeedRetrievalService;
   final AssetLoaderService _assetLoaderService;
 
   const WebViewClientService({
-    required final LocalStorageCredentialPort localStorageCredentialPort,
-    required final LightspeedRetrievalService lightspeedRetrievalPort,
-    required final AssetLoaderService assetLoaderService,
-  })  : _localStorageCredentialPort = localStorageCredentialPort,
-        _lightspeedRetrievalService = lightspeedRetrievalPort,
+    required CredentialManagerService credentialCacheService,
+    required LightspeedRetrievalService lightspeedRetrievalService,
+    required AssetLoaderService assetLoaderService,
+  })  : _credentialCacheService = credentialCacheService,
+        _lightspeedRetrievalService = lightspeedRetrievalService,
         _assetLoaderService = assetLoaderService;
 
   Future<WebViewClient> create() async {
@@ -61,7 +61,7 @@ class WebViewClientService {
     return WebViewClient(
       eventManager: eventManager,
       webView: webView,
-      localStorageCredentialPort: _localStorageCredentialPort,
+      credentialCacheService: _credentialCacheService,
       lightspeedRetrievalService: _lightspeedRetrievalService,
       assetLoaderService: _assetLoaderService,
     );

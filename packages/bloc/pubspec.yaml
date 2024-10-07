@@ -1,0 +1,13 @@
+name: parallel_worker
+
+dependencies:
+  ssurade_application:
+    path: ../application
+
+  bloc: ^8.1.4
+
+dev_dependencies:
+  auto_exporter: ^3.4.1
+
+environment:
+  sdk: ">=3.0.0 <4.0.0"

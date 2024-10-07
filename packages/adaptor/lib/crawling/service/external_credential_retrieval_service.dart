@@ -19,7 +19,7 @@ class ExternalCredentialRetrievalService implements ExternalCredentialRetrievalP
   ExternalCredentialRetrievalService(this._webViewClientService);
 
   @override
-  Job<List<dynamic>?> getCookiesFromCredential(Credential credential) {
+  Job<List<Map<String, dynamic>>?> getCookiesFromCredential(Credential credential) {
     final key = (credential.id, credential.password);
     if (!_mutex.containsKey(key)) {
       _mutex[key] = Mutex();
