@@ -5,6 +5,14 @@ sealed class LoginEvent {}
 
 final class LoginRequested extends LoginEvent {}
 
-final class LoginFailed extends LoginEvent {}
+final class LoginIdChanged extends LoginEvent {
+  final String id;
 
-final class LoginSucceeded extends LoginEvent {}
+  LoginIdChanged(this.id);
+}
+
+final class LoginPasswordChanged extends LoginEvent {
+  final String password;
+
+  LoginPasswordChanged(this.password);
+}

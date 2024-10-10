@@ -1,13 +1,17 @@
-name: parallel_worker
+name: ssurade_bloc
+
+environment:
+  sdk: ">=3.0.0 <4.0.0"
 
 dependencies:
   ssurade_application:
     path: ../application
 
   bloc: ^8.1.4
+  copy_with_extension: ^5.0.4
+  equatable: ^2.0.5
 
 dev_dependencies:
+  build_runner: ^2.4.12
   auto_exporter: ^3.4.1
-
-environment:
-  sdk: ">=3.0.0 <4.0.0"
+  copy_with_extension_gen: ^5.0.4
