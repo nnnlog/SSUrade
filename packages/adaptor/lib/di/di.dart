@@ -10,5 +10,7 @@ final getIt = GetIt.instance;
 ])
 Future configureDependencies() => getIt.init();
 
-@InjectableInit.microPackage()
+@InjectableInit.microPackage(externalPackageModulesAfter: [
+  ExternalModule(SsuradeApplicationPackageModule),
+])
 initMicroPackage() {}

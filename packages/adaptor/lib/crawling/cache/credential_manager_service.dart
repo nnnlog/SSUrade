@@ -3,7 +3,8 @@ import 'dart:convert';
 import 'package:injectable/injectable.dart';
 import 'package:mutex/mutex.dart';
 import 'package:ssurade_adaptor/crawling/cache/credential_cache.dart';
-import 'package:ssurade_adaptor/crawling/service/external_credential_retrieval_service.dart';
+import 'package:ssurade_adaptor/crawling/service/credential/credential_retrieval_service.dart';
+import 'package:ssurade_adaptor/crawling/webview/web_view_client.dart';
 import 'package:ssurade_adaptor/persistence/client/local_storage_client.dart';
 import 'package:ssurade_adaptor/persistence/localstorage/local_storage_credential_service.dart';
 
@@ -14,19 +15,22 @@ class CredentialManagerService {
 
   final LocalStorageClient _localStorageClient;
   final LocalStorageCredentialService _localStorageCredentialService;
-  final ExternalCredentialRetrievalService _externalCredentialRetrievalService;
+  final CredentialRetrievalService _credentialRetrievalService;
 
-  final ReadWriteMutex _mutex = ReadWriteMutex();
+  final Mutex _mutex = Mutex();
 
   CredentialManagerService({
-    required CredentialCache credentialCache,
     required LocalStorageClient localStorageClient,
     required LocalStorageCredentialService localStorageCredentialService,
-    required ExternalCredentialRetrievalService externalCredentialRetrievalService,
-  })  : _credentialCache = credentialCache,
+    required CredentialRetrievalService credentialRetrievalService,
+  })  : _credentialCache = const CredentialCache(cookies: [], expire: null),
         _localStorageClient = localStorageClient,
         _localStorageCredentialService = localStorageCredentialService,
-        _externalCredentialRetrievalService = externalCredentialRetrievalService;
+        _credentialRetrievalService = credentialRetrievalService {
+    _localStorageCredentialService.onCredentialChanged.listen((credential) {
+      clearCookies();
+    });
+  }
 
   static const String _filename = 'cookies.json';
 
@@ -37,7 +41,7 @@ class CredentialManagerService {
   bool get hasCookies => _credentialCache.cookies.isNotEmpty;
 
   Future<void> setCookies(List<Map<String, dynamic>> cookies) async {
-    await _mutex.protectWrite(() async {
+    await _mutex.protect(() async {
       _credentialCache = CredentialCache(
         cookies: cookies,
         expire: DateTime.now().add(Duration(hours: 1)),
@@ -48,42 +52,37 @@ class CredentialManagerService {
   }
 
   Future<void> clearCookies() async {
-    await _mutex.protectWrite(() async {
+    await _mutex.protect(() async {
       _credentialCache = CredentialCache(cookies: [], expire: DateTime.now());
       _writeFile();
     });
   }
 
-  Future<List<Map<String, dynamic>>> getCookies() async {
-    if (!_initialized) {
-      return _mutex.protectWrite(() async {
+  Future<List<Map<String, dynamic>>> getCookies(WebViewClient client) async {
+    return _mutex.protect(() async {
+      if (!_initialized) {
         _initialized = true;
 
         final json = await _localStorageClient.readFile(_filename);
-        final data = json == null ? [] : jsonDecode(json);
+        if (json != null) {
+          final data = jsonDecode(json);
+          _credentialCache = CredentialCache(cookies: (data['cookies'] as List).cast<Map<String, dynamic>>(), expire: data['expires']);
+        }
+      }
 
-        _credentialCache = CredentialCache(cookies: data['cookies'], expire: data['expires']);
-
-        return _credentialCache.cookies;
-      });
-    }
-
-    if (_credentialCache.cookies.isNotEmpty && _credentialCache.expire.isBefore(DateTime.now())) {
-      return _mutex.protectWrite(() async {
+      if (_credentialCache.cookies.isEmpty || [null, false].contains(_credentialCache.expire?.isBefore(DateTime.now()))) {
         final credential = await _localStorageCredentialService.retrieveCredential();
         if (credential == null) throw Exception('No credential found');
 
-        final cookies = await _externalCredentialRetrievalService.getCookiesFromCredential(credential).result;
+        final cookies = await _credentialRetrievalService.getCookiesFromCredential(client, credential);
         if (cookies == null) throw Exception('Failed to login');
 
         _credentialCache = CredentialCache(cookies: cookies, expire: DateTime.now().add(Duration(hours: 1)));
         _writeFile();
 
         return cookies;
-      });
-    }
+      }
 
-    return _mutex.protectRead(() async {
       return _credentialCache.cookies;
     });
   }

@@ -1,7 +1,6 @@
-import 'dart:concurrent';
-
 import 'package:flutter/services.dart';
 import 'package:injectable/injectable.dart';
+import 'package:mutex/mutex.dart';
 
 @singleton
 class AssetLoaderService {
@@ -11,12 +10,12 @@ class AssetLoaderService {
   AssetLoaderService();
 
   Future<String> loadAsset(String path) async {
-    return _mutex.runLocked(() async {
+    return _mutex.protect(() async {
       if (_cache.containsKey(path)) {
         return _cache[path]!;
       }
 
-      return _cache[path] = await rootBundle.loadString("asset/$path");
+      return _cache[path] = await rootBundle.loadString("assets/$path");
     });
   }
 }

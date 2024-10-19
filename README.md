@@ -22,7 +22,7 @@ cp dist/main.js ../assets/js/common.js
 ```
 
 ### 2. 플러터 디펜던시를 설치합니다.
-* 요구 사항: Flutter
+* 요구 사항: Flutter (Channel beta)
 ```shell
 flutter pub get
 ```
@@ -30,7 +30,6 @@ flutter pub get
 ## 3. 프로젝트 설정
 ### iOS 빌드
 * iOS 빌드를 위해서 macOS에 xcode를 설치해야 합니다. 또한, xcode에서 적절한 설정(개발자 프로필 설정 등)이 필요합니다.
-* TBD
 
 ### Android 빌드
 * 소유하고 있는 `key.properties`를 `android/` 디렉토리에 넣어주세요. (apk를 서명하는 데 사용합니다.)
@@ -44,6 +43,10 @@ flutter build ipa --obfuscate --split-debug-info=./debug/
 flutter build apk --obfuscate --split-debug-info=./debug/
 flutter build appbundle --obfuscate --split-debug-info=./debug/
 ```
+* `ios`는 iOS 빌드, `ipa`는 iOS 빌드 후 IPA 파일 생성, `apk`는 Android 빌드, `appbundle`은 Android App Bundle 빌드입니다.
+* 앱 배포를 위해서는 `ipa` 또는 `appbundle`을 사용하세요. (`ipa` 빌드를 위해서는 Apple Developer 계정이 필요합니다.)
+* `--obfuscate` 옵션은 코드 난독화를 위한 옵션입니다. (선택 사항)
+* `--split-debug-info` 옵션은 디버그 심볼을 분리하는 옵션입니다. (선택 사항)
 
 ### 4. 빌드 후
 #### (선택/프로덕션 전용) Sentry에 디버깅 심볼 업로드 방법
@@ -54,15 +57,12 @@ SENTRY_AUTH_TOKEN=<token> SENTRY_ORG=<org> SENTRY_PROJECT=<project name> flutter
 #### Play Console에서 사용되는 네이티브 디버그 심볼 위치
 * `build/app/intermediates/merged_native_libs/release/out/lib/` 에서 찾을 수 있습니다.
 
-## 개발 가이드
+## 개발 가이드 및 프로젝트 구조
 * SSUrade는 여려분의 기여를 환영합니다!
 * PRD와 Tech Spec은 [SSUrade 문서](https://ssurade.nlog.dev)에서 확인할 수 있습니다.
 
-### 프로젝트 구조
-* TBD
-
 ### 자동 생성되는 코드
-* SSUrade는 JSON Serailization, Injectable 등을 사용하고 있습니다.
+* SSUrade는 JSON Serialization, Injectable, Auto Exporter 등을 사용하고 있습니다.
 * 해당 어노테이션이 있는 파일을 수정한 경우, 프로젝트 루트 디렉터리에서 다음 명령어를 실행하여 코드를 자동으로 생성하세요.
 ```shell
 ./scripts/gen.sh

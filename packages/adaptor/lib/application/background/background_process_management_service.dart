@@ -1,8 +1,11 @@
+import 'package:get_it/get_it.dart';
 import 'package:injectable/injectable.dart';
 import 'package:ssurade_adaptor/di/di.dart';
 import 'package:ssurade_application/port/in/background/background_process_use_case.dart';
 import 'package:ssurade_application/port/out/application/background_process_management_port.dart';
 import 'package:workmanager/workmanager.dart';
+
+final _getIt = GetIt.instance;
 
 @pragma("vm:entry-point")
 void _backgroundServiceMain() {
@@ -10,7 +13,7 @@ void _backgroundServiceMain() {
     try {
       await configureDependencies();
 
-      final backgroundProcessUseCase = getIt<BackgroundProcessUseCase>();
+      final backgroundProcessUseCase = _getIt<BackgroundProcessUseCase>();
 
       var futures = [
         backgroundProcessUseCase.fetchGrade(),

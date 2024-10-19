@@ -1,5 +1,6 @@
 import 'dart:async';
-import 'dart:concurrent';
+
+import 'package:mutex/mutex.dart';
 
 class ParallelWorker<T, E> {
   final List<Future<T> Function(E)> _jobs;
@@ -19,7 +20,7 @@ class ParallelWorker<T, E> {
   Future<List<T>> get result => _completer.future;
 
   void _run(E worker) {
-    _mutex.runLocked(() {
+    _mutex.protect(() async {
       if (_jobs.isEmpty) {
         _workers.remove(worker);
         if (_workers.isEmpty) {

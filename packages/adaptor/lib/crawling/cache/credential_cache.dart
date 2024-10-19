@@ -8,7 +8,7 @@ part 'credential_cache.g.dart';
 @JsonSerializable()
 class CredentialCache extends Equatable {
   final List<Map<String, dynamic>> cookies;
-  final DateTime expire;
+  final DateTime? expire;
 
   const CredentialCache({
     required this.cookies,

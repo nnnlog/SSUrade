@@ -1,9 +1,9 @@
-import 'dart:concurrent';
 import 'dart:convert';
 
 import 'package:dart_scope_functions/dart_scope_functions.dart';
 import 'package:http/http.dart' as http;
 import 'package:injectable/injectable.dart';
+import 'package:mutex/mutex.dart';
 import 'package:ssurade_adaptor/persistence/client/local_storage_client.dart';
 import 'package:ssurade_application/ssurade_application.dart';
 
@@ -37,7 +37,7 @@ class LightspeedRetrievalService {
   }
 
   Future<Lightspeed> retrieveLightspeed(String version) {
-    return _mutex.runLocked(() => _readLightspeed().then((lightspeed) async {
+    return _mutex.protect(() => _readLightspeed().then((lightspeed) async {
           if (lightspeed == null || lightspeed.version != version) {
             return await _downloadLightspeed(version).then((lightspeed) async {
               await _saveLightspeed(lightspeed);

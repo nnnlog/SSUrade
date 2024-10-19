@@ -7,8 +7,7 @@ part of 'semester_subjects_manager.dart';
 // **************************************************************************
 
 abstract class _$SemesterSubjectsManagerCWProxy {
-  SemesterSubjectsManager data(
-      SplayTreeMap<YearSemester, SemesterSubjects> data);
+  SemesterSubjectsManager data(SplayTreeMap<YearSemester, SemesterSubjects> data);
 
   SemesterSubjectsManager state(int state);
 
@@ -25,16 +24,13 @@ abstract class _$SemesterSubjectsManagerCWProxy {
 }
 
 /// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfSemesterSubjectsManager.copyWith(...)`. Additionally contains functions for specific fields e.g. `instanceOfSemesterSubjectsManager.copyWith.fieldName(...)`
-class _$SemesterSubjectsManagerCWProxyImpl
-    implements _$SemesterSubjectsManagerCWProxy {
+class _$SemesterSubjectsManagerCWProxyImpl implements _$SemesterSubjectsManagerCWProxy {
   const _$SemesterSubjectsManagerCWProxyImpl(this._value);
 
   final SemesterSubjectsManager _value;
 
   @override
-  SemesterSubjectsManager data(
-          SplayTreeMap<YearSemester, SemesterSubjects> data) =>
-      this(data: data);
+  SemesterSubjectsManager data(SplayTreeMap<YearSemester, SemesterSubjects> data) => this(data: data);
 
   @override
   SemesterSubjectsManager state(int state) => this(state: state);
@@ -67,24 +63,19 @@ class _$SemesterSubjectsManagerCWProxyImpl
 extension $SemesterSubjectsManagerCopyWith on SemesterSubjectsManager {
   /// Returns a callable class that can be used as follows: `instanceOfSemesterSubjectsManager.copyWith(...)` or like so:`instanceOfSemesterSubjectsManager.copyWith.fieldName(...)`.
   // ignore: library_private_types_in_public_api
-  _$SemesterSubjectsManagerCWProxy get copyWith =>
-      _$SemesterSubjectsManagerCWProxyImpl(this);
+  _$SemesterSubjectsManagerCWProxy get copyWith => _$SemesterSubjectsManagerCWProxyImpl(this);
 }
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-SemesterSubjectsManager _$SemesterSubjectsManagerFromJson(
-        Map<String, dynamic> json) =>
-    SemesterSubjectsManager(
+SemesterSubjectsManager _$SemesterSubjectsManagerFromJson(Map<String, dynamic> json) => SemesterSubjectsManager(
       data: const _DataConverter().fromJson(json['data'] as List),
       state: (json['state'] as num).toInt(),
     );
 
-Map<String, dynamic> _$SemesterSubjectsManagerToJson(
-        SemesterSubjectsManager instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$SemesterSubjectsManagerToJson(SemesterSubjectsManager instance) => <String, dynamic>{
       'state': instance.state,
       'data': const _DataConverter().toJson(instance.data),
     };

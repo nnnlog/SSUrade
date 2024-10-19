@@ -52,22 +52,17 @@ class _$ScholarshipManagerCWProxyImpl implements _$ScholarshipManagerCWProxy {
 extension $ScholarshipManagerCopyWith on ScholarshipManager {
   /// Returns a callable class that can be used as follows: `instanceOfScholarshipManager.copyWith(...)` or like so:`instanceOfScholarshipManager.copyWith.fieldName(...)`.
   // ignore: library_private_types_in_public_api
-  _$ScholarshipManagerCWProxy get copyWith =>
-      _$ScholarshipManagerCWProxyImpl(this);
+  _$ScholarshipManagerCWProxy get copyWith => _$ScholarshipManagerCWProxyImpl(this);
 }
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-ScholarshipManager _$ScholarshipManagerFromJson(Map<String, dynamic> json) =>
-    ScholarshipManager(
-      (json['data'] as List<dynamic>)
-          .map((e) => Scholarship.fromJson(e as Map<String, dynamic>))
-          .toList(),
+ScholarshipManager _$ScholarshipManagerFromJson(Map<String, dynamic> json) => ScholarshipManager(
+      (json['data'] as List<dynamic>).map((e) => Scholarship.fromJson(e as Map<String, dynamic>)).toList(),
     );
 
-Map<String, dynamic> _$ScholarshipManagerToJson(ScholarshipManager instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$ScholarshipManagerToJson(ScholarshipManager instance) => <String, dynamic>{
       'data': instance.data,
     };

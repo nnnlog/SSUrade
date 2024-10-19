@@ -2,3 +2,6 @@ name: parallel_worker
 
 environment:
   sdk: ">=3.0.0 <4.0.0"
+
+dependencies:
+  mutex: ^3.1.0

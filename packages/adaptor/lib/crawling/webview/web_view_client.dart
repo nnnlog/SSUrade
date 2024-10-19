@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:convert';
 import 'dart:io' as dart show Cookie;
 import 'dart:typed_data';
@@ -67,21 +68,25 @@ class WebViewClient {
   final WebViewClientEventManager _eventManager;
   final HeadlessInAppWebView _webView;
 
-  final CredentialManagerService _credentialCacheService;
+  final CredentialManagerService _credentialManagerService;
   final LightspeedRetrievalService _lightspeedRetrievalService;
   final AssetLoaderService _assetLoaderService;
 
-  const WebViewClient({
+  WebViewClient({
     required HeadlessInAppWebView webView,
     required CredentialManagerService credentialCacheService,
     required LightspeedRetrievalService lightspeedRetrievalService,
     required AssetLoaderService assetLoaderService,
     required WebViewClientEventManager eventManager,
   })  : _webView = webView,
-        _credentialCacheService = credentialCacheService,
+        _credentialManagerService = credentialCacheService,
         _lightspeedRetrievalService = lightspeedRetrievalService,
         _assetLoaderService = assetLoaderService,
-        _eventManager = eventManager;
+        _eventManager = eventManager {
+    eventManager.onLoadStop = (controller, _) async {
+      await _controller.evaluateJavascript(source: await _assetLoaderService.loadAsset(_injectorAssetPath));
+    };
+  }
 
   InAppWebViewController get _controller => _webView.webViewController!;
 
@@ -98,18 +103,20 @@ class WebViewClient {
 
   Future<String> get url => _controller.getUrl().then((url) => url.toString());
 
-  Future<void> loadPage(String url) async {
+  Future<void> loadPage(String url, {bool useAutoLogin = true}) async {
     final controller = _controller;
 
     // load cookie
     {
-      for (var url in _cookieDomains) {
-        await CookieManager.instance().deleteCookies(url: url, webViewController: controller);
-      }
+      if (useAutoLogin) {
+        for (var url in _cookieDomains) {
+          await CookieManager.instance().deleteCookies(url: url, webViewController: controller);
+        }
 
-      final cookies = (await _credentialCacheService.getCookies()).map((raw) => Cookie.fromMap(raw)).whereType<Cookie>().toList();
-      for (final cookie in cookies) {
-        await CookieManager.instance().setCookie(url: WebUri("https://${cookie.domain}"), name: cookie.name, value: cookie.value, domain: cookie.domain, webViewController: controller);
+        final cookies = (await _credentialManagerService.getCookies(this)).map((raw) => Cookie.fromMap(raw)).whereType<Cookie>().toList();
+        for (final cookie in cookies) {
+          await CookieManager.instance().setCookie(url: WebUri("https://${cookie.domain}"), name: cookie.name, value: cookie.value, domain: cookie.domain, webViewController: controller);
+        }
       }
     }
 
@@ -121,7 +128,7 @@ class WebViewClient {
     await response.headersSplitValues["set-cookie"]?.let((it) async {
       final cookies = it.map((e) {
         return dart.Cookie.fromSetCookieValue(e).let((cookie) {
-          return Cookie(name: cookie.name, value: cookie.value, domain: cookie.domain, path: cookie.path);
+          return Cookie(name: cookie.name, value: cookie.value, domain: cookie.domain ?? Uri.parse(url).host, path: cookie.path);
         });
       }).toList();
 
@@ -129,7 +136,7 @@ class WebViewClient {
         await CookieManager.instance().setCookie(url: WebUri("https://${cookie.domain}"), name: cookie.name, value: cookie.value, webViewController: controller);
       }
 
-      await _credentialCacheService.setCookies(cookies.map((cookie) => cookie.toMap()).toList());
+      await _credentialManagerService.setCookies(cookies.map((cookie) => cookie.toMap()).toList());
     });
 
     var body = response.body;
@@ -148,15 +155,25 @@ class WebViewClient {
       }
     }
 
-    eventManager.onLoadStop = (controller, _) async {
-      await _controller.evaluateJavascript(source: await _assetLoaderService.loadAsset(_injectorAssetPath));
-    };
+    Completer completer = Completer();
+    controller.addJavaScriptHandler(
+        handlerName: "load",
+        callback: (args) {
+          completer.complete();
+        });
 
     await controller.loadData(data: body, baseUrl: WebUri(url));
+    await completer.future;
+
+    controller.removeJavaScriptHandler(handlerName: "load");
   }
 
   Future<dynamic> execute(String javascript) async {
     return _controller.callAsyncJavaScript(functionBody: javascript).then((value) => value?.value);
+  }
+
+  Future<void> directExecute(String javascript) async {
+    await _controller.evaluateJavascript(source: javascript);
   }
 
   Future<void> dispose() async {

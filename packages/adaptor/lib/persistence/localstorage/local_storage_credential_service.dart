@@ -1,14 +1,23 @@
+import 'dart:async';
+
+import 'package:get_it/get_it.dart';
 import 'package:injectable/injectable.dart';
 import 'package:ssurade_adaptor/crawling/cache/credential_manager_service.dart';
 import 'package:ssurade_adaptor/persistence/client/secure_storage_client.dart';
 import 'package:ssurade_application/ssurade_application.dart';
 
-@Singleton(as: LocalStorageCredentialPort)
+@module
+abstract class LocalStorageCredentialServiceModule {
+  @injectable
+  LocalStorageCredentialPort get localStorageCredentialPort => GetIt.I.get<LocalStorageCredentialService>();
+}
+
+@singleton
 class LocalStorageCredentialService implements LocalStorageCredentialPort {
   final SecureStorageClient _secureStorage;
-  final CredentialManagerService _credentialManagerService;
+  final StreamController<Credential> _controller = StreamController.broadcast();
 
-  const LocalStorageCredentialService(this._secureStorage, this._credentialManagerService);
+  LocalStorageCredentialService(this._secureStorage);
 
   static String get _idKey => "id";
 
@@ -26,11 +35,12 @@ class LocalStorageCredentialService implements LocalStorageCredentialPort {
 
   @override
   Future<void> saveCredential(Credential credential) async {
-    await _credentialManagerService.clearCookies();
-
+    _controller.add(credential);
     await Future.wait([
       _secureStorage.write(_idKey, credential.id),
       _secureStorage.write(_pwKey, credential.password),
     ]);
   }
+
+  Stream get onCredentialChanged => _controller.stream.asBroadcastStream();
 }
