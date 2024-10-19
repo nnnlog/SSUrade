@@ -1,27 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ssurade/components/common/custom_app_bar.dart';
-import 'package:ssurade/crawling/common/crawler.dart';
-import 'package:ssurade/globals.dart' as globals;
-import 'package:ssurade/utils/toast.dart';
+import 'package:ssurade_adaptor/ssurade_adaptor.dart';
+import 'package:ssurade_application/ssurade_application.dart';
+import 'package:ssurade_bloc/exports.dart';
 
-class LoginPage extends StatefulWidget {
+class LoginPage extends StatelessWidget {
   const LoginPage({super.key});
-
-  @override
-  State<StatefulWidget> createState() => _LoginPageState();
-}
-
-class _LoginPageState extends State<LoginPage> {
-  late TextEditingController idController = TextEditingController(), pwController = TextEditingController();
-  bool lockLoginButton = false;
-
-  @override
-  void initState() {
-    super.initState();
-
-    idController.text = Crawler.loginSession().id;
-    pwController.text = Crawler.loginSession().password;
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -31,79 +16,88 @@ class _LoginPageState extends State<LoginPage> {
         padding: const EdgeInsets.all(30),
         child: AutofillGroup(
           child: Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Flexible(
-                  child: TextFormField(
-                    decoration: const InputDecoration(hintText: "유세인트 아이디(학번)를 입력하세요."),
-                    controller: idController,
-                    autofillHints: const [AutofillHints.username],
+            child: BlocProvider(
+              create: (context) => LoginBloc(loginViewModelUseCase: getIt<LoginViewModelUseCase>()),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  BlocListener<LoginBloc, LoginState>(
+                    listener: (context, state) {
+                      if (state is LoginSuccess) {
+                        Navigator.pop(context);
+                      }
+                    },
+                    child: Container(),
                   ),
-                ),
-                Flexible(
-                  child: TextFormField(
-                    decoration: const InputDecoration(hintText: "유세인트 비밀번호를 입력하세요."),
-                    controller: pwController,
-                    obscureText: true,
-                    autofillHints: const [AutofillHints.password],
+                  _LoginInput(),
+                  Container(
+                    height: 10,
                   ),
-                ),
-                Container(
-                  height: 10,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Icon(
-                      Icons.info,
-                      color: Colors.grey,
-                      size: 5,
-                    ),
-                    Text(
-                      " 앱 첫 실행 시 로그인이 오래 걸릴 수 있어요.",
-                      style: TextStyle(
-                        color: Colors.grey,
-                      ),
-                    ),
-                  ],
-                ),
-                TextButton(
-                  onPressed: () async {
-                    if (lockLoginButton) return;
-                    setState(() {
-                      lockLoginButton = true;
-                    });
-
-                    var session = Crawler.loginSession();
-                    session.id = idController.text;
-                    session.password = pwController.text;
-
-                    if (await session.execute().catchError((_) => false)) {
-                      if (mounted) Navigator.pop(context);
-                      showToast("로그인 했어요.");
-
-                      globals.analytics.logEvent(name: "login", parameters: {"auto_login": "false"});
-                    } else {
-                      session.logout();
-                      showToast("로그인을 실패했어요.");
-                    }
-                    session.saveFile();
-
-                    setState(() {
-                      lockLoginButton = false;
-                    });
-                  },
-                  style: TextButton.styleFrom(
-                    minimumSize: const Size.fromHeight(40),
-                  ),
-                  child: Text(lockLoginButton ? "로그인하는 중..." : "로그인"),
-                ),
-              ],
+                  _LoginPassword(),
+                  _LoginButton(),
+                ],
+              ),
             ),
           ),
         ),
+      ),
+    );
+  }
+}
+
+class _LoginInput extends StatelessWidget {
+  const _LoginInput({super.key});
+
+  @override
+  build(BuildContext context) {
+    return Flexible(
+      child: TextFormField(
+        decoration: const InputDecoration(hintText: "유세인트 아이디(학번)를 입력하세요."),
+        autofillHints: const [AutofillHints.username],
+        onChanged: (text) {
+          context.read<LoginBloc>().add(LoginIdChanged(text));
+        },
+      ),
+    );
+  }
+}
+
+class _LoginPassword extends StatelessWidget {
+  const _LoginPassword({super.key});
+
+  @override
+  build(BuildContext context) {
+    return Flexible(
+      child: TextFormField(
+        decoration: const InputDecoration(hintText: "유세인트 비밀번호를 입력하세요."),
+        obscureText: true,
+        autofillHints: const [AutofillHints.password],
+        onChanged: (text) {
+          context.read<LoginBloc>().add(LoginPasswordChanged(text));
+        },
+      ),
+    );
+  }
+}
+
+class _LoginButton extends StatelessWidget {
+  const _LoginButton({super.key});
+
+  @override
+  build(BuildContext context) {
+    final state = context.watch<LoginBloc>().state;
+    return Flexible(
+      child: TextButton(
+        onPressed: state is LoginLoading
+            ? null
+            : () async {
+                context.read<LoginBloc>().add(LoginRequested());
+              },
+        style: TextButton.styleFrom(
+          minimumSize: const Size.fromHeight(40),
+        ),
+        child: Text(state is LoginLoading ? "로그인하는 중..." : "로그인"),
       ),
     );
   }

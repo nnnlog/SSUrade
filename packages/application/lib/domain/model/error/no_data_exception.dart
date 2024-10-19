@@ -1,0 +1,1 @@
+class EmptyDataException implements Exception {}
