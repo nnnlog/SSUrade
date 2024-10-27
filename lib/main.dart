@@ -3,7 +3,9 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
+import 'package:ssurade/views/grade_page.dart';
 import 'package:ssurade/views/login.dart';
+import 'package:ssurade/views/main_page.dart';
 import 'package:ssurade_adaptor/di/di.dart';
 import 'package:ssurade_application/ssurade_application.dart';
 
@@ -39,6 +41,7 @@ class MyApp extends StatelessWidget {
     return MultiRepositoryProvider(
       providers: [
         RepositoryProvider(create: (context) => getIt<LoginViewModelUseCase>()),
+        RepositoryProvider(create: (context) => getIt<SubjectViewModelUseCase>()),
       ],
       child: MaterialApp(
         title: 'SSUrade',
@@ -58,11 +61,11 @@ class MyApp extends StatelessWidget {
           scaffoldBackgroundColor: Colors.white,
           fontFamily: "Pretendard",
         ),
-        initialRoute: '/login',
+        initialRoute: '/',
         routes: {
-          // '/': (context) => const MainPage(),
+          '/': (context) => const MainPage(),
           '/login': (context) => const LoginPage(),
-          // '/grade': (context) => const GradePage(),
+          '/grade': (context) => const GradePage(),
           // '/grade_statistics': (context) => const GradeStatisticsPage(),
           // '/category_statistics': (context) => const StatisticsPage(),
           // '/chapel': (context) => const ChapelPage(),

@@ -4,4 +4,5 @@
 // publish your package hint: dart pub publish --dry-run
 // if you want to update your packages on power: dart pub upgrade --major-versions
 
+export 'package:ssurade_bloc/bloc/grade/grade_bloc.dart';
 export 'package:ssurade_bloc/bloc/login/login_bloc.dart';

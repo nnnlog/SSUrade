@@ -37,8 +37,6 @@ class CredentialRetrievalService {
 
       final result = await client.cookies.then((cookies) => cookies.map((cookie) => cookie.toJson()).toList());
 
-      client.dispose();
-
       return result;
     });
   }

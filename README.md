@@ -3,7 +3,7 @@
 
 ## 설치
 * [Play Store](https://play.google.com/store/apps/details?id=com.nnnlog.ssurade)
-* App Store (TBD)
+* [App Store](https://apps.apple.com/app/id6720747785)
 * [Github Release](https://github.com/nnnlog/ssurade/releases)
 
 ## 사용법
@@ -35,7 +35,7 @@ flutter pub get
 * 소유하고 있는 `key.properties`를 `android/` 디렉토리에 넣어주세요. (apk를 서명하는 데 사용합니다.)
 * 만약 `key.properties`를 소유하고 있지 않다면, 자동 생성된 `android/local.properties`를 복사해서 사용할 수 있습니다. (해당 파일은 자동 생성되는 디버깅용 키로써, 배포용으로는 적합하지 않습니다.)
 
-### 3. 빌드
+### 4. 빌드
 * 요구 사항: Flutter
 ```shell
 flutter build ios --obfuscate --split-debug-info=./debug/
@@ -48,7 +48,7 @@ flutter build appbundle --obfuscate --split-debug-info=./debug/
 * `--obfuscate` 옵션은 코드 난독화를 위한 옵션입니다. (선택 사항)
 * `--split-debug-info` 옵션은 디버그 심볼을 분리하는 옵션입니다. (선택 사항)
 
-### 4. 빌드 후
+### 5. 빌드 후
 #### (선택/프로덕션 전용) Sentry에 디버깅 심볼 업로드 방법
 ```shell
 SENTRY_AUTH_TOKEN=<token> SENTRY_ORG=<org> SENTRY_PROJECT=<project name> flutter packages pub run sentry_dart_plugin

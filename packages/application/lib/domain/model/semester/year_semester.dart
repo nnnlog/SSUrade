@@ -35,7 +35,7 @@ class YearSemester extends Equatable implements Comparable<YearSemester> {
       Semester.winter: 3,
     };
 
-    return year == other.year ? semesterOrder[semester]! < semesterOrder[semester]! : year < other.year;
+    return year == other.year ? semesterOrder[semester]! < semesterOrder[other.semester]! : year < other.year;
   }
 
   @override

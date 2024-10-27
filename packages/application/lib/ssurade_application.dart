@@ -49,6 +49,7 @@ export 'package:ssurade_application/port/out/external/external_subject_retrieval
 export 'package:ssurade_application/port/out/local_storage/local_storage_absent_application_manager_port.dart';
 export 'package:ssurade_application/port/out/local_storage/local_storage_chapel_manager_port.dart';
 export 'package:ssurade_application/port/out/local_storage/local_storage_credential_port.dart';
+export 'package:ssurade_application/port/out/local_storage/local_storage_save_photo_port.dart';
 export 'package:ssurade_application/port/out/local_storage/local_storage_scholarship_manager_port.dart';
 export 'package:ssurade_application/port/out/local_storage/local_storage_semester_subjects_manager_port.dart';
 export 'package:ssurade_application/port/out/local_storage/local_storage_setting_port.dart';

@@ -5,5 +5,5 @@ class CrawlingTimeout {
   static const int chapel = 40;
   static const int login = 20;
   static const int scholarship = 20;
-  static const int grade = 60;
+  static const int grade = 120;
 }

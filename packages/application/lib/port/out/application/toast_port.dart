@@ -1,3 +1,3 @@
 abstract interface class ToastPort {
-  void showToast(String message);
+  Future<void> showToast(String message);
 }

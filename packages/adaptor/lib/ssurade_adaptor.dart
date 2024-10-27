@@ -32,6 +32,7 @@ export 'package:ssurade_adaptor/persistence/localstorage/lightspeed_retrieval_se
 export 'package:ssurade_adaptor/persistence/localstorage/local_storage_absent_application_manager_service.dart';
 export 'package:ssurade_adaptor/persistence/localstorage/local_storage_chapel_manager_service.dart';
 export 'package:ssurade_adaptor/persistence/localstorage/local_storage_credential_service.dart';
+export 'package:ssurade_adaptor/persistence/localstorage/local_storage_save_photo_service.dart';
 export 'package:ssurade_adaptor/persistence/localstorage/local_storage_scholarship_manager_service.dart';
 export 'package:ssurade_adaptor/persistence/localstorage/local_storage_semester_subjects_manager_service.dart';
 export 'package:ssurade_adaptor/persistence/localstorage/local_storage_setting_service.dart';

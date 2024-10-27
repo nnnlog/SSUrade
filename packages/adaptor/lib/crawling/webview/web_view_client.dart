@@ -1,8 +1,10 @@
 import 'dart:async';
 import 'dart:convert';
+import 'dart:developer';
 import 'dart:io' as dart show Cookie;
 import 'dart:typed_data';
 
+import "package:collection/collection.dart";
 import 'package:dart_scope_functions/dart_scope_functions.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:html/parser.dart';
@@ -61,7 +63,7 @@ class WebViewClientEventManager {
 }
 
 class WebViewClient {
-  static List<WebUri> get _cookieDomains => [WebUri("https://.ssu.ac.kr"), WebUri("https://ecc.ssu.ac.kr")];
+  static List<WebUri> get _cookieDomains => [WebUri("https://.ssu.ac.kr"), WebUri("https://ecc.ssu.ac.kr"), WebUri("https://smartid.ssu.ac.kr")];
 
   static String get _injectorAssetPath => "js/common.js";
 
@@ -109,19 +111,26 @@ class WebViewClient {
     // load cookie
     {
       if (useAutoLogin) {
+        // if false, using cookie with already set on webview
         for (var url in _cookieDomains) {
           await CookieManager.instance().deleteCookies(url: url, webViewController: controller);
         }
 
         final cookies = (await _credentialManagerService.getCookies(this)).map((raw) => Cookie.fromMap(raw)).whereType<Cookie>().toList();
         for (final cookie in cookies) {
-          await CookieManager.instance().setCookie(url: WebUri("https://${cookie.domain}"), name: cookie.name, value: cookie.value, domain: cookie.domain, webViewController: controller);
+          if (cookie.value == "") {
+            await CookieManager.instance().deleteCookie(url: WebUri("https://${cookie.domain}"), name: cookie.name, webViewController: controller);
+          } else {
+            await CookieManager.instance().setCookie(url: WebUri("https://${cookie.domain}"), name: cookie.name, value: cookie.value, domain: cookie.domain, webViewController: controller);
+          }
         }
       }
     }
 
     final response = await http.get(Uri.parse(url), headers: {
-      "Cookie": (await cookies).map((c) => c.toString()).join("; "),
+      "Cookie": groupBy(await cookies, (cookie) {
+        return (cookie.domain, cookie.name);
+      }).values.map((c) => c[0]).map((c) => "${c.name}=${c.value}").join("; "),
       "User-Agent": HttpConfiguration.userAgent,
     });
 
@@ -133,10 +142,10 @@ class WebViewClient {
       }).toList();
 
       for (final cookie in cookies) {
+        // await CookieManager.instance().deleteCookie(url: WebUri("https://${cookie.domain}"), name: cookie.name);
         await CookieManager.instance().setCookie(url: WebUri("https://${cookie.domain}"), name: cookie.name, value: cookie.value, webViewController: controller);
       }
-
-      await _credentialManagerService.setCookies(cookies.map((cookie) => cookie.toMap()).toList());
+      // await _credentialManagerService.setCookies(cookies.map((cookie) => cookie.toMap()).toList());
     });
 
     var body = response.body;
@@ -157,10 +166,11 @@ class WebViewClient {
 
     Completer completer = Completer();
     controller.addJavaScriptHandler(
-        handlerName: "load",
-        callback: (args) {
-          completer.complete();
-        });
+      handlerName: "load",
+      callback: (args) {
+        completer.complete();
+      },
+    );
 
     await controller.loadData(data: body, baseUrl: WebUri(url));
     await completer.future;

@@ -1,5 +1,6 @@
 import 'dart:collection';
 
+import 'package:collection/collection.dart';
 import 'package:dart_scope_functions/dart_scope_functions.dart';
 import 'package:df/df.dart';
 import 'package:injectable/injectable.dart';
@@ -61,7 +62,7 @@ class ExternalSubjectRetrievalService implements ExternalSubjectRetrievalPort {
           res["subjects"].map((subject) {
             return Subject(
               code: subject["subject_code"],
-              name: subject["subject_name"].let((str) {
+              name: (subject["subject_name"] as String).let((str) {
                 if (str == "성적 미입력") {
                   return "";
                 }
@@ -99,7 +100,7 @@ class ExternalSubjectRetrievalService implements ExternalSubjectRetrievalPort {
             }
             return res;
           });
-          subjects.add(subject.copyWith(detail: detail));
+          subjects.add(subject.copyWith(detail: Map<String, String>.from(detail)));
         }
 
         return semesterSubjects.copyWith(
@@ -165,8 +166,8 @@ class ExternalSubjectRetrievalService implements ExternalSubjectRetrievalPort {
 
     final data = _parseOZViewerData(rawData)[0];
     return SemesterSubjectsManager(
-      data: SplayTreeMap.fromIterable(
-        data.rows.map((rowData) {
+      data: SplayTreeMap<YearSemester, SemesterSubjects>.fromIterable(
+        groupBy(data.rows.map((rowData) {
           Map<String, String> row = {};
           for (var key in rowData.keys) {
             row[key] = rowData[key] as String;
@@ -178,33 +179,36 @@ class ExternalSubjectRetrievalService implements ExternalSubjectRetrievalPort {
             semester: Semester.parse("${rawKey[1]}학기"),
           );
 
-          final subject = Subject(
-            code: row["SM_ID"]!,
-            // FORMAT: 21501015
-            name: "",
-            // SM_TEXT에 존재하지만, 교선에 교선 분류명도 함께 있음
-            credit: double.parse(row["CPATTEMP"]!),
-            grade: row["GRADE"]!,
-            // 성적 기호
-            score: row["GRADESYMBOL"]!,
-            // 최종 점수 (근데 이름이 왜 이래)
-            professor: "",
-            category: row["COMPL_TEXT"]!,
-            isPassFail: row["GRADESCALE"]! == "PF",
-            // otherwise, '100P'
-            info: row["SM_INFO"]!,
-            // 해당 과목의 졸업 사정 정보 (재수강되어 졸업 사정되지 않는 과목 / 영어 강의 등..)
-            detail: {},
+          return (
+            key,
+            Subject(
+              code: row["SM_ID"]!,
+              // FORMAT: 21501015
+              name: "",
+              // SM_TEXT에 존재하지만, 교선에 교선 분류명도 함께 있음
+              credit: double.parse(row["CPATTEMP"]!),
+              grade: row["GRADE"]!,
+              // 성적 기호
+              score: row["GRADESYMBOL"]!,
+              // 최종 점수 (근데 이름이 왜 이래)
+              professor: "",
+              category: row["COMPL_TEXT"]!,
+              isPassFail: row["GRADESCALE"]! == "PF",
+              // otherwise, '100P'
+              info: row["SM_INFO"]!,
+              // 해당 과목의 졸업 사정 정보 (재수강되어 졸업 사정되지 않는 과목 / 영어 강의 등..)
+              detail: {},
+            )
           );
-
+        }), (data) => data.$1).entries.map((entry) {
           return SemesterSubjects(
-            subjects: SplayTreeMap.fromIterable([subject], key: (subject) => subject.code),
-            currentSemester: key,
+            subjects: SplayTreeMap.fromIterable(entry.value.map((value) => value.$2), key: (subject) => subject.code),
+            currentSemester: entry.key,
             semesterRanking: Ranking.unknown,
             totalRanking: Ranking.unknown,
           );
         }),
-        key: (subject) => subject.code,
+        key: (semesters) => (semesters as SemesterSubjects).currentSemester,
       ),
       state: SubjectState.category,
     );
@@ -249,10 +253,10 @@ class ExternalSubjectRetrievalService implements ExternalSubjectRetrievalPort {
               return (client) => _getSemesterSubjects(client, yearSemester, includeDetail: includeDetail);
             }).toList(),
             workers: clients,
-          ).result.then((res) => res.whereType<SemesterSubjects>().toList()).then<SemesterSubjectsManager>((subjects) async {
+          ).result.then((res) => res.whereType<SemesterSubjects>().toList()).then<SemesterSubjectsManager>((semesterSubjects) async {
             await Future.wait(clients.map((client) => client.loadPage(_semesterGradeOldVersionUrl)));
 
-            final research = semesters.where((semester) => subjects.any((element) => element.currentSemester == semester)).toList();
+            final research = semesters.where((semester) => !semesterSubjects.any((element) => element.currentSemester == semester)).toList();
 
             final researchedSubjects = await ParallelWorker(
               jobs: research.map((yearSemester) {
@@ -261,7 +265,7 @@ class ExternalSubjectRetrievalService implements ExternalSubjectRetrievalPort {
               workers: clients,
             ).result.then((subjects) => subjects.whereType<SemesterSubjects>().toList());
 
-            return (subjects + researchedSubjects).let((it) {
+            return (semesterSubjects + researchedSubjects).let((it) {
               return SemesterSubjectsManager(
                 data: SplayTreeMap.fromIterable(it, key: (subject) => subject.currentSemester),
                 state: SubjectState.semester,
@@ -289,6 +293,7 @@ class ExternalSubjectRetrievalService implements ExternalSubjectRetrievalPort {
         semesterClient.loadPage(_semesterGradeUrl).then<SemesterSubjects?>((_) async {
           final result = await _getSemesterSubjects(semesterClient, yearSemester, includeDetail: includeDetail);
           if (result == null) {
+            await semesterClient.loadPage(_semesterGradeOldVersionUrl);
             return await _getSemesterSubjectsFromOldVersion(semesterClient, yearSemester);
           }
           return result;

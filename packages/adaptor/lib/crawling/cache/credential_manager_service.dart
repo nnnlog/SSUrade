@@ -41,21 +41,19 @@ class CredentialManagerService {
   bool get hasCookies => _credentialCache.cookies.isNotEmpty;
 
   Future<void> setCookies(List<Map<String, dynamic>> cookies) async {
-    await _mutex.protect(() async {
-      _credentialCache = CredentialCache(
-        cookies: cookies,
-        expire: DateTime.now().add(Duration(hours: 1)),
-      );
+    _initialized = true;
+    _credentialCache = CredentialCache(
+      cookies: cookies,
+      expire: DateTime.now().add(Duration(hours: 1)),
+    );
 
-      _writeFile();
-    });
+    _writeFile();
   }
 
   Future<void> clearCookies() async {
-    await _mutex.protect(() async {
-      _credentialCache = CredentialCache(cookies: [], expire: DateTime.now());
-      _writeFile();
-    });
+    _initialized = true;
+    _credentialCache = CredentialCache(cookies: [], expire: DateTime.now());
+    _writeFile();
   }
 
   Future<List<Map<String, dynamic>>> getCookies(WebViewClient client) async {
@@ -70,7 +68,7 @@ class CredentialManagerService {
         }
       }
 
-      if (_credentialCache.cookies.isEmpty || [null, false].contains(_credentialCache.expire?.isBefore(DateTime.now()))) {
+      if (_credentialCache.cookies.isEmpty || [null, true].contains(_credentialCache.expire?.isBefore(DateTime.now()))) {
         final credential = await _localStorageCredentialService.retrieveCredential();
         if (credential == null) throw Exception('No credential found');
 

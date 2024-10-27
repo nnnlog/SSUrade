@@ -7,7 +7,6 @@ class ParallelWorker<T, E> {
   final Set<E> _workers;
   final Completer<List<T>> _completer = Completer<List<T>>();
   final List<T> _result = [];
-  final Mutex _mutex = Mutex();
 
   ParallelWorker({
     required List<Future<T> Function(E)> jobs,
@@ -20,29 +19,27 @@ class ParallelWorker<T, E> {
   Future<List<T>> get result => _completer.future;
 
   void _run(E worker) {
-    _mutex.protect(() async {
-      if (_jobs.isEmpty) {
-        _workers.remove(worker);
-        if (_workers.isEmpty) {
-          _completer.complete(_result);
-        }
-        return;
+    if (_jobs.isEmpty) {
+      _workers.remove(worker);
+      if (_workers.isEmpty) {
+        _completer.complete(_result);
       }
+      return;
+    }
 
-      final job = _jobs.removeLast();
+    final job = _jobs.removeLast();
 
-      job(worker).then((value) {
-        _result.add(value);
-        _run(worker);
-      }).catchError((error) {
-        _completer.completeError(error);
-      });
+    job(worker).then((value) {
+      _result.add(value);
+      _run(worker);
+    }).catchError((error) {
+      _completer.completeError(error);
     });
   }
 
   void _start() {
-    for (final worker in _workers) {
+    _workers.toList().forEach((worker) {
       _run(worker);
-    }
+    }); // copy to list to avoid concurrent modification
   }
 }
