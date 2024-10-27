@@ -78,6 +78,16 @@ class GradeBloc extends Bloc<GradeEvent, GradeState> {
       ));
     });
 
+    on<GradeExportRequested>((event, emit) async {
+      final state = this.state;
+
+      if (state is! GradeShowing) {
+        return;
+      }
+
+      emit(state.copyWith(isExporting: true));
+    });
+
     on<GradeScreenshotSaveRequested>((event, emit) async {
       final state = this.state;
 
@@ -91,5 +101,13 @@ class GradeBloc extends Bloc<GradeEvent, GradeState> {
 
       emit(state.copyWith(isExporting: false));
     });
+  }
+
+  @override
+  void onError(Object error, StackTrace stackTrace) {
+    _subjectViewModelUseCase.showToast("오류가 발생했어요. ($error)");
+    print(error);
+
+    super.onError(error, stackTrace);
   }
 }
