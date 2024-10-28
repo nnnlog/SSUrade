@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 import 'package:ssurade/views/grade_page.dart';
+import 'package:ssurade/views/grade_statistics_page.dart';
 import 'package:ssurade/views/login.dart';
 import 'package:ssurade/views/main_page.dart';
 import 'package:ssurade_adaptor/di/di.dart';
@@ -66,7 +67,7 @@ class MyApp extends StatelessWidget {
           '/': (context) => const MainPage(),
           '/login': (context) => const LoginPage(),
           '/grade': (context) => const GradePage(),
-          // '/grade_statistics': (context) => const GradeStatisticsPage(),
+          '/grade_statistics': (context) => const GradeStatisticsPage(),
           // '/category_statistics': (context) => const StatisticsPage(),
           // '/chapel': (context) => const ChapelPage(),
           // '/scholarship': (context) => const ScholarshipPage(),

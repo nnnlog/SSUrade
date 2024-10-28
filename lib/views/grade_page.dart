@@ -17,9 +17,7 @@ class GradePage extends StatefulWidget {
 }
 
 class _GradePageState extends State<GradePage> {
-  // late SemesterSubjects _semesterSubjects;
   final RefreshController _refreshController = RefreshController();
-
   final ScreenshotController _screenshotController = ScreenshotController();
 
   void showScreenshotDialog(BuildContext context) {

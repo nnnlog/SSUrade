@@ -33,6 +33,15 @@ class MainPage extends StatelessWidget {
                 ),
                 child: const Text("학기별 성적 조회"),
               ),
+              OutlinedButton(
+                onPressed: () async {
+                  Navigator.pushNamed(context, "/grade_statistics");
+                },
+                style: OutlinedButton.styleFrom(
+                  minimumSize: const Size.fromHeight(40),
+                ),
+                child: const Text("성적 통계 조회"),
+              ),
             ],
           ),
         ),
