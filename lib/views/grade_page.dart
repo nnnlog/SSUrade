@@ -163,7 +163,9 @@ class _GradePageState extends State<GradePage> {
                                   context.select((GradeBloc bloc) => bloc.state).let(
                                     (state) {
                                       if (state is GradeShowing) {
-                                        return state.semesterSubjectsManager.data[state.showingSemester]?.subjects.values.map((e) {
+                                        return state.semesterSubjectsManager.data[state.showingSemester]?.subjects.values.toList().also((it) {
+                                              it.sort();
+                                            }).map((e) {
                                               return SubjectWidget(e, state.isExporting, state.isDisplaySubjectInformationDuringExporting);
                                             }).toList() ??
                                             [];
