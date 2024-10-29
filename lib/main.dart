@@ -3,6 +3,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
+import 'package:ssurade/views/absent_page.dart';
 import 'package:ssurade/views/chapel_page.dart';
 import 'package:ssurade/views/grade_page.dart';
 import 'package:ssurade/views/grade_statistics_by_category_page.dart';
@@ -32,13 +33,13 @@ void main() async {
         options: DefaultFirebaseOptions.currentPlatform,
       );
 
-      runApp(const MyApp());
+      runApp(const SsuradeEntryPoint());
     },
   );
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class SsuradeEntryPoint extends StatelessWidget {
+  const SsuradeEntryPoint({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -48,6 +49,7 @@ class MyApp extends StatelessWidget {
         RepositoryProvider(create: (context) => getIt<SubjectViewModelUseCase>()),
         RepositoryProvider(create: (context) => getIt<ChapelViewModelUseCase>()),
         RepositoryProvider(create: (context) => getIt<ScholarshipViewModelUseCase>()),
+        RepositoryProvider(create: (context) => getIt<AbsentViewModelUseCase>()),
       ],
       child: MaterialApp(
         title: 'SSUrade',
@@ -76,7 +78,7 @@ class MyApp extends StatelessWidget {
           '/grade_statistics_category': (context) => const GradeStatisticsByCategoryPage(),
           '/chapel': (context) => const ChapelPage(),
           '/scholarship': (context) => const ScholarshipPage(),
-          // '/absent': (context) => const AbsentPage(),
+          '/absent': (context) => const AbsentPage(),
           // '/setting': (context) => const SettingPage(),
           // '/information': (context) => const InformationPage(),
         },

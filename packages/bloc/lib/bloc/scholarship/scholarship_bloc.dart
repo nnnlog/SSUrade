@@ -23,7 +23,7 @@ class ScholarshipBloc extends Bloc<ScholarshipEvent, ScholarshipState> {
       }
 
       return emit.forEach(_scholarshipViewModelUseCase.getScholarshipManagerStream(), onData: (data) {
-        if (data == ScholarshipManager.empty) {
+        if (data == ScholarshipManager.empty()) {
           return ScholarshipInitialLoading();
         }
         return ScholarshipShowing(scholarshipManager: data);

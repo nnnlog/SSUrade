@@ -8,11 +8,13 @@ import 'dart:async' as _i687;
 
 import 'package:injectable/injectable.dart' as _i526;
 import 'package:ssurade_application/domain/service/background/background_process_service.dart' as _i334;
+import 'package:ssurade_application/domain/service/viewmodel/absent_view_model_service.dart' as _i112;
 import 'package:ssurade_application/domain/service/viewmodel/chapel_view_model_service.dart' as _i329;
 import 'package:ssurade_application/domain/service/viewmodel/login_view_model_service.dart' as _i919;
 import 'package:ssurade_application/domain/service/viewmodel/scholarship_view_model_service.dart' as _i934;
 import 'package:ssurade_application/domain/service/viewmodel/subject_view_model_service.dart' as _i345;
 import 'package:ssurade_application/port/in/background/background_process_use_case.dart' as _i356;
+import 'package:ssurade_application/port/in/viewmodel/absent_view_model_use_case.dart' as _i263;
 import 'package:ssurade_application/port/in/viewmodel/chapel_view_model_use_case.dart' as _i727;
 import 'package:ssurade_application/port/in/viewmodel/login_view_model_use_case.dart' as _i273;
 import 'package:ssurade_application/port/in/viewmodel/scholarship_view_model_use_case.dart' as _i420;
@@ -64,6 +66,11 @@ class SsuradeApplicationPackageModule extends _i526.MicroPackageModule {
     gh.singleton<_i273.LoginViewModelUseCase>(() => _i919.LoginViewModelService(
           localStorageCredentialPort: gh<_i792.LocalStorageCredentialPort>(),
           externalCredentialRetrievalPort: gh<_i1067.ExternalCredentialRetrievalPort>(),
+        ));
+    gh.singleton<_i263.AbsentViewModelUseCase>(() => _i112.AbsentViewModelService(
+          localStorageAbsentApplicationManagerPort: gh<_i862.LocalStorageAbsentApplicationManagerPort>(),
+          externalAbsentApplicationRetrievalPort: gh<_i179.ExternalAbsentApplicationRetrievalPort>(),
+          toastPort: gh<_i750.ToastPort>(),
         ));
     gh.singleton<_i727.ChapelViewModelUseCase>(() => _i329.ChapelViewModelService(
           localStorageSemesterSubjectsManagerPort: gh<_i741.LocalStorageSemesterSubjectsManagerPort>(),

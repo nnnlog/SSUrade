@@ -69,6 +69,15 @@ class MainPage extends StatelessWidget {
                 ),
                 child: const Text("장학 정보 조회"),
               ),
+              OutlinedButton(
+                onPressed: () async {
+                  Navigator.pushNamed(context, "/absent");
+                },
+                style: OutlinedButton.styleFrom(
+                  minimumSize: const Size.fromHeight(40),
+                ),
+                child: const Text("유고 결석 정보 조회"),
+              ),
             ],
           ),
         ),

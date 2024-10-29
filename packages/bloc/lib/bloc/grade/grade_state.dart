@@ -1,16 +1,21 @@
 part of 'grade_bloc.dart';
 
 @immutable
-sealed class GradeState extends Equatable {}
+sealed class GradeState extends Equatable {
+  final DateTime lastUpdated = DateTime.now();
+
+  @override
+  List<Object?> get props => [lastUpdated];
+}
 
 final class GradeInitial extends GradeState {
   @override
-  List<Object?> get props => [];
+  List<Object?> get props => super.props + [];
 }
 
 final class GradeInitialLoading extends GradeState {
   @override
-  List<Object?> get props => [];
+  List<Object?> get props => super.props + [];
 }
 
 @CopyWith()
@@ -31,5 +36,5 @@ final class GradeShowing extends GradeState {
   });
 
   @override
-  List<Object?> get props => [semesterSubjectsManager, showingSemester, isExporting, isDisplayRankingDuringExporting, isDisplaySubjectInformationDuringExporting];
+  List<Object?> get props => super.props + [semesterSubjectsManager, showingSemester, isExporting, isDisplayRankingDuringExporting, isDisplaySubjectInformationDuringExporting];
 }
