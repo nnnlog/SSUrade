@@ -13,6 +13,8 @@ class ScholarshipManager extends Equatable {
 
   const ScholarshipManager(this.data);
 
+  const ScholarshipManager.empty() : data = const [];
+
   @override
   List<Object?> get props => [data];
 

@@ -8,3 +8,4 @@ export 'package:ssurade_bloc/bloc/chapel/chapel_bloc.dart';
 export 'package:ssurade_bloc/bloc/grade/grade_bloc.dart';
 export 'package:ssurade_bloc/bloc/grade_inquiry/grade_inquiry_bloc.dart';
 export 'package:ssurade_bloc/bloc/login/login_bloc.dart';
+export 'package:ssurade_bloc/bloc/scholarship/scholarship_bloc.dart';

@@ -9,6 +9,7 @@ import 'package:ssurade/views/grade_statistics_by_category_page.dart';
 import 'package:ssurade/views/grade_statistics_page.dart';
 import 'package:ssurade/views/login.dart';
 import 'package:ssurade/views/main_page.dart';
+import 'package:ssurade/views/scholarship_page.dart';
 import 'package:ssurade_adaptor/di/di.dart';
 import 'package:ssurade_application/ssurade_application.dart';
 
@@ -46,6 +47,7 @@ class MyApp extends StatelessWidget {
         RepositoryProvider(create: (context) => getIt<LoginViewModelUseCase>()),
         RepositoryProvider(create: (context) => getIt<SubjectViewModelUseCase>()),
         RepositoryProvider(create: (context) => getIt<ChapelViewModelUseCase>()),
+        RepositoryProvider(create: (context) => getIt<ScholarshipViewModelUseCase>()),
       ],
       child: MaterialApp(
         title: 'SSUrade',
@@ -73,7 +75,7 @@ class MyApp extends StatelessWidget {
           '/grade_statistics': (context) => const GradeStatisticsPage(),
           '/grade_statistics_category': (context) => const GradeStatisticsByCategoryPage(),
           '/chapel': (context) => const ChapelPage(),
-          // '/scholarship': (context) => const ScholarshipPage(),
+          '/scholarship': (context) => const ScholarshipPage(),
           // '/absent': (context) => const AbsentPage(),
           // '/setting': (context) => const SettingPage(),
           // '/information': (context) => const InformationPage(),

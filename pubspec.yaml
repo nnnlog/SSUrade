@@ -27,6 +27,7 @@ dependencies:
 
   dart_scope_functions: ^0.1.8
   copy_with_extension: ^5.0.4
+  intl: ^0.17.0
 
   screenshot: ^3.0.0
   pull_to_refresh: ^2.0.0

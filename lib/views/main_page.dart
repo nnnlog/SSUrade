@@ -60,6 +60,15 @@ class MainPage extends StatelessWidget {
                 ),
                 child: const Text("채플 정보 조회"),
               ),
+              OutlinedButton(
+                onPressed: () async {
+                  Navigator.pushNamed(context, "/scholarship");
+                },
+                style: OutlinedButton.styleFrom(
+                  minimumSize: const Size.fromHeight(40),
+                ),
+                child: const Text("장학 정보 조회"),
+              ),
             ],
           ),
         ),
