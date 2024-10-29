@@ -3,7 +3,9 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
+import 'package:ssurade/views/chapel_page.dart';
 import 'package:ssurade/views/grade_page.dart';
+import 'package:ssurade/views/grade_statistics_by_category_page.dart';
 import 'package:ssurade/views/grade_statistics_page.dart';
 import 'package:ssurade/views/login.dart';
 import 'package:ssurade/views/main_page.dart';
@@ -43,6 +45,7 @@ class MyApp extends StatelessWidget {
       providers: [
         RepositoryProvider(create: (context) => getIt<LoginViewModelUseCase>()),
         RepositoryProvider(create: (context) => getIt<SubjectViewModelUseCase>()),
+        RepositoryProvider(create: (context) => getIt<ChapelViewModelUseCase>()),
       ],
       child: MaterialApp(
         title: 'SSUrade',
@@ -68,8 +71,8 @@ class MyApp extends StatelessWidget {
           '/login': (context) => const LoginPage(),
           '/grade': (context) => const GradePage(),
           '/grade_statistics': (context) => const GradeStatisticsPage(),
-          // '/category_statistics': (context) => const StatisticsPage(),
-          // '/chapel': (context) => const ChapelPage(),
+          '/grade_statistics_category': (context) => const GradeStatisticsByCategoryPage(),
+          '/chapel': (context) => const ChapelPage(),
           // '/scholarship': (context) => const ScholarshipPage(),
           // '/absent': (context) => const AbsentPage(),
           // '/setting': (context) => const SettingPage(),

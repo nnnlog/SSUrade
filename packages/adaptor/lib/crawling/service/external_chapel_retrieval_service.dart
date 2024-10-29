@@ -1,3 +1,5 @@
+import 'dart:collection';
+
 import 'package:injectable/injectable.dart';
 import 'package:parallel_worker/parallel_worker.dart';
 import 'package:ssurade_adaptor/crawling/constant/crawling_timeout.dart';
@@ -26,18 +28,21 @@ class ExternalChapelRetrievalService implements ExternalChapelManagerRetrievalPo
         subjectTime: summary["subject_time"],
         floor: summary["floor"],
         seatNo: summary["seat_no"],
-        attendances: res["attendance"].map((e) {
-          return ChapelAttendance(
-            status: ChapelAttendanceStatus.from(e["attendance"]),
-            overwrittenStatus: ChapelAttendanceStatus.unknown,
-            affiliation: e["affiliation"],
-            lectureDate: e["lecture_date"],
-            lectureEtc: e["lecture_etc"],
-            lectureName: e["lecture_name"],
-            lectureType: e["lecture_type"],
-            lecturer: e["lecturer"],
-          );
-        }).toList(),
+        attendances: SplayTreeMap.fromIterable(
+          res["attendance"].map((e) {
+            return ChapelAttendance(
+              status: ChapelAttendanceStatus.from(e["attendance"]),
+              overwrittenStatus: ChapelAttendanceStatus.unknown,
+              affiliation: e["affiliation"],
+              lectureDate: e["lecture_date"],
+              lectureEtc: e["lecture_etc"],
+              lectureName: e["lecture_name"],
+              lectureType: e["lecture_type"],
+              lecturer: e["lecturer"],
+            );
+          }).toList(),
+          key: (attendance) => attendance.lectureDate,
+        ),
       );
     });
   }

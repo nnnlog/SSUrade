@@ -31,9 +31,11 @@ export 'package:ssurade_application/domain/model/subject/semester_subjects_manag
 export 'package:ssurade_application/domain/model/subject/state.dart';
 export 'package:ssurade_application/domain/model/subject/subject.dart';
 export 'package:ssurade_application/domain/service/background/background_process_service.dart';
+export 'package:ssurade_application/domain/service/viewmodel/chapel_view_model_service.dart';
 export 'package:ssurade_application/domain/service/viewmodel/login_view_model_service.dart';
 export 'package:ssurade_application/domain/service/viewmodel/subject_view_model_service.dart';
 export 'package:ssurade_application/port/in/background/background_process_use_case.dart';
+export 'package:ssurade_application/port/in/viewmodel/chapel_view_model_use_case.dart';
 export 'package:ssurade_application/port/in/viewmodel/login_view_model_use_case.dart';
 export 'package:ssurade_application/port/in/viewmodel/subject_view_model_use_case.dart';
 export 'package:ssurade_application/port/out/application/app_environment_port.dart';

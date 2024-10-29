@@ -9,7 +9,7 @@ part of 'chapel.dart';
 abstract class _$ChapelCWProxy {
   Chapel currentSemester(YearSemester currentSemester);
 
-  Chapel attendances(SplayTreeSet<ChapelAttendance> attendances);
+  Chapel attendances(SplayTreeMap<String, ChapelAttendance> attendances);
 
   Chapel subjectCode(String subjectCode);
 
@@ -29,7 +29,7 @@ abstract class _$ChapelCWProxy {
   /// ````
   Chapel call({
     YearSemester? currentSemester,
-    SplayTreeSet<ChapelAttendance>? attendances,
+    SplayTreeMap<String, ChapelAttendance>? attendances,
     String? subjectCode,
     String? subjectPlace,
     String? subjectTime,
@@ -48,7 +48,7 @@ class _$ChapelCWProxyImpl implements _$ChapelCWProxy {
   Chapel currentSemester(YearSemester currentSemester) => this(currentSemester: currentSemester);
 
   @override
-  Chapel attendances(SplayTreeSet<ChapelAttendance> attendances) => this(attendances: attendances);
+  Chapel attendances(SplayTreeMap<String, ChapelAttendance> attendances) => this(attendances: attendances);
 
   @override
   Chapel subjectCode(String subjectCode) => this(subjectCode: subjectCode);
@@ -90,7 +90,7 @@ class _$ChapelCWProxyImpl implements _$ChapelCWProxy {
       attendances: attendances == const $CopyWithPlaceholder() || attendances == null
           ? _value.attendances
           // ignore: cast_nullable_to_non_nullable
-          : attendances as SplayTreeSet<ChapelAttendance>,
+          : attendances as SplayTreeMap<String, ChapelAttendance>,
       subjectCode: subjectCode == const $CopyWithPlaceholder() || subjectCode == null
           ? _value.subjectCode
           // ignore: cast_nullable_to_non_nullable

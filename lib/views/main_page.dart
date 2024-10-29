@@ -42,6 +42,24 @@ class MainPage extends StatelessWidget {
                 ),
                 child: const Text("성적 통계 조회"),
               ),
+              OutlinedButton(
+                onPressed: () async {
+                  Navigator.pushNamed(context, "/grade_statistics_category");
+                },
+                style: OutlinedButton.styleFrom(
+                  minimumSize: const Size.fromHeight(40),
+                ),
+                child: const Text("이수구분별 성적 통계 조회"),
+              ),
+              OutlinedButton(
+                onPressed: () async {
+                  Navigator.pushNamed(context, "/chapel");
+                },
+                style: OutlinedButton.styleFrom(
+                  minimumSize: const Size.fromHeight(40),
+                ),
+                child: const Text("채플 정보 조회"),
+              ),
             ],
           ),
         ),

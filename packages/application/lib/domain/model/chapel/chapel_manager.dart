@@ -4,6 +4,7 @@ import 'package:copy_with_extension/copy_with_extension.dart';
 import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:ssurade_application/domain/model/chapel/chapel.dart';
+import 'package:ssurade_application/domain/model/semester/year_semester.dart';
 
 part 'chapel_manager.g.dart';
 
@@ -11,11 +12,11 @@ part 'chapel_manager.g.dart';
 @JsonSerializable(converters: [_DataConverter()])
 class ChapelManager extends Equatable {
   @JsonKey()
-  final SplayTreeSet<Chapel> data;
+  final SplayTreeMap<YearSemester, Chapel> data;
 
   const ChapelManager(this.data);
 
-  factory ChapelManager.empty() => ChapelManager(SplayTreeSet());
+  factory ChapelManager.empty() => ChapelManager(SplayTreeMap());
 
   bool get isEmpty => data.isEmpty;
 
@@ -30,16 +31,19 @@ class ChapelManager extends Equatable {
   Map<String, dynamic> toJson() => _$ChapelManagerToJson(this);
 }
 
-class _DataConverter extends JsonConverter<SplayTreeSet<Chapel>, List<dynamic>> {
+class _DataConverter extends JsonConverter<SplayTreeMap<YearSemester, Chapel>, List<dynamic>> {
   const _DataConverter();
 
   @override
-  SplayTreeSet<Chapel> fromJson(List<dynamic> json) {
-    return SplayTreeSet.from(json.map((e) => Chapel.fromJson(e)));
+  SplayTreeMap<YearSemester, Chapel> fromJson(List<dynamic> json) {
+    return SplayTreeMap.fromIterable(
+      json.map((e) => Chapel.fromJson(e)),
+      key: (chapel) => chapel.currentSemester,
+    );
   }
 
   @override
-  List<dynamic> toJson(SplayTreeSet<Chapel> object) {
-    return object.toList();
+  List<dynamic> toJson(SplayTreeMap<YearSemester, Chapel> object) {
+    return object.values.toList();
   }
 }

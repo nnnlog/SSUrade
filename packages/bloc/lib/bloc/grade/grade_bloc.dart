@@ -1,4 +1,3 @@
-import 'dart:math';
 import 'dart:typed_data';
 
 import 'package:bloc/bloc.dart';
@@ -7,10 +6,9 @@ import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
 import 'package:ssurade_application/ssurade_application.dart';
 
+part 'grade_bloc.g.dart';
 part 'grade_event.dart';
 part 'grade_state.dart';
-
-part 'grade_bloc.g.dart';
 
 class GradeBloc extends Bloc<GradeEvent, GradeState> {
   final SubjectViewModelUseCase _subjectViewModelUseCase;
@@ -29,6 +27,10 @@ class GradeBloc extends Bloc<GradeEvent, GradeState> {
       });
 
       return emit.forEach(_subjectViewModelUseCase.getSemesterSubjectsManagerStream(), onData: (manager) {
+        if (manager == SemesterSubjectsManager.empty()) {
+          return GradeInitial();
+        }
+
         var state = this.state;
         if (state is! GradeShowing) {
           return GradeShowing(semesterSubjectsManager: manager, showingSemester: manager.data.keys.last);
@@ -106,7 +108,6 @@ class GradeBloc extends Bloc<GradeEvent, GradeState> {
   @override
   void onError(Object error, StackTrace stackTrace) {
     _subjectViewModelUseCase.showToast("오류가 발생했어요. ($error)");
-    print(error);
 
     super.onError(error, stackTrace);
   }

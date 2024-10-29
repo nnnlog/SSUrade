@@ -24,7 +24,6 @@ import 'package:ssurade_application/port/out/local_storage/local_storage_chapel_
 import 'package:ssurade_application/port/out/local_storage/local_storage_scholarship_manager_port.dart';
 import 'package:ssurade_application/port/out/local_storage/local_storage_semester_subjects_manager_port.dart';
 import 'package:ssurade_application/port/out/local_storage/local_storage_setting_port.dart';
-import 'package:ssurade_application/utils/map_styled_set.dart';
 
 @Singleton(as: BackgroundProcessUseCase)
 class BackgroundProcessService implements BackgroundProcessUseCase {
@@ -103,7 +102,7 @@ class BackgroundProcessService implements BackgroundProcessUseCase {
       return;
     }
 
-    final originalChapelData = originChapelManager.data.last;
+    final originalChapelData = originChapelManager.data[originChapelManager.data.lastKey()]!;
 
     final newChapelData = await _externalChapelRetrievalPort.retrieveChapel(originalChapelData.currentSemester).result;
 
@@ -112,12 +111,12 @@ class BackgroundProcessService implements BackgroundProcessUseCase {
     }
 
     final List<String> updates = [];
-    final SplayTreeSet<ChapelAttendance> attendances = SplayTreeSet(); // copy
-    for (final attendance in newChapelData.attendances) {
-      if (attendance.status == ChapelAttendanceStatus.unknown && originalChapelData.attendances.contains(attendance)) {
-        attendances.add(attendance.copyWith(
+    final SplayTreeMap<String, ChapelAttendance> attendances = SplayTreeMap(); // copy
+    for (final attendance in newChapelData.attendances.values) {
+      if (attendance.status == ChapelAttendanceStatus.unknown && originalChapelData.attendances.containsKey(attendance.lectureDate)) {
+        attendances[attendance.lectureDate] = attendance.copyWith(
           overwrittenStatus: originalChapelData.attendances[attendance.lectureDate]!.overwrittenStatus,
-        ));
+        );
         continue;
       }
 
@@ -126,7 +125,7 @@ class BackgroundProcessService implements BackgroundProcessUseCase {
       }
 
       updates.add("${attendance.lectureDate} > ${attendance.status.displayText}");
-      attendances.add(attendance);
+      attendances[attendance.lectureDate] = attendance;
     }
 
     if (updates.isNotEmpty) {
@@ -134,16 +133,16 @@ class BackgroundProcessService implements BackgroundProcessUseCase {
 
       final nextChapelData = newChapelData.copyWith(attendances: attendances);
 
-      final nextChapels = SplayTreeSet<Chapel>.from(originChapelManager.data);
-      nextChapels.removeWhere((element) => element.currentSemester == newChapelData.currentSemester);
-      nextChapels.add(nextChapelData);
+      final nextChapels = SplayTreeMap<YearSemester, Chapel>.from(originChapelManager.data);
+      nextChapels.removeWhere((key, value) => value.currentSemester == newChapelData.currentSemester);
+      nextChapels[nextChapelData.currentSemester] = nextChapelData;
 
       final nextChapelManager = originChapelManager.copyWith(data: nextChapels);
 
       await _localStorageChapelManagerPort.saveChapelManager(nextChapelManager);
     } else if (_appEnvironmentPort.getEnvironment() == AppEnvironment.debug) {
       await _notificationPort.sendNotification(
-          title: "not updated (${DateTime.now().toString()})", body: newChapelData.attendances.map((e) => "${e.lectureDate} : ${e.status.displayText}").join("\n"));
+          title: "not updated (${DateTime.now().toString()})", body: newChapelData.attendances.values.map((e) => "${e.lectureDate} : ${e.status.displayText}").join("\n"));
     }
 
     _mutexForChapel.release();
@@ -227,7 +226,7 @@ class BackgroundProcessService implements BackgroundProcessUseCase {
     final List<Chapel> newChapelData = [];
 
     for (final data in chapelData) {
-      if (originalChapelManager.data.contains(data)) {
+      if (originalChapelManager.data.containsKey(data.currentSemester)) {
         continue;
       }
 
@@ -238,8 +237,10 @@ class BackgroundProcessService implements BackgroundProcessUseCase {
     if (updates.isNotEmpty) {
       await _notificationPort.sendNotification(title: "채플 정보 등록", body: updates.join("\n"));
 
-      final nextChapels = SplayTreeSet<Chapel>.from(originalChapelManager.data);
-      nextChapels.addAll(newChapelData);
+      final nextChapels = SplayTreeMap<YearSemester, Chapel>.from(originalChapelManager.data);
+      newChapelData.forEach((element) {
+        nextChapels[element.currentSemester] = element;
+      });
 
       final nextChapelManager = originalChapelManager.copyWith(data: nextChapels);
 

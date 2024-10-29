@@ -16,7 +16,7 @@ class Chapel extends Equatable implements Comparable<Chapel> {
   @JsonKey()
   final YearSemester currentSemester;
   @JsonKey()
-  final SplayTreeSet<ChapelAttendance> attendances;
+  final SplayTreeMap<String, ChapelAttendance> attendances;
   @JsonKey()
   final String subjectCode;
   @JsonKey()
@@ -41,9 +41,9 @@ class Chapel extends Equatable implements Comparable<Chapel> {
   @override
   List<Object?> get props => [currentSemester, attendances, subjectCode, subjectPlace, subjectTime, floor, seatNo];
 
-  int get absentCount => attendances.map((e) => e.displayAttendance == ChapelAttendanceStatus.absent ? 1 : 0).reduce((value, element) => value + element);
+  int get absentCount => attendances.values.where((e) => e.displayAttendance == ChapelAttendanceStatus.absent).length;
 
-  int get attendCount => attendances.map((e) => e.displayAttendance == ChapelAttendanceStatus.attend ? 1 : 0).reduce((value, element) => value + element);
+  int get attendCount => attendances.values.where((e) => e.displayAttendance == ChapelAttendanceStatus.attend).length;
 
   int get passAttendCount => attendances.length - attendances.length ~/ 3;
 
@@ -55,28 +55,21 @@ class Chapel extends Equatable implements Comparable<Chapel> {
   int compareTo(Chapel other) {
     return currentSemester.compareTo(other.currentSemester);
   }
-
-// static ChapelInformation merge(
-//     ChapelInformation after, ChapelInformation before) {
-//   for (var attendance in after.attendances) {
-//     ChapelAttendanceInformation.merge(
-//         attendance, before.attendances[attendance.lectureDate]!);
-//   }
-//
-//   return after;
-// }
 }
 
-class _DataConverter extends JsonConverter<SplayTreeSet<ChapelAttendance>, List<dynamic>> {
+class _DataConverter extends JsonConverter<SplayTreeMap<String, ChapelAttendance>, List<dynamic>> {
   const _DataConverter();
 
   @override
-  SplayTreeSet<ChapelAttendance> fromJson(List<dynamic> json) {
-    return SplayTreeSet.from(json.map((e) => ChapelAttendance.fromJson(e)));
+  SplayTreeMap<String, ChapelAttendance> fromJson(List<dynamic> json) {
+    return SplayTreeMap.fromIterable(
+      json.map((e) => ChapelAttendance.fromJson(e)),
+      key: (e) => e.lectureDate,
+    );
   }
 
   @override
-  List<dynamic> toJson(SplayTreeSet<ChapelAttendance> object) {
-    return object.toList();
+  List<dynamic> toJson(SplayTreeMap<String, ChapelAttendance> object) {
+    return object.values.toList();
   }
 }

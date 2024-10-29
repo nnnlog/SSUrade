@@ -24,10 +24,4 @@ enum ChapelAttendanceStatus {
         return ChapelAttendanceStatus.unknown;
     }
   }
-
-  // Color get color {
-  //   if (this == ChapelAttendance.attend) return Colors.green;
-  //   if (this == ChapelAttendance.absent) return Colors.redAccent;
-  //   return Colors.black54;
-  // }
 }

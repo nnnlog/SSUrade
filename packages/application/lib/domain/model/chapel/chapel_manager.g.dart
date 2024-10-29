@@ -7,7 +7,7 @@ part of 'chapel_manager.dart';
 // **************************************************************************
 
 abstract class _$ChapelManagerCWProxy {
-  ChapelManager data(SplayTreeSet<Chapel> data);
+  ChapelManager data(SplayTreeMap<YearSemester, Chapel> data);
 
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `ChapelManager(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
@@ -16,7 +16,7 @@ abstract class _$ChapelManagerCWProxy {
   /// ChapelManager(...).copyWith(id: 12, name: "My name")
   /// ````
   ChapelManager call({
-    SplayTreeSet<Chapel>? data,
+    SplayTreeMap<YearSemester, Chapel>? data,
   });
 }
 
@@ -27,7 +27,7 @@ class _$ChapelManagerCWProxyImpl implements _$ChapelManagerCWProxy {
   final ChapelManager _value;
 
   @override
-  ChapelManager data(SplayTreeSet<Chapel> data) => this(data: data);
+  ChapelManager data(SplayTreeMap<YearSemester, Chapel> data) => this(data: data);
 
   @override
 
@@ -44,7 +44,7 @@ class _$ChapelManagerCWProxyImpl implements _$ChapelManagerCWProxy {
       data == const $CopyWithPlaceholder() || data == null
           ? _value.data
           // ignore: cast_nullable_to_non_nullable
-          : data as SplayTreeSet<Chapel>,
+          : data as SplayTreeMap<YearSemester, Chapel>,
     );
   }
 }
