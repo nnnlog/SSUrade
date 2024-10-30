@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ssurade/components/common/custom_app_bar.dart';
 import 'package:ssurade_adaptor/ssurade_adaptor.dart';
 import 'package:ssurade_application/ssurade_application.dart';
-import 'package:ssurade_bloc/exports.dart';
+import 'package:ssurade_bloc/ssurade_bloc.dart';
 
 class LoginPage extends StatelessWidget {
   const LoginPage({super.key});

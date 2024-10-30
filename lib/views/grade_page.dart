@@ -7,7 +7,7 @@ import 'package:ssurade/components/common/custom_app_bar.dart';
 import 'package:ssurade/components/grade/grade_page_header.dart';
 import 'package:ssurade/components/grade/subject_widget.dart';
 import 'package:ssurade_application/port/in/viewmodel/subject_view_model_use_case.dart';
-import 'package:ssurade_bloc/exports.dart';
+import 'package:ssurade_bloc/ssurade_bloc.dart';
 
 class GradePage extends StatefulWidget {
   const GradePage({super.key});

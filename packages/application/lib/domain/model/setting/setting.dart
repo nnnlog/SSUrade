@@ -8,32 +8,32 @@ part 'setting.g.dart';
 @JsonSerializable()
 class Setting extends Equatable {
   @JsonKey()
-  final bool refreshGradeAutomatically;
+  final bool refreshInformationAutomatically;
   @JsonKey()
-  final bool noticeGradeInBackground;
+  final bool enableBackgroundFeature;
   @JsonKey()
-  final bool showGrade;
+  final bool showGradeInBackground;
   @JsonKey()
-  final int interval;
+  final int backgroundInterval;
   @JsonKey()
   final bool agree;
 
   const Setting({
-    required this.refreshGradeAutomatically,
-    required this.noticeGradeInBackground,
-    required this.showGrade,
-    required this.interval,
+    required this.refreshInformationAutomatically,
+    required this.enableBackgroundFeature,
+    required this.showGradeInBackground,
+    required this.backgroundInterval,
     required this.agree,
   });
 
   @override
-  List<Object?> get props => [refreshGradeAutomatically, noticeGradeInBackground, showGrade, interval, agree];
+  List<Object?> get props => [refreshInformationAutomatically, enableBackgroundFeature, showGradeInBackground, backgroundInterval, agree];
 
   factory Setting.defaultSetting() => Setting(
-        refreshGradeAutomatically: false,
-        noticeGradeInBackground: true,
-        showGrade: true,
-        interval: 15,
+        refreshInformationAutomatically: false,
+        enableBackgroundFeature: true,
+        showGradeInBackground: true,
+        backgroundInterval: 15,
         agree: false,
       );
 

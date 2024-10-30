@@ -61,4 +61,3 @@ export 'package:ssurade_application/port/out/local_storage/local_storage_save_ph
 export 'package:ssurade_application/port/out/local_storage/local_storage_scholarship_manager_port.dart';
 export 'package:ssurade_application/port/out/local_storage/local_storage_semester_subjects_manager_port.dart';
 export 'package:ssurade_application/port/out/local_storage/local_storage_setting_port.dart';
-export 'package:ssurade_application/utils/map_styled_set.dart';

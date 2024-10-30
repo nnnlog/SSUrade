@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:ssurade/components/common/custom_app_bar.dart';
 import 'package:ssurade_application/ssurade_application.dart';
-import 'package:ssurade_bloc/exports.dart';
+import 'package:ssurade_bloc/ssurade_bloc.dart';
 
 class AbsentPage extends StatefulWidget {
   const AbsentPage({super.key});
@@ -16,82 +16,6 @@ class AbsentPage extends StatefulWidget {
 class _AbsentPageState extends State<AbsentPage> with SingleTickerProviderStateMixin, AutomaticKeepAliveClientMixin<AbsentPage> {
   final RefreshController _refreshController = RefreshController();
   final Map<int, ExpansionTileController> _expansionTileController = {};
-
-  // GradeProgress _progress = GradeProgress.init;
-  // bool _lockedForRefresh = false;
-
-  // Future<void> refreshAbsentInformation() async {
-  //   if (_lockedForRefresh) return;
-  //
-  //   _lockedForRefresh = true;
-  //   showToast("이번 학기 유고 결석 정보를 불러오는 중이에요...");
-  //
-  //   try {
-  //     List<AbsentApplicationInformation> data = await Crawler.singleAbsentBySemester().execute();
-  //
-  //     globals.absentApplicationManager.data = data;
-  //     globals.absentApplicationManager.saveFile();
-  //
-  //     if (!mounted) return;
-  //
-  //     showToast("이번 학기 유고 결석 정보를 불러왔어요.");
-  //   } catch (_) {
-  //     if (mounted) {
-  //       showToast("이번 학기 유고 결석 정보를 불러오지 못했어요.");
-  //     }
-  //   } finally {
-  //     _lockedForRefresh = false;
-  //   }
-  // }
-  //
-  // refreshAbsentInformationUsingPull() async {
-  //   await refreshAbsentInformation();
-  //
-  //   _refreshController.loadComplete();
-  //   _refreshController.refreshCompleted();
-  // }
-
-  @override
-  void initState() {
-    super.initState();
-
-    // (() async {
-    //   bool needRefresh = true;
-    //   if (globals.absentApplicationManager.isEmpty) {
-    //     needRefresh = false;
-    //
-    //     List<AbsentApplicationInformation> res;
-    //     try {
-    //       res = await Crawler.singleAbsentBySemester().execute();
-    //     } catch (_) {
-    //       if (mounted) {
-    //         Navigator.pop(context);
-    //       }
-    //       showToast("채플 정보를 가져오지 못했어요.\n다시 시도해주세요.");
-    //       return;
-    //     }
-    //
-    //     globals.absentApplicationManager.data = res;
-    //     globals.absentApplicationManager.saveFile(); // saving file does not need await
-    //   }
-    //
-    //   if (globals.absentApplicationManager.isEmpty) {
-    //     if (mounted) {
-    //       Navigator.pop(context);
-    //     }
-    //     showToast("유고 결석 정보를 불러오지 못했거나 이번 학기에 신청한 유고 결석이 없어요.");
-    //     return;
-    //   }
-    //
-    //   setState(() {
-    //     _progress = GradeProgress.finish;
-    //   });
-    //
-    //   if (needRefresh && globals.setting.refreshGradeAutomatically) {
-    //     refreshAbsentInformation();
-    //   }
-    // })();
-  }
 
   @override
   Widget build(BuildContext context) {

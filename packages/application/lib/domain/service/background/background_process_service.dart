@@ -186,7 +186,7 @@ class BackgroundProcessService implements BackgroundProcessUseCase {
           continue;
         }
 
-        if (setting.showGrade) {
+        if (setting.showGradeInBackground) {
           updates.add("${subject.name} > ${subject.grade}");
         } else {
           updates.add(subject.name);

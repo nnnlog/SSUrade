@@ -7,13 +7,13 @@ part of 'setting.dart';
 // **************************************************************************
 
 abstract class _$SettingCWProxy {
-  Setting refreshGradeAutomatically(bool refreshGradeAutomatically);
+  Setting refreshInformationAutomatically(bool refreshInformationAutomatically);
 
-  Setting noticeGradeInBackground(bool noticeGradeInBackground);
+  Setting enableBackgroundFeature(bool enableBackgroundFeature);
 
-  Setting showGrade(bool showGrade);
+  Setting showGradeInBackground(bool showGradeInBackground);
 
-  Setting interval(int interval);
+  Setting backgroundInterval(int backgroundInterval);
 
   Setting agree(bool agree);
 
@@ -24,10 +24,10 @@ abstract class _$SettingCWProxy {
   /// Setting(...).copyWith(id: 12, name: "My name")
   /// ````
   Setting call({
-    bool? refreshGradeAutomatically,
-    bool? noticeGradeInBackground,
-    bool? showGrade,
-    int? interval,
+    bool? refreshInformationAutomatically,
+    bool? enableBackgroundFeature,
+    bool? showGradeInBackground,
+    int? backgroundInterval,
     bool? agree,
   });
 }
@@ -39,16 +39,16 @@ class _$SettingCWProxyImpl implements _$SettingCWProxy {
   final Setting _value;
 
   @override
-  Setting refreshGradeAutomatically(bool refreshGradeAutomatically) => this(refreshGradeAutomatically: refreshGradeAutomatically);
+  Setting refreshInformationAutomatically(bool refreshInformationAutomatically) => this(refreshInformationAutomatically: refreshInformationAutomatically);
 
   @override
-  Setting noticeGradeInBackground(bool noticeGradeInBackground) => this(noticeGradeInBackground: noticeGradeInBackground);
+  Setting enableBackgroundFeature(bool enableBackgroundFeature) => this(enableBackgroundFeature: enableBackgroundFeature);
 
   @override
-  Setting showGrade(bool showGrade) => this(showGrade: showGrade);
+  Setting showGradeInBackground(bool showGradeInBackground) => this(showGradeInBackground: showGradeInBackground);
 
   @override
-  Setting interval(int interval) => this(interval: interval);
+  Setting backgroundInterval(int backgroundInterval) => this(backgroundInterval: backgroundInterval);
 
   @override
   Setting agree(bool agree) => this(agree: agree);
@@ -62,29 +62,29 @@ class _$SettingCWProxyImpl implements _$SettingCWProxy {
   /// Setting(...).copyWith(id: 12, name: "My name")
   /// ````
   Setting call({
-    Object? refreshGradeAutomatically = const $CopyWithPlaceholder(),
-    Object? noticeGradeInBackground = const $CopyWithPlaceholder(),
-    Object? showGrade = const $CopyWithPlaceholder(),
-    Object? interval = const $CopyWithPlaceholder(),
+    Object? refreshInformationAutomatically = const $CopyWithPlaceholder(),
+    Object? enableBackgroundFeature = const $CopyWithPlaceholder(),
+    Object? showGradeInBackground = const $CopyWithPlaceholder(),
+    Object? backgroundInterval = const $CopyWithPlaceholder(),
     Object? agree = const $CopyWithPlaceholder(),
   }) {
     return Setting(
-      refreshGradeAutomatically: refreshGradeAutomatically == const $CopyWithPlaceholder() || refreshGradeAutomatically == null
-          ? _value.refreshGradeAutomatically
+      refreshInformationAutomatically: refreshInformationAutomatically == const $CopyWithPlaceholder() || refreshInformationAutomatically == null
+          ? _value.refreshInformationAutomatically
           // ignore: cast_nullable_to_non_nullable
-          : refreshGradeAutomatically as bool,
-      noticeGradeInBackground: noticeGradeInBackground == const $CopyWithPlaceholder() || noticeGradeInBackground == null
-          ? _value.noticeGradeInBackground
+          : refreshInformationAutomatically as bool,
+      enableBackgroundFeature: enableBackgroundFeature == const $CopyWithPlaceholder() || enableBackgroundFeature == null
+          ? _value.enableBackgroundFeature
           // ignore: cast_nullable_to_non_nullable
-          : noticeGradeInBackground as bool,
-      showGrade: showGrade == const $CopyWithPlaceholder() || showGrade == null
-          ? _value.showGrade
+          : enableBackgroundFeature as bool,
+      showGradeInBackground: showGradeInBackground == const $CopyWithPlaceholder() || showGradeInBackground == null
+          ? _value.showGradeInBackground
           // ignore: cast_nullable_to_non_nullable
-          : showGrade as bool,
-      interval: interval == const $CopyWithPlaceholder() || interval == null
-          ? _value.interval
+          : showGradeInBackground as bool,
+      backgroundInterval: backgroundInterval == const $CopyWithPlaceholder() || backgroundInterval == null
+          ? _value.backgroundInterval
           // ignore: cast_nullable_to_non_nullable
-          : interval as int,
+          : backgroundInterval as int,
       agree: agree == const $CopyWithPlaceholder() || agree == null
           ? _value.agree
           // ignore: cast_nullable_to_non_nullable
@@ -104,17 +104,17 @@ extension $SettingCopyWith on Setting {
 // **************************************************************************
 
 Setting _$SettingFromJson(Map<String, dynamic> json) => Setting(
-      refreshGradeAutomatically: json['refreshGradeAutomatically'] as bool,
-      noticeGradeInBackground: json['noticeGradeInBackground'] as bool,
-      showGrade: json['showGrade'] as bool,
-      interval: (json['interval'] as num).toInt(),
+      refreshInformationAutomatically: json['refreshInformationAutomatically'] as bool,
+      enableBackgroundFeature: json['enableBackgroundFeature'] as bool,
+      showGradeInBackground: json['showGradeInBackground'] as bool,
+      backgroundInterval: (json['backgroundInterval'] as num).toInt(),
       agree: json['agree'] as bool,
     );
 
 Map<String, dynamic> _$SettingToJson(Setting instance) => <String, dynamic>{
-      'refreshGradeAutomatically': instance.refreshGradeAutomatically,
-      'noticeGradeInBackground': instance.noticeGradeInBackground,
-      'showGrade': instance.showGrade,
-      'interval': instance.interval,
+      'refreshInformationAutomatically': instance.refreshInformationAutomatically,
+      'enableBackgroundFeature': instance.enableBackgroundFeature,
+      'showGradeInBackground': instance.showGradeInBackground,
+      'backgroundInterval': instance.backgroundInterval,
       'agree': instance.agree,
     };
