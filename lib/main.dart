@@ -8,6 +8,7 @@ import 'package:ssurade/views/chapel_page.dart';
 import 'package:ssurade/views/grade_page.dart';
 import 'package:ssurade/views/grade_statistics_by_category_page.dart';
 import 'package:ssurade/views/grade_statistics_page.dart';
+import 'package:ssurade/views/information_page.dart';
 import 'package:ssurade/views/login.dart';
 import 'package:ssurade/views/main_page.dart';
 import 'package:ssurade/views/scholarship_page.dart';
@@ -50,6 +51,7 @@ class SsuradeEntryPoint extends StatelessWidget {
         RepositoryProvider(create: (context) => getIt<ChapelViewModelUseCase>()),
         RepositoryProvider(create: (context) => getIt<ScholarshipViewModelUseCase>()),
         RepositoryProvider(create: (context) => getIt<AbsentViewModelUseCase>()),
+        RepositoryProvider(create: (context) => getIt<AppVersionViewModelUseCase>()),
       ],
       child: MaterialApp(
         title: 'SSUrade',
@@ -80,7 +82,7 @@ class SsuradeEntryPoint extends StatelessWidget {
           '/scholarship': (context) => const ScholarshipPage(),
           '/absent': (context) => const AbsentPage(),
           // '/setting': (context) => const SettingPage(),
-          // '/information': (context) => const InformationPage(),
+          '/information': (context) => const InformationPage(),
         },
         navigatorObservers: [
           FirebaseAnalyticsObserver(analytics: FirebaseAnalytics.instance),

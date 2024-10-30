@@ -9,17 +9,20 @@ import 'dart:async' as _i687;
 import 'package:injectable/injectable.dart' as _i526;
 import 'package:ssurade_application/domain/service/background/background_process_service.dart' as _i334;
 import 'package:ssurade_application/domain/service/viewmodel/absent_view_model_service.dart' as _i112;
+import 'package:ssurade_application/domain/service/viewmodel/app_version_view_model_service.dart' as _i38;
 import 'package:ssurade_application/domain/service/viewmodel/chapel_view_model_service.dart' as _i329;
 import 'package:ssurade_application/domain/service/viewmodel/login_view_model_service.dart' as _i919;
 import 'package:ssurade_application/domain/service/viewmodel/scholarship_view_model_service.dart' as _i934;
 import 'package:ssurade_application/domain/service/viewmodel/subject_view_model_service.dart' as _i345;
 import 'package:ssurade_application/port/in/background/background_process_use_case.dart' as _i356;
 import 'package:ssurade_application/port/in/viewmodel/absent_view_model_use_case.dart' as _i263;
+import 'package:ssurade_application/port/in/viewmodel/app_version_view_model_use_case.dart' as _i389;
 import 'package:ssurade_application/port/in/viewmodel/chapel_view_model_use_case.dart' as _i727;
 import 'package:ssurade_application/port/in/viewmodel/login_view_model_use_case.dart' as _i273;
 import 'package:ssurade_application/port/in/viewmodel/scholarship_view_model_use_case.dart' as _i420;
 import 'package:ssurade_application/port/in/viewmodel/subject_view_model_use_case.dart' as _i315;
 import 'package:ssurade_application/port/out/application/app_environment_port.dart' as _i124;
+import 'package:ssurade_application/port/out/application/app_version_fetch_port.dart' as _i747;
 import 'package:ssurade_application/port/out/application/notification_port.dart' as _i77;
 import 'package:ssurade_application/port/out/application/toast_port.dart' as _i750;
 import 'package:ssurade_application/port/out/external/external_absent_application_retrieval_port.dart' as _i179;
@@ -67,6 +70,7 @@ class SsuradeApplicationPackageModule extends _i526.MicroPackageModule {
           localStorageCredentialPort: gh<_i792.LocalStorageCredentialPort>(),
           externalCredentialRetrievalPort: gh<_i1067.ExternalCredentialRetrievalPort>(),
         ));
+    gh.singleton<_i389.AppVersionViewModelUseCase>(() => _i38.AppVersionViewModelService(appVersionFetchPort: gh<_i747.AppVersionFetchPort>()));
     gh.singleton<_i263.AbsentViewModelUseCase>(() => _i112.AbsentViewModelService(
           localStorageAbsentApplicationManagerPort: gh<_i862.LocalStorageAbsentApplicationManagerPort>(),
           externalAbsentApplicationRetrievalPort: gh<_i179.ExternalAbsentApplicationRetrievalPort>(),

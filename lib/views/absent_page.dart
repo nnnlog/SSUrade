@@ -132,132 +132,134 @@ class _AbsentPageState extends State<AbsentPage> with SingleTickerProviderStateM
                     );
                   }),
                 AbsentShowing() => BlocListener<AbsentBloc, AbsentState>(
-                  listener: (context, state) {
-                    if (state is AbsentShowing) {
-                      _refreshController.refreshCompleted();
-                    }
-                  },
-                  child: SmartRefresher(
-                    controller: _refreshController,
-                    onRefresh: () async {
-                      context.read<AbsentBloc>().add(AbsentInformationRefreshRequested());
+                    listener: (context, state) {
+                      if (state is AbsentShowing) {
+                        _refreshController.refreshCompleted();
+                      }
                     },
-                    child: Container(
-                      margin: const EdgeInsets.only(top: 30),
-                      color: const Color.fromRGBO(241, 242, 245, 1),
-                      padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
-                      child: SingleChildScrollView(
-                        child: Column(
-                          children: [
-                            ...state.absentApplicationManager.data.map((e) => Container(
-                              margin: const EdgeInsets.only(bottom: 10),
-                              decoration: BoxDecoration(
-                                color: Colors.white,
-                                boxShadow: [
-                                  BoxShadow(
-                                    blurRadius: 6,
-                                    spreadRadius: 1,
-                                    offset: const Offset(0, 2),
-                                    color: Colors.black.withOpacity(0.1),
-                                  ),
-                                ],
-                                borderRadius: const BorderRadius.all(Radius.circular(10)),
-                              ),
-                              child: ExpansionTile(
-                                controller: _expansionTileController[e.hashCode] ??= ExpansionTileController(),
-                                shape: Border.all(width: 0, color: Colors.transparent),
-                                title: Container(
-                                  padding: const EdgeInsets.only(left: 5),
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Text(
-                                        e.startDate == e.endDate ? e.startDate : "${e.startDate} ~ ${e.endDate}",
-                                        style: const TextStyle(fontWeight: FontWeight.w500),
+                    child: SmartRefresher(
+                      controller: _refreshController,
+                      onRefresh: () async {
+                        context.read<AbsentBloc>().add(AbsentInformationRefreshRequested());
+                      },
+                      child: Container(
+                        margin: const EdgeInsets.only(top: 30),
+                        color: const Color.fromRGBO(241, 242, 245, 1),
+                        padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
+                        child: SingleChildScrollView(
+                          child: Column(
+                            children: [
+                              ...state.absentApplicationManager.data.map((e) => Container(
+                                    margin: const EdgeInsets.only(bottom: 10),
+                                    decoration: BoxDecoration(
+                                      color: Colors.white,
+                                      boxShadow: [
+                                        BoxShadow(
+                                          blurRadius: 6,
+                                          spreadRadius: 1,
+                                          offset: const Offset(0, 2),
+                                          color: Colors.black.withOpacity(0.1),
+                                        ),
+                                      ],
+                                      borderRadius: const BorderRadius.all(Radius.circular(10)),
+                                    ),
+                                    child: ExpansionTile(
+                                      controller: _expansionTileController[e.hashCode] ??= ExpansionTileController(),
+                                      shape: Border.all(width: 0, color: Colors.transparent),
+                                      title: Container(
+                                        padding: const EdgeInsets.only(left: 5),
+                                        child: Row(
+                                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            Text(
+                                              e.startDate == e.endDate ? e.startDate : "${e.startDate} ~ ${e.endDate}",
+                                              style: const TextStyle(fontWeight: FontWeight.w500),
+                                            ),
+                                            Text(
+                                              e.status,
+                                              style: TextStyle(
+                                                  color: {
+                                                    "승인": Colors.green,
+                                                    "거부": Colors.redAccent,
+                                                  }[e.status],
+                                                  fontWeight: FontWeight.w500),
+                                            ),
+                                          ],
+                                        ),
                                       ),
-                                      Text(
-                                        e.status,
-                                        style: TextStyle(
-                                            color: {
-                                              "승인": Colors.green,
-                                              "거부": Colors.redAccent,
-                                            }[e.status],
-                                            fontWeight: FontWeight.w500),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                                childrenPadding: const EdgeInsets.fromLTRB(40, 10, 40, 20),
-                                children: [
-                                  ...[
-                                    ("결석 구분", e.absentType),
-                                    ("결석 사유", e.absentCause),
-                                    ("신청 일자", e.applicationDate),
-                                    ("처리 일자", e.proceedDate),
-                                    ("거부 사유", e.rejectCause),
-                                  ].map((e) => Container(
-                                    margin: const EdgeInsets.symmetric(vertical: 3),
-                                    child: Row(
-                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                      childrenPadding: const EdgeInsets.fromLTRB(40, 10, 40, 20),
                                       children: [
-                                        Text(
-                                          e.$1,
-                                          textAlign: TextAlign.left,
-                                          style: const TextStyle(color: Colors.black54),
-                                        ),
-                                        const SizedBox(
-                                          width: 10,
-                                        ),
-                                        Expanded(
-                                          child: Text(
-                                            e.$2,
-                                            textAlign: TextAlign.right,
-                                            style: const TextStyle(fontWeight: FontWeight.w500),
-                                            softWrap: true,
-                                          ),
-                                        ),
+                                        ...[
+                                          ("결석 구분", e.absentType),
+                                          ("결석 사유", e.absentCause),
+                                          ("신청 일자", e.applicationDate),
+                                          ("처리 일자", e.proceedDate),
+                                          ("거부 사유", e.rejectCause),
+                                        ].map((e) => Container(
+                                              margin: const EdgeInsets.symmetric(vertical: 3),
+                                              child: Row(
+                                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                children: [
+                                                  Text(
+                                                    e.$1,
+                                                    textAlign: TextAlign.left,
+                                                    style: const TextStyle(color: Colors.black54),
+                                                  ),
+                                                  const SizedBox(
+                                                    width: 10,
+                                                  ),
+                                                  Expanded(
+                                                    child: Text(
+                                                      e.$2,
+                                                      textAlign: TextAlign.right,
+                                                      style: const TextStyle(fontWeight: FontWeight.w500),
+                                                      softWrap: true,
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                            )),
                                       ],
                                     ),
                                   )),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                children: [
+                                  TextButton(
+                                    onPressed: () {
+                                      for (var controller in _expansionTileController.values) {
+                                        controller.expand();
+                                      }
+                                    },
+                                    child: const Text("전체 펼치기"),
+                                  ),
+                                  TextButton(
+                                    onPressed: () {
+                                      for (var controller in _expansionTileController.values) {
+                                        controller.collapse();
+                                      }
+                                    },
+                                    child: const Text("전체 접기"),
+                                  ),
                                 ],
                               ),
-                            )),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceAround,
-                              children: [
-                                TextButton(
-                                  onPressed: () {
-                                    for (var controller in _expansionTileController.values) {
-                                      controller.expand();
-                                    }
-                                  },
-                                  child: const Text("전체 펼치기"),
-                                ),
-                                TextButton(
-                                  onPressed: () {
-                                    for (var controller in _expansionTileController.values) {
-                                      controller.collapse();
-                                    }
-                                  },
-                                  child: const Text("전체 접기"),
-                                ),
-                              ],
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                )
+                  )
               };
             },
           ),
-          floatingActionButton: showingState ? FloatingActionButton(
-            onPressed: () {
-              context.read<AbsentBloc>().add(AbsentInformationRefreshRequested());
-            },
-            child: const Icon(Icons.refresh),
-          ) : null,
+          floatingActionButton: showingState
+              ? FloatingActionButton(
+                  onPressed: () {
+                    context.read<AbsentBloc>().add(AbsentInformationRefreshRequested());
+                  },
+                  child: const Icon(Icons.refresh),
+                )
+              : null,
         );
       }),
     );
