@@ -12,17 +12,25 @@ part 'grade_state.dart';
 
 class GradeBloc extends Bloc<GradeEvent, GradeState> {
   final SubjectViewModelUseCase _subjectViewModelUseCase;
+  final SettingViewModelUseCase _settingViewModelUseCase;
 
   GradeBloc({
     required SubjectViewModelUseCase subjectViewModelUseCase,
+    required SettingViewModelUseCase settingViewModelUseCase,
   })  : _subjectViewModelUseCase = subjectViewModelUseCase,
+        _settingViewModelUseCase = settingViewModelUseCase,
         super(GradeInitial()) {
     on<GradeReady>((event, emit) async {
-      _subjectViewModelUseCase.getSemesterSubjectsManager().then((value) {
+      _subjectViewModelUseCase.getSemesterSubjectsManager().then((value) async {
         if (value == null || value.data.length == 0) {
           emit(GradeInitialLoading());
         } else {
           emit(GradeShowing(semesterSubjectsManager: value, showingSemester: value.data.keys.last));
+
+          var setting = await _settingViewModelUseCase.getSetting();
+          if (setting != null && setting.refreshInformationAutomatically) {
+            add(GradeInformationRefreshRequested(value.data.keys.last));
+          }
         }
       });
 
@@ -35,6 +43,8 @@ class GradeBloc extends Bloc<GradeEvent, GradeState> {
         if (state is! GradeShowing) {
           return GradeShowing(semesterSubjectsManager: manager, showingSemester: manager.data.keys.last);
         } else {
+          _subjectViewModelUseCase.showToast("성적 정보를 불러왔어요.");
+
           return GradeShowing(
               semesterSubjectsManager: manager, showingSemester: state.semesterSubjectsManager.data.containsKey(state.showingSemester) ? state.showingSemester : manager.data.keys.last);
         }
@@ -50,6 +60,8 @@ class GradeBloc extends Bloc<GradeEvent, GradeState> {
     });
 
     on<GradeInformationRefreshRequested>((event, emit) async {
+      _subjectViewModelUseCase.showToast("성적 정보를 불러오고 있어요.");
+
       var result = await _subjectViewModelUseCase.loadNewSemesterSubjects(event.yearSemester);
       if (!result) {
         // throw Exception('Failed to load new semester subjects');

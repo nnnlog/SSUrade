@@ -6,7 +6,7 @@ import 'package:screenshot/screenshot.dart';
 import 'package:ssurade/components/common/custom_app_bar.dart';
 import 'package:ssurade/components/grade/grade_page_header.dart';
 import 'package:ssurade/components/grade/subject_widget.dart';
-import 'package:ssurade_application/port/in/viewmodel/subject_view_model_use_case.dart';
+import 'package:ssurade_application/ssurade_application.dart';
 import 'package:ssurade_bloc/ssurade_bloc.dart';
 
 class GradePage extends StatefulWidget {
@@ -103,7 +103,10 @@ class _GradePageState extends State<GradePage> {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => GradeBloc(subjectViewModelUseCase: context.read<SubjectViewModelUseCase>()),
+      create: (context) => GradeBloc(
+        subjectViewModelUseCase: context.read<SubjectViewModelUseCase>(),
+        settingViewModelUseCase: context.read<SettingViewModelUseCase>(),
+      ),
       child: BlocSelector<GradeBloc, GradeState, bool>(
         selector: (state) {
           return state is GradeShowing;

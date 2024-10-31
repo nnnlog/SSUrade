@@ -22,7 +22,6 @@ export 'package:ssurade_application/domain/model/scholarship/scholarship.dart';
 export 'package:ssurade_application/domain/model/scholarship/scholarship_manager.dart';
 export 'package:ssurade_application/domain/model/semester/semester.dart';
 export 'package:ssurade_application/domain/model/semester/year_semester.dart';
-export 'package:ssurade_application/domain/model/setting/background_setting.dart';
 export 'package:ssurade_application/domain/model/setting/setting.dart';
 export 'package:ssurade_application/domain/model/subject/grade_table.dart';
 export 'package:ssurade_application/domain/model/subject/ranking.dart';
@@ -36,6 +35,7 @@ export 'package:ssurade_application/domain/service/viewmodel/app_version_view_mo
 export 'package:ssurade_application/domain/service/viewmodel/chapel_view_model_service.dart';
 export 'package:ssurade_application/domain/service/viewmodel/login_view_model_service.dart';
 export 'package:ssurade_application/domain/service/viewmodel/scholarship_view_model_service.dart';
+export 'package:ssurade_application/domain/service/viewmodel/setting_view_model_service.dart';
 export 'package:ssurade_application/domain/service/viewmodel/subject_view_model_service.dart';
 export 'package:ssurade_application/port/in/background/background_process_use_case.dart';
 export 'package:ssurade_application/port/in/viewmodel/absent_view_model_use_case.dart';
@@ -43,6 +43,7 @@ export 'package:ssurade_application/port/in/viewmodel/app_version_view_model_use
 export 'package:ssurade_application/port/in/viewmodel/chapel_view_model_use_case.dart';
 export 'package:ssurade_application/port/in/viewmodel/login_view_model_use_case.dart';
 export 'package:ssurade_application/port/in/viewmodel/scholarship_view_model_use_case.dart';
+export 'package:ssurade_application/port/in/viewmodel/setting_view_model_use_case.dart';
 export 'package:ssurade_application/port/in/viewmodel/subject_view_model_use_case.dart';
 export 'package:ssurade_application/port/out/application/app_environment_port.dart';
 export 'package:ssurade_application/port/out/application/app_version_fetch_port.dart';

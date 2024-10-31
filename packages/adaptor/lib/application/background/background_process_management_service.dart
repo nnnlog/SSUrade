@@ -26,7 +26,8 @@ void _backgroundServiceMain() {
       await Future.wait(futures).catchError((e) => throw e);
     } catch (err, st) {
       // Logger().e(err, stackTrace: st);
-      throw Exception(err);
+      // TODO: add Sentry captureException
+      rethrow;
     }
     return true;
   });

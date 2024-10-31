@@ -29,7 +29,10 @@ class _ChapelPageState extends State<ChapelPage> with SingleTickerProviderStateM
   Widget build(BuildContext context) {
     super.build(context);
     return BlocProvider(
-      create: (context) => ChapelBloc(chapelViewModelUseCase: context.read<ChapelViewModelUseCase>()),
+      create: (context) => ChapelBloc(
+        chapelViewModelUseCase: context.read<ChapelViewModelUseCase>(),
+        settingViewModelUseCase: context.read<SettingViewModelUseCase>(),
+      ),
       child: BlocSelector<ChapelBloc, ChapelState, bool>(
         selector: (state) {
           return state is ChapelShowing;

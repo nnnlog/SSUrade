@@ -21,7 +21,10 @@ class _AbsentPageState extends State<AbsentPage> with SingleTickerProviderStateM
   Widget build(BuildContext context) {
     super.build(context);
     return BlocProvider(
-      create: (context) => AbsentBloc(absentViewModelUseCase: context.read<AbsentViewModelUseCase>()),
+      create: (context) => AbsentBloc(
+        absentViewModelUseCase: context.read<AbsentViewModelUseCase>(),
+        settingViewModelUseCase: context.read<SettingViewModelUseCase>(),
+      ),
       child: BlocSelector<AbsentBloc, AbsentState, bool>(selector: (state) {
         return state is AbsentShowing;
       }, builder: (context, showingState) {

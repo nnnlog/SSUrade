@@ -10,17 +10,25 @@ part 'chapel_state.dart';
 
 class ChapelBloc extends Bloc<ChapelEvent, ChapelState> {
   final ChapelViewModelUseCase _chapelViewModelUseCase;
+  final SettingViewModelUseCase _settingViewModelUseCase;
 
   ChapelBloc({
     required ChapelViewModelUseCase chapelViewModelUseCase,
+    required SettingViewModelUseCase settingViewModelUseCase,
   })  : _chapelViewModelUseCase = chapelViewModelUseCase,
+        _settingViewModelUseCase = settingViewModelUseCase,
         super(ChapelInitial()) {
     on<ChapelReady>((event, emit) async {
-      _chapelViewModelUseCase.getChapelManager().then((value) {
+      _chapelViewModelUseCase.getChapelManager().then((value) async {
         if (value == null || value.data.length == 0) {
           emit(ChapelInitialLoading());
         } else {
           emit(ChapelShowing(chapelManager: value, showingYearSemester: value.data.keys.last));
+
+          final setting = await _settingViewModelUseCase.getSetting();
+          if (setting != null && setting.refreshInformationAutomatically) {
+            add(ChapelInformationRefreshRequested(value.data.keys.last));
+          }
         }
       });
 
@@ -33,6 +41,7 @@ class ChapelBloc extends Bloc<ChapelEvent, ChapelState> {
         if (state is! ChapelShowing) {
           return ChapelShowing(chapelManager: manager, showingYearSemester: manager.data.keys.last);
         } else {
+          _chapelViewModelUseCase.showToast("채플 정보를 불러왔어요.");
           return ChapelShowing(chapelManager: manager, showingYearSemester: state.chapelManager.data.containsKey(state.showingYearSemester) ? state.showingYearSemester : manager.data.keys.last);
         }
       });
@@ -62,6 +71,8 @@ class ChapelBloc extends Bloc<ChapelEvent, ChapelState> {
     });
 
     on<ChapelInformationRefreshRequested>((event, emit) async {
+      _chapelViewModelUseCase.showToast("채플 정보를 불러오고 있어요...");
+
       var result = await _chapelViewModelUseCase.loadNewChapel(event.yearSemester);
       if (!result) {
         // throw Exception('Failed to load new chapel');

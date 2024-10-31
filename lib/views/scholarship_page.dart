@@ -5,7 +5,7 @@ import 'package:intl/intl.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:ssurade/components/common/custom_app_bar.dart';
 import 'package:ssurade/components/common/key_value_data.dart';
-import 'package:ssurade_application/port/in/viewmodel/scholarship_view_model_use_case.dart';
+import 'package:ssurade_application/ssurade_application.dart';
 import 'package:ssurade_bloc/bloc/scholarship/scholarship_bloc.dart';
 
 class ScholarshipPage extends StatefulWidget {
@@ -21,7 +21,10 @@ class _ScholarshipPage extends State<ScholarshipPage> {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => ScholarshipBloc(scholarshipViewModelUseCase: context.read<ScholarshipViewModelUseCase>()),
+      create: (context) => ScholarshipBloc(
+        scholarshipViewModelUseCase: context.read<ScholarshipViewModelUseCase>(),
+        settingViewModelUseCase: context.read<SettingViewModelUseCase>(),
+      ),
       child: BlocSelector<ScholarshipBloc, ScholarshipState, bool>(selector: (state) {
         return state is ScholarshipShowing;
       }, builder: (context, showingState) {

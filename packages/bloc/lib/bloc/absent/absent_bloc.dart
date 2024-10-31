@@ -9,28 +9,41 @@ part 'absent_state.dart';
 
 class AbsentBloc extends Bloc<AbsentEvent, AbsentState> {
   final AbsentViewModelUseCase _absentViewModelUseCase;
+  final SettingViewModelUseCase _settingViewModelUseCase;
 
   AbsentBloc({
     required AbsentViewModelUseCase absentViewModelUseCase,
+    required SettingViewModelUseCase settingViewModelUseCase,
   })  : _absentViewModelUseCase = absentViewModelUseCase,
+        _settingViewModelUseCase = settingViewModelUseCase,
         super(AbsentInitial()) {
     on<AbsentReady>((event, emit) async {
-      final absentManager = await _absentViewModelUseCase.getAbsentManager();
-      if (absentManager != null) {
-        emit(AbsentShowing(absentApplicationManager: absentManager));
-      } else {
-        emit(AbsentInitialLoading());
-      }
+      _absentViewModelUseCase.getAbsentManager().then((absentManager) async {
+        if (absentManager != null) {
+          emit(AbsentShowing(absentApplicationManager: absentManager));
+
+          final setting = await _settingViewModelUseCase.getSetting();
+          if (setting != null && setting.refreshInformationAutomatically) {
+            add(AbsentInformationRefreshRequested());
+          }
+        } else {
+          emit(AbsentInitialLoading());
+        }
+      });
 
       return emit.forEach(_absentViewModelUseCase.getAbsentManagerStream(), onData: (data) {
         if (data == AbsentApplicationManager.empty()) {
           return AbsentInitialLoading();
         }
+
+        _absentViewModelUseCase.showToast("유고 결석 정보를 불러왔어요.");
         return AbsentShowing(absentApplicationManager: data);
       });
     });
 
     on<AbsentInformationRefreshRequested>((event, emit) async {
+      _absentViewModelUseCase.showToast("유고 결석 정보를 불러오고 있어요...");
+
       final result = await _absentViewModelUseCase.loadNewAbsentManager();
       if (!result) {
         addError(Exception('Failed to load new absent manager'), StackTrace.current);
