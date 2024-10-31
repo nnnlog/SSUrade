@@ -29,7 +29,7 @@ class Setting extends Equatable {
   @override
   List<Object?> get props => [refreshInformationAutomatically, enableBackgroundFeature, showGradeInBackground, backgroundInterval, agree];
 
-  factory Setting.defaultSetting() => Setting(
+  factory Setting.defaults() => Setting(
         refreshInformationAutomatically: false,
         enableBackgroundFeature: true,
         showGradeInBackground: true,

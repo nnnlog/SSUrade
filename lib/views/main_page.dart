@@ -80,6 +80,15 @@ class MainPage extends StatelessWidget {
               ),
               OutlinedButton(
                 onPressed: () async {
+                  Navigator.pushNamed(context, "/setting");
+                },
+                style: OutlinedButton.styleFrom(
+                  minimumSize: const Size.fromHeight(40),
+                ),
+                child: const Text("설정"),
+              ),
+              OutlinedButton(
+                onPressed: () async {
                   Navigator.pushNamed(context, "/information");
                 },
                 style: OutlinedButton.styleFrom(

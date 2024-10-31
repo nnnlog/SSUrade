@@ -12,6 +12,7 @@ import 'package:ssurade/views/information_page.dart';
 import 'package:ssurade/views/login.dart';
 import 'package:ssurade/views/main_page.dart';
 import 'package:ssurade/views/scholarship_page.dart';
+import 'package:ssurade/views/setting_page.dart';
 import 'package:ssurade_adaptor/di/di.dart';
 import 'package:ssurade_application/ssurade_application.dart';
 
@@ -82,7 +83,7 @@ class SsuradeEntryPoint extends StatelessWidget {
           '/chapel': (context) => const ChapelPage(),
           '/scholarship': (context) => const ScholarshipPage(),
           '/absent': (context) => const AbsentPage(),
-          // '/setting': (context) => const SettingPage(),
+          '/setting': (context) => const SettingPage(),
           '/information': (context) => const InformationPage(),
         },
         navigatorObservers: [
