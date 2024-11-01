@@ -34,7 +34,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
         password: currentState.password,
       ));
     } else {
-      _loginViewModelUseCase.showToast("로그인을 실패했어요. 학번이나 비밀번호, 네트워크 상태를 확인해주세요.");
+      _loginViewModelUseCase.showToast("로그인을 실패했어요.\n학번이나 비밀번호, 네트워크 상태를 확인해주세요.");
       emit(LoginTyping(
         id: currentState.id,
         password: currentState.password,

@@ -99,7 +99,9 @@ class _SettingPageState extends State<SettingPage> {
                                         (SettingJobType.loadAbsentInformation, "유고 결석 정보 불러오기"),
                                         (SettingJobType.removeAbsentInformation, "유고 결석 정보 삭제"),
                                         (SettingJobType.loadChapelInformation, "전체 학기 채플 불러오기"),
-                                        (SettingJobType.removeChapelInformation, "전체 학기 채플 불러오기"),
+                                        (SettingJobType.removeChapelInformation, "채플 정보 삭제"),
+                                        (SettingJobType.loadScholarshipInformation, "전체 학기 장학 정보 불러오기"),
+                                        (SettingJobType.removeScholarshipInformation, "장학 정보 삭제"),
                                         (SettingJobType.validateCredential, "현재 로그인 정보 확인"),
                                         (SettingJobType.logout, "로그아웃"),
                                       ].map((e) {

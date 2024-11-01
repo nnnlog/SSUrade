@@ -42,10 +42,13 @@ class LoginViewModelService implements LoginViewModelUseCase {
 
   @override
   Future<bool> loadNewCredential(Credential credential) async {
-    await _localStorageCredentialPort.saveCredential(credential);
-
-    _streamController.add(credential);
-    return validateCredential(credential);
+    return validateCredential(credential).then((res) async {
+      if (res) {
+        _streamController.add(credential);
+        await _localStorageCredentialPort.saveCredential(credential);
+      }
+      return res;
+    });
   }
 
   @override
