@@ -1,4 +1,5 @@
 import 'package:bloc/bloc.dart';
+import 'package:copy_with_extension/copy_with_extension.dart';
 import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
 import 'package:ssurade_application/ssurade_application.dart';
@@ -33,10 +34,10 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
         password: currentState.password,
       ));
     } else {
-      emit(LoginFailure(
+      _loginViewModelUseCase.showToast("로그인을 실패했어요. 학번이나 비밀번호, 네트워크 상태를 확인해주세요.");
+      emit(LoginTyping(
         id: currentState.id,
         password: currentState.password,
-        message: '로그인을 실패했어요.',
       ));
     }
   }

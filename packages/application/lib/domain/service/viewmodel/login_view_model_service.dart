@@ -2,7 +2,9 @@ import 'dart:async';
 
 import 'package:injectable/injectable.dart';
 import 'package:ssurade_application/domain/model/credential/credential.dart';
+import 'package:ssurade_application/domain/model/error/unauthenticated_exception.dart';
 import 'package:ssurade_application/port/in/viewmodel/login_view_model_use_case.dart';
+import 'package:ssurade_application/port/out/application/toast_port.dart';
 import 'package:ssurade_application/port/out/external/external_credential_retrieval_port.dart';
 import 'package:ssurade_application/port/out/local_storage/local_storage_credential_port.dart';
 
@@ -11,12 +13,15 @@ class LoginViewModelService implements LoginViewModelUseCase {
   final StreamController<Credential> _streamController = StreamController.broadcast();
   final LocalStorageCredentialPort _localStorageCredentialPort;
   final ExternalCredentialRetrievalPort _externalCredentialRetrievalPort;
+  final ToastPort _toastPort;
 
   LoginViewModelService({
     required LocalStorageCredentialPort localStorageCredentialPort,
     required ExternalCredentialRetrievalPort externalCredentialRetrievalPort,
+    required ToastPort toastPort,
   })  : _localStorageCredentialPort = localStorageCredentialPort,
-        _externalCredentialRetrievalPort = externalCredentialRetrievalPort;
+        _externalCredentialRetrievalPort = externalCredentialRetrievalPort,
+        _toastPort = toastPort;
 
   @override
   Future<void> clearCredential() async {
@@ -45,6 +50,15 @@ class LoginViewModelService implements LoginViewModelUseCase {
 
   @override
   Future<bool> validateCredential(Credential credential) async {
-    return await _externalCredentialRetrievalPort.getCookiesFromCredential(credential).result != null;
+    return await _externalCredentialRetrievalPort.getCookiesFromCredential(credential).result.catchError(
+              (error) => null,
+              test: (error) => error is UnauthenticatedException,
+            ) !=
+        null;
+  }
+
+  @override
+  Future<void> showToast(String message) async {
+    await _toastPort.showToast(message);
   }
 }

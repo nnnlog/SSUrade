@@ -29,9 +29,8 @@ class ExternalCredentialRetrievalService implements ExternalCredentialRetrievalP
   Job<List<Map<String, dynamic>>?> getCookiesFromCredential(Credential credential) {
     return MainThreadCrawlingJob(CrawlingTimeout.login, () {
       return _webViewClientService.create().then((client) {
-        return _credentialRetrievalService.getCookiesFromCredential(client, credential).then((res) {
+        return _credentialRetrievalService.getCookiesFromCredential(client, credential).whenComplete(() {
           client.dispose();
-          return res;
         });
       });
     });

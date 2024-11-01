@@ -10,4 +10,6 @@ abstract interface class LoginViewModelUseCase {
   Stream<Credential> getCredentialStream();
 
   Future<bool> validateCredential(Credential credential);
+
+  Future<void> showToast(String message);
 }

@@ -69,10 +69,12 @@ class ChapelViewModelService implements ChapelViewModelUseCase {
             .map((semesterSubjects) => semesterSubjects.currentSemester)
             .toList())
         .result
-        .then((res) => ChapelManager(SplayTreeMap.fromIterable(
-              res,
-              key: (chapel) => chapel.currentSemester,
-            )));
+        .then((res) => ChapelManager(
+              SplayTreeMap.fromIterable(
+                res,
+                key: (chapel) => chapel.currentSemester,
+              ),
+            ));
 
     await _localStorageChapelManagerPort.saveChapelManager(chapelManager);
     _streamController.add(chapelManager);

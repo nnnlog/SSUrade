@@ -45,6 +45,11 @@ class SsuradeApplicationPackageModule extends _i526.MicroPackageModule {
 // initializes the registration of main-scope dependencies inside of GetIt
   @override
   _i687.FutureOr<void> init(_i526.GetItHelper gh) {
+    gh.singleton<_i273.LoginViewModelUseCase>(() => _i919.LoginViewModelService(
+          localStorageCredentialPort: gh<_i792.LocalStorageCredentialPort>(),
+          externalCredentialRetrievalPort: gh<_i1067.ExternalCredentialRetrievalPort>(),
+          toastPort: gh<_i750.ToastPort>(),
+        ));
     gh.singleton<_i356.BackgroundProcessUseCase>(() => _i334.BackgroundProcessService(
           gh<_i862.LocalStorageAbsentApplicationManagerPort>(),
           gh<_i179.ExternalAbsentApplicationRetrievalPort>(),
@@ -68,10 +73,6 @@ class SsuradeApplicationPackageModule extends _i526.MicroPackageModule {
           localStorageScholarshipManagerPort: gh<_i411.LocalStorageScholarshipManagerPort>(),
           externalScholarshipManagerRetrievalPort: gh<_i619.ExternalScholarshipManagerRetrievalPort>(),
           toastPort: gh<_i750.ToastPort>(),
-        ));
-    gh.singleton<_i273.LoginViewModelUseCase>(() => _i919.LoginViewModelService(
-          localStorageCredentialPort: gh<_i792.LocalStorageCredentialPort>(),
-          externalCredentialRetrievalPort: gh<_i1067.ExternalCredentialRetrievalPort>(),
         ));
     gh.singleton<_i928.SettingViewModelUseCase>(() => _i176.SettingViewModelService(
           localStorageSettingPort: gh<_i993.LocalStorageSettingPort>(),

@@ -14,7 +14,6 @@ export 'package:ssurade_application/domain/model/chapel/chapel_attendance.dart';
 export 'package:ssurade_application/domain/model/chapel/chapel_attendance_status.dart';
 export 'package:ssurade_application/domain/model/chapel/chapel_manager.dart';
 export 'package:ssurade_application/domain/model/credential/credential.dart';
-export 'package:ssurade_application/domain/model/error/no_data_exception.dart';
 export 'package:ssurade_application/domain/model/error/unauthenticated_exception.dart';
 export 'package:ssurade_application/domain/model/job/job.dart';
 export 'package:ssurade_application/domain/model/lightspeed/lightspeed.dart';
