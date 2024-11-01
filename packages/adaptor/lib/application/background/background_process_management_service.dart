@@ -1,5 +1,6 @@
 import 'package:get_it/get_it.dart';
 import 'package:injectable/injectable.dart';
+import 'package:sentry_flutter/sentry_flutter.dart';
 import 'package:ssurade_adaptor/di/di.dart';
 import 'package:ssurade_application/port/in/background/background_process_use_case.dart';
 import 'package:ssurade_application/port/out/application/background_process_management_port.dart';
@@ -27,6 +28,12 @@ void _backgroundServiceMain() {
     } catch (err, st) {
       // Logger().e(err, stackTrace: st);
       // TODO: add Sentry captureException
+      await Sentry.init((options) {
+        // TODO: Remove in open source version control (sentry dsn)
+        // options.dsn = 'https://';
+        options.tracesSampleRate = 0.1;
+      });
+      await Sentry.captureException(err, stackTrace: st);
       rethrow;
     }
     return true;
@@ -35,7 +42,7 @@ void _backgroundServiceMain() {
 
 @Singleton(as: BackgroundProcessManagementPort)
 class BackgroundProcessManagementService implements BackgroundProcessManagementPort {
-  static String get _backgroundServiceName => "ssurade";
+  static String get _backgroundServiceName => "ssurade.fetch";
 
   @FactoryMethod(preResolve: true)
   static Future<BackgroundProcessManagementService> init() async {
