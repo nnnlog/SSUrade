@@ -92,8 +92,7 @@ flutter_launcher_icons:
 
 flutter:
   assets:
-    - assets/agreement.txt
-    - assets/agreement_short.txt
+    - assets/agreement/
     - assets/js/
     - assets/image/
   uses-material-design: true

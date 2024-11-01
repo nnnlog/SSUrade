@@ -33,6 +33,7 @@ export 'package:ssurade_application/domain/service/viewmodel/absent_view_model_s
 export 'package:ssurade_application/domain/service/viewmodel/app_version_view_model_service.dart';
 export 'package:ssurade_application/domain/service/viewmodel/chapel_view_model_service.dart';
 export 'package:ssurade_application/domain/service/viewmodel/login_view_model_service.dart';
+export 'package:ssurade_application/domain/service/viewmodel/main_view_model_service.dart';
 export 'package:ssurade_application/domain/service/viewmodel/scholarship_view_model_service.dart';
 export 'package:ssurade_application/domain/service/viewmodel/setting_view_model_service.dart';
 export 'package:ssurade_application/domain/service/viewmodel/subject_view_model_service.dart';
@@ -41,12 +42,15 @@ export 'package:ssurade_application/port/in/viewmodel/absent_view_model_use_case
 export 'package:ssurade_application/port/in/viewmodel/app_version_view_model_use_case.dart';
 export 'package:ssurade_application/port/in/viewmodel/chapel_view_model_use_case.dart';
 export 'package:ssurade_application/port/in/viewmodel/login_view_model_use_case.dart';
+export 'package:ssurade_application/port/in/viewmodel/main_view_model_use_case.dart';
 export 'package:ssurade_application/port/in/viewmodel/scholarship_view_model_use_case.dart';
 export 'package:ssurade_application/port/in/viewmodel/setting_view_model_use_case.dart';
 export 'package:ssurade_application/port/in/viewmodel/subject_view_model_use_case.dart';
+export 'package:ssurade_application/port/out/application/agreement_retrieval_port.dart';
 export 'package:ssurade_application/port/out/application/app_environment_port.dart';
 export 'package:ssurade_application/port/out/application/app_version_fetch_port.dart';
 export 'package:ssurade_application/port/out/application/background_process_management_port.dart';
+export 'package:ssurade_application/port/out/application/exit_app_port.dart';
 export 'package:ssurade_application/port/out/application/notification_port.dart';
 export 'package:ssurade_application/port/out/application/toast_port.dart';
 export 'package:ssurade_application/port/out/external/external_absent_application_retrieval_port.dart';

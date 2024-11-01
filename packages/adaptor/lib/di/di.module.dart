@@ -7,9 +7,11 @@
 import 'dart:async' as _i687;
 
 import 'package:injectable/injectable.dart' as _i526;
+import 'package:ssurade_adaptor/application/agreement_retrieval_service.dart' as _i179;
 import 'package:ssurade_adaptor/application/app_environment_service.dart' as _i78;
 import 'package:ssurade_adaptor/application/app_version_fetch_service.dart' as _i159;
 import 'package:ssurade_adaptor/application/background/background_process_management_service.dart' as _i717;
+import 'package:ssurade_adaptor/application/exit_app_service.dart' as _i10;
 import 'package:ssurade_adaptor/application/notification_service.dart' as _i762;
 import 'package:ssurade_adaptor/application/toast_service.dart' as _i114;
 import 'package:ssurade_adaptor/asset/asset_loader_service.dart' as _i27;
@@ -54,6 +56,7 @@ class SsuradeAdaptorPackageModule extends _i526.MicroPackageModule {
     );
     gh.singleton<_i497.SecureStorageClient>(() => const _i497.SecureStorageClient());
     gh.singleton<_i202.CredentialRetrievalService>(() => _i202.CredentialRetrievalService());
+    gh.singleton<_i67.ExitAppPort>(() => _i10.ExitAppService());
     await gh.singletonAsync<_i975.BackgroundProcessManagementPort>(
       () => _i717.BackgroundProcessManagementService.init(),
       preResolve: true,
@@ -72,6 +75,7 @@ class SsuradeAdaptorPackageModule extends _i526.MicroPackageModule {
     gh.singleton<_i615.LightspeedRetrievalService>(() => _i615.LightspeedRetrievalService(gh<_i289.LocalStorageClient>()));
     gh.singleton<_i67.LocalStorageSettingPort>(() => _i47.LocalStorageSettingService(gh<_i289.LocalStorageClient>()));
     gh.singleton<_i124.AppEnvironmentPort>(() => _i78.AppEnvironmentService());
+    gh.singleton<_i67.AgreementRetrievalPort>(() => _i179.AgreementRetrievalService(assetLoaderService: gh<_i27.AssetLoaderService>()));
     gh.singleton<_i101.LocalStorageCredentialService>(() => _i101.LocalStorageCredentialService(gh<_i497.SecureStorageClient>()));
     gh.singleton<_i903.CredentialManagerService>(() => _i903.CredentialManagerService(
           localStorageClient: gh<_i289.LocalStorageClient>(),

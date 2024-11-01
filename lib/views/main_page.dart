@@ -2,6 +2,7 @@ import 'package:dart_scope_functions/dart_scope_functions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ssurade/components/common/custom_app_bar.dart';
+import 'package:ssurade/components/main/main_page_agree.dart';
 import 'package:ssurade_application/ssurade_application.dart';
 import 'package:ssurade_bloc/bloc/main/main_bloc.dart';
 
@@ -11,13 +12,21 @@ class MainPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => MainBloc(loginViewModelUseCase: context.read<LoginViewModelUseCase>()),
+      create: (context) => MainBloc(
+        loginViewModelUseCase: context.read<LoginViewModelUseCase>(),
+        settingViewModelUseCase: context.read<SettingViewModelUseCase>(),
+        mainViewModelUseCase: context.read<MainViewModelUseCase>(),
+      ),
       child: BlocBuilder<MainBloc, MainState>(builder: (context, state) {
         return switch (state) {
           MainInitial() => run(() {
               context.read<MainBloc>().add(MainReady());
               return Container();
             }),
+          MainAgree() => MainPageAgree(
+              agreement_short: state.agreementShort,
+              agreement: state.agreement,
+            ),
           MainShowing() => Scaffold(
               appBar: customAppBar("SSUrade"),
               body: Padding(

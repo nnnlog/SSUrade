@@ -4,10 +4,9 @@ import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
 import 'package:ssurade_application/ssurade_application.dart';
 
+part 'setting_bloc.g.dart';
 part 'setting_event.dart';
 part 'setting_state.dart';
-
-part 'setting_bloc.g.dart';
 
 class SettingBloc extends Bloc<SettingEvent, SettingState> {
   final SettingViewModelUseCase _settingViewModelUseCase;
@@ -41,21 +40,24 @@ class SettingBloc extends Bloc<SettingEvent, SettingState> {
         }
       });
 
-      emit.forEach(settingViewModelUseCase.getSettingStream(), onData: (setting) {
-        var state = this.state;
-        if (state is SettingShowing) {
-          return SettingShowing(setting, state.isLogined);
-        }
-        return SettingInitial();
-      });
-
-      emit.forEach(_loginViewModelUseCase.getCredentialStream(), onData: (credential) {
-        var state = this.state;
-        if (state is SettingShowing) {
-          return SettingShowing(state.setting, credential != Credential.empty());
-        }
-        return SettingInitial();
-      });
+      return (() async {
+        await Future.wait([
+          emit.forEach(settingViewModelUseCase.getSettingStream(), onData: (setting) {
+            var state = this.state;
+            if (state is SettingShowing) {
+              return SettingShowing(setting, state.isLogined);
+            }
+            return SettingInitial();
+          }),
+          emit.forEach(_loginViewModelUseCase.getCredentialStream(), onData: (credential) {
+            var state = this.state;
+            if (state is SettingShowing) {
+              return SettingShowing(state.setting, credential != Credential.empty());
+            }
+            return SettingInitial();
+          })
+        ]);
+      })();
     });
 
     on<SettingChanged>((event, emit) async {

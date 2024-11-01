@@ -54,6 +54,7 @@ class SsuradeEntryPoint extends StatelessWidget {
         RepositoryProvider(create: (context) => getIt<AbsentViewModelUseCase>()),
         RepositoryProvider(create: (context) => getIt<AppVersionViewModelUseCase>()),
         RepositoryProvider(create: (context) => getIt<SettingViewModelUseCase>()),
+        RepositoryProvider(create: (context) => getIt<MainViewModelUseCase>()),
       ],
       child: MaterialApp(
         title: 'SSUrade',

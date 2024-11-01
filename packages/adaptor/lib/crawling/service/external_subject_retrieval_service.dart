@@ -87,7 +87,6 @@ class ExternalSubjectRetrievalService implements ExternalSubjectRetrievalPort {
 
       if (semesterSubjects.subjects.isEmpty) {
         return null;
-        // return await _getSemesterSubjectsFromOldVersion(client, yearSemester);
       }
 
       if (includeDetail) {

@@ -4,3 +4,7 @@ part of 'main_bloc.dart';
 sealed class MainEvent {}
 
 class MainReady extends MainEvent {}
+
+class MainAgreeEvent extends MainEvent {}
+
+class MainDisagreeEvent extends MainEvent {}

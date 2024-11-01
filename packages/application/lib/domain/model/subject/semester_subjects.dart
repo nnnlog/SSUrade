@@ -116,6 +116,8 @@ class SemesterSubjects extends Equatable {
         }).whereType<Subject>(),
         key: (e) => e.code,
       ),
+      totalRanking: after.totalRanking == Ranking.unknown ? before.totalRanking : after.totalRanking,
+      semesterRanking: after.semesterRanking == Ranking.unknown ? before.semesterRanking : after.semesterRanking,
     );
   }
 }
