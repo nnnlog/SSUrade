@@ -43,7 +43,7 @@ class SettingViewModelService implements SettingViewModelUseCase {
     {
       // background feature block
       if (setting.enableBackgroundFeature) {
-        await _backgroundProcessManagementPort.registerBackgroundService();
+        await _backgroundProcessManagementPort.registerBackgroundService(setting.backgroundInterval);
       } else {
         await _backgroundProcessManagementPort.unregisterBackgroundService();
       }

@@ -44,17 +44,17 @@ class BackgroundProcessManagementService implements BackgroundProcessManagementP
   }
 
   @override
-  Future<void> registerBackgroundService() async {
+  Future<void> registerBackgroundService(int interval) async {
     await Workmanager().registerPeriodicTask(
       _backgroundServiceName,
       _backgroundServiceName,
       constraints: Constraints(
         networkType: NetworkType.connected,
-        requiresDeviceIdle: false,
       ),
       backoffPolicy: BackoffPolicy.linear,
       existingWorkPolicy: ExistingWorkPolicy.replace,
       initialDelay: Duration(minutes: 15),
+      frequency: Duration(minutes: interval),
     );
   }
 
