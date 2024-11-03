@@ -40,6 +40,7 @@ dependencies:
       url: https://github.com/nnnlog/image_gallery_saver
       ref: 25c830a93561e5f89e01fe93b942cb88452caa4f
   flutter_exit_app: ^1.1.4
+  flutter_isolate: ^2.1.0
 
 dev_dependencies:
   build_runner: ^2.4.13

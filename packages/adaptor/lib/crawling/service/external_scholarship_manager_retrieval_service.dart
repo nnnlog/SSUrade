@@ -1,3 +1,4 @@
+import 'package:dart_scope_functions/dart_scope_functions.dart';
 import 'package:injectable/injectable.dart';
 import 'package:ssurade_adaptor/crawling/constant/crawling_timeout.dart';
 import 'package:ssurade_adaptor/crawling/job/main_thread_crawling_job.dart';
@@ -15,24 +16,26 @@ class ExternalScholarshipManagerRetrievalService implements ExternalScholarshipM
     return MainThreadCrawlingJob(CrawlingTimeout.scholarship, () async {
       final client = await _webViewClientService.create();
 
-      await client.loadPage("https://ecc.ssu.ac.kr/sap/bc/webdynpro/SAP/ZCMW7530n?sap-language=KO");
+      return run(() async {
+        await client.loadPage("https://ecc.ssu.ac.kr/sap/bc/webdynpro/SAP/ZCMW7530n?sap-language=KO");
 
-      return await client.execute("return await ssurade.crawl.getScholarshipInformation().catch(() => {});").then((value) {
-        if (!(value is List)) {
-          return null;
-        }
+        return await client.execute("return await ssurade.crawl.getScholarshipInformation().catch(() => {});").then((value) {
+          if (!(value is List)) {
+            return null;
+          }
 
-        return ScholarshipManager(value
-            .map((obj) => Scholarship(
-                  when: YearSemester(
-                    year: int.parse(obj["year"]),
-                    semester: Semester.parse(obj["semester"]),
-                  ),
-                  name: obj["name"],
-                  process: obj["process"],
-                  price: obj["price"],
-                ))
-            .toList());
+          return ScholarshipManager(value
+              .map((obj) => Scholarship(
+                    when: YearSemester(
+                      year: int.parse(obj["year"]),
+                      semester: Semester.parse(obj["semester"]),
+                    ),
+                    name: obj["name"],
+                    process: obj["process"],
+                    price: obj["price"],
+                  ))
+              .toList());
+        });
       }).whenComplete(() => client.dispose());
     });
   }

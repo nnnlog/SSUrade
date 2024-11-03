@@ -1,5 +1,6 @@
 import 'dart:collection';
 
+import 'package:dart_scope_functions/dart_scope_functions.dart';
 import 'package:injectable/injectable.dart';
 import 'package:parallel_worker/parallel_worker.dart';
 import 'package:ssurade_adaptor/crawling/constant/crawling_timeout.dart';
@@ -58,20 +59,22 @@ class ExternalChapelRetrievalService implements ExternalChapelManagerRetrievalPo
         return _webViewClientService.create();
       }).toList());
 
-      await Future.wait(clients.map((client) => client.loadPage(_url)));
+      return run(() async {
+        await Future.wait(clients.map((client) => client.loadPage(_url)));
 
-      final chapels = await ParallelWorker(
-        jobs: yearSemesters.map((yearSemester) {
-          return (client) => _getChapel(client, yearSemester);
-        }).toList(),
-        workers: clients,
-      ).result;
+        final chapels = await ParallelWorker(
+          jobs: yearSemesters.map((yearSemester) {
+            return (client) => _getChapel(client, yearSemester);
+          }).toList(),
+          workers: clients,
+        ).result;
 
-      clients.forEach((client) {
-        client.dispose();
+        return chapels.whereType<Chapel>().toList();
+      }).whenComplete(() {
+        clients.forEach((client) {
+          client.dispose();
+        });
       });
-
-      return chapels.whereType<Chapel>().toList();
     });
   }
 
@@ -80,9 +83,11 @@ class ExternalChapelRetrievalService implements ExternalChapelManagerRetrievalPo
     return MainThreadCrawlingJob(CrawlingTimeout.chapel, () async {
       final client = await _webViewClientService.create();
 
-      await client.loadPage(_url);
+      return run(() async {
+        await client.loadPage(_url);
 
-      return _getChapel(client, yearSemester).whenComplete(() {
+        return _getChapel(client, yearSemester);
+      }).whenComplete(() {
         client.dispose();
       });
     });

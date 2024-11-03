@@ -227,59 +227,60 @@ class ExternalSubjectRetrievalService implements ExternalSubjectRetrievalPort {
       final clients = await Future.wait(List.filled(_webViewCount, null).map((_) {
         return _webViewClientService.create();
       }).toList());
-
       final categoryClient = clients.removeLast();
 
-      final results = await Future.wait([
-        _getAllSemesterSubjectsByCategory(categoryClient),
-        (() async {
-          await Future.wait(clients.map((client) => client.loadPage(_semesterGradeUrl)));
+      return run(() async {
+        final results = await Future.wait([
+          _getAllSemesterSubjectsByCategory(categoryClient),
+          (() async {
+            await Future.wait(clients.map((client) => client.loadPage(_semesterGradeUrl)));
 
-          final semesters = await _getCompletedSemesters(clients.first);
+            final semesters = await _getCompletedSemesters(clients.first);
 
-          run(() {
-            var year = DateTime.now().year, month = DateTime.now().month;
-            if (month <= DateTime.february) {
-              year--;
-            }
-            for (var semester in Semester.values) {
-              semesters.add(YearSemester(year: year, semester: semester));
-            }
-          });
+            run(() {
+              var year = DateTime.now().year, month = DateTime.now().month;
+              if (month <= DateTime.february) {
+                year--;
+              }
+              for (var semester in Semester.values) {
+                semesters.add(YearSemester(year: year, semester: semester));
+              }
+            });
 
-          return await ParallelWorker(
-            jobs: semesters.map((yearSemester) {
-              return (client) => _getSemesterSubjects(client, yearSemester, includeDetail: includeDetail);
-            }).toList(),
-            workers: clients,
-          ).result.then((res) => res.whereType<SemesterSubjects>().toList()).then<SemesterSubjectsManager>((semesterSubjects) async {
-            await Future.wait(clients.map((client) => client.loadPage(_semesterGradeOldVersionUrl)));
-
-            final research = semesters.where((semester) => !semesterSubjects.any((element) => element.currentSemester == semester)).toList();
-
-            final researchedSubjects = await ParallelWorker(
-              jobs: research.map((yearSemester) {
-                return (client) => _getSemesterSubjectsFromOldVersion(client, yearSemester);
+            return await ParallelWorker(
+              jobs: semesters.map((yearSemester) {
+                return (client) => _getSemesterSubjects(client, yearSemester, includeDetail: includeDetail);
               }).toList(),
               workers: clients,
-            ).result.then((subjects) => subjects.whereType<SemesterSubjects>().toList());
+            ).result.then((res) => res.whereType<SemesterSubjects>().toList()).then<SemesterSubjectsManager>((semesterSubjects) async {
+              await Future.wait(clients.map((client) => client.loadPage(_semesterGradeOldVersionUrl)));
 
-            return (semesterSubjects + researchedSubjects).let((it) {
-              return SemesterSubjectsManager(
-                data: SplayTreeMap.fromIterable(it, key: (subject) => subject.currentSemester),
-                state: SubjectState.semester,
-              );
+              final research = semesters.where((semester) => !semesterSubjects.any((element) => element.currentSemester == semester)).toList();
+
+              final researchedSubjects = await ParallelWorker(
+                jobs: research.map((yearSemester) {
+                  return (client) => _getSemesterSubjectsFromOldVersion(client, yearSemester);
+                }).toList(),
+                workers: clients,
+              ).result.then((subjects) => subjects.whereType<SemesterSubjects>().toList());
+
+              return (semesterSubjects + researchedSubjects).let((it) {
+                return SemesterSubjectsManager(
+                  data: SplayTreeMap.fromIterable(it, key: (subject) => subject.currentSemester),
+                  state: SubjectState.semester,
+                );
+              });
             });
-          });
-        })(),
-      ]);
+          })(),
+        ]);
 
-      categoryClient.dispose();
-      clients.forEach((client) {
-        client.dispose();
+        return SemesterSubjectsManager.merge(results[0], results[1]);
+      }).whenComplete(() {
+        categoryClient.dispose();
+        clients.forEach((client) {
+          client.dispose();
+        });
       });
-
-      return SemesterSubjectsManager.merge(results[0], results[1]);
     });
   }
 
@@ -288,32 +289,36 @@ class ExternalSubjectRetrievalService implements ExternalSubjectRetrievalPort {
     return MainThreadCrawlingJob(CrawlingTimeout.grade, () async {
       final semesterClient = await _webViewClientService.create(), categoryClient = await _webViewClientService.create();
 
-      final results = await Future.wait([
-        semesterClient.loadPage(_semesterGradeUrl).then<SemesterSubjects?>((_) async {
-          final result = await _getSemesterSubjects(semesterClient, yearSemester, includeDetail: includeDetail);
-          if (result == null) {
-            await semesterClient.loadPage(_semesterGradeOldVersionUrl);
-            return await _getSemesterSubjectsFromOldVersion(semesterClient, yearSemester);
-          }
-          return result;
-        }),
-        _getAllSemesterSubjectsByCategory(categoryClient),
-        // categoryClient.loadPage(_categoryGradeUrl).then<SemesterSubjectsManager>((_) => _getAllSemesterSubjectsByCategory(categoryClient)),
-      ]);
+      return run(() async {
+        final results = await Future.wait([
+          semesterClient.loadPage(_semesterGradeUrl).then<SemesterSubjects?>((_) async {
+            final result = await _getSemesterSubjects(semesterClient, yearSemester, includeDetail: includeDetail);
+            if (result == null) {
+              await semesterClient.loadPage(_semesterGradeOldVersionUrl);
+              return await _getSemesterSubjectsFromOldVersion(semesterClient, yearSemester);
+            }
+            return result;
+          }),
+          _getAllSemesterSubjectsByCategory(categoryClient),
+        ]);
 
-      final currentSemester = results.whereType<SemesterSubjects>().firstOrNull;
-      final category = results.whereType<SemesterSubjectsManager>().first;
+        final currentSemester = results.whereType<SemesterSubjects>().firstOrNull;
+        final category = results.whereType<SemesterSubjectsManager>().first;
 
-      if (currentSemester == null) {
-        return null;
-      }
+        if (currentSemester == null) {
+          return null;
+        }
 
-      final currentSemesterInCategory = category.data[currentSemester.currentSemester];
-      if (currentSemesterInCategory == null) {
-        return currentSemester;
-      }
+        final currentSemesterInCategory = category.data[currentSemester.currentSemester];
+        if (currentSemesterInCategory == null) {
+          return currentSemester;
+        }
 
-      return SemesterSubjects.merge(currentSemester, currentSemesterInCategory, SubjectState.semester, SubjectState.category);
+        return SemesterSubjects.merge(currentSemester, currentSemesterInCategory, SubjectState.semester, SubjectState.category);
+      }).whenComplete(() {
+        semesterClient.dispose();
+        categoryClient.dispose();
+      });
     });
   }
 }

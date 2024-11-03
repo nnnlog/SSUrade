@@ -1,3 +1,4 @@
+import 'package:dart_scope_functions/dart_scope_functions.dart';
 import 'package:get_it/get_it.dart';
 import 'package:injectable/injectable.dart';
 import 'package:ssurade_adaptor/crawling/constant/crawling_timeout.dart';
@@ -23,11 +24,13 @@ class ExternalCredentialRetrievalService implements ExternalCredentialRetrievalP
 
   @override
   Job<List<Map<String, dynamic>>?> getCookiesFromCredential(Credential credential) {
-    return MainThreadCrawlingJob(CrawlingTimeout.login, () {
-      return _webViewClientService.create().then((client) {
-        return _credentialRetrievalService.getCookiesFromCredential(client, credential).whenComplete(() {
-          client.dispose();
-        });
+    return MainThreadCrawlingJob(CrawlingTimeout.login, () async {
+      var client = await _webViewClientService.create();
+
+      return run(() async {
+        return await _credentialRetrievalService.getCookiesFromCredential(client, credential);
+      }).whenComplete(() {
+        client.dispose();
       });
     });
   }

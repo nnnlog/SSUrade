@@ -6,7 +6,7 @@ import 'package:injectable/injectable.dart';
 import 'package:ssurade_adaptor/asset/asset_loader_service.dart';
 import 'package:ssurade_adaptor/crawling/cache/credential_manager_service.dart';
 import 'package:ssurade_adaptor/crawling/webview/web_view_client.dart';
-import 'package:ssurade_adaptor/http_configuration.dart';
+import 'package:ssurade_adaptor/crawling/constant/http_configuration.dart';
 import 'package:ssurade_adaptor/persistence/localstorage/lightspeed_retrieval_service.dart';
 
 @singleton

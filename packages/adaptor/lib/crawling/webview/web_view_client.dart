@@ -10,7 +10,7 @@ import 'package:html/parser.dart';
 import 'package:http/http.dart' as http;
 import 'package:ssurade_adaptor/asset/asset_loader_service.dart';
 import 'package:ssurade_adaptor/crawling/cache/credential_manager_service.dart';
-import 'package:ssurade_adaptor/http_configuration.dart';
+import 'package:ssurade_adaptor/crawling/constant/http_configuration.dart';
 import 'package:ssurade_adaptor/persistence/localstorage/lightspeed_retrieval_service.dart';
 
 class WebViewClientEventManager {
