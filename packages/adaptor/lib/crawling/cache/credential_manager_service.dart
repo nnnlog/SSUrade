@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:injectable/injectable.dart';
 import 'package:mutex/mutex.dart';
 import 'package:ssurade_adaptor/crawling/cache/credential_cache.dart';
-import 'package:ssurade_adaptor/crawling/service/credential/credential_retrieval_service.dart';
+import 'package:ssurade_adaptor/crawling/service/common/credential_retrieval_service.dart';
 import 'package:ssurade_adaptor/crawling/webview/web_view_client.dart';
 import 'package:ssurade_adaptor/persistence/client/local_storage_client.dart';
 import 'package:ssurade_adaptor/persistence/localstorage/local_storage_credential_service.dart';

@@ -1,15 +1,10 @@
 import 'dart:async';
 
-import 'package:dart_scope_functions/dart_scope_functions.dart';
 import 'package:injectable/injectable.dart';
-import 'package:ssurade_application/domain/model/credential/credential.dart';
 import 'package:ssurade_application/domain/model/setting/setting.dart';
-import 'package:ssurade_application/port/in/viewmodel/login_view_model_use_case.dart';
 import 'package:ssurade_application/port/in/viewmodel/setting_view_model_use_case.dart';
 import 'package:ssurade_application/port/out/application/background_process_management_port.dart';
 import 'package:ssurade_application/port/out/application/toast_port.dart';
-import 'package:ssurade_application/port/out/external/external_credential_retrieval_port.dart';
-import 'package:ssurade_application/port/out/local_storage/local_storage_credential_port.dart';
 import 'package:ssurade_application/port/out/local_storage/local_storage_setting_port.dart';
 
 @Singleton(as: SettingViewModelUseCase)

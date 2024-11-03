@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'dart:convert';
 
-import 'package:dart_scope_functions/dart_scope_functions.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:injectable/injectable.dart';
 import 'package:mutex/mutex.dart';

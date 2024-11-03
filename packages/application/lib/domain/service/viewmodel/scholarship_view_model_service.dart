@@ -1,22 +1,11 @@
 import 'dart:async';
-import 'dart:collection';
 
-import 'package:dart_scope_functions/dart_scope_functions.dart';
 import 'package:injectable/injectable.dart';
-import 'package:ssurade_application/domain/model/chapel/chapel.dart';
-import 'package:ssurade_application/domain/model/chapel/chapel_attendance.dart';
-import 'package:ssurade_application/domain/model/chapel/chapel_attendance_status.dart';
-import 'package:ssurade_application/domain/model/chapel/chapel_manager.dart';
 import 'package:ssurade_application/domain/model/scholarship/scholarship_manager.dart';
-import 'package:ssurade_application/domain/model/semester/year_semester.dart';
-import 'package:ssurade_application/port/in/viewmodel/chapel_view_model_use_case.dart';
 import 'package:ssurade_application/port/in/viewmodel/scholarship_view_model_use_case.dart';
 import 'package:ssurade_application/port/out/application/toast_port.dart';
-import 'package:ssurade_application/port/out/external/external_chapel_retrieval_port.dart';
 import 'package:ssurade_application/port/out/external/external_scholarship_manager_retrieval_port.dart';
-import 'package:ssurade_application/port/out/local_storage/local_storage_chapel_manager_port.dart';
 import 'package:ssurade_application/port/out/local_storage/local_storage_scholarship_manager_port.dart';
-import 'package:ssurade_application/port/out/local_storage/local_storage_semester_subjects_manager_port.dart';
 
 @Singleton(as: ScholarshipViewModelUseCase)
 class ScholarshipViewModelService implements ScholarshipViewModelUseCase {

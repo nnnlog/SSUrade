@@ -79,10 +79,15 @@ dev_dependencies:
   copy_with_extension_gen: ^5.0.4
 
 dependency_overrides:
+  flutter_inappwebview_platform_interface:
+    git:
+      url: https://github.com/pichillilorenzo/flutter_inappwebview
+      ref: fa1ee68a284ce47cc1d0359fbb80e4becf1ee10e
+      path: flutter_inappwebview_platform_interface
   flutter_inappwebview_ios:
     git:
-      url: https://github.com/nnnlog/flutter_inappwebview
-      ref: 6a0c1927bd439ee206b6222a0d6ab2cd25b14a6f
+      url: https://github.com/pichillilorenzo/flutter_inappwebview
+      ref: fa1ee68a284ce47cc1d0359fbb80e4becf1ee10e
       path: flutter_inappwebview_ios
 
 flutter_launcher_icons:

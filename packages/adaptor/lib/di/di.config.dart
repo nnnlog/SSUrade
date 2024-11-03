@@ -19,7 +19,7 @@ import 'package:ssurade_adaptor/application/notification_service.dart' as _i762;
 import 'package:ssurade_adaptor/application/toast_service.dart' as _i114;
 import 'package:ssurade_adaptor/asset/asset_loader_service.dart' as _i27;
 import 'package:ssurade_adaptor/crawling/cache/credential_manager_service.dart' as _i903;
-import 'package:ssurade_adaptor/crawling/service/credential/credential_retrieval_service.dart' as _i202;
+import 'package:ssurade_adaptor/crawling/service/common/credential_retrieval_service.dart' as _i429;
 import 'package:ssurade_adaptor/crawling/service/external_absent_application_retrieval_service.dart' as _i507;
 import 'package:ssurade_adaptor/crawling/service/external_chapel_retrieval_service.dart' as _i984;
 import 'package:ssurade_adaptor/crawling/service/external_credential_retrieval_service.dart' as _i333;
@@ -65,7 +65,7 @@ extension GetItInjectableX on _i174.GetIt {
       preResolve: true,
     );
     gh.singleton<_i497.SecureStorageClient>(() => const _i497.SecureStorageClient());
-    gh.singleton<_i202.CredentialRetrievalService>(() => _i202.CredentialRetrievalService());
+    gh.singleton<_i429.CredentialRetrievalService>(() => _i429.CredentialRetrievalService());
     gh.singleton<_i67.ExitAppPort>(() => _i10.ExitAppService());
     await gh.singletonAsync<_i975.BackgroundProcessManagementPort>(
       () => _i717.BackgroundProcessManagementService.init(),
@@ -90,7 +90,7 @@ extension GetItInjectableX on _i174.GetIt {
     gh.singleton<_i903.CredentialManagerService>(() => _i903.CredentialManagerService(
           localStorageClient: gh<_i289.LocalStorageClient>(),
           localStorageCredentialService: gh<_i101.LocalStorageCredentialService>(),
-          credentialRetrievalService: gh<_i202.CredentialRetrievalService>(),
+          credentialRetrievalService: gh<_i429.CredentialRetrievalService>(),
         ));
     gh.singleton<_i722.WebViewClientService>(() => _i722.WebViewClientService(
           credentialCacheService: gh<_i903.CredentialManagerService>(),
@@ -98,11 +98,11 @@ extension GetItInjectableX on _i174.GetIt {
           assetLoaderService: gh<_i27.AssetLoaderService>(),
         ));
     gh.singleton<_i67.ExternalSubjectRetrievalPort>(() => _i683.ExternalSubjectRetrievalService(gh<_i722.WebViewClientService>()));
-    gh.singleton<_i67.ExternalAbsentApplicationRetrievalPort>(() => _i507.ExternalAbsentApplicationRetrievalService(gh<_i722.WebViewClientService>()));
     gh.singleton<_i333.ExternalCredentialRetrievalService>(() => _i333.ExternalCredentialRetrievalService(
           gh<_i722.WebViewClientService>(),
-          gh<_i202.CredentialRetrievalService>(),
+          gh<_i429.CredentialRetrievalService>(),
         ));
+    gh.singleton<_i67.ExternalAbsentApplicationRetrievalPort>(() => _i507.ExternalAbsentApplicationRetrievalService(gh<_i722.WebViewClientService>()));
     gh.singleton<_i67.ExternalScholarshipManagerRetrievalPort>(() => _i675.ExternalScholarshipManagerRetrievalService(gh<_i722.WebViewClientService>()));
     gh.singleton<_i67.ExternalChapelManagerRetrievalPort>(() => _i984.ExternalChapelRetrievalService(gh<_i722.WebViewClientService>()));
     await _i67.SsuradeApplicationPackageModule().init(gh);

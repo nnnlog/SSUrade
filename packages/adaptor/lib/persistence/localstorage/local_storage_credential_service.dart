@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:get_it/get_it.dart';
 import 'package:injectable/injectable.dart';
-import 'package:ssurade_adaptor/crawling/cache/credential_manager_service.dart';
 import 'package:ssurade_adaptor/persistence/client/secure_storage_client.dart';
 import 'package:ssurade_application/ssurade_application.dart';
 

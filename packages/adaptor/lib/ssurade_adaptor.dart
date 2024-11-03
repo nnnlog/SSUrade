@@ -16,7 +16,7 @@ export 'package:ssurade_adaptor/crawling/cache/credential_cache.dart';
 export 'package:ssurade_adaptor/crawling/cache/credential_manager_service.dart';
 export 'package:ssurade_adaptor/crawling/constant/crawling_timeout.dart';
 export 'package:ssurade_adaptor/crawling/job/main_thread_crawling_job.dart';
-export 'package:ssurade_adaptor/crawling/service/credential/credential_retrieval_service.dart';
+export 'package:ssurade_adaptor/crawling/service/common/credential_retrieval_service.dart';
 export 'package:ssurade_adaptor/crawling/service/external_absent_application_retrieval_service.dart';
 export 'package:ssurade_adaptor/crawling/service/external_chapel_retrieval_service.dart';
 export 'package:ssurade_adaptor/crawling/service/external_credential_retrieval_service.dart';

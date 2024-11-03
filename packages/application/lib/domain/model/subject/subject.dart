@@ -77,6 +77,7 @@ class Subject extends Equatable implements Comparable<Subject> {
         professor: before.professor.isEmpty ? after.professor : before.professor,
         grade: before.grade.isEmpty ? after.grade : before.grade,
         score: before.score.isEmpty ? after.score : before.score,
+        detail: before.detail.isEmpty ? after.detail : before.detail,
       );
     }
 

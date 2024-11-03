@@ -1,7 +1,5 @@
 import 'dart:async';
 
-import 'package:mutex/mutex.dart';
-
 class ParallelWorker<T, E> {
   final List<Future<T> Function(E)> _jobs;
   final Set<E> _workers;

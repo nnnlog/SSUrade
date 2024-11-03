@@ -154,7 +154,7 @@ class ExternalSubjectRetrievalService implements ExternalSubjectRetrievalPort {
 
   Future<SemesterSubjectsManager> _getAllSemesterSubjectsByCategory(WebViewClient client) async {
     final String gradeUrl = await run(() async {
-      await client.loadPage("https://ecc.ssu.ac.kr/sap/bc/webdynpro/SAP/ZCMW8030n?sap-language=KO");
+      await client.loadPage(_categoryGradeUrl);
       return (await client.execute("return await ssurade.crawl.getGradeViewerURL().catch(() => {});"));
     });
 
@@ -228,10 +228,10 @@ class ExternalSubjectRetrievalService implements ExternalSubjectRetrievalPort {
         return _webViewClientService.create();
       }).toList());
 
-      final syllabusClient = clients.removeLast();
+      final categoryClient = clients.removeLast();
 
       final results = await Future.wait([
-        syllabusClient.loadPage(_semesterGradeUrl).then<SemesterSubjectsManager>((_) => _getAllSemesterSubjectsByCategory(syllabusClient)),
+        _getAllSemesterSubjectsByCategory(categoryClient),
         (() async {
           await Future.wait(clients.map((client) => client.loadPage(_semesterGradeUrl)));
 
@@ -274,7 +274,7 @@ class ExternalSubjectRetrievalService implements ExternalSubjectRetrievalPort {
         })(),
       ]);
 
-      syllabusClient.dispose();
+      categoryClient.dispose();
       clients.forEach((client) {
         client.dispose();
       });
@@ -297,7 +297,8 @@ class ExternalSubjectRetrievalService implements ExternalSubjectRetrievalPort {
           }
           return result;
         }),
-        categoryClient.loadPage(_categoryGradeUrl).then<SemesterSubjectsManager>((_) => _getAllSemesterSubjectsByCategory(categoryClient)),
+        _getAllSemesterSubjectsByCategory(categoryClient),
+        // categoryClient.loadPage(_categoryGradeUrl).then<SemesterSubjectsManager>((_) => _getAllSemesterSubjectsByCategory(categoryClient)),
       ]);
 
       final currentSemester = results.whereType<SemesterSubjects>().firstOrNull;

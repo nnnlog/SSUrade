@@ -1,5 +1,4 @@
 import 'package:bloc/bloc.dart';
-import 'package:copy_with_extension/copy_with_extension.dart';
 import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
 import 'package:ssurade_application/ssurade_application.dart';
@@ -19,7 +18,7 @@ class ScholarshipBloc extends Bloc<ScholarshipEvent, ScholarshipState> {
         super(ScholarshipInitial()) {
     on<ScholarshipReady>((event, emit) async {
       _scholarshipViewModelUseCase.getScholarshipManager().then((scholarshipManager) async {
-        if (scholarshipManager != null) {
+        if (scholarshipManager != null && scholarshipManager != ScholarshipManager.empty()) {
           emit(ScholarshipShowing(scholarshipManager: scholarshipManager));
 
           var setting = await _settingViewModelUseCase.getSetting();

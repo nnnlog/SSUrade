@@ -1,5 +1,4 @@
 import 'package:bloc/bloc.dart';
-import 'package:copy_with_extension/copy_with_extension.dart';
 import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
 import 'package:ssurade_application/ssurade_application.dart';

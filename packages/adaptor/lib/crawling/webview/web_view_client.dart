@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'dart:convert';
-import 'dart:developer';
 import 'dart:io' as dart show Cookie;
 import 'dart:typed_data';
 
@@ -86,7 +85,7 @@ class WebViewClient {
         _assetLoaderService = assetLoaderService,
         _eventManager = eventManager {
     eventManager.onLoadStop = (controller, _) async {
-      await _controller.evaluateJavascript(source: await _assetLoaderService.loadAsset(_injectorAssetPath));
+      await controller.evaluateJavascript(source: await _assetLoaderService.loadAsset(_injectorAssetPath));
     };
   }
 
@@ -105,24 +104,31 @@ class WebViewClient {
 
   Future<String> get url => _controller.getUrl().then((url) => url.toString());
 
+  Future<void> clearCookie() async {
+    final controller = _controller;
+    for (var url in _cookieDomains) {
+      await CookieManager.instance().deleteCookies(url: url, webViewController: controller);
+    }
+  }
+
   Future<void> loadPage(String url, {bool useAutoLogin = true}) async {
     final controller = _controller;
 
     // load cookie
     {
+      // if false, using cookie with already set on webview
       if (useAutoLogin) {
-        // if false, using cookie with already set on webview
-        for (var url in _cookieDomains) {
-          await CookieManager.instance().deleteCookies(url: url, webViewController: controller);
-        }
+        // await clearCookie();
 
         final cookies = (await _credentialManagerService.getCookies(this)).map((raw) => Cookie.fromMap(raw)).whereType<Cookie>().toList();
         for (final cookie in cookies) {
-          if (cookie.value == "") {
-            await CookieManager.instance().deleteCookie(url: WebUri("https://${cookie.domain}"), name: cookie.name, webViewController: controller);
-          } else {
-            await CookieManager.instance().setCookie(url: WebUri("https://${cookie.domain}"), name: cookie.name, value: cookie.value, domain: cookie.domain, webViewController: controller);
-          }
+          if (cookie.value == "") continue;
+          await CookieManager.instance().setCookie(url: WebUri("https://${cookie.domain}"), name: cookie.name, value: cookie.value, domain: cookie.domain, webViewController: controller);
+          // if (cookie.value == "") {
+          //   await CookieManager.instance().deleteCookie(url: WebUri("https://${cookie.domain}"), name: cookie.name, webViewController: controller);
+          // } else {
+          //   await CookieManager.instance().setCookie(url: WebUri("https://${cookie.domain}"), name: cookie.name, value: cookie.value, domain: cookie.domain, webViewController: controller);
+          // }
         }
       }
     }

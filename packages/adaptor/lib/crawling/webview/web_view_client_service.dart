@@ -46,7 +46,7 @@ class WebViewClientService {
         return eventManager.shouldInterceptRequest?.let((it) => it(controller, request));
       },
       initialSettings: InAppWebViewSettings(
-        incognito: true,
+        // incognito: true, // Flutter WebView Plugin does not support setCookie in incognito mode
         isInspectable: true,
         useShouldInterceptRequest: true,
         cacheEnabled: true,
@@ -58,12 +58,16 @@ class WebViewClientService {
 
     await ret.future;
 
-    return WebViewClient(
+    var client = WebViewClient(
       eventManager: eventManager,
       webView: webView,
       credentialCacheService: _credentialCacheService,
       lightspeedRetrievalService: _lightspeedRetrievalService,
       assetLoaderService: _assetLoaderService,
     );
+
+    // await client.clearCookie();
+
+    return client;
   }
 }

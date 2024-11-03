@@ -1,5 +1,4 @@
 import 'package:bloc/bloc.dart';
-import 'package:copy_with_extension/copy_with_extension.dart';
 import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
 import 'package:ssurade_application/ssurade_application.dart';
@@ -19,7 +18,7 @@ class AbsentBloc extends Bloc<AbsentEvent, AbsentState> {
         super(AbsentInitial()) {
     on<AbsentReady>((event, emit) async {
       _absentViewModelUseCase.getAbsentManager().then((absentManager) async {
-        if (absentManager != null) {
+        if (absentManager != null && absentManager != AbsentApplicationManager.empty()) {
           emit(AbsentShowing(absentApplicationManager: absentManager));
 
           final setting = await _settingViewModelUseCase.getSetting();
