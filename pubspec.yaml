@@ -77,6 +77,7 @@ dev_dependencies:
   build_runner: ^2.4.13
   flutter_launcher_icons: ^0.14.1
   copy_with_extension_gen: ^5.0.4
+  sentry_dart_plugin: ^2.1.0
 
 dependency_overrides:
   flutter_inappwebview_platform_interface:
