@@ -113,6 +113,7 @@ class BackgroundProcessService implements BackgroundProcessUseCase {
     final List<String> updates = [];
     final SplayTreeMap<String, ChapelAttendance> attendances = SplayTreeMap(); // copy
     for (final attendance in newChapelData.attendances.values) {
+      // '미결' 이면서 출결 상태가 강제 지정되어 있는 경우
       if (attendance.status == ChapelAttendanceStatus.unknown && originalChapelData.attendances.containsKey(attendance.lectureDate)) {
         attendances[attendance.lectureDate] = attendance.copyWith(
           overwrittenStatus: originalChapelData.attendances[attendance.lectureDate]!.overwrittenStatus,
@@ -120,12 +121,14 @@ class BackgroundProcessService implements BackgroundProcessUseCase {
         continue;
       }
 
+      attendances[attendance.lectureDate] = attendance;
+
+      // '미결' 이거나 이미 있는 채플 정보와 같은 경우
       if (attendance.status == ChapelAttendanceStatus.unknown || originalChapelData.attendances[attendance.lectureDate] == attendance) {
         continue;
       }
 
       updates.add("${attendance.lectureDate} > ${attendance.status.displayText}");
-      attendances[attendance.lectureDate] = attendance;
     }
 
     if (updates.isNotEmpty) {
