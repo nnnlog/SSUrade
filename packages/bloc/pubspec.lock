@@ -170,18 +170,18 @@ packages:
     dependency: "direct main"
     description:
       name: copy_with_extension
-      sha256: fbcf890b0c34aedf0894f91a11a579994b61b4e04080204656b582708b5b1125
+      sha256: ed472ae80d807094d7a7d7ef67901f8167d18c7998e6db81785a51364aede627
       url: "https://pub.dev"
     source: hosted
-    version: "5.0.4"
+    version: "6.0.0"
   copy_with_extension_gen:
     dependency: "direct dev"
     description:
       name: copy_with_extension_gen
-      sha256: "51cd11094096d40824c8da629ca7f16f3b7cea5fc44132b679617483d43346b0"
+      sha256: "0be2694d3d50df16d91c04e7444181bfb2a0ad8a3b169d58de0c38a69864e4bd"
       url: "https://pub.dev"
     source: hosted
-    version: "5.0.4"
+    version: "6.0.0"
   crypto:
     dependency: transitive
     description:
@@ -194,10 +194,10 @@ packages:
     dependency: transitive
     description:
       name: dart_scope_functions
-      sha256: "2785a295c3199781b894c3a55a978df80d95fe27ed5eab4dcb0247471a6769ef"
+      sha256: "71f269b8cb709ded307e24067d477d8dcb92def7b0ef76a2ae508ae5345d8d46"
       url: "https://pub.dev"
     source: hosted
-    version: "0.1.8"
+    version: "1.0.0"
   dart_style:
     dependency: transitive
     description:
@@ -210,10 +210,10 @@ packages:
     dependency: "direct main"
     description:
       name: equatable
-      sha256: c2b87cb7756efdf69892005af546c56c0b5037f54d2a88269b4f347a505e3ca2
+      sha256: "567c64b3cb4cf82397aac55f4f0cbd3ca20d77c6c03bedbc4ceaddc08904aef7"
       url: "https://pub.dev"
     source: hosted
-    version: "2.0.5"
+    version: "2.0.7"
   file:
     dependency: transitive
     description:
@@ -242,10 +242,10 @@ packages:
     dependency: transitive
     description:
       name: get_it
-      sha256: d85128a5dae4ea777324730dc65edd9c9f43155c109d5cc0a69cab74139fbac1
+      sha256: c49895c1ecb0ee2a0ec568d39de882e2c299ba26355aa6744ab1001f98cebd15
       url: "https://pub.dev"
     source: hosted
-    version: "7.7.0"
+    version: "8.0.2"
   glob:
     dependency: transitive
     description:
@@ -542,4 +542,4 @@ packages:
     source: hosted
     version: "3.1.2"
 sdks:
-  dart: ">=3.5.0 <4.0.0"
+  dart: ">=3.5.4 <4.0.0"

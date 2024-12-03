@@ -8,10 +8,10 @@ dependencies:
     path: ../application
 
   bloc: ^8.1.4
-  copy_with_extension: ^5.0.4
-  equatable: ^2.0.5
+  copy_with_extension: ^6.0.0
+  equatable: ^2.0.7
 
 dev_dependencies:
   build_runner: ^2.4.13
   auto_exporter: ^3.4.1
-  copy_with_extension_gen: ^5.0.4
+  copy_with_extension_gen: ^6.0.0
