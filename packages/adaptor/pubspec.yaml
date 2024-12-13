@@ -19,13 +19,13 @@ dependencies:
   flutter_secure_storage: ^9.2.2
   dart_scope_functions: ^1.0.0
   http: ^1.2.2
-  flutter_inappwebview: ^6.1.5
-  sentry_flutter: ^8.10.1
+  flutter_inappwebview: ^6.2.0-beta.2
+  sentry_flutter: ^8.11.0
   html: ^0.15.5
   df: ^0.4.0-nullsafety.0
   flutter_local_notifications: ^18.0.1
   fluttertoast: ^8.2.8
-  package_info_plus: ^8.1.1
+  package_info_plus: ^8.1.2
   version: ^3.0.2
   workmanager:
     git:

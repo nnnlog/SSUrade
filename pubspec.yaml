@@ -3,7 +3,7 @@ description: 숭실대학교 학사 정보 조회 애플리케이션
 
 publish_to: 'none'
 
-version: 3.0.0+61
+version: 3.0.1+62
 
 environment:
   sdk: ">=3.5.0 <4.0.0"
@@ -22,8 +22,8 @@ dependencies:
     path: ./packages/bloc
 
   flutter_bloc: ^8.1.6
-  firebase_analytics: ^11.3.5
-  firebase_core: ^3.8.0
+  firebase_analytics: ^11.3.6
+  firebase_core: ^3.8.1
 
   dart_scope_functions: ^1.0.0
   copy_with_extension: ^6.0.0
@@ -39,21 +39,9 @@ dev_dependencies:
 
   flutter_lints: ^5.0.0
   build_runner: ^2.4.13
-  flutter_launcher_icons: ^0.14.1
+  flutter_launcher_icons: ^0.14.2
   copy_with_extension_gen: ^6.0.0
   sentry_dart_plugin: ^2.2.1
-
-dependency_overrides:
-  flutter_inappwebview_platform_interface:
-    git:
-      url: https://github.com/pichillilorenzo/flutter_inappwebview
-      ref: fa1ee68a284ce47cc1d0359fbb80e4becf1ee10e
-      path: flutter_inappwebview_platform_interface
-  flutter_inappwebview_ios:
-    git:
-      url: https://github.com/pichillilorenzo/flutter_inappwebview
-      ref: fa1ee68a284ce47cc1d0359fbb80e4becf1ee10e
-      path: flutter_inappwebview_ios
 
 flutter_launcher_icons:
   android: true
