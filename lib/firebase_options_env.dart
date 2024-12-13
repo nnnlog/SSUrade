@@ -49,20 +49,19 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyDncyoYuqVGrZm2BXv-oorGE4uQQ7Mxxkw',
-    appId: '1:270810457384:android:5f53c172cf84546d66dc1d',
-    messagingSenderId: '270810457384',
-    projectId: 'nlog-ssurade',
-    storageBucket: 'nlog-ssurade.appspot.com',
+    apiKey: String.fromEnvironment("FIREBASE_ANDROID_API_KEY"),
+    appId: String.fromEnvironment("FIREBASE_ANDROID_APP_ID"),
+    messagingSenderId: String.fromEnvironment("FIREBASE_ANDROID_MESSAGING_SENDER_ID"),
+    projectId: String.fromEnvironment("FIREBASE_ANDROID_PROJECT_ID"),
+    storageBucket: String.fromEnvironment("FIREBASE_ANDROID_STORAGE_BUCKET"),
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyDDUxhDqHayDnoX3DVQWdWkMr8_SxBTajQ',
-    appId: '1:270810457384:ios:8198a5a6e387384266dc1d',
-    messagingSenderId: '270810457384',
-    projectId: 'nlog-ssurade',
-    storageBucket: 'nlog-ssurade.appspot.com',
-    iosClientId: '270810457384-p2i9r7qjmk79a8m68rbb3qtdbntouhsj.apps.googleusercontent.com',
-    iosBundleId: 'com.nnnlog.ssurade',
+    apiKey: String.fromEnvironment("FIREBASE_IOS_API_KEY"),
+    appId: String.fromEnvironment("FIREBASE_IOS_APP_ID"),
+    messagingSenderId: String.fromEnvironment("FIREBASE_IOS_MESSAGING_SENDER_ID"),
+    projectId: String.fromEnvironment("FIREBASE_IOS_PROJECT_ID"),
+    storageBucket: String.fromEnvironment("FIREBASE_IOS_STORAGE_BUCKET"),
+    iosBundleId: String.fromEnvironment("FIREBASE_IOS_IOS_BUNDLE_ID"),
   );
 }

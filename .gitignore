@@ -49,10 +49,11 @@ app.*.map.json
 /android/app/release
 
 # Firebase
-#/lib/firebase_options.dart
-#/android/app/google-services.json
-#/ios/Runner/GoogleService-Info.plist
-#/ios/firebase_app_id_file.json
+/lib/firebase_options.dart
+/firebase.json
+/android/app/google-services.json
+/ios/Runner/GoogleService-Info.plist
+/ios/firebase_app_id_file.json
 
 # keystore information
 /key/
@@ -67,3 +68,6 @@ app.*.map.json
 
 # auto-generated
 /assets/js/common.js
+
+# environment
+/.env

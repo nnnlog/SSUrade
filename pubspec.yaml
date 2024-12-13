@@ -3,7 +3,7 @@ description: 숭실대학교 학사 정보 조회 애플리케이션
 
 publish_to: 'none'
 
-version: 3.0.1+62
+version: 3.0.2+63
 
 environment:
   sdk: ">=3.5.0 <4.0.0"

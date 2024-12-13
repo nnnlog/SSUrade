@@ -36,17 +36,41 @@ flutter pub get
 * Put your `key.properties` into `android/` directory, which is used for signing the apk.
 * If you don't have own `key.properties`, you can copy auto-generated `android/local.properties`. *Note that it is not suitable for deployment.*
 
+### Configuration for other services
+* You should create `.env` file in the root directory for setting up the environment variables.
+* Now, Sentry and Firebase are supported. You should fill the `.env` file with below format.
+* If you don't have the values, you can just leave it blank.
+```
+SENTRY_DSN=
+SENTRY_TRACES_SAMPLE_RATE=
+
+FIREBASE_ANDROID_API_KEY=
+FIREBASE_ANDROID_APP_ID=
+FIREBASE_ANDROID_MESSAGING_SENDER_ID=
+FIREBASE_ANDROID_PROJECT_ID=
+FIREBASE_ANDROID_STORAGE_BUCKET=
+
+FIREBASE_IOS_API_KEY=
+FIREBASE_IOS_APP_ID=
+FIREBASE_IOS_MESSAGING_SENDER_ID=
+FIREBASE_IOS_PROJECT_ID=
+FIREBASE_IOS_STORAGE_BUCKET=
+FIREBASE_IOS_IOS_BUNDLE_ID=
+```
+
 ### 4. Build
 ```shell
-flutter build ios --obfuscate --split-debug-info=./debug/
-flutter build ipa --obfuscate --split-debug-info=./debug/
-flutter build apk --obfuscate --split-debug-info=./debug/
-flutter build appbundle --obfuscate --split-debug-info=./debug/
+flutter build ios --obfuscate --split-debug-info=./debug/ --dart-define-from-file=.env
+flutter build ipa --obfuscate --split-debug-info=./debug/ --dart-define-from-file=.env
+flutter build apk --obfuscate --split-debug-info=./debug/ --dart-define-from-file=.env
+flutter build appbundle --obfuscate --split-debug-info=./debug/ --dart-define-from-file=.env
 ```
 * `ios` means building iOS, `ipa` means that generated IPA file after building iOS, `apk` means building Android, and `appbundle` means building Android App Bundle.
 * You should `ipa` or `appbundle` for deploying the application. (You must need Apple Developer account for building `ipa`)
 * `--obfuscate` is the option for obfuscating the code. (optional)
 * `--split-debug-info` is the option for splitting debug symbols. (optional)
+* `--dart-define-from-file` is the option for reading environment variables from the file. (optional)
+  * If you don't want to integrate with other services, you can just remove this option.
 
 ### 5. After build
 #### (Optional / For production only) Uploading sentry to debug symbols
@@ -73,12 +97,17 @@ SENTRY_AUTH_TOKEN=<token> SENTRY_ORG=<org> SENTRY_PROJECT=<project name> flutter
 ./scripts/format.sh
 ```
 
-### Connect with external services
+### Integrate with external services
 
-#### Firebase (Analytics) Initialization
+#### Firebase (Analytics) Configuration
 ```shell
 flutterfire configure --project=<Firebase project id>
 ```
+* You should fill the your environment variable files based on the content of generated `lib/firebase_options.dart` file.
+* You could find the schema of environment variable file in this README.
 
 #### Sentry Initialization
-* TBD
+* You could find the schema of environment variable file in this README.
+* Supported Sentry Options in Environment variable file:
+  * SENTRY_DSN
+  * SENTRY_TRACES_SAMPLE_RATE (0 ~ 1, double)

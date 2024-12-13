@@ -3,6 +3,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
+import 'package:ssurade/firebase_options_env.dart';
 import 'package:ssurade/views/absent_page.dart';
 import 'package:ssurade/views/chapel_page.dart';
 import 'package:ssurade/views/grade_page.dart';
@@ -16,21 +17,17 @@ import 'package:ssurade/views/setting_page.dart';
 import 'package:ssurade_adaptor/di/di.dart';
 import 'package:ssurade_application/ssurade_application.dart';
 
-import 'firebase_options.dart';
-
 void main() async {
-  // TODO: Remove in open source version control (sentry dsn)
   await SentryFlutter.init(
     (options) {
-      options.dsn = 'https://71fdb674566745408a9611f2e72b2599@o4504542772789248.ingest.sentry.io/4504551497596928';
-      options.tracesSampleRate = 0.1;
+      options.dsn = String.fromEnvironment("SENTRY_DSN");
+      options.tracesSampleRate = double.tryParse(String.fromEnvironment("SENTRY_TRACES_SAMPLE_RATE")) ?? 0.0;
     },
     appRunner: () async {
       WidgetsFlutterBinding.ensureInitialized();
 
       await configureDependencies();
 
-      // TODO: Remove in open source version control (Firebase configuration)
       await Firebase.initializeApp(
         options: DefaultFirebaseOptions.currentPlatform,
       );
