@@ -28,13 +28,13 @@ abstract class _$ChapelCWProxy {
   /// Chapel(...).copyWith(id: 12, name: "My name")
   /// ````
   Chapel call({
-    YearSemester? currentSemester,
-    SplayTreeMap<String, ChapelAttendance>? attendances,
-    String? subjectCode,
-    String? subjectPlace,
-    String? subjectTime,
-    String? floor,
-    String? seatNo,
+    YearSemester currentSemester,
+    SplayTreeMap<String, ChapelAttendance> attendances,
+    String subjectCode,
+    String subjectPlace,
+    String subjectTime,
+    String floor,
+    String seatNo,
   });
 }
 
@@ -83,31 +83,31 @@ class _$ChapelCWProxyImpl implements _$ChapelCWProxy {
     Object? seatNo = const $CopyWithPlaceholder(),
   }) {
     return Chapel(
-      currentSemester: currentSemester == const $CopyWithPlaceholder() || currentSemester == null
+      currentSemester: currentSemester == const $CopyWithPlaceholder()
           ? _value.currentSemester
           // ignore: cast_nullable_to_non_nullable
           : currentSemester as YearSemester,
-      attendances: attendances == const $CopyWithPlaceholder() || attendances == null
+      attendances: attendances == const $CopyWithPlaceholder()
           ? _value.attendances
           // ignore: cast_nullable_to_non_nullable
           : attendances as SplayTreeMap<String, ChapelAttendance>,
-      subjectCode: subjectCode == const $CopyWithPlaceholder() || subjectCode == null
+      subjectCode: subjectCode == const $CopyWithPlaceholder()
           ? _value.subjectCode
           // ignore: cast_nullable_to_non_nullable
           : subjectCode as String,
-      subjectPlace: subjectPlace == const $CopyWithPlaceholder() || subjectPlace == null
+      subjectPlace: subjectPlace == const $CopyWithPlaceholder()
           ? _value.subjectPlace
           // ignore: cast_nullable_to_non_nullable
           : subjectPlace as String,
-      subjectTime: subjectTime == const $CopyWithPlaceholder() || subjectTime == null
+      subjectTime: subjectTime == const $CopyWithPlaceholder()
           ? _value.subjectTime
           // ignore: cast_nullable_to_non_nullable
           : subjectTime as String,
-      floor: floor == const $CopyWithPlaceholder() || floor == null
+      floor: floor == const $CopyWithPlaceholder()
           ? _value.floor
           // ignore: cast_nullable_to_non_nullable
           : floor as String,
-      seatNo: seatNo == const $CopyWithPlaceholder() || seatNo == null
+      seatNo: seatNo == const $CopyWithPlaceholder()
           ? _value.seatNo
           // ignore: cast_nullable_to_non_nullable
           : seatNo as String,

@@ -14,6 +14,8 @@ class CredentialRetrievalService {
   Future<List<Map<String, dynamic>>?> getCookiesFromCredential(WebViewClient client, Credential credential) {
     return _mutex.protect(() async {
       {
+        await client.clearCookie();
+
         await client.loadPage(
           "https://smartid.ssu.ac.kr/Symtra_sso/smln.asp?apiReturnUrl=https%3A%2F%2Fsaint.ssu.ac.kr%2FwebSSO%2Fsso.jsp",
           useAutoLogin: false,

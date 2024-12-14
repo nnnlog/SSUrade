@@ -30,14 +30,14 @@ abstract class _$ChapelAttendanceCWProxy {
   /// ChapelAttendance(...).copyWith(id: 12, name: "My name")
   /// ````
   ChapelAttendance call({
-    ChapelAttendanceStatus? status,
-    ChapelAttendanceStatus? overwrittenStatus,
-    String? affiliation,
-    String? lectureDate,
-    String? lectureEtc,
-    String? lectureName,
-    String? lectureType,
-    String? lecturer,
+    ChapelAttendanceStatus status,
+    ChapelAttendanceStatus overwrittenStatus,
+    String affiliation,
+    String lectureDate,
+    String lectureEtc,
+    String lectureName,
+    String lectureType,
+    String lecturer,
   });
 }
 
@@ -90,35 +90,35 @@ class _$ChapelAttendanceCWProxyImpl implements _$ChapelAttendanceCWProxy {
     Object? lecturer = const $CopyWithPlaceholder(),
   }) {
     return ChapelAttendance(
-      status: status == const $CopyWithPlaceholder() || status == null
+      status: status == const $CopyWithPlaceholder()
           ? _value.status
           // ignore: cast_nullable_to_non_nullable
           : status as ChapelAttendanceStatus,
-      overwrittenStatus: overwrittenStatus == const $CopyWithPlaceholder() || overwrittenStatus == null
+      overwrittenStatus: overwrittenStatus == const $CopyWithPlaceholder()
           ? _value.overwrittenStatus
           // ignore: cast_nullable_to_non_nullable
           : overwrittenStatus as ChapelAttendanceStatus,
-      affiliation: affiliation == const $CopyWithPlaceholder() || affiliation == null
+      affiliation: affiliation == const $CopyWithPlaceholder()
           ? _value.affiliation
           // ignore: cast_nullable_to_non_nullable
           : affiliation as String,
-      lectureDate: lectureDate == const $CopyWithPlaceholder() || lectureDate == null
+      lectureDate: lectureDate == const $CopyWithPlaceholder()
           ? _value.lectureDate
           // ignore: cast_nullable_to_non_nullable
           : lectureDate as String,
-      lectureEtc: lectureEtc == const $CopyWithPlaceholder() || lectureEtc == null
+      lectureEtc: lectureEtc == const $CopyWithPlaceholder()
           ? _value.lectureEtc
           // ignore: cast_nullable_to_non_nullable
           : lectureEtc as String,
-      lectureName: lectureName == const $CopyWithPlaceholder() || lectureName == null
+      lectureName: lectureName == const $CopyWithPlaceholder()
           ? _value.lectureName
           // ignore: cast_nullable_to_non_nullable
           : lectureName as String,
-      lectureType: lectureType == const $CopyWithPlaceholder() || lectureType == null
+      lectureType: lectureType == const $CopyWithPlaceholder()
           ? _value.lectureType
           // ignore: cast_nullable_to_non_nullable
           : lectureType as String,
-      lecturer: lecturer == const $CopyWithPlaceholder() || lecturer == null
+      lecturer: lecturer == const $CopyWithPlaceholder()
           ? _value.lecturer
           // ignore: cast_nullable_to_non_nullable
           : lecturer as String,

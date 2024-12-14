@@ -34,16 +34,16 @@ abstract class _$SubjectCWProxy {
   /// Subject(...).copyWith(id: 12, name: "My name")
   /// ````
   Subject call({
-    String? code,
-    String? name,
-    double? credit,
-    String? grade,
-    String? score,
-    String? professor,
-    String? category,
-    bool? isPassFail,
-    String? info,
-    Map<String, String>? detail,
+    String code,
+    String name,
+    double credit,
+    String grade,
+    String score,
+    String professor,
+    String category,
+    bool isPassFail,
+    String info,
+    Map<String, String> detail,
   });
 }
 
@@ -104,43 +104,43 @@ class _$SubjectCWProxyImpl implements _$SubjectCWProxy {
     Object? detail = const $CopyWithPlaceholder(),
   }) {
     return Subject(
-      code: code == const $CopyWithPlaceholder() || code == null
+      code: code == const $CopyWithPlaceholder()
           ? _value.code
           // ignore: cast_nullable_to_non_nullable
           : code as String,
-      name: name == const $CopyWithPlaceholder() || name == null
+      name: name == const $CopyWithPlaceholder()
           ? _value.name
           // ignore: cast_nullable_to_non_nullable
           : name as String,
-      credit: credit == const $CopyWithPlaceholder() || credit == null
+      credit: credit == const $CopyWithPlaceholder()
           ? _value.credit
           // ignore: cast_nullable_to_non_nullable
           : credit as double,
-      grade: grade == const $CopyWithPlaceholder() || grade == null
+      grade: grade == const $CopyWithPlaceholder()
           ? _value.grade
           // ignore: cast_nullable_to_non_nullable
           : grade as String,
-      score: score == const $CopyWithPlaceholder() || score == null
+      score: score == const $CopyWithPlaceholder()
           ? _value.score
           // ignore: cast_nullable_to_non_nullable
           : score as String,
-      professor: professor == const $CopyWithPlaceholder() || professor == null
+      professor: professor == const $CopyWithPlaceholder()
           ? _value.professor
           // ignore: cast_nullable_to_non_nullable
           : professor as String,
-      category: category == const $CopyWithPlaceholder() || category == null
+      category: category == const $CopyWithPlaceholder()
           ? _value.category
           // ignore: cast_nullable_to_non_nullable
           : category as String,
-      isPassFail: isPassFail == const $CopyWithPlaceholder() || isPassFail == null
+      isPassFail: isPassFail == const $CopyWithPlaceholder()
           ? _value.isPassFail
           // ignore: cast_nullable_to_non_nullable
           : isPassFail as bool,
-      info: info == const $CopyWithPlaceholder() || info == null
+      info: info == const $CopyWithPlaceholder()
           ? _value.info
           // ignore: cast_nullable_to_non_nullable
           : info as String,
-      detail: detail == const $CopyWithPlaceholder() || detail == null
+      detail: detail == const $CopyWithPlaceholder()
           ? _value.detail
           // ignore: cast_nullable_to_non_nullable
           : detail as Map<String, String>,

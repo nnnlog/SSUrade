@@ -18,8 +18,8 @@ abstract class _$SemesterSubjectsManagerCWProxy {
   /// SemesterSubjectsManager(...).copyWith(id: 12, name: "My name")
   /// ````
   SemesterSubjectsManager call({
-    SplayTreeMap<YearSemester, SemesterSubjects>? data,
-    int? state,
+    SplayTreeMap<YearSemester, SemesterSubjects> data,
+    int state,
   });
 }
 
@@ -48,11 +48,11 @@ class _$SemesterSubjectsManagerCWProxyImpl implements _$SemesterSubjectsManagerC
     Object? state = const $CopyWithPlaceholder(),
   }) {
     return SemesterSubjectsManager(
-      data: data == const $CopyWithPlaceholder() || data == null
+      data: data == const $CopyWithPlaceholder()
           ? _value.data
           // ignore: cast_nullable_to_non_nullable
           : data as SplayTreeMap<YearSemester, SemesterSubjects>,
-      state: state == const $CopyWithPlaceholder() || state == null
+      state: state == const $CopyWithPlaceholder()
           ? _value.state
           // ignore: cast_nullable_to_non_nullable
           : state as int,

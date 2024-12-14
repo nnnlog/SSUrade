@@ -13,3 +13,4 @@ export 'package:ssurade_bloc/bloc/login/login_bloc.dart';
 export 'package:ssurade_bloc/bloc/main/main_bloc.dart';
 export 'package:ssurade_bloc/bloc/scholarship/scholarship_bloc.dart';
 export 'package:ssurade_bloc/bloc/setting/setting_bloc.dart';
+export 'package:ssurade_bloc/error/intended_exception.dart';

@@ -13,6 +13,9 @@ dependencies:
   parallel_worker:
     path: ../parallel_worker
 
+  packet_stream:
+    path: ../packet_stream
+
   injectable: ^2.5.0
   get_it: ^8.0.2
   path_provider: ^2.1.5
@@ -22,7 +25,6 @@ dependencies:
   flutter_inappwebview: ^6.2.0-beta.2
   sentry_flutter: ^8.11.0
   html: ^0.15.5
-  df: ^0.4.0-nullsafety.0
   flutter_local_notifications: ^18.0.1
   fluttertoast: ^8.2.8
   package_info_plus: ^8.1.2

@@ -22,10 +22,10 @@ abstract class _$AppVersionCWProxy {
   /// AppVersion(...).copyWith(id: 12, name: "My name")
   /// ````
   AppVersion call({
-    String? appVersion,
-    String? newVersion,
-    String? devVersion,
-    String? buildNumber,
+    String appVersion,
+    String newVersion,
+    String devVersion,
+    String buildNumber,
   });
 }
 
@@ -62,19 +62,19 @@ class _$AppVersionCWProxyImpl implements _$AppVersionCWProxy {
     Object? buildNumber = const $CopyWithPlaceholder(),
   }) {
     return AppVersion(
-      appVersion: appVersion == const $CopyWithPlaceholder() || appVersion == null
+      appVersion: appVersion == const $CopyWithPlaceholder()
           ? _value.appVersion
           // ignore: cast_nullable_to_non_nullable
           : appVersion as String,
-      newVersion: newVersion == const $CopyWithPlaceholder() || newVersion == null
+      newVersion: newVersion == const $CopyWithPlaceholder()
           ? _value.newVersion
           // ignore: cast_nullable_to_non_nullable
           : newVersion as String,
-      devVersion: devVersion == const $CopyWithPlaceholder() || devVersion == null
+      devVersion: devVersion == const $CopyWithPlaceholder()
           ? _value.devVersion
           // ignore: cast_nullable_to_non_nullable
           : devVersion as String,
-      buildNumber: buildNumber == const $CopyWithPlaceholder() || buildNumber == null
+      buildNumber: buildNumber == const $CopyWithPlaceholder()
           ? _value.buildNumber
           // ignore: cast_nullable_to_non_nullable
           : buildNumber as String,

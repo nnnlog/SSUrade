@@ -55,7 +55,7 @@ class ChapelViewModelService implements ChapelViewModelUseCase {
   @override
   Future<bool> loadNewChapelManager() async {
     final semesterSubjectsManager = await _localStorageSemesterSubjectsManagerPort.retrieveSemesterSubjectsManager();
-    if (semesterSubjectsManager == null) {
+    if (semesterSubjectsManager == null || semesterSubjectsManager.isEmpty) {
       return false;
     }
 

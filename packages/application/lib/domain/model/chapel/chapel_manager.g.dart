@@ -16,7 +16,7 @@ abstract class _$ChapelManagerCWProxy {
   /// ChapelManager(...).copyWith(id: 12, name: "My name")
   /// ````
   ChapelManager call({
-    SplayTreeMap<YearSemester, Chapel>? data,
+    SplayTreeMap<YearSemester, Chapel> data,
   });
 }
 
@@ -41,7 +41,7 @@ class _$ChapelManagerCWProxyImpl implements _$ChapelManagerCWProxy {
     Object? data = const $CopyWithPlaceholder(),
   }) {
     return ChapelManager(
-      data == const $CopyWithPlaceholder() || data == null
+      data == const $CopyWithPlaceholder()
           ? _value.data
           // ignore: cast_nullable_to_non_nullable
           : data as SplayTreeMap<YearSemester, Chapel>,

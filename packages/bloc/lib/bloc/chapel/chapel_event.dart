@@ -25,3 +25,5 @@ class ChapelInformationRefreshRequested extends ChapelEvent {
 }
 
 class ChapelAllInformationRequested extends ChapelEvent {}
+
+class ChapelGoToBackRequested extends ChapelEvent {}

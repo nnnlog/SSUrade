@@ -22,10 +22,10 @@ abstract class _$ScholarshipCWProxy {
   /// Scholarship(...).copyWith(id: 12, name: "My name")
   /// ````
   Scholarship call({
-    YearSemester? when,
-    String? name,
-    String? process,
-    String? price,
+    YearSemester when,
+    String name,
+    String process,
+    String price,
   });
 }
 
@@ -62,19 +62,19 @@ class _$ScholarshipCWProxyImpl implements _$ScholarshipCWProxy {
     Object? price = const $CopyWithPlaceholder(),
   }) {
     return Scholarship(
-      when: when == const $CopyWithPlaceholder() || when == null
+      when: when == const $CopyWithPlaceholder()
           ? _value.when
           // ignore: cast_nullable_to_non_nullable
           : when as YearSemester,
-      name: name == const $CopyWithPlaceholder() || name == null
+      name: name == const $CopyWithPlaceholder()
           ? _value.name
           // ignore: cast_nullable_to_non_nullable
           : name as String,
-      process: process == const $CopyWithPlaceholder() || process == null
+      process: process == const $CopyWithPlaceholder()
           ? _value.process
           // ignore: cast_nullable_to_non_nullable
           : process as String,
-      price: price == const $CopyWithPlaceholder() || price == null
+      price: price == const $CopyWithPlaceholder()
           ? _value.price
           // ignore: cast_nullable_to_non_nullable
           : price as String,

@@ -52,7 +52,7 @@ class CredentialManagerService {
 
   Future<void> clearCookies() async {
     _initialized = true;
-    _credentialCache = CredentialCache(cookies: [], expire: DateTime.now());
+    _credentialCache = CredentialCache(cookies: [], expire: DateTime.now().subtract(Duration(hours: 1)));
     _writeFile();
   }
 

@@ -16,7 +16,7 @@ abstract class _$AbsentApplicationManagerCWProxy {
   /// AbsentApplicationManager(...).copyWith(id: 12, name: "My name")
   /// ````
   AbsentApplicationManager call({
-    List<AbsentApplication>? data,
+    List<AbsentApplication> data,
   });
 }
 
@@ -41,7 +41,7 @@ class _$AbsentApplicationManagerCWProxyImpl implements _$AbsentApplicationManage
     Object? data = const $CopyWithPlaceholder(),
   }) {
     return AbsentApplicationManager(
-      data == const $CopyWithPlaceholder() || data == null
+      data == const $CopyWithPlaceholder()
           ? _value.data
           // ignore: cast_nullable_to_non_nullable
           : data as List<AbsentApplication>,

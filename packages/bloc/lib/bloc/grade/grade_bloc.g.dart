@@ -24,11 +24,11 @@ abstract class _$GradeShowingCWProxy {
   /// GradeShowing(...).copyWith(id: 12, name: "My name")
   /// ````
   GradeShowing call({
-    SemesterSubjectsManager? semesterSubjectsManager,
-    YearSemester? showingSemester,
-    bool? isExporting,
-    bool? isDisplayRankingDuringExporting,
-    bool? isDisplaySubjectInformationDuringExporting,
+    SemesterSubjectsManager semesterSubjectsManager,
+    YearSemester showingSemester,
+    bool isExporting,
+    bool isDisplayRankingDuringExporting,
+    bool isDisplaySubjectInformationDuringExporting,
   });
 }
 
@@ -70,23 +70,23 @@ class _$GradeShowingCWProxyImpl implements _$GradeShowingCWProxy {
     Object? isDisplaySubjectInformationDuringExporting = const $CopyWithPlaceholder(),
   }) {
     return GradeShowing(
-      semesterSubjectsManager: semesterSubjectsManager == const $CopyWithPlaceholder() || semesterSubjectsManager == null
+      semesterSubjectsManager: semesterSubjectsManager == const $CopyWithPlaceholder()
           ? _value.semesterSubjectsManager
           // ignore: cast_nullable_to_non_nullable
           : semesterSubjectsManager as SemesterSubjectsManager,
-      showingSemester: showingSemester == const $CopyWithPlaceholder() || showingSemester == null
+      showingSemester: showingSemester == const $CopyWithPlaceholder()
           ? _value.showingSemester
           // ignore: cast_nullable_to_non_nullable
           : showingSemester as YearSemester,
-      isExporting: isExporting == const $CopyWithPlaceholder() || isExporting == null
+      isExporting: isExporting == const $CopyWithPlaceholder()
           ? _value.isExporting
           // ignore: cast_nullable_to_non_nullable
           : isExporting as bool,
-      isDisplayRankingDuringExporting: isDisplayRankingDuringExporting == const $CopyWithPlaceholder() || isDisplayRankingDuringExporting == null
+      isDisplayRankingDuringExporting: isDisplayRankingDuringExporting == const $CopyWithPlaceholder()
           ? _value.isDisplayRankingDuringExporting
           // ignore: cast_nullable_to_non_nullable
           : isDisplayRankingDuringExporting as bool,
-      isDisplaySubjectInformationDuringExporting: isDisplaySubjectInformationDuringExporting == const $CopyWithPlaceholder() || isDisplaySubjectInformationDuringExporting == null
+      isDisplaySubjectInformationDuringExporting: isDisplaySubjectInformationDuringExporting == const $CopyWithPlaceholder()
           ? _value.isDisplaySubjectInformationDuringExporting
           // ignore: cast_nullable_to_non_nullable
           : isDisplaySubjectInformationDuringExporting as bool,

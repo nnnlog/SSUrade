@@ -43,6 +43,10 @@ class _ChapelPageState extends State<ChapelPage> with SingleTickerProviderStateM
             backgroundColor: isShowingChapel ? const Color.fromRGBO(241, 242, 245, 1) : null,
             body: BlocBuilder<ChapelBloc, ChapelState>(builder: (context, state) {
               return switch (state) {
+                ChapelGoingToBack() => run(() {
+                    Navigator.pop(context);
+                    return Container();
+                  }),
                 ChapelInitial() => run(() {
                     context.read<ChapelBloc>().add(ChapelReady());
                     return Container();

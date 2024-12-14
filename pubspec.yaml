@@ -3,7 +3,7 @@ description: 숭실대학교 학사 정보 조회 애플리케이션
 
 publish_to: 'none'
 
-version: 3.0.2+63
+version: 3.1.0+64
 
 environment:
   sdk: ">=3.5.0 <4.0.0"
@@ -27,7 +27,7 @@ dependencies:
 
   dart_scope_functions: ^1.0.0
   copy_with_extension: ^6.0.0
-  intl: ^0.17.0
+  intl: ^0.20.1
 
   screenshot: ^3.0.0
   pull_to_refresh: ^2.0.0

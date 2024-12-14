@@ -24,11 +24,11 @@ abstract class _$SettingCWProxy {
   /// Setting(...).copyWith(id: 12, name: "My name")
   /// ````
   Setting call({
-    bool? refreshInformationAutomatically,
-    bool? enableBackgroundFeature,
-    bool? showGradeInBackground,
-    int? backgroundInterval,
-    bool? agree,
+    bool refreshInformationAutomatically,
+    bool enableBackgroundFeature,
+    bool showGradeInBackground,
+    int backgroundInterval,
+    bool agree,
   });
 }
 
@@ -69,23 +69,23 @@ class _$SettingCWProxyImpl implements _$SettingCWProxy {
     Object? agree = const $CopyWithPlaceholder(),
   }) {
     return Setting(
-      refreshInformationAutomatically: refreshInformationAutomatically == const $CopyWithPlaceholder() || refreshInformationAutomatically == null
+      refreshInformationAutomatically: refreshInformationAutomatically == const $CopyWithPlaceholder()
           ? _value.refreshInformationAutomatically
           // ignore: cast_nullable_to_non_nullable
           : refreshInformationAutomatically as bool,
-      enableBackgroundFeature: enableBackgroundFeature == const $CopyWithPlaceholder() || enableBackgroundFeature == null
+      enableBackgroundFeature: enableBackgroundFeature == const $CopyWithPlaceholder()
           ? _value.enableBackgroundFeature
           // ignore: cast_nullable_to_non_nullable
           : enableBackgroundFeature as bool,
-      showGradeInBackground: showGradeInBackground == const $CopyWithPlaceholder() || showGradeInBackground == null
+      showGradeInBackground: showGradeInBackground == const $CopyWithPlaceholder()
           ? _value.showGradeInBackground
           // ignore: cast_nullable_to_non_nullable
           : showGradeInBackground as bool,
-      backgroundInterval: backgroundInterval == const $CopyWithPlaceholder() || backgroundInterval == null
+      backgroundInterval: backgroundInterval == const $CopyWithPlaceholder()
           ? _value.backgroundInterval
           // ignore: cast_nullable_to_non_nullable
           : backgroundInterval as int,
-      agree: agree == const $CopyWithPlaceholder() || agree == null
+      agree: agree == const $CopyWithPlaceholder()
           ? _value.agree
           // ignore: cast_nullable_to_non_nullable
           : agree as bool,

@@ -18,8 +18,8 @@ abstract class _$SettingShowingCWProxy {
   /// SettingShowing(...).copyWith(id: 12, name: "My name")
   /// ````
   SettingShowing call({
-    Setting? setting,
-    bool? isLogined,
+    Setting setting,
+    bool isLogined,
   });
 }
 
@@ -48,11 +48,11 @@ class _$SettingShowingCWProxyImpl implements _$SettingShowingCWProxy {
     Object? isLogined = const $CopyWithPlaceholder(),
   }) {
     return SettingShowing(
-      setting == const $CopyWithPlaceholder() || setting == null
+      setting == const $CopyWithPlaceholder()
           ? _value.setting
           // ignore: cast_nullable_to_non_nullable
           : setting as Setting,
-      isLogined == const $CopyWithPlaceholder() || isLogined == null
+      isLogined == const $CopyWithPlaceholder()
           ? _value.isLogined
           // ignore: cast_nullable_to_non_nullable
           : isLogined as bool,

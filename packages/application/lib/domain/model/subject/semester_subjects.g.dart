@@ -22,10 +22,10 @@ abstract class _$SemesterSubjectsCWProxy {
   /// SemesterSubjects(...).copyWith(id: 12, name: "My name")
   /// ````
   SemesterSubjects call({
-    SplayTreeMap<String, Subject>? subjects,
-    Ranking? semesterRanking,
-    Ranking? totalRanking,
-    YearSemester? currentSemester,
+    SplayTreeMap<String, Subject> subjects,
+    Ranking semesterRanking,
+    Ranking totalRanking,
+    YearSemester currentSemester,
   });
 }
 
@@ -62,19 +62,19 @@ class _$SemesterSubjectsCWProxyImpl implements _$SemesterSubjectsCWProxy {
     Object? currentSemester = const $CopyWithPlaceholder(),
   }) {
     return SemesterSubjects(
-      subjects: subjects == const $CopyWithPlaceholder() || subjects == null
+      subjects: subjects == const $CopyWithPlaceholder()
           ? _value.subjects
           // ignore: cast_nullable_to_non_nullable
           : subjects as SplayTreeMap<String, Subject>,
-      semesterRanking: semesterRanking == const $CopyWithPlaceholder() || semesterRanking == null
+      semesterRanking: semesterRanking == const $CopyWithPlaceholder()
           ? _value.semesterRanking
           // ignore: cast_nullable_to_non_nullable
           : semesterRanking as Ranking,
-      totalRanking: totalRanking == const $CopyWithPlaceholder() || totalRanking == null
+      totalRanking: totalRanking == const $CopyWithPlaceholder()
           ? _value.totalRanking
           // ignore: cast_nullable_to_non_nullable
           : totalRanking as Ranking,
-      currentSemester: currentSemester == const $CopyWithPlaceholder() || currentSemester == null
+      currentSemester: currentSemester == const $CopyWithPlaceholder()
           ? _value.currentSemester
           // ignore: cast_nullable_to_non_nullable
           : currentSemester as YearSemester,

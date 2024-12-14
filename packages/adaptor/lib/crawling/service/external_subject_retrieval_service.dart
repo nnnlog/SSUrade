@@ -1,15 +1,17 @@
 import 'dart:collection';
+import 'dart:typed_data';
 
 import 'package:collection/collection.dart';
 import 'package:dart_scope_functions/dart_scope_functions.dart';
-import 'package:df/df.dart';
 import 'package:injectable/injectable.dart';
+import 'package:packet_stream/packet_stream.dart';
 import 'package:parallel_worker/parallel_worker.dart';
 import 'package:ssurade_adaptor/crawling/constant/crawling_timeout.dart';
 import 'package:ssurade_adaptor/crawling/job/main_thread_crawling_job.dart';
 import 'package:ssurade_adaptor/crawling/webview/web_view_client.dart';
 import 'package:ssurade_adaptor/crawling/webview/web_view_client_service.dart';
 import 'package:ssurade_application/ssurade_application.dart';
+import 'package:http/http.dart' as http;
 
 @Singleton(as: ExternalSubjectRetrievalPort)
 class ExternalSubjectRetrievalService implements ExternalSubjectRetrievalPort {
@@ -126,30 +128,247 @@ class ExternalSubjectRetrievalService implements ExternalSubjectRetrievalPort {
     });
   }
 
-  // 이수구분별 성적표 조회
-  List<DataFrame> _parseOZViewerData(String raw) {
-    const String separator = "|||||";
-    List<DataFrame> ret = [];
+  Future<List<Map<String, String>>> _parseOZViewerData(Uint8List data) async {
+    var reader = ReadablePacketStream(ByteData.view(data.buffer));
 
-    var list = raw.split("\n").map((e) => e.split(separator).map((e) => e.trim()).toList()).toList(); // 값에 \n이 없다고 가정함. (강의 계획서에는 \n이 있어서 이 방법으로 불가능)
-    int keyPrev = -1;
-    DataFrame df = DataFrame();
-    for (var value in list) {
-      if (keyPrev != value.length) {
-        if (df.length > 0) {
-          ret.add(df);
-          df = DataFrame();
-        }
-        keyPrev = value.length;
-        df.setColumns(value.map((e) => DataFrameColumn(name: e, type: String)).toList());
-      } else {
-        df.addRecords(value);
+    reader.readUInt32().let((ozVersion) {
+      if (ozVersion != 10001) {
+        throw UnexpectedException("Invalid OZ Viewer version: $ozVersion, expected 10001");
       }
+    });
+
+    reader.readString(); // packet type
+
+    reader.readUInt32().let((headerCount) {
+      for (var i = 0; i < headerCount; i++) {
+        reader.readString(); // header key
+        reader.readString(); // header value
+      }
+    });
+
+    reader.readUInt32().let((type) {
+      if (type != 380) {
+        throw UnexpectedException("Invalid OZ Viewer type: $type, expected 380");
+      }
+    });
+
+    reader.readBoolean().let((compressed) {
+      if (compressed) {
+        throw UnexpectedException("Compressed OZ Viewer data is not supported");
+      }
+    });
+
+    reader.readUInt32();
+    reader.readUInt32().let((unknown) {
+      if (unknown != 17) {
+        throw UnexpectedException("Invalid OZ Viewer unknown value: $unknown, expected 17");
+      }
+    });
+
+    reader.readUTF(); // prefix
+    reader.readUInt32(); // version
+    reader.readUTF();
+    reader.readUInt32();
+
+    final headers = reader.readInt32().let((dataCount) {
+      final headers = [];
+      print(dataCount);
+
+      for (var i = 0; i < dataCount; i++) {
+        final a = reader.readUTF();
+        final b = reader.readUTF();
+        final c = reader.readUTF();
+
+        final data1 = [], data2 = [], data3 = [];
+
+        {
+          final d = reader.readInt32();
+          for (var j = 0; j < d; j++) {
+            final e = reader.readInt32();
+            final f = reader.readInt32();
+
+            final g = reader.readUTF();
+            final h = reader.readBoolean();
+
+            String k = "";
+            if (e == 2) {
+              k = reader.readUTF();
+            }
+
+            data1.add([e, f, g, h, k]);
+          }
+        }
+
+        {
+          final d = reader.readInt32();
+
+          if (d != 0) {
+            final e = reader.readInt32();
+            final f = reader.readInt32();
+            final g = reader.readUTF();
+            final h = reader.readBoolean();
+
+            String k = "";
+            if (e == 2) {
+              k = reader.readUTF();
+            }
+
+            data2.addAll([e, f, g, h, k]);
+          }
+        }
+
+        {
+          final d = reader.readInt32();
+          for (var j = 0; j < d; j++) {
+            final e = reader.readInt32();
+            final f = reader.readInt32();
+            final g = reader.readUTF();
+
+            data3.add([e, f, g]);
+          }
+        }
+
+        headers.add([
+          [a, b, c],
+          data1,
+          data2,
+          data3,
+        ]);
+      }
+
+      reader.readInt32(); // 4747
+
+      for (var i = 0; i < headers.length; i++) {
+        final offsets = [];
+        for (var j = 0; j < headers[i][3].length; j++) {
+          final current = [];
+          for (var k = 0; k < headers[i][3][j][1]; k++) {
+            final a = reader.readInt32();
+            final b = reader.readInt32();
+            current.add([a, b]);
+          }
+          offsets.add(current);
+        }
+        headers[i].add(offsets);
+      }
+
+      return headers;
+    });
+
+    final bodyReader = ReadablePacketStream(ByteData.view(data.sublist(reader.offset).buffer));
+
+    final parsed = <String, List<List<Map<String, String>>>>{};
+    for (var header in headers) {
+      final results = <List<Map<String, String>>>[];
+
+      for (var i = 0; i < (header[3] as List).length; i++) {
+        final result = <Map<String, String>>[];
+        for (var j = 0; j < (header[3][i][1] as int); j++) {
+          final offset = header[4][i][j][1];
+
+          if (offset != bodyReader.offset) {
+            throw UnexpectedException("Invalid OZ Viewer data offset: $offset, expected ${reader.offset}");
+          }
+
+          final current = <String, String>{};
+          for (var definition in header[1]) {
+            var dtype = definition[1];
+            var dname = definition[2];
+
+            var value;
+            if (dtype == 12 || dtype == 1) {
+              bodyReader.readUInt8(); // just move the offset
+              value = bodyReader.readUTF();
+            } else if (dtype == 91 || dtype == 92) {
+              value = BigInt.zero;
+              for (var i = 0; i < 2; i++) {
+                value = (value << 32) + BigInt.from(bodyReader.readUInt32());
+              }
+              value = value.toString();
+            } else if (dtype == 3) {
+              value = double.tryParse(bodyReader.readUTF())?.toString();
+            } else if (dtype == 2) {
+              value = bodyReader.readUTF();
+            } else if (dtype == 4) {
+              bodyReader.readUInt8(); // just move the offset
+              value = bodyReader.readUInt32().toString();
+            } else {
+              throw UnexpectedException("Invalid OZ Viewer data type: $dtype");
+            }
+
+            current[dname] = value;
+          }
+
+          result.add(current);
+        }
+
+        results.add(result);
+      }
+
+      parsed[header[0][0]] = results;
     }
-    if (df.length > 0) {
-      ret.add(df);
-    }
-    return ret;
+
+    return parsed['ITAB']![0];
+  }
+
+  Future<List<Map<String, String>>> _getOZViewerData(String id) async {
+    var data = WritablePacketStream(9545);
+    data.writeUInt32(10001);
+    data.writeString("oz.framework.cp.message.FrameworkRequestDataModule");
+
+    ({
+      'un': 'guest',
+      'p': 'guest',
+      's': (DateTime.now().millisecondsSinceEpoch ~/ 1000).toString(),
+      'cv': '20140527',
+      't': '',
+      'i': '',
+      'o': '',
+      'z': '',
+      'j': '',
+      'd': '-1',
+      'r': '1',
+      'rv': '268435456',
+      'xi': '',
+      'xm': '',
+      'xh': '',
+      'pi': ''
+    }).let((headers) {
+      data.writeUInt32(headers.length);
+      headers.forEach((key, value) {
+        data.writeString(key);
+        data.writeString(value);
+      });
+    });
+
+    data.writeUInt32(380);
+    data.writeString("zcmw8030secu.odi");
+    data.writeUInt32(10000);
+    data.writeString("/CM");
+    data.writeBoolean(false);
+    data.writeBoolean(false);
+    data.writeString("");
+
+    ({
+      "ADMIN": "000000000000",
+      "UNAME": id,
+    }).let((parameters) {
+      data.writeUInt32(parameters.length);
+      parameters.forEach((key, value) {
+        data.writeString(key);
+        data.writeString(value);
+      });
+    });
+
+    data.writeUInt32(2);
+    data.writeUInt32(32);
+    data.writeUInt32(17);
+    data.writeUInt32(0);
+    data.writeUInt32(0);
+
+    final response = await http.post(Uri.parse("https://office.ssu.ac.kr/oz70/server"), body: data.toUint8List());
+
+    return _parseOZViewerData(response.bodyBytes);
   }
 
   Future<SemesterSubjectsManager> _getAllSemesterSubjectsByCategory(WebViewClient client) async {
@@ -158,15 +377,17 @@ class ExternalSubjectRetrievalService implements ExternalSubjectRetrievalPort {
       return (await client.execute("return await ssurade.crawl.getGradeViewerURL().catch(() => {});"));
     });
 
-    final String rawData = await run(() async {
-      await client.loadPage(gradeUrl);
-      return await client.execute("return await ssurade.crawl.getGradeFromViewer();");
+    final data = await Uri.parse(gradeUrl).queryParameters["pValue"]?.split(",")[1].let((id) async {
+      return await _getOZViewerData(id);
     });
 
-    final data = _parseOZViewerData(rawData)[0];
+    if (data == null) {
+      throw UnexpectedException("Invalid OZ Viewer URL");
+    }
+
     return SemesterSubjectsManager(
       data: SplayTreeMap<YearSemester, SemesterSubjects>.fromIterable(
-        groupBy(data.rows.map((rowData) {
+        groupBy(data.map((rowData) {
           Map<String, String> row = {};
           for (var key in rowData.keys) {
             row[key] = rowData[key] as String;

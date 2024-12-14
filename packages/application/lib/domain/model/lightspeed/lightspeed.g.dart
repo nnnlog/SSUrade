@@ -18,8 +18,8 @@ abstract class _$LightspeedCWProxy {
   /// Lightspeed(...).copyWith(id: 12, name: "My name")
   /// ````
   Lightspeed call({
-    String? version,
-    String? data,
+    String version,
+    String data,
   });
 }
 
@@ -48,11 +48,11 @@ class _$LightspeedCWProxyImpl implements _$LightspeedCWProxy {
     Object? data = const $CopyWithPlaceholder(),
   }) {
     return Lightspeed(
-      version: version == const $CopyWithPlaceholder() || version == null
+      version: version == const $CopyWithPlaceholder()
           ? _value.version
           // ignore: cast_nullable_to_non_nullable
           : version as String,
-      data: data == const $CopyWithPlaceholder() || data == null
+      data: data == const $CopyWithPlaceholder()
           ? _value.data
           // ignore: cast_nullable_to_non_nullable
           : data as String,

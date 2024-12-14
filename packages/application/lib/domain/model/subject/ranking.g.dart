@@ -18,8 +18,8 @@ abstract class _$RankingCWProxy {
   /// Ranking(...).copyWith(id: 12, name: "My name")
   /// ````
   Ranking call({
-    int? my,
-    int? total,
+    int my,
+    int total,
   });
 }
 
@@ -48,11 +48,11 @@ class _$RankingCWProxyImpl implements _$RankingCWProxy {
     Object? total = const $CopyWithPlaceholder(),
   }) {
     return Ranking(
-      my: my == const $CopyWithPlaceholder() || my == null
+      my: my == const $CopyWithPlaceholder()
           ? _value.my
           // ignore: cast_nullable_to_non_nullable
           : my as int,
-      total: total == const $CopyWithPlaceholder() || total == null
+      total: total == const $CopyWithPlaceholder()
           ? _value.total
           // ignore: cast_nullable_to_non_nullable
           : total as int,

@@ -18,8 +18,8 @@ abstract class _$YearSemesterCWProxy {
   /// YearSemester(...).copyWith(id: 12, name: "My name")
   /// ````
   YearSemester call({
-    int? year,
-    Semester? semester,
+    int year,
+    Semester semester,
   });
 }
 
@@ -48,11 +48,11 @@ class _$YearSemesterCWProxyImpl implements _$YearSemesterCWProxy {
     Object? semester = const $CopyWithPlaceholder(),
   }) {
     return YearSemester(
-      year: year == const $CopyWithPlaceholder() || year == null
+      year: year == const $CopyWithPlaceholder()
           ? _value.year
           // ignore: cast_nullable_to_non_nullable
           : year as int,
-      semester: semester == const $CopyWithPlaceholder() || semester == null
+      semester: semester == const $CopyWithPlaceholder()
           ? _value.semester
           // ignore: cast_nullable_to_non_nullable
           : semester as Semester,

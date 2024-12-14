@@ -18,8 +18,8 @@ abstract class _$ChapelShowingCWProxy {
   /// ChapelShowing(...).copyWith(id: 12, name: "My name")
   /// ````
   ChapelShowing call({
-    ChapelManager? chapelManager,
-    YearSemester? showingYearSemester,
+    ChapelManager chapelManager,
+    YearSemester showingYearSemester,
   });
 }
 
@@ -48,11 +48,11 @@ class _$ChapelShowingCWProxyImpl implements _$ChapelShowingCWProxy {
     Object? showingYearSemester = const $CopyWithPlaceholder(),
   }) {
     return ChapelShowing(
-      chapelManager: chapelManager == const $CopyWithPlaceholder() || chapelManager == null
+      chapelManager: chapelManager == const $CopyWithPlaceholder()
           ? _value.chapelManager
           // ignore: cast_nullable_to_non_nullable
           : chapelManager as ChapelManager,
-      showingYearSemester: showingYearSemester == const $CopyWithPlaceholder() || showingYearSemester == null
+      showingYearSemester: showingYearSemester == const $CopyWithPlaceholder()
           ? _value.showingYearSemester
           // ignore: cast_nullable_to_non_nullable
           : showingYearSemester as YearSemester,

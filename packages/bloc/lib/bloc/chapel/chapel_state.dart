@@ -33,3 +33,8 @@ final class ChapelShowing extends ChapelState {
   @override
   List<Object?> get props => super.props + [chapelManager, showingYearSemester];
 }
+
+final class ChapelGoingToBack extends ChapelState {
+  @override
+  List<Object?> get props => super.props + [];
+}

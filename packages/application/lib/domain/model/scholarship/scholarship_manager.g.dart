@@ -16,7 +16,7 @@ abstract class _$ScholarshipManagerCWProxy {
   /// ScholarshipManager(...).copyWith(id: 12, name: "My name")
   /// ````
   ScholarshipManager call({
-    List<Scholarship>? data,
+    List<Scholarship> data,
   });
 }
 
@@ -41,7 +41,7 @@ class _$ScholarshipManagerCWProxyImpl implements _$ScholarshipManagerCWProxy {
     Object? data = const $CopyWithPlaceholder(),
   }) {
     return ScholarshipManager(
-      data == const $CopyWithPlaceholder() || data == null
+      data == const $CopyWithPlaceholder()
           ? _value.data
           // ignore: cast_nullable_to_non_nullable
           : data as List<Scholarship>,

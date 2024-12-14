@@ -3,6 +3,7 @@ import 'package:copy_with_extension/copy_with_extension.dart';
 import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
 import 'package:ssurade_application/ssurade_application.dart';
+import 'package:ssurade_bloc/error/intended_exception.dart';
 
 part 'chapel_bloc.g.dart';
 part 'chapel_event.dart';
@@ -85,15 +86,28 @@ class ChapelBloc extends Bloc<ChapelEvent, ChapelState> {
       var result = await _chapelViewModelUseCase.loadNewChapelManager();
       if (!result) {
         // throw Exception('Failed to load new chapel');
-        addError(Exception('Failed to load new chapel'), StackTrace.current);
+        // addError(Exception('Failed to load new chapel'), StackTrace.current);
+        addError(IntendedException(message: "성적 정보를 먼저 불러와야 해요.", goToBack: true), StackTrace.current);
         return;
       }
+    });
+
+    on<ChapelGoToBackRequested>((event, emit) async {
+      emit(ChapelGoingToBack());
     });
   }
 
   @override
   void onError(Object error, StackTrace stackTrace) {
-    _chapelViewModelUseCase.showToast("오류가 발생했어요. ($error)");
+    if (error is IntendedException) {
+      _chapelViewModelUseCase.showToast(error.message);
+      if (error.goToBack) {
+        add(ChapelGoToBackRequested());
+      }
+      return;
+    }
+
+    _chapelViewModelUseCase.showToast("알 수 없는 오류가 발생했어요. ($error)");
     print(error);
     print(stackTrace);
 
