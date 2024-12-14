@@ -25,7 +25,7 @@ class LocalStorageChapelManagerService implements LocalStorageChapelManagerPort 
   }
 
   @override
-  Future<void> saveChapelManager(ChapelManager backgroundSetting) async {
-    await _localStorage.writeFile(_filename, jsonEncode(backgroundSetting.toJson()));
+  Future<void> saveChapelManager(ChapelManager chapelManager) async {
+    await _localStorage.writeFile(_filename, jsonEncode(chapelManager.toJson()));
   }
 }

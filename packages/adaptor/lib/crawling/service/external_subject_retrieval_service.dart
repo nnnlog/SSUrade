@@ -62,14 +62,14 @@ class ExternalSubjectRetrievalService implements ExternalSubjectRetrievalPort {
           res["subjects"].map((subject) {
             return Subject(
               code: subject["subject_code"],
-              name: (subject["subject_name"] as String).let((str) {
+              name: subject["subject_name"],
+              credit: double.parse(subject["credit"]),
+              grade: (subject["grade_symbol"] as String).let((str) {
                 if (str == "성적 미입력") {
                   return "";
                 }
                 return str;
               }),
-              credit: double.parse(subject["credit"]),
-              grade: subject["grade_symbol"],
               professor: subject["professor"],
               category: "",
               detail: {},

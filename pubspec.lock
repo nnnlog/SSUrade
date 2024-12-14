@@ -1006,7 +1006,7 @@ packages:
     source: hosted
     version: "2.2.1"
   sentry_flutter:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: sentry_flutter
       sha256: "705041d83454bba76e72db56308de32c53b5996d24ef729c62e32623992039af"
