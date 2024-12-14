@@ -105,10 +105,11 @@ class WebViewClient {
   Future<String> get url => _controller.getUrl().then((url) => url.toString());
 
   Future<void> clearCookie() async {
-    final controller = _controller;
-    for (var url in _cookieDomains) {
-      await CookieManager.instance().deleteCookies(url: url, webViewController: controller);
-    }
+    // final controller = _controller;
+    // for (var url in _cookieDomains) {
+    //   await CookieManager.instance().deleteCookies(url: url, webViewController: controller);
+    // }
+    await CookieManager.instance().deleteAllCookies();
   }
 
   Future<void> loadPage(String url, {bool useAutoLogin = true}) async {
