@@ -31,7 +31,7 @@ class WritablePacketStream {
   }
 
   void writeBoolean(bool value) {
-    writeUInt8(value ? 255 : 0);
+    writeUInt8(value ? 0xFF : 0);
   }
 
   Uint8List toUint8List() {

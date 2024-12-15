@@ -1,0 +1,7 @@
+targets:
+  $default:
+    builders:
+      auto_exporter:
+        options:
+          default_export_all: true # If true, exports everything by default; if false, only specific files are exported
+          project_name: oz_viewer

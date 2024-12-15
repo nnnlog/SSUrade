@@ -609,6 +609,13 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.1.0"
+  oz_viewer:
+    dependency: "direct main"
+    description:
+      path: "../oz_viewer"
+      relative: true
+    source: path
+    version: "0.0.0"
   package_config:
     dependency: transitive
     description:
@@ -633,13 +640,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.0.2"
-  packet_stream:
-    dependency: "direct main"
-    description:
-      path: "../packet_stream"
-      relative: true
-    source: path
-    version: "0.0.0"
   parallel_worker:
     dependency: "direct main"
     description:

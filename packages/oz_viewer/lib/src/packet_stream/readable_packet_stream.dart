@@ -48,7 +48,7 @@ class ReadablePacketStream {
   String readUTF() {
     var length = readUInt16();
 
-    if (length == 65535) {
+    if (length == 0xFFFF) {
       length = readUInt32();
     }
 
@@ -61,7 +61,7 @@ class ReadablePacketStream {
   }
 
   bool readBoolean() {
-    return readUInt8() == 255;
+    return readUInt8() == 0xFF;
   }
 
   bool eof() {
