@@ -33,15 +33,20 @@ class SettingViewModelService implements SettingViewModelUseCase {
   }
 
   @override
+  Future<void> applyBackgroundFeature(Setting setting) async {
+    if (setting.enableBackgroundFeature) {
+      await _backgroundProcessManagementPort.registerBackgroundService(setting.backgroundInterval);
+    } else {
+      await _backgroundProcessManagementPort.unregisterBackgroundService();
+    }
+  }
+
+  @override
   Future<void> applyNewSetting(Setting setting) async {
     // TODO: for each feature, separate the logic to its own use case (like event handler)
     {
       // background feature block
-      if (setting.enableBackgroundFeature) {
-        await _backgroundProcessManagementPort.registerBackgroundService(setting.backgroundInterval);
-      } else {
-        await _backgroundProcessManagementPort.unregisterBackgroundService();
-      }
+      await applyBackgroundFeature(setting);
     }
 
     await _localStorageSettingPort.saveSetting(setting);

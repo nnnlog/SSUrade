@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:get_it/get_it.dart';
 import 'package:injectable/injectable.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
@@ -26,12 +27,9 @@ void _backgroundServiceMain() {
 
       await Future.wait(futures).catchError((e) => throw e);
     } catch (err, st) {
-      // Logger().e(err, stackTrace: st);
-      // TODO: add Sentry captureException
       await Sentry.init((options) {
-        // TODO: Remove in open source version control (sentry dsn)
-        // options.dsn = 'https://';
-        options.tracesSampleRate = 0.1;
+        options.dsn = String.fromEnvironment("SENTRY_DSN");
+        options.tracesSampleRate = double.tryParse(String.fromEnvironment("SENTRY_TRACES_SAMPLE_RATE")) ?? 0.0;
       });
       await Sentry.captureException(err, stackTrace: st);
       rethrow;
@@ -46,7 +44,7 @@ class BackgroundProcessManagementService implements BackgroundProcessManagementP
 
   @FactoryMethod(preResolve: true)
   static Future<BackgroundProcessManagementService> init() async {
-    await Workmanager().initialize(_backgroundServiceMain, isInDebugMode: false);
+    await Workmanager().initialize(_backgroundServiceMain, isInDebugMode: kDebugMode);
     return BackgroundProcessManagementService();
   }
 

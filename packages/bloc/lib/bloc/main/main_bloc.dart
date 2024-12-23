@@ -26,6 +26,8 @@ class MainBloc extends Bloc<MainEvent, MainState> {
 
         emit(MainAgree(agreementShort, agreement));
       } else {
+        await _settingViewModelUseCase.applyBackgroundFeature(setting); // Force refresh background feature
+
         await _loginViewModelUseCase.getCredential().then((res) {
           emit(MainShowing(res != null && res != Credential.empty()));
         });

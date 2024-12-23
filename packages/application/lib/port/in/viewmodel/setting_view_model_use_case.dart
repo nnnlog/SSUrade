@@ -3,7 +3,9 @@ import 'package:ssurade_application/domain/model/setting/setting.dart';
 abstract interface class SettingViewModelUseCase {
   Future<Setting?> getSetting();
 
-  Future<void> applyNewSetting(Setting credential);
+  Future<void> applyBackgroundFeature(Setting setting);
+
+  Future<void> applyNewSetting(Setting setting);
 
   Stream<Setting> getSettingStream();
 

@@ -17,6 +17,7 @@ import workmanager
         UNUserNotificationCenter.current().delegate = self as? UNUserNotificationCenterDelegate
       }
 
+    UIApplication.shared.setMinimumBackgroundFetchInterval(TimeInterval(60*15))
     WorkmanagerPlugin.registerPeriodicTask(withIdentifier: "ssurade.fetch", frequency: NSNumber(value: 15 * 60))
 
     AppDelegate.registerPlugins(with: self)
