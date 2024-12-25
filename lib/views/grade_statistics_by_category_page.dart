@@ -20,15 +20,19 @@ class _GradeStatisticsByCategoryPageState extends State<GradeStatisticsByCategor
 
   Map<String, List<(Subject, YearSemester)>> getCategoryCredits(SemesterSubjectsManager manager) {
     Map<String, List<(Subject, YearSemester)>> ret = {};
+
+    ret[_key1] = [];
+    ret[_key2] = [];
+
     for (var value in manager.data.values) {
       for (var subject in value.subjects.values) {
         if (!subject.excluded) {
           if (!ret.containsKey(subject.category)) ret[subject.category] = [];
-          if (!ret.containsKey(_key1)) ret[_key1] = [];
           ret[subject.category]!.add((subject, value.currentSemester));
+
           ret[_key1]!.add((subject, value.currentSemester));
+
           if (subject.isMajor) {
-            if (!ret.containsKey(_key2)) ret[_key2] = [];
             ret[_key2]!.add((subject, value.currentSemester));
           }
         }
@@ -114,9 +118,9 @@ class _GradeStatisticsByCategoryPageState extends State<GradeStatisticsByCategor
                                       showBottomBorder: true,
                                       columns: [DataColumn(label: Container()), DataColumn(label: Container())],
                                       rows: [
-                                        ("이수 과목 수", data[key]!.map((e) => e.$1.excluded ? 0 : 1).reduce((value, element) => value + element).toString()),
-                                        ("이수 학점 수", data[key]!.map((e) => e.$1.excluded ? 0 : e.$1.credit).reduce((value, element) => value + element).toString()),
-                                        ("P/F 제외 이수 학점 수", data[key]!.map((e) => e.$1.excluded || e.$1.isPassFail ? 0 : e.$1.credit).reduce((value, element) => value + element).toString()),
+                                        ("이수 과목 수", data[key]!.map((e) => e.$1.excluded ? 0 : 1).fold(0, (value, element) => value + element).toString()),
+                                        ("이수 학점 수", data[key]!.map((e) => e.$1.excluded ? 0 : e.$1.credit).fold(0.0, (value, element) => value + element).toString()),
+                                        ("P/F 제외 이수 학점 수", data[key]!.map((e) => e.$1.excluded || e.$1.isPassFail ? 0 : e.$1.credit).fold(0.0, (value, element) => value + element).toString()),
                                         (
                                           "평점",
                                           SemesterSubjects(
