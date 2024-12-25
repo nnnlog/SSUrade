@@ -86,8 +86,9 @@ class _GradeStatisticsPageState extends State<GradeStatisticsPage> {
                                     BlocSelector<GradeInquiryBloc, GradeInquiryState, String>(selector: (state) {
                                       if (state is GradeInquiryShowing) {
                                         return state.semesterSubjectsManager.data.values
-                                            .map((semesterSubjects) => semesterSubjects.subjects.values.toList())
-                                            .expand((i) => i)
+                                            .map((semesterSubjects) => (semesterSubjects.currentSemester, semesterSubjects.subjects.values.toList()))
+                                            .expand((i) => i.$2.map((j) => (i.$1, j)))
+                                            .map((i) => i.$2.copyWith(code: i.$1.displayText + "_" + i.$2.code))
                                             .let((it) {
                                               return SemesterSubjects(
                                                   subjects: SplayTreeMap.fromIterable(it, key: (subject) => subject.code),
@@ -158,8 +159,9 @@ class _GradeStatisticsPageState extends State<GradeStatisticsPage> {
                                     BlocSelector<GradeInquiryBloc, GradeInquiryState, String>(selector: (state) {
                                       if (state is GradeInquiryShowing) {
                                         return state.semesterSubjectsManager.data.values
-                                            .map((semesterSubjects) => semesterSubjects.subjects.values.toList())
-                                            .expand((i) => i)
+                                            .map((semesterSubjects) => (semesterSubjects.currentSemester, semesterSubjects.subjects.values.toList()))
+                                            .expand((i) => i.$2.map((j) => (i.$1, j)))
+                                            .map((i) => i.$2.copyWith(code: i.$1.displayText + "_" + i.$2.code))
                                             .let((it) {
                                               return SemesterSubjects(
                                                   subjects: SplayTreeMap.fromIterable(it, key: (subject) => subject.code),
@@ -227,8 +229,9 @@ class _GradeStatisticsPageState extends State<GradeStatisticsPage> {
                                     BlocSelector<GradeInquiryBloc, GradeInquiryState, String>(selector: (state) {
                                       if (state is GradeInquiryShowing) {
                                         return state.semesterSubjectsManager.data.values
-                                            .map((semesterSubjects) => semesterSubjects.subjects.values.toList())
-                                            .expand((i) => i)
+                                            .map((semesterSubjects) => (semesterSubjects.currentSemester, semesterSubjects.subjects.values.toList()))
+                                            .expand((i) => i.$2.map((j) => (i.$1, j)))
+                                            .map((i) => i.$2.copyWith(code: i.$1.displayText + "_" + i.$2.code))
                                             .let((it) {
                                               return SemesterSubjects(
                                                   subjects: SplayTreeMap.fromIterable(it, key: (subject) => subject.code),
