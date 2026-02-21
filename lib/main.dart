@@ -28,7 +28,9 @@ void main() async {
 
       await configureDependencies();
 
-      await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+      if (const String.fromEnvironment("FIREBASE_ENABLED", defaultValue: "false") == "true") {
+        await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+      }
 
       runApp(const SsuradeEntryPoint());
     },
@@ -82,7 +84,10 @@ class SsuradeEntryPoint extends StatelessWidget {
           '/setting': (context) => const SettingPage(),
           '/information': (context) => const InformationPage(),
         },
-        navigatorObservers: [FirebaseAnalyticsObserver(analytics: FirebaseAnalytics.instance), SentryNavigatorObserver()],
+        navigatorObservers: [
+          if (const String.fromEnvironment("FIREBASE_ENABLED", defaultValue: "false") == "true") FirebaseAnalyticsObserver(analytics: FirebaseAnalytics.instance),
+          SentryNavigatorObserver(),
+        ],
       ),
     );
   }
