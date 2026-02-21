@@ -15,9 +15,7 @@ abstract class _$ScholarshipManagerCWProxy {
   /// ```dart
   /// ScholarshipManager(...).copyWith(id: 12, name: "My name")
   /// ````
-  ScholarshipManager call({
-    List<Scholarship> data,
-  });
+  ScholarshipManager call({List<Scholarship> data});
 }
 
 /// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfScholarshipManager.copyWith(...)`. Additionally contains functions for specific fields e.g. `instanceOfScholarshipManager.copyWith.fieldName(...)`
@@ -30,16 +28,13 @@ class _$ScholarshipManagerCWProxyImpl implements _$ScholarshipManagerCWProxy {
   ScholarshipManager data(List<Scholarship> data) => this(data: data);
 
   @override
-
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `ScholarshipManager(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
   /// ```dart
   /// ScholarshipManager(...).copyWith(id: 12, name: "My name")
   /// ````
-  ScholarshipManager call({
-    Object? data = const $CopyWithPlaceholder(),
-  }) {
+  ScholarshipManager call({Object? data = const $CopyWithPlaceholder()}) {
     return ScholarshipManager(
       data == const $CopyWithPlaceholder()
           ? _value.data
@@ -59,10 +54,7 @@ extension $ScholarshipManagerCopyWith on ScholarshipManager {
 // JsonSerializableGenerator
 // **************************************************************************
 
-ScholarshipManager _$ScholarshipManagerFromJson(Map<String, dynamic> json) => ScholarshipManager(
-      (json['data'] as List<dynamic>).map((e) => Scholarship.fromJson(e as Map<String, dynamic>)).toList(),
-    );
+ScholarshipManager _$ScholarshipManagerFromJson(Map<String, dynamic> json) =>
+    ScholarshipManager((json['data'] as List<dynamic>).map((e) => Scholarship.fromJson(e as Map<String, dynamic>)).toList());
 
-Map<String, dynamic> _$ScholarshipManagerToJson(ScholarshipManager instance) => <String, dynamic>{
-      'data': instance.data,
-    };
+Map<String, dynamic> _$ScholarshipManagerToJson(ScholarshipManager instance) => <String, dynamic>{'data': instance.data};

@@ -18,9 +18,9 @@ class SettingViewModelService implements SettingViewModelUseCase {
     required LocalStorageSettingPort localStorageSettingPort,
     required BackgroundProcessManagementPort backgroundProcessManagementPort,
     required ToastPort toastPort,
-  })  : _localStorageSettingPort = localStorageSettingPort,
-        _backgroundProcessManagementPort = backgroundProcessManagementPort,
-        _toastPort = toastPort;
+  }) : _localStorageSettingPort = localStorageSettingPort,
+       _backgroundProcessManagementPort = backgroundProcessManagementPort,
+       _toastPort = toastPort;
 
   @override
   Future<Setting?> getSetting() {

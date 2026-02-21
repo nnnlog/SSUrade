@@ -53,11 +53,9 @@ class BackgroundProcessManagementService implements BackgroundProcessManagementP
     await Workmanager().registerPeriodicTask(
       _backgroundServiceName,
       _backgroundServiceName,
-      constraints: Constraints(
-        networkType: NetworkType.connected,
-      ),
+      constraints: Constraints(networkType: NetworkType.connected),
       backoffPolicy: BackoffPolicy.linear,
-      existingWorkPolicy: ExistingWorkPolicy.replace,
+      existingWorkPolicy: ExistingPeriodicWorkPolicy.update,
       initialDelay: Duration(minutes: 15),
       frequency: Duration(minutes: interval),
     );

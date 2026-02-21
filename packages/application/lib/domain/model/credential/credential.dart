@@ -8,10 +8,7 @@ class Credential extends Equatable {
   final String id;
   final String password;
 
-  const Credential({
-    required this.id,
-    required this.password,
-  });
+  const Credential({required this.id, required this.password});
 
   @override
   List<Object?> get props => [id, password];

@@ -23,10 +23,10 @@ class CredentialManagerService {
     required LocalStorageClient localStorageClient,
     required LocalStorageCredentialService localStorageCredentialService,
     required CredentialRetrievalService credentialRetrievalService,
-  })  : _credentialCache = const CredentialCache(cookies: [], expire: null),
-        _localStorageClient = localStorageClient,
-        _localStorageCredentialService = localStorageCredentialService,
-        _credentialRetrievalService = credentialRetrievalService {
+  }) : _credentialCache = const CredentialCache(cookies: [], expire: null),
+       _localStorageClient = localStorageClient,
+       _localStorageCredentialService = localStorageCredentialService,
+       _credentialRetrievalService = credentialRetrievalService {
     _localStorageCredentialService.onCredentialChanged.listen((credential) {
       clearCookies();
     });
@@ -42,10 +42,7 @@ class CredentialManagerService {
 
   Future<void> setCookies(List<Map<String, dynamic>> cookies) async {
     _initialized = true;
-    _credentialCache = CredentialCache(
-      cookies: cookies,
-      expire: DateTime.now().add(Duration(hours: 1)),
-    );
+    _credentialCache = CredentialCache(cookies: cookies, expire: DateTime.now().add(Duration(hours: 1)));
 
     _writeFile();
   }

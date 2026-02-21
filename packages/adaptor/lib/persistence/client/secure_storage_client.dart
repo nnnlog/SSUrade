@@ -5,10 +5,7 @@ import 'package:injectable/injectable.dart';
 class SecureStorageClient {
   final FlutterSecureStorage _storage;
 
-  const SecureStorageClient()
-      : _storage = const FlutterSecureStorage(
-          aOptions: AndroidOptions(encryptedSharedPreferences: true),
-        );
+  const SecureStorageClient() : _storage = const FlutterSecureStorage(aOptions: AndroidOptions(encryptedSharedPreferences: true));
 
   Future<void> clear() async {
     await _storage.deleteAll();

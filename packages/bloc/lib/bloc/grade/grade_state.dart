@@ -36,5 +36,7 @@ final class GradeShowing extends GradeState {
   });
 
   @override
-  List<Object?> get props => super.props + [semesterSubjectsManager, showingSemester, isExporting, isDisplayRankingDuringExporting, isDisplaySubjectInformationDuringExporting];
+  List<Object?> get props =>
+      super.props +
+      [semesterSubjectsManager, showingSemester, isExporting, isDisplayRankingDuringExporting, isDisplaySubjectInformationDuringExporting];
 }

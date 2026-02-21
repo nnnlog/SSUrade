@@ -46,59 +46,75 @@ import 'package:ssurade_application/port/out/local_storage/local_storage_semeste
 import 'package:ssurade_application/port/out/local_storage/local_storage_setting_port.dart' as _i993;
 
 class SsuradeApplicationPackageModule extends _i526.MicroPackageModule {
-// initializes the registration of main-scope dependencies inside of GetIt
+  // initializes the registration of main-scope dependencies inside of GetIt
   @override
   _i687.FutureOr<void> init(_i526.GetItHelper gh) {
-    gh.singleton<_i273.LoginViewModelUseCase>(() => _i919.LoginViewModelService(
-          localStorageCredentialPort: gh<_i792.LocalStorageCredentialPort>(),
-          externalCredentialRetrievalPort: gh<_i1067.ExternalCredentialRetrievalPort>(),
-          toastPort: gh<_i750.ToastPort>(),
-        ));
-    gh.singleton<_i356.BackgroundProcessUseCase>(() => _i334.BackgroundProcessService(
-          gh<_i862.LocalStorageAbsentApplicationManagerPort>(),
-          gh<_i179.ExternalAbsentApplicationRetrievalPort>(),
-          gh<_i833.LocalStorageChapelManagerPort>(),
-          gh<_i751.ExternalChapelManagerRetrievalPort>(),
-          gh<_i741.LocalStorageSemesterSubjectsManagerPort>(),
-          gh<_i273.ExternalSubjectRetrievalPort>(),
-          gh<_i411.LocalStorageScholarshipManagerPort>(),
-          gh<_i619.ExternalScholarshipManagerRetrievalPort>(),
-          gh<_i993.LocalStorageSettingPort>(),
-          gh<_i77.NotificationPort>(),
-          gh<_i124.AppEnvironmentPort>(),
-        ));
-    gh.singleton<_i315.SubjectViewModelUseCase>(() => _i345.SubjectViewModelService(
-          localStorageSemesterSubjectsManagerPort: gh<_i741.LocalStorageSemesterSubjectsManagerPort>(),
-          externalSubjectRetrievalPort: gh<_i273.ExternalSubjectRetrievalPort>(),
-          localStorageSavePhotoPort: gh<_i537.LocalStorageSavePhotoPort>(),
-          toastPort: gh<_i750.ToastPort>(),
-        ));
-    gh.singleton<_i420.ScholarshipViewModelUseCase>(() => _i934.ScholarshipViewModelService(
-          localStorageScholarshipManagerPort: gh<_i411.LocalStorageScholarshipManagerPort>(),
-          externalScholarshipManagerRetrievalPort: gh<_i619.ExternalScholarshipManagerRetrievalPort>(),
-          toastPort: gh<_i750.ToastPort>(),
-        ));
-    gh.singleton<_i928.SettingViewModelUseCase>(() => _i176.SettingViewModelService(
-          localStorageSettingPort: gh<_i993.LocalStorageSettingPort>(),
-          backgroundProcessManagementPort: gh<_i975.BackgroundProcessManagementPort>(),
-          toastPort: gh<_i750.ToastPort>(),
-        ));
+    gh.singleton<_i273.LoginViewModelUseCase>(
+      () => _i919.LoginViewModelService(
+        localStorageCredentialPort: gh<_i792.LocalStorageCredentialPort>(),
+        externalCredentialRetrievalPort: gh<_i1067.ExternalCredentialRetrievalPort>(),
+        toastPort: gh<_i750.ToastPort>(),
+      ),
+    );
+    gh.singleton<_i356.BackgroundProcessUseCase>(
+      () => _i334.BackgroundProcessService(
+        gh<_i862.LocalStorageAbsentApplicationManagerPort>(),
+        gh<_i179.ExternalAbsentApplicationRetrievalPort>(),
+        gh<_i833.LocalStorageChapelManagerPort>(),
+        gh<_i751.ExternalChapelManagerRetrievalPort>(),
+        gh<_i741.LocalStorageSemesterSubjectsManagerPort>(),
+        gh<_i273.ExternalSubjectRetrievalPort>(),
+        gh<_i411.LocalStorageScholarshipManagerPort>(),
+        gh<_i619.ExternalScholarshipManagerRetrievalPort>(),
+        gh<_i993.LocalStorageSettingPort>(),
+        gh<_i77.NotificationPort>(),
+        gh<_i124.AppEnvironmentPort>(),
+      ),
+    );
+    gh.singleton<_i315.SubjectViewModelUseCase>(
+      () => _i345.SubjectViewModelService(
+        localStorageSemesterSubjectsManagerPort: gh<_i741.LocalStorageSemesterSubjectsManagerPort>(),
+        externalSubjectRetrievalPort: gh<_i273.ExternalSubjectRetrievalPort>(),
+        localStorageSavePhotoPort: gh<_i537.LocalStorageSavePhotoPort>(),
+        toastPort: gh<_i750.ToastPort>(),
+      ),
+    );
+    gh.singleton<_i420.ScholarshipViewModelUseCase>(
+      () => _i934.ScholarshipViewModelService(
+        localStorageScholarshipManagerPort: gh<_i411.LocalStorageScholarshipManagerPort>(),
+        externalScholarshipManagerRetrievalPort: gh<_i619.ExternalScholarshipManagerRetrievalPort>(),
+        toastPort: gh<_i750.ToastPort>(),
+      ),
+    );
+    gh.singleton<_i928.SettingViewModelUseCase>(
+      () => _i176.SettingViewModelService(
+        localStorageSettingPort: gh<_i993.LocalStorageSettingPort>(),
+        backgroundProcessManagementPort: gh<_i975.BackgroundProcessManagementPort>(),
+        toastPort: gh<_i750.ToastPort>(),
+      ),
+    );
     gh.singleton<_i389.AppVersionViewModelUseCase>(() => _i38.AppVersionViewModelService(appVersionFetchPort: gh<_i747.AppVersionFetchPort>()));
-    gh.singleton<_i672.MainViewModelUseCase>(() => _i478.MainViewModelService(
-          agreementRetrievalPort: gh<_i1019.AgreementRetrievalPort>(),
-          toastPort: gh<_i750.ToastPort>(),
-          exitAppPort: gh<_i369.ExitAppPort>(),
-        ));
-    gh.singleton<_i263.AbsentViewModelUseCase>(() => _i112.AbsentViewModelService(
-          localStorageAbsentApplicationManagerPort: gh<_i862.LocalStorageAbsentApplicationManagerPort>(),
-          externalAbsentApplicationRetrievalPort: gh<_i179.ExternalAbsentApplicationRetrievalPort>(),
-          toastPort: gh<_i750.ToastPort>(),
-        ));
-    gh.singleton<_i727.ChapelViewModelUseCase>(() => _i329.ChapelViewModelService(
-          localStorageSemesterSubjectsManagerPort: gh<_i741.LocalStorageSemesterSubjectsManagerPort>(),
-          localStorageChapelManagerPort: gh<_i833.LocalStorageChapelManagerPort>(),
-          externalSubjectRetrievalPort: gh<_i751.ExternalChapelManagerRetrievalPort>(),
-          toastPort: gh<_i750.ToastPort>(),
-        ));
+    gh.singleton<_i672.MainViewModelUseCase>(
+      () => _i478.MainViewModelService(
+        agreementRetrievalPort: gh<_i1019.AgreementRetrievalPort>(),
+        toastPort: gh<_i750.ToastPort>(),
+        exitAppPort: gh<_i369.ExitAppPort>(),
+      ),
+    );
+    gh.singleton<_i263.AbsentViewModelUseCase>(
+      () => _i112.AbsentViewModelService(
+        localStorageAbsentApplicationManagerPort: gh<_i862.LocalStorageAbsentApplicationManagerPort>(),
+        externalAbsentApplicationRetrievalPort: gh<_i179.ExternalAbsentApplicationRetrievalPort>(),
+        toastPort: gh<_i750.ToastPort>(),
+      ),
+    );
+    gh.singleton<_i727.ChapelViewModelUseCase>(
+      () => _i329.ChapelViewModelService(
+        localStorageSemesterSubjectsManagerPort: gh<_i741.LocalStorageSemesterSubjectsManagerPort>(),
+        localStorageChapelManagerPort: gh<_i833.LocalStorageChapelManagerPort>(),
+        externalSubjectRetrievalPort: gh<_i751.ExternalChapelManagerRetrievalPort>(),
+        toastPort: gh<_i750.ToastPort>(),
+      ),
+    );
   }
 }

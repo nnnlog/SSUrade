@@ -36,10 +36,7 @@ class _DataConverter extends JsonConverter<SplayTreeMap<YearSemester, Chapel>, L
 
   @override
   SplayTreeMap<YearSemester, Chapel> fromJson(List<dynamic> json) {
-    return SplayTreeMap.fromIterable(
-      json.map((e) => Chapel.fromJson(e)),
-      key: (chapel) => chapel.currentSemester,
-    );
+    return SplayTreeMap.fromIterable(json.map((e) => Chapel.fromJson(e)), key: (chapel) => chapel.currentSemester);
   }
 
   @override

@@ -22,7 +22,7 @@ cp dist/main.js ../assets/js/common.js
 ```
 
 ### 2. 플러터 디펜던시를 설치합니다.
-* 요구 사항: Flutter (Version : 3.27.0, 가능하다면 베타 채널을 따라감)
+* 요구 사항: Flutter (Version : 3.41.2)
 ```shell
 flutter pub get
 ```
@@ -103,7 +103,8 @@ SENTRY_AUTH_TOKEN=<token> SENTRY_ORG=<org> SENTRY_PROJECT=<project name> flutter
 ```shell
 flutterfire configure --project=<Firebase project id>
 ```
-* 생성된 `lib/firebase_options.dart` 파일의 내용을 기반으로 환경 변수 파일을 채워주세요.
+* 먼저, `flutterfire` CLI와 `firebase` CLI를 설치해야 합니다.
+* 그리고 생성된 `lib/firebase_options.dart` 파일의 내용을 기반으로 환경 변수 파일을 채워주세요.
 * 이 README의 환경 변수 파일 스키마를 참고하세요.
 
 #### Sentry 설정

@@ -23,7 +23,7 @@ cp dist/main.js ../assets/js/common.js
 ```
 
 ### 2. Install flutter dependency
-* Requirements: Flutter (Version : 3.27.0, following beta channel if possible)
+* Requirements: Flutter (Version : 3.41.2)
 ```shell
 flutter pub get
 ```
@@ -103,7 +103,8 @@ SENTRY_AUTH_TOKEN=<token> SENTRY_ORG=<org> SENTRY_PROJECT=<project name> flutter
 ```shell
 flutterfire configure --project=<Firebase project id>
 ```
-* You should fill the your environment variable files based on the content of generated `lib/firebase_options.dart` file.
+* Before running this command, you should install `flutterfire` CLI and `firebase` CLI.
+* And then, fill the your environment variable files based on the content of generated `lib/firebase_options.dart` file.
 * You could find the schema of environment variable file in this README.
 
 #### Sentry Initialization

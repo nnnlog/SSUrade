@@ -17,12 +17,7 @@ class Scholarship extends Equatable {
   @JsonKey()
   final String price; // 선발금액
 
-  const Scholarship({
-    required this.when,
-    required this.name,
-    required this.process,
-    required this.price,
-  });
+  const Scholarship({required this.when, required this.name, required this.process, required this.price});
 
   @override
   List<Object?> get props => [when, name, process, price];

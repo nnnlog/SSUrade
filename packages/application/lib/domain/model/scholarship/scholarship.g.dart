@@ -21,12 +21,7 @@ abstract class _$ScholarshipCWProxy {
   /// ```dart
   /// Scholarship(...).copyWith(id: 12, name: "My name")
   /// ````
-  Scholarship call({
-    YearSemester when,
-    String name,
-    String process,
-    String price,
-  });
+  Scholarship call({YearSemester when, String name, String process, String price});
 }
 
 /// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfScholarship.copyWith(...)`. Additionally contains functions for specific fields e.g. `instanceOfScholarship.copyWith.fieldName(...)`
@@ -48,7 +43,6 @@ class _$ScholarshipCWProxyImpl implements _$ScholarshipCWProxy {
   Scholarship price(String price) => this(price: price);
 
   @override
-
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `Scholarship(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -62,22 +56,26 @@ class _$ScholarshipCWProxyImpl implements _$ScholarshipCWProxy {
     Object? price = const $CopyWithPlaceholder(),
   }) {
     return Scholarship(
-      when: when == const $CopyWithPlaceholder()
-          ? _value.when
-          // ignore: cast_nullable_to_non_nullable
-          : when as YearSemester,
-      name: name == const $CopyWithPlaceholder()
-          ? _value.name
-          // ignore: cast_nullable_to_non_nullable
-          : name as String,
-      process: process == const $CopyWithPlaceholder()
-          ? _value.process
-          // ignore: cast_nullable_to_non_nullable
-          : process as String,
-      price: price == const $CopyWithPlaceholder()
-          ? _value.price
-          // ignore: cast_nullable_to_non_nullable
-          : price as String,
+      when:
+          when == const $CopyWithPlaceholder()
+              ? _value.when
+              // ignore: cast_nullable_to_non_nullable
+              : when as YearSemester,
+      name:
+          name == const $CopyWithPlaceholder()
+              ? _value.name
+              // ignore: cast_nullable_to_non_nullable
+              : name as String,
+      process:
+          process == const $CopyWithPlaceholder()
+              ? _value.process
+              // ignore: cast_nullable_to_non_nullable
+              : process as String,
+      price:
+          price == const $CopyWithPlaceholder()
+              ? _value.price
+              // ignore: cast_nullable_to_non_nullable
+              : price as String,
     );
   }
 }
@@ -93,15 +91,15 @@ extension $ScholarshipCopyWith on Scholarship {
 // **************************************************************************
 
 Scholarship _$ScholarshipFromJson(Map<String, dynamic> json) => Scholarship(
-      when: YearSemester.fromJson(json['when'] as Map<String, dynamic>),
-      name: json['name'] as String,
-      process: json['process'] as String,
-      price: json['price'] as String,
-    );
+  when: YearSemester.fromJson(json['when'] as Map<String, dynamic>),
+  name: json['name'] as String,
+  process: json['process'] as String,
+  price: json['price'] as String,
+);
 
 Map<String, dynamic> _$ScholarshipToJson(Scholarship instance) => <String, dynamic>{
-      'when': instance.when,
-      'name': instance.name,
-      'process': instance.process,
-      'price': instance.price,
-    };
+  'when': instance.when,
+  'name': instance.name,
+  'process': instance.process,
+  'price': instance.price,
+};

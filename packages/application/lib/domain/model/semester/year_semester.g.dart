@@ -17,10 +17,7 @@ abstract class _$YearSemesterCWProxy {
   /// ```dart
   /// YearSemester(...).copyWith(id: 12, name: "My name")
   /// ````
-  YearSemester call({
-    int year,
-    Semester semester,
-  });
+  YearSemester call({int year, Semester semester});
 }
 
 /// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfYearSemester.copyWith(...)`. Additionally contains functions for specific fields e.g. `instanceOfYearSemester.copyWith.fieldName(...)`
@@ -36,26 +33,24 @@ class _$YearSemesterCWProxyImpl implements _$YearSemesterCWProxy {
   YearSemester semester(Semester semester) => this(semester: semester);
 
   @override
-
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `YearSemester(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
   /// ```dart
   /// YearSemester(...).copyWith(id: 12, name: "My name")
   /// ````
-  YearSemester call({
-    Object? year = const $CopyWithPlaceholder(),
-    Object? semester = const $CopyWithPlaceholder(),
-  }) {
+  YearSemester call({Object? year = const $CopyWithPlaceholder(), Object? semester = const $CopyWithPlaceholder()}) {
     return YearSemester(
-      year: year == const $CopyWithPlaceholder()
-          ? _value.year
-          // ignore: cast_nullable_to_non_nullable
-          : year as int,
-      semester: semester == const $CopyWithPlaceholder()
-          ? _value.semester
-          // ignore: cast_nullable_to_non_nullable
-          : semester as Semester,
+      year:
+          year == const $CopyWithPlaceholder()
+              ? _value.year
+              // ignore: cast_nullable_to_non_nullable
+              : year as int,
+      semester:
+          semester == const $CopyWithPlaceholder()
+              ? _value.semester
+              // ignore: cast_nullable_to_non_nullable
+              : semester as Semester,
     );
   }
 }
@@ -70,19 +65,12 @@ extension $YearSemesterCopyWith on YearSemester {
 // JsonSerializableGenerator
 // **************************************************************************
 
-YearSemester _$YearSemesterFromJson(Map<String, dynamic> json) => YearSemester(
-      year: (json['year'] as num).toInt(),
-      semester: $enumDecode(_$SemesterEnumMap, json['semester']),
-    );
+YearSemester _$YearSemesterFromJson(Map<String, dynamic> json) =>
+    YearSemester(year: (json['year'] as num).toInt(), semester: $enumDecode(_$SemesterEnumMap, json['semester']));
 
 Map<String, dynamic> _$YearSemesterToJson(YearSemester instance) => <String, dynamic>{
-      'year': instance.year,
-      'semester': _$SemesterEnumMap[instance.semester]!,
-    };
-
-const _$SemesterEnumMap = {
-  Semester.first: 'first',
-  Semester.summer: 'summer',
-  Semester.second: 'second',
-  Semester.winter: 'winter',
+  'year': instance.year,
+  'semester': _$SemesterEnumMap[instance.semester]!,
 };
+
+const _$SemesterEnumMap = {Semester.first: 'first', Semester.summer: 'summer', Semester.second: 'second', Semester.winter: 'winter'};

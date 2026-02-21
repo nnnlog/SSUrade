@@ -24,18 +24,21 @@ class ExternalAbsentApplicationRetrievalService implements ExternalAbsentApplica
             return null;
           }
 
-          final result = res
-              .map((obj) => AbsentApplication(
-                    absentType: obj['absent_type'],
-                    startDate: obj['start_date'],
-                    endDate: obj['end_date'],
-                    absentCause: obj['absent_cause'],
-                    applicationDate: obj['application_date'],
-                    proceedDate: obj['proceed_date'],
-                    rejectCause: obj['reject_cause'],
-                    status: obj['status'],
-                  ))
-              .toList();
+          final result =
+              res
+                  .map(
+                    (obj) => AbsentApplication(
+                      absentType: obj['absent_type'],
+                      startDate: obj['start_date'],
+                      endDate: obj['end_date'],
+                      absentCause: obj['absent_cause'],
+                      applicationDate: obj['application_date'],
+                      proceedDate: obj['proceed_date'],
+                      rejectCause: obj['reject_cause'],
+                      status: obj['status'],
+                    ),
+                  )
+                  .toList();
 
           return AbsentApplicationManager(result);
         });

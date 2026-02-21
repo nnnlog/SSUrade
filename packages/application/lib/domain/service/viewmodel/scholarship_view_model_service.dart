@@ -18,9 +18,9 @@ class ScholarshipViewModelService implements ScholarshipViewModelUseCase {
     required LocalStorageScholarshipManagerPort localStorageScholarshipManagerPort,
     required ExternalScholarshipManagerRetrievalPort externalScholarshipManagerRetrievalPort,
     required ToastPort toastPort,
-  })  : _localStorageScholarshipManagerPort = localStorageScholarshipManagerPort,
-        _externalScholarshipManagerRetrievalPort = externalScholarshipManagerRetrievalPort,
-        _toastPort = toastPort;
+  }) : _localStorageScholarshipManagerPort = localStorageScholarshipManagerPort,
+       _externalScholarshipManagerRetrievalPort = externalScholarshipManagerRetrievalPort,
+       _toastPort = toastPort;
 
   @override
   Future<ScholarshipManager?> getScholarshipManager() {

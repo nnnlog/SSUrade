@@ -5,10 +5,7 @@ sealed class LoginState extends Equatable {
   final String id;
   final String password;
 
-  LoginState({
-    required this.id,
-    required this.password,
-  });
+  LoginState({required this.id, required this.password});
 
   @override
   List<Object> get props => [id, password];

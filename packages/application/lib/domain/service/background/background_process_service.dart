@@ -88,7 +88,10 @@ class BackgroundProcessService implements BackgroundProcessUseCase {
       await _notificationPort.sendNotification(title: "유고 결석 정보 변경", body: updates.join("\n"));
       await _localStorageAbsentApplicationManagerPort.saveAbsentApplicationManager(newAbsentData);
     } else if (_appEnvironmentPort.getEnvironment() == AppEnvironment.debug) {
-      await _notificationPort.sendNotification(title: "not updated (${DateTime.now().toString()})", body: newAbsentData.data.map((e) => "${e.startDate} ~ ${e.endDate} : ${e.status}").join("\n"));
+      await _notificationPort.sendNotification(
+        title: "not updated (${DateTime.now().toString()})",
+        body: newAbsentData.data.map((e) => "${e.startDate} ~ ${e.endDate} : ${e.status}").join("\n"),
+      );
     }
   }
 
@@ -145,7 +148,9 @@ class BackgroundProcessService implements BackgroundProcessUseCase {
       await _localStorageChapelManagerPort.saveChapelManager(nextChapelManager);
     } else if (_appEnvironmentPort.getEnvironment() == AppEnvironment.debug) {
       await _notificationPort.sendNotification(
-          title: "not updated (${DateTime.now().toString()})", body: newChapelData.attendances.values.map((e) => "${e.lectureDate} : ${e.status.displayText}").join("\n"));
+        title: "not updated (${DateTime.now().toString()})",
+        body: newChapelData.attendances.values.map((e) => "${e.lectureDate} : ${e.status.displayText}").join("\n"),
+      );
     }
 
     _mutexForChapel.release();
@@ -249,7 +254,10 @@ class BackgroundProcessService implements BackgroundProcessUseCase {
 
       await _localStorageChapelManagerPort.saveChapelManager(nextChapelManager);
     } else if (_appEnvironmentPort.getEnvironment() == AppEnvironment.debug) {
-      await _notificationPort.sendNotification(title: "not updated (${DateTime.now().toString()})", body: chapelData.map((e) => "${e.currentSemester.displayText}").join("\n"));
+      await _notificationPort.sendNotification(
+        title: "not updated (${DateTime.now().toString()})",
+        body: chapelData.map((e) => "${e.currentSemester.displayText}").join("\n"),
+      );
     }
 
     _mutexForChapel.release();
@@ -273,9 +281,10 @@ class BackgroundProcessService implements BackgroundProcessUseCase {
     final List<String> updates = [];
 
     for (final data in scholarshipData.data) {
-      bool updated = originalData.where((i) {
-        return i.when == data.when && i.name == data.name && i.process == data.process && i.price == data.price;
-      }).isEmpty;
+      bool updated =
+          originalData.where((i) {
+            return i.when == data.when && i.name == data.name && i.process == data.process && i.price == data.price;
+          }).isEmpty;
 
       if (updated) {
         updates.add("${data.name} > ${data.process} (${data.price}원)");
@@ -286,7 +295,10 @@ class BackgroundProcessService implements BackgroundProcessUseCase {
       await _notificationPort.sendNotification(title: "장학 정보 변경", body: updates.join("\n"));
       await _localStorageScholarshipManagerPort.saveScholarshipManager(scholarshipData);
     } else if (_appEnvironmentPort.getEnvironment() == AppEnvironment.debug) {
-      await _notificationPort.sendNotification(title: "not updated (${DateTime.now().toString()})", body: scholarshipData.data.map((e) => "${e.name} : ${e.when.displayText}").join("\n"));
+      await _notificationPort.sendNotification(
+        title: "not updated (${DateTime.now().toString()})",
+        body: scholarshipData.data.map((e) => "${e.name} : ${e.when.displayText}").join("\n"),
+      );
     }
   }
 }

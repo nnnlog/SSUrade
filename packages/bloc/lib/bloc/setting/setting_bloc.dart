@@ -23,13 +23,13 @@ class SettingBloc extends Bloc<SettingEvent, SettingState> {
     required SubjectViewModelUseCase subjectViewModelUseCase,
     required LoginViewModelUseCase loginViewModelUseCase,
     required ScholarshipViewModelUseCase scholarshipViewModelUseCase,
-  })  : _settingViewModelUseCase = settingViewModelUseCase,
-        _absentViewModelUseCase = absentViewModelUseCase,
-        _chapelViewModelUseCase = chapelViewModelUseCase,
-        _subjectViewModelUseCase = subjectViewModelUseCase,
-        _loginViewModelUseCase = loginViewModelUseCase,
-        _scholarshipViewModelUseCase = scholarshipViewModelUseCase,
-        super(SettingInitial()) {
+  }) : _settingViewModelUseCase = settingViewModelUseCase,
+       _absentViewModelUseCase = absentViewModelUseCase,
+       _chapelViewModelUseCase = chapelViewModelUseCase,
+       _subjectViewModelUseCase = subjectViewModelUseCase,
+       _loginViewModelUseCase = loginViewModelUseCase,
+       _scholarshipViewModelUseCase = scholarshipViewModelUseCase,
+       super(SettingInitial()) {
     on<SettingReady>((event, emit) async {
       _settingViewModelUseCase.getSetting().then((setting) async {
         if (setting == null) {
@@ -42,20 +42,26 @@ class SettingBloc extends Bloc<SettingEvent, SettingState> {
 
       return (() async {
         await Future.wait([
-          emit.forEach(settingViewModelUseCase.getSettingStream(), onData: (setting) {
-            var state = this.state;
-            if (state is SettingShowing) {
-              return SettingShowing(setting, state.isLogined);
-            }
-            return SettingInitial();
-          }),
-          emit.forEach(_loginViewModelUseCase.getCredentialStream(), onData: (credential) {
-            var state = this.state;
-            if (state is SettingShowing) {
-              return SettingShowing(state.setting, credential != Credential.empty());
-            }
-            return SettingInitial();
-          })
+          emit.forEach(
+            settingViewModelUseCase.getSettingStream(),
+            onData: (setting) {
+              var state = this.state;
+              if (state is SettingShowing) {
+                return SettingShowing(setting, state.isLogined);
+              }
+              return SettingInitial();
+            },
+          ),
+          emit.forEach(
+            _loginViewModelUseCase.getCredentialStream(),
+            onData: (credential) {
+              var state = this.state;
+              if (state is SettingShowing) {
+                return SettingShowing(state.setting, credential != Credential.empty());
+              }
+              return SettingInitial();
+            },
+          ),
         ]);
       })();
     });

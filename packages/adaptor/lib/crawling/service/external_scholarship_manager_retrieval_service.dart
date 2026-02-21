@@ -24,17 +24,11 @@ class ExternalScholarshipManagerRetrievalService implements ExternalScholarshipM
             return null;
           }
 
-          return ScholarshipManager(value
-              .map((obj) => Scholarship(
-                    when: YearSemester(
-                      year: int.parse(obj["year"]),
-                      semester: Semester.parse(obj["semester"]),
-                    ),
-                    name: obj["name"],
-                    process: obj["process"],
-                    price: obj["price"],
-                  ))
-              .toList());
+          return ScholarshipManager(
+            value
+                .map((obj) => Scholarship(when: YearSemester(year: int.parse(obj["year"]), semester: Semester.parse(obj["semester"])), name: obj["name"], process: obj["process"], price: obj["price"]))
+                .toList(),
+          );
         });
       }).whenComplete(() => client.dispose());
     });

@@ -10,13 +10,10 @@ class MainViewModelService implements MainViewModelUseCase {
   final ToastPort _toastPort;
   final ExitAppPort _exitAppPort;
 
-  MainViewModelService({
-    required AgreementRetrievalPort agreementRetrievalPort,
-    required ToastPort toastPort,
-    required ExitAppPort exitAppPort,
-  })  : _agreementRetrievalPort = agreementRetrievalPort,
-        _toastPort = toastPort,
-        _exitAppPort = exitAppPort;
+  MainViewModelService({required AgreementRetrievalPort agreementRetrievalPort, required ToastPort toastPort, required ExitAppPort exitAppPort})
+    : _agreementRetrievalPort = agreementRetrievalPort,
+      _toastPort = toastPort,
+      _exitAppPort = exitAppPort;
 
   @override
   Future<String> getAgreement() {

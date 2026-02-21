@@ -21,9 +21,7 @@ final class ScholarshipInitialLoading extends ScholarshipState {
 final class ScholarshipShowing extends ScholarshipState {
   final ScholarshipManager scholarshipManager;
 
-  ScholarshipShowing({
-    required this.scholarshipManager,
-  });
+  ScholarshipShowing({required this.scholarshipManager});
 
   @override
   List<Object?> get props => super.props + [scholarshipManager];

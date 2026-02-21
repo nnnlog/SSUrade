@@ -6,11 +6,7 @@ class ParallelWorker<T, E> {
   final Completer<List<T>> _completer = Completer<List<T>>();
   final List<T> _result = [];
 
-  ParallelWorker({
-    required List<Future<T> Function(E)> jobs,
-    required List<E> workers,
-  })  : _jobs = List.from(jobs),
-        _workers = Set.from(workers) {
+  ParallelWorker({required List<Future<T> Function(E)> jobs, required List<E> workers}) : _jobs = List.from(jobs), _workers = Set.from(workers) {
     _start();
   }
 
@@ -27,12 +23,14 @@ class ParallelWorker<T, E> {
 
     final job = _jobs.removeLast();
 
-    job(worker).then((value) {
-      _result.add(value);
-      _run(worker);
-    }).catchError((error) {
-      _completer.completeError(error);
-    });
+    job(worker)
+        .then((value) {
+          _result.add(value);
+          _run(worker);
+        })
+        .catchError((error) {
+          _completer.completeError(error);
+        });
   }
 
   void _start() {

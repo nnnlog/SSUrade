@@ -23,10 +23,7 @@ final class ChapelShowing extends ChapelState {
   final ChapelManager chapelManager;
   final YearSemester showingYearSemester;
 
-  ChapelShowing({
-    required this.chapelManager,
-    required this.showingYearSemester,
-  });
+  ChapelShowing({required this.chapelManager, required this.showingYearSemester});
 
   Chapel get showingChapel => chapelManager.data[showingYearSemester]!;
 

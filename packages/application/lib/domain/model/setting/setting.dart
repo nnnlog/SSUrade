@@ -30,12 +30,12 @@ class Setting extends Equatable {
   List<Object?> get props => [refreshInformationAutomatically, enableBackgroundFeature, showGradeInBackground, backgroundInterval, agree];
 
   factory Setting.defaults() => Setting(
-        refreshInformationAutomatically: false,
-        enableBackgroundFeature: true,
-        showGradeInBackground: true,
-        backgroundInterval: 15,
-        agree: false,
-      );
+    refreshInformationAutomatically: false,
+    enableBackgroundFeature: true,
+    showGradeInBackground: true,
+    backgroundInterval: 15,
+    agree: false,
+  );
 
   // JSON serialization
   factory Setting.fromJson(Map<String, dynamic> json) => _$SettingFromJson(json);

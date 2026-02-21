@@ -10,10 +10,7 @@ class CredentialCache extends Equatable {
   final List<Map<String, dynamic>> cookies;
   final DateTime? expire;
 
-  const CredentialCache({
-    required this.cookies,
-    required this.expire,
-  });
+  const CredentialCache({required this.cookies, required this.expire});
 
   factory CredentialCache.fromJson(Map<String, dynamic> json) => _$CredentialCacheFromJson(json);
 

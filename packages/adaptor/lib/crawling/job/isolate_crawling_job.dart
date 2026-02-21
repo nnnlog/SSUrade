@@ -29,14 +29,7 @@ class IsolateCrawlingJob<T> extends Job<T> {
       _completer.complete(message);
     });
 
-    FlutterIsolate.spawn(
-      _isolateMain,
-      {
-        "port": receivePort.sendPort,
-        "callback": PluginUtilities.getCallbackHandle(job)!.toRawHandle(),
-        "arguments": arguments,
-      },
-    ).then((isolate) {
+    FlutterIsolate.spawn(_isolateMain, {"port": receivePort.sendPort, "callback": PluginUtilities.getCallbackHandle(job)!.toRawHandle(), "arguments": arguments}).then((isolate) {
       _isolate = isolate;
     });
 

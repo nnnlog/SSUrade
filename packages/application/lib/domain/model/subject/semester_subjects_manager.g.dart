@@ -17,10 +17,7 @@ abstract class _$SemesterSubjectsManagerCWProxy {
   /// ```dart
   /// SemesterSubjectsManager(...).copyWith(id: 12, name: "My name")
   /// ````
-  SemesterSubjectsManager call({
-    SplayTreeMap<YearSemester, SemesterSubjects> data,
-    int state,
-  });
+  SemesterSubjectsManager call({SplayTreeMap<YearSemester, SemesterSubjects> data, int state});
 }
 
 /// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfSemesterSubjectsManager.copyWith(...)`. Additionally contains functions for specific fields e.g. `instanceOfSemesterSubjectsManager.copyWith.fieldName(...)`
@@ -36,26 +33,24 @@ class _$SemesterSubjectsManagerCWProxyImpl implements _$SemesterSubjectsManagerC
   SemesterSubjectsManager state(int state) => this(state: state);
 
   @override
-
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `SemesterSubjectsManager(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
   /// ```dart
   /// SemesterSubjectsManager(...).copyWith(id: 12, name: "My name")
   /// ````
-  SemesterSubjectsManager call({
-    Object? data = const $CopyWithPlaceholder(),
-    Object? state = const $CopyWithPlaceholder(),
-  }) {
+  SemesterSubjectsManager call({Object? data = const $CopyWithPlaceholder(), Object? state = const $CopyWithPlaceholder()}) {
     return SemesterSubjectsManager(
-      data: data == const $CopyWithPlaceholder()
-          ? _value.data
-          // ignore: cast_nullable_to_non_nullable
-          : data as SplayTreeMap<YearSemester, SemesterSubjects>,
-      state: state == const $CopyWithPlaceholder()
-          ? _value.state
-          // ignore: cast_nullable_to_non_nullable
-          : state as int,
+      data:
+          data == const $CopyWithPlaceholder()
+              ? _value.data
+              // ignore: cast_nullable_to_non_nullable
+              : data as SplayTreeMap<YearSemester, SemesterSubjects>,
+      state:
+          state == const $CopyWithPlaceholder()
+              ? _value.state
+              // ignore: cast_nullable_to_non_nullable
+              : state as int,
     );
   }
 }
@@ -70,12 +65,10 @@ extension $SemesterSubjectsManagerCopyWith on SemesterSubjectsManager {
 // JsonSerializableGenerator
 // **************************************************************************
 
-SemesterSubjectsManager _$SemesterSubjectsManagerFromJson(Map<String, dynamic> json) => SemesterSubjectsManager(
-      data: const _DataConverter().fromJson(json['data'] as List),
-      state: (json['state'] as num).toInt(),
-    );
+SemesterSubjectsManager _$SemesterSubjectsManagerFromJson(Map<String, dynamic> json) =>
+    SemesterSubjectsManager(data: const _DataConverter().fromJson(json['data'] as List), state: (json['state'] as num).toInt());
 
 Map<String, dynamic> _$SemesterSubjectsManagerToJson(SemesterSubjectsManager instance) => <String, dynamic>{
-      'state': instance.state,
-      'data': const _DataConverter().toJson(instance.data),
-    };
+  'state': instance.state,
+  'data': const _DataConverter().toJson(instance.data),
+};

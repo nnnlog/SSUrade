@@ -17,10 +17,7 @@ abstract class _$RankingCWProxy {
   /// ```dart
   /// Ranking(...).copyWith(id: 12, name: "My name")
   /// ````
-  Ranking call({
-    int my,
-    int total,
-  });
+  Ranking call({int my, int total});
 }
 
 /// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfRanking.copyWith(...)`. Additionally contains functions for specific fields e.g. `instanceOfRanking.copyWith.fieldName(...)`
@@ -36,26 +33,24 @@ class _$RankingCWProxyImpl implements _$RankingCWProxy {
   Ranking total(int total) => this(total: total);
 
   @override
-
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `Ranking(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
   /// ```dart
   /// Ranking(...).copyWith(id: 12, name: "My name")
   /// ````
-  Ranking call({
-    Object? my = const $CopyWithPlaceholder(),
-    Object? total = const $CopyWithPlaceholder(),
-  }) {
+  Ranking call({Object? my = const $CopyWithPlaceholder(), Object? total = const $CopyWithPlaceholder()}) {
     return Ranking(
-      my: my == const $CopyWithPlaceholder()
-          ? _value.my
-          // ignore: cast_nullable_to_non_nullable
-          : my as int,
-      total: total == const $CopyWithPlaceholder()
-          ? _value.total
-          // ignore: cast_nullable_to_non_nullable
-          : total as int,
+      my:
+          my == const $CopyWithPlaceholder()
+              ? _value.my
+              // ignore: cast_nullable_to_non_nullable
+              : my as int,
+      total:
+          total == const $CopyWithPlaceholder()
+              ? _value.total
+              // ignore: cast_nullable_to_non_nullable
+              : total as int,
     );
   }
 }
@@ -70,12 +65,6 @@ extension $RankingCopyWith on Ranking {
 // JsonSerializableGenerator
 // **************************************************************************
 
-Ranking _$RankingFromJson(Map<String, dynamic> json) => Ranking(
-      my: (json['my'] as num).toInt(),
-      total: (json['total'] as num).toInt(),
-    );
+Ranking _$RankingFromJson(Map<String, dynamic> json) => Ranking(my: (json['my'] as num).toInt(), total: (json['total'] as num).toInt());
 
-Map<String, dynamic> _$RankingToJson(Ranking instance) => <String, dynamic>{
-      'my': instance.my,
-      'total': instance.total,
-    };
+Map<String, dynamic> _$RankingToJson(Ranking instance) => <String, dynamic>{'my': instance.my, 'total': instance.total};

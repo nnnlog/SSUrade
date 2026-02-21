@@ -20,45 +20,37 @@ class WebViewClientEventManager {
   Future<JsPromptResponse?> Function(InAppWebViewController controller, JsPromptRequest jsPromptRequest)? onJsPrompt;
   Future<WebResourceResponse?> Function(InAppWebViewController controller, WebResourceRequest request)? shouldInterceptRequest;
 
-  WebViewClientEventManager({
-    this.onLoadStop,
-    this.onJsAlert,
-    this.onJsConfirm,
-    this.onJsPrompt,
-    this.shouldInterceptRequest,
-  });
+  WebViewClientEventManager({this.onLoadStop, this.onJsAlert, this.onJsConfirm, this.onJsPrompt, this.shouldInterceptRequest});
 
   factory WebViewClientEventManager.defaults() => WebViewClientEventManager(
-        onJsAlert: (controller, jsAlertRequest) async {
-          return JsAlertResponse(
-            handledByClient: true,
-          );
-        },
-        onJsConfirm: (controller, jsConfirmRequest) async {
-          return JsConfirmResponse();
-        },
-        onJsPrompt: (controller, jsPromptRequest) async {
-          return JsPromptResponse();
-        },
-        shouldInterceptRequest: (controller, request) async {
-          if ((request.url.path.endsWith(".css") && !request.url.toString().contains("ecc.ssu.ac.kr")) || request.url.toString().startsWith("https://fonts.googleapis.com/css")) {
-            return WebResourceResponse(contentType: "text/css", data: Uint8List.fromList([]));
-          }
-          if (request.url.path.endsWith(".jpg")) {
-            return WebResourceResponse(contentType: "image/jpeg", data: Uint8List.fromList([]));
-          }
-          if (request.url.path.endsWith(".png")) {
-            return WebResourceResponse(contentType: "image/png", data: Uint8List.fromList([]));
-          }
-          if (request.url.path.endsWith(".svg")) {
-            return WebResourceResponse(contentType: "image/svg+xml", data: Uint8List.fromList([]));
-          }
-          if (request.url.path.endsWith(".woff2")) {
-            return WebResourceResponse(contentType: "font/woff2", data: Uint8List.fromList([]));
-          }
-          return null;
-        },
-      );
+    onJsAlert: (controller, jsAlertRequest) async {
+      return JsAlertResponse(handledByClient: true);
+    },
+    onJsConfirm: (controller, jsConfirmRequest) async {
+      return JsConfirmResponse();
+    },
+    onJsPrompt: (controller, jsPromptRequest) async {
+      return JsPromptResponse();
+    },
+    shouldInterceptRequest: (controller, request) async {
+      if ((request.url.path.endsWith(".css") && !request.url.toString().contains("ecc.ssu.ac.kr")) || request.url.toString().startsWith("https://fonts.googleapis.com/css")) {
+        return WebResourceResponse(contentType: "text/css", data: Uint8List.fromList([]));
+      }
+      if (request.url.path.endsWith(".jpg")) {
+        return WebResourceResponse(contentType: "image/jpeg", data: Uint8List.fromList([]));
+      }
+      if (request.url.path.endsWith(".png")) {
+        return WebResourceResponse(contentType: "image/png", data: Uint8List.fromList([]));
+      }
+      if (request.url.path.endsWith(".svg")) {
+        return WebResourceResponse(contentType: "image/svg+xml", data: Uint8List.fromList([]));
+      }
+      if (request.url.path.endsWith(".woff2")) {
+        return WebResourceResponse(contentType: "font/woff2", data: Uint8List.fromList([]));
+      }
+      return null;
+    },
+  );
 }
 
 class WebViewClient {
@@ -79,11 +71,11 @@ class WebViewClient {
     required LightspeedRetrievalService lightspeedRetrievalService,
     required AssetLoaderService assetLoaderService,
     required WebViewClientEventManager eventManager,
-  })  : _webView = webView,
-        _credentialManagerService = credentialCacheService,
-        _lightspeedRetrievalService = lightspeedRetrievalService,
-        _assetLoaderService = assetLoaderService,
-        _eventManager = eventManager {
+  }) : _webView = webView,
+       _credentialManagerService = credentialCacheService,
+       _lightspeedRetrievalService = lightspeedRetrievalService,
+       _assetLoaderService = assetLoaderService,
+       _eventManager = eventManager {
     eventManager.onLoadStop = (controller, _) async {
       await controller.evaluateJavascript(source: await _assetLoaderService.loadAsset(_injectorAssetPath));
     };
@@ -134,19 +126,23 @@ class WebViewClient {
       }
     }
 
-    final response = await http.get(Uri.parse(url), headers: {
-      "Cookie": groupBy(await cookies, (cookie) {
-        return (cookie.domain, cookie.name);
-      }).values.map((c) => c[0]).map((c) => "${c.name}=${c.value}").join("; "),
-      "User-Agent": HttpConfiguration.userAgent,
-    });
+    final response = await http.get(
+      Uri.parse(url),
+      headers: {
+        "Cookie": groupBy(await cookies, (cookie) {
+          return (cookie.domain, cookie.name);
+        }).values.map((c) => c[0]).map((c) => "${c.name}=${c.value}").join("; "),
+        "User-Agent": HttpConfiguration.userAgent,
+      },
+    );
 
     await response.headersSplitValues["set-cookie"]?.let((it) async {
-      final cookies = it.map((e) {
-        return dart.Cookie.fromSetCookieValue(e).let((cookie) {
-          return Cookie(name: cookie.name, value: cookie.value, domain: cookie.domain ?? Uri.parse(url).host, path: cookie.path);
-        });
-      }).toList();
+      final cookies =
+          it.map((e) {
+            return dart.Cookie.fromSetCookieValue(e).let((cookie) {
+              return Cookie(name: cookie.name, value: cookie.value, domain: cookie.domain ?? Uri.parse(url).host, path: cookie.path);
+            });
+          }).toList();
 
       for (final cookie in cookies) {
         // await CookieManager.instance().deleteCookie(url: WebUri("https://${cookie.domain}"), name: cookie.name);

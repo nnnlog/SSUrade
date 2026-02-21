@@ -50,12 +50,12 @@ class ChapelAttendance extends Equatable implements Comparable<ChapelAttendance>
     return lectureDate.compareTo(other.lectureDate);
   }
 
-// static ChapelAttendanceInformation merge(
-//     ChapelAttendanceInformation after, ChapelAttendanceInformation before) {
-//   if (after.overwrittenAttendance == ChapelAttendance.unknown) {
-//     after.overwrittenAttendance = before.overwrittenAttendance;
-//   }
-//
-//   return after;
-// }
+  // static ChapelAttendanceInformation merge(
+  //     ChapelAttendanceInformation after, ChapelAttendanceInformation before) {
+  //   if (after.overwrittenAttendance == ChapelAttendance.unknown) {
+  //     after.overwrittenAttendance = before.overwrittenAttendance;
+  //   }
+  //
+  //   return after;
+  // }
 }

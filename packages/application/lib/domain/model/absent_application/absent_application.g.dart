@@ -72,7 +72,6 @@ class _$AbsentApplicationCWProxyImpl implements _$AbsentApplicationCWProxy {
   AbsentApplication status(String status) => this(status: status);
 
   @override
-
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `AbsentApplication(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -90,38 +89,46 @@ class _$AbsentApplicationCWProxyImpl implements _$AbsentApplicationCWProxy {
     Object? status = const $CopyWithPlaceholder(),
   }) {
     return AbsentApplication(
-      absentType: absentType == const $CopyWithPlaceholder()
-          ? _value.absentType
-          // ignore: cast_nullable_to_non_nullable
-          : absentType as String,
-      startDate: startDate == const $CopyWithPlaceholder()
-          ? _value.startDate
-          // ignore: cast_nullable_to_non_nullable
-          : startDate as String,
-      endDate: endDate == const $CopyWithPlaceholder()
-          ? _value.endDate
-          // ignore: cast_nullable_to_non_nullable
-          : endDate as String,
-      absentCause: absentCause == const $CopyWithPlaceholder()
-          ? _value.absentCause
-          // ignore: cast_nullable_to_non_nullable
-          : absentCause as String,
-      applicationDate: applicationDate == const $CopyWithPlaceholder()
-          ? _value.applicationDate
-          // ignore: cast_nullable_to_non_nullable
-          : applicationDate as String,
-      proceedDate: proceedDate == const $CopyWithPlaceholder()
-          ? _value.proceedDate
-          // ignore: cast_nullable_to_non_nullable
-          : proceedDate as String,
-      rejectCause: rejectCause == const $CopyWithPlaceholder()
-          ? _value.rejectCause
-          // ignore: cast_nullable_to_non_nullable
-          : rejectCause as String,
-      status: status == const $CopyWithPlaceholder()
-          ? _value.status
-          // ignore: cast_nullable_to_non_nullable
-          : status as String,
+      absentType:
+          absentType == const $CopyWithPlaceholder()
+              ? _value.absentType
+              // ignore: cast_nullable_to_non_nullable
+              : absentType as String,
+      startDate:
+          startDate == const $CopyWithPlaceholder()
+              ? _value.startDate
+              // ignore: cast_nullable_to_non_nullable
+              : startDate as String,
+      endDate:
+          endDate == const $CopyWithPlaceholder()
+              ? _value.endDate
+              // ignore: cast_nullable_to_non_nullable
+              : endDate as String,
+      absentCause:
+          absentCause == const $CopyWithPlaceholder()
+              ? _value.absentCause
+              // ignore: cast_nullable_to_non_nullable
+              : absentCause as String,
+      applicationDate:
+          applicationDate == const $CopyWithPlaceholder()
+              ? _value.applicationDate
+              // ignore: cast_nullable_to_non_nullable
+              : applicationDate as String,
+      proceedDate:
+          proceedDate == const $CopyWithPlaceholder()
+              ? _value.proceedDate
+              // ignore: cast_nullable_to_non_nullable
+              : proceedDate as String,
+      rejectCause:
+          rejectCause == const $CopyWithPlaceholder()
+              ? _value.rejectCause
+              // ignore: cast_nullable_to_non_nullable
+              : rejectCause as String,
+      status:
+          status == const $CopyWithPlaceholder()
+              ? _value.status
+              // ignore: cast_nullable_to_non_nullable
+              : status as String,
     );
   }
 }
@@ -137,23 +144,23 @@ extension $AbsentApplicationCopyWith on AbsentApplication {
 // **************************************************************************
 
 AbsentApplication _$AbsentApplicationFromJson(Map<String, dynamic> json) => AbsentApplication(
-      absentType: json['absentType'] as String,
-      startDate: json['startDate'] as String,
-      endDate: json['endDate'] as String,
-      absentCause: json['absentCause'] as String,
-      applicationDate: json['applicationDate'] as String,
-      proceedDate: json['proceedDate'] as String,
-      rejectCause: json['rejectCause'] as String,
-      status: json['status'] as String,
-    );
+  absentType: json['absentType'] as String,
+  startDate: json['startDate'] as String,
+  endDate: json['endDate'] as String,
+  absentCause: json['absentCause'] as String,
+  applicationDate: json['applicationDate'] as String,
+  proceedDate: json['proceedDate'] as String,
+  rejectCause: json['rejectCause'] as String,
+  status: json['status'] as String,
+);
 
 Map<String, dynamic> _$AbsentApplicationToJson(AbsentApplication instance) => <String, dynamic>{
-      'absentType': instance.absentType,
-      'startDate': instance.startDate,
-      'endDate': instance.endDate,
-      'absentCause': instance.absentCause,
-      'applicationDate': instance.applicationDate,
-      'proceedDate': instance.proceedDate,
-      'rejectCause': instance.rejectCause,
-      'status': instance.status,
-    };
+  'absentType': instance.absentType,
+  'startDate': instance.startDate,
+  'endDate': instance.endDate,
+  'absentCause': instance.absentCause,
+  'applicationDate': instance.applicationDate,
+  'proceedDate': instance.proceedDate,
+  'rejectCause': instance.rejectCause,
+  'status': instance.status,
+};

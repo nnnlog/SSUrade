@@ -5,12 +5,8 @@ import 'package:ssurade_application/ssurade_application.dart';
 
 final getIt = GetIt.instance;
 
-@InjectableInit(externalPackageModulesAfter: [
-  ExternalModule(SsuradeApplicationPackageModule),
-])
+@InjectableInit(externalPackageModulesAfter: [ExternalModule(SsuradeApplicationPackageModule)])
 Future configureDependencies() => getIt.init();
 
-@InjectableInit.microPackage(externalPackageModulesAfter: [
-  ExternalModule(SsuradeApplicationPackageModule),
-])
+@InjectableInit.microPackage(externalPackageModulesAfter: [ExternalModule(SsuradeApplicationPackageModule)])
 initMicroPackage() {}

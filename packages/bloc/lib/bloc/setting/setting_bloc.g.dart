@@ -17,10 +17,7 @@ abstract class _$SettingShowingCWProxy {
   /// ```dart
   /// SettingShowing(...).copyWith(id: 12, name: "My name")
   /// ````
-  SettingShowing call({
-    Setting setting,
-    bool isLogined,
-  });
+  SettingShowing call({Setting setting, bool isLogined});
 }
 
 /// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfSettingShowing.copyWith(...)`. Additionally contains functions for specific fields e.g. `instanceOfSettingShowing.copyWith.fieldName(...)`
@@ -36,17 +33,13 @@ class _$SettingShowingCWProxyImpl implements _$SettingShowingCWProxy {
   SettingShowing isLogined(bool isLogined) => this(isLogined: isLogined);
 
   @override
-
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `SettingShowing(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
   /// ```dart
   /// SettingShowing(...).copyWith(id: 12, name: "My name")
   /// ````
-  SettingShowing call({
-    Object? setting = const $CopyWithPlaceholder(),
-    Object? isLogined = const $CopyWithPlaceholder(),
-  }) {
+  SettingShowing call({Object? setting = const $CopyWithPlaceholder(), Object? isLogined = const $CopyWithPlaceholder()}) {
     return SettingShowing(
       setting == const $CopyWithPlaceholder()
           ? _value.setting

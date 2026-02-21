@@ -15,9 +15,7 @@ abstract class _$ChapelManagerCWProxy {
   /// ```dart
   /// ChapelManager(...).copyWith(id: 12, name: "My name")
   /// ````
-  ChapelManager call({
-    SplayTreeMap<YearSemester, Chapel> data,
-  });
+  ChapelManager call({SplayTreeMap<YearSemester, Chapel> data});
 }
 
 /// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfChapelManager.copyWith(...)`. Additionally contains functions for specific fields e.g. `instanceOfChapelManager.copyWith.fieldName(...)`
@@ -30,16 +28,13 @@ class _$ChapelManagerCWProxyImpl implements _$ChapelManagerCWProxy {
   ChapelManager data(SplayTreeMap<YearSemester, Chapel> data) => this(data: data);
 
   @override
-
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `ChapelManager(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
   /// ```dart
   /// ChapelManager(...).copyWith(id: 12, name: "My name")
   /// ````
-  ChapelManager call({
-    Object? data = const $CopyWithPlaceholder(),
-  }) {
+  ChapelManager call({Object? data = const $CopyWithPlaceholder()}) {
     return ChapelManager(
       data == const $CopyWithPlaceholder()
           ? _value.data
@@ -59,10 +54,6 @@ extension $ChapelManagerCopyWith on ChapelManager {
 // JsonSerializableGenerator
 // **************************************************************************
 
-ChapelManager _$ChapelManagerFromJson(Map<String, dynamic> json) => ChapelManager(
-      const _DataConverter().fromJson(json['data'] as List),
-    );
+ChapelManager _$ChapelManagerFromJson(Map<String, dynamic> json) => ChapelManager(const _DataConverter().fromJson(json['data'] as List));
 
-Map<String, dynamic> _$ChapelManagerToJson(ChapelManager instance) => <String, dynamic>{
-      'data': const _DataConverter().toJson(instance.data),
-    };
+Map<String, dynamic> _$ChapelManagerToJson(ChapelManager instance) => <String, dynamic>{'data': const _DataConverter().toJson(instance.data)};

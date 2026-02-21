@@ -12,10 +12,7 @@ class Lightspeed extends Equatable {
   @JsonKey()
   final String data;
 
-  const Lightspeed({
-    required this.version,
-    required this.data,
-  });
+  const Lightspeed({required this.version, required this.data});
 
   @override
   List<Object?> get props => [version, data];

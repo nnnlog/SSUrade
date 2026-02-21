@@ -24,10 +24,10 @@ class SubjectViewModelService implements SubjectViewModelUseCase {
     required ExternalSubjectRetrievalPort externalSubjectRetrievalPort,
     required LocalStorageSavePhotoPort localStorageSavePhotoPort,
     required ToastPort toastPort,
-  })  : _localStorageSemesterSubjectsManagerPort = localStorageSemesterSubjectsManagerPort,
-        _externalSubjectRetrievalPort = externalSubjectRetrievalPort,
-        _localStorageSavePhotoPort = localStorageSavePhotoPort,
-        _toastPort = toastPort;
+  }) : _localStorageSemesterSubjectsManagerPort = localStorageSemesterSubjectsManagerPort,
+       _externalSubjectRetrievalPort = externalSubjectRetrievalPort,
+       _localStorageSavePhotoPort = localStorageSavePhotoPort,
+       _toastPort = toastPort;
 
   @override
   Future<SemesterSubjectsManager?> getSemesterSubjectsManager() {
@@ -39,9 +39,11 @@ class SubjectViewModelService implements SubjectViewModelUseCase {
     final semesterSubjects = await _externalSubjectRetrievalPort.retrieveSemesterSubjects(yearSemester, includeDetail: true).result;
     final currentSemesterSubjectsManager = await getSemesterSubjectsManager();
     if (semesterSubjects != null && currentSemesterSubjectsManager != null) {
-      final nextSemesterSubjectsManager = currentSemesterSubjectsManager.copyWith(data: currentSemesterSubjectsManager.data.also((it) {
-        it[yearSemester] = semesterSubjects;
-      }));
+      final nextSemesterSubjectsManager = currentSemesterSubjectsManager.copyWith(
+        data: currentSemesterSubjectsManager.data.also((it) {
+          it[yearSemester] = semesterSubjects;
+        }),
+      );
       await _localStorageSemesterSubjectsManagerPort.saveSemesterSubjectsManager(nextSemesterSubjectsManager);
       _streamController.add(nextSemesterSubjectsManager);
       return true;

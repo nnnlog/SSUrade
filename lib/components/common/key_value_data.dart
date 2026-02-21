@@ -13,39 +13,27 @@ class _KeyValueTableSate extends State<KeyValueTable> {
   @override
   Widget build(BuildContext context) {
     return Table(
-      border: TableBorder.all(
-        color: const Color.fromRGBO(0, 0, 0, .5),
-        borderRadius: const BorderRadius.all(Radius.circular(10)),
-      ),
-      children: widget.map.keys
-          .map((e) => TableRow(
-                children: [
-                  TableCell(
-                    verticalAlignment: TableCellVerticalAlignment.middle,
-                    child: Container(
-                      padding: const EdgeInsets.all(10),
-                      child: SelectableText(
-                        e,
-                        textAlign: TextAlign.center,
-                        style: const TextStyle(
-                          fontWeight: FontWeight.bold,
-                        ),
+      border: TableBorder.all(color: const Color.fromRGBO(0, 0, 0, .5), borderRadius: const BorderRadius.all(Radius.circular(10))),
+      children:
+          widget.map.keys
+              .map(
+                (e) => TableRow(
+                  children: [
+                    TableCell(
+                      verticalAlignment: TableCellVerticalAlignment.middle,
+                      child: Container(
+                        padding: const EdgeInsets.all(10),
+                        child: SelectableText(e, textAlign: TextAlign.center, style: const TextStyle(fontWeight: FontWeight.bold)),
                       ),
                     ),
-                  ),
-                  TableCell(
-                    verticalAlignment: TableCellVerticalAlignment.middle,
-                    child: Container(
-                      padding: const EdgeInsets.all(10),
-                      child: SelectableText(
-                        widget.map[e]!,
-                        textAlign: TextAlign.center,
-                      ),
+                    TableCell(
+                      verticalAlignment: TableCellVerticalAlignment.middle,
+                      child: Container(padding: const EdgeInsets.all(10), child: SelectableText(widget.map[e]!, textAlign: TextAlign.center)),
                     ),
-                  ),
-                ],
-              ))
-          .toList(),
+                  ],
+                ),
+              )
+              .toList(),
     );
   }
 }

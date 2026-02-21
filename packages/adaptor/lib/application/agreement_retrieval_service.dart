@@ -6,9 +6,7 @@ import 'package:ssurade_application/ssurade_application.dart';
 class AgreementRetrievalService implements AgreementRetrievalPort {
   final AssetLoaderService _assetLoaderService;
 
-  AgreementRetrievalService({
-    required AssetLoaderService assetLoaderService,
-  }) : _assetLoaderService = assetLoaderService;
+  AgreementRetrievalService({required AssetLoaderService assetLoaderService}) : _assetLoaderService = assetLoaderService;
 
   @override
   Future<String> getShortAgreement() {

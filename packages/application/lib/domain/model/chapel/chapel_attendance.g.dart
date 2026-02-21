@@ -72,7 +72,6 @@ class _$ChapelAttendanceCWProxyImpl implements _$ChapelAttendanceCWProxy {
   ChapelAttendance lecturer(String lecturer) => this(lecturer: lecturer);
 
   @override
-
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `ChapelAttendance(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -90,38 +89,46 @@ class _$ChapelAttendanceCWProxyImpl implements _$ChapelAttendanceCWProxy {
     Object? lecturer = const $CopyWithPlaceholder(),
   }) {
     return ChapelAttendance(
-      status: status == const $CopyWithPlaceholder()
-          ? _value.status
-          // ignore: cast_nullable_to_non_nullable
-          : status as ChapelAttendanceStatus,
-      overwrittenStatus: overwrittenStatus == const $CopyWithPlaceholder()
-          ? _value.overwrittenStatus
-          // ignore: cast_nullable_to_non_nullable
-          : overwrittenStatus as ChapelAttendanceStatus,
-      affiliation: affiliation == const $CopyWithPlaceholder()
-          ? _value.affiliation
-          // ignore: cast_nullable_to_non_nullable
-          : affiliation as String,
-      lectureDate: lectureDate == const $CopyWithPlaceholder()
-          ? _value.lectureDate
-          // ignore: cast_nullable_to_non_nullable
-          : lectureDate as String,
-      lectureEtc: lectureEtc == const $CopyWithPlaceholder()
-          ? _value.lectureEtc
-          // ignore: cast_nullable_to_non_nullable
-          : lectureEtc as String,
-      lectureName: lectureName == const $CopyWithPlaceholder()
-          ? _value.lectureName
-          // ignore: cast_nullable_to_non_nullable
-          : lectureName as String,
-      lectureType: lectureType == const $CopyWithPlaceholder()
-          ? _value.lectureType
-          // ignore: cast_nullable_to_non_nullable
-          : lectureType as String,
-      lecturer: lecturer == const $CopyWithPlaceholder()
-          ? _value.lecturer
-          // ignore: cast_nullable_to_non_nullable
-          : lecturer as String,
+      status:
+          status == const $CopyWithPlaceholder()
+              ? _value.status
+              // ignore: cast_nullable_to_non_nullable
+              : status as ChapelAttendanceStatus,
+      overwrittenStatus:
+          overwrittenStatus == const $CopyWithPlaceholder()
+              ? _value.overwrittenStatus
+              // ignore: cast_nullable_to_non_nullable
+              : overwrittenStatus as ChapelAttendanceStatus,
+      affiliation:
+          affiliation == const $CopyWithPlaceholder()
+              ? _value.affiliation
+              // ignore: cast_nullable_to_non_nullable
+              : affiliation as String,
+      lectureDate:
+          lectureDate == const $CopyWithPlaceholder()
+              ? _value.lectureDate
+              // ignore: cast_nullable_to_non_nullable
+              : lectureDate as String,
+      lectureEtc:
+          lectureEtc == const $CopyWithPlaceholder()
+              ? _value.lectureEtc
+              // ignore: cast_nullable_to_non_nullable
+              : lectureEtc as String,
+      lectureName:
+          lectureName == const $CopyWithPlaceholder()
+              ? _value.lectureName
+              // ignore: cast_nullable_to_non_nullable
+              : lectureName as String,
+      lectureType:
+          lectureType == const $CopyWithPlaceholder()
+              ? _value.lectureType
+              // ignore: cast_nullable_to_non_nullable
+              : lectureType as String,
+      lecturer:
+          lecturer == const $CopyWithPlaceholder()
+              ? _value.lecturer
+              // ignore: cast_nullable_to_non_nullable
+              : lecturer as String,
     );
   }
 }
@@ -137,26 +144,26 @@ extension $ChapelAttendanceCopyWith on ChapelAttendance {
 // **************************************************************************
 
 ChapelAttendance _$ChapelAttendanceFromJson(Map<String, dynamic> json) => ChapelAttendance(
-      status: $enumDecode(_$ChapelAttendanceStatusEnumMap, json['status']),
-      overwrittenStatus: $enumDecode(_$ChapelAttendanceStatusEnumMap, json['overwrittenStatus']),
-      affiliation: json['affiliation'] as String,
-      lectureDate: json['lectureDate'] as String,
-      lectureEtc: json['lectureEtc'] as String,
-      lectureName: json['lectureName'] as String,
-      lectureType: json['lectureType'] as String,
-      lecturer: json['lecturer'] as String,
-    );
+  status: $enumDecode(_$ChapelAttendanceStatusEnumMap, json['status']),
+  overwrittenStatus: $enumDecode(_$ChapelAttendanceStatusEnumMap, json['overwrittenStatus']),
+  affiliation: json['affiliation'] as String,
+  lectureDate: json['lectureDate'] as String,
+  lectureEtc: json['lectureEtc'] as String,
+  lectureName: json['lectureName'] as String,
+  lectureType: json['lectureType'] as String,
+  lecturer: json['lecturer'] as String,
+);
 
 Map<String, dynamic> _$ChapelAttendanceToJson(ChapelAttendance instance) => <String, dynamic>{
-      'status': _$ChapelAttendanceStatusEnumMap[instance.status]!,
-      'overwrittenStatus': _$ChapelAttendanceStatusEnumMap[instance.overwrittenStatus]!,
-      'affiliation': instance.affiliation,
-      'lectureDate': instance.lectureDate,
-      'lectureEtc': instance.lectureEtc,
-      'lectureName': instance.lectureName,
-      'lectureType': instance.lectureType,
-      'lecturer': instance.lecturer,
-    };
+  'status': _$ChapelAttendanceStatusEnumMap[instance.status]!,
+  'overwrittenStatus': _$ChapelAttendanceStatusEnumMap[instance.overwrittenStatus]!,
+  'affiliation': instance.affiliation,
+  'lectureDate': instance.lectureDate,
+  'lectureEtc': instance.lectureEtc,
+  'lectureName': instance.lectureName,
+  'lectureType': instance.lectureType,
+  'lecturer': instance.lecturer,
+};
 
 const _$ChapelAttendanceStatusEnumMap = {
   ChapelAttendanceStatus.unknown: 'unknown',

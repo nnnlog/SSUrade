@@ -9,10 +9,9 @@ part 'app_version_state.dart';
 class AppVersionBloc extends Bloc<AppVersionEvent, AppVersionState> {
   final AppVersionViewModelUseCase _appVersionViewModelUseCase;
 
-  AppVersionBloc({
-    required AppVersionViewModelUseCase appVersionViewModelUseCase,
-  })  : _appVersionViewModelUseCase = appVersionViewModelUseCase,
-        super(AppVersionInitial()) {
+  AppVersionBloc({required AppVersionViewModelUseCase appVersionViewModelUseCase})
+    : _appVersionViewModelUseCase = appVersionViewModelUseCase,
+      super(AppVersionInitial()) {
     on<AppVersionCheckRequested>((event, emit) async {
       emit(AppVersionLoading());
       final appVersion = await _appVersionViewModelUseCase.getAppVersion();

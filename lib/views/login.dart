@@ -31,9 +31,7 @@ class LoginPage extends StatelessWidget {
                     child: Container(),
                   ),
                   _LoginInput(),
-                  Container(
-                    height: 10,
-                  ),
+                  Container(height: 10),
                   _LoginPassword(),
                   _LoginButton(),
                 ],
@@ -89,14 +87,13 @@ class _LoginButton extends StatelessWidget {
     final state = context.watch<LoginBloc>().state;
     return Flexible(
       child: TextButton(
-        onPressed: state is LoginLoading
-            ? null
-            : () async {
-                context.read<LoginBloc>().add(LoginRequested());
-              },
-        style: TextButton.styleFrom(
-          minimumSize: const Size.fromHeight(40),
-        ),
+        onPressed:
+            state is LoginLoading
+                ? null
+                : () async {
+                  context.read<LoginBloc>().add(LoginRequested());
+                },
+        style: TextButton.styleFrom(minimumSize: const Size.fromHeight(40)),
         child: Text(state is LoginLoading ? "로그인하는 중..." : "로그인"),
       ),
     );

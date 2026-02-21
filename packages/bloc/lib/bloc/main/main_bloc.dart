@@ -14,10 +14,10 @@ class MainBloc extends Bloc<MainEvent, MainState> {
     required LoginViewModelUseCase loginViewModelUseCase,
     required SettingViewModelUseCase settingViewModelUseCase,
     required MainViewModelUseCase mainViewModelUseCase,
-  })  : _loginViewModelUseCase = loginViewModelUseCase,
-        _settingViewModelUseCase = settingViewModelUseCase,
-        _mainViewModelUseCase = mainViewModelUseCase,
-        super(MainInitial()) {
+  }) : _loginViewModelUseCase = loginViewModelUseCase,
+       _settingViewModelUseCase = settingViewModelUseCase,
+       _mainViewModelUseCase = mainViewModelUseCase,
+       super(MainInitial()) {
     on<MainReady>((event, emit) async {
       final setting = await _settingViewModelUseCase.getSetting() ?? Setting.defaults();
       if (!setting.agree) {
@@ -33,10 +33,13 @@ class MainBloc extends Bloc<MainEvent, MainState> {
         });
       }
 
-      return emit.forEach(_loginViewModelUseCase.getCredentialStream(), onData: (data) {
-        if (state is MainAgree) return state;
-        return MainShowing(data != Credential.empty());
-      });
+      return emit.forEach(
+        _loginViewModelUseCase.getCredentialStream(),
+        onData: (data) {
+          if (state is MainAgree) return state;
+          return MainShowing(data != Credential.empty());
+        },
+      );
     });
 
     on<MainAgreeEvent>((event, emit) async {

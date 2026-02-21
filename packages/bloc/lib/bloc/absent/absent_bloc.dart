@@ -10,12 +10,10 @@ class AbsentBloc extends Bloc<AbsentEvent, AbsentState> {
   final AbsentViewModelUseCase _absentViewModelUseCase;
   final SettingViewModelUseCase _settingViewModelUseCase;
 
-  AbsentBloc({
-    required AbsentViewModelUseCase absentViewModelUseCase,
-    required SettingViewModelUseCase settingViewModelUseCase,
-  })  : _absentViewModelUseCase = absentViewModelUseCase,
-        _settingViewModelUseCase = settingViewModelUseCase,
-        super(AbsentInitial()) {
+  AbsentBloc({required AbsentViewModelUseCase absentViewModelUseCase, required SettingViewModelUseCase settingViewModelUseCase})
+    : _absentViewModelUseCase = absentViewModelUseCase,
+      _settingViewModelUseCase = settingViewModelUseCase,
+      super(AbsentInitial()) {
     on<AbsentReady>((event, emit) async {
       _absentViewModelUseCase.getAbsentManager().then((absentManager) async {
         if (absentManager != null && absentManager != AbsentApplicationManager.empty()) {
@@ -30,14 +28,17 @@ class AbsentBloc extends Bloc<AbsentEvent, AbsentState> {
         }
       });
 
-      return emit.forEach(_absentViewModelUseCase.getAbsentManagerStream(), onData: (data) {
-        if (data == AbsentApplicationManager.empty()) {
-          return AbsentInitialLoading();
-        }
+      return emit.forEach(
+        _absentViewModelUseCase.getAbsentManagerStream(),
+        onData: (data) {
+          if (data == AbsentApplicationManager.empty()) {
+            return AbsentInitialLoading();
+          }
 
-        _absentViewModelUseCase.showToast("유고 결석 정보를 불러왔어요.");
-        return AbsentShowing(absentApplicationManager: data);
-      });
+          _absentViewModelUseCase.showToast("유고 결석 정보를 불러왔어요.");
+          return AbsentShowing(absentApplicationManager: data);
+        },
+      );
     });
 
     on<AbsentInformationRefreshRequested>((event, emit) async {

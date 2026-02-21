@@ -19,9 +19,9 @@ class LoginViewModelService implements LoginViewModelUseCase {
     required LocalStorageCredentialPort localStorageCredentialPort,
     required ExternalCredentialRetrievalPort externalCredentialRetrievalPort,
     required ToastPort toastPort,
-  })  : _localStorageCredentialPort = localStorageCredentialPort,
-        _externalCredentialRetrievalPort = externalCredentialRetrievalPort,
-        _toastPort = toastPort;
+  }) : _localStorageCredentialPort = localStorageCredentialPort,
+       _externalCredentialRetrievalPort = externalCredentialRetrievalPort,
+       _toastPort = toastPort;
 
   @override
   Future<void> clearCredential() async {
@@ -53,10 +53,10 @@ class LoginViewModelService implements LoginViewModelUseCase {
 
   @override
   Future<bool> validateCredential(Credential credential) async {
-    return await _externalCredentialRetrievalPort.getCookiesFromCredential(credential).result.catchError(
-              (error) => null,
-              test: (error) => error is UnauthenticatedException,
-            ) !=
+    return await _externalCredentialRetrievalPort
+            .getCookiesFromCredential(credential)
+            .result
+            .catchError((error) => null, test: (error) => error is UnauthenticatedException) !=
         null;
   }
 

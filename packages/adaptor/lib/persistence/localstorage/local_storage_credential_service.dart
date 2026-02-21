@@ -26,19 +26,13 @@ class LocalStorageCredentialService implements LocalStorageCredentialPort {
   Future<Credential?> retrieveCredential() async {
     final id = await _secureStorage.read(_idKey), pw = await _secureStorage.read(_pwKey);
     if (id == null || pw == null) return null;
-    return Credential(
-      id: id,
-      password: pw,
-    );
+    return Credential(id: id, password: pw);
   }
 
   @override
   Future<void> saveCredential(Credential credential) async {
     _controller.add(credential);
-    await Future.wait([
-      _secureStorage.write(_idKey, credential.id),
-      _secureStorage.write(_pwKey, credential.password),
-    ]);
+    await Future.wait([_secureStorage.write(_idKey, credential.id), _secureStorage.write(_pwKey, credential.password)]);
   }
 
   Stream get onCredentialChanged => _controller.stream.asBroadcastStream();

@@ -66,7 +66,6 @@ class _$ChapelCWProxyImpl implements _$ChapelCWProxy {
   Chapel seatNo(String seatNo) => this(seatNo: seatNo);
 
   @override
-
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `Chapel(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -83,34 +82,41 @@ class _$ChapelCWProxyImpl implements _$ChapelCWProxy {
     Object? seatNo = const $CopyWithPlaceholder(),
   }) {
     return Chapel(
-      currentSemester: currentSemester == const $CopyWithPlaceholder()
-          ? _value.currentSemester
-          // ignore: cast_nullable_to_non_nullable
-          : currentSemester as YearSemester,
-      attendances: attendances == const $CopyWithPlaceholder()
-          ? _value.attendances
-          // ignore: cast_nullable_to_non_nullable
-          : attendances as SplayTreeMap<String, ChapelAttendance>,
-      subjectCode: subjectCode == const $CopyWithPlaceholder()
-          ? _value.subjectCode
-          // ignore: cast_nullable_to_non_nullable
-          : subjectCode as String,
-      subjectPlace: subjectPlace == const $CopyWithPlaceholder()
-          ? _value.subjectPlace
-          // ignore: cast_nullable_to_non_nullable
-          : subjectPlace as String,
-      subjectTime: subjectTime == const $CopyWithPlaceholder()
-          ? _value.subjectTime
-          // ignore: cast_nullable_to_non_nullable
-          : subjectTime as String,
-      floor: floor == const $CopyWithPlaceholder()
-          ? _value.floor
-          // ignore: cast_nullable_to_non_nullable
-          : floor as String,
-      seatNo: seatNo == const $CopyWithPlaceholder()
-          ? _value.seatNo
-          // ignore: cast_nullable_to_non_nullable
-          : seatNo as String,
+      currentSemester:
+          currentSemester == const $CopyWithPlaceholder()
+              ? _value.currentSemester
+              // ignore: cast_nullable_to_non_nullable
+              : currentSemester as YearSemester,
+      attendances:
+          attendances == const $CopyWithPlaceholder()
+              ? _value.attendances
+              // ignore: cast_nullable_to_non_nullable
+              : attendances as SplayTreeMap<String, ChapelAttendance>,
+      subjectCode:
+          subjectCode == const $CopyWithPlaceholder()
+              ? _value.subjectCode
+              // ignore: cast_nullable_to_non_nullable
+              : subjectCode as String,
+      subjectPlace:
+          subjectPlace == const $CopyWithPlaceholder()
+              ? _value.subjectPlace
+              // ignore: cast_nullable_to_non_nullable
+              : subjectPlace as String,
+      subjectTime:
+          subjectTime == const $CopyWithPlaceholder()
+              ? _value.subjectTime
+              // ignore: cast_nullable_to_non_nullable
+              : subjectTime as String,
+      floor:
+          floor == const $CopyWithPlaceholder()
+              ? _value.floor
+              // ignore: cast_nullable_to_non_nullable
+              : floor as String,
+      seatNo:
+          seatNo == const $CopyWithPlaceholder()
+              ? _value.seatNo
+              // ignore: cast_nullable_to_non_nullable
+              : seatNo as String,
     );
   }
 }
@@ -126,21 +132,21 @@ extension $ChapelCopyWith on Chapel {
 // **************************************************************************
 
 Chapel _$ChapelFromJson(Map<String, dynamic> json) => Chapel(
-      currentSemester: YearSemester.fromJson(json['currentSemester'] as Map<String, dynamic>),
-      attendances: const _DataConverter().fromJson(json['attendances'] as List),
-      subjectCode: json['subjectCode'] as String,
-      subjectPlace: json['subjectPlace'] as String,
-      subjectTime: json['subjectTime'] as String,
-      floor: json['floor'] as String,
-      seatNo: json['seatNo'] as String,
-    );
+  currentSemester: YearSemester.fromJson(json['currentSemester'] as Map<String, dynamic>),
+  attendances: const _DataConverter().fromJson(json['attendances'] as List),
+  subjectCode: json['subjectCode'] as String,
+  subjectPlace: json['subjectPlace'] as String,
+  subjectTime: json['subjectTime'] as String,
+  floor: json['floor'] as String,
+  seatNo: json['seatNo'] as String,
+);
 
 Map<String, dynamic> _$ChapelToJson(Chapel instance) => <String, dynamic>{
-      'currentSemester': instance.currentSemester,
-      'attendances': const _DataConverter().toJson(instance.attendances),
-      'subjectCode': instance.subjectCode,
-      'subjectPlace': instance.subjectPlace,
-      'subjectTime': instance.subjectTime,
-      'floor': instance.floor,
-      'seatNo': instance.seatNo,
-    };
+  'currentSemester': instance.currentSemester,
+  'attendances': const _DataConverter().toJson(instance.attendances),
+  'subjectCode': instance.subjectCode,
+  'subjectPlace': instance.subjectPlace,
+  'subjectTime': instance.subjectTime,
+  'floor': instance.floor,
+  'seatNo': instance.seatNo,
+};

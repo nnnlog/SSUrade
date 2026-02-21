@@ -28,9 +28,7 @@ void main() async {
 
       await configureDependencies();
 
-      await Firebase.initializeApp(
-        options: DefaultFirebaseOptions.currentPlatform,
-      );
+      await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
 
       runApp(const SsuradeEntryPoint());
     },
@@ -84,10 +82,7 @@ class SsuradeEntryPoint extends StatelessWidget {
           '/setting': (context) => const SettingPage(),
           '/information': (context) => const InformationPage(),
         },
-        navigatorObservers: [
-          FirebaseAnalyticsObserver(analytics: FirebaseAnalytics.instance),
-          SentryNavigatorObserver(),
-        ],
+        navigatorObservers: [FirebaseAnalyticsObserver(analytics: FirebaseAnalytics.instance), SentryNavigatorObserver()],
       ),
     );
   }

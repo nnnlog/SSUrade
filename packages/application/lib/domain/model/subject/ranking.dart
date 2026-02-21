@@ -14,10 +14,7 @@ class Ranking extends Equatable {
   @JsonKey()
   final int total;
 
-  const Ranking({
-    required this.my,
-    required this.total,
-  });
+  const Ranking({required this.my, required this.total});
 
   @override
   List<Object?> get props => [my, total];

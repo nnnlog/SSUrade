@@ -9,10 +9,7 @@ part 'login_state.dart';
 class LoginBloc extends Bloc<LoginEvent, LoginState> {
   final LoginViewModelUseCase _loginViewModelUseCase;
 
-  LoginBloc({
-    required LoginViewModelUseCase loginViewModelUseCase,
-  })  : _loginViewModelUseCase = loginViewModelUseCase,
-        super(LoginTyping.defaults()) {
+  LoginBloc({required LoginViewModelUseCase loginViewModelUseCase}) : _loginViewModelUseCase = loginViewModelUseCase, super(LoginTyping.defaults()) {
     on<LoginRequested>(_onLoginRequested);
     on<LoginIdChanged>(_onLoginIdChanged);
     on<LoginPasswordChanged>(_onLoginPasswordChanged);
@@ -28,16 +25,10 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
 
     final result = await _loginViewModelUseCase.loadNewCredential(Credential(id: currentState.id, password: currentState.password));
     if (result) {
-      emit(LoginSuccess(
-        id: currentState.id,
-        password: currentState.password,
-      ));
+      emit(LoginSuccess(id: currentState.id, password: currentState.password));
     } else {
       _loginViewModelUseCase.showToast("로그인을 실패했어요.\n학번이나 비밀번호, 네트워크 상태를 확인해주세요.");
-      emit(LoginTyping(
-        id: currentState.id,
-        password: currentState.password,
-      ));
+      emit(LoginTyping(id: currentState.id, password: currentState.password));
     }
   }
 

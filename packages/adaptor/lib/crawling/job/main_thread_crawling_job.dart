@@ -6,17 +6,13 @@ class MainThreadCrawlingJob<T> extends Job<T> {
   final Completer<T> _completer = Completer();
 
   MainThreadCrawlingJob(int timeout, Future<T> Function() job) {
-    Future.any([
-      job(),
-      Future.delayed(
-        Duration(seconds: timeout),
-        () => throw TimeoutException("MainThreadCrawlingJob timed out after $timeout seconds"),
-      ),
-    ]).then((value) {
-      _completer.complete(value);
-    }).catchError((error) {
-      _completer.completeError(error);
-    });
+    Future.any([job(), Future.delayed(Duration(seconds: timeout), () => throw TimeoutException("MainThreadCrawlingJob timed out after $timeout seconds"))])
+        .then((value) {
+          _completer.complete(value);
+        })
+        .catchError((error) {
+          _completer.completeError(error);
+        });
   }
 
   @override

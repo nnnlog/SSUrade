@@ -14,12 +14,10 @@ class GradeBloc extends Bloc<GradeEvent, GradeState> {
   final SubjectViewModelUseCase _subjectViewModelUseCase;
   final SettingViewModelUseCase _settingViewModelUseCase;
 
-  GradeBloc({
-    required SubjectViewModelUseCase subjectViewModelUseCase,
-    required SettingViewModelUseCase settingViewModelUseCase,
-  })  : _subjectViewModelUseCase = subjectViewModelUseCase,
-        _settingViewModelUseCase = settingViewModelUseCase,
-        super(GradeInitial()) {
+  GradeBloc({required SubjectViewModelUseCase subjectViewModelUseCase, required SettingViewModelUseCase settingViewModelUseCase})
+    : _subjectViewModelUseCase = subjectViewModelUseCase,
+      _settingViewModelUseCase = settingViewModelUseCase,
+      super(GradeInitial()) {
     on<GradeReady>((event, emit) async {
       _subjectViewModelUseCase.getSemesterSubjectsManager().then((value) async {
         if (value == null || value.data.length == 0) {
@@ -34,21 +32,26 @@ class GradeBloc extends Bloc<GradeEvent, GradeState> {
         }
       });
 
-      return emit.forEach(_subjectViewModelUseCase.getSemesterSubjectsManagerStream(), onData: (manager) {
-        if (manager == SemesterSubjectsManager.empty()) {
-          return GradeInitial();
-        }
+      return emit.forEach(
+        _subjectViewModelUseCase.getSemesterSubjectsManagerStream(),
+        onData: (manager) {
+          if (manager == SemesterSubjectsManager.empty()) {
+            return GradeInitial();
+          }
 
-        var state = this.state;
-        if (state is! GradeShowing) {
-          return GradeShowing(semesterSubjectsManager: manager, showingSemester: manager.data.keys.last);
-        } else {
-          _subjectViewModelUseCase.showToast("성적 정보를 불러왔어요.");
+          var state = this.state;
+          if (state is! GradeShowing) {
+            return GradeShowing(semesterSubjectsManager: manager, showingSemester: manager.data.keys.last);
+          } else {
+            _subjectViewModelUseCase.showToast("성적 정보를 불러왔어요.");
 
-          return GradeShowing(
-              semesterSubjectsManager: manager, showingSemester: state.semesterSubjectsManager.data.containsKey(state.showingSemester) ? state.showingSemester : manager.data.keys.last);
-        }
-      });
+            return GradeShowing(
+              semesterSubjectsManager: manager,
+              showingSemester: state.semesterSubjectsManager.data.containsKey(state.showingSemester) ? state.showingSemester : manager.data.keys.last,
+            );
+          }
+        },
+      );
     });
 
     on<GradeYearSemesterSelected>((event, emit) async {
@@ -86,10 +89,12 @@ class GradeBloc extends Bloc<GradeEvent, GradeState> {
         return;
       }
 
-      emit((state).copyWith(
-        isDisplayRankingDuringExporting: event.isDisplayRanking ?? (state).isDisplayRankingDuringExporting,
-        isDisplaySubjectInformationDuringExporting: event.isDisplaySubjectInformation ?? (state).isDisplaySubjectInformationDuringExporting,
-      ));
+      emit(
+        (state).copyWith(
+          isDisplayRankingDuringExporting: event.isDisplayRanking ?? (state).isDisplayRankingDuringExporting,
+          isDisplaySubjectInformationDuringExporting: event.isDisplaySubjectInformation ?? (state).isDisplaySubjectInformationDuringExporting,
+        ),
+      );
     });
 
     on<GradeExportRequested>((event, emit) async {
@@ -109,9 +114,14 @@ class GradeBloc extends Bloc<GradeEvent, GradeState> {
         return;
       }
 
-      _subjectViewModelUseCase.saveScreenshotInGallery(data: event.data, name: "ssurade_${state.showingSemester.displayText}_${DateTime.now().toLocal().millisecondsSinceEpoch}").then((_) {
-        _subjectViewModelUseCase.showToast("이미지를 저장했어요.");
-      });
+      _subjectViewModelUseCase
+          .saveScreenshotInGallery(
+            data: event.data,
+            name: "ssurade_${state.showingSemester.displayText}_${DateTime.now().toLocal().millisecondsSinceEpoch}",
+          )
+          .then((_) {
+            _subjectViewModelUseCase.showToast("이미지를 저장했어요.");
+          });
 
       emit(state.copyWith(isExporting: false));
     });

@@ -13,10 +13,7 @@ class YearSemester extends Equatable implements Comparable<YearSemester> {
   @JsonKey()
   final Semester semester;
 
-  const YearSemester({
-    required this.year,
-    required this.semester,
-  });
+  const YearSemester({required this.year, required this.semester});
 
   @override
   List<Object?> get props => [year, semester];
@@ -28,12 +25,7 @@ class YearSemester extends Equatable implements Comparable<YearSemester> {
   get displayText => "$year-${semester.displayText}";
 
   bool operator <(YearSemester other) {
-    const Map<Semester, int> semesterOrder = {
-      Semester.first: 0,
-      Semester.summer: 1,
-      Semester.second: 2,
-      Semester.winter: 3,
-    };
+    const Map<Semester, int> semesterOrder = {Semester.first: 0, Semester.summer: 1, Semester.second: 2, Semester.winter: 3};
 
     return year == other.year ? semesterOrder[semester]! < semesterOrder[other.semester]! : year < other.year;
   }

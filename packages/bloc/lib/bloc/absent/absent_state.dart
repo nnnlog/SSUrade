@@ -21,9 +21,7 @@ final class AbsentInitialLoading extends AbsentState {
 final class AbsentShowing extends AbsentState {
   final AbsentApplicationManager absentApplicationManager;
 
-  AbsentShowing({
-    required this.absentApplicationManager,
-  });
+  AbsentShowing({required this.absentApplicationManager});
 
   @override
   List<Object?> get props => super.props + [absentApplicationManager];

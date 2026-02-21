@@ -48,14 +48,14 @@ class _$GradeShowingCWProxyImpl implements _$GradeShowingCWProxy {
   GradeShowing isExporting(bool isExporting) => this(isExporting: isExporting);
 
   @override
-  GradeShowing isDisplayRankingDuringExporting(bool isDisplayRankingDuringExporting) => this(isDisplayRankingDuringExporting: isDisplayRankingDuringExporting);
+  GradeShowing isDisplayRankingDuringExporting(bool isDisplayRankingDuringExporting) =>
+      this(isDisplayRankingDuringExporting: isDisplayRankingDuringExporting);
 
   @override
   GradeShowing isDisplaySubjectInformationDuringExporting(bool isDisplaySubjectInformationDuringExporting) =>
       this(isDisplaySubjectInformationDuringExporting: isDisplaySubjectInformationDuringExporting);
 
   @override
-
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `GradeShowing(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -70,26 +70,31 @@ class _$GradeShowingCWProxyImpl implements _$GradeShowingCWProxy {
     Object? isDisplaySubjectInformationDuringExporting = const $CopyWithPlaceholder(),
   }) {
     return GradeShowing(
-      semesterSubjectsManager: semesterSubjectsManager == const $CopyWithPlaceholder()
-          ? _value.semesterSubjectsManager
-          // ignore: cast_nullable_to_non_nullable
-          : semesterSubjectsManager as SemesterSubjectsManager,
-      showingSemester: showingSemester == const $CopyWithPlaceholder()
-          ? _value.showingSemester
-          // ignore: cast_nullable_to_non_nullable
-          : showingSemester as YearSemester,
-      isExporting: isExporting == const $CopyWithPlaceholder()
-          ? _value.isExporting
-          // ignore: cast_nullable_to_non_nullable
-          : isExporting as bool,
-      isDisplayRankingDuringExporting: isDisplayRankingDuringExporting == const $CopyWithPlaceholder()
-          ? _value.isDisplayRankingDuringExporting
-          // ignore: cast_nullable_to_non_nullable
-          : isDisplayRankingDuringExporting as bool,
-      isDisplaySubjectInformationDuringExporting: isDisplaySubjectInformationDuringExporting == const $CopyWithPlaceholder()
-          ? _value.isDisplaySubjectInformationDuringExporting
-          // ignore: cast_nullable_to_non_nullable
-          : isDisplaySubjectInformationDuringExporting as bool,
+      semesterSubjectsManager:
+          semesterSubjectsManager == const $CopyWithPlaceholder()
+              ? _value.semesterSubjectsManager
+              // ignore: cast_nullable_to_non_nullable
+              : semesterSubjectsManager as SemesterSubjectsManager,
+      showingSemester:
+          showingSemester == const $CopyWithPlaceholder()
+              ? _value.showingSemester
+              // ignore: cast_nullable_to_non_nullable
+              : showingSemester as YearSemester,
+      isExporting:
+          isExporting == const $CopyWithPlaceholder()
+              ? _value.isExporting
+              // ignore: cast_nullable_to_non_nullable
+              : isExporting as bool,
+      isDisplayRankingDuringExporting:
+          isDisplayRankingDuringExporting == const $CopyWithPlaceholder()
+              ? _value.isDisplayRankingDuringExporting
+              // ignore: cast_nullable_to_non_nullable
+              : isDisplayRankingDuringExporting as bool,
+      isDisplaySubjectInformationDuringExporting:
+          isDisplaySubjectInformationDuringExporting == const $CopyWithPlaceholder()
+              ? _value.isDisplaySubjectInformationDuringExporting
+              // ignore: cast_nullable_to_non_nullable
+              : isDisplaySubjectInformationDuringExporting as bool,
     );
   }
 }

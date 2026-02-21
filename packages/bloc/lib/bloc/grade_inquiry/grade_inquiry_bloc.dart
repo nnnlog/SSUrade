@@ -10,10 +10,9 @@ part 'grade_inquiry_state.dart';
 class GradeInquiryBloc extends Bloc<GradeInquiryEvent, GradeInquiryState> {
   final SubjectViewModelUseCase _subjectViewModelUseCase;
 
-  GradeInquiryBloc({
-    required SubjectViewModelUseCase subjectViewModelUseCase,
-  })  : this._subjectViewModelUseCase = subjectViewModelUseCase,
-        super(GradeInquiryInitial()) {
+  GradeInquiryBloc({required SubjectViewModelUseCase subjectViewModelUseCase})
+    : this._subjectViewModelUseCase = subjectViewModelUseCase,
+      super(GradeInquiryInitial()) {
     on<GradeInquiryReady>((event, emit) async {
       var semesterSubjectsManager = await _subjectViewModelUseCase.getSemesterSubjectsManager();
       if (semesterSubjectsManager == null) {
@@ -22,9 +21,12 @@ class GradeInquiryBloc extends Bloc<GradeInquiryEvent, GradeInquiryState> {
         emit(GradeInquiryShowing(semesterSubjectsManager));
       }
 
-      return emit.forEach(_subjectViewModelUseCase.getSemesterSubjectsManagerStream(), onData: (data) {
-        return GradeInquiryShowing(data);
-      });
+      return emit.forEach(
+        _subjectViewModelUseCase.getSemesterSubjectsManagerStream(),
+        onData: (data) {
+          return GradeInquiryShowing(data);
+        },
+      );
     });
 
     on<GradeInquiryUpdated>((event, emit) {

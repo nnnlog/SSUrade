@@ -16,10 +16,7 @@ class CredentialRetrievalService {
       {
         await client.clearCookie();
 
-        await client.loadPage(
-          "https://smartid.ssu.ac.kr/Symtra_sso/smln.asp?apiReturnUrl=https%3A%2F%2Fsaint.ssu.ac.kr%2FwebSSO%2Fsso.jsp",
-          useAutoLogin: false,
-        );
+        await client.loadPage("https://smartid.ssu.ac.kr/Symtra_sso/smln.asp?apiReturnUrl=https%3A%2F%2Fsaint.ssu.ac.kr%2FwebSSO%2Fsso.jsp", useAutoLogin: false);
 
         Completer<String> completer = Completer();
         client.eventManager.onJsAlert = (_, message) async {
@@ -49,10 +46,7 @@ class CredentialRetrievalService {
       }
 
       {
-        await client.loadPage(
-          "https://ecc.ssu.ac.kr/sap/bc/webdynpro/SAP/ZCMW1001n?sap-language=KO",
-          useAutoLogin: false,
-        );
+        await client.loadPage("https://ecc.ssu.ac.kr/sap/bc/webdynpro/SAP/ZCMW1001n?sap-language=KO", useAutoLogin: false);
         await client.execute("return await ssurade.lightspeed.waitForPageLoad();");
       }
 

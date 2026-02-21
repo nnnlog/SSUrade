@@ -27,10 +27,10 @@ class ChapelViewModelService implements ChapelViewModelUseCase {
     required LocalStorageChapelManagerPort localStorageChapelManagerPort,
     required ExternalChapelManagerRetrievalPort externalSubjectRetrievalPort,
     required ToastPort toastPort,
-  })  : _localStorageSemesterSubjectsManagerPort = localStorageSemesterSubjectsManagerPort,
-        _localStorageChapelManagerPort = localStorageChapelManagerPort,
-        _externalChapelManagerRetrievalPort = externalSubjectRetrievalPort,
-        _toastPort = toastPort;
+  }) : _localStorageSemesterSubjectsManagerPort = localStorageSemesterSubjectsManagerPort,
+       _localStorageChapelManagerPort = localStorageChapelManagerPort,
+       _externalChapelManagerRetrievalPort = externalSubjectRetrievalPort,
+       _toastPort = toastPort;
 
   @override
   Future<ChapelManager?> getChapelManager() {
@@ -42,9 +42,11 @@ class ChapelViewModelService implements ChapelViewModelUseCase {
     final semesterSubjects = await _externalChapelManagerRetrievalPort.retrieveChapel(yearSemester).result;
     final currentChapelManager = await getChapelManager();
     if (semesterSubjects != null && currentChapelManager != null) {
-      final nextChapelManager = currentChapelManager.copyWith(data: currentChapelManager.data.also((it) {
-        it[yearSemester] = semesterSubjects;
-      }));
+      final nextChapelManager = currentChapelManager.copyWith(
+        data: currentChapelManager.data.also((it) {
+          it[yearSemester] = semesterSubjects;
+        }),
+      );
       await _localStorageChapelManagerPort.saveChapelManager(nextChapelManager);
       _streamController.add(nextChapelManager);
       return true;
@@ -60,21 +62,18 @@ class ChapelViewModelService implements ChapelViewModelUseCase {
     }
 
     final chapelManager = await _externalChapelManagerRetrievalPort
-        .retrieveChapels(semesterSubjectsManager.data.values
-            .where((semesterSubjects) {
-              return semesterSubjects.subjects.values.any((subject) {
-                return subject.category == "채플" || ["CHAPEL", "비전채플"].contains(subject.name);
-              });
-            })
-            .map((semesterSubjects) => semesterSubjects.currentSemester)
-            .toList())
+        .retrieveChapels(
+          semesterSubjectsManager.data.values
+              .where((semesterSubjects) {
+                return semesterSubjects.subjects.values.any((subject) {
+                  return subject.category == "채플" || ["CHAPEL", "비전채플"].contains(subject.name);
+                });
+              })
+              .map((semesterSubjects) => semesterSubjects.currentSemester)
+              .toList(),
+        )
         .result
-        .then((res) => ChapelManager(
-              SplayTreeMap.fromIterable(
-                res,
-                key: (chapel) => chapel.currentSemester,
-              ),
-            ));
+        .then((res) => ChapelManager(SplayTreeMap.fromIterable(res, key: (chapel) => chapel.currentSemester)));
 
     await _localStorageChapelManagerPort.saveChapelManager(chapelManager);
     _streamController.add(chapelManager);
@@ -82,7 +81,11 @@ class ChapelViewModelService implements ChapelViewModelUseCase {
   }
 
   @override
-  Future<bool> changeOverwrittenAttendance(YearSemester yearSemester, ChapelAttendance attendance, ChapelAttendanceStatus newOverwrittenStatus) async {
+  Future<bool> changeOverwrittenAttendance(
+    YearSemester yearSemester,
+    ChapelAttendance attendance,
+    ChapelAttendanceStatus newOverwrittenStatus,
+  ) async {
     final currentChapelManager = await getChapelManager();
     if (currentChapelManager == null) {
       return false;
@@ -96,12 +99,15 @@ class ChapelViewModelService implements ChapelViewModelUseCase {
       return false;
     }
 
-    final nextChapelManager = currentChapelManager.copyWith(data: currentChapelManager.data.also((it) {
-      it[yearSemester] = it[yearSemester]!.copyWith(
+    final nextChapelManager = currentChapelManager.copyWith(
+      data: currentChapelManager.data.also((it) {
+        it[yearSemester] = it[yearSemester]!.copyWith(
           attendances: it[yearSemester]!.attendances.also((it) {
-        it[attendance.lectureDate] = it[attendance.lectureDate]!.copyWith(overwrittenStatus: newOverwrittenStatus);
-      }));
-    }));
+            it[attendance.lectureDate] = it[attendance.lectureDate]!.copyWith(overwrittenStatus: newOverwrittenStatus);
+          }),
+        );
+      }),
+    );
 
     await _localStorageChapelManagerPort.saveChapelManager(nextChapelManager);
     _streamController.add(nextChapelManager);

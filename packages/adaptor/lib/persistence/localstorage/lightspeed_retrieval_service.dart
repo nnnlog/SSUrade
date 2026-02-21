@@ -37,15 +37,17 @@ class LightspeedRetrievalService {
   }
 
   Future<Lightspeed> retrieveLightspeed(String version) {
-    return _mutex.protect(() => _readLightspeed().then((lightspeed) async {
-          if (lightspeed == null || lightspeed.version != version) {
-            return await _downloadLightspeed(version).then((lightspeed) async {
-              await _saveLightspeed(lightspeed);
-              return lightspeed;
-            });
-          }
+    return _mutex.protect(
+      () => _readLightspeed().then((lightspeed) async {
+        if (lightspeed == null || lightspeed.version != version) {
+          return await _downloadLightspeed(version).then((lightspeed) async {
+            await _saveLightspeed(lightspeed);
+            return lightspeed;
+          });
+        }
 
-          return lightspeed;
-        }));
+        return lightspeed;
+      }),
+    );
   }
 }

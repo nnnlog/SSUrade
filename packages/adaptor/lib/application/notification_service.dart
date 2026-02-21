@@ -14,12 +14,7 @@ class NotificationService implements NotificationPort {
   @FactoryMethod(preResolve: true)
   static Future<NotificationService> init() async {
     final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
-    final AndroidNotificationChannel channel = const AndroidNotificationChannel(
-      "ssurade",
-      "notice",
-      importance: Importance.high,
-      showBadge: true,
-    );
+    final AndroidNotificationChannel channel = const AndroidNotificationChannel("ssurade", "notice", importance: Importance.high, showBadge: true);
 
     const AndroidInitializationSettings initializationSettingsAndroid = AndroidInitializationSettings('app_icon');
     const DarwinInitializationSettings initializationSettingsDarwin = DarwinInitializationSettings();

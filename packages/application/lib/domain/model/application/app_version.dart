@@ -10,12 +10,7 @@ class AppVersion extends Equatable {
   final String devVersion;
   final String buildNumber;
 
-  AppVersion({
-    required this.appVersion,
-    required this.newVersion,
-    required this.devVersion,
-    required this.buildNumber,
-  });
+  AppVersion({required this.appVersion, required this.newVersion, required this.devVersion, required this.buildNumber});
 
   @override
   List<Object?> get props => [appVersion, newVersion, devVersion, buildNumber];

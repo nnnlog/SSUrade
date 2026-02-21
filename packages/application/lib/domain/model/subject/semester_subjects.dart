@@ -23,12 +23,7 @@ class SemesterSubjects extends Equatable {
   @JsonKey()
   final YearSemester currentSemester; // cannot change after construction, use for key of Set
 
-  const SemesterSubjects({
-    required this.subjects,
-    required this.semesterRanking,
-    required this.totalRanking,
-    required this.currentSemester,
-  });
+  const SemesterSubjects({required this.subjects, required this.semesterRanking, required this.totalRanking, required this.currentSemester});
 
   factory SemesterSubjects.fromJson(Map<String, dynamic> json) => _$SemesterSubjectsFromJson(json);
 

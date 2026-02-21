@@ -31,7 +31,7 @@ class OzViewerProtocol {
       'xi': '',
       'xm': '',
       'xh': '',
-      'pi': ''
+      'pi': '',
     }).let((headers) {
       data.writeUInt32(headers.length);
       headers.forEach((key, value) {

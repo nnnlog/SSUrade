@@ -9,9 +9,7 @@ import 'package:ssurade_application/port/out/application/app_version_fetch_port.
 class AppVersionViewModelService implements AppVersionViewModelUseCase {
   final AppVersionFetchPort _appVersionFetchPort;
 
-  AppVersionViewModelService({
-    required AppVersionFetchPort appVersionFetchPort,
-  }) : this._appVersionFetchPort = appVersionFetchPort;
+  AppVersionViewModelService({required AppVersionFetchPort appVersionFetchPort}) : this._appVersionFetchPort = appVersionFetchPort;
 
   @override
   Future<AppVersion?> getAppVersion() {

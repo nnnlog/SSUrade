@@ -15,13 +15,10 @@ class WebViewClientService {
   final LightspeedRetrievalService _lightspeedRetrievalService;
   final AssetLoaderService _assetLoaderService;
 
-  const WebViewClientService({
-    required CredentialManagerService credentialCacheService,
-    required LightspeedRetrievalService lightspeedRetrievalService,
-    required AssetLoaderService assetLoaderService,
-  })  : _credentialCacheService = credentialCacheService,
-        _lightspeedRetrievalService = lightspeedRetrievalService,
-        _assetLoaderService = assetLoaderService;
+  const WebViewClientService({required CredentialManagerService credentialCacheService, required LightspeedRetrievalService lightspeedRetrievalService, required AssetLoaderService assetLoaderService})
+    : _credentialCacheService = credentialCacheService,
+      _lightspeedRetrievalService = lightspeedRetrievalService,
+      _assetLoaderService = assetLoaderService;
 
   Future<WebViewClient> create() async {
     final ret = Completer<void>();

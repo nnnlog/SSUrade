@@ -46,11 +46,6 @@ class AppVersionFetchService implements AppVersionFetchPort {
     if (devVer != "" && appVerInstance >= Version.parse(devVer)) devVer = "";
     if (newVer != "" && devVer != "" && Version.parse(newVer) >= Version.parse(devVer)) devVer = "";
 
-    return AppVersion(
-      appVersion: appVer,
-      newVersion: newVer,
-      devVersion: devVer,
-      buildNumber: buildNum,
-    );
+    return AppVersion(appVersion: appVer, newVersion: newVer, devVersion: devVer, buildNumber: buildNum);
   }
 }

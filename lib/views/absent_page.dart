@@ -21,24 +21,27 @@ class _AbsentPageState extends State<AbsentPage> with SingleTickerProviderStateM
   Widget build(BuildContext context) {
     super.build(context);
     return BlocProvider(
-      create: (context) => AbsentBloc(
-        absentViewModelUseCase: context.read<AbsentViewModelUseCase>(),
-        settingViewModelUseCase: context.read<SettingViewModelUseCase>(),
-      ),
-      child: BlocSelector<AbsentBloc, AbsentState, bool>(selector: (state) {
-        return state is AbsentShowing;
-      }, builder: (context, showingState) {
-        return Scaffold(
-          appBar: customAppBar("유고 결석 정보 조회"),
-          backgroundColor: showingState ? const Color.fromRGBO(241, 242, 245, 1) : null,
-          body: BlocBuilder<AbsentBloc, AbsentState>(
-            builder: (context, state) {
-              return switch (state) {
-                AbsentInitial() => run(() {
+      create:
+          (context) => AbsentBloc(
+            absentViewModelUseCase: context.read<AbsentViewModelUseCase>(),
+            settingViewModelUseCase: context.read<SettingViewModelUseCase>(),
+          ),
+      child: BlocSelector<AbsentBloc, AbsentState, bool>(
+        selector: (state) {
+          return state is AbsentShowing;
+        },
+        builder: (context, showingState) {
+          return Scaffold(
+            appBar: customAppBar("유고 결석 정보 조회"),
+            backgroundColor: showingState ? const Color.fromRGBO(241, 242, 245, 1) : null,
+            body: BlocBuilder<AbsentBloc, AbsentState>(
+              builder: (context, state) {
+                return switch (state) {
+                  AbsentInitial() => run(() {
                     context.read<AbsentBloc>().add(AbsentReady());
                     return Container();
                   }),
-                AbsentInitialLoading() => run(() {
+                  AbsentInitialLoading() => run(() {
                     context.read<AbsentBloc>().add(AbsentInformationRefreshRequested());
                     return const Padding(
                       padding: EdgeInsets.all(30),
@@ -46,19 +49,12 @@ class _AbsentPageState extends State<AbsentPage> with SingleTickerProviderStateM
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            LinearProgressIndicator(),
-                            SizedBox(
-                              width: 1,
-                              height: 15,
-                            ),
-                            Text("유고 결석 정보를 불러오고 있어요..."),
-                          ],
+                          children: [LinearProgressIndicator(), SizedBox(width: 1, height: 15), Text("유고 결석 정보를 불러오고 있어요...")],
                         ),
                       ),
                     );
                   }),
-                AbsentShowing() => BlocListener<AbsentBloc, AbsentState>(
+                  AbsentShowing() => BlocListener<AbsentBloc, AbsentState>(
                     listener: (context, state) {
                       if (state is AbsentShowing) {
                         _refreshController.refreshCompleted();
@@ -76,79 +72,70 @@ class _AbsentPageState extends State<AbsentPage> with SingleTickerProviderStateM
                         child: SingleChildScrollView(
                           child: Column(
                             children: [
-                              ...state.absentApplicationManager.data.map((e) => Container(
-                                    margin: const EdgeInsets.only(bottom: 10),
-                                    decoration: BoxDecoration(
-                                      color: Colors.white,
-                                      boxShadow: [
-                                        BoxShadow(
-                                          blurRadius: 6,
-                                          spreadRadius: 1,
-                                          offset: const Offset(0, 2),
-                                          color: Colors.black.withOpacity(0.1),
-                                        ),
-                                      ],
-                                      borderRadius: const BorderRadius.all(Radius.circular(10)),
+                              ...state.absentApplicationManager.data.map(
+                                (e) => Container(
+                                  margin: const EdgeInsets.only(bottom: 10),
+                                  decoration: BoxDecoration(
+                                    color: Colors.white,
+                                    boxShadow: [
+                                      BoxShadow(blurRadius: 6, spreadRadius: 1, offset: const Offset(0, 2), color: Colors.black.withOpacity(0.1)),
+                                    ],
+                                    borderRadius: const BorderRadius.all(Radius.circular(10)),
+                                  ),
+                                  child: ExpansionTile(
+                                    controller: _expansionTileController[e.hashCode] ??= ExpansionTileController(),
+                                    shape: Border.all(width: 0, color: Colors.transparent),
+                                    title: Container(
+                                      padding: const EdgeInsets.only(left: 5),
+                                      child: Row(
+                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Text(
+                                            e.startDate == e.endDate ? e.startDate : "${e.startDate} ~ ${e.endDate}",
+                                            style: const TextStyle(fontWeight: FontWeight.w500),
+                                          ),
+                                          Text(
+                                            e.status,
+                                            style: TextStyle(
+                                              color: {"승인": Colors.green, "거부": Colors.redAccent}[e.status],
+                                              fontWeight: FontWeight.w500,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
                                     ),
-                                    child: ExpansionTile(
-                                      controller: _expansionTileController[e.hashCode] ??= ExpansionTileController(),
-                                      shape: Border.all(width: 0, color: Colors.transparent),
-                                      title: Container(
-                                        padding: const EdgeInsets.only(left: 5),
-                                        child: Row(
-                                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                          children: [
-                                            Text(
-                                              e.startDate == e.endDate ? e.startDate : "${e.startDate} ~ ${e.endDate}",
-                                              style: const TextStyle(fontWeight: FontWeight.w500),
-                                            ),
-                                            Text(
-                                              e.status,
-                                              style: TextStyle(
-                                                  color: {
-                                                    "승인": Colors.green,
-                                                    "거부": Colors.redAccent,
-                                                  }[e.status],
-                                                  fontWeight: FontWeight.w500),
-                                            ),
-                                          ],
+                                    childrenPadding: const EdgeInsets.fromLTRB(40, 10, 40, 20),
+                                    children: [
+                                      ...[
+                                        ("결석 구분", e.absentType),
+                                        ("결석 사유", e.absentCause),
+                                        ("신청 일자", e.applicationDate),
+                                        ("처리 일자", e.proceedDate),
+                                        ("거부 사유", e.rejectCause),
+                                      ].map(
+                                        (e) => Container(
+                                          margin: const EdgeInsets.symmetric(vertical: 3),
+                                          child: Row(
+                                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              Text(e.$1, textAlign: TextAlign.left, style: const TextStyle(color: Colors.black54)),
+                                              const SizedBox(width: 10),
+                                              Expanded(
+                                                child: Text(
+                                                  e.$2,
+                                                  textAlign: TextAlign.right,
+                                                  style: const TextStyle(fontWeight: FontWeight.w500),
+                                                  softWrap: true,
+                                                ),
+                                              ),
+                                            ],
+                                          ),
                                         ),
                                       ),
-                                      childrenPadding: const EdgeInsets.fromLTRB(40, 10, 40, 20),
-                                      children: [
-                                        ...[
-                                          ("결석 구분", e.absentType),
-                                          ("결석 사유", e.absentCause),
-                                          ("신청 일자", e.applicationDate),
-                                          ("처리 일자", e.proceedDate),
-                                          ("거부 사유", e.rejectCause),
-                                        ].map((e) => Container(
-                                              margin: const EdgeInsets.symmetric(vertical: 3),
-                                              child: Row(
-                                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                                children: [
-                                                  Text(
-                                                    e.$1,
-                                                    textAlign: TextAlign.left,
-                                                    style: const TextStyle(color: Colors.black54),
-                                                  ),
-                                                  const SizedBox(
-                                                    width: 10,
-                                                  ),
-                                                  Expanded(
-                                                    child: Text(
-                                                      e.$2,
-                                                      textAlign: TextAlign.right,
-                                                      style: const TextStyle(fontWeight: FontWeight.w500),
-                                                      softWrap: true,
-                                                    ),
-                                                  ),
-                                                ],
-                                              ),
-                                            )),
-                                      ],
-                                    ),
-                                  )),
+                                    ],
+                                  ),
+                                ),
+                              ),
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                                 children: [
@@ -175,20 +162,22 @@ class _AbsentPageState extends State<AbsentPage> with SingleTickerProviderStateM
                         ),
                       ),
                     ),
-                  )
-              };
-            },
-          ),
-          floatingActionButton: showingState
-              ? FloatingActionButton(
-                  onPressed: () {
-                    context.read<AbsentBloc>().add(AbsentInformationRefreshRequested());
-                  },
-                  child: const Icon(Icons.refresh),
-                )
-              : null,
-        );
-      }),
+                  ),
+                };
+              },
+            ),
+            floatingActionButton:
+                showingState
+                    ? FloatingActionButton(
+                      onPressed: () {
+                        context.read<AbsentBloc>().add(AbsentInformationRefreshRequested());
+                      },
+                      child: const Icon(Icons.refresh),
+                    )
+                    : null,
+          );
+        },
+      ),
     );
   }
 

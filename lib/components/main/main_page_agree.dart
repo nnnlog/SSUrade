@@ -8,13 +8,10 @@ class MainPageAgree extends StatelessWidget {
   final String _agreement_short;
   final String _agreement;
 
-  const MainPageAgree({
-    Key? key,
-    required String agreement_short,
-    required String agreement,
-  })  : _agreement_short = agreement_short,
-        _agreement = agreement,
-        super(key: key);
+  const MainPageAgree({Key? key, required String agreement_short, required String agreement})
+    : _agreement_short = agreement_short,
+      _agreement = agreement,
+      super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -31,52 +28,27 @@ class MainPageAgree extends StatelessWidget {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    const Text(
-                      "SSUrade 개인정보 처리방침",
-                      style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 30,
-                    ),
-                    SingleChildScrollView(
-                      child: Text(_agreement_short),
-                    ),
-                    const SizedBox(
-                      height: 10,
-                    ),
+                    const Text("SSUrade 개인정보 처리방침", style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600)),
+                    const SizedBox(height: 30),
+                    SingleChildScrollView(child: Text(_agreement_short)),
+                    const SizedBox(height: 10),
                     TextButton(
-                      style: ElevatedButton.styleFrom(
-                        minimumSize: const Size.fromHeight(40),
-                      ),
+                      style: ElevatedButton.styleFrom(minimumSize: const Size.fromHeight(40)),
                       onPressed: () {
-                        showScrollableDialog(
-                          context,
-                          [
-                            SingleChildScrollView(
-                              child: SelectableText(_agreement),
-                            ),
-                            TextButton(
-                              style: ElevatedButton.styleFrom(
-                                minimumSize: const Size.fromHeight(40),
-                              ),
-                              onPressed: () {
-                                Navigator.pop(context);
-                              },
-                              child: const Text("닫기"),
-                            ),
-                          ],
-                        );
+                        showScrollableDialog(context, [
+                          SingleChildScrollView(child: SelectableText(_agreement)),
+                          TextButton(
+                            style: ElevatedButton.styleFrom(minimumSize: const Size.fromHeight(40)),
+                            onPressed: () {
+                              Navigator.pop(context);
+                            },
+                            child: const Text("닫기"),
+                          ),
+                        ]);
                       },
-                      child: const Text(
-                        "전체 보기",
-                      ),
+                      child: const Text("전체 보기"),
                     ),
-                    const SizedBox(
-                      height: 50,
-                    ),
+                    const SizedBox(height: 50),
                   ],
                 ),
               ),

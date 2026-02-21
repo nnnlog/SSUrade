@@ -18,9 +18,9 @@ class AbsentViewModelService implements AbsentViewModelUseCase {
     required LocalStorageAbsentApplicationManagerPort localStorageAbsentApplicationManagerPort,
     required ExternalAbsentApplicationRetrievalPort externalAbsentApplicationRetrievalPort,
     required ToastPort toastPort,
-  })  : _localStorageAbsentApplicationManagerPort = localStorageAbsentApplicationManagerPort,
-        _externalAbsentApplicationRetrievalPort = externalAbsentApplicationRetrievalPort,
-        _toastPort = toastPort;
+  }) : _localStorageAbsentApplicationManagerPort = localStorageAbsentApplicationManagerPort,
+       _externalAbsentApplicationRetrievalPort = externalAbsentApplicationRetrievalPort,
+       _toastPort = toastPort;
 
   @override
   Future<AbsentApplicationManager?> getAbsentManager() {

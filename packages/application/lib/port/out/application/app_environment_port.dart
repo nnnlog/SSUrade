@@ -4,5 +4,5 @@ abstract interface class AppEnvironmentPort {
 
 enum AppEnvironment {
   debug, // DEVELOPMENT
-  production
+  production,
 }

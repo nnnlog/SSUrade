@@ -10,12 +10,10 @@ class ScholarshipBloc extends Bloc<ScholarshipEvent, ScholarshipState> {
   final ScholarshipViewModelUseCase _scholarshipViewModelUseCase;
   final SettingViewModelUseCase _settingViewModelUseCase;
 
-  ScholarshipBloc({
-    required ScholarshipViewModelUseCase scholarshipViewModelUseCase,
-    required SettingViewModelUseCase settingViewModelUseCase,
-  })  : _scholarshipViewModelUseCase = scholarshipViewModelUseCase,
-        _settingViewModelUseCase = settingViewModelUseCase,
-        super(ScholarshipInitial()) {
+  ScholarshipBloc({required ScholarshipViewModelUseCase scholarshipViewModelUseCase, required SettingViewModelUseCase settingViewModelUseCase})
+    : _scholarshipViewModelUseCase = scholarshipViewModelUseCase,
+      _settingViewModelUseCase = settingViewModelUseCase,
+      super(ScholarshipInitial()) {
     on<ScholarshipReady>((event, emit) async {
       _scholarshipViewModelUseCase.getScholarshipManager().then((scholarshipManager) async {
         if (scholarshipManager != null && scholarshipManager != ScholarshipManager.empty()) {
@@ -30,14 +28,17 @@ class ScholarshipBloc extends Bloc<ScholarshipEvent, ScholarshipState> {
         }
       });
 
-      return emit.forEach(_scholarshipViewModelUseCase.getScholarshipManagerStream(), onData: (data) {
-        if (data == ScholarshipManager.empty()) {
-          return ScholarshipInitialLoading();
-        }
+      return emit.forEach(
+        _scholarshipViewModelUseCase.getScholarshipManagerStream(),
+        onData: (data) {
+          if (data == ScholarshipManager.empty()) {
+            return ScholarshipInitialLoading();
+          }
 
-        _scholarshipViewModelUseCase.showToast("장학금 정보를 불러왔어요.");
-        return ScholarshipShowing(scholarshipManager: data);
-      });
+          _scholarshipViewModelUseCase.showToast("장학금 정보를 불러왔어요.");
+          return ScholarshipShowing(scholarshipManager: data);
+        },
+      );
     });
 
     on<ScholarshipInformationRefreshRequested>((event, emit) async {

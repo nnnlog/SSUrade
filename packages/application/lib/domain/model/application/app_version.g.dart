@@ -21,12 +21,7 @@ abstract class _$AppVersionCWProxy {
   /// ```dart
   /// AppVersion(...).copyWith(id: 12, name: "My name")
   /// ````
-  AppVersion call({
-    String appVersion,
-    String newVersion,
-    String devVersion,
-    String buildNumber,
-  });
+  AppVersion call({String appVersion, String newVersion, String devVersion, String buildNumber});
 }
 
 /// Proxy class for `copyWith` functionality. This is a callable class and can be used as follows: `instanceOfAppVersion.copyWith(...)`. Additionally contains functions for specific fields e.g. `instanceOfAppVersion.copyWith.fieldName(...)`
@@ -48,7 +43,6 @@ class _$AppVersionCWProxyImpl implements _$AppVersionCWProxy {
   AppVersion buildNumber(String buildNumber) => this(buildNumber: buildNumber);
 
   @override
-
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `AppVersion(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -62,22 +56,26 @@ class _$AppVersionCWProxyImpl implements _$AppVersionCWProxy {
     Object? buildNumber = const $CopyWithPlaceholder(),
   }) {
     return AppVersion(
-      appVersion: appVersion == const $CopyWithPlaceholder()
-          ? _value.appVersion
-          // ignore: cast_nullable_to_non_nullable
-          : appVersion as String,
-      newVersion: newVersion == const $CopyWithPlaceholder()
-          ? _value.newVersion
-          // ignore: cast_nullable_to_non_nullable
-          : newVersion as String,
-      devVersion: devVersion == const $CopyWithPlaceholder()
-          ? _value.devVersion
-          // ignore: cast_nullable_to_non_nullable
-          : devVersion as String,
-      buildNumber: buildNumber == const $CopyWithPlaceholder()
-          ? _value.buildNumber
-          // ignore: cast_nullable_to_non_nullable
-          : buildNumber as String,
+      appVersion:
+          appVersion == const $CopyWithPlaceholder()
+              ? _value.appVersion
+              // ignore: cast_nullable_to_non_nullable
+              : appVersion as String,
+      newVersion:
+          newVersion == const $CopyWithPlaceholder()
+              ? _value.newVersion
+              // ignore: cast_nullable_to_non_nullable
+              : newVersion as String,
+      devVersion:
+          devVersion == const $CopyWithPlaceholder()
+              ? _value.devVersion
+              // ignore: cast_nullable_to_non_nullable
+              : devVersion as String,
+      buildNumber:
+          buildNumber == const $CopyWithPlaceholder()
+              ? _value.buildNumber
+              // ignore: cast_nullable_to_non_nullable
+              : buildNumber as String,
     );
   }
 }

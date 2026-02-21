@@ -55,19 +55,23 @@ class ExternalChapelRetrievalService implements ExternalChapelManagerRetrievalPo
   @override
   Job<List<Chapel>> retrieveChapels(List<YearSemester> yearSemesters) {
     return MainThreadCrawlingJob(CrawlingTimeout.chapel, () async {
-      final clients = await Future.wait(List.filled(_webViewCount, null).map((_) {
-        return _webViewClientService.create();
-      }).toList());
+      final clients = await Future.wait(
+        List.filled(_webViewCount, null).map((_) {
+          return _webViewClientService.create();
+        }).toList(),
+      );
 
       return run(() async {
         await Future.wait(clients.map((client) => client.loadPage(_url)));
 
-        final chapels = await ParallelWorker(
-          jobs: yearSemesters.map((yearSemester) {
-            return (client) => _getChapel(client, yearSemester);
-          }).toList(),
-          workers: clients,
-        ).result;
+        final chapels =
+            await ParallelWorker(
+              jobs:
+                  yearSemesters.map((yearSemester) {
+                    return (client) => _getChapel(client, yearSemester);
+                  }).toList(),
+              workers: clients,
+            ).result;
 
         return chapels.whereType<Chapel>().toList();
       }).whenComplete(() {

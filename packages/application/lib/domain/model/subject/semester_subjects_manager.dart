@@ -18,16 +18,10 @@ class SemesterSubjectsManager extends Equatable {
   @JsonKey()
   final SplayTreeMap<YearSemester, SemesterSubjects> data;
 
-  const SemesterSubjectsManager({
-    required this.data,
-    required this.state,
-  });
+  const SemesterSubjectsManager({required this.data, required this.state});
 
   factory SemesterSubjectsManager.empty() {
-    return SemesterSubjectsManager(
-      data: SplayTreeMap(),
-      state: SubjectState.empty,
-    );
+    return SemesterSubjectsManager(data: SplayTreeMap(), state: SubjectState.empty);
   }
 
   factory SemesterSubjectsManager.fromJson(Map<String, dynamic> json) => _$SemesterSubjectsManagerFromJson(json);
